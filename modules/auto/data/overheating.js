@@ -1,6 +1,6 @@
 // === РАЗДЕЛ: АВТО - ПЕРЕГРЕВ ===
 
-const overheatingData = {
+const autoOverheatingData = {
   category: "overheating",
   title: "🌡️ Перегрев",
   description: "Проблемы с системой охлаждения",

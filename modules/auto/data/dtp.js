@@ -1,6 +1,6 @@
 // === РАЗДЕЛ: АВТО - ДТП ===
 
-const dtpData = {
+const autoDtpData = {
   category: "dtp",
   title: "🚨 ДТП / Авария",
   description: "Действия при дорожно-транспортном происшествии",

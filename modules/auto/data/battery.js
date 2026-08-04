@@ -1,6 +1,6 @@
 // === РАЗДЕЛ: АВТО - БАТАРЕЯ ===
 
-const batteryData = {
+const autoBatteryData = {
   category: "battery",
   title: "🔋 Села батарея",
   description: "Проблемы с аккумулятором",

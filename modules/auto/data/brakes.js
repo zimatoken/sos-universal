@@ -1,6 +1,6 @@
 // === РАЗДЕЛ: АВТО - ТОРМОЗА ===
 
-const brakesData = {
+const autoBrakesData = {
   category: "brakes",
   title: "🛑 Проблемы с тормозами",
   description: "Критические проблемы с тормозной системой",

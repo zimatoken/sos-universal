@@ -1,6 +1,6 @@
 // === AUTO SECTION - BATTERY (ENGLISH) ===
 
-const batteryDataEn = {
+const autoBatteryDataEn = {
   category: "battery",
   title: "🔋 Dead battery",
   description: "Battery problems",

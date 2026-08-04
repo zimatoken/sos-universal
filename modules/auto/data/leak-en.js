@@ -1,6 +1,6 @@
 // === AUTO SECTION - LEAK (ENGLISH) ===
 
-const leakDataEn = {
+const autoLeakDataEn = {
   category: "leak",
   title: "💧 Fluid leak",
   description: "Technical fluid leaks",

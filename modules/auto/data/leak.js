@@ -1,6 +1,6 @@
 // === РАЗДЕЛ: АВТО - УТЕЧКА ===
 
-const leakData = {
+const autoLeakData = {
   category: "leak",
   title: "💧 Утечка жидкости",
   description: "Утечки технических жидкостей",

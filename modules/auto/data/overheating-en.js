@@ -1,6 +1,6 @@
 // === AUTO SECTION - OVERHEATING (ENGLISH) ===
 
-const overheatingDataEn = {
+const autoOverheatingDataEn = {
   category: "overheating",
   title: "🌡️ Overheating",
   description: "Cooling system problems",

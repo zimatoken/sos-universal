@@ -1,7 +1,7 @@
 // === AUTO SECTION (ENGLISH) ===
 // Separate categories for each problem
 
-const wont_startDataEn = {
+const autoWontStartDataEn = {
   category: "wont_start",
   title: "🔌 Won't start",
   description: "Engine starting problems",

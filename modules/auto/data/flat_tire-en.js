@@ -1,6 +1,6 @@
 // === AUTO SECTION - FLAT TIRE (ENGLISH) ===
 
-const flat_tireDataEn = {
+const autoFlatTireDataEn = {
   category: "flat_tire",
   title: "🛞 Flat tire",
   description: "Wheel problems",

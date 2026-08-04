@@ -1,6 +1,6 @@
 // === AUTO SECTION - ACCIDENT (ENGLISH) ===
 
-const dtpDataEn = {
+const autoDtpDataEn = {
   category: "dtp",
   title: "🚨 Accident / Crash",
   description: "Actions in case of a traffic accident",

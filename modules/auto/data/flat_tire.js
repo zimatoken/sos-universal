@@ -1,6 +1,6 @@
 // === РАЗДЕЛ: АВТО - ПРОКОЛ ШИНЫ ===
 
-const flat_tireData = {
+const autoFlatTireData = {
   category: "flat_tire",
   title: "🛞 Прокол шины",
   description: "Проблемы с колёсами",

@@ -1,6 +1,6 @@
 // === AUTO SECTION - BRAKES (ENGLISH) ===
 
-const brakesDataEn = {
+const autoBrakesDataEn = {
   category: "brakes",
   title: "🛑 Brake problems",
   description: "Critical brake system problems",

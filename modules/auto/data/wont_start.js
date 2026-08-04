@@ -1,7 +1,7 @@
 // === РАЗДЕЛ: АВТО ===
 // Отдельные категории для каждой проблемы
 
-const wont_startData = {
+const autoWontStartData = {
   category: "wont_start",
   title: "🔌 Не заводится",
   description: "Проблемы с запуском двигателя",
