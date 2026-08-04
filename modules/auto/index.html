@@ -171,11 +171,15 @@
     <div class="toast" id="toast"></div>
   </div>
 
-  <!-- Load core files (locales and theme first) -->
+  <!-- ========================================== -->
+  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ      -->
+  <!-- ========================================== -->
+
+  <!-- 1. ЯДРО (СНАЧАЛА!) -->
   <script src="../../core/locales.js"></script>
   <script src="../../core/theme.js"></script>
-  
-  <!-- Load module-specific data BEFORE engine.js -->
+
+  <!-- 2. ДАННЫЕ AUTO (РУССКИЕ) -->
   <script src="data/wont_start.js"></script>
   <script src="data/overheating.js"></script>
   <script src="data/flat_tire.js"></script>
@@ -183,8 +187,8 @@
   <script src="data/battery.js"></script>
   <script src="data/leak.js"></script>
   <script src="data/dtp.js"></script>
-  
-  <!-- Load English data if available -->
+
+  <!-- 3. ДАННЫЕ AUTO (АНГЛИЙСКИЕ) -->
   <script src="data/wont_start-en.js"></script>
   <script src="data/overheating-en.js"></script>
   <script src="data/flat_tire-en.js"></script>
@@ -193,35 +197,48 @@
   <script src="data/leak-en.js"></script>
   <script src="data/dtp-en.js"></script>
 
-  <!-- Load engine.js AFTER data is loaded -->
+  <!-- 4. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
   <script src="../../core/engine.js"></script>
 
-  <!-- Load module-specific i18n -->
+  <!-- 5. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
   <script src="i18n.js"></script>
-  
-  <!-- Load app logic -->
+
+  <!-- 6. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
   <script src="../../core/app.js"></script>
 
   <script>
-    // Module-specific functions
+    // ==========================================
+    // ГЛОБАЛЬНЫЕ ФУНКЦИИ ДЛЯ SOS UNIVERSAL
+    // ==========================================
+
+    // Функция возврата на главный экран
     function goBack() {
       window.location.href = '../../index.html';
     }
 
+    // Функция переключения языка
     function setLanguage(lang) {
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
       localStorage.setItem('language', lang);
-      currentLang = lang;
-      if (typeof setEngineLang !== 'undefined') {
-        setEngineLang(lang);
+      
+      // Обновляем текущий язык в движке
+      if (typeof window.currentLang !== 'undefined') {
+        window.currentLang = lang;
       }
+      
+      // Обновляем переводы
       updateTranslations(lang);
+      
+      // Перезагружаем данные
+      if (typeof refreshDataRegistry === 'function') {
+        refreshDataRegistry();
+      }
     }
 
+    // Функция обновления переводов
     function updateTranslations(lang) {
-      // Update from both core LOCALES and module AUTO_LOCALES
       const coreTexts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
       const moduleTexts = typeof AUTO_LOCALES !== 'undefined' ? (AUTO_LOCALES[lang] || AUTO_LOCALES.ru) : {};
       
@@ -235,15 +252,20 @@
       });
     }
 
+    // Функция голосового ввода (заглушка)
     function startVoiceInput() {
       alert('Голосовой ввод будет добавлен позже');
     }
 
-    // Load saved language and theme
-    document.addEventListener('DOMContentLoaded', () => {
+    // Загрузка сохранённого языка и темы
+    document.addEventListener('DOMContentLoaded', function() {
       const savedLang = localStorage.getItem('language') || 'ru';
       setLanguage(savedLang);
-      loadTheme();
+      
+      // Загрузка темы
+      if (typeof loadTheme === 'function') {
+        loadTheme();
+      }
     });
   </script>
 </body>
