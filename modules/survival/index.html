@@ -220,6 +220,9 @@
       });
       localStorage.setItem('language', lang);
       currentLang = lang;
+      if (typeof setEngineLang !== 'undefined') {
+        setEngineLang(lang);
+      }
       updateTranslations(lang);
     }
 

@@ -49,7 +49,7 @@
         <span data-i18n="sos_button">SOS — Я в опасности</span>
       </button>
 
-      <!-- Сетка 2×3 — 6 категорий проблем -->
+      <!-- Сетка 2×4 — 7 категорий проблем -->
       <div class="grid">
         <button class="cat-btn wont_start" onclick="startFlow('wont_start')">
           <span class="icon">🔌</span>
@@ -74,6 +74,10 @@
         <button class="cat-btn leak" onclick="startFlow('leak')">
           <span class="icon">💧</span>
           <span class="label" data-i18n="cat_leak">Утечка жидкости</span>
+        </button>
+        <button class="cat-btn dtp" onclick="startFlow('dtp')">
+          <span class="icon">🚨</span>
+          <span class="label" data-i18n="cat_dtp">ДТП / Авария</span>
         </button>
       </div>
 
@@ -178,6 +182,7 @@
   <script src="./data/brakes.js"></script>
   <script src="./data/battery.js"></script>
   <script src="./data/leak.js"></script>
+  <script src="./data/dtp.js"></script>
   
   <!-- Load English data if available -->
   <script src="./data/wont_start-en.js"></script>
@@ -186,6 +191,7 @@
   <script src="./data/brakes-en.js"></script>
   <script src="./data/battery-en.js"></script>
   <script src="./data/leak-en.js"></script>
+  <script src="./data/dtp-en.js"></script>
 
   <!-- Load engine.js AFTER data is loaded -->
   <script src="../../core/engine.js"></script>
@@ -208,6 +214,9 @@
       });
       localStorage.setItem('language', lang);
       currentLang = lang;
+      if (typeof setEngineLang !== 'undefined') {
+        setEngineLang(lang);
+      }
       updateTranslations(lang);
     }
 

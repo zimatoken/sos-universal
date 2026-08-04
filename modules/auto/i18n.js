@@ -20,6 +20,7 @@ const AUTO_LOCALES = {
     cat_brakes: "Проблемы с тормозами",
     cat_battery: "Села батарея",
     cat_leak: "Утечка жидкости",
+    cat_dtp: "ДТП / Авария",
     
     // Общие
     back: "← Назад",
@@ -98,6 +99,7 @@ const AUTO_LOCALES = {
     cat_brakes: "Brake problems",
     cat_battery: "Dead battery",
     cat_leak: "Fluid leak",
+    cat_dtp: "Accident / Crash",
     
     // Common
     back: "← Back",

@@ -2,102 +2,66 @@
 // Поддержка мультиязычности — выбирает данные по текущему языку
 // SOS UNIVERSAL Core Engine
 
-// Проверяем, что все данные загружены (русские версии)
-console.log("🔍 Проверка данных (RU):");
-console.log("  waterData:", typeof waterData !== 'undefined' ? '✅' : '❌');
-console.log("  fireData:", typeof fireData !== 'undefined' ? '✅' : '❌');
-console.log("  shelterData:", typeof shelterData !== 'undefined' ? '✅' : '❌');
-console.log("  foodData:", typeof foodData !== 'undefined' ? '✅' : '❌');
-console.log("  medicineData:", typeof medicineData !== 'undefined' ? '✅' : '❌');
-console.log("  navigationData:", typeof navigationData !== 'undefined' ? '✅' : '❌');
-console.log("  radioData:", typeof radioData !== 'undefined' ? '✅' : '❌');
-console.log("  kitData:", typeof kitData !== 'undefined' ? '✅' : '❌');
-console.log("  wont_startData:", typeof wont_startData !== 'undefined' ? '✅' : '❌');
-console.log("  overheatingData:", typeof overheatingData !== 'undefined' ? '✅' : '❌');
-console.log("  flat_tireData:", typeof flat_tireData !== 'undefined' ? '✅' : '❌');
-console.log("  brakesData:", typeof brakesData !== 'undefined' ? '✅' : '❌');
-console.log("  batteryData:", typeof batteryData !== 'undefined' ? '✅' : '❌');
-console.log("  leakData:", typeof leakData !== 'undefined' ? '✅' : '❌');
+// Глобальная переменная для текущих данных
+let currentData = null;
+let currentLang = 'ru';
 
-console.log("🔍 Проверка данных (EN):");
-console.log("  waterDataEn:", typeof waterDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  fireDataEn:", typeof fireDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  shelterDataEn:", typeof shelterDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  foodDataEn:", typeof foodDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  medicineDataEn:", typeof medicineDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  navigationDataEn:", typeof navigationDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  radioDataEn:", typeof radioDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  kitDataEn:", typeof kitDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  wont_startDataEn:", typeof wont_startDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  overheatingDataEn:", typeof overheatingDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  flat_tireDataEn:", typeof flat_tireDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  brakesDataEn:", typeof brakesDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  batteryDataEn:", typeof batteryDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  leakDataEn:", typeof leakDataEn !== 'undefined' ? '✅' : '❌');
-
-// Регистр всех данных (русские и английские версии)
-const dataRegistry = {
-  ru: {
-    water: waterData,
-    fire: fireData,
-    shelter: shelterData,
-    food: foodData,
-    medicine: medicineData,
-    navigation: navigationData,
-    radio: radioData,
-    kit: kitData,
-    wont_start: wont_startData,
-    overheating: overheatingData,
-    flat_tire: flat_tireData,
-    brakes: brakesData,
-    battery: batteryData,
-    leak: leakData
-  },
-  en: {}
-};
-
-// Заполняем английский регистр
-if (typeof waterDataEn !== 'undefined') dataRegistry.en.water = waterDataEn;
-if (typeof fireDataEn !== 'undefined') dataRegistry.en.fire = fireDataEn;
-if (typeof shelterDataEn !== 'undefined') dataRegistry.en.shelter = shelterDataEn;
-if (typeof foodDataEn !== 'undefined') dataRegistry.en.food = foodDataEn;
-if (typeof medicineDataEn !== 'undefined') dataRegistry.en.medicine = medicineDataEn;
-if (typeof navigationDataEn !== 'undefined') dataRegistry.en.navigation = navigationDataEn;
-if (typeof radioDataEn !== 'undefined') dataRegistry.en.radio = radioDataEn;
-if (typeof kitDataEn !== 'undefined') dataRegistry.en.kit = kitDataEn;
-if (typeof wont_startDataEn !== 'undefined') dataRegistry.en.wont_start = wont_startDataEn;
-if (typeof overheatingDataEn !== 'undefined') dataRegistry.en.overheating = overheatingDataEn;
-if (typeof flat_tireDataEn !== 'undefined') dataRegistry.en.flat_tire = flat_tireDataEn;
-if (typeof brakesDataEn !== 'undefined') dataRegistry.en.brakes = brakesDataEn;
-if (typeof batteryDataEn !== 'undefined') dataRegistry.en.battery = batteryDataEn;
-if (typeof leakDataEn !== 'undefined') dataRegistry.en.leak = leakDataEn;
-
-function getCurrentLang() {
-  return typeof currentLang !== 'undefined' ? currentLang : 'ru';
+/**
+ * Установка текущего языка
+ */
+function setEngineLang(lang) {
+  currentLang = lang;
+  console.log(`🌍 Язык двигателя установлен: ${lang}`);
 }
 
-function getCategoryData(category) {
-  const lang = getCurrentLang();
-  const langData = dataRegistry[lang] || dataRegistry.ru;
-  const data = langData[category];
+/**
+ * Запуск квиза по категории
+ */
+function startFlow(category) {
+  console.log(`🚀 Запуск категории: ${category}`);
   
-  if (!data) {
-    console.error(`❌ Категория не найдена: ${category} (язык: ${lang})`);
-    if (lang !== 'ru' && dataRegistry.ru[category]) {
-      console.log(`🔄 Используем русскую версию как fallback для ${category}`);
-      return dataRegistry.ru[category];
-    }
-    return null;
+  // Определяем язык
+  const lang = typeof currentLang !== 'undefined' ? currentLang : 'ru';
+  
+  // Выбор данных по категории
+  if (category === 'water') currentData = typeof waterDataEn !== 'undefined' && lang === 'en' ? waterDataEn : waterData;
+  else if (category === 'fire') currentData = typeof fireDataEn !== 'undefined' && lang === 'en' ? fireDataEn : fireData;
+  else if (category === 'shelter') currentData = typeof shelterDataEn !== 'undefined' && lang === 'en' ? shelterDataEn : shelterData;
+  else if (category === 'food') currentData = typeof foodDataEn !== 'undefined' && lang === 'en' ? foodDataEn : foodData;
+  else if (category === 'medicine') currentData = typeof medicineDataEn !== 'undefined' && lang === 'en' ? medicineDataEn : medicineData;
+  else if (category === 'navigation') currentData = typeof navigationDataEn !== 'undefined' && lang === 'en' ? navigationDataEn : navigationData;
+  else if (category === 'radio') currentData = typeof radioDataEn !== 'undefined' && lang === 'en' ? radioDataEn : radioData;
+  else if (category === 'kit') currentData = typeof kitDataEn !== 'undefined' && lang === 'en' ? kitDataEn : kitData;
+  // Auto categories
+  else if (category === 'wont_start') currentData = typeof wont_startDataEn !== 'undefined' && lang === 'en' ? wont_startDataEn : wont_startData;
+  else if (category === 'overheating') currentData = typeof overheatingDataEn !== 'undefined' && lang === 'en' ? overheatingDataEn : overheatingData;
+  else if (category === 'flat_tire') currentData = typeof flat_tireDataEn !== 'undefined' && lang === 'en' ? flat_tireDataEn : flat_tireData;
+  else if (category === 'brakes') currentData = typeof brakesDataEn !== 'undefined' && lang === 'en' ? brakesDataEn : brakesData;
+  else if (category === 'battery') currentData = typeof batteryDataEn !== 'undefined' && lang === 'en' ? batteryDataEn : batteryData;
+  else if (category === 'leak') currentData = typeof leakDataEn !== 'undefined' && lang === 'en' ? leakDataEn : leakData;
+  else if (category === 'dtp') currentData = typeof dtpDataEn !== 'undefined' && lang === 'en' ? dtpDataEn : dtpData;
+  else {
+    console.error(`❌ Неизвестная категория: ${category}`);
+    return;
   }
   
-  console.log(`✅ Загружена категория: ${category} (язык: ${lang})`);
-  console.log(`   Вопросов: ${data.questions?.length || 0}, решений: ${data.solutions?.length || 0}`);
-  return data;
+  if (!currentData) {
+    console.error(`❌ Данные не найдены для категории: ${category}`);
+    return;
+  }
+  
+  console.log(`✅ Данные загружены: ${currentData.title}`);
+  console.log(`   Вопросов: ${currentData.questions?.length || 0}, решений: ${currentData.solutions?.length || 0}`);
+  
+  // Инициализация квиза
+  currentQuestionIndex = 0;
+  answers = {};
+  showScreen("screen-questions");
+  renderQuestion();
 }
 
 /**
  * Фильтрация решений по ответам пользователя
- * Улучшена: учитывает основной симптом при Fallback
  */
 function filterSolutions(data, answers) {
   if (!data || !data.solutions) {
@@ -123,42 +87,18 @@ function filterSolutions(data, answers) {
 
   // --- FALLBACK: если нет точных совпадений ---
   if (matched.length === 0) {
-    console.log("🔄 Нет точных совпадений, ищем ближайшие по симптомам");
+    console.log("🔄 Нет точных совпадений, ищем ближайшие по тегам");
     
-    // 1. Определяем основной симптом (для медицины)
-    const mainSymptom = answers.symptom ? answers.symptom[0] : null;
-    
-    // 2. Собираем все теги из ответов
+    // Собираем все теги из ответов
     const allTags = Object.values(answers).flat();
     
     matched = data.solutions.filter(sol => {
       if (!sol.tags) return false;
       
-      // 2.1 Проверяем симптом (для медицины)
-      if (mainSymptom) {
-        // Если у решения есть symptom в условиях — проверяем соответствие
-        if (sol.conditions && sol.conditions.symptom) {
-          const solSymptoms = sol.conditions.symptom;
-          if (!solSymptoms.includes(mainSymptom)) {
-            // Если симптом не совпадает — пропускаем
-            return false;
-          }
-        } else {
-          // Если у решения нет symptom в условиях, но оно помечено как универсальное
-          // и подходит по тегам — пропускаем только если это действительно универсальное
-          // (для медицины — только emergency и universal)
-          const isMedicalUniversal = sol.tags.includes("emergency") || 
-                                     sol.tags.includes("first_aid");
-          if (!isMedicalUniversal) {
-            return false;
-          }
-        }
-      }
-      
-      // 2.2 Проверяем пересечение тегов
+      // Проверяем пересечение тегов
       const hasTagMatch = allTags.some(tag => sol.tags.includes(tag));
       
-      // 2.3 Проверяем, помечено ли как универсальное
+      // Проверяем, помечено ли как универсальное
       const isUniversal = sol.tags.includes("universal") || 
                          sol.tags.includes("primitive") ||
                          sol.tags.includes("search") ||
@@ -170,15 +110,10 @@ function filterSolutions(data, answers) {
       return hasTagMatch || isUniversal;
     });
     
-    // 3. Если всё ещё ничего не найдено — возвращаем первые 3 решения как экстренные
+    // Если всё ещё ничего не найдено — возвращаем первые 3 решения
     if (matched.length === 0) {
-      console.warn("⚠️ Не найдено подходящих решений, показываем экстренные");
-      matched = data.solutions.filter(sol => 
-        sol.tags && (sol.tags.includes("emergency") || sol.tags.includes("first_aid"))
-      );
-      if (matched.length === 0) {
-        matched = data.solutions.slice(0, 3);
-      }
+      console.warn("⚠️ Не найдено подходящих решений, показываем первые 3");
+      matched = data.solutions.slice(0, 3);
     }
   }
 
@@ -214,19 +149,17 @@ function getSolutionById(data, id) {
   return solution || null;
 }
 
-function refreshDataRegistry() {
-  const lang = getCurrentLang();
-  console.log(`🔄 Обновление данных для языка: ${lang}`);
-  const langData = dataRegistry[lang] || dataRegistry.ru;
-  const categories = Object.keys(langData);
-  console.log(`📋 Доступно категорий (${lang}): ${categories.join(", ")}`);
-}
+// Глобальные переменные для квиза
+let currentQuestionIndex = 0;
+let answers = {};
 
 // Экспорт
-window.getCategoryData = getCategoryData;
+window.startFlow = startFlow;
 window.filterSolutions = filterSolutions;
 window.getSolutionById = getSolutionById;
-window.refreshDataRegistry = refreshDataRegistry;
+window.setEngineLang = setEngineLang;
+window.currentData = currentData;
+window.currentQuestionIndex = currentQuestionIndex;
+window.answers = answers;
 
 console.log("✅ Движок загружен, готов к работе!");
-console.log(`🌍 Доступные языки: ${Object.keys(dataRegistry).join(", ")}`);
