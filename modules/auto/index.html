@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>SOS AUTO — Помощь при поломке автомобиля</title>
+  
+  <meta name="apple-mobile-web-app-title" content="SOS AUTO">
+  
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/modules/auto.css">
+</head>
+<body>
+
+  <div class="app">
+    <!-- ЭКРАН 1: Главная (категории) -->
+    <div class="screen active" id="screen-home">
+      <!-- HEADER with back button -->
+      <div class="header">
+        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">AUTO</span></h1>
+        <p data-i18n="app_subtitle">Помощь при поломке автомобиля</p>
+      </div>
+
+      <div class="status-bar">
+        <div class="dot"></div>
+        <span data-i18n="status_online">Режим офлайн — база загружена</span>
+      </div>
+
+      <!-- Переключатель языка + тема + микрофон -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">
+          🇷🇺 Русский
+        </button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+          🇬🇧 English
+        </button>
+        <button class="mic-btn" onclick="startVoiceInput()" title="Голосовой ввод">
+          🎤
+        </button>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
+      </div>
+
+      <button class="sos-btn" onclick="showSOS()">
+        <div class="pulse"></div>
+        <span data-i18n="sos_button">SOS — Я в опасности</span>
+      </button>
+
+      <!-- Сетка 2×3 — 6 категорий проблем -->
+      <div class="grid">
+        <button class="cat-btn wont_start" onclick="startFlow('wont_start')">
+          <span class="icon">🔌</span>
+          <span class="label" data-i18n="cat_wont_start">Не заводится</span>
+        </button>
+        <button class="cat-btn overheating" onclick="startFlow('overheating')">
+          <span class="icon">🌡️</span>
+          <span class="label" data-i18n="cat_overheating">Перегрев</span>
+        </button>
+        <button class="cat-btn flat_tire" onclick="startFlow('flat_tire')">
+          <span class="icon">🛞</span>
+          <span class="label" data-i18n="cat_flat_tire">Прокол шины</span>
+        </button>
+        <button class="cat-btn brakes" onclick="startFlow('brakes')">
+          <span class="icon">🛑</span>
+          <span class="label" data-i18n="cat_brakes">Проблемы с тормозами</span>
+        </button>
+        <button class="cat-btn battery" onclick="startFlow('battery')">
+          <span class="icon">🔋</span>
+          <span class="label" data-i18n="cat_battery">Села батарея</span>
+        </button>
+        <button class="cat-btn leak" onclick="startFlow('leak')">
+          <span class="icon">💧</span>
+          <span class="label" data-i18n="cat_leak">Утечка жидкости</span>
+        </button>
+      </div>
+
+      <div class="footer">
+        <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
+      </div>
+    </div>
+
+    <!-- ЭКРАН ВОПРОСОВ -->
+    <div class="screen" id="screen-questions">
+      <button class="back-btn" onclick="goHome()" data-i18n="back">← Назад</button>
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <div id="question-container"></div>
+      <button class="next-btn" id="next-btn" onclick="nextQuestion()" data-i18n="next">Далее</button>
+    </div>
+
+    <!-- ЭКРАН РЕЗУЛЬТАТОВ -->
+    <div class="screen" id="screen-results">
+      <button class="back-btn" onclick="goHome()" data-i18n="back_home">← На главную</button>
+      <div class="result-header">
+        <div class="result-icon" id="result-icon">🚗</div>
+        <h2 id="result-title">Результаты</h2>
+        <p id="result-subtitle">Под вашу ситуацию</p>
+      </div>
+      <div id="results-container"></div>
+      <button class="restart-btn" onclick="restart()" data-i18n="restart">🔄 Новый запрос</button>
+    </div>
+
+    <!-- ЭКРАН SOS -->
+    <div class="screen" id="screen-sos">
+      <button class="back-btn" onclick="goHome()" data-i18n="back">← Назад</button>
+      <div class="sos-card">
+        <div class="sos-header">
+          <div class="sos-icon">🚨</div>
+          <h2 data-i18n="sos_title">Режим SOS</h2>
+        </div>
+        <p class="sos-desc" data-i18n="sos_desc">Ваши координаты сохранены. При появлении сигнала будет отправлено сообщение экстренным контактам.</p>
+        <div class="gps-block">
+          <div class="gps-label" data-i18n="sos_gps">📍 GPS-координаты (кэш)</div>
+          <div class="gps-coords" id="gps-coords" data-i18n="sos_gps_detecting">Определение...</div>
+          <div class="gps-time" id="gps-time">Обновлено: --:--</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-title" data-i18n="sos_contact_title">📱 Экстренный контакт</div>
+          <div class="contact-field">
+            <label for="sos-phone" data-i18n="sos_phone_label">Телефон близкого человека *</label>
+            <input type="tel" id="sos-phone" placeholder="+7 999 123 45 67" class="contact-input">
+          </div>
+          <div class="contact-field">
+            <label for="sos-name" data-i18n="sos_name_label">Имя близкого человека (опционально)</label>
+            <input type="text" id="sos-name" placeholder="Иван" class="contact-input">
+          </div>
+        </div>
+        <button class="send-sos-btn" onclick="sendSOS()" data-i18n="sos_send_btn">
+          🆘 ОТПРАВИТЬ SOS
+        </button>
+        <div class="signals-block">
+          <div class="signals-title" data-i18n="sos_signals">📡 Сигналы для спасателей</div>
+          <div class="signal-item" onclick="toggleSignal(this)">
+            <div class="signal-check"></div>
+            <span data-i18n="sos_signal_1">3 огня в треугольнике (международный сигнал бедствия)</span>
+          </div>
+          <div class="signal-item" onclick="toggleSignal(this)">
+            <div class="signal-check"></div>
+            <span data-i18n="sos_signal_2">Зеркало / блестящий предмет — отражать солнце</span>
+          </div>
+          <div class="signal-item" onclick="toggleSignal(this)">
+            <div class="signal-check"></div>
+            <span data-i18n="sos_signal_3">Громкие звуки — 3 удара, пауза, 3 удара</span>
+          </div>
+          <div class="signal-item" onclick="toggleSignal(this)">
+            <div class="signal-check"></div>
+            <span data-i18n="sos_signal_4">Буквы SOS на открытой местности (камни, ветки)</span>
+          </div>
+          <button class="flashlight-btn" onclick="toggleFlashlight()" data-i18n="sos_flashlight">
+            🔦 Фонарик (SOS-мигание)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЭКРАН ДЕТАЛЕЙ -->
+    <div class="screen" id="screen-details">
+      <button class="back-btn" onclick="backToResults()" data-i18n="back_results">← Назад к результатам</button>
+      <div id="details-container"></div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <!-- Load core files (locales and theme first) -->
+  <script src="../../core/locales.js"></script>
+  <script src="../../core/theme.js"></script>
+  
+  <!-- Load module-specific data BEFORE engine.js -->
+  <script src="./data/wont_start.js"></script>
+  <script src="./data/overheating.js"></script>
+  <script src="./data/flat_tire.js"></script>
+  <script src="./data/brakes.js"></script>
+  <script src="./data/battery.js"></script>
+  <script src="./data/leak.js"></script>
+  
+  <!-- Load English data if available -->
+  <script src="./data/wont_start-en.js"></script>
+  <script src="./data/overheating-en.js"></script>
+  <script src="./data/flat_tire-en.js"></script>
+  <script src="./data/brakes-en.js"></script>
+  <script src="./data/battery-en.js"></script>
+  <script src="./data/leak-en.js"></script>
+
+  <!-- Load engine.js AFTER data is loaded -->
+  <script src="../../core/engine.js"></script>
+
+  <!-- Load module-specific i18n -->
+  <script src="./i18n.js"></script>
+  
+  <!-- Load app logic -->
+  <script src="../../core/app.js"></script>
+
+  <script>
+    // Module-specific functions
+    function goBack() {
+      window.location.href = '../../index.html';
+    }
+
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      localStorage.setItem('language', lang);
+      currentLang = lang;
+      updateTranslations(lang);
+    }
+
+    function updateTranslations(lang) {
+      // Update from both core LOCALES and module AUTO_LOCALES
+      const coreTexts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
+      const moduleTexts = typeof AUTO_LOCALES !== 'undefined' ? (AUTO_LOCALES[lang] || AUTO_LOCALES.ru) : {};
+      
+      const texts = { ...coreTexts, ...moduleTexts };
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (texts[key]) {
+          el.textContent = texts[key];
+        }
+      });
+    }
+
+    function startVoiceInput() {
+      alert('Голосовой ввод будет добавлен позже');
+    }
+
+    // Load saved language and theme
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('language') || 'ru';
+      setLanguage(savedLang);
+      loadTheme();
+    });
+  </script>
+</body>
+</html>

@@ -12,6 +12,12 @@ console.log("  medicineData:", typeof medicineData !== 'undefined' ? '✅' : '�
 console.log("  navigationData:", typeof navigationData !== 'undefined' ? '✅' : '❌');
 console.log("  radioData:", typeof radioData !== 'undefined' ? '✅' : '❌');
 console.log("  kitData:", typeof kitData !== 'undefined' ? '✅' : '❌');
+console.log("  wont_startData:", typeof wont_startData !== 'undefined' ? '✅' : '❌');
+console.log("  overheatingData:", typeof overheatingData !== 'undefined' ? '✅' : '❌');
+console.log("  flat_tireData:", typeof flat_tireData !== 'undefined' ? '✅' : '❌');
+console.log("  brakesData:", typeof brakesData !== 'undefined' ? '✅' : '❌');
+console.log("  batteryData:", typeof batteryData !== 'undefined' ? '✅' : '❌');
+console.log("  leakData:", typeof leakData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
 console.log("  waterDataEn:", typeof waterDataEn !== 'undefined' ? '✅' : '❌');
@@ -22,6 +28,12 @@ console.log("  medicineDataEn:", typeof medicineDataEn !== 'undefined' ? '✅' :
 console.log("  navigationDataEn:", typeof navigationDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  radioDataEn:", typeof radioDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  kitDataEn:", typeof kitDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  wont_startDataEn:", typeof wont_startDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  overheatingDataEn:", typeof overheatingDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  flat_tireDataEn:", typeof flat_tireDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  brakesDataEn:", typeof brakesDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  batteryDataEn:", typeof batteryDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  leakDataEn:", typeof leakDataEn !== 'undefined' ? '✅' : '❌');
 
 // Регистр всех данных (русские и английские версии)
 const dataRegistry = {
@@ -33,7 +45,13 @@ const dataRegistry = {
     medicine: medicineData,
     navigation: navigationData,
     radio: radioData,
-    kit: kitData
+    kit: kitData,
+    wont_start: wont_startData,
+    overheating: overheatingData,
+    flat_tire: flat_tireData,
+    brakes: brakesData,
+    battery: batteryData,
+    leak: leakData
   },
   en: {}
 };
@@ -47,6 +65,12 @@ if (typeof medicineDataEn !== 'undefined') dataRegistry.en.medicine = medicineDa
 if (typeof navigationDataEn !== 'undefined') dataRegistry.en.navigation = navigationDataEn;
 if (typeof radioDataEn !== 'undefined') dataRegistry.en.radio = radioDataEn;
 if (typeof kitDataEn !== 'undefined') dataRegistry.en.kit = kitDataEn;
+if (typeof wont_startDataEn !== 'undefined') dataRegistry.en.wont_start = wont_startDataEn;
+if (typeof overheatingDataEn !== 'undefined') dataRegistry.en.overheating = overheatingDataEn;
+if (typeof flat_tireDataEn !== 'undefined') dataRegistry.en.flat_tire = flat_tireDataEn;
+if (typeof brakesDataEn !== 'undefined') dataRegistry.en.brakes = brakesDataEn;
+if (typeof batteryDataEn !== 'undefined') dataRegistry.en.battery = batteryDataEn;
+if (typeof leakDataEn !== 'undefined') dataRegistry.en.leak = leakDataEn;
 
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
