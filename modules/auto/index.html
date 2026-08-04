@@ -255,13 +255,20 @@
   <script src="data/leak-en.js"></script>
   <script src="data/dtp-en.js"></script>
 
-  <!-- 5. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
+  <!-- 5. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
+  <script>
+    // Инициализируем текущий язык из localStorage
+    window.currentLang = localStorage.getItem('language') || 'ru';
+    console.log('🌍 Текущий язык инициализирован:', window.currentLang);
+  </script>
+
+  <!-- 6. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
   <script src="../../core/engine.js"></script>
 
-  <!-- 6. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
+  <!-- 7. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
   <script src="i18n.js"></script>
 
-  <!-- 7. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
+  <!-- 8. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
   <script src="../../core/app.js"></script>
 
   <script>
@@ -276,10 +283,18 @@
 
     // Функция переключения языка
     function setLanguage(lang) {
+      const savedLang = localStorage.getItem('language') || 'ru';
+      
+      // Если язык изменился - перезагружаем страницу для корректной загрузки данных
+      if (savedLang !== lang) {
+        localStorage.setItem('language', lang);
+        location.reload();
+        return;
+      }
+      
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
-      localStorage.setItem('language', lang);
       
       // Обновляем текущий язык в движке
       if (typeof window.currentLang !== 'undefined') {
