@@ -10,6 +10,8 @@
   
   <meta name="apple-mobile-web-app-title" content="SOS AUTO">
   
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="../../css/modules/auto.css">
 </head>
@@ -20,7 +22,7 @@
     <div class="screen active" id="screen-home">
       <!-- HEADER with back button -->
       <div class="header">
-        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <button class="back-btn home-back-btn" onclick="goBack()">← Назад</button>
         <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">AUTO</span></h1>
         <p data-i18n="app_subtitle">Помощь при поломке автомобиля</p>
       </div>
@@ -84,28 +86,63 @@
       <div class="footer">
         <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
       </div>
+
+      <!-- Карта и поддержка -->
+      <div class="map-link-block">
+        <a href="https://www.openstreetmap.org/" target="_blank" class="map-link" data-i18n="map_link">
+          🗺️ Открыть карту (требуется интернет)
+        </a>
+        <span class="map-hint" data-i18n="map_hint">Или скачай Organic Maps — работает офлайн</span>
+      </div>
+
+      <!-- БЛОК БЛАГОДАРНОСТИ -->
+      <div class="support-block">
+        <div class="support-header">
+          <span class="support-heart">❤️</span>
+          <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS AUTO!</span>
+        </div>
+        <p class="support-desc" data-i18n="support_desc">
+          Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!
+        </p>
+        <div class="support-buttons">
+          <a href="https://t.me/sos_survive_bot" target="_blank" class="support-btn telegram" data-i18n="support_telegram">
+            📱 Написать в Telegram
+          </a>
+          <a href="https://www.tinkoff.ru/rm/zima.token1/5z4YV31214" target="_blank" class="support-btn donate" data-i18n="support_donate">
+            💳 Поддержать проект
+          </a>
+        </div>
+        <div class="support-trust" data-i18n="support_trust">
+          💎 Все средства идут на развитие проекта и помощь людям в экстренных ситуациях. Спасибо за доверие!
+        </div>
+        <div class="support-footer">
+          <span data-i18n="support_footer">Спасибо, что вы с нами! 🙌</span>
+        </div>
+      </div>
     </div>
 
     <!-- ЭКРАН ВОПРОСОВ -->
     <div class="screen" id="screen-questions">
       <button class="back-btn" onclick="goHome()" data-i18n="back">← Назад</button>
       <div class="progress-bar">
-        <div class="progress" id="progress"></div>
+        <div class="progress-fill" id="progress"></div>
       </div>
       <div id="question-container"></div>
-      <button class="next-btn" id="next-btn" onclick="nextQuestion()" data-i18n="next">Далее</button>
+      <button class="next-btn" id="next-btn" onclick="nextQuestion()" disabled data-i18n="next">Далее</button>
     </div>
 
     <!-- ЭКРАН РЕЗУЛЬТАТОВ -->
     <div class="screen" id="screen-results">
       <button class="back-btn" onclick="goHome()" data-i18n="back_home">← На главную</button>
-      <div class="result-header">
-        <div class="result-icon" id="result-icon">🚗</div>
+      <div class="results-header">
+        <div class="results-icon" id="result-icon">🚗</div>
         <h2 id="result-title">Результаты</h2>
         <p id="result-subtitle">Под вашу ситуацию</p>
       </div>
       <div id="results-container"></div>
-      <button class="restart-btn" onclick="restart()" data-i18n="restart">🔄 Новый запрос</button>
+      <button class="restart-btn" onclick="goHome()" data-i18n="restart">
+        🔄 Новый запрос
+      </button>
     </div>
 
     <!-- ЭКРАН SOS -->
@@ -154,32 +191,53 @@
             <div class="signal-check"></div>
             <span data-i18n="sos_signal_4">Буквы SOS на открытой местности (камни, ветки)</span>
           </div>
-          <button class="flashlight-btn" onclick="toggleFlashlight()" data-i18n="sos_flashlight">
-            🔦 Фонарик (SOS-мигание)
-          </button>
+        </div>
+        <button class="flashlight-btn" onclick="toggleFlashlight()" data-i18n="sos_flashlight">
+          🔦 Фонарик (SOS-мигание)
+        </button>
+        <div class="psychology-block">
+          <div class="psychology-title">🧠 Психология выживания</div>
+          <div class="psychology-item">
+            <span class="psychology-icon">🫁</span>
+            <span data-i18n="psychology_breath">Дыши: 4 сек вдох, 4 пауза, 4 выдох</span>
+          </div>
+          <div class="psychology-item">
+            <span class="psychology-icon">📝</span>
+            <span data-i18n="psychology_plan">Планируй: разбей день на отрезки</span>
+          </div>
+          <div class="psychology-item">
+            <span class="psychology-icon">🗣️</span>
+            <span data-i18n="psychology_talk">Говори с собой вслух — это успокаивает</span>
+          </div>
+          <div class="psychology-item">
+            <span class="psychology-icon">🎯</span>
+            <span data-i18n="psychology_goals">Ставь маленькие цели: "собрать дрова на 2 часа"</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- ЭКРАН ДЕТАЛЕЙ -->
-    <div class="screen" id="screen-details">
-      <button class="back-btn" onclick="backToResults()" data-i18n="back_results">← Назад к результатам</button>
-      <div id="details-container"></div>
+    <div class="screen" id="screen-detail">
+      <button class="back-btn" onclick="showResultsBack()" data-i18n="back">← Назад к результатам</button>
+      <div id="detail-container"></div>
     </div>
-
-    <!-- TOAST -->
-    <div class="toast" id="toast"></div>
   </div>
+
+  <div class="toast" id="toast"></div>
 
   <!-- ========================================== -->
   <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ      -->
   <!-- ========================================== -->
 
-  <!-- 1. ЯДРО (СНАЧАЛА!) -->
+  <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
   <script src="../../core/locales.js"></script>
-  <script src="../../core/theme.js"></script>
 
-  <!-- 2. ДАННЫЕ AUTO (РУССКИЕ) -->
+  <!-- 2. ТЕМА И ГОЛОС -->
+  <script src="../../core/theme.js"></script>
+  <script src="../../core/voice.js"></script>
+
+  <!-- 3. ДАННЫЕ AUTO (РУССКИЕ) -->
   <script src="data/wont_start.js"></script>
   <script src="data/overheating.js"></script>
   <script src="data/flat_tire.js"></script>
@@ -188,7 +246,7 @@
   <script src="data/leak.js"></script>
   <script src="data/dtp.js"></script>
 
-  <!-- 3. ДАННЫЕ AUTO (АНГЛИЙСКИЕ) -->
+  <!-- 4. ДАННЫЕ AUTO (АНГЛИЙСКИЕ) -->
   <script src="data/wont_start-en.js"></script>
   <script src="data/overheating-en.js"></script>
   <script src="data/flat_tire-en.js"></script>
@@ -197,13 +255,13 @@
   <script src="data/leak-en.js"></script>
   <script src="data/dtp-en.js"></script>
 
-  <!-- 4. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
+  <!-- 5. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
   <script src="../../core/engine.js"></script>
 
-  <!-- 5. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
+  <!-- 6. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
   <script src="i18n.js"></script>
 
-  <!-- 6. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
+  <!-- 7. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
   <script src="../../core/app.js"></script>
 
   <script>
