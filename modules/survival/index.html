@@ -175,12 +175,11 @@
     <div class="toast" id="toast"></div>
   </div>
 
-  <!-- Load core files -->
+  <!-- Load core files (locales and theme first) -->
   <script src="../../core/locales.js"></script>
   <script src="../../core/theme.js"></script>
-  <script src="../../core/engine.js"></script>
   
-  <!-- Load module-specific data -->
+  <!-- Load module-specific data BEFORE engine.js -->
   <script src="./data/water.js"></script>
   <script src="./data/fire.js"></script>
   <script src="./data/shelter.js"></script>
@@ -200,8 +199,8 @@
   <script src="./data/radio-en.js"></script>
   <script src="./data/kit-en.js"></script>
 
-  <!-- Load data index -->
-  <script src="./data/index.js"></script>
+  <!-- Load engine.js AFTER data is loaded -->
+  <script src="../../core/engine.js"></script>
 
   <!-- Load module-specific i18n -->
   <script src="./i18n.js"></script>

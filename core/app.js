@@ -369,16 +369,6 @@ function showDetails(index) {
   html += "</div>";
   container.innerHTML = html;
 }
-  html += "</div>";
-
-  html += '<div class="meta" style="margin-top:16px;">';
-  html += "<span>⏱️ " + sol.time_estimate + "</span>";
-  html += "<span>📦 " + sol.yield_estimate + "</span>";
-  html += "</div>";
-  html += "</div>";
-
-  container.innerHTML = html;
-}
 
 function showResultsBack() {
   showScreen("screen-results");
