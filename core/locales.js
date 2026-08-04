@@ -217,7 +217,18 @@ window.LOCALES = LOCALES;
 // Функция перевода
 function t(key) {
   const lang = typeof currentLang !== 'undefined' ? currentLang : 'ru';
-  const texts = LOCALES[lang] || LOCALES.ru;
+  const coreTexts = LOCALES[lang] || LOCALES.ru;
+  
+  // Мержим с модульными локалями если есть
+  let moduleTexts = {};
+  if (typeof SURVIVAL_LOCALES !== 'undefined') {
+    moduleTexts = { ...moduleTexts, ...SURVIVAL_LOCALES[lang] };
+  }
+  if (typeof AUTO_LOCALES !== 'undefined') {
+    moduleTexts = { ...moduleTexts, ...AUTO_LOCALES[lang] };
+  }
+  
+  const texts = { ...coreTexts, ...moduleTexts };
   return texts[key] || key;
 }
 
