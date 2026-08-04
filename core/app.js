@@ -346,23 +346,27 @@ function showDetails(index) {
   html += "<h2>" + sol.title + "</h2>";
   html += '<div class="detail-desc">' + sol.description + "</div>";
 
-  html += '<div class="detail-section"><h3>' + t('detail_steps') + '</h3>';
+  // Steps section with proper styling
+  html += '<div class="steps-block"><h4>' + t('detail_steps') + '</h4>';
   if (sol.steps && sol.steps.length > 0) {
-    html += '<ul>';
-    sol.steps.forEach((step) => {
-      html += '<li>' + step + "</li>";
+    sol.steps.forEach((step, i) => {
+      html += '<div class="step-item">';
+      html += '<div class="step-num">' + (i + 1) + '</div>';
+      html += '<span>' + step + "</span>";
+      html += '</div>';
     });
-    html += '</ul>';
   }
   html += "</div>";
 
-  html += '<div class="detail-section"><h3>' + t('detail_warnings') + '</h3>';
+  // Warnings section with proper styling
+  html += '<div class="warnings-block"><h4>' + t('detail_warnings') + '</h4>';
   if (sol.warnings && sol.warnings.length > 0) {
-    html += '<ul>';
     sol.warnings.forEach(warn => {
-      html += '<li>' + warn + "</li>";
+      html += '<div class="warning-item">';
+      html += '<div class="warn-icon">!</div>';
+      html += '<span>' + warn + "</span>";
+      html += '</div>';
     });
-    html += '</ul>';
   }
   html += "</div>";
 
