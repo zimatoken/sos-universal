@@ -1,28 +1,15 @@
 // === ЛОГИКА ПРИЛОЖЕНИЯ ===
-// SOS UNIVERSAL Core App Logic
 
 let currentFlow = null;
 let currentQuestion = 0;
 let answers = {};
 let lastResults = [];
 
-// Translation function - merges core and module locales
-function t(key) {
-  const lang = typeof currentLang !== 'undefined' ? currentLang : 'ru';
-  const coreTexts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
-  const moduleTexts = typeof SURVIVAL_LOCALES !== 'undefined' ? (SURVIVAL_LOCALES[lang] || SURVIVAL_LOCALES.ru) : {};
-  
-  const texts = { ...coreTexts, ...moduleTexts };
-  return texts[key] || key;
-}
-
 function showToast(msg) {
   const t = document.getElementById("toast");
-  if (t) {
-    t.textContent = msg;
-    t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 2500);
-  }
+  t.textContent = msg;
+  t.style.display = "block";
+  setTimeout(() => t.style.display = "none", 2500);
 }
 
 // Добавь функцию для переведённых тостов
@@ -32,10 +19,7 @@ function showToastKey(key) {
 
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-  const screen = document.getElementById(id);
-  if (screen) {
-    screen.classList.add("active");
-  }
+  document.getElementById(id).classList.add("active");
 }
 
 function goHome() {
@@ -183,21 +167,9 @@ function startFlow(category) {
 function renderQuestion() {
   const q = currentFlow.questions[currentQuestion];
   const progress = ((currentQuestion) / currentFlow.questions.length) * 100;
-  const progressEl = document.getElementById("progress");
-  const progressFill = document.getElementById("progress-fill");
-  if (progressEl) {
-    progressEl.style.width = progress + "%";
-  }
-  if (progressFill) {
-    progressFill.style.width = progress + "%";
-  }
+  document.getElementById("progress").style.width = progress + "%";
 
   const container = document.getElementById("question-container");
-  if (!container) {
-    console.error("❌ Question container not found");
-    return;
-  }
-  
   let html = '<div class="question-card">';
   
   // Используем перевод для номера вопроса
@@ -221,31 +193,22 @@ function renderQuestion() {
   container.innerHTML = html;
 
   const nextBtn = document.getElementById("next-btn");
-  if (nextBtn) {
-    nextBtn.disabled = true;
-    nextBtn.textContent = currentQuestion === currentFlow.questions.length - 1 ? t('show_results') : t('next');
-  }
+  nextBtn.disabled = true;
+  nextBtn.textContent = currentQuestion === currentFlow.questions.length - 1 ? t('show_results') : t('next');
 }
 
 function selectOption(el, qid, isMulti) {
   if (!isMulti) {
     document.querySelectorAll(".option").forEach(o => {
       o.classList.remove("selected");
-      const check = o.querySelector(".check");
-      if (check) check.textContent = "";
+      o.querySelector(".check").textContent = "";
     });
   }
   el.classList.toggle("selected");
-  const check = el.querySelector(".check");
-  if (check) {
-    check.textContent = el.classList.contains("selected") ? "✓" : "";
-  }
+  el.querySelector(".check").textContent = el.classList.contains("selected") ? "✓" : "";
 
   const selected = document.querySelectorAll(".option.selected");
-  const nextBtn = document.getElementById("next-btn");
-  if (nextBtn) {
-    nextBtn.disabled = selected.length === 0;
-  }
+  document.getElementById("next-btn").disabled = selected.length === 0;
 }
 
 function nextQuestion() {
@@ -270,49 +233,34 @@ function showResults() {
     food: "🍖", medicine: "🩹", radio: "📻", navigation: "🧭"
   };
 
-  const resultIcon = document.getElementById("result-icon");
-  if (resultIcon) {
-    resultIcon.textContent = iconMap[currentFlow.category] || "🆘";
-  }
+  document.getElementById("result-icon").textContent = iconMap[currentFlow.category] || "🆘";
   
   // Используем перевод
-  const resultTitle = document.getElementById("result-title");
-  if (resultTitle) {
-    resultTitle.textContent = t('results_title').replace('{title}', currentFlow.title);
-  }
-  
-  const resultSubtitle = document.getElementById("result-subtitle");
-  if (resultSubtitle) {
-    resultSubtitle.textContent = t('results_subtitle');
-  }
+  document.getElementById("result-title").textContent = t('results_title').replace('{title}', currentFlow.title);
+  document.getElementById("result-subtitle").textContent = t('results_subtitle');
 
   // Защита от ошибок — всегда возвращаем массив
   let matched = filterSolutions(currentFlow, answers) || [];
   lastResults = matched;
 
   const container = document.getElementById("results-container");
-  if (!container) {
-    console.error("❌ Results container not found");
-    return;
-  }
-  
   let html = "";
 
   if (matched.length === 0) {
     html = '<div class="result-card" style="border-left-color: var(--accent2);">';
     html += "<h4>⚠️ Нет точных решений</h4>";
-    html += "<p>" + t('no_results_desc') + "</p>";
+    html += '<p style="color:var(--text2);">Попробуйте изменить параметры или выберите другой раздел. Универсальные советы: ищите воду, укрытие, оставайтесь на месте и подавайте сигналы.</p>';
     html += "</div>";
   } else {
     matched.forEach((sol, i) => {
-      const prioBadge = sol.priority === "fast" ? '<span class="badge fast">' + t('badge_fast') + '</span>' :
-                       sol.priority === "medium" ? '<span class="badge medium">' + t('badge_medium') + '</span>' :
-                       '<span class="badge slow">' + t('badge_slow') + '</span>';
-      const relBadge = sol.reliability === "high" ? '<span class="badge high">' + t('badge_high') + '</span>' :
-                      sol.reliability === "medium" ? '<span class="badge medium-rel">' + t('badge_medium_rel') + '</span>' :
-                      '<span class="badge low">' + t('badge_low') + '</span>';
+      const prioBadge = sol.priority === "fast" ? '<span class="badge fast">⚡ Быстро</span>' :
+                       sol.priority === "medium" ? '<span class="badge medium">⏱️ Средне</span>' :
+                       '<span class="badge slow">🐢 Медленно</span>';
+      const relBadge = sol.reliability === "high" ? '<span class="badge high">✅ Надёжно</span>' :
+                      sol.reliability === "medium" ? '<span class="badge medium-rel">⚠️ Средне</span>' :
+                      '<span class="badge low">❌ Риск</span>';
 
-      html += '<div class="result-card" onclick="showDetails(' + i + ')">';
+      html += '<div class="result-card" onclick="showDetail(\'' + sol.id + '\')">';
       html += prioBadge + " " + relBadge;
       html += "<h4>" + (i+1) + ". " + sol.title + "</h4>";
       html += "<p>" + sol.description.substring(0, 120) + "...</p>";
@@ -327,50 +275,38 @@ function showResults() {
   container.innerHTML = html;
 }
 
-function showDetails(index) {
-  const sol = lastResults[index];
+function showDetail(solId) {
+  const sol = getSolutionById(currentFlow, solId);
   if (!sol) {
     showToast("Решение не найдено");
     return;
   }
 
-  showScreen("screen-details");
+  showScreen("screen-detail");
 
-  const container = document.getElementById("details-container");
-  if (!container) {
-    console.error("❌ Details container not found");
-    return;
-  }
-  
+  const container = document.getElementById("detail-container");
   let html = '<div class="detail-card">';
   html += "<h2>" + sol.title + "</h2>";
   html += '<div class="detail-desc">' + sol.description + "</div>";
 
-  // Steps section with proper styling
-  html += '<div class="steps-block"><h4>' + t('detail_steps') + '</h4>';
-  if (sol.steps && sol.steps.length > 0) {
-    sol.steps.forEach((step, i) => {
-      html += '<div class="step-item">';
-      html += '<div class="step-num">' + (i + 1) + '</div>';
-      html += '<span>' + step + "</span>";
-      html += '</div>';
-    });
-  }
+  html += '<div class="steps-block"><h4>📋 Шаги выполнения</h4>';
+  sol.steps.forEach((step, i) => {
+    html += '<div class="step-item"><div class="step-num">' + (i+1) + '</div><span>' + step + "</span></div>";
+  });
   html += "</div>";
 
-  // Warnings section with proper styling
-  html += '<div class="warnings-block"><h4>' + t('detail_warnings') + '</h4>';
-  if (sol.warnings && sol.warnings.length > 0) {
-    sol.warnings.forEach(warn => {
-      html += '<div class="warning-item">';
-      html += '<div class="warn-icon">!</div>';
-      html += '<span>' + warn + "</span>";
-      html += '</div>';
-    });
-  }
+  html += '<div class="warnings-block"><h4>⚠️ Важные предупреждения</h4>';
+  sol.warnings.forEach(warn => {
+    html += '<div class="warning-item"><div class="warn-icon">!</div><span>' + warn + "</span></div>";
+  });
   html += "</div>";
 
+  html += '<div class="meta" style="margin-top:16px;">';
+  html += "<span>⏱️ " + sol.time_estimate + "</span>";
+  html += "<span>📦 " + sol.yield_estimate + "</span>";
   html += "</div>";
+  html += "</div>";
+
   container.innerHTML = html;
 }
 
@@ -421,33 +357,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-function backToResults() {
-  showScreen("screen-results");
-}
-
-function restart() {
-  goHome();
-}
-
-// ===== ЭКСПОРТ =====
-window.showToast = showToast;
-window.showToastKey = showToastKey;
-window.showScreen = showScreen;
-window.goHome = goHome;
+// ===== GLOBAL EXPORTS FOR SOS UNIVERSAL =====
 window.showSOS = showSOS;
 window.startFlow = startFlow;
-window.renderQuestion = renderQuestion;
-window.selectOption = selectOption;
-window.nextQuestion = nextQuestion;
-window.showResults = showResults;
 window.showDetails = showDetails;
-window.backToResults = backToResults;
-window.restart = restart;
-window.sendSOS = sendSOS;
-window.toggleSignal = toggleSignal;
-window.toggleFlashlight = toggleFlashlight;
-window.handleSupportBannerClick = handleSupportBannerClick;
-window.closeSupportBanner = closeSupportBanner;
+window.showToast = showToast;
 window.t = t;
-
-console.log('✅ Логика приложения загружена (SOS UNIVERSAL core)');
