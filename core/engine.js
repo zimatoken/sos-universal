@@ -230,6 +230,7 @@ window.getCategoryData = getCategoryData;
 window.filterSolutions = filterSolutions;
 window.getSolutionById = getSolutionById;
 window.refreshDataRegistry = refreshDataRegistry;
+window.startFlow = startFlow;
 
 console.log("✅ Движок загружен, готов к работе!");
 console.log(`🌍 Доступные языки: ${Object.keys(dataRegistry).join(", ")}`);

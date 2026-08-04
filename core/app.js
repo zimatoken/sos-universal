@@ -356,3 +356,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+
+// ===== GLOBAL EXPORTS FOR SOS UNIVERSAL =====
+window.showSOS = showSOS;
+window.startFlow = startFlow;
+window.showToast = showToast;
+window.t = t;
