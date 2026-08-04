@@ -347,3 +347,4 @@ const shelterDataEn = {
     }
   ]
 };
+window.shelterDataEn = shelterDataEn;

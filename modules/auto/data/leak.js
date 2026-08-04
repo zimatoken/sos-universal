@@ -43,4 +43,4 @@ const autoLeakData = {
       ]
     }
   ]
-};
+};window.autoLeakData = autoLeakData;

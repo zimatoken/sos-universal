@@ -156,3 +156,4 @@ const radioData = {
     }
   ]
 };
+window.radioData = radioData;

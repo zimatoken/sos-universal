@@ -386,4 +386,4 @@ const medicineData = {
       ]
     }
   ]
-};
+};window.medicineData = medicineData;

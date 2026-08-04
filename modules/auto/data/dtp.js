@@ -104,4 +104,4 @@ const autoDtpData = {
       ]
     }
   ]
-};
+};window.autoDtpData = autoDtpData;

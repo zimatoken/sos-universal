@@ -157,3 +157,4 @@ const radioDataEn = {
     }
   ]
 };
+window.radioDataEn = radioDataEn;

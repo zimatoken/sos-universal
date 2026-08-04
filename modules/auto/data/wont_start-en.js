@@ -321,4 +321,4 @@ const leakDataEn = {
       ]
     }
   ]
-};
+};window.autoWontStartDataEn = autoWontStartDataEn;

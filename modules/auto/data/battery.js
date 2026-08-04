@@ -54,4 +54,4 @@ const autoBatteryData = {
       ]
     }
   ]
-};
+};window.autoBatteryData = autoBatteryData;

@@ -359,4 +359,4 @@ const navigationData = {
       ]
     }
   ]
-};
+};window.navigationData = navigationData;

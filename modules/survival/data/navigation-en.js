@@ -360,3 +360,4 @@ const navigationDataEn = {
     }
   ]
 };
+window.navigationDataEn = navigationDataEn;

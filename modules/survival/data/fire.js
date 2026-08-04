@@ -365,4 +365,4 @@ const fireData = {
       ]
     }
   ]
-};
+};window.fireData = fireData;

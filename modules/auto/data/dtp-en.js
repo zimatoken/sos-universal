@@ -104,4 +104,4 @@ const autoDtpDataEn = {
       ]
     }
   ]
-};
+};window.autoDtpDataEn = autoDtpDataEn;

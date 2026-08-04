@@ -349,3 +349,4 @@ const foodDataEn = {
     }
   ]
 };
+window.foodDataEn = foodDataEn;

@@ -420,3 +420,5 @@ const waterData = {
     }
   ]
 };
+
+window.waterData = waterData;

@@ -420,3 +420,4 @@ const waterDataEn = {
     }
   ]
 };
+window.waterDataEn = waterDataEn;

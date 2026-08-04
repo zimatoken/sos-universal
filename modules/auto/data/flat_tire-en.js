@@ -44,4 +44,4 @@ const autoFlatTireDataEn = {
       ]
     }
   ]
-};
+};window.autoFlatTireDataEn = autoFlatTireDataEn;

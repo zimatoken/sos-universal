@@ -40,4 +40,4 @@ const autoBrakesData = {
       ]
     }
   ]
-};
+};window.autoBrakesData = autoBrakesData;

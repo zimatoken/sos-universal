@@ -53,4 +53,4 @@ const autoOverheatingData = {
       ]
     }
   ]
-};
+};window.autoOverheatingData = autoOverheatingData;

@@ -348,4 +348,4 @@ const foodData = {
       ]
     }
   ]
-};
+};window.foodData = foodData;

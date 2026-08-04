@@ -387,3 +387,4 @@ const medicineDataEn = {
     }
   ]
 };
+window.medicineDataEn = medicineDataEn;

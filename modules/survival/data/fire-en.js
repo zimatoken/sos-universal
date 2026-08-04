@@ -366,3 +366,4 @@ const fireDataEn = {
     }
   ]
 };
+window.fireDataEn = fireDataEn;

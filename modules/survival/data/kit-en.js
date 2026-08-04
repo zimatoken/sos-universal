@@ -207,3 +207,4 @@ const kitDataEn = {
     }
   ]
 };
+window.kitDataEn = kitDataEn;
