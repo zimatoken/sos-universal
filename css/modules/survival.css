@@ -10,10 +10,14 @@
   margin-bottom: 16px;
   transition: all 0.2s;
   font-weight: 500;
-  position: absolute;
-  top: 24px;
-  left: 16px;
-  z-index: 10;
+  position: relative;
+  z-index: 100;
+  display: inline-block;
+}
+
+/* Home screen back button - less margin */
+#screen-home .back-btn {
+  margin-bottom: 8px;
 }
 
 .header {
@@ -307,6 +311,7 @@
   padding: 24px 20px;
   border: 1px solid var(--border);
   margin-bottom: 16px;
+  margin-top: 0;
 }
 
 .detail-card h2 {
@@ -650,6 +655,19 @@
 
 .screen.active {
   display: block;
+}
+
+/* Detail screen specific styling to prevent overlap with back button */
+#screen-details {
+  padding-top: 0;
+}
+
+#screen-details .back-btn {
+  margin-bottom: 20px;
+}
+
+#details-container {
+  margin-top: 0;
 }
 
 /* ===== CATEGORY BUTTONS ===== */
