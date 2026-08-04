@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>SOS UNIVERSAL — Супер-приложение для любых ситуаций</title>
+  
+  <meta name="apple-mobile-web-app-title" content="SOS UNIVERSAL">
+  
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <div class="app">
+    <div class="header">
+      <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">UNIVERSAL</span></h1>
+      <p data-i18n="app_subtitle">Супер-приложение для любых ситуаций</p>
+    </div>
+
+    <div class="status-bar">
+      <div class="dot"></div>
+      <span data-i18n="status_online">Режим офлайн — база загружена</span>
+    </div>
+
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">
+        🇷🇺 Русский
+      </button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+        🇬🇧 English
+      </button>
+      <button class="theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
+    </div>
+
+    <button class="sos-btn" onclick="showSOS()">
+      <div class="pulse"></div>
+      <span data-i18n="sos_button">SOS — Я в опасности</span>
+    </button>
+
+    <div class="grid">
+      <button class="mod-btn survival" onclick="openModule('survival')">
+        <span class="icon">🆘</span>
+        <span class="label" data-i18n="mod_survival">Выживание</span>
+      </button>
+      <button class="mod-btn auto" onclick="openModule('auto')">
+        <span class="icon">🚗</span>
+        <span class="label" data-i18n="mod_auto">Авто</span>
+      </button>
+      <button class="mod-btn lawyer" onclick="openModule('lawyer')">
+        <span class="icon">⚖️</span>
+        <span class="label" data-i18n="mod_lawyer">Юрист</span>
+      </button>
+      <button class="mod-btn home" onclick="openModule('home')">
+        <span class="icon">🏠</span>
+        <span class="label" data-i18n="mod_home">Дом</span>
+      </button>
+      <button class="mod-btn kids" onclick="openModule('kids')">
+        <span class="icon">👶</span>
+        <span class="label" data-i18n="mod_kids">Дети</span>
+      </button>
+      <button class="mod-btn animals" onclick="openModule('animals')">
+        <span class="icon">🐕</span>
+        <span class="label" data-i18n="mod_animals">Животные</span>
+      </button>
+      <button class="mod-btn travel" onclick="openModule('travel')">
+        <span class="icon">✈️</span>
+        <span class="label" data-i18n="mod_travel">Путешествия</span>
+      </button>
+      <button class="mod-btn soon" onclick="openModule('soon')">
+        <span class="icon">🔥</span>
+        <span class="label" data-i18n="mod_soon">Скоро</span>
+      </button>
+    </div>
+
+    <div class="footer">
+      <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
+    </div>
+  </div>
+
+  <script src="./core/locales.js"></script>
+  <script src="./core/theme.js"></script>
+  <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      localStorage.setItem('language', lang);
+      updateTranslations(lang);
+    }
+
+    function updateTranslations(lang) {
+      const texts = LOCALES[lang] || LOCALES.ru;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (texts[key]) {
+          el.textContent = texts[key];
+        }
+      });
+    }
+
+    function openModule(moduleId) {
+      if (moduleId === 'survival') {
+        window.location.href = './modules/survival/index.html';
+      } else {
+        alert('Раздел в разработке');
+      }
+    }
+
+    function showSOS() {
+      alert('SOS режим будет доступен в модулях');
+    }
+
+    // Load saved language and theme
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('language') || 'ru';
+      setLanguage(savedLang);
+      loadTheme();
+    });
+  </script>
+</body>
+</html>
