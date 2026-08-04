@@ -346,4 +346,6 @@ const shelterData = {
       ]
     }
   ]
-};window.shelterData = shelterData;
+};
+
+window.shelterData = shelterData;

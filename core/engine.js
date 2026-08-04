@@ -3,77 +3,77 @@
 
 // Проверяем, что все данные загружены (русские версии)
 console.log("🔍 Проверка данных (RU):");
-console.log("  waterData:", typeof waterData !== 'undefined' ? '✅' : '❌');
-console.log("  fireData:", typeof fireData !== 'undefined' ? '✅' : '❌');
-console.log("  shelterData:", typeof shelterData !== 'undefined' ? '✅' : '❌');
-console.log("  foodData:", typeof foodData !== 'undefined' ? '✅' : '❌');
-console.log("  medicineData:", typeof medicineData !== 'undefined' ? '✅' : '❌');
-console.log("  navigationData:", typeof navigationData !== 'undefined' ? '✅' : '❌');
-console.log("  radioData:", typeof radioData !== 'undefined' ? '✅' : '❌');
-console.log("  kitData:", typeof kitData !== 'undefined' ? '✅' : '❌');
-console.log("  autoWontStartData:", typeof autoWontStartData !== 'undefined' ? '✅' : '❌');
-console.log("  autoOverheatingData:", typeof autoOverheatingData !== 'undefined' ? '✅' : '❌');
-console.log("  autoFlatTireData:", typeof autoFlatTireData !== 'undefined' ? '✅' : '❌');
-console.log("  autoBrakesData:", typeof autoBrakesData !== 'undefined' ? '✅' : '❌');
-console.log("  autoBatteryData:", typeof autoBatteryData !== 'undefined' ? '✅' : '❌');
-console.log("  autoLeakData:", typeof autoLeakData !== 'undefined' ? '✅' : '❌');
-console.log("  autoDtpData:", typeof autoDtpData !== 'undefined' ? '✅' : '❌');
+console.log("  waterData:", typeof window.waterData !== 'undefined' ? '✅' : '❌');
+console.log("  fireData:", typeof window.fireData !== 'undefined' ? '✅' : '❌');
+console.log("  shelterData:", typeof window.shelterData !== 'undefined' ? '✅' : '❌');
+console.log("  foodData:", typeof window.foodData !== 'undefined' ? '✅' : '❌');
+console.log("  medicineData:", typeof window.medicineData !== 'undefined' ? '✅' : '❌');
+console.log("  navigationData:", typeof window.navigationData !== 'undefined' ? '✅' : '❌');
+console.log("  radioData:", typeof window.radioData !== 'undefined' ? '✅' : '❌');
+console.log("  kitData:", typeof window.kitData !== 'undefined' ? '✅' : '❌');
+console.log("  autoWontStartData:", typeof window.autoWontStartData !== 'undefined' ? '✅' : '❌');
+console.log("  autoOverheatingData:", typeof window.autoOverheatingData !== 'undefined' ? '✅' : '❌');
+console.log("  autoFlatTireData:", typeof window.autoFlatTireData !== 'undefined' ? '✅' : '❌');
+console.log("  autoBrakesData:", typeof window.autoBrakesData !== 'undefined' ? '✅' : '❌');
+console.log("  autoBatteryData:", typeof window.autoBatteryData !== 'undefined' ? '✅' : '❌');
+console.log("  autoLeakData:", typeof window.autoLeakData !== 'undefined' ? '✅' : '❌');
+console.log("  autoDtpData:", typeof window.autoDtpData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
-console.log("  waterDataEn:", typeof waterDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  fireDataEn:", typeof fireDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  shelterDataEn:", typeof shelterDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  foodDataEn:", typeof foodDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  medicineDataEn:", typeof medicineDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  navigationDataEn:", typeof navigationDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  radioDataEn:", typeof radioDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  kitDataEn:", typeof kitDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  autoWontStartDataEn:", typeof autoWontStartDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  autoOverheatingDataEn:", typeof autoOverheatingDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  autoFlatTireDataEn:", typeof autoFlatTireDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  autoBrakesDataEn:", typeof autoBrakesDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  autoBatteryDataEn:", typeof autoBatteryDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  autoLeakDataEn:", typeof autoLeakDataEn !== 'undefined' ? '✅' : '❌');
-console.log("  autoDtpDataEn:", typeof autoDtpDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  waterDataEn:", typeof window.waterDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  fireDataEn:", typeof window.fireDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  shelterDataEn:", typeof window.shelterDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  foodDataEn:", typeof window.foodDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  medicineDataEn:", typeof window.medicineDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  navigationDataEn:", typeof window.navigationDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  radioDataEn:", typeof window.radioDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  kitDataEn:", typeof window.kitDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  autoWontStartDataEn:", typeof window.autoWontStartDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  autoOverheatingDataEn:", typeof window.autoOverheatingDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  autoFlatTireDataEn:", typeof window.autoFlatTireDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  autoBrakesDataEn:", typeof window.autoBrakesDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  autoBatteryDataEn:", typeof window.autoBatteryDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  autoLeakDataEn:", typeof window.autoLeakDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  autoDtpDataEn:", typeof window.autoDtpDataEn !== 'undefined' ? '✅' : '❌');
 
 // Регистр всех данных (русские и английские версии)
 const dataRegistry = {
   ru: {
-    water: waterData,
-    fire: fireData,
-    shelter: shelterData,
-    food: foodData,
-    medicine: medicineData,
-    navigation: navigationData,
-    radio: radioData,
-    kit: kitData,
-    wont_start: autoWontStartData,
-    overheating: autoOverheatingData,
-    flat_tire: autoFlatTireData,
-    brakes: autoBrakesData,
-    battery: autoBatteryData,
-    leak: autoLeakData,
-    dtp: autoDtpData
+    water: typeof window.waterData !== 'undefined' ? window.waterData : null,
+    fire: typeof window.fireData !== 'undefined' ? window.fireData : null,
+    shelter: typeof window.shelterData !== 'undefined' ? window.shelterData : null,
+    food: typeof window.foodData !== 'undefined' ? window.foodData : null,
+    medicine: typeof window.medicineData !== 'undefined' ? window.medicineData : null,
+    navigation: typeof window.navigationData !== 'undefined' ? window.navigationData : null,
+    radio: typeof window.radioData !== 'undefined' ? window.radioData : null,
+    kit: typeof window.kitData !== 'undefined' ? window.kitData : null,
+    wont_start: typeof window.autoWontStartData !== 'undefined' ? window.autoWontStartData : null,
+    overheating: typeof window.autoOverheatingData !== 'undefined' ? window.autoOverheatingData : null,
+    flat_tire: typeof window.autoFlatTireData !== 'undefined' ? window.autoFlatTireData : null,
+    brakes: typeof window.autoBrakesData !== 'undefined' ? window.autoBrakesData : null,
+    battery: typeof window.autoBatteryData !== 'undefined' ? window.autoBatteryData : null,
+    leak: typeof window.autoLeakData !== 'undefined' ? window.autoLeakData : null,
+    dtp: typeof window.autoDtpData !== 'undefined' ? window.autoDtpData : null
   },
   en: {}
 };
 
 // Заполняем английский регистр
-if (typeof waterDataEn !== 'undefined') dataRegistry.en.water = waterDataEn;
-if (typeof fireDataEn !== 'undefined') dataRegistry.en.fire = fireDataEn;
-if (typeof shelterDataEn !== 'undefined') dataRegistry.en.shelter = shelterDataEn;
-if (typeof foodDataEn !== 'undefined') dataRegistry.en.food = foodDataEn;
-if (typeof medicineDataEn !== 'undefined') dataRegistry.en.medicine = medicineDataEn;
-if (typeof navigationDataEn !== 'undefined') dataRegistry.en.navigation = navigationDataEn;
-if (typeof radioDataEn !== 'undefined') dataRegistry.en.radio = radioDataEn;
-if (typeof kitDataEn !== 'undefined') dataRegistry.en.kit = kitDataEn;
-if (typeof autoWontStartDataEn !== 'undefined') dataRegistry.en.wont_start = autoWontStartDataEn;
-if (typeof autoOverheatingDataEn !== 'undefined') dataRegistry.en.overheating = autoOverheatingDataEn;
-if (typeof autoFlatTireDataEn !== 'undefined') dataRegistry.en.flat_tire = autoFlatTireDataEn;
-if (typeof autoBrakesDataEn !== 'undefined') dataRegistry.en.brakes = autoBrakesDataEn;
-if (typeof autoBatteryDataEn !== 'undefined') dataRegistry.en.battery = autoBatteryDataEn;
-if (typeof autoLeakDataEn !== 'undefined') dataRegistry.en.leak = autoLeakDataEn;
-if (typeof autoDtpDataEn !== 'undefined') dataRegistry.en.dtp = autoDtpDataEn;
+if (typeof window.waterDataEn !== 'undefined') dataRegistry.en.water = window.waterDataEn;
+if (typeof window.fireDataEn !== 'undefined') dataRegistry.en.fire = window.fireDataEn;
+if (typeof window.shelterDataEn !== 'undefined') dataRegistry.en.shelter = window.shelterDataEn;
+if (typeof window.foodDataEn !== 'undefined') dataRegistry.en.food = window.foodDataEn;
+if (typeof window.medicineDataEn !== 'undefined') dataRegistry.en.medicine = window.medicineDataEn;
+if (typeof window.navigationDataEn !== 'undefined') dataRegistry.en.navigation = window.navigationDataEn;
+if (typeof window.radioDataEn !== 'undefined') dataRegistry.en.radio = window.radioDataEn;
+if (typeof window.kitDataEn !== 'undefined') dataRegistry.en.kit = window.kitDataEn;
+if (typeof window.autoWontStartDataEn !== 'undefined') dataRegistry.en.wont_start = window.autoWontStartDataEn;
+if (typeof window.autoOverheatingDataEn !== 'undefined') dataRegistry.en.overheating = window.autoOverheatingDataEn;
+if (typeof window.autoFlatTireDataEn !== 'undefined') dataRegistry.en.flat_tire = window.autoFlatTireDataEn;
+if (typeof window.autoBrakesDataEn !== 'undefined') dataRegistry.en.brakes = window.autoBrakesDataEn;
+if (typeof window.autoBatteryDataEn !== 'undefined') dataRegistry.en.battery = window.autoBatteryDataEn;
+if (typeof window.autoLeakDataEn !== 'undefined') dataRegistry.en.leak = window.autoLeakDataEn;
+if (typeof window.autoDtpDataEn !== 'undefined') dataRegistry.en.dtp = window.autoDtpDataEn;
 
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
@@ -230,7 +230,6 @@ window.getCategoryData = getCategoryData;
 window.filterSolutions = filterSolutions;
 window.getSolutionById = getSolutionById;
 window.refreshDataRegistry = refreshDataRegistry;
-window.startFlow = startFlow;
 
 console.log("✅ Движок загружен, готов к работе!");
 console.log(`🌍 Доступные языки: ${Object.keys(dataRegistry).join(", ")}`);

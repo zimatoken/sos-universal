@@ -74,4 +74,13 @@ const LOCALES = {
 // ===== ЭКСПОРТ =====
 window.LOCALES = LOCALES;
 
+// Функция перевода
+function t(key) {
+  const lang = typeof currentLang !== 'undefined' ? currentLang : 'ru';
+  const texts = LOCALES[lang] || LOCALES.ru;
+  return texts[key] || key;
+}
+
+window.t = t;
+
 console.log('✅ Локализации загружены (SOS UNIVERSAL core)');

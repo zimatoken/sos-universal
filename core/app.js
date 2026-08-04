@@ -361,4 +361,3 @@ document.addEventListener('DOMContentLoaded', function() {
 window.showSOS = showSOS;
 window.startFlow = startFlow;
 window.showToast = showToast;
-window.t = t;
