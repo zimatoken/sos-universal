@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // === MODULE: AUTO — ENGINE OVERHEATING (ENGLISH) ===
 const autoOverheatingDataEn = {
   category: "overheating",
@@ -17,6 +18,23 @@ const autoOverheatingDataEn = {
         { id: "steam_radiator", label: "🌫️ Steam from radiator or expansion tank", tags: ["steam", "pressure"] },
         { id: "loss_power", label: "🐢 Loss of power, engine misfiring", tags: ["power_loss", "engine"] },
         { id: "coolant_leak", label: "💧 Puddle under the car (green/red fluid)", tags: ["leak", "coolant"] }
+=======
+// === AUTO SECTION - OVERHEATING (ENGLISH) ===
+
+const autoOverheatingDataEn = {
+  category: "overheating",
+  title: "🌡️ Overheating",
+  description: "Cooling system problems",
+  questions: [
+    {
+      id: "symptom",
+      text: "What are the symptoms?",
+      type: "multi",
+      options: [
+        { id: "smoke", label: "💨 Smoke from hood", tags: ["overheating", "leak", "engine"] },
+        { id: "smell", label: "👃 Gas smell", tags: ["fuel", "leak", "danger"] },
+        { id: "warning_light", label: "⚠️ Warning light on dashboard", tags: ["sensor", "diagnostic", "check"] }
+>>>>>>> 92849c5936c3da4acab85528b91f11224f9f55d1
       ]
     },
     {
@@ -24,6 +42,7 @@ const autoOverheatingDataEn = {
       text: "Where are you?",
       type: "single",
       options: [
+<<<<<<< HEAD
         { id: "home", label: "🏠 Home / garage", tags: ["safe", "tools", "garage"] },
         { id: "road", label: "🛣️ On the road (city)", tags: ["road", "traffic"] },
         { id: "highway", label: "🛣️ On the highway", tags: ["highway", "danger"] },
@@ -274,6 +293,38 @@ const autoOverheatingDataEn = {
         "If there's a coolant leak — do not top up until the engine has cooled",
         "When towing with a rope — remember that the brake booster may not work",
         "If there is smoke — do not open the hood until it has cooled down"
+=======
+        { id: "home", label: "🏠 Home/Garage", tags: ["safe", "tools", "garage"] },
+        { id: "road", label: "🛣️ On the road", tags: ["road", "traffic", "safety"] },
+        { id: "highway", label: "🛣️ Highway", tags: ["highway", "speed", "danger"] }
+      ]
+    }
+  ],
+  solutions: [
+    {
+      id: "coolant_check",
+      title: "🌡️ Check and refill coolant",
+      description: "When overheating, check coolant level in radiator",
+      conditions: {
+        symptom: ["smoke"]
+      },
+      tags: ["cooling", "radiator", "urgent", "critical"],
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "10-15 min",
+      steps: [
+        "Stop and turn off engine",
+        "Let engine cool for 15-20 minutes",
+        "Don't open radiator on hot engine!",
+        "Check coolant level in expansion tank",
+        "If level is low — refill to normal level",
+        "Check for leaks under the car"
+      ],
+      warnings: [
+        "NEVER open radiator cap on hot engine — steam can burn you",
+        "Use only recommended coolant type",
+        "If fluid disappears quickly — there's a leak, repair needed"
+>>>>>>> 92849c5936c3da4acab85528b91f11224f9f55d1
       ]
     }
   ]

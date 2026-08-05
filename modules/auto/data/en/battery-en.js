@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // === MODULE: AUTO — DEAD BATTERY (ENGLISH) ===
 const autoBatteryDataEn = {
   category: "battery",
@@ -16,6 +17,22 @@ const autoBatteryDataEn = {
         { id: "lights_dark", label: "💡 Dim headlights / dashboard lights", tags: ["battery", "low_voltage"] },
         { id: "smell", label: "👃 Smell of sulfur / rotten eggs", tags: ["battery", "danger", "replace"] },
         { id: "swollen", label: "📦 Battery is swollen (deformed)", tags: ["battery", "danger", "replace"] }
+=======
+// === AUTO SECTION - BATTERY (ENGLISH) ===
+
+const autoBatteryDataEn = {
+  category: "battery",
+  title: "🔋 Dead battery",
+  description: "Battery problems",
+  questions: [
+    {
+      id: "symptom",
+      text: "What are the symptoms?",
+      type: "multi",
+      options: [
+        { id: "click", label: "🔊 Click when turning key", tags: ["starter", "battery", "click"] },
+        { id: "silence", label: "🔇 Complete silence", tags: ["battery", "dead", "electrical"] }
+>>>>>>> 92849c5936c3da4acab85528b91f11224f9f55d1
       ]
     },
     {
@@ -23,6 +40,7 @@ const autoBatteryDataEn = {
       text: "Where are you?",
       type: "single",
       options: [
+<<<<<<< HEAD
         { id: "home", label: "🏠 Home / garage", tags: ["safe", "tools", "garage"] },
         { id: "road", label: "🛣️ On the road (highway)", tags: ["road", "traffic", "emergency"] },
         { id: "parking", label: "🅿️ Parking lot / mall", tags: ["public", "help", "possible"] },
@@ -280,6 +298,40 @@ const autoBatteryDataEn = {
         "If the towing price seems high — call other companies (prices vary by 2x)",
         "Towing at night is more expensive (usually +30-50%)",
         "If you're on the highway — stand with the emergency sign in hand, car on the shoulder"
+=======
+        { id: "home", label: "🏠 Home/Garage", tags: ["safe", "tools", "garage"] },
+        { id: "road", label: "🛣️ On the road", tags: ["road", "traffic", "safety"] },
+        { id: "parking", label: "🅿️ Parking lot", tags: ["public", "tools", "help"] }
+      ]
+    }
+  ],
+  solutions: [
+    {
+      id: "jump_start",
+      title: "🔋 Jump start from another car",
+      description: "If the battery is dead — jump starting from a running car will help",
+      conditions: {
+        symptom: ["click", "silence"]
+      },
+      tags: ["battery", "jump", "electrical", "common"],
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "5-10 min",
+      steps: [
+        "Find a car with a working battery",
+        "Position cars so bumpers are close together",
+        "Turn off both cars (ignition, lights)",
+        "Connect terminals: positive to positive, negative to negative",
+        "Start the donor car and let it run for 2-3 minutes",
+        "Try to start your car",
+        "After starting, let it run for 10-15 minutes",
+        "Remove cables in reverse order: negative, then positive"
+      ],
+      warnings: [
+        "Don't touch terminals while engine is running",
+        "Watch polarity — wrong connection can damage electronics",
+        "If there's smoke or smell from battery — don't jump start"
+>>>>>>> 92849c5936c3da4acab85528b91f11224f9f55d1
       ]
     }
   ]

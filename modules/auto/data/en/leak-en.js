@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // === MODULE: AUTO — FLUID LEAK (ENGLISH) ===
 const autoLeakDataEn = {
   category: "leak",
@@ -45,10 +46,21 @@ const autoLeakDataEn = {
       ]
     },
     {
+=======
+// === AUTO SECTION - LEAK (ENGLISH) ===
+
+const autoLeakDataEn = {
+  category: "leak",
+  title: "💧 Fluid leak",
+  description: "Technical fluid leaks",
+  questions: [
+    {
+>>>>>>> 92849c5936c3da4acab85528b91f11224f9f55d1
       id: "location",
       text: "Where are you?",
       type: "single",
       options: [
+<<<<<<< HEAD
         { id: "home", label: "🏠 Home / garage", tags: ["safe", "tools"] },
         { id: "road", label: "🛣️ On the road (city)", tags: ["road", "traffic"] },
         { id: "highway", label: "🛣️ On the highway", tags: ["highway", "danger"] },
@@ -279,6 +291,38 @@ const autoLeakDataEn = {
         "If the water is not clear or has a smell — it's not condensation, you have a leak",
         "If the AC hasn't been running for a while — there may be no water (normal)",
         "If there's water under the car after a long parking period — it's most likely condensation"
+=======
+        { id: "home", label: "🏠 Home/Garage", tags: ["safe", "tools", "garage"] },
+        { id: "road", label: "🛣️ On the road", tags: ["road", "traffic", "safety"] },
+        { id: "highway", label: "🛣️ Highway", tags: ["highway", "speed", "danger"] }
+      ]
+    }
+  ],
+  solutions: [
+    {
+      id: "call_help",
+      title: "📞 Call tow truck",
+      description: "If you can't fix the problem — call for help",
+      conditions: {
+        location: ["road", "highway"]
+      },
+      tags: ["emergency", "help", "safe", "universal"],
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "30-60 min",
+      steps: [
+        "Turn on hazard lights",
+        "Place emergency triangle 15 meters behind",
+        "Move to safe distance from traffic",
+        "Call tow service or insurance",
+        "Report exact location and problem",
+        "Stay in safe place until help arrives"
+      ],
+      warnings: [
+        "Don't stand on the roadway",
+        "Wear reflective vest at night",
+        "Be especially careful on highways"
+>>>>>>> 92849c5936c3da4acab85528b91f11224f9f55d1
       ]
     }
   ]
