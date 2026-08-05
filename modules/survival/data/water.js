@@ -421,6 +421,5 @@ const waterData = {
   ]
 };
 
-window.waterData = waterData;
-
+// ===== EXPORT =====
 window.waterData = waterData;

@@ -420,3 +420,6 @@ const waterDataEn = {
     }
   ]
 };
+
+// ===== EXPORT =====
+window.waterDataEn = waterDataEn;

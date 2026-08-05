@@ -17,84 +17,150 @@
 <body>
 
   <div class="app">
-    <div class="header">
-      <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">UNIVERSAL</span></h1>
-      <p data-i18n="app_subtitle">Супер-приложение для любых ситуаций</p>
-    </div>
+    <!-- ЭКРАН 1: Главная (выбор модуля) -->
+    <div class="screen active" id="screen-home">
+      <div class="header">
+        <img src="./assets/icons/icon-192.png" alt="SOS UNIVERSAL" class="app-logo">
+        <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">UNIVERSAL</span></h1>
+        <p data-i18n="app_subtitle">Супер-приложение для любых ситуаций</p>
+      </div>
 
-    <div class="status-bar">
-      <div class="dot"></div>
-      <span data-i18n="status_online">Режим офлайн — база загружена</span>
-    </div>
+      <div class="status-bar">
+        <div class="dot"></div>
+        <span data-i18n="status_online">Режим офлайн — база загружена</span>
+      </div>
 
-    <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">
-        🇷🇺 Русский
-      </button>
-      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
-        🇬🇧 English
-      </button>
-      <button class="theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
-    </div>
+      <!-- Переключатель языка + тема -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">
+          🇷🇺 Русский
+        </button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+          🇬🇧 English
+        </button>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
+      </div>
 
-    <button class="sos-btn" onclick="showSOS()">
-      <div class="pulse"></div>
-      <span data-i18n="sos_button">SOS — Я в опасности</span>
-    </button>
+      <button class="sos-btn" onclick="showSOS()">
+        <div class="pulse"></div>
+        <span data-i18n="sos_button">SOS — Я в опасности</span>
+      </button>
 
-    <div class="grid">
-      <button class="mod-btn survival" onclick="openModule('survival')">
-        <span class="icon">🆘</span>
-        <span class="label" data-i18n="mod_survival">Выживание</span>
-      </button>
-      <button class="mod-btn auto" onclick="openModule('auto')">
-        <span class="icon">🚗</span>
-        <span class="label" data-i18n="mod_auto">Авто</span>
-      </button>
-      <button class="mod-btn lawyer" onclick="openModule('lawyer')">
-        <span class="icon">⚖️</span>
-        <span class="label" data-i18n="mod_lawyer">Юрист</span>
-      </button>
-      <button class="mod-btn home" onclick="openModule('home')">
-        <span class="icon">🏠</span>
-        <span class="label" data-i18n="mod_home">Дом</span>
-      </button>
-      <button class="mod-btn kids" onclick="openModule('kids')">
-        <span class="icon">👶</span>
-        <span class="label" data-i18n="mod_kids">Дети</span>
-      </button>
-      <button class="mod-btn animals" onclick="openModule('animals')">
-        <span class="icon">🐕</span>
-        <span class="label" data-i18n="mod_animals">Животные</span>
-      </button>
-      <button class="mod-btn travel" onclick="openModule('travel')">
-        <span class="icon">✈️</span>
-        <span class="label" data-i18n="mod_travel">Путешествия</span>
-      </button>
-      <button class="mod-btn soon" onclick="openModule('soon')">
-        <span class="icon">🔥</span>
-        <span class="label" data-i18n="mod_soon">Скоро</span>
-      </button>
-    </div>
+      <!-- Сетка 2×4 — 8 модулей -->
+      <div class="grid">
+        <button class="mod-btn survival" onclick="window.location.href='./modules/survival/index.html'">
+          <span class="icon">🆘</span>
+          <span class="label" data-i18n="mod_survival">Выживание</span>
+        </button>
+        <button class="mod-btn auto" onclick="window.location.href='./modules/auto/index.html'">
+          <span class="icon">🚗</span>
+          <span class="label" data-i18n="mod_auto">Авто</span>
+        </button>
+        <button class="mod-btn lawyer" onclick="window.location.href='./modules/lawyer/index.html'">
+          <span class="icon">⚖️</span>
+          <span class="label" data-i18n="mod_lawyer">Юрист</span>
+        </button>
+        <button class="mod-btn home" onclick="showComingSoon('Дом')">
+          <span class="icon">🏠</span>
+          <span class="label" data-i18n="mod_home">Дом</span>
+        </button>
+        <button class="mod-btn kids" onclick="showComingSoon('Дети')">
+          <span class="icon">👶</span>
+          <span class="label" data-i18n="mod_kids">Дети</span>
+        </button>
+        <button class="mod-btn animals" onclick="showComingSoon('Животные')">
+          <span class="icon">🐕</span>
+          <span class="label" data-i18n="mod_animals">Животные</span>
+        </button>
+        <button class="mod-btn travel" onclick="showComingSoon('Путешествия')">
+          <span class="icon">✈️</span>
+          <span class="label" data-i18n="mod_travel">Путешествия</span>
+        </button>
+        <button class="mod-btn soon" onclick="showComingSoon('🔥 Скоро')">
+          <span class="icon">🔥</span>
+          <span class="label" data-i18n="mod_soon">Скоро</span>
+        </button>
+      </div>
 
-    <div class="footer">
-      <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
+      <div class="footer">
+        <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
+      </div>
+
+      <!-- Карта и поддержка -->
+      <div class="map-link-block">
+        <a href="https://www.openstreetmap.org/" target="_blank" class="map-link" data-i18n="map_link">
+          🗺️ Открыть карту (требуется интернет)
+        </a>
+        <span class="map-hint" data-i18n="map_hint">Или скачай Organic Maps — работает офлайн</span>
+      </div>
+
+      <!-- БЛОК БЛАГОДАРНОСТИ -->
+      <div class="support-block">
+        <div class="support-header">
+          <span class="support-heart">❤️</span>
+          <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS UNIVERSAL!</span>
+        </div>
+        <p class="support-desc" data-i18n="support_desc">
+          Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!
+        </p>
+        <div class="support-buttons">
+          <a href="https://t.me/sos_survive_bot" target="_blank" class="support-btn telegram" data-i18n="support_telegram">
+            📱 Написать в Telegram
+          </a>
+          <a href="https://www.tinkoff.ru/rm/zima.token1/5z4YV31214" target="_blank" class="support-btn donate" data-i18n="support_donate">
+            💳 Поддержать проект
+          </a>
+        </div>
+        <div class="support-trust" data-i18n="support_trust">
+          💎 Все средства идут на развитие проекта и помощь людям в экстренных ситуациях. Спасибо за доверие!
+        </div>
+        <div class="support-footer">
+          <span data-i18n="support_footer">Спасибо, что вы с нами! 🙌</span>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- ========================================== -->
+  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ      -->
+  <!-- ========================================== -->
+
+  <!-- 1. ЛОКАЛИЗАЦИЯ -->
   <script src="./core/locales.js"></script>
+
+  <!-- 2. ТЕМА -->
   <script src="./core/theme.js"></script>
+
+  <!-- 3. ГОЛОС -->
+  <script src="./core/voice.js"></script>
+
+  <!-- 4. ПРИЛОЖЕНИЕ (для глобальных функций) -->
+  <script src="./core/app.js"></script>
+
   <script>
+    // ==========================================
+    // ГЛОБАЛЬНЫЕ ФУНКЦИИ
+    // ==========================================
+
     function setLanguage(lang) {
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
       localStorage.setItem('language', lang);
+      
+      if (typeof window.currentLang !== 'undefined') {
+        window.currentLang = lang;
+      }
+      
       updateTranslations(lang);
+      
+      if (typeof refreshDataRegistry === 'function') {
+        refreshDataRegistry();
+      }
     }
 
     function updateTranslations(lang) {
-      const texts = LOCALES[lang] || LOCALES.ru;
+      const texts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         if (texts[key]) {
@@ -103,25 +169,22 @@
       });
     }
 
-    function openModule(moduleId) {
-      if (moduleId === 'survival') {
-        window.location.href = './modules/survival/index.html';
-      } else if (moduleId === 'auto') {
-        window.location.href = './modules/auto/index.html';
-      } else {
-        alert('Раздел в разработке');
-      }
+    function showComingSoon(name) {
+      alert('🚧 Модуль "' + name + '" в разработке! Скоро появится.');
     }
 
     function showSOS() {
-      alert('SOS режим будет доступен в модулях');
+      alert('🆘 SOS-режим доступен внутри модулей "Выживание" и "Авто"');
     }
 
-    // Load saved language and theme
-    document.addEventListener('DOMContentLoaded', () => {
+    // Загрузка сохранённого языка и темы
+    document.addEventListener('DOMContentLoaded', function() {
       const savedLang = localStorage.getItem('language') || 'ru';
       setLanguage(savedLang);
-      loadTheme();
+      
+      if (typeof loadTheme === 'function') {
+        loadTheme();
+      }
     });
   </script>
 </body>

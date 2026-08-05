@@ -207,3 +207,6 @@ const kitDataEn = {
     }
   ]
 };
+
+// ===== EXPORT =====
+window.kitDataEn = kitDataEn;

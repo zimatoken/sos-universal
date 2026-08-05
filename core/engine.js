@@ -18,6 +18,14 @@ console.log("  autoBrakesData:", typeof window.autoBrakesData !== 'undefined' ? 
 console.log("  autoBatteryData:", typeof window.autoBatteryData !== 'undefined' ? '✅' : '❌');
 console.log("  autoLeakData:", typeof window.autoLeakData !== 'undefined' ? '✅' : '❌');
 console.log("  autoDtpData:", typeof window.autoDtpData !== 'undefined' ? '✅' : '❌');
+// Lawyer categories (RU)
+console.log("  dtpData:", typeof window.dtpData !== 'undefined' ? '✅' : '❌');
+console.log("  laborData:", typeof window.laborData !== 'undefined' ? '✅' : '❌');
+console.log("  housingData:", typeof window.housingData !== 'undefined' ? '✅' : '❌');
+console.log("  inheritanceData:", typeof window.inheritanceData !== 'undefined' ? '✅' : '❌');
+console.log("  debtsData:", typeof window.debtsData !== 'undefined' ? '✅' : '❌');
+console.log("  divorceData:", typeof window.divorceData !== 'undefined' ? '✅' : '❌');
+console.log("  consumerData:", typeof window.consumerData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
 console.log("  waterDataEn:", typeof window.waterDataEn !== 'undefined' ? '✅' : '❌');
@@ -35,6 +43,14 @@ console.log("  autoBrakesDataEn:", typeof window.autoBrakesDataEn !== 'undefined
 console.log("  autoBatteryDataEn:", typeof window.autoBatteryDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  autoLeakDataEn:", typeof window.autoLeakDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  autoDtpDataEn:", typeof window.autoDtpDataEn !== 'undefined' ? '✅' : '❌');
+// Lawyer categories (EN)
+console.log("  dtpDataEn:", typeof window.dtpDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  laborDataEn:", typeof window.laborDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  housingDataEn:", typeof window.housingDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  inheritanceDataEn:", typeof window.inheritanceDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  debtsDataEn:", typeof window.debtsDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  divorceDataEn:", typeof window.divorceDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  consumerDataEn:", typeof window.consumerDataEn !== 'undefined' ? '✅' : '❌');
 
 // Регистр всех данных (русские и английские версии)
 const dataRegistry = {
@@ -53,7 +69,15 @@ const dataRegistry = {
     brakes: typeof window.autoBrakesData !== 'undefined' ? window.autoBrakesData : null,
     battery: typeof window.autoBatteryData !== 'undefined' ? window.autoBatteryData : null,
     leak: typeof window.autoLeakData !== 'undefined' ? window.autoLeakData : null,
-    dtp: typeof window.autoDtpData !== 'undefined' ? window.autoDtpData : null
+    dtp: typeof window.autoDtpData !== 'undefined' ? window.autoDtpData : null,
+    // Lawyer categories
+    dtp_lawyer: typeof window.dtpData !== 'undefined' ? window.dtpData : null,
+    labor: typeof window.laborData !== 'undefined' ? window.laborData : null,
+    housing: typeof window.housingData !== 'undefined' ? window.housingData : null,
+    inheritance: typeof window.inheritanceData !== 'undefined' ? window.inheritanceData : null,
+    debts: typeof window.debtsData !== 'undefined' ? window.debtsData : null,
+    divorce: typeof window.divorceData !== 'undefined' ? window.divorceData : null,
+    consumer: typeof window.consumerData !== 'undefined' ? window.consumerData : null
   },
   en: {}
 };
@@ -74,6 +98,14 @@ if (typeof window.autoBrakesDataEn !== 'undefined') dataRegistry.en.brakes = win
 if (typeof window.autoBatteryDataEn !== 'undefined') dataRegistry.en.battery = window.autoBatteryDataEn;
 if (typeof window.autoLeakDataEn !== 'undefined') dataRegistry.en.leak = window.autoLeakDataEn;
 if (typeof window.autoDtpDataEn !== 'undefined') dataRegistry.en.dtp = window.autoDtpDataEn;
+// Lawyer categories (EN)
+if (typeof window.dtpDataEn !== 'undefined') dataRegistry.en.dtp_lawyer = window.dtpDataEn;
+if (typeof window.laborDataEn !== 'undefined') dataRegistry.en.labor = window.laborDataEn;
+if (typeof window.housingDataEn !== 'undefined') dataRegistry.en.housing = window.housingDataEn;
+if (typeof window.inheritanceDataEn !== 'undefined') dataRegistry.en.inheritance = window.inheritanceDataEn;
+if (typeof window.debtsDataEn !== 'undefined') dataRegistry.en.debts = window.debtsDataEn;
+if (typeof window.divorceDataEn !== 'undefined') dataRegistry.en.divorce = window.divorceDataEn;
+if (typeof window.consumerDataEn !== 'undefined') dataRegistry.en.consumer = window.consumerDataEn;
 
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
@@ -82,13 +114,21 @@ function getCurrentLang() {
 function getCategoryData(category) {
   const lang = getCurrentLang();
   const langData = dataRegistry[lang] || dataRegistry.ru;
-  const data = langData[category];
+  
+  // Маппинг категорий для lawyer (чтобы dtp не конфликтовал с auto)
+  let mappedCategory = category;
+  if (category === 'dtp' && langData.dtp && langData.dtp.category === 'auto') {
+    // Если dtp — это auto категория, используем dtp_lawyer для lawyer
+    mappedCategory = 'dtp_lawyer';
+  }
+  
+  const data = langData[mappedCategory];
   
   if (!data) {
     console.error(`❌ Категория не найдена: ${category} (язык: ${lang})`);
-    if (lang !== 'ru' && dataRegistry.ru[category]) {
+    if (lang !== 'ru' && dataRegistry.ru[mappedCategory]) {
       console.log(`🔄 Используем русскую версию как fallback для ${category}`);
-      return dataRegistry.ru[category];
+      return dataRegistry.ru[mappedCategory];
     }
     return null;
   }

@@ -6,15 +6,14 @@
   <meta name="theme-color" content="#0f172a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>SOS SURVIVE — Офлайн-ассистент выживания</title>
+  <title>SOS YRIST — Юридическая помощь в любой ситуации</title>
   
-  <!-- Fallback для iOS PWA -->
-  <meta name="apple-mobile-web-app-title" content="SOS SURVIVE">
+  <meta name="apple-mobile-web-app-title" content="SOS YRIST">
   
   <link rel="manifest" href="../../manifest.json">
   <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
   <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../../css/modules/survival.css">
+  <link rel="stylesheet" href="../../css/modules/lawyer.css">
 </head>
 <body>
 
@@ -24,8 +23,8 @@
       <!-- HEADER with back button -->
       <div class="header">
         <button class="back-btn home-back-btn" onclick="goBack()">← Назад</button>
-        <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">SURVIVE</span></h1>
-        <p data-i18n="app_subtitle">Офлайн-ассистент выживания</p>
+        <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">YRIST</span></h1>
+        <p data-i18n="app_subtitle">Юридическая помощь в любой ситуации</p>
       </div>
 
       <div class="status-bar">
@@ -52,47 +51,43 @@
         <span data-i18n="sos_button">SOS — Я в опасности</span>
       </button>
 
-      <!-- Сетка 2×4 — 8 категорий -->
+      <!-- Сетка 2×4 — 7 категорий юридических проблем -->
       <div class="grid">
-        <button class="cat-btn water" onclick="startFlow('water')">
-          <span class="icon">💧</span>
-          <span class="label" data-i18n="cat_water">Вода</span>
+        <button class="cat-btn dtp" onclick="startFlow('dtp')">
+          <span class="icon">🚨</span>
+          <span class="label" data-i18n="cat_dtp">ДТП / Авария</span>
         </button>
-        <button class="cat-btn fire" onclick="startFlow('fire')">
-          <span class="icon">🔥</span>
-          <span class="label" data-i18n="cat_fire">Огонь</span>
+        <button class="cat-btn labor" onclick="startFlow('labor')">
+          <span class="icon">💼</span>
+          <span class="label" data-i18n="cat_labor">Трудовые споры</span>
         </button>
-        <button class="cat-btn shelter" onclick="startFlow('shelter')">
+        <button class="cat-btn housing" onclick="startFlow('housing')">
           <span class="icon">🏠</span>
-          <span class="label" data-i18n="cat_shelter">Укрытие</span>
+          <span class="label" data-i18n="cat_housing">Жилищные вопросы</span>
         </button>
-        <button class="cat-btn food" onclick="startFlow('food')">
-          <span class="icon">🍖</span>
-          <span class="label" data-i18n="cat_food">Еда</span>
+        <button class="cat-btn inheritance" onclick="startFlow('inheritance')">
+          <span class="icon">📜</span>
+          <span class="label" data-i18n="cat_inheritance">Наследство</span>
         </button>
-        <button class="cat-btn med" onclick="startFlow('medicine')">
-          <span class="icon">🩹</span>
-          <span class="label" data-i18n="cat_medicine">Медицина</span>
+        <button class="cat-btn debts" onclick="startFlow('debts')">
+          <span class="icon">💸</span>
+          <span class="label" data-i18n="cat_debts">Долги и коллекторы</span>
         </button>
-        <button class="cat-btn nav" onclick="startFlow('navigation')">
-          <span class="icon">🧭</span>
-          <span class="label" data-i18n="cat_navigation">Навигация</span>
+        <button class="cat-btn divorce" onclick="startFlow('divorce')">
+          <span class="icon">💔</span>
+          <span class="label" data-i18n="cat_divorce">Развод и алименты</span>
         </button>
-        <button class="cat-btn radio" onclick="startFlow('radio')">
-          <span class="icon">📻</span>
-          <span class="label" data-i18n="cat_radio">Связь</span>
-        </button>
-        <button class="cat-btn kit" onclick="startFlow('kit')">
-          <span class="icon">🎒</span>
-          <span class="label" data-i18n="cat_kit">Чемоданчик</span>
+        <button class="cat-btn consumer" onclick="startFlow('consumer')">
+          <span class="icon">🛡️</span>
+          <span class="label" data-i18n="cat_consumer">Защита прав потребителей</span>
         </button>
       </div>
 
       <div class="footer">
-        <span data-i18n="footer_text">v2.0 · Полностью офлайн</span>
+        <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
       </div>
 
-      <!-- Карта и поддержка как в рабочем файле -->
+      <!-- Карта и поддержка -->
       <div class="map-link-block">
         <a href="https://www.openstreetmap.org/" target="_blank" class="map-link" data-i18n="map_link">
           🗺️ Открыть карту (требуется интернет)
@@ -104,7 +99,7 @@
       <div class="support-block">
         <div class="support-header">
           <span class="support-heart">❤️</span>
-          <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS SURVIVE!</span>
+          <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS YRIST!</span>
         </div>
         <p class="support-desc" data-i18n="support_desc">
           Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!
@@ -140,7 +135,7 @@
     <div class="screen" id="screen-results">
       <button class="back-btn" onclick="goHome()" data-i18n="back_home">← На главную</button>
       <div class="results-header">
-        <div class="results-icon" id="result-icon">💧</div>
+        <div class="results-icon" id="result-icon">⚖️</div>
         <h2 id="result-title">Результаты</h2>
         <p id="result-subtitle">Под вашу ситуацию</p>
       </div>
@@ -242,25 +237,23 @@
   <script src="../../core/theme.js"></script>
   <script src="../../core/voice.js"></script>
 
-  <!-- 3. РУССКИЕ ДАННЫЕ -->
-  <script src="data/water.js"></script>
-  <script src="data/fire.js"></script>
-  <script src="data/shelter.js"></script>
-  <script src="data/food.js"></script>
-  <script src="data/medicine.js"></script>
-  <script src="data/navigation.js"></script>
-  <script src="data/radio.js"></script>
-  <script src="data/kit.js"></script>
+  <!-- 3. ДАННЫЕ LAWYER (РУССКИЕ) -->
+  <script src="data/dtp.js"></script>
+  <script src="data/labor.js"></script>
+  <script src="data/housing.js"></script>
+  <script src="data/inheritance.js"></script>
+  <script src="data/debts.js"></script>
+  <script src="data/divorce.js"></script>
+  <script src="data/consumer.js"></script>
 
-  <!-- 4. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
-  <script src="data/en/water-en.js"></script>
-  <script src="data/en/fire-en.js"></script>
-  <script src="data/en/shelter-en.js"></script>
-  <script src="data/en/food-en.js"></script>
-  <script src="data/en/medicine-en.js"></script>
-  <script src="data/en/navigation-en.js"></script>
-  <script src="data/en/radio-en.js"></script>
-  <script src="data/en/kit-en.js"></script>
+  <!-- 4. ДАННЫЕ LAWYER (АНГЛИЙСКИЕ) -->
+  <script src="data/en/dtp-en.js"></script>
+  <script src="data/en/labor-en.js"></script>
+  <script src="data/en/housing-en.js"></script>
+  <script src="data/en/inheritance-en.js"></script>
+  <script src="data/en/debts-en.js"></script>
+  <script src="data/en/divorce-en.js"></script>
+  <script src="data/en/consumer-en.js"></script>
 
   <!-- 5. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
   <script>
@@ -320,7 +313,7 @@
     // Функция обновления переводов
     function updateTranslations(lang) {
       const coreTexts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
-      const moduleTexts = typeof SURVIVAL_LOCALES !== 'undefined' ? (SURVIVAL_LOCALES[lang] || SURVIVAL_LOCALES.ru) : {};
+      const moduleTexts = typeof LAWYER_LOCALES !== 'undefined' ? (LAWYER_LOCALES[lang] || LAWYER_LOCALES.ru) : {};
       
       const texts = { ...coreTexts, ...moduleTexts };
       

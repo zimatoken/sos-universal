@@ -349,3 +349,6 @@ const foodDataEn = {
     }
   ]
 };
+
+// ===== EXPORT =====
+window.foodDataEn = foodDataEn;

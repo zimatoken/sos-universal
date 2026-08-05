@@ -360,3 +360,6 @@ const navigationDataEn = {
     }
   ]
 };
+
+// ===== EXPORT =====
+window.navigationDataEn = navigationDataEn;

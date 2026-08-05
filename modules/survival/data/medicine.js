@@ -388,4 +388,5 @@ const medicineData = {
   ]
 };
 
+// ===== EXPORT =====
 window.medicineData = medicineData;

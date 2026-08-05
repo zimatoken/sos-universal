@@ -350,4 +350,5 @@ const foodData = {
   ]
 };
 
+// ===== EXPORT =====
 window.foodData = foodData;

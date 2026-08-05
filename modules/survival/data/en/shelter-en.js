@@ -347,3 +347,6 @@ const shelterDataEn = {
     }
   ]
 };
+
+// ===== EXPORT =====
+window.shelterDataEn = shelterDataEn;
