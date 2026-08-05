@@ -227,6 +227,12 @@ function t(key) {
   if (typeof AUTO_LOCALES !== 'undefined') {
     moduleTexts = { ...moduleTexts, ...AUTO_LOCALES[lang] };
   }
+  if (typeof LAWYER_LOCALES !== 'undefined') {
+    moduleTexts = { ...moduleTexts, ...LAWYER_LOCALES[lang] };
+  }
+  if (typeof HOME_LOCALES !== 'undefined') {
+    moduleTexts = { ...moduleTexts, ...HOME_LOCALES[lang] };
+  }
   
   const texts = { ...coreTexts, ...moduleTexts };
   return texts[key] || key;

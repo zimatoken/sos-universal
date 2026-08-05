@@ -1,8 +1,8 @@
-// === МОДУЛЬ: ДОМ — ЗАМКИ И ДВЕРИ (РУССКИЙ) ===
-const lockData = {
-  category: "lock",
-  title: "🔐 Замки и двери",
-  description: "Заклинило замок, потерял ключи, взлом, защита от проникновения",
+// === МОДУЛЬ: ДОМ — ВОДА И КАНАЛИЗАЦИЯ (РУССКИЙ) ===
+const plumbingData = {
+  category: "plumbing",
+  title: "� Вода и канализация",
+  description: "Прорыв трубы, засор, нет воды, утечка, сантехника emergencies",
 
   questions: [
     {
@@ -303,4 +303,4 @@ const lockData = {
 };
 
 // ===== EXPORT =====
-window.lockData = lockData;
+window.plumbingData = plumbingData;

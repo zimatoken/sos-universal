@@ -1,8 +1,8 @@
-// === MODULE: HOME — LOCKS AND DOORS (ENGLISH) ===
-const lockDataEn = {
-  category: "lock",
-  title: "🔐 Locks and Doors",
-  description: "Lock jammed, lost keys, break-in, protection against intrusion",
+// === MODULE: HOME — WATER AND PLUMBING (ENGLISH) ===
+const plumbingDataEn = {
+  category: "plumbing",
+  title: "� Water and Plumbing",
+  description: "Pipe burst, clog, no water, leak, plumbing emergencies",
 
   questions: [
     {
@@ -303,4 +303,4 @@ const lockDataEn = {
 };
 
 // ===== EXPORT =====
-window.lockDataEn = lockDataEn;
+window.plumbingDataEn = plumbingDataEn;
