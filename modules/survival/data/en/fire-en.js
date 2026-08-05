@@ -366,3 +366,6 @@ const fireDataEn = {
     }
   ]
 };
+
+// ===== EXPORT =====
+window.fireDataEn = fireDataEn;

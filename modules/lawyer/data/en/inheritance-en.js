@@ -108,4 +108,5 @@ const inheritanceDataEn = {
   ]
 };
 
+// ===== EXPORT =====
 window.inheritanceDataEn = inheritanceDataEn;

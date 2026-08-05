@@ -129,4 +129,5 @@ const consumerData = {
   ]
 };
 
+// ===== EXPORT =====
 window.consumerData = consumerData;

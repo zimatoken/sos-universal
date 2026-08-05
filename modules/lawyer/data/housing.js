@@ -131,4 +131,5 @@ const housingData = {
   ]
 };
 
+// ===== EXPORT =====
 window.housingData = housingData;

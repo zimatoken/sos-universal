@@ -53,4 +53,7 @@ const autoOverheatingDataEn = {
       ]
     }
   ]
-};window.autoOverheatingDataEn = autoOverheatingDataEn;
+};
+
+// ===== EXPORT =====
+window.autoOverheatingDataEn = autoOverheatingDataEn;

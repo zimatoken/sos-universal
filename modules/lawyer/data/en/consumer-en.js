@@ -111,4 +111,5 @@ const consumerDataEn = {
   ]
 };
 
+// ===== EXPORT =====
 window.consumerDataEn = consumerDataEn;

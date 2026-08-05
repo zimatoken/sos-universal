@@ -129,4 +129,5 @@ const divorceData = {
   ]
 };
 
+// ===== EXPORT =====
 window.divorceData = divorceData;

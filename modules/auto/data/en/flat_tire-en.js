@@ -44,4 +44,7 @@ const autoFlatTireDataEn = {
       ]
     }
   ]
-};window.autoFlatTireDataEn = autoFlatTireDataEn;
+};
+
+// ===== EXPORT =====
+window.autoFlatTireDataEn = autoFlatTireDataEn;

@@ -54,4 +54,7 @@ const autoBatteryData = {
       ]
     }
   ]
-};window.autoBatteryData = autoBatteryData;
+};
+
+// ===== EXPORT =====
+window.autoBatteryData = autoBatteryData;

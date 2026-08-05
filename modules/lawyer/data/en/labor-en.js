@@ -107,4 +107,5 @@ const laborDataEn = {
   ]
 };
 
+// ===== EXPORT =====
 window.laborDataEn = laborDataEn;

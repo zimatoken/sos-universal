@@ -43,4 +43,7 @@ const autoLeakData = {
       ]
     }
   ]
-};window.autoLeakData = autoLeakData;
+};
+
+// ===== EXPORT =====
+window.autoLeakData = autoLeakData;

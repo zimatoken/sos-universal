@@ -40,4 +40,7 @@ const autoBrakesDataEn = {
       ]
     }
   ]
-};window.autoBrakesDataEn = autoBrakesDataEn;
+};
+
+// ===== EXPORT =====
+window.autoBrakesDataEn = autoBrakesDataEn;

@@ -321,4 +321,7 @@ const leakData = {
       ]
     }
   ]
-};window.autoWontStartData = autoWontStartData;
+};
+
+// ===== EXPORT =====
+window.autoWontStartData = autoWontStartData;

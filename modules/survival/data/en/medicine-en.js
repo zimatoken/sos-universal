@@ -387,3 +387,6 @@ const medicineDataEn = {
     }
   ]
 };
+
+// ===== EXPORT =====
+window.medicineDataEn = medicineDataEn;

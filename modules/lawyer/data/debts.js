@@ -107,4 +107,5 @@ const debtsData = {
   ]
 };
 
+// ===== EXPORT =====
 window.debtsData = debtsData;

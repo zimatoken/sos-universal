@@ -157,3 +157,6 @@ const radioDataEn = {
     }
   ]
 };
+
+// ===== EXPORT =====
+window.radioDataEn = radioDataEn;

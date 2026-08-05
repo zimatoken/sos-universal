@@ -104,4 +104,7 @@ const autoDtpDataEn = {
       ]
     }
   ]
-};window.autoDtpDataEn = autoDtpDataEn;
+};
+
+// ===== EXPORT =====
+window.autoDtpDataEn = autoDtpDataEn;
