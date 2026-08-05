@@ -109,4 +109,4 @@ const dtpDataEn = {
 };
 
 // ===== EXPORT =====
-window.dtpDataEn = dtpDataEn;
+window.housingDataEn = housingDataEn;
