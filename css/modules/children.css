@@ -1,0 +1,36 @@
+/* === МОДУЛЬ: ДЕТИ === */
+:root {
+  --children-primary: #f59e0b;
+  --children-primary-dark: #d97706;
+  --children-accent: #f97316;
+  --children-bg: rgba(245, 158, 11, 0.08);
+}
+
+.module-hero {
+  background: linear-gradient(135deg, var(--children-primary) 0%, var(--children-primary-dark) 100%);
+}
+
+.category-card:hover {
+  border-color: var(--children-primary);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+}
+
+.solution-card {
+  border-left: 4px solid var(--children-primary);
+}
+
+.step-number {
+  background: var(--children-primary);
+}
+
+.btn-primary {
+  background: var(--children-primary);
+}
+
+.btn-primary:hover {
+  background: var(--children-primary-dark);
+}
+
+.priority-fast { border-left-color: #ef4444; }
+.priority-medium { border-left-color: var(--children-accent); }
+.priority-slow { border-left-color: #3b82f6; }
