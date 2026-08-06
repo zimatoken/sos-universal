@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === РАЗДЕЛ: АВТО ===
 // Все категории проблем автомобиля
 
@@ -3394,4 +3393,3 @@ window.autoBrakesData = autoBrakesData;
 window.autoBatteryData = autoBatteryData;
 window.autoLeakData = autoLeakData;
 window.autoDtpData = autoDtpData;
->>>>>>> 57522793a60f67c90dd6befc66693a2a0762d34e

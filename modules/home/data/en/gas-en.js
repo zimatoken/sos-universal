@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === MODULE: HOME — GAS (ENGLISH) ===
 const gasDataEn = {
   category: "gas",
@@ -303,7 +302,7 @@ const gasDataEn = {
 
 // ===== EXPORT =====
 window.gasDataEn = gasDataEn;
-=======
+
 // === MODULE: HOME — GAS (ENGLISH) ===
 const gasDataEn = {
   category: "gas",
@@ -608,4 +607,3 @@ const gasDataEn = {
 
 // ===== EXPORT =====
 window.gasDataEn = gasDataEn;
->>>>>>> 57522793a60f67c90dd6befc66693a2a0762d34e

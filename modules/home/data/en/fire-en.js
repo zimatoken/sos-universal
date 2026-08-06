@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 // === MODULE: HOME — FIRE (ENGLISH) ===
 const fireDataEn = {
   category: "fire",
@@ -303,7 +301,7 @@ const fireDataEn = {
 
 // ===== EXPORT =====
 window.fireDataEn = fireDataEn;
-=======
+
 // === MODULE: HOME — FIRE (ENGLISH) ===
 const fireDataEn = {
   category: "fire",
@@ -607,8 +605,7 @@ const fireDataEn = {
 
 // ===== EXPORT =====
 window.fireDataEn = fireDataEn;
->>>>>>> 57522793a60f67c90dd6befc66693a2a0762d34e
-=======
+
 // === MODULE: HOME — FIRE (ENGLISH) ===
 const fireDataEn = {
   category: "fire",
@@ -912,4 +909,3 @@ const fireDataEn = {
 
 // ===== EXPORT =====
 window.homeFireDataEn = fireDataEn;
->>>>>>> 28ffb57 (fix: resolve merge conflicts and fix plumbing.js / engine.js)
