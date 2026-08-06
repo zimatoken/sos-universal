@@ -96,12 +96,12 @@ const dataRegistry = {
     debts: typeof window.debtsData !== 'undefined' ? window.debtsData : null,
     divorce: typeof window.divorceData !== 'undefined' ? window.divorceData : null,
     consumer: typeof window.consumerData !== 'undefined' ? window.consumerData : null,
-    // Home (используем префикс home_ чтобы не конфликтовать с survival/fire)
+    // Home (используем префикс home_ чтобы не конфликтовать с survival)
     plumbing: typeof window.plumbingData !== 'undefined' ? window.plumbingData : null,
     electricity: typeof window.electricityData !== 'undefined' ? window.electricityData : null,
     home_fire: typeof window.homeFireData !== 'undefined' ? window.homeFireData : null,
     gas: typeof window.gasData !== 'undefined' ? window.gasData : null,
-    lock: typeof window.lockData !== 'undefined' ? window.lockData : null,
+    home_lock: typeof window.lockData !== 'undefined' ? window.lockData : null,
     heating: typeof window.heatingData !== 'undefined' ? window.heatingData : null,
     natural: typeof window.naturalData !== 'undefined' ? window.naturalData : null
   },
@@ -139,7 +139,7 @@ if (typeof window.plumbingDataEn !== 'undefined') dataRegistry.en.plumbing = win
 if (typeof window.electricityDataEn !== 'undefined') dataRegistry.en.electricity = window.electricityDataEn;
 if (typeof window.homeFireDataEn !== 'undefined') dataRegistry.en.home_fire = window.homeFireDataEn;
 if (typeof window.gasDataEn !== 'undefined') dataRegistry.en.gas = window.gasDataEn;
-if (typeof window.lockDataEn !== 'undefined') dataRegistry.en.lock = window.lockDataEn;
+if (typeof window.lockDataEn !== 'undefined') dataRegistry.en.home_lock = window.lockDataEn;
 if (typeof window.heatingDataEn !== 'undefined') dataRegistry.en.heating = window.heatingDataEn;
 if (typeof window.naturalDataEn !== 'undefined') dataRegistry.en.natural = window.naturalDataEn;
 
@@ -151,10 +151,30 @@ function getCategoryData(category) {
   const lang = getCurrentLang();
   const langData = dataRegistry[lang] || dataRegistry.ru;
   
-  // Маппинг категорий (чтобы dtp не конфликтовал с auto)
+  // Маппинг категорий с учётом конфликтов имён
   let mappedCategory = category;
+  
+  // 1. Маппинг для AUTO (dtp конфликтует с lawyer/dtp)
   if (category === 'dtp' && langData.dtp && langData.dtp.category === 'auto') {
     mappedCategory = 'dtp_lawyer';
+  }
+  
+  // 2. Маппинг для HOME (fire конфликтует с survival/fire)
+  if (category === 'fire' && langData.home_fire) {
+    mappedCategory = 'home_fire';
+  }
+  
+  // 3. Маппинг для HOME (lock -> home_lock)
+  if (category === 'lock' && langData.home_lock) {
+    mappedCategory = 'home_lock';
+  }
+  
+  // 4. Универсальный маппинг: если категория не найдена, пробуем с префиксом home_
+  if (!langData[mappedCategory]) {
+    const withHomePrefix = 'home_' + category;
+    if (langData[withHomePrefix]) {
+      mappedCategory = withHomePrefix;
+    }
   }
   
   const data = langData[mappedCategory];
@@ -168,7 +188,7 @@ function getCategoryData(category) {
     return null;
   }
   
-  console.log(`✅ Загружена категория: ${category} (язык: ${lang})`);
+  console.log(`✅ Загружена категория: ${category} (язык: ${lang}) -> ${mappedCategory}`);
   console.log(`   Вопросов: ${data.questions?.length || 0}, решений: ${data.solutions?.length || 0}`);
   return data;
 }
