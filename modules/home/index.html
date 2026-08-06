@@ -6,25 +6,24 @@
   <meta name="theme-color" content="#0f172a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>SOS YRIST — Юридическая помощь в любой ситуации</title>
+  <title>SOS HOME — Помощь при авариях в квартире</title>
   
-  <meta name="apple-mobile-web-app-title" content="SOS YRIST">
+  <meta name="apple-mobile-web-app-title" content="SOS HOME">
   
   <link rel="manifest" href="../../manifest.json">
   <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
   <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../../css/modules/lawyer.css">
+  <link rel="stylesheet" href="../../css/modules/home.css">
 </head>
 <body>
 
   <div class="app">
     <!-- ЭКРАН 1: Главная (категории) -->
     <div class="screen active" id="screen-home">
-      <!-- HEADER with back button -->
       <div class="header">
         <button class="back-btn home-back-btn" onclick="goBack()">← Назад</button>
-        <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">YRIST</span></h1>
-        <p data-i18n="app_subtitle">Юридическая помощь в любой ситуации</p>
+        <h1><span class="sos-badge">SOS</span> <span data-i18n="app_title">HOME</span></h1>
+        <p data-i18n="app_subtitle">Помощь при авариях в квартире</p>
       </div>
 
       <div class="status-bar">
@@ -51,35 +50,35 @@
         <span data-i18n="sos_button">SOS — Я в опасности</span>
       </button>
 
-      <!-- Сетка 2×4 — 7 категорий юридических проблем -->
+      <!-- Сетка 2×4 — 7 категорий -->
       <div class="grid">
-        <button class="cat-btn dtp" onclick="startFlow('dtp')">
-          <span class="icon">🚨</span>
-          <span class="label" data-i18n="cat_dtp">ДТП / Авария</span>
+        <button class="cat-btn plumbing" onclick="startFlow('plumbing')">
+          <span class="icon">🚿</span>
+          <span class="label" data-i18n="cat_plumbing">Вода и канализация</span>
         </button>
-        <button class="cat-btn labor" onclick="startFlow('labor')">
-          <span class="icon">💼</span>
-          <span class="label" data-i18n="cat_labor">Трудовые споры</span>
+        <button class="cat-btn electricity" onclick="startFlow('electricity')">
+          <span class="icon">⚡</span>
+          <span class="label" data-i18n="cat_electricity">Электричество</span>
         </button>
-        <button class="cat-btn housing" onclick="startFlow('housing')">
-          <span class="icon">🏠</span>
-          <span class="label" data-i18n="cat_housing">Жилищные вопросы</span>
+        <button class="cat-btn fire" onclick="startFlow('fire')">
+          <span class="icon">🔥</span>
+          <span class="label" data-i18n="cat_fire">Пожар</span>
         </button>
-        <button class="cat-btn inheritance" onclick="startFlow('inheritance')">
-          <span class="icon">📜</span>
-          <span class="label" data-i18n="cat_inheritance">Наследство</span>
+        <button class="cat-btn gas" onclick="startFlow('gas')">
+          <span class="icon">⛽</span>
+          <span class="label" data-i18n="cat_gas">Газ</span>
         </button>
-        <button class="cat-btn debts" onclick="startFlow('debts')">
-          <span class="icon">💸</span>
-          <span class="label" data-i18n="cat_debts">Долги и коллекторы</span>
+        <button class="cat-btn lock" onclick="startFlow('lock')">
+          <span class="icon">🔐</span>
+          <span class="label" data-i18n="cat_lock">Замки и двери</span>
         </button>
-        <button class="cat-btn divorce" onclick="startFlow('divorce')">
-          <span class="icon">💔</span>
-          <span class="label" data-i18n="cat_divorce">Развод и алименты</span>
+        <button class="cat-btn heating" onclick="startFlow('heating')">
+          <span class="icon">🌡️</span>
+          <span class="label" data-i18n="cat_heating">Отопление</span>
         </button>
-        <button class="cat-btn consumer" onclick="startFlow('consumer')">
-          <span class="icon">🛡️</span>
-          <span class="label" data-i18n="cat_consumer">Защита прав потребителей</span>
+        <button class="cat-btn natural" onclick="startFlow('natural')">
+          <span class="icon">🌪️</span>
+          <span class="label" data-i18n="cat_natural">Стихия</span>
         </button>
       </div>
 
@@ -99,7 +98,7 @@
       <div class="support-block">
         <div class="support-header">
           <span class="support-heart">❤️</span>
-          <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS YRIST!</span>
+          <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS HOME!</span>
         </div>
         <p class="support-desc" data-i18n="support_desc">
           Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!
@@ -135,7 +134,7 @@
     <div class="screen" id="screen-results">
       <button class="back-btn" onclick="goHome()" data-i18n="back_home">← На главную</button>
       <div class="results-header">
-        <div class="results-icon" id="result-icon">⚖️</div>
+        <div class="results-icon" id="result-icon">🏠</div>
         <h2 id="result-title">Результаты</h2>
         <p id="result-subtitle">Под вашу ситуацию</p>
       </div>
@@ -237,23 +236,23 @@
   <script src="../../core/theme.js"></script>
   <script src="../../core/voice.js"></script>
 
-  <!-- 3. ДАННЫЕ LAWYER (РУССКИЕ) -->
-  <script src="data/dtp.js"></script>
-  <script src="data/labor.js"></script>
-  <script src="data/housing.js"></script>
-  <script src="data/inheritance.js"></script>
-  <script src="data/debts.js"></script>
-  <script src="data/divorce.js"></script>
-  <script src="data/consumer.js"></script>
+  <!-- 3. ДАННЫЕ HOME (РУССКИЕ) -->
+  <script src="data/plumbing.js"></script>
+  <script src="data/electricity.js"></script>
+  <script src="data/fire.js"></script>
+  <script src="data/gas.js"></script>
+  <script src="data/lock.js"></script>
+  <script src="data/heating.js"></script>
+  <script src="data/natural.js"></script>
 
-  <!-- 4. ДАННЫЕ LAWYER (АНГЛИЙСКИЕ) -->
-  <script src="data/en/dtp-en.js"></script>
-  <script src="data/en/labor-en.js"></script>
-  <script src="data/en/housing-en.js"></script>
-  <script src="data/en/inheritance-en.js"></script>
-  <script src="data/en/debts-en.js"></script>
-  <script src="data/en/divorce-en.js"></script>
-  <script src="data/en/consumer-en.js"></script>
+  <!-- 4. ДАННЫЕ HOME (АНГЛИЙСКИЕ) -->
+  <script src="data/en/plumbing-en.js"></script>
+  <script src="data/en/electricity-en.js"></script>
+  <script src="data/en/fire-en.js"></script>
+  <script src="data/en/gas-en.js"></script>
+  <script src="data/en/lock-en.js"></script>
+  <script src="data/en/heating-en.js"></script>
+  <script src="data/en/natural-en.js"></script>
 
   <!-- 5. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
   <script>
@@ -313,7 +312,7 @@
     // Функция обновления переводов
     function updateTranslations(lang) {
       const coreTexts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
-      const moduleTexts = typeof LAWYER_LOCALES !== 'undefined' ? (LAWYER_LOCALES[lang] || LAWYER_LOCALES.ru) : {};
+      const moduleTexts = typeof HOME_LOCALES !== 'undefined' ? (HOME_LOCALES[lang] || HOME_LOCALES.ru) : {};
       
       const texts = { ...coreTexts, ...moduleTexts };
       

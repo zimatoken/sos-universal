@@ -26,6 +26,14 @@ console.log("  inheritanceData:", typeof window.inheritanceData !== 'undefined' 
 console.log("  debtsData:", typeof window.debtsData !== 'undefined' ? '✅' : '❌');
 console.log("  divorceData:", typeof window.divorceData !== 'undefined' ? '✅' : '❌');
 console.log("  consumerData:", typeof window.consumerData !== 'undefined' ? '✅' : '❌');
+// Home categories (RU)
+console.log("  plumbingData:", typeof window.plumbingData !== 'undefined' ? '✅' : '❌');
+console.log("  electricityData:", typeof window.electricityData !== 'undefined' ? '✅' : '❌');
+console.log("  homeFireData:", typeof window.homeFireData !== 'undefined' ? '✅' : '❌');
+console.log("  gasData:", typeof window.gasData !== 'undefined' ? '✅' : '❌');
+console.log("  lockData:", typeof window.lockData !== 'undefined' ? '✅' : '❌');
+console.log("  heatingData:", typeof window.heatingData !== 'undefined' ? '✅' : '❌');
+console.log("  naturalData:", typeof window.naturalData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
 console.log("  waterDataEn:", typeof window.waterDataEn !== 'undefined' ? '✅' : '❌');
@@ -51,10 +59,19 @@ console.log("  inheritanceDataEn:", typeof window.inheritanceDataEn !== 'undefin
 console.log("  debtsDataEn:", typeof window.debtsDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  divorceDataEn:", typeof window.divorceDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  consumerDataEn:", typeof window.consumerDataEn !== 'undefined' ? '✅' : '❌');
+// Home categories (EN)
+console.log("  plumbingDataEn:", typeof window.plumbingDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  electricityDataEn:", typeof window.electricityDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  homeFireDataEn:", typeof window.homeFireDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  gasDataEn:", typeof window.gasDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  lockDataEn:", typeof window.lockDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  heatingDataEn:", typeof window.heatingDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  naturalDataEn:", typeof window.naturalDataEn !== 'undefined' ? '✅' : '❌');
 
 // Регистр всех данных (русские и английские версии)
 const dataRegistry = {
   ru: {
+    // Survival
     water: typeof window.waterData !== 'undefined' ? window.waterData : null,
     fire: typeof window.fireData !== 'undefined' ? window.fireData : null,
     shelter: typeof window.shelterData !== 'undefined' ? window.shelterData : null,
@@ -63,6 +80,7 @@ const dataRegistry = {
     navigation: typeof window.navigationData !== 'undefined' ? window.navigationData : null,
     radio: typeof window.radioData !== 'undefined' ? window.radioData : null,
     kit: typeof window.kitData !== 'undefined' ? window.kitData : null,
+    // Auto
     wont_start: typeof window.autoWontStartData !== 'undefined' ? window.autoWontStartData : null,
     overheating: typeof window.autoOverheatingData !== 'undefined' ? window.autoOverheatingData : null,
     flat_tire: typeof window.autoFlatTireData !== 'undefined' ? window.autoFlatTireData : null,
@@ -70,19 +88,28 @@ const dataRegistry = {
     battery: typeof window.autoBatteryData !== 'undefined' ? window.autoBatteryData : null,
     leak: typeof window.autoLeakData !== 'undefined' ? window.autoLeakData : null,
     dtp: typeof window.autoDtpData !== 'undefined' ? window.autoDtpData : null,
-    // Lawyer categories
+    // Lawyer
     dtp_lawyer: typeof window.dtpData !== 'undefined' ? window.dtpData : null,
     labor: typeof window.laborData !== 'undefined' ? window.laborData : null,
     housing: typeof window.housingData !== 'undefined' ? window.housingData : null,
     inheritance: typeof window.inheritanceData !== 'undefined' ? window.inheritanceData : null,
     debts: typeof window.debtsData !== 'undefined' ? window.debtsData : null,
     divorce: typeof window.divorceData !== 'undefined' ? window.divorceData : null,
-    consumer: typeof window.consumerData !== 'undefined' ? window.consumerData : null
+    consumer: typeof window.consumerData !== 'undefined' ? window.consumerData : null,
+    // Home (используем префикс home_ чтобы не конфликтовать с survival/fire)
+    plumbing: typeof window.plumbingData !== 'undefined' ? window.plumbingData : null,
+    electricity: typeof window.electricityData !== 'undefined' ? window.electricityData : null,
+    home_fire: typeof window.homeFireData !== 'undefined' ? window.homeFireData : null,
+    gas: typeof window.gasData !== 'undefined' ? window.gasData : null,
+    lock: typeof window.lockData !== 'undefined' ? window.lockData : null,
+    heating: typeof window.heatingData !== 'undefined' ? window.heatingData : null,
+    natural: typeof window.naturalData !== 'undefined' ? window.naturalData : null
   },
   en: {}
 };
 
 // Заполняем английский регистр
+// Survival
 if (typeof window.waterDataEn !== 'undefined') dataRegistry.en.water = window.waterDataEn;
 if (typeof window.fireDataEn !== 'undefined') dataRegistry.en.fire = window.fireDataEn;
 if (typeof window.shelterDataEn !== 'undefined') dataRegistry.en.shelter = window.shelterDataEn;
@@ -91,6 +118,7 @@ if (typeof window.medicineDataEn !== 'undefined') dataRegistry.en.medicine = win
 if (typeof window.navigationDataEn !== 'undefined') dataRegistry.en.navigation = window.navigationDataEn;
 if (typeof window.radioDataEn !== 'undefined') dataRegistry.en.radio = window.radioDataEn;
 if (typeof window.kitDataEn !== 'undefined') dataRegistry.en.kit = window.kitDataEn;
+// Auto
 if (typeof window.autoWontStartDataEn !== 'undefined') dataRegistry.en.wont_start = window.autoWontStartDataEn;
 if (typeof window.autoOverheatingDataEn !== 'undefined') dataRegistry.en.overheating = window.autoOverheatingDataEn;
 if (typeof window.autoFlatTireDataEn !== 'undefined') dataRegistry.en.flat_tire = window.autoFlatTireDataEn;
@@ -98,7 +126,7 @@ if (typeof window.autoBrakesDataEn !== 'undefined') dataRegistry.en.brakes = win
 if (typeof window.autoBatteryDataEn !== 'undefined') dataRegistry.en.battery = window.autoBatteryDataEn;
 if (typeof window.autoLeakDataEn !== 'undefined') dataRegistry.en.leak = window.autoLeakDataEn;
 if (typeof window.autoDtpDataEn !== 'undefined') dataRegistry.en.dtp = window.autoDtpDataEn;
-// Lawyer categories (EN)
+// Lawyer
 if (typeof window.dtpDataEn !== 'undefined') dataRegistry.en.dtp_lawyer = window.dtpDataEn;
 if (typeof window.laborDataEn !== 'undefined') dataRegistry.en.labor = window.laborDataEn;
 if (typeof window.housingDataEn !== 'undefined') dataRegistry.en.housing = window.housingDataEn;
@@ -106,6 +134,14 @@ if (typeof window.inheritanceDataEn !== 'undefined') dataRegistry.en.inheritance
 if (typeof window.debtsDataEn !== 'undefined') dataRegistry.en.debts = window.debtsDataEn;
 if (typeof window.divorceDataEn !== 'undefined') dataRegistry.en.divorce = window.divorceDataEn;
 if (typeof window.consumerDataEn !== 'undefined') dataRegistry.en.consumer = window.consumerDataEn;
+// Home
+if (typeof window.plumbingDataEn !== 'undefined') dataRegistry.en.plumbing = window.plumbingDataEn;
+if (typeof window.electricityDataEn !== 'undefined') dataRegistry.en.electricity = window.electricityDataEn;
+if (typeof window.homeFireDataEn !== 'undefined') dataRegistry.en.home_fire = window.homeFireDataEn;
+if (typeof window.gasDataEn !== 'undefined') dataRegistry.en.gas = window.gasDataEn;
+if (typeof window.lockDataEn !== 'undefined') dataRegistry.en.lock = window.lockDataEn;
+if (typeof window.heatingDataEn !== 'undefined') dataRegistry.en.heating = window.heatingDataEn;
+if (typeof window.naturalDataEn !== 'undefined') dataRegistry.en.natural = window.naturalDataEn;
 
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
@@ -115,10 +151,9 @@ function getCategoryData(category) {
   const lang = getCurrentLang();
   const langData = dataRegistry[lang] || dataRegistry.ru;
   
-  // Маппинг категорий для lawyer (чтобы dtp не конфликтовал с auto)
+  // Маппинг категорий (чтобы dtp не конфликтовал с auto)
   let mappedCategory = category;
   if (category === 'dtp' && langData.dtp && langData.dtp.category === 'auto') {
-    // Если dtp — это auto категория, используем dtp_lawyer для lawyer
     mappedCategory = 'dtp_lawyer';
   }
   

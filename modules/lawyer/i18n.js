@@ -37,5 +37,4 @@ const LAWYER_LOCALES = {
 
 // ===== ЭКСПОРТ =====
 window.LAWYER_LOCALES = LAWYER_LOCALES;
-
 console.log('✅ Локализации загружены (SOS LAWYER module)');
