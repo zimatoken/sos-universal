@@ -155,7 +155,7 @@ function getCategoryData(category) {
   let mappedCategory = category;
   
   // 1. Маппинг для AUTO (dtp конфликтует с lawyer/dtp)
-  if (category === 'dtp' && langData.dtp && langData.dtp.category === 'auto') {
+  if (category === 'dtp' && langData.dtp_lawyer) {
     mappedCategory = 'dtp_lawyer';
   }
   
