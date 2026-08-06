@@ -3,6 +3,7 @@
 
 // Проверяем, что все данные загружены (русские версии)
 console.log("🔍 Проверка данных (RU):");
+// Survival
 console.log("  waterData:", typeof window.waterData !== 'undefined' ? '✅' : '❌');
 console.log("  fireData:", typeof window.fireData !== 'undefined' ? '✅' : '❌');
 console.log("  shelterData:", typeof window.shelterData !== 'undefined' ? '✅' : '❌');
@@ -11,6 +12,7 @@ console.log("  medicineData:", typeof window.medicineData !== 'undefined' ? '✅
 console.log("  navigationData:", typeof window.navigationData !== 'undefined' ? '✅' : '❌');
 console.log("  radioData:", typeof window.radioData !== 'undefined' ? '✅' : '❌');
 console.log("  kitData:", typeof window.kitData !== 'undefined' ? '✅' : '❌');
+// Auto
 console.log("  autoWontStartData:", typeof window.autoWontStartData !== 'undefined' ? '✅' : '❌');
 console.log("  autoOverheatingData:", typeof window.autoOverheatingData !== 'undefined' ? '✅' : '❌');
 console.log("  autoFlatTireData:", typeof window.autoFlatTireData !== 'undefined' ? '✅' : '❌');
@@ -18,7 +20,7 @@ console.log("  autoBrakesData:", typeof window.autoBrakesData !== 'undefined' ? 
 console.log("  autoBatteryData:", typeof window.autoBatteryData !== 'undefined' ? '✅' : '❌');
 console.log("  autoLeakData:", typeof window.autoLeakData !== 'undefined' ? '✅' : '❌');
 console.log("  autoDtpData:", typeof window.autoDtpData !== 'undefined' ? '✅' : '❌');
-// Lawyer categories (RU)
+// Lawyer
 console.log("  dtpData:", typeof window.dtpData !== 'undefined' ? '✅' : '❌');
 console.log("  laborData:", typeof window.laborData !== 'undefined' ? '✅' : '❌');
 console.log("  housingData:", typeof window.housingData !== 'undefined' ? '✅' : '❌');
@@ -26,7 +28,7 @@ console.log("  inheritanceData:", typeof window.inheritanceData !== 'undefined' 
 console.log("  debtsData:", typeof window.debtsData !== 'undefined' ? '✅' : '❌');
 console.log("  divorceData:", typeof window.divorceData !== 'undefined' ? '✅' : '❌');
 console.log("  consumerData:", typeof window.consumerData !== 'undefined' ? '✅' : '❌');
-// Home categories (RU)
+// Home
 console.log("  plumbingData:", typeof window.plumbingData !== 'undefined' ? '✅' : '❌');
 console.log("  electricityData:", typeof window.electricityData !== 'undefined' ? '✅' : '❌');
 console.log("  homeFireData:", typeof window.homeFireData !== 'undefined' ? '✅' : '❌');
@@ -34,8 +36,17 @@ console.log("  gasData:", typeof window.gasData !== 'undefined' ? '✅' : '❌')
 console.log("  lockData:", typeof window.lockData !== 'undefined' ? '✅' : '❌');
 console.log("  heatingData:", typeof window.heatingData !== 'undefined' ? '✅' : '❌');
 console.log("  naturalData:", typeof window.naturalData !== 'undefined' ? '✅' : '❌');
+// Baby (Дети)
+console.log("  safetyData:", typeof window.safetyData !== 'undefined' ? '✅' : '❌');
+console.log("  healthData:", typeof window.healthData !== 'undefined' ? '✅' : '❌');
+console.log("  injuryData:", typeof window.injuryData !== 'undefined' ? '✅' : '❌');
+console.log("  lostData:", typeof window.lostData !== 'undefined' ? '✅' : '❌');
+console.log("  bullyingData:", typeof window.bullyingData !== 'undefined' ? '✅' : '❌');
+console.log("  internetData:", typeof window.internetData !== 'undefined' ? '✅' : '❌');
+console.log("  schoolData:", typeof window.schoolData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
+// Survival
 console.log("  waterDataEn:", typeof window.waterDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  fireDataEn:", typeof window.fireDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  shelterDataEn:", typeof window.shelterDataEn !== 'undefined' ? '✅' : '❌');
@@ -44,6 +55,7 @@ console.log("  medicineDataEn:", typeof window.medicineDataEn !== 'undefined' ? 
 console.log("  navigationDataEn:", typeof window.navigationDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  radioDataEn:", typeof window.radioDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  kitDataEn:", typeof window.kitDataEn !== 'undefined' ? '✅' : '❌');
+// Auto
 console.log("  autoWontStartDataEn:", typeof window.autoWontStartDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  autoOverheatingDataEn:", typeof window.autoOverheatingDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  autoFlatTireDataEn:", typeof window.autoFlatTireDataEn !== 'undefined' ? '✅' : '❌');
@@ -51,7 +63,7 @@ console.log("  autoBrakesDataEn:", typeof window.autoBrakesDataEn !== 'undefined
 console.log("  autoBatteryDataEn:", typeof window.autoBatteryDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  autoLeakDataEn:", typeof window.autoLeakDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  autoDtpDataEn:", typeof window.autoDtpDataEn !== 'undefined' ? '✅' : '❌');
-// Lawyer categories (EN)
+// Lawyer
 console.log("  dtpDataEn:", typeof window.dtpDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  laborDataEn:", typeof window.laborDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  housingDataEn:", typeof window.housingDataEn !== 'undefined' ? '✅' : '❌');
@@ -59,7 +71,7 @@ console.log("  inheritanceDataEn:", typeof window.inheritanceDataEn !== 'undefin
 console.log("  debtsDataEn:", typeof window.debtsDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  divorceDataEn:", typeof window.divorceDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  consumerDataEn:", typeof window.consumerDataEn !== 'undefined' ? '✅' : '❌');
-// Home categories (EN)
+// Home
 console.log("  plumbingDataEn:", typeof window.plumbingDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  electricityDataEn:", typeof window.electricityDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  homeFireDataEn:", typeof window.homeFireDataEn !== 'undefined' ? '✅' : '❌');
@@ -67,11 +79,19 @@ console.log("  gasDataEn:", typeof window.gasDataEn !== 'undefined' ? '✅' : '�
 console.log("  lockDataEn:", typeof window.lockDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  heatingDataEn:", typeof window.heatingDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  naturalDataEn:", typeof window.naturalDataEn !== 'undefined' ? '✅' : '❌');
+// Baby (Дети) EN
+console.log("  safetyDataEn:", typeof window.safetyDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  healthDataEn:", typeof window.healthDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  injuryDataEn:", typeof window.injuryDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  lostDataEn:", typeof window.lostDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  bullyingDataEn:", typeof window.bullyingDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  internetDataEn:", typeof window.internetDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  schoolDataEn:", typeof window.schoolDataEn !== 'undefined' ? '✅' : '❌');
 
 // Регистр всех данных (русские и английские версии)
 const dataRegistry = {
   ru: {
-    // Survival
+    // ===== SURVIVAL =====
     water: typeof window.waterData !== 'undefined' ? window.waterData : null,
     fire: typeof window.fireData !== 'undefined' ? window.fireData : null,
     shelter: typeof window.shelterData !== 'undefined' ? window.shelterData : null,
@@ -80,15 +100,17 @@ const dataRegistry = {
     navigation: typeof window.navigationData !== 'undefined' ? window.navigationData : null,
     radio: typeof window.radioData !== 'undefined' ? window.radioData : null,
     kit: typeof window.kitData !== 'undefined' ? window.kitData : null,
-    // Auto
+
+    // ===== AUTO =====
     wont_start: typeof window.autoWontStartData !== 'undefined' ? window.autoWontStartData : null,
     overheating: typeof window.autoOverheatingData !== 'undefined' ? window.autoOverheatingData : null,
     flat_tire: typeof window.autoFlatTireData !== 'undefined' ? window.autoFlatTireData : null,
     brakes: typeof window.autoBrakesData !== 'undefined' ? window.autoBrakesData : null,
     battery: typeof window.autoBatteryData !== 'undefined' ? window.autoBatteryData : null,
     leak: typeof window.autoLeakData !== 'undefined' ? window.autoLeakData : null,
-    dtp: typeof window.autoDtpData !== 'undefined' ? window.autoDtpData : null,
-    // Lawyer
+    dtp: typeof window.autoDtpData !== 'undefined' ? window.autoDtpData : null,  // Auto ДТП
+
+    // ===== LAWYER =====
     dtp_lawyer: typeof window.dtpData !== 'undefined' ? window.dtpData : null,
     labor: typeof window.laborData !== 'undefined' ? window.laborData : null,
     housing: typeof window.housingData !== 'undefined' ? window.housingData : null,
@@ -96,19 +118,29 @@ const dataRegistry = {
     debts: typeof window.debtsData !== 'undefined' ? window.debtsData : null,
     divorce: typeof window.divorceData !== 'undefined' ? window.divorceData : null,
     consumer: typeof window.consumerData !== 'undefined' ? window.consumerData : null,
-    // Home (используем префикс home_ чтобы не конфликтовать с survival)
+
+    // ===== HOME =====
     plumbing: typeof window.plumbingData !== 'undefined' ? window.plumbingData : null,
     electricity: typeof window.electricityData !== 'undefined' ? window.electricityData : null,
     home_fire: typeof window.homeFireData !== 'undefined' ? window.homeFireData : null,
     gas: typeof window.gasData !== 'undefined' ? window.gasData : null,
     home_lock: typeof window.lockData !== 'undefined' ? window.lockData : null,
     heating: typeof window.heatingData !== 'undefined' ? window.heatingData : null,
-    natural: typeof window.naturalData !== 'undefined' ? window.naturalData : null
+    natural: typeof window.naturalData !== 'undefined' ? window.naturalData : null,
+
+    // ===== BABY (Дети) =====
+    safety: typeof window.safetyData !== 'undefined' ? window.safetyData : null,
+    health: typeof window.healthData !== 'undefined' ? window.healthData : null,
+    injury: typeof window.injuryData !== 'undefined' ? window.injuryData : null,
+    lost: typeof window.lostData !== 'undefined' ? window.lostData : null,
+    bullying: typeof window.bullyingData !== 'undefined' ? window.bullyingData : null,
+    internet: typeof window.internetData !== 'undefined' ? window.internetData : null,
+    school: typeof window.schoolData !== 'undefined' ? window.schoolData : null
   },
   en: {}
 };
 
-// Заполняем английский регистр
+// ===== ЗАПОЛНЯЕМ АНГЛИЙСКИЙ РЕГИСТР =====
 // Survival
 if (typeof window.waterDataEn !== 'undefined') dataRegistry.en.water = window.waterDataEn;
 if (typeof window.fireDataEn !== 'undefined') dataRegistry.en.fire = window.fireDataEn;
@@ -118,6 +150,7 @@ if (typeof window.medicineDataEn !== 'undefined') dataRegistry.en.medicine = win
 if (typeof window.navigationDataEn !== 'undefined') dataRegistry.en.navigation = window.navigationDataEn;
 if (typeof window.radioDataEn !== 'undefined') dataRegistry.en.radio = window.radioDataEn;
 if (typeof window.kitDataEn !== 'undefined') dataRegistry.en.kit = window.kitDataEn;
+
 // Auto
 if (typeof window.autoWontStartDataEn !== 'undefined') dataRegistry.en.wont_start = window.autoWontStartDataEn;
 if (typeof window.autoOverheatingDataEn !== 'undefined') dataRegistry.en.overheating = window.autoOverheatingDataEn;
@@ -126,6 +159,7 @@ if (typeof window.autoBrakesDataEn !== 'undefined') dataRegistry.en.brakes = win
 if (typeof window.autoBatteryDataEn !== 'undefined') dataRegistry.en.battery = window.autoBatteryDataEn;
 if (typeof window.autoLeakDataEn !== 'undefined') dataRegistry.en.leak = window.autoLeakDataEn;
 if (typeof window.autoDtpDataEn !== 'undefined') dataRegistry.en.dtp = window.autoDtpDataEn;
+
 // Lawyer
 if (typeof window.dtpDataEn !== 'undefined') dataRegistry.en.dtp_lawyer = window.dtpDataEn;
 if (typeof window.laborDataEn !== 'undefined') dataRegistry.en.labor = window.laborDataEn;
@@ -134,6 +168,7 @@ if (typeof window.inheritanceDataEn !== 'undefined') dataRegistry.en.inheritance
 if (typeof window.debtsDataEn !== 'undefined') dataRegistry.en.debts = window.debtsDataEn;
 if (typeof window.divorceDataEn !== 'undefined') dataRegistry.en.divorce = window.divorceDataEn;
 if (typeof window.consumerDataEn !== 'undefined') dataRegistry.en.consumer = window.consumerDataEn;
+
 // Home
 if (typeof window.plumbingDataEn !== 'undefined') dataRegistry.en.plumbing = window.plumbingDataEn;
 if (typeof window.electricityDataEn !== 'undefined') dataRegistry.en.electricity = window.electricityDataEn;
@@ -143,33 +178,46 @@ if (typeof window.lockDataEn !== 'undefined') dataRegistry.en.home_lock = window
 if (typeof window.heatingDataEn !== 'undefined') dataRegistry.en.heating = window.heatingDataEn;
 if (typeof window.naturalDataEn !== 'undefined') dataRegistry.en.natural = window.naturalDataEn;
 
+// Baby (Дети) EN
+if (typeof window.safetyDataEn !== 'undefined') dataRegistry.en.safety = window.safetyDataEn;
+if (typeof window.healthDataEn !== 'undefined') dataRegistry.en.health = window.healthDataEn;
+if (typeof window.injuryDataEn !== 'undefined') dataRegistry.en.injury = window.injuryDataEn;
+if (typeof window.lostDataEn !== 'undefined') dataRegistry.en.lost = window.lostDataEn;
+if (typeof window.bullyingDataEn !== 'undefined') dataRegistry.en.bullying = window.bullyingDataEn;
+if (typeof window.internetDataEn !== 'undefined') dataRegistry.en.internet = window.internetDataEn;
+if (typeof window.schoolDataEn !== 'undefined') dataRegistry.en.school = window.schoolDataEn;
+
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
 }
 
+/**
+ * Получение данных категории с учётом маппинга конфликтов
+ */
 function getCategoryData(category) {
   const lang = getCurrentLang();
   const langData = dataRegistry[lang] || dataRegistry.ru;
   
-  // Маппинг категорий с учётом конфликтов имён
   let mappedCategory = category;
   
-  // 1. Маппинг для AUTO (dtp конфликтует с lawyer/dtp)
+  // ===== МАППИНГ КОНФЛИКТОВ =====
+  // 1. LAWYER / AUTO: dtp конфликтует (в Auto — ДТП, в Lawyer — тоже ДТП)
+  // Приоритет: если загружены lawyer-данные — используем dtp_lawyer, иначе auto-данные
   if (category === 'dtp' && langData.dtp_lawyer) {
     mappedCategory = 'dtp_lawyer';
   }
   
-  // 2. Маппинг для HOME (fire конфликтует с survival/fire)
+  // 2. HOME / SURVIVAL: fire конфликтует (в Survival — пожар, в Home — тоже пожар)
   if (category === 'fire' && langData.home_fire) {
     mappedCategory = 'home_fire';
   }
   
-  // 3. Маппинг для HOME (lock -> home_lock)
+  // 3. HOME / ? : lock конфликтует (используем home_lock)
   if (category === 'lock' && langData.home_lock) {
     mappedCategory = 'home_lock';
   }
   
-  // 4. Универсальный маппинг: если категория не найдена, пробуем с префиксом home_
+  // 4. Универсальный fallback: если категория не найдена — пробуем с префиксом home_
   if (!langData[mappedCategory]) {
     const withHomePrefix = 'home_' + category;
     if (langData[withHomePrefix]) {
@@ -223,28 +271,19 @@ function filterSolutions(data, answers) {
   if (matched.length === 0) {
     console.log("🔄 Нет точных совпадений, ищем ближайшие по симптомам");
     
-    // 1. Определяем основной симптом (для медицины)
     const mainSymptom = answers.symptom ? answers.symptom[0] : null;
-    
-    // 2. Собираем все теги из ответов
     const allTags = Object.values(answers).flat();
     
     matched = data.solutions.filter(sol => {
       if (!sol.tags) return false;
       
-      // 2.1 Проверяем симптом (для медицины)
       if (mainSymptom) {
-        // Если у решения есть symptom в условиях — проверяем соответствие
         if (sol.conditions && sol.conditions.symptom) {
           const solSymptoms = sol.conditions.symptom;
           if (!solSymptoms.includes(mainSymptom)) {
-            // Если симптом не совпадает — пропускаем
             return false;
           }
         } else {
-          // Если у решения нет symptom в условиях, но оно помечено как универсальное
-          // и подходит по тегам — пропускаем только если это действительно универсальное
-          // (для медицины — только emergency и universal)
           const isMedicalUniversal = sol.tags.includes("emergency") || 
                                      sol.tags.includes("first_aid");
           if (!isMedicalUniversal) {
@@ -253,10 +292,7 @@ function filterSolutions(data, answers) {
         }
       }
       
-      // 2.2 Проверяем пересечение тегов
       const hasTagMatch = allTags.some(tag => sol.tags.includes(tag));
-      
-      // 2.3 Проверяем, помечено ли как универсальное
       const isUniversal = sol.tags.includes("universal") || 
                          sol.tags.includes("primitive") ||
                          sol.tags.includes("search") ||
@@ -268,7 +304,6 @@ function filterSolutions(data, answers) {
       return hasTagMatch || isUniversal;
     });
     
-    // 3. Если всё ещё ничего не найдено — возвращаем первые 3 решения как экстренные
     if (matched.length === 0) {
       console.warn("⚠️ Не найдено подходящих решений, показываем экстренные");
       matched = data.solutions.filter(sol => 
@@ -287,9 +322,7 @@ function filterSolutions(data, answers) {
   matched.sort((a, b) => {
     const prioA = prioOrder[a.priority] || 1;
     const prioB = prioOrder[b.priority] || 1;
-    if (prioB !== prioA) {
-      return prioB - prioA;
-    }
+    if (prioB !== prioA) return prioB - prioA;
     const relA = relOrder[a.reliability] || 1;
     const relB = relOrder[b.reliability] || 1;
     return relB - relA;
@@ -320,7 +353,7 @@ function refreshDataRegistry() {
   console.log(`📋 Доступно категорий (${lang}): ${categories.join(", ")}`);
 }
 
-// Экспорт
+// ===== ЭКСПОРТ =====
 window.getCategoryData = getCategoryData;
 window.filterSolutions = filterSolutions;
 window.getSolutionById = getSolutionById;
