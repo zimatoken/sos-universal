@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === MODULE: BULLYING (ENGLISH) ===
 const bullyingDataEn = {
   category: "bullying",
@@ -345,7 +344,7 @@ const bullyingDataEn = {
 
 // ===== EXPORT =====
 window.bullyingDataEn = bullyingDataEn;
-=======
+
 // === MODULE: BULLYING (ENGLISH) ===
 const bullyingDataEn = {
   category: "bullying",
@@ -692,4 +691,3 @@ const bullyingDataEn = {
 
 // ===== EXPORT =====
 window.bullyingDataEn = bullyingDataEn;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

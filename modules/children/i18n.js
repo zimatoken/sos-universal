@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // modules/baby/i18n.js
 // ============================================================
 // ЛОКАЛИЗАЦИЯ — Переводы для модуля Дети (SOS BABY)
@@ -39,7 +38,7 @@ const BABY_LOCALES = {
 // ===== ЭКСПОРТ =====
 window.BABY_LOCALES = BABY_LOCALES;
 console.log('✅ Локализации загружены (SOS BABY module)');
-=======
+
 // modules/baby/i18n.js
 // ============================================================
 // ЛОКАЛИЗАЦИЯ — Переводы для модуля Дети (SOS BABY)
@@ -80,4 +79,3 @@ const BABY_LOCALES = {
 // ===== ЭКСПОРТ =====
 window.BABY_LOCALES = BABY_LOCALES;
 console.log('✅ Локализации загружены (SOS BABY module)');
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

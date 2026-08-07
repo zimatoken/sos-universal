@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === МОДУЛЬ: БУЛЛИНГ (ДЕТИ) — УЛУЧШЕННАЯ ВЕРСИЯ ===
 const bullyingData = {
   category: "bullying",
@@ -692,4 +691,3 @@ const bullyingData = {
 
 // ===== ЭКСПОРТ =====
 window.bullyingData = bullyingData;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

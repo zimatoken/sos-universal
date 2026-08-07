@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === МОДУЛЬ: ДЕТИ — ТРАВМЫ И ПЕРВАЯ ПОМОЩЬ (УЛУЧШЕННАЯ ВЕРСИЯ) ===
 const injuryData = {
   category: "injury",
@@ -1010,4 +1009,3 @@ const injuryData = {
 
 // ===== ЭКСПОРТ =====
 window.injuryData = injuryData;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

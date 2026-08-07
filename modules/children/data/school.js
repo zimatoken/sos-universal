@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === МОДУЛЬ: ШКОЛА (УЛУЧШЕННАЯ ВЕРСИЯ) ===
 const schoolData = {
   category: "school",
@@ -792,4 +791,3 @@ const schoolData = {
 
 // ===== ЭКСПОРТ =====
 window.schoolData = schoolData;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

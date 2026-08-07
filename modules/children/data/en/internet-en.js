@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === MODULE: INTERNET SAFETY (ENGLISH) ===
 const internetDataEn = {
   category: "internet",
@@ -554,7 +553,7 @@ const internetDataEn = {
 
 // ===== EXPORT =====
 window.internetDataEn = internetDataEn;
-=======
+
 // === MODULE: INTERNET SAFETY (ENGLISH) ===
 const internetDataEn = {
   category: "internet",
@@ -1110,4 +1109,3 @@ const internetDataEn = {
 
 // ===== EXPORT =====
 window.internetDataEn = internetDataEn;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

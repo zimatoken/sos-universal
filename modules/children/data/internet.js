@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === МОДУЛЬ: ДЕТИ — ИНТЕРНЕТ-БЕЗОПАСНОСТЬ (УЛУЧШЕННАЯ ВЕРСИЯ) ===
 const internetData = {
   category: "internet",
@@ -1110,4 +1109,3 @@ const internetData = {
 
 // ===== ЭКСПОРТ =====
 window.internetData = internetData;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

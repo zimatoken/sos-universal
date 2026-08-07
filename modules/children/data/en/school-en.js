@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === MODULE: SCHOOL (ENGLISH) ===
 const schoolDataEn = {
   category: "school",
@@ -395,7 +394,7 @@ const schoolDataEn = {
 
 // ===== EXPORT =====
 window.schoolDataEn = schoolDataEn;
-=======
+
 // === MODULE: SCHOOL (ENGLISH) ===
 const schoolDataEn = {
   category: "school",
@@ -792,4 +791,3 @@ const schoolDataEn = {
 
 // ===== EXPORT =====
 window.schoolDataEn = schoolDataEn;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

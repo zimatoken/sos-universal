@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === МОДУЛЬ: ДЕТИ — ПРОПАЖА РЕБЁНКА (УЛУЧШЕННАЯ ВЕРСИЯ) ===
 const lostData = {
   category: "lost",
@@ -702,4 +701,3 @@ const lostData = {
 };
 
 window.lostData = lostData;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

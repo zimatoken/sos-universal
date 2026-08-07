@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === MODULE: HEALTH (ENGLISH) ===
 const healthDataEn = {
   category: "health",
@@ -366,7 +365,7 @@ const healthDataEn = {
 
 // ===== EXPORT =====
 window.healthDataEn = healthDataEn;
-=======
+
 // === MODULE: HEALTH (ENGLISH) ===
 const healthDataEn = {
   category: "health",
@@ -734,4 +733,3 @@ const healthDataEn = {
 
 // ===== EXPORT =====
 window.healthDataEn = healthDataEn;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

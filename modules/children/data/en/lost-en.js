@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === MODULE: LOST CHILD (ENGLISH) ===
 const lostDataEn = {
   category: "lost",
@@ -351,7 +350,7 @@ const lostDataEn = {
 
 // ===== EXPORT =====
 window.lostDataEn = lostDataEn;
-=======
+
 // === MODULE: LOST CHILD (ENGLISH) ===
 const lostDataEn = {
   category: "lost",
@@ -704,4 +703,3 @@ const lostDataEn = {
 
 // ===== EXPORT =====
 window.lostDataEn = lostDataEn;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

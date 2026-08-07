@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === МОДУЛЬ: ДЕТИ — ЗДОРОВЬЕ (УЛУЧШЕННАЯ ВЕРСИЯ) ===
 const healthData = {
   category: "health",
@@ -734,4 +733,3 @@ const healthData = {
 
 // ===== ЭКСПОРТ =====
 window.healthData = healthData;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

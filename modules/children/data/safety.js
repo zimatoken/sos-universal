@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === МОДУЛЬ: ДЕТИ — БЕЗОПАСНОСТЬ (УЛУЧШЕННАЯ ВЕРСИЯ) ===
 const safetyData = {
   category: "safety",
@@ -1084,4 +1083,3 @@ const safetyData = {
 
 // ===== ЭКСПОРТ =====
 window.safetyData = safetyData;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === MODULE: INJURIES AND FIRST AID (ENGLISH) ===
 const injuryDataEn = {
   category: "injury",
@@ -506,7 +505,7 @@ const injuryDataEn = {
 
 // ===== EXPORT =====
 window.injuryDataEn = injuryDataEn;
-=======
+
 // === MODULE: INJURIES AND FIRST AID (ENGLISH) ===
 const injuryDataEn = {
   category: "injury",
@@ -1014,4 +1013,3 @@ const injuryDataEn = {
 
 // ===== EXPORT =====
 window.injuryDataEn = injuryDataEn;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)

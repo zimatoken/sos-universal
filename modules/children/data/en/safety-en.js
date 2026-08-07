@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // === MODULE: CHILD SAFETY (ENGLISH) ===
 const safetyDataEn = {
   category: "safety",
@@ -541,7 +540,7 @@ const safetyDataEn = {
 
 // ===== EXPORT =====
 window.safetyDataEn = safetyDataEn;
-=======
+
 // === MODULE: CHILD SAFETY (ENGLISH) ===
 const safetyDataEn = {
   category: "safety",
@@ -1084,4 +1083,3 @@ const safetyDataEn = {
 
 // ===== EXPORT =====
 window.safetyDataEn = safetyDataEn;
->>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)
