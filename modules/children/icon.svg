@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- icon.svg for BABY module -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
   <!-- Purple circle background -->
@@ -28,4 +29,36 @@
   
   <!-- BABY text below -->
   <text x="50" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">BABY</text>
+=======
+<!-- icon.svg for BABY module -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Purple circle background -->
+  <circle cx="50" cy="50" r="45" fill="#8b5cf6" stroke="#7c3aed" stroke-width="3"/>
+  
+  <!-- Parent holding child icon -->
+  <g fill="white" transform="translate(30, 30) scale(0.55)">
+    <!-- Parent body -->
+    <circle cx="35" cy="20" r="12"/>
+    <rect x="23" y="30" width="24" height="25" rx="3"/>
+    <!-- Parent arms holding child -->
+    <path d="M23 38 L8 35 Q5 33 8 30 L20 28" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M47 38 L62 35 Q65 33 62 30 L50 28" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+    
+    <!-- Child body -->
+    <circle cx="50" cy="48" r="8"/>
+    <rect x="44" y="55" width="12" height="18" rx="2"/>
+    <!-- Child arms reaching up -->
+    <path d="M44 58 L38 50" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M56 58 L62 50" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Child legs -->
+    <rect x="46" y="72" width="4" height="8" rx="2"/>
+    <rect x="54" y="72" width="4" height="8" rx="2"/>
+    
+    <!-- Heart above -->
+    <path d="M35 8 Q35 0 42 0 Q49 0 49 8 Q49 0 56 0 Q63 0 63 8 Q63 16 49 24 Q35 16 35 8 Z" fill="#f43f5e" transform="translate(-10, -5) scale(0.5)"/>
+  </g>
+  
+  <!-- BABY text below -->
+  <text x="50" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">BABY</text>
+>>>>>>> 97084fd (fix(engine): исправлен маппинг dtp для юриста, добавлен раздел ети)
 </svg>
