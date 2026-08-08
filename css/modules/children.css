@@ -603,3 +603,7 @@
     font-size: 16px;
   }
 }
+
+/* ===== SCREEN MANAGEMENT ===== */
+.screen { display: none; }
+.screen.active { display: block; }
