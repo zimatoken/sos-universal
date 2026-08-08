@@ -1,4 +1,4 @@
-/* === МОДУЛЬ: ДЕТИ === */
+/* === МОДУЛЬ: ДЕТИ (SOS BABY) === */
 :root {
   --children-primary: #f59e0b;
   --children-primary-dark: #d97706;
@@ -6,66 +6,219 @@
   --children-bg: rgba(245, 158, 11, 0.08);
 }
 
+/* Hero-блок модуля */
 .module-hero {
   background: linear-gradient(135deg, var(--children-primary) 0%, var(--children-primary-dark) 100%);
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: white;
+}
+
+.module-hero .module-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.module-hero h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.module-hero .module-desc {
+  margin: 8px 0 0;
+  font-size: 15px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* Сетка категорий (основной класс) */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Алиас для .grid (используется в index.html) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Карточка категории (основной класс) */
+.category-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .category-card:hover {
   border-color: var(--children-primary);
+  transform: translateY(-3px);
   box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
 }
 
-.solution-card {
-  border-left: 4px solid var(--children-primary);
+.category-card:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
-.step-number {
-  background: var(--children-primary);
+/* Алиас для .cat-btn (используется в index.html) */
+.cat-btn {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
-.btn-primary {
-  background: var(--children-primary);
-}
-
-.btn-primary:hover {
-  background: var(--children-primary-dark);
-}
-
-.priority-fast { border-left-color: #ef4444; }
-.priority-medium { border-left-color: var(--children-accent); }
-
-/* === МОДУЛЬ: ДЕТИ === */
-:root {
-  --children-primary: #f59e0b;
-  --children-primary-dark: #d97706;
-  --children-accent: #f97316;
-  --children-bg: rgba(245, 158, 11, 0.08);
-}
-
-.module-hero {
-  background: linear-gradient(135deg, var(--children-primary) 0%, var(--children-primary-dark) 100%);
-}
-
-.category-card:hover {
+.cat-btn:hover {
   border-color: var(--children-primary);
+  transform: translateY(-3px);
   box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
 }
 
+.cat-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Иконки в категориях */
+.category-card .cat-icon,
+.cat-btn .icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.category-card .cat-name,
+.cat-btn .label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Карточка решения (результата) */
 .solution-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
   border-left: 4px solid var(--children-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
+.solution-card:hover {
+  transform: translateX(4px);
+  border-color: var(--border-hover);
+  border-left-color: var(--children-primary);
+}
+
+.solution-card h4 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.solution-card p {
+  margin: 0;
+  color: var(--text2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Нумерация шагов */
 .step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   background: var(--children-primary);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
+/* Основная кнопка */
 .btn-primary {
   background: var(--children-primary);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
 }
 
 .btn-primary:hover {
   background: var(--children-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
 }
 
-.priority-fast { border-left-color: #ef4444; }
-.priority-medium { border-left-color: var(--children-accent); }
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Приоритеты решений (цвета левой границы) */
+.priority-fast {
+  border-left-color: #ef4444;
+}
+
+.priority-medium {
+  border-left-color: var(--children-accent);
+}
+
+.priority-slow {
+  border-left-color: #3b82f6;
+}
+
+/* Дополнительный фон для некоторых блоков */
+.children-bg {
+  background: var(--children-bg);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .grid,
+  .category-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+  .category-card .cat-name,
+  .cat-btn .label {
+    font-size: 13px;
+  }
+  .module-hero h2 {
+    font-size: 20px;
+  }
+  .solution-card h4 {
+    font-size: 16px;
+  }
+}
