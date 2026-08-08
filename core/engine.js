@@ -46,11 +46,11 @@ console.log("  internetData:", typeof window.internetData !== 'undefined' ? '✅
 console.log("  schoolData:", typeof window.schoolData !== 'undefined' ? '✅' : '❌');
 // Pets (Животные)
 console.log("  firstaidData:", typeof window.firstaidData !== 'undefined' ? '✅' : '❌');
-console.log("  lostPetData:", typeof window.lostPetData !== 'undefined' ? '✅' : '❌');   // исправлено имя
+console.log("  lostPetData:", typeof window.lostPetData !== 'undefined' ? '✅' : '❌');
 console.log("  behaviorData:", typeof window.behaviorData !== 'undefined' ? '✅' : '❌');
-console.log("  petHealthData:", typeof window.petHealthData !== 'undefined' ? '✅' : '❌'); // исправлено имя
+console.log("  petHealthData:", typeof window.petHealthData !== 'undefined' ? '✅' : '❌');
 console.log("  poisonData:", typeof window.poisonData !== 'undefined' ? '✅' : '❌');
-console.log("  emergencyPetData:", typeof window.emergencyPetData !== 'undefined' ? '✅' : '❌'); // исправлено имя
+console.log("  emergencyPetData:", typeof window.emergencyPetData !== 'undefined' ? '✅' : '❌');
 console.log("  careData:", typeof window.careData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
@@ -237,7 +237,7 @@ function getCategoryData(category) {
   // ===== МАППИНГ КОНФЛИКТОВ =====
   // 1. LAWYER / AUTO: dtp конфликтует
   if (category === 'dtp' && langData.dtp_lawyer) {
-   mappedCategory = 'dtp_lawyer';
+    mappedCategory = 'dtp_lawyer';
   }
 
   // 2. HOME / SURVIVAL: fire конфликтует
@@ -245,45 +245,40 @@ function getCategoryData(category) {
     mappedCategory = 'home_fire';
   }
 
-  // 3. HOME / ? : lock конфликтует
+  // 3. HOME: lock конфликтует
   if (category === 'lock' && langData.home_lock) {
     mappedCategory = 'home_lock';
   }
 
-  // 4. PETS: пробуем pet-специфичные имена, если есть
-  const petFallbacks = {
-    'lost': ['lostPetData', 'lostData'],
-    'health': ['petHealthData', 'healthData'],
-    'emergency': ['emergencyPetData', 'emergencyData'],
-   'firstaid': ['firstAidData', 'firstaidData']
-  };
-
-  if (petFallbacks[category]) {
-   for (const tryName of petFallbacks[category]) {
-     if (langData[tryName]) {
-       mappedCategory = tryName;
-       break;
-     }
-   }
-  }
-
-  // 5. Универсальный fallback: если категория не найдена — пробуем с префиксом home_
+  // 4. Универсальный fallback с префиксом home_
   if (!langData[mappedCategory]) {
     const withHomePrefix = 'home_' + category;
-   if (langData[withHomePrefix]) {
-     mappedCategory = withHomePrefix;
+    if (langData[withHomePrefix]) {
+      mappedCategory = withHomePrefix;
     }
   }
+
+  // 5. PETS: маппинг для конфликтующих категорий (lost, health, emergency)
+  if (category === 'lost' && langData.lost_pet) {
+    mappedCategory = 'lost_pet';
+  }
+  if (category === 'health' && langData.pet_health) {
+    mappedCategory = 'pet_health';
+  }
+  if (category === 'emergency' && langData.emergency_pet) {
+    mappedCategory = 'emergency_pet';
+  }
+  // firstaid не требует маппинга, потому что в dataRegistry он есть как firstaid
 
   const data = langData[mappedCategory];
 
   if (!data) {
-   console.error(`❌ Категория не найдена: ${category} (язык: ${lang})`);
+    console.error(`❌ Категория не найдена: ${category} (язык: ${lang})`);
     if (lang !== 'ru' && dataRegistry.ru[mappedCategory]) {
       console.log(`🔄 Используем русскую версию как fallback для ${category}`);
       return dataRegistry.ru[mappedCategory];
     }
-   return null;
+    return null;
   }
 
   console.log(`✅ Загружена категория: ${category} (язык: ${lang}) -> ${mappedCategory}`);
@@ -293,7 +288,6 @@ function getCategoryData(category) {
 
 /**
  * Фильтрация решений по ответам пользователя
- * Улучшена: учитывает основной симптом при Fallback
  */
 function filterSolutions(data, answers) {
   if (!data || !data.solutions) {
