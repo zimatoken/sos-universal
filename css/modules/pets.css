@@ -1,0 +1,36 @@
+/* === МОДУЛЬ: ЖИВОТНЫЕ === */
+:root {
+  --pets-primary: #10b981;
+  --pets-primary-dark: #059669;
+  --pets-accent: #14b8a6;
+  --pets-bg: rgba(16, 185, 129, 0.08);
+}
+
+.module-hero {
+  background: linear-gradient(135deg, var(--pets-primary) 0%, var(--pets-primary-dark) 100%);
+}
+
+.category-card:hover {
+  border-color: var(--pets-primary);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+}
+
+.solution-card {
+  border-left: 4px solid var(--pets-primary);
+}
+
+.step-number {
+  background: var(--pets-primary);
+}
+
+.btn-primary {
+  background: var(--pets-primary);
+}
+
+.btn-primary:hover {
+  background: var(--pets-primary-dark);
+}
+
+.priority-fast { border-left-color: #ef4444; }
+.priority-medium { border-left-color: var(--pets-accent); }
+.priority-slow { border-left-color: #3b82f6; }
