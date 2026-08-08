@@ -1,5 +1,5 @@
 // === МОДУЛЬ: ЖИВОТНЫЕ — ЗДОРОВЬЕ ===
-const healthData = {
+const petHealthData = {
   category: "health",
   title: "🤒 Здоровье",
   description: "Температура, рвота, понос, кашель, отказ от еды — когда звонить ветеринару",
@@ -153,4 +153,4 @@ const healthData = {
   ]
 };
 
-window.healthData = healthData;
+window.petHealthData = healthData;

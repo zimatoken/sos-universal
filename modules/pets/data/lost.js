@@ -1,5 +1,5 @@
 // === МОДУЛЬ: ЖИВОТНЫЕ — ПРОПАЖА ===
-const lostData = {
+const lostPetData = {
   category: "lost",
   title: "🔍 Пропажа питомца",
   description: "Собака убежала, кошка не вернулась, попугай вылетел — алгоритм поиска",
@@ -155,4 +155,4 @@ const lostData = {
   ]
 };
 
-window.lostData = lostData;
+window.lostPetData = lostData;

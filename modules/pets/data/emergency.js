@@ -1,5 +1,5 @@
 // === МОДУЛЬ: ЖИВОТНЫЕ — ЧРЕЗВЫЧАЙНЫЕ СИТУАЦИИ ===
-const emergencyData = {
+const emergencyPetData = {
   category: "emergency",
   title: "🚨 Чрезвычайные ситуации",
   description: "Роды, тепловой удар, ДТП, утопление, электроудар, укус змеи — экстренная помощь",
