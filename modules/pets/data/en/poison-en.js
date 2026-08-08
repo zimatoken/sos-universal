@@ -1,5 +1,5 @@
 // === MODULE: PETS — POISONING (EN) ===
-const poisonDataEN = {
+const poisonDataEn = {
   category: "poison",
   title: "☠️ Poisoning",
   description: "Chemicals, poisons, bad food, medicines, plants — what to do when a pet is poisoned",
@@ -154,4 +154,4 @@ const poisonDataEN = {
   ]
 };
 
-window.poisonDataEN = poisonDataEN;
+window.poisonDataEn = poisonDataEn;

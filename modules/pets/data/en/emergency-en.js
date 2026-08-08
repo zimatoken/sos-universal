@@ -1,5 +1,5 @@
 // === MODULE: PETS — EMERGENCIES (EN) ===
-const emergencyDataEN = {
+const emergencyPetDataEn = {
   category: "emergency",
   title: "🚨 Emergencies",
   description: "Birth, heat stroke, car accident, drowning, electric shock, snake bite — emergency help",
@@ -205,4 +205,4 @@ const emergencyDataEN = {
   ]
 };
 
-window.emergencyDataEN = emergencyDataEN;
+window.emergencyPetDataEn = emergencyPetDataEn;

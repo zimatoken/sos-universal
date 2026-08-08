@@ -1,5 +1,5 @@
 // === MODULE: PETS — FIRST AID (EN) ===
-const firstaidDataEN = {
+const firstAidDataEn = {
   category: "firstaid",
   title: "🩹 First Aid",
   description: "Wounds, bleeding, burns, fractures, choking — what to do before the vet",
@@ -207,4 +207,4 @@ const firstaidDataEN = {
   ]
 };
 
-window.firstaidDataEN = firstaidDataEN;
+window.firstAidDataEn = firstAidDataEn;

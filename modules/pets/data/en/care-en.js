@@ -1,5 +1,5 @@
 // === MODULE: PETS — CARE & HYGIENE (EN) ===
-const careDataEN = {
+const careDataEn = {
   category: "care",
   title: "🛁 Care & Hygiene",
   description: "Fleas, ticks, worms, grooming, claws, ears, teeth — prevention and treatment",
@@ -152,4 +152,4 @@ const careDataEN = {
   ]
 };
 
-window.careDataEN = careDataEN;
+window.careDataEn = careDataEn;

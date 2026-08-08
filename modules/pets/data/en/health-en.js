@@ -1,5 +1,5 @@
 // === MODULE: PETS — HEALTH (EN) ===
-const healthDataEN = {
+const petHealthDataEn = {
   category: "health",
   title: "🤒 Health",
   description: "Fever, vomiting, diarrhea, cough, refusal to eat — when to call the vet",
@@ -153,4 +153,4 @@ const healthDataEN = {
   ]
 };
 
-window.healthDataEN = healthDataEN;
+window.petHealthDataEn = petHealthDataEn;

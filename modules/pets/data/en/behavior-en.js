@@ -1,5 +1,5 @@
 // === MODULE: PETS — BEHAVIOR & AGGRESSION (EN) ===
-const behaviorDataEN = {
+const behaviorDataEn = {
   category: "behavior",
   title: "🐾 Behavior & Aggression",
   description: "Biting, barking, scratching, anxiety, destructive behavior — how to understand and help",
@@ -153,4 +153,4 @@ const behaviorDataEN = {
   ]
 };
 
-window.behaviorDataEN = behaviorDataEN;
+window.behaviorDataEn = behaviorDataEn;

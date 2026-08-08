@@ -1,5 +1,5 @@
 // === MODULE: PETS — LOST PET (EN) ===
-const lostDataEN = {
+const lostPetDataEn = {
   category: "lost",
   title: "🔍 Lost Pet",
   description: "Dog ran away, cat didn't return, parrot flew out — search algorithm",
@@ -155,4 +155,4 @@ const lostDataEN = {
   ]
 };
 
-window.lostDataEN = lostDataEN;
+window.lostPetDataEn = lostPetDataEn;

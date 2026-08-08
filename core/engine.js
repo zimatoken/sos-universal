@@ -235,51 +235,57 @@ function getCategoryData(category) {
   let mappedCategory = category;
   
   // ===== МАППИНГ КОНФЛИКТОВ =====
-  // 1. LAWYER / AUTO: dtp конфликтует (в Auto — ДТП, в Lawyer — тоже ДТП)
+  // 1. LAWYER / AUTO: dtp конфликтует
   if (category === 'dtp' && langData.dtp_lawyer) {
-    mappedCategory = 'dtp_lawyer';
+   mappedCategory = 'dtp_lawyer';
   }
-  
-  // 2. HOME / SURVIVAL: fire конфликтует (в Survival — пожар, в Home — тоже пожар)
+
+  // 2. HOME / SURVIVAL: fire конфликтует
   if (category === 'fire' && langData.home_fire) {
     mappedCategory = 'home_fire';
   }
-  
-  // 3. HOME / ? : lock конфликтует (используем home_lock)
+
+  // 3. HOME / ? : lock конфликтует
   if (category === 'lock' && langData.home_lock) {
     mappedCategory = 'home_lock';
   }
-  
-  // 4. Универсальный fallback: если категория не найдена — пробуем с префиксом home_
+
+  // 4. PETS: пробуем pet-специфичные имена, если есть
+  const petFallbacks = {
+    'lost': ['lostPetData', 'lostData'],
+    'health': ['petHealthData', 'healthData'],
+    'emergency': ['emergencyPetData', 'emergencyData'],
+   'firstaid': ['firstAidData', 'firstaidData']
+  };
+
+  if (petFallbacks[category]) {
+   for (const tryName of petFallbacks[category]) {
+     if (langData[tryName]) {
+       mappedCategory = tryName;
+       break;
+     }
+   }
+  }
+
+  // 5. Универсальный fallback: если категория не найдена — пробуем с префиксом home_
   if (!langData[mappedCategory]) {
     const withHomePrefix = 'home_' + category;
-    if (langData[withHomePrefix]) {
-      mappedCategory = withHomePrefix;
+   if (langData[withHomePrefix]) {
+     mappedCategory = withHomePrefix;
     }
   }
 
-  // 5. Маппинг для PETS (lost, health, emergency конфликтуют с другими модулями)
-  if (category === 'lost' && langData.lost_pet) {
-    mappedCategory = 'lost_pet';
-  }
-  if (category === 'health' && langData.pet_health) {
-    mappedCategory = 'pet_health';
-  }
-  if (category === 'emergency' && langData.emergency_pet) {
-    mappedCategory = 'emergency_pet';
-  }
-  
   const data = langData[mappedCategory];
-  
+
   if (!data) {
-    console.error(`❌ Категория не найдена: ${category} (язык: ${lang})`);
+   console.error(`❌ Категория не найдена: ${category} (язык: ${lang})`);
     if (lang !== 'ru' && dataRegistry.ru[mappedCategory]) {
       console.log(`🔄 Используем русскую версию как fallback для ${category}`);
       return dataRegistry.ru[mappedCategory];
     }
-    return null;
+   return null;
   }
-  
+
   console.log(`✅ Загружена категория: ${category} (язык: ${lang}) -> ${mappedCategory}`);
   console.log(`   Вопросов: ${data.questions?.length || 0}, решений: ${data.solutions?.length || 0}`);
   return data;
