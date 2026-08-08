@@ -46,11 +46,11 @@ console.log("  internetData:", typeof window.internetData !== 'undefined' ? '✅
 console.log("  schoolData:", typeof window.schoolData !== 'undefined' ? '✅' : '❌');
 // Pets (Животные)
 console.log("  firstaidData:", typeof window.firstaidData !== 'undefined' ? '✅' : '❌');
-console.log("  lostPetData:", typeof window.lostPetData !== 'undefined' ? '✅' : '❌');
+console.log("  lostPetData:", typeof window.lostPetData !== 'undefined' ? '✅' : '❌');   // исправлено имя
 console.log("  behaviorData:", typeof window.behaviorData !== 'undefined' ? '✅' : '❌');
-console.log("  petHealthData:", typeof window.petHealthData !== 'undefined' ? '✅' : '❌');
+console.log("  petHealthData:", typeof window.petHealthData !== 'undefined' ? '✅' : '❌'); // исправлено имя
 console.log("  poisonData:", typeof window.poisonData !== 'undefined' ? '✅' : '❌');
-console.log("  emergencyPetData:", typeof window.emergencyPetData !== 'undefined' ? '✅' : '❌');
+console.log("  emergencyPetData:", typeof window.emergencyPetData !== 'undefined' ? '✅' : '❌'); // исправлено имя
 console.log("  careData:", typeof window.careData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
@@ -146,9 +146,9 @@ const dataRegistry = {
 
     // ===== BABY (Дети) =====
     safety: typeof window.safetyData !== 'undefined' ? window.safetyData : null,
-    health: typeof window.healthData !== 'undefined' ? window.healthData : null,
+    health: typeof window.healthData !== 'undefined' ? window.healthData : null,  // детский health
     injury: typeof window.injuryData !== 'undefined' ? window.injuryData : null,
-    lost: typeof window.lostData !== 'undefined' ? window.lostData : null,
+    lost: typeof window.lostData !== 'undefined' ? window.lostData : null,       // детский lost
     bullying: typeof window.bullyingData !== 'undefined' ? window.bullyingData : null,
     internet: typeof window.internetData !== 'undefined' ? window.internetData : null,
     school: typeof window.schoolData !== 'undefined' ? window.schoolData : null,
@@ -236,7 +236,6 @@ function getCategoryData(category) {
   
   // ===== МАППИНГ КОНФЛИКТОВ =====
   // 1. LAWYER / AUTO: dtp конфликтует (в Auto — ДТП, в Lawyer — тоже ДТП)
-  // Приоритет: если загружены lawyer-данные — используем dtp_lawyer, иначе auto-данные
   if (category === 'dtp' && langData.dtp_lawyer) {
     mappedCategory = 'dtp_lawyer';
   }
@@ -257,6 +256,17 @@ function getCategoryData(category) {
     if (langData[withHomePrefix]) {
       mappedCategory = withHomePrefix;
     }
+  }
+
+  // 5. Маппинг для PETS (lost, health, emergency конфликтуют с другими модулями)
+  if (category === 'lost' && langData.lost_pet) {
+    mappedCategory = 'lost_pet';
+  }
+  if (category === 'health' && langData.pet_health) {
+    mappedCategory = 'pet_health';
+  }
+  if (category === 'emergency' && langData.emergency_pet) {
+    mappedCategory = 'emergency_pet';
   }
   
   const data = langData[mappedCategory];
