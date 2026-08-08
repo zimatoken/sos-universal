@@ -6,7 +6,398 @@
   --children-bg: rgba(245, 158, 11, 0.08);
 }
 
-/* Hero-блок модуля */
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  border-radius: 10px;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+  font-weight: 500;
+  position: relative;
+  z-index: 100;
+  display: inline-block;
+}
+
+#screen-home .back-btn {
+  margin-bottom: 8px;
+}
+
+.back-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+  background: rgba(255,255,255,0.03);
+}
+
+.back-btn:active { transform: scale(0.97); }
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progress, .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--children-primary), var(--children-accent));
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+  width: 0%;
+}
+
+/* ===== QUESTION CARD ===== */
+.question-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px 20px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.question-card h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.question-num {
+  display: inline-block;
+  background: var(--children-primary);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.option {
+  background: rgba(255,255,255,0.02);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.option:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--border-hover);
+}
+
+.option .check {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--text3);
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s;
+  color: transparent;
+}
+
+.option.multi .check {
+  border-radius: 50%;
+}
+
+.option.selected {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: var(--children-primary);
+  color: var(--children-primary);
+}
+
+.option.selected .check {
+  background: var(--children-primary);
+  border-color: var(--children-primary);
+  color: white;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+/* ===== NEXT BUTTON ===== */
+.next-btn, .restart-btn {
+  background: var(--children-primary);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  width: 100%;
+  padding: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+}
+
+.next-btn:hover, .restart-btn:hover {
+  background: var(--children-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.next-btn:active, .restart-btn:active {
+  transform: scale(0.98);
+}
+
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== RESULTS ===== */
+.results-header {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.results-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.results-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.results-header p {
+  color: var(--text2);
+  margin: 8px 0 0;
+  font-size: 15px;
+}
+
+/* ===== DETAIL ===== */
+.detail-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.detail-card h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.detail-card p {
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* ===== SOS CARD ===== */
+.sos-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.sos-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sos-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.sos-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.sos-desc {
+  color: var(--text2);
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.gps-block, .contact-block {
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+
+.gps-label, .contact-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.gps-coords {
+  font-family: monospace;
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.gps-time {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+.contact-field {
+  margin-bottom: 12px;
+}
+
+.contact-field label {
+  display: block;
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 6px;
+}
+
+.contact-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.contact-input:focus {
+  border-color: var(--children-primary);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.send-sos-btn {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  width: 100%;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(220,38,38,0.35);
+  transition: all 0.2s;
+}
+
+.send-sos-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(220,38,38,0.45);
+}
+
+.signals-block {
+  margin-bottom: 20px;
+}
+
+.signals-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.signal-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.signal-item:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--border);
+}
+
+.signal-check {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--text3);
+  border-radius: 6px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.signal-item.active .signal-check {
+  background: var(--children-primary);
+  border-color: var(--children-primary);
+}
+
+.flashlight-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.2s;
+}
+
+.flashlight-btn:hover {
+  border-color: var(--border-hover);
+  background: var(--card-hover);
+}
+
+.psychology-block {
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+
+.psychology-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.psychology-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  color: var(--text2);
+  font-size: 14px;
+}
+
+.psychology-icon {
+  font-size: 18px;
+}
+
+/* ===== HERO ===== */
 .module-hero {
   background: linear-gradient(135deg, var(--children-primary) 0%, var(--children-primary-dark) 100%);
   border-radius: 16px;
@@ -34,7 +425,7 @@
   line-height: 1.5;
 }
 
-/* Сетка категорий (основной класс) */
+/* ===== CATEGORY GRID ===== */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -42,7 +433,6 @@
   margin-bottom: 20px;
 }
 
-/* Алиас для .grid (используется в index.html) */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -50,7 +440,7 @@
   margin-bottom: 20px;
 }
 
-/* Карточка категории (основной класс) */
+/* ===== CATEGORY CARD ===== */
 .category-card {
   background: var(--card);
   border: 2px solid var(--border);
@@ -76,7 +466,7 @@
   transform: translateY(-1px) scale(0.98);
 }
 
-/* Алиас для .cat-btn (используется в index.html) */
+/* ===== CAT-BTN ALIAS (for HTML compatibility) ===== */
 .cat-btn {
   background: var(--card);
   border: 2px solid var(--border);
@@ -102,20 +492,19 @@
   transform: translateY(-1px) scale(0.98);
 }
 
-/* Иконки в категориях */
-.category-card .cat-icon,
-.cat-btn .icon {
+.cat-btn .icon,
+.category-card .cat-icon {
   font-size: 32px;
   line-height: 1;
 }
 
-.category-card .cat-name,
-.cat-btn .label {
+.cat-btn .label,
+.category-card .cat-name {
   font-size: 14px;
   font-weight: 600;
 }
 
-/* Карточка решения (результата) */
+/* ===== SOLUTION CARD ===== */
 .solution-card {
   background: var(--card);
   border-radius: 16px;
@@ -146,7 +535,7 @@
   line-height: 1.6;
 }
 
-/* Нумерация шагов */
+/* ===== STEP NUMBER ===== */
 .step-number {
   display: inline-flex;
   align-items: center;
@@ -161,7 +550,7 @@
   flex-shrink: 0;
 }
 
-/* Основная кнопка */
+/* ===== BUTTONS ===== */
 .btn-primary {
   background: var(--children-primary);
   border: none;
@@ -185,34 +574,26 @@
   transform: scale(0.98);
 }
 
-/* Приоритеты решений (цвета левой границы) */
-.priority-fast {
-  border-left-color: #ef4444;
-}
+/* ===== PRIORITIES ===== */
+.priority-fast { border-left-color: #ef4444; }
+.priority-medium { border-left-color: var(--children-accent); }
+.priority-slow { border-left-color: #3b82f6; }
 
-.priority-medium {
-  border-left-color: var(--children-accent);
-}
-
-.priority-slow {
-  border-left-color: #3b82f6;
-}
-
-/* Дополнительный фон для некоторых блоков */
+/* ===== CHILDREN BG ===== */
 .children-bg {
   background: var(--children-bg);
   border-radius: 12px;
   padding: 16px;
 }
 
-/* Адаптивность */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
   .grid,
   .category-grid {
     grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   }
-  .category-card .cat-name,
-  .cat-btn .label {
+  .cat-btn .label,
+  .category-card .cat-name {
     font-size: 13px;
   }
   .module-hero h2 {
