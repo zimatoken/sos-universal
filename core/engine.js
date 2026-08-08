@@ -44,6 +44,14 @@ console.log("  lostData:", typeof window.lostData !== 'undefined' ? '✅' : '❌
 console.log("  bullyingData:", typeof window.bullyingData !== 'undefined' ? '✅' : '❌');
 console.log("  internetData:", typeof window.internetData !== 'undefined' ? '✅' : '❌');
 console.log("  schoolData:", typeof window.schoolData !== 'undefined' ? '✅' : '❌');
+// Pets (Животные)
+console.log("  firstaidData:", typeof window.firstaidData !== 'undefined' ? '✅' : '❌');
+console.log("  lostPetData:", typeof window.lostPetData !== 'undefined' ? '✅' : '❌');
+console.log("  behaviorData:", typeof window.behaviorData !== 'undefined' ? '✅' : '❌');
+console.log("  petHealthData:", typeof window.petHealthData !== 'undefined' ? '✅' : '❌');
+console.log("  poisonData:", typeof window.poisonData !== 'undefined' ? '✅' : '❌');
+console.log("  emergencyPetData:", typeof window.emergencyPetData !== 'undefined' ? '✅' : '❌');
+console.log("  careData:", typeof window.careData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
 // Survival
@@ -87,6 +95,14 @@ console.log("  lostDataEn:", typeof window.lostDataEn !== 'undefined' ? '✅' : 
 console.log("  bullyingDataEn:", typeof window.bullyingDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  internetDataEn:", typeof window.internetDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  schoolDataEn:", typeof window.schoolDataEn !== 'undefined' ? '✅' : '❌');
+// Pets (Животные) EN
+console.log("  firstaidDataEn:", typeof window.firstaidDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  lostPetDataEn:", typeof window.lostPetDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  behaviorDataEn:", typeof window.behaviorDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  petHealthDataEn:", typeof window.petHealthDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  poisonDataEn:", typeof window.poisonDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  emergencyPetDataEn:", typeof window.emergencyPetDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  careDataEn:", typeof window.careDataEn !== 'undefined' ? '✅' : '❌');
 
 // Регистр всех данных (русские и английские версии)
 const dataRegistry = {
@@ -135,7 +151,16 @@ const dataRegistry = {
     lost: typeof window.lostData !== 'undefined' ? window.lostData : null,
     bullying: typeof window.bullyingData !== 'undefined' ? window.bullyingData : null,
     internet: typeof window.internetData !== 'undefined' ? window.internetData : null,
-    school: typeof window.schoolData !== 'undefined' ? window.schoolData : null
+    school: typeof window.schoolData !== 'undefined' ? window.schoolData : null,
+
+    // ===== PETS (Животные) =====
+    firstaid: typeof window.firstaidData !== 'undefined' ? window.firstaidData : null,
+    lost_pet: typeof window.lostPetData !== 'undefined' ? window.lostPetData : null,
+    behavior: typeof window.behaviorData !== 'undefined' ? window.behaviorData : null,
+    pet_health: typeof window.petHealthData !== 'undefined' ? window.petHealthData : null,
+    poison: typeof window.poisonData !== 'undefined' ? window.poisonData : null,
+    emergency_pet: typeof window.emergencyPetData !== 'undefined' ? window.emergencyPetData : null,
+    care: typeof window.careData !== 'undefined' ? window.careData : null
   },
   en: {}
 };
@@ -186,6 +211,15 @@ if (typeof window.lostDataEn !== 'undefined') dataRegistry.en.lost = window.lost
 if (typeof window.bullyingDataEn !== 'undefined') dataRegistry.en.bullying = window.bullyingDataEn;
 if (typeof window.internetDataEn !== 'undefined') dataRegistry.en.internet = window.internetDataEn;
 if (typeof window.schoolDataEn !== 'undefined') dataRegistry.en.school = window.schoolDataEn;
+
+// Pets (Животные) EN
+if (typeof window.firstaidDataEn !== 'undefined') dataRegistry.en.firstaid = window.firstaidDataEn;
+if (typeof window.lostPetDataEn !== 'undefined') dataRegistry.en.lost_pet = window.lostPetDataEn;
+if (typeof window.behaviorDataEn !== 'undefined') dataRegistry.en.behavior = window.behaviorDataEn;
+if (typeof window.petHealthDataEn !== 'undefined') dataRegistry.en.pet_health = window.petHealthDataEn;
+if (typeof window.poisonDataEn !== 'undefined') dataRegistry.en.poison = window.poisonDataEn;
+if (typeof window.emergencyPetDataEn !== 'undefined') dataRegistry.en.emergency_pet = window.emergencyPetDataEn;
+if (typeof window.careDataEn !== 'undefined') dataRegistry.en.care = window.careDataEn;
 
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
