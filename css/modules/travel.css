@@ -1,0 +1,398 @@
+/* ============================================
+   SOS UNIVERSAL — Модуль: ПУТЕШЕСТВИЯ (Travel)
+   Цвета: синий/голубой (#0ea5e9, #0284c7)
+   ============================================ */
+
+/* --- Переменные модуля --- */
+:root {
+  --travel-primary: #0ea5e9;
+  --travel-primary-dark: #0284c7;
+  --travel-primary-light: #e0f2fe;
+  --travel-accent: #f59e0b;
+  --travel-danger: #ef4444;
+  --travel-success: #22c55e;
+  --travel-bg: #f0f9ff;
+}
+
+/* --- Тёмная тема --- */
+[data-theme="dark"] {
+  --travel-bg: #0c1929;
+  --travel-primary-light: #1e3a5f;
+}
+
+/* --- Общие стили модуля --- */
+.travel-module {
+  background: var(--travel-bg);
+  min-height: 100vh;
+}
+
+/* --- Шапка --- */
+.travel-header {
+  background: linear-gradient(135deg, var(--travel-primary) 0%, var(--travel-primary-dark) 100%);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.travel-header::before {
+  content: "✈️";
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.1;
+  right: -1rem;
+  top: -1rem;
+}
+
+.travel-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.travel-header p {
+  margin: 0.5rem 0 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Сетка категорий --- */
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- Карточка категории --- */
+.travel-card {
+  background: var(--card-bg, #ffffff);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.08);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.travel-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+  border-color: var(--travel-primary);
+}
+
+.travel-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--travel-primary);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.travel-card:hover::before {
+  opacity: 1;
+}
+
+.travel-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.travel-card__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+  margin: 0 0 0.25rem;
+}
+
+.travel-card__desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* --- Квиз --- */
+.travel-quiz {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.travel-quiz__progress {
+  height: 6px;
+  background: var(--travel-primary-light);
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.travel-quiz__progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--travel-primary), var(--travel-primary-dark));
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.travel-quiz__question {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.travel-quiz__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.travel-quiz__option {
+  background: var(--card-bg, #ffffff);
+  border: 2px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  text-align: left;
+  color: var(--text-primary, #1f2937);
+}
+
+.travel-quiz__option:hover {
+  border-color: var(--travel-primary);
+  background: var(--travel-primary-light);
+}
+
+.travel-quiz__option.selected {
+  border-color: var(--travel-primary);
+  background: var(--travel-primary-light);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+/* --- Результаты --- */
+.travel-result {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.travel-result__header {
+  background: linear-gradient(135deg, var(--travel-primary) 0%, var(--travel-primary-dark) 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px 16px 0 0;
+  text-align: center;
+}
+
+.travel-result__icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.travel-result__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.travel-result__body {
+  background: var(--card-bg, #ffffff);
+  padding: 1.5rem;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.travel-result__description {
+  font-size: 1rem;
+  color: var(--text-primary, #1f2937);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  padding: 1rem;
+  background: var(--travel-primary-light);
+  border-radius: 12px;
+  border-left: 4px solid var(--travel-primary);
+}
+
+/* --- Шаги --- */
+.travel-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.travel-step {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.travel-step:last-child {
+  border-bottom: none;
+}
+
+.travel-step__number {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: var(--travel-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.travel-step__text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary, #1f2937);
+}
+
+/* --- Предупреждения --- */
+.travel-warnings {
+  margin-top: 1.5rem;
+}
+
+.travel-warnings__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--travel-danger);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.travel-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.travel-warning__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.travel-warning__text {
+  font-size: 0.9rem;
+  color: #991b1b;
+  line-height: 1.4;
+}
+
+/* --- Кнопки действий --- */
+.travel-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.travel-btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.travel-btn--primary {
+  background: var(--travel-primary);
+  color: white;
+}
+
+.travel-btn--primary:hover {
+  background: var(--travel-primary-dark);
+}
+
+.travel-btn--secondary {
+  background: var(--travel-primary-light);
+  color: var(--travel-primary-dark);
+}
+
+.travel-btn--secondary:hover {
+  background: #bae6fd;
+}
+
+/* --- SOS-кнопка --- */
+.travel-sos-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 60px;
+  height: 60px;
+  background: var(--travel-danger);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+  transition: all 0.3s;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.travel-sos-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(239, 68, 68, 0.5);
+}
+
+/* --- Адаптив --- */
+@media (max-width: 480px) {
+  .travel-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .travel-grid {
+    grid-template-columns: 1fr;
+    padding: 0.75rem;
+  }
+
+  .travel-card {
+    padding: 1.25rem;
+  }
+
+  .travel-quiz__question {
+    font-size: 1.05rem;
+  }
+
+  .travel-result__title {
+    font-size: 1.2rem;
+  }
+}

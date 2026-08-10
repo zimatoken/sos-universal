@@ -52,6 +52,14 @@ console.log("  petHealthData:", typeof window.petHealthData !== 'undefined' ? '�
 console.log("  poisonData:", typeof window.poisonData !== 'undefined' ? '✅' : '❌');
 console.log("  emergencyPetData:", typeof window.emergencyPetData !== 'undefined' ? '✅' : '❌');
 console.log("  careData:", typeof window.careData !== 'undefined' ? '✅' : '❌');
+// Travel (Путешествия)
+console.log("  documentsData:", typeof window.documentsData !== 'undefined' ? '✅' : '❌');
+console.log("  moneyData:", typeof window.moneyData !== 'undefined' ? '✅' : '❌');
+console.log("  travelHealthData:", typeof window.travelHealthData !== 'undefined' ? '✅' : '❌');
+console.log("  flightData:", typeof window.flightData !== 'undefined' ? '✅' : '❌');
+console.log("  hotelData:", typeof window.hotelData !== 'undefined' ? '✅' : '❌');
+console.log("  theftData:", typeof window.theftData !== 'undefined' ? '✅' : '❌');
+console.log("  travelLostData:", typeof window.travelLostData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
 // Survival
@@ -103,6 +111,14 @@ console.log("  petHealthDataEn:", typeof window.petHealthDataEn !== 'undefined' 
 console.log("  poisonDataEn:", typeof window.poisonDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  emergencyPetDataEn:", typeof window.emergencyPetDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  careDataEn:", typeof window.careDataEn !== 'undefined' ? '✅' : '❌');
+// Travel (Путешествия) EN
+console.log("  documentsDataEn:", typeof window.documentsDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  moneyDataEn:", typeof window.moneyDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  travelHealthDataEn:", typeof window.travelHealthDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  flightDataEn:", typeof window.flightDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  hotelDataEn:", typeof window.hotelDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  theftDataEn:", typeof window.theftDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  travelLostDataEn:", typeof window.travelLostDataEn !== 'undefined' ? '✅' : '❌');
 
 // Регистр всех данных (русские и английские версии)
 const dataRegistry = {
@@ -160,7 +176,16 @@ const dataRegistry = {
     pet_health: typeof window.petHealthData !== 'undefined' ? window.petHealthData : null,
     poison: typeof window.poisonData !== 'undefined' ? window.poisonData : null,
     emergency_pet: typeof window.emergencyPetData !== 'undefined' ? window.emergencyPetData : null,
-    care: typeof window.careData !== 'undefined' ? window.careData : null
+    care: typeof window.careData !== 'undefined' ? window.careData : null,
+
+    // ===== TRAVEL (Путешествия) =====
+    documents: typeof window.documentsData !== 'undefined' ? window.documentsData : null,
+    money: typeof window.moneyData !== 'undefined' ? window.moneyData : null,
+    travel_health: typeof window.travelHealthData !== 'undefined' ? window.travelHealthData : null,
+    flight: typeof window.flightData !== 'undefined' ? window.flightData : null,
+    hotel: typeof window.hotelData !== 'undefined' ? window.hotelData : null,
+    theft: typeof window.theftData !== 'undefined' ? window.theftData : null,
+    travel_lost: typeof window.travelLostData !== 'undefined' ? window.travelLostData : null
   },
   en: {}
 };
@@ -221,6 +246,15 @@ if (typeof window.poisonDataEn !== 'undefined') dataRegistry.en.poison = window.
 if (typeof window.emergencyPetDataEn !== 'undefined') dataRegistry.en.emergency_pet = window.emergencyPetDataEn;
 if (typeof window.careDataEn !== 'undefined') dataRegistry.en.care = window.careDataEn;
 
+// Travel (Путешествия) EN
+if (typeof window.documentsDataEn !== 'undefined') dataRegistry.en.documents = window.documentsDataEn;
+if (typeof window.moneyDataEn !== 'undefined') dataRegistry.en.money = window.moneyDataEn;
+if (typeof window.travelHealthDataEn !== 'undefined') dataRegistry.en.travel_health = window.travelHealthDataEn;
+if (typeof window.flightDataEn !== 'undefined') dataRegistry.en.flight = window.flightDataEn;
+if (typeof window.hotelDataEn !== 'undefined') dataRegistry.en.hotel = window.hotelDataEn;
+if (typeof window.theftDataEn !== 'undefined') dataRegistry.en.theft = window.theftDataEn;
+if (typeof window.travelLostDataEn !== 'undefined') dataRegistry.en.travel_lost = window.travelLostDataEn;
+
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
 }
@@ -268,7 +302,14 @@ function getCategoryData(category) {
   if (category === 'emergency' && langData.emergency_pet) {
     mappedCategory = 'emergency_pet';
   }
-  // firstaid не требует маппинга, потому что в dataRegistry он есть как firstaid
+
+  // 6. TRAVEL: маппинг для конфликтующих категорий (health, lost)
+  if (category === 'health' && langData.travel_health) {
+    mappedCategory = 'travel_health';
+  }
+  if (category === 'lost' && langData.travel_lost) {
+    mappedCategory = 'travel_lost';
+  }
 
   const data = langData[mappedCategory];
 
