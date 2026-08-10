@@ -164,6 +164,5 @@ TRAVEL_DATA.documents = {
   ]
 };
 
-// ===== ЭКСПОРТ ВСЕХ КАТЕГОРИЙ В TRAVEL_DATA =====
-window.TRAVEL_DATA = TRAVEL_DATA;
-console.log('✅ TRAVEL_DATA загружен');
+// ===== ЭКСПОРТ =====
+window.documentsData = documentsData;

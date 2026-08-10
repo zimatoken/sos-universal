@@ -171,3 +171,6 @@ TRAVEL_DATA.money = {
     }
   ]
 };
+
+// ===== ЭКСПОРТ =====
+window.moneyData = moneyData;

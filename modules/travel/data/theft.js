@@ -187,3 +187,6 @@ TRAVEL_DATA.theft = {
     }
   ]
 };
+
+// ===== ЭКСПОРТ =====
+window.theftData = theftData;

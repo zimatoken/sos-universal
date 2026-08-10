@@ -163,3 +163,6 @@ TRAVEL_DATA.documents = {
     }
   ]
 };
+
+// ===== ЭКСПОРТ =====
+window.documentsData = documentsData;

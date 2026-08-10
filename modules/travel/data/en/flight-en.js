@@ -175,3 +175,7 @@ TRAVEL_DATA.flight = {
     }
   ]
 };
+
+
+// ===== ЭКСПОРТ =====
+window.flightData = flightData;

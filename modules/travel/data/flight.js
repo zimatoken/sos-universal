@@ -178,4 +178,3 @@ TRAVEL_DATA.flight = {
 
 // ===== ЭКСПОРТ =====
 window.flightData = flightData;
-console.log('✅ flightData загружен');

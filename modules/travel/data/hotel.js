@@ -179,3 +179,6 @@ TRAVEL_DATA.hotel = {
     }
   ]
 };
+
+// ===== ЭКСПОРТ =====
+window.hotelData = hotelData;

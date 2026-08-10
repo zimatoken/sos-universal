@@ -12,11 +12,19 @@
   --travel-danger: #ef4444;
   --travel-success: #22c55e;
   --travel-bg: #f0f9ff;
+  --travel-card-bg: #ffffff;
+  --travel-text: #1f2937;
+  --travel-text-secondary: #6b7280;
+  --travel-border: #e5e7eb;
 }
 
 /* --- Тёмная тема --- */
 [data-theme="dark"] {
   --travel-bg: #0c1929;
+  --travel-card-bg: #1e293b;
+  --travel-text: #e2e8f0;
+  --travel-text-secondary: #94a3b8;
+  --travel-border: #334155;
   --travel-primary-light: #1e3a5f;
 }
 
@@ -73,7 +81,7 @@
 
 /* --- Карточка категории --- */
 .travel-card {
-  background: var(--card-bg, #ffffff);
+  background: var(--travel-card-bg);
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(14, 165, 233, 0.08);
@@ -115,13 +123,13 @@
 .travel-card__title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-primary, #1f2937);
+  color: var(--travel-text);
   margin: 0 0 0.25rem;
 }
 
 .travel-card__desc {
   font-size: 0.85rem;
-  color: var(--text-secondary, #6b7280);
+  color: var(--travel-text-secondary);
   margin: 0;
   line-height: 1.4;
 }
@@ -151,7 +159,7 @@
 .travel-quiz__question {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--text-primary, #1f2937);
+  color: var(--travel-text);
   margin-bottom: 1.5rem;
   line-height: 1.4;
 }
@@ -163,15 +171,15 @@
 }
 
 .travel-quiz__option {
-  background: var(--card-bg, #ffffff);
-  border: 2px solid var(--border-color, #e5e7eb);
+  background: var(--travel-card-bg);
+  border: 2px solid var(--travel-border);
   border-radius: 12px;
   padding: 1rem 1.25rem;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 1rem;
   text-align: left;
-  color: var(--text-primary, #1f2937);
+  color: var(--travel-text);
 }
 
 .travel-quiz__option:hover {
@@ -212,7 +220,7 @@
 }
 
 .travel-result__body {
-  background: var(--card-bg, #ffffff);
+  background: var(--travel-card-bg);
   padding: 1.5rem;
   border-radius: 0 0 16px 16px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -220,7 +228,7 @@
 
 .travel-result__description {
   font-size: 1rem;
-  color: var(--text-primary, #1f2937);
+  color: var(--travel-text);
   margin-bottom: 1.5rem;
   line-height: 1.6;
   padding: 1rem;
@@ -240,7 +248,7 @@
   display: flex;
   gap: 1rem;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  border-bottom: 1px solid var(--travel-border);
 }
 
 .travel-step:last-child {
@@ -265,7 +273,7 @@
   flex: 1;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: var(--text-primary, #1f2937);
+  color: var(--travel-text);
 }
 
 /* --- Предупреждения --- */
@@ -312,7 +320,7 @@
   flex-wrap: wrap;
   margin-top: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--border-color, #e5e7eb);
+  border-top: 1px solid var(--travel-border);
 }
 
 .travel-btn {

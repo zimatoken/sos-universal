@@ -207,3 +207,6 @@ TRAVEL_DATA.lost = {
     }
   ]
 };
+
+// ===== ЭКСПОРТ =====
+window.travelLostData = travelLostData;

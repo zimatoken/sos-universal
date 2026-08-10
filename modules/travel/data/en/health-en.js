@@ -194,3 +194,6 @@ TRAVEL_DATA.health = {
     }
   ]
 };
+
+// ===== ЭКСПОРТ =====
+window.travelHealthData = travelHealthData;
