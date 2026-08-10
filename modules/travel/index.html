@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#0ea5e9">
   <title>SOS Universal — Путешествия</title>
   <link rel="manifest" href="../../manifest.json">
@@ -10,199 +10,77 @@
   <link rel="stylesheet" href="../../css/modules/travel.css">
 </head>
 <body>
-  <div id="app" class="travel-module">
+  <div id="app">
     <!-- Шапка -->
-    <header class="travel-header">
-      <h1 id="module-title">✈️ Путешествия</h1>
-      <p id="module-subtitle">Экстренные ситуации за границей и в поездках</p>
+    <header class="screen active" id="header-screen">
+      <div class="header-content">
+        <a href="../../index.html" class="back-btn">←</a>
+        <h1 id="module-title">✈️ Путешествия</h1>
+        <p id="module-subtitle">Экстренные ситуации за границей и в поездках</p>
+      </div>
     </header>
 
-    <!-- Контент -->
-    <main id="content">
-      <!-- Сетка категорий -->
-      <div id="categories" class="travel-grid"></div>
+    <!-- Экран категорий -->
+    <div class="screen active" id="categories-screen">
+      <div class="content">
+        <div class="grid" id="categories-grid"></div>
+      </div>
+    </div>
 
-      <!-- Квиз -->
-      <div id="quiz" class="travel-quiz" style="display:none;"></div>
+    <!-- Экран квиза -->
+    <div class="screen" id="quiz-screen">
+      <div class="content">
+        <div class="progress-bar">
+          <div class="progress-fill" id="quiz-progress"></div>
+        </div>
+        <div id="quiz-question"></div>
+        <div class="options" id="quiz-options"></div>
+        <button class="btn btn-secondary" id="quiz-back">← Назад</button>
+      </div>
+    </div>
 
-      <!-- Результат -->
-      <div id="result" class="travel-result" style="display:none;"></div>
-    </main>
+    <!-- Экран результата -->
+    <div class="screen" id="result-screen">
+      <div class="content">
+        <div id="result-content"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="result-restart">🔄 Пройти заново</button>
+          <button class="btn btn-secondary" id="result-print">🖨️ Печать</button>
+          <a href="../../index.html" class="btn btn-secondary">← На главную</a>
+        </div>
+      </div>
+    </div>
 
-    <!-- SOS-кнопка -->
-    <button id="sos-btn" class="travel-sos-btn" title="Экстренный вызов">SOS</button>
+    <!-- SOS кнопка -->
+    <button id="sos-btn" class="sos-btn" title="Экстренный вызов">SOS</button>
   </div>
 
-  <!-- Скрипты -->
+  <!-- ===== ЯДРО (загружается первым) ===== -->
   <script src="../../core/locales.js"></script>
   <script src="i18n.js"></script>
   <script src="../../core/theme.js"></script>
   <script src="../../core/voice.js"></script>
+
+  <!-- ===== ДАННЫЕ RU (до engine.js, чтобы dataRegistry их увидел) ===== -->
+  <script src="data/documents.js"></script>
+  <script src="data/money.js"></script>
+  <script src="data/health.js"></script>
+  <script src="data/flight.js"></script>
+  <script src="data/hotel.js"></script>
+  <script src="data/theft.js"></script>
+  <script src="data/lost.js"></script>
+
+  <!-- ===== ДАННЫЕ EN (тоже статически, не конфликтуют с RU) ===== -->
+  <script src="data/en/documents-en.js"></script>
+  <script src="data/en/money-en.js"></script>
+  <script src="data/en/health-en.js"></script>
+  <script src="data/en/flight-en.js"></script>
+  <script src="data/en/hotel-en.js"></script>
+  <script src="data/en/theft-en.js"></script>
+  <script src="data/en/lost-en.js"></script>
+
+  <!-- ===== ДВИЖОК + ПРИЛОЖЕНИЕ (после данных) ===== -->
   <script src="../../core/engine.js"></script>
   <script src="../../core/app.js"></script>
-  <script>
-    // Инициализация модуля
-    (function() {
-      const moduleName = 'travel';
-      const categories = [
-        { id: 'documents', file: 'data/documents.js', icon: '📄' },
-        { id: 'money', file: 'data/money.js', icon: '💳' },
-        { id: 'health', file: 'data/health.js', icon: '🏥' },
-        { id: 'flight', file: 'data/flight.js', icon: '✈️' },
-        { id: 'hotel', file: 'data/hotel.js', icon: '🏨' },
-        { id: 'theft', file: 'data/theft.js', icon: '🦹' },
-        { id: 'lost', file: 'data/lost.js', icon: '🗺️' }
-      ];
-
-      // Локализация
-      const lang = localStorage.getItem('sos-lang') || 'ru';
-      const t = TRAVEL_LOCALES[lang] || TRAVEL_LOCALES.ru;
-
-      document.getElementById('module-title').textContent = '✈️ ' + t.moduleTitle;
-      document.getElementById('module-subtitle').textContent = t.moduleSubtitle;
-
-      // Рендер категорий
-      const grid = document.getElementById('categories');
-      categories.forEach(cat => {
-        const card = document.createElement('div');
-        card.className = 'travel-card';
-        card.innerHTML = `
-          <span class="travel-card__icon">${cat.icon}</span>
-          <h3 class="travel-card__title">${t.categories[cat.id] || cat.id}</h3>
-          <p class="travel-card__desc">${t.categoryDesc[cat.id] || ''}</p>
-        `;
-        card.addEventListener('click', () => startCategory(cat));
-        grid.appendChild(card);
-      });
-
-      // Запуск категории
-      function startCategory(cat) {
-        const script = document.createElement('script');
-        script.src = cat.file;
-        script.onload = () => {
-          if (typeof window.startFlow === 'function') {
-            window.startFlow(cat.id, cat.file.replace('.js', ''));
-          } else {
-            // Fallback: простой рендер
-            renderQuiz(cat.id);
-          }
-        };
-        script.onerror = () => alert(t.errorLoad + ': ' + cat.file);
-        document.body.appendChild(script);
-      }
-
-      // Fallback рендер квиза
-      function renderQuiz(catId) {
-        const data = window.TRAVEL_DATA && window.TRAVEL_DATA[catId];
-        if (!data) {
-          alert(t.errorLoad);
-          return;
-        }
-        // Скрыть категории, показать квиз
-        grid.style.display = 'none';
-        const quizEl = document.getElementById('quiz');
-        quizEl.style.display = 'block';
-
-        let currentQ = 0;
-        const answers = {};
-
-        function showQuestion() {
-          const q = data.questions[currentQ];
-          const progress = ((currentQ) / data.questions.length) * 100;
-
-          quizEl.innerHTML = `
-            <div class="travel-quiz__progress">
-              <div class="travel-quiz__progress-bar" style="width:${progress}%"></div>
-            </div>
-            <div class="travel-quiz__question">${q.question}</div>
-            <div class="travel-quiz__options">
-              ${q.options.map((opt, i) => `
-                <button class="travel-quiz__option" data-value="${opt.value}">${opt.label}</button>
-              `).join('')}
-            </div>
-            <button class="travel-btn travel-btn--secondary" onclick="location.reload()" style="margin-top:1rem">${t.back}</button>
-          `;
-
-          quizEl.querySelectorAll('.travel-quiz__option').forEach(btn => {
-            btn.addEventListener('click', () => {
-              answers[q.id] = btn.dataset.value;
-              currentQ++;
-              if (currentQ < data.questions.length) {
-                showQuestion();
-              } else {
-                showResult();
-              }
-            });
-          });
-        }
-
-        function showResult() {
-          // Простой матчинг
-          let bestResult = data.results[0];
-          let bestScore = -1;
-
-          data.results.forEach(r => {
-            let score = 0;
-            for (let k in r.match) {
-              if (answers[k] === r.match[k]) score++;
-            }
-            if (score > bestScore) {
-              bestScore = score;
-              bestResult = r;
-            }
-          });
-
-          quizEl.style.display = 'none';
-          const resultEl = document.getElementById('result');
-          resultEl.style.display = 'block';
-
-          resultEl.innerHTML = `
-            <div class="travel-result__header">
-              <div class="travel-result__icon">${bestResult.icon}</div>
-              <h2 class="travel-result__title">${bestResult.title}</h2>
-            </div>
-            <div class="travel-result__body">
-              <div class="travel-result__description">${bestResult.description}</div>
-              <h3>${t.steps}</h3>
-              <ol class="travel-steps">
-                ${bestResult.steps.map((s, i) => `
-                  <li class="travel-step">
-                    <span class="travel-step__number">${i+1}</span>
-                    <span class="travel-step__text">${s}</span>
-                  </li>
-                `).join('')}
-              </ol>
-              ${bestResult.warnings && bestResult.warnings.length ? `
-                <div class="travel-warnings">
-                  <div class="travel-warnings__title">⚠️ ${t.warnings}</div>
-                  ${bestResult.warnings.map(w => `
-                    <div class="travel-warning">
-                      <span class="travel-warning__icon">⚠️</span>
-                      <span class="travel-warning__text">${w}</span>
-                    </div>
-                  `).join('')}
-                </div>
-              ` : ''}
-              <div class="travel-actions">
-                <button class="travel-btn travel-btn--primary" onclick="location.reload()">${t.restart}</button>
-                <button class="travel-btn travel-btn--secondary" onclick="window.print()">${t.print}</button>
-              </div>
-            </div>
-          `;
-        }
-
-        showQuestion();
-      }
-
-      // SOS-кнопка
-      document.getElementById('sos-btn').addEventListener('click', () => {
-        if (typeof window.showSOS === 'function') {
-          window.showSOS();
-        } else {
-          alert('🚨 ' + t.emergencyCall + '\n\n112 — Единый номер экстренных служб ЕС\n911 — США, Канада\n999 — Великобритания\n01 — Пожарные\n02 — Полиция\n03 — Скорая помощь');
-        }
-      });
-    })();
-  </script>
 </body>
 </html>
