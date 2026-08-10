@@ -1,181 +1,206 @@
-const TRAVEL_DATA = TRAVEL_DATA || {};
-TRAVEL_DATA.flight = {
+// === MODULE: TRAVEL — FLIGHTS (EN) ===
+const flightDataEn = {
   category: "flight",
-  icon: "✈️",
+  title: "✈️ Flights",
+  description: "Delay, cancellation, missed flight, overbooking, lost baggage — what to do",
+
   questions: [
     {
       id: "problem",
-      question: "What is the flight problem?",
+      type: "single",
+      text: "What is the problem with your flight?",
       options: [
-        { value: "delayed", label: "Flight delayed" },
-        { value: "cancelled", label: "Flight cancelled" },
-        { value: "missed", label: "Missed flight" },
-        { value: "overbooked", label: "No seat — overbooking" },
-        { value: "connection", label: "Missed connecting flight" },
-        { value: "baggage", label: "Baggage issue (lost, damaged, delayed)" }
+        { id: "delayed", label: "Flight is delayed", tags: ["delayed"] },
+        { id: "cancelled", label: "Flight is cancelled", tags: ["cancelled"] },
+        { id: "missed", label: "I missed the flight", tags: ["missed"] },
+        { id: "overbooked", label: "No seat — overbooked", tags: ["overbooked"] },
+        { id: "connection", label: "Missed a connecting flight", tags: ["connection"] },
+        { id: "baggage", label: "Baggage problems (lost, damaged, delayed)", tags: ["baggage"] }
       ]
     },
     {
       id: "airline",
-      question: "Which airline?",
+      type: "single",
+      text: "Which airline?",
       options: [
-        { value: "eu", label: "European (departing from EU)" },
-        { value: "russian", label: "Russian (Aeroflot, S7, Pobeda, Ural, etc.)" },
-        { value: "intl", label: "International (Emirates, Qatar, Turkish, etc.)" },
-        { value: "lowcost", label: "Low-cost (Ryanair, EasyJet, Wizz Air, Pobeda, etc.)" }
+        { id: "eu", label: "European (departure from EU)", tags: ["eu"] },
+        { id: "russian", label: "Russian (Aeroflot, S7, Pobeda, Ural, etc.)", tags: ["russian"] },
+        { id: "intl", label: "International (Emirates, Qatar, Turkish, etc.)", tags: ["intl"] },
+        { id: "lowcost", label: "Low-cost (Ryanair, EasyJet, Wizz Air, Pobeda, etc.)", tags: ["lowcost"] }
       ]
     },
     {
       id: "time",
-      question: "How much time until departure / how long have you been waiting?",
+      type: "single",
+      text: "How much time until departure / how long have you been waiting?",
       options: [
-        { value: "hours", label: "A few hours" },
-        { value: "day", label: "More than 24 hours" },
-        { value: "already", label: "Flight already left / I'm already at the airport" }
+        { id: "hours", label: "Several hours", tags: ["hours"] },
+        { id: "day", label: "More than 24 hours", tags: ["day"] },
+        { id: "already", label: "The flight already left / I'm already at the airport", tags: ["already"] }
       ]
     },
     {
       id: "insurance",
-      question: "Do you have flight delay insurance?",
+      type: "single",
+      text: "Do you have travel insurance covering flight delays?",
       options: [
-        { value: "yes", label: "Yes, with delay coverage" },
-        { value: "no", label: "No" },
-        { value: "card", label: "Don't know, but paid with a card" }
+        { id: "yes", label: "Yes, I have insurance with delay coverage", tags: ["insured"] },
+        { id: "no", label: "No", tags: ["uninsured"] },
+        { id: "card", label: "Not sure, but I paid with my card", tags: ["card"] }
       ]
     }
   ],
-  results: [
+
+  solutions: [
     {
       id: "delayed_eu",
-      title: "Flight delay — passenger rights in the EU",
-      icon: "⏰",
-      match: { problem: "delayed", airline: "eu" },
-      description: "EU regulation EC 261/2004 protects passengers during delays.",
+      title: "⏰ Flight delay — passenger rights in the EU",
+      description: "The EU has regulation EC 261/2004 that protects passengers during delays.",
+      conditions: { problem: ["delayed"], airline: ["eu"] },
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "hours",
+      yield_estimate: "Compensation up to 600 €",
+      tags: ["delayed", "eu", "compensation"],
       steps: [
-        "Clarify the reason for delay with the airline representative. Record or photograph the official announcement.",
-        "For delays over 2 hours (up to 1500 km), 3 hours (1500–3500 km), or 4 hours (over 3500 km) you are entitled to: free meals, drinks, 2 phone calls/emails.",
-        "For delays over 5 hours — right to refuse the flight and full refund.",
-        "For overnight delay — right to free hotel accommodation and transfer.",
-        "If delay is airline's fault (technical failure, overbooking) — you can claim compensation: 250 € (up to 1500 km), 400 € (1500–3500 km), 600 € (over 3500 km).",
-        "Submit a claim on the airline's website. Attach: ticket, delay confirmation, expense receipts.",
-        "If airline refuses — file a complaint with the national passenger rights authority (in departure or arrival country)."
+        "Check the delay reason with airline staff. Write down or photograph the official announcement.",
+        "For delays over 2 hours (up to 1500 km), 3 hours (1500–3500 km), or 4 hours (over 3500 km) you are entitled to: free meals, drinks, 2 calls/emails.",
+        "For delays over 5 hours — right to cancel the flight and full refund.",
+        "For overnight delays — right to free hotel accommodation and transfer.",
+        "If the delay is the airline's fault (technical issues, overbooking) — you can claim compensation: 250 € (up to 1500 km), 400 € (1500–3500 km), 600 € (over 3500 km).",
+        "File a claim on the airline's website. Attach: ticket, delay confirmation, expense receipts.",
+        "If the airline refuses — file a complaint with the national passenger rights authority (in the departure or arrival country)."
       ],
       warnings: [
-        "Compensation is NOT due for 'extraordinary circumstances' (weather, strikes, terrorism, pandemic).",
-        "Don't sign documents waiving claims for 'bonuses' or vouchers — this forfeits your right to cash.",
-        "Claim deadline — up to 3–6 years (depending on country)."
-      ],
-      meta: { severity: "medium", time: "hours" }
+        "Compensation is NOT available for 'extraordinary circumstances' (weather, strikes, terrorism, pandemic).",
+        "Do not sign documents waiving claims for 'bonuses' or vouchers — it forfeits your right to money.",
+        "Claim deadline — up to 3–6 years (depends on the country)."
+      ]
     },
     {
       id: "cancelled_any",
-      title: "Flight cancelled — what to do",
-      icon: "❌",
-      match: { problem: "cancelled" },
+      title: "❌ Flight cancelled — what to do",
       description: "When a flight is cancelled, the airline must offer an alternative or refund.",
+      conditions: { problem: ["cancelled"] },
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "hours",
+      yield_estimate: "Rebooking or refund",
+      tags: ["cancelled", "refund", "rebooking"],
       steps: [
-        "Immediately contact the airline: check-in counter, hotline, app, online chat.",
-        "Demand: a) rebooking on the nearest flight FREE, b) full refund, c) rebooking for another date.",
-        "If departing from the EU — in addition to rebooking you can claim compensation under EC 261 (250–600 €) for airline-fault cancellations.",
+        "Immediately contact the airline: check-in desk, hotline, app, online chat.",
+        "Demand: a) rebooking on the next available flight FREE of charge, b) full refund, c) rebooking to another date.",
+        "If departing from the EU — in addition to rebooking, you can claim compensation under EC 261 (250–600 €) if cancellation is the airline's fault.",
         "If cancellation is 'extraordinary' (weather, force majeure) — no compensation, but rebooking and meals are mandatory.",
-        "If airline doesn't offer hotel for overnight delay — book yourself within reasonable limits (up to 100–150 €/night) and keep receipts for reimbursement.",
-        "If you bought flight cancellation insurance — call the insurance company. They may cover hotel, meals, new tickets.",
-        "If you missed a connection due to first flight delay — the airline must rebook you on the next flight free of charge."
+        "If the airline doesn't offer a hotel for overnight delays — book yourself within reasonable limits (up to 100–150 €/night) and keep receipts for reimbursement.",
+        "If you have cancellation insurance — call the insurance company. They may cover hotel, meals, and new tickets.",
+        "If you missed a connection due to the first flight delay — the airline must rebook you on the next flight for free."
       ],
       warnings: [
-        "Don't agree to a voucher if you need cash — vouchers often have time and route restrictions.",
-        "If you bought through an aggregator (Aviasales, Skyscanner) — contact the airline directly, not the aggregator."
-      ],
-      meta: { severity: "high", time: "hours" }
+        "Don't accept vouchers if you need cash — vouchers often have restrictions on validity and routes.",
+        "If you bought tickets through an aggregator (Aviasales, Skyscanner) — contact the airline directly, not the aggregator."
+      ]
     },
     {
       id: "missed_flight",
-      title: "Missed flight",
-      icon: "🏃",
-      match: { problem: "missed" },
-      description: "Everything depends on the reason for being late and your fare rules.",
+      title: "🏃 Missed the flight",
+      description: "It all depends on the reason for being late and your fare rules.",
+      conditions: { problem: ["missed"] },
+      priority: "fast",
+      reliability: "medium",
+      time_estimate: "immediately",
+      yield_estimate: "Depends on fare",
+      tags: ["missed", "late", "rebooking"],
       steps: [
-        "Immediately go to the airline counter. Even if check-in is closed — sometimes you can still make it (if plane is still at the gate).",
-        "If late due to your own fault — 'Basic' fare usually CANNOT be changed. Buy a new ticket.",
-        "If 'Standard' or 'Business' fare — free or paid rebooking to the next flight may be possible.",
-        "If late due to another flight delay with the same airline — demand free rebooking.",
-        "If late due to traffic / accident / taxi breakdown — it's your responsibility. But try explaining the situation — sometimes they accommodate.",
-        "Check your insurance — some policies cover missed flights due to accidents or transport breakdown.",
-        "Even for non-refundable tickets — ask for airport taxes back — they can be refunded even on non-refundable fares."
+        "Immediately go to the airline check-in desk. Even if check-in is closed — sometimes you can still make it (if the plane is still at the gate).",
+        "If you missed due to your own fault — 'Basic' fare usually cannot be changed. Buy a new ticket.",
+        "If you have a 'Standard' or 'Business' fare — you may be able to rebook for free or for a fee to the next flight.",
+        "If you missed due to another flight delay by the same airline — demand free rebooking.",
+        "If you were late due to traffic / accident / taxi breakdown — that's your responsibility. But try to explain the situation — sometimes they accommodate.",
+        "Check your insurance — some policies cover missed flights due to accidents or vehicle breakdown.",
+        "If the ticket is non-refundable — still ask for airport taxes — they can be refunded even on non-refundable fares."
       ],
       warnings: [
-        "Low-cost carriers (Ryanair, Pobeda) almost never rebook for free if you're late.",
-        "New tickets on the day of departure often cost 2–3 times more — consider flying the next day."
-      ],
-      meta: { severity: "high", time: "immediately" }
+        "Low-cost airlines (Ryanair, Pobeda) almost never rebook for free when you miss a flight.",
+        "A new ticket on the day of departure often costs 2–3 times more — consider flying the next day."
+      ]
     },
     {
       id: "overbooked",
-      title: "Overbooking — no seat on the plane",
-      icon: "🪑",
-      match: { problem: "overbooked" },
+      title: "🪑 Overbooking — no seat on the plane",
       description: "The airline sold more tickets than seats. You have rights and can get compensation.",
+      conditions: { problem: ["overbooked"] },
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "hours",
+      yield_estimate: "Compensation up to 600 €",
+      tags: ["overbooked", "denied_boarding", "compensation"],
       steps: [
-        "The airline must first seek volunteers willing to give up their seat for compensation. Don't accept the first offer — negotiate.",
-        "If no volunteers — the airline can involuntarily deny boarding. In this case you're entitled to: immediate rebooking or refund.",
-        "If departing from the EU — additionally entitled to compensation: 250 € (up to 1500 km), 400 € (1500–3500 km), 600 € (over 3500 km).",
-        "Also entitled to: meals, drinks, 2 phone calls/emails, hotel for overnight delay.",
-        "Demand written confirmation of denied boarding — needed for compensation.",
-        "If airline offers a voucher instead of cash — you have the right to demand cash.",
-        "Submit a compensation claim through the airline's website or specialized service (AirHelp, Compensair)."
+        "The airline must first look for volunteers willing to give up their seat for compensation. Don't accept the first offer — negotiate.",
+        "If no volunteers — the airline can deny boarding involuntarily. In this case you are entitled to: immediate rebooking or refund.",
+        "If departing from the EU — additional compensation: 250 € (up to 1500 km), 400 € (1500–3500 km), 600 € (over 3500 km).",
+        "Also entitled to: meals, drinks, 2 calls/emails, hotel for overnight delays.",
+        "Request written confirmation of denied boarding — you need it for compensation.",
+        "If the airline offers a voucher instead of cash — you have the right to demand cash.",
+        "File a compensation claim through the airline's website or specialized service (AirHelp, Compensair)."
       ],
       warnings: [
-        "Don't agree to a voucher if you're not sure you'll fly with that airline again.",
-        "Overbooking is the AIRLINE'S fault, so compensation is ALWAYS due (in the EU)."
-      ],
-      meta: { severity: "medium", time: "hours" }
+        "Don't accept vouchers if you're not sure you'll fly this airline again.",
+        "Overbooking is the airline's FAULT — compensation is ALWAYS due (in the EU)."
+      ]
     },
     {
       id: "connection_missed",
-      title: "Missed connecting flight",
-      icon: "🔀",
-      match: { problem: "connection" },
-      description: "If both flights are on one booking — the airline must help. If separate bookings — you're on your own.",
+      title: "🔀 Missed connection",
+      description: "If both flights are on one booking — the airline must help. If separate bookings — you are responsible.",
+      conditions: { problem: ["connection"] },
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "immediately",
+      yield_estimate: "Free rebooking",
+      tags: ["connection", "transfer", "rebooking"],
       steps: [
-        "Check if your flights are on one booking (one PNR). If yes — the airline MUST rebook you free of charge.",
+        "Check if your flights are on one booking (one PNR). If yes — the airline MUST rebook you for free.",
         "Go to the transfer desk or your airline's counter.",
-        "If next flight is only tomorrow — demand free hotel and meals (for delays of several hours).",
-        "If flights are on SEPARATE bookings — the first flight's airline bears no responsibility. Buy a new ticket.",
+        "If the next flight is only tomorrow — demand free hotel and meals (for delays > several hours).",
+        "If flights are on DIFFERENT bookings — the first airline is not responsible. Buy a new ticket.",
         "Check your insurance — some policies cover missed connections.",
-        "If first flight delay caused missed connection — keep delay confirmation for insurance and compensation.",
-        "If rebooked to a later flight — check if you need a new visa or transit zone."
+        "If the first flight was delayed and you missed the connection — save the delay confirmation for insurance and compensation.",
+        "If you were rebooked on a later flight — check if you need a new visa or transit zone."
       ],
       warnings: [
-        "When buying tickets on different sites always leave at least 2–3 hours for connection (3–4 hours at major hubs).",
-        "When rebooked to another flight check your baggage — it may not be transferred in time."
-      ],
-      meta: { severity: "high", time: "immediately" }
+        "When booking tickets on different sites — always leave at least 2–3 hours for connections (3–4 hours at major hubs).",
+        "When rebooked on another flight — check your baggage — it may not be transferred in time."
+      ]
     },
     {
       id: "baggage_issue",
-      title: "Baggage issues",
-      icon: "🧳",
-      match: { problem: "baggage" },
-      description: "Delayed, lost, or damaged baggage — a common problem with a clear algorithm.",
+      title: "🧳 Baggage problems",
+      description: "Delayed, lost, or damaged baggage — solved by a clear algorithm.",
+      conditions: { problem: ["baggage"] },
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "hours-days",
+      yield_estimate: "Compensation up to 1300 SDR (~1700 €)",
+      tags: ["baggage", "lost", "damaged"],
       steps: [
-        "For delayed baggage: immediately contact the lost baggage service (usually near the carousel). Fill out a Property Irregularity Report (PIR).",
-        "Get the PIR number and service contact. Ask when to expect the baggage and if it will be delivered to your hotel.",
-        "Buy necessary items (underwear, hygiene, clothes) within reasonable limits. Keep receipts — the airline will reimburse (usually up to 50–100 €/day).",
-        "If baggage not found within 21 days — it's considered lost. File a claim for reimbursement of contents' value.",
-        "For damaged baggage: document damage with photos/video BEFORE leaving the airport. Contact the airline service.",
-        "The airline must compensate damage according to the Montreal Convention (up to ~1300 SDR, approximately 1700 €).",
-        "If baggage lost during connection — the last airline in your route is responsible."
+        "For delayed baggage: immediately go to the lost baggage office (usually near the carousel). Fill out a Property Irregularity Report (PIR).",
+        "Get the PIR number and contact information. Ask when to expect the baggage and if it will be delivered to your hotel.",
+        "Buy necessary items (underwear, toiletries, clothes) within reasonable limits. Keep receipts — the airline will reimburse (usually up to 50–100 €/day).",
+        "If baggage is not found within 21 days — it is considered lost. File a claim for compensation of contents.",
+        "For damaged baggage: document damage with photos/videos BEFORE leaving the airport. Contact the airline's service desk.",
+        "The airline must compensate the damage according to the Montreal Convention (up to ~1300 SDR, ~1700 €).",
+        "If baggage was lost during a connection — the last airline on the route is responsible."
       ],
       warnings: [
-        "Never leave the baggage claim area without checking your suitcase — it's hard to prove damage later.",
-        "Valuables, medications, documents — ALWAYS in carry-on.",
-        "Photograph suitcase contents before departure — helps with claims."
-      ],
-      meta: { severity: "medium", time: "hours-days" }
+        "Never leave the baggage claim area without checking your suitcase — it will be harder to prove damage later.",
+        "Valuables, medicines, documents — ALWAYS in hand luggage.",
+        "Photograph the contents of your suitcase before departure — it will help with your claim."
+      ]
     }
   ]
 };
 
-
-// ===== ЭКСПОРТ =====
-window.flightData = flightData;
+// ===== EXPORT =====
+window.flightDataEn = flightDataEn;
+console.log('✅ flightDataEn loaded');

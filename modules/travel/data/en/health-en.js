@@ -1,199 +1,228 @@
-const TRAVEL_DATA = TRAVEL_DATA || {};
-TRAVEL_DATA.health = {
-  category: "health",
-  icon: "🏥",
+// === MODULE: TRAVEL — HEALTH (EN) ===
+const travelHealthDataEn = {
+  category: "travel_health",
+  title: "🏥 Health",
+  description: "Injuries, illnesses, chronic conditions, allergies, panic attacks — what to do abroad",
+
   questions: [
     {
       id: "issue",
-      question: "What happened to your health?",
+      type: "single",
+      text: "What happened to your health?",
       options: [
-        { value: "injury", label: "Injury (fracture, bruise, cut, burn)" },
-        { value: "illness", label: "Illness (fever, poisoning, infection)" },
-        { value: "chronic", label: "Chronic condition flare-up" },
-        { value: "dental", label: "Toothache / dental problems" },
-        { value: "allergy", label: "Severe allergic reaction" },
-        { value: "mental", label: "Panic attack / mental health issue" }
+        { id: "injury", label: "Injury (fracture, bruise, cut, burn)", tags: ["injury"] },
+        { id: "illness", label: "Illness (fever, poisoning, infection)", tags: ["illness"] },
+        { id: "chronic", label: "Chronic disease flare-up", tags: ["chronic"] },
+        { id: "dental", label: "Toothache / dental problems", tags: ["dental"] },
+        { id: "allergy", label: "Severe allergic reaction", tags: ["allergy"] },
+        { id: "mental", label: "Panic attack / mental health issues", tags: ["mental"] }
       ]
     },
     {
       id: "severity",
-      question: "How serious is the condition?",
+      type: "single",
+      text: "How serious is the condition?",
       options: [
-        { value: "critical", label: "Critical — need emergency ambulance now" },
-        { value: "serious", label: "Serious — need a doctor today" },
-        { value: "moderate", label: "Moderate — can wait until tomorrow" },
-        { value: "mild", label: "Mild — can manage on my own" }
+        { id: "critical", label: "Critical — need emergency help immediately", tags: ["critical"] },
+        { id: "serious", label: "Serious — need a doctor today", tags: ["serious"] },
+        { id: "moderate", label: "Moderate — can wait until tomorrow", tags: ["moderate"] },
+        { id: "mild", label: "Mild — can manage on your own", tags: ["mild"] }
       ]
     },
     {
       id: "insurance",
-      question: "Do you have travel insurance?",
+      type: "single",
+      text: "Do you have travel insurance?",
       options: [
-        { value: "yes", label: "Yes, with medical coverage" },
-        { value: "no", label: "No insurance" },
-        { value: "unknown", label: "Don't know / don't remember" }
+        { id: "yes", label: "Yes, I have insurance with medical coverage", tags: ["insured"] },
+        { id: "no", label: "No insurance", tags: ["uninsured"] },
+        { id: "unknown", label: "I don't know / don't remember", tags: ["unknown"] }
       ]
     },
     {
       id: "location",
-      question: "Where are you?",
+      type: "single",
+      text: "Where are you?",
       options: [
-        { value: "city", label: "In city / resort area" },
-        { value: "remote", label: "In remote area (mountains, jungle, desert)" },
-        { value: "cruise", label: "On a cruise ship" },
-        { value: "transit", label: "At airport / train / bus" }
+        { id: "city", label: "In a city / resort area", tags: ["city"] },
+        { id: "remote", label: "In a remote area (mountains, jungle, desert)", tags: ["remote"] },
+        { id: "cruise", label: "On a cruise ship", tags: ["cruise"] },
+        { id: "transit", label: "At the airport / train / bus", tags: ["transit"] }
       ]
     }
   ],
-  results: [
+
+  solutions: [
     {
       id: "critical_insurance",
-      title: "Critical condition — call emergency",
-      icon: "🚨",
-      match: { severity: "critical" },
+      title: "🚨 Critical condition — call emergency",
       description: "Every minute counts. Call emergency services immediately.",
+      conditions: { severity: ["critical"] },
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "immediately",
+      yield_estimate: "Emergency help",
+      tags: ["critical", "emergency", "ambulance"],
       steps: [
-        "Dial emergency number: 112 — EU, 911 — USA/Canada, 999 — UK, 101 — fire, 102 — police, 103 — ambulance (CIS countries).",
+        "Dial emergency number: 112 — in the EU, 911 — in the US/Canada, 999 — in the UK.",
         "If you don't know the local emergency number — dial 112, it's universal in most countries.",
         "Clearly explain: what happened, where you are (address, landmarks), how many people are injured.",
-        "Don't move the injured person if spinal or head injury, unless necessary for safety.",
-        "If you have insurance — call the insurance company after stabilization. Number is on the policy or in the app.",
-        "If hospitalized — ask medical staff or a translator to contact the insurance company.",
-        "Keep ALL documents: discharge papers, receipts, prescriptions, referrals — needed for reimbursement."
+        "Do not move the injured person with spinal or head injuries unless necessary for safety.",
+        "If you have insurance — call the insurance company after stabilization.",
+        "If hospitalized — ask medical staff or a translator to contact your insurance.",
+        "Keep ALL documents: discharge summaries, receipts, prescriptions, referrals."
       ],
       warnings: [
-        "Never refuse emergency care due to cost fears — life comes first.",
-        "In the USA ambulance can cost thousands of dollars — but insurance covers most of it.",
-        "If in a remote area — call search & rescue."
-      ],
-      meta: { severity: "critical", time: "immediately" }
+        "Never refuse emergency help out of fear of costs — life is more important.",
+        "In the US, ambulance can cost thousands of dollars — but insurance will cover most of it.",
+        "If you're in a remote area — call search & rescue."
+      ]
     },
     {
       id: "injury_abroad",
-      title: "Injury abroad — see a doctor",
-      icon: "🩹",
-      match: { issue: "injury", location: "city" },
-      description: "You need medical care and proper documentation for insurance.",
+      title: "🩹 Injury abroad — seeing a doctor",
+      description: "You need to get medical help and document everything for insurance.",
+      conditions: { issue: ["injury"], location: ["city"] },
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "today",
+      yield_estimate: "Medical care",
+      tags: ["injury", "hospital", "insurance"],
       steps: [
-        "For severe bleeding — apply pressure bandage, elevate limb. For fracture — immobilize with improvised splint.",
-        "Find the nearest clinic or trauma center. Ask at the hotel, use Google Maps, or your insurance app.",
-        "If insured — call the insurance company BEFORE seeing a doctor (except emergencies). They will direct you to the right clinic.",
-        "Bring passport, insurance policy, and a translator (app or person).",
-        "Get from the doctor: diagnosis in English/local language, medical report, payment receipts, prescriptions.",
-        "If you paid yourself — keep all receipts and original documents for reimbursement.",
-        "For serious injuries (fracture, concussion) — discuss early return home with the doctor."
+        "For severe bleeding — apply pressure, elevate the limb. For fractures — immobilize with a splint.",
+        "Find the nearest clinic or emergency room. Ask at the hotel, use Google Maps or your insurance app.",
+        "If you have insurance — call the insurance company BEFORE visiting a doctor (except emergencies).",
+        "Bring your passport, insurance policy, translator (app or person).",
+        "Get from the doctor: diagnosis in English/local language, medical report, receipts, prescriptions.",
+        "If you paid out of pocket — keep all receipts and original documents for reimbursement.",
+        "For serious injuries (fracture, concussion) — discuss early return home with your doctor."
       ],
       warnings: [
-        "Don't go to 'folk healers' — it's dangerous and insurance won't cover complications.",
-        "In some countries (Thailand, Turkey) clinics overcharge tourists — call your insurance company."
-      ],
-      meta: { severity: "high", time: "today" }
+        "Don't visit 'traditional healers' — it's dangerous and insurance won't cover complications.",
+        "In some countries (Thailand, Turkey) clinics inflate prices for tourists — call your insurance."
+      ]
     },
     {
       id: "illness_no_insurance",
-      title: "Illness without insurance",
-      icon: "🤒",
-      match: { issue: "illness", insurance: "no" },
-      description: "Without insurance treatment abroad is expensive, but there are ways to get help.",
+      title: "🤒 Illness without insurance",
+      description: "Without insurance, treatment abroad is expensive, but there are ways to get help.",
+      conditions: { issue: ["illness"], insurance: ["no"] },
+      priority: "medium",
+      reliability: "medium",
+      time_estimate: "today",
+      yield_estimate: "Medical care",
+      tags: ["illness", "no_insurance", "pharmacy"],
       steps: [
-        "If condition allows — start with a pharmacy. Show symptoms to the pharmacist (via translator or pictures).",
-        "In the EU Russian citizens can receive emergency medical care for free or at reduced cost (but planned treatment is out-of-pocket).",
-        "Find a public hospital — cheaper than private clinics.",
+        "If condition allows — start at the pharmacy. Show the pharmacist symptoms (via translator or pictures).",
+        "In the EU, Russian citizens can get emergency care for free or at a reduced price.",
+        "Find a public hospital — it's cheaper than private clinics.",
         "Ask at the hotel for a recommendation for an affordable clinic or house call doctor.",
-        "If food poisoning — drink plenty of water, take activated charcoal or smecta (if in your first aid kit).",
-        "For high fever (>39°C) or severe diarrhea for more than 2 days — see a doctor even if expensive.",
-        "Contact relatives — they may be able to transfer money or buy insurance remotely (in some countries)."
+        "For poisoning — drink plenty of water, take activated charcoal or smecta.",
+        "If temperature >39°C or severe diarrhea for more than 2 days — see a doctor even if expensive.",
+        "Contact relatives — they may be able to send money or buy insurance remotely."
       ],
       warnings: [
-        "Never buy 'medicines' from street vendors or unverified places.",
-        "In hot countries dehydration develops very quickly — drink rehydration solutions (ORS)."
-      ],
-      meta: { severity: "medium", time: "today" }
+        "Never buy 'medications' from street vendors or unverified places.",
+        "In hot countries, dehydration develops very quickly — drink rehydration solutions (ORS)."
+      ]
     },
     {
       id: "chronic_travel",
-      title: "Chronic condition flare-up",
-      icon: "💊",
-      match: { issue: "chronic" },
-      description: "The main thing is not to interrupt medication and find a substitute if supplies run out.",
+      title: "💊 Chronic disease flare-up",
+      description: "The main thing — don't stop taking your medications and find replacements if supplies run out.",
+      conditions: { issue: ["chronic"] },
+      priority: "medium",
+      reliability: "high",
+      time_estimate: "today",
+      yield_estimate: "Medication",
+      tags: ["chronic", "medication", "pharmacy"],
       steps: [
-        "Take your usual medication (if remaining). Do not exceed dosage.",
-        "Find the nearest pharmacy. Show the medication name in English or the package.",
-        "If medication not available under the same name — ask for a generic. Show the active ingredient.",
-        "Use apps to find medications: Drugs.com, 1mg, or local equivalents.",
-        "If condition worsens — see a doctor. Bring your medical history discharge summary (if available).",
-        "For serious flare-ups (asthma, diabetes, heart) — call emergency immediately.",
+        "Take your usual medication (if any left). Don't exceed the dosage.",
+        "Find the nearest pharmacy. Show the drug name in English or the packaging.",
+        "If the drug isn't available under the same name — ask for a generic. Show the active ingredient.",
+        "Use medication search apps: Drugs.com, 1mg, or local equivalents.",
+        "If condition worsens — see a doctor. Bring your medical history (if available).",
+        "For severe flare-ups (asthma, diabetes, heart) — call emergency immediately.",
         "Next time bring a double supply of medications and prescriptions in English."
       ],
       warnings: [
-        "Never stop taking life-sustaining medications abruptly.",
+        "Never abruptly stop taking life-saving medications.",
         "Insulin and some medications require refrigeration — check with the hotel."
-      ],
-      meta: { severity: "medium", time: "today" }
+      ]
     },
     {
       id: "dental_abroad",
-      title: "Toothache abroad",
-      icon: "🦷",
-      match: { issue: "dental" },
-      description: "Toothache can ruin an entire vacation. Find a dentist as soon as possible.",
+      title: "🦷 Toothache abroad",
+      description: "Tooth pain can ruin your vacation. Find a dentist as soon as possible.",
+      conditions: { issue: ["dental"] },
+      priority: "medium",
+      reliability: "high",
+      time_estimate: "today",
+      yield_estimate: "Dental care",
+      tags: ["dental", "pain", "dentist"],
       steps: [
-        "Temporarily relieve pain: take ibuprofen or paracetamol, rinse with warm salt water, apply cold to cheek.",
-        "Find a dentist via: Google Maps, insurance app, hotel recommendation, or Dental Departures website.",
-        "If insured — call insurance BEFORE the visit. Check if dentistry is covered (usually only emergency).",
-        "Ask for a cost estimate before treatment begins. In some countries (Hungary, Thailand, Turkey) dentistry is cheaper than in Russia.",
-        "If extraction or root canal needed — discuss temporary measures until you return home.",
-        "Keep all receipts, X-rays, and conclusions for insurance or your dentist back home."
+        "Temporarily relieve pain: take ibuprofen or paracetamol, rinse with warm salt water, apply cold to the cheek.",
+        "Find a dentist via: Google Maps, your insurance app, hotel recommendation, Dental Departures website.",
+        "If you have insurance — call the insurance company BEFORE visiting. Check if dentistry is covered.",
+        "Ask for a treatment estimate before starting work.",
+        "For extraction or root canal — discuss a temporary solution until you return home.",
+        "Keep all receipts, X-rays, and reports for your insurance or your dentist in Russia."
       ],
       warnings: [
-        "Don't try to treat the tooth yourself — risk of infection is high.",
-        "Cheap 'beach dentists' often use low-quality materials."
-      ],
-      meta: { severity: "medium", time: "today" }
+        "Don't try to treat the tooth yourself — infection risk is high.",
+        "Cheap 'beach' dentists often use low-quality materials."
+      ]
     },
     {
       id: "allergy_severe",
-      title: "Severe allergic reaction",
-      icon: "🌡️",
-      match: { issue: "allergy" },
+      title: "🌡️ Severe allergic reaction",
       description: "Anaphylaxis can be fatal. Act immediately.",
+      conditions: { issue: ["allergy"] },
+      priority: "fast",
+      reliability: "high",
+      time_estimate: "immediately",
+      yield_estimate: "Emergency help",
+      tags: ["allergy", "anaphylaxis", "emergency"],
       steps: [
-        "For throat swelling, breathing difficulty, full-body rash — IMMEDIATELY dial 112 (or local emergency number).",
+        "If throat swelling, difficulty breathing, full-body rash — immediately dial 112.",
         "If you have an adrenaline auto-injector (EpiPen) — use it immediately in the thigh through clothing.",
-        "Lay the person down, elevate legs (for shock). Don't give water if swallowing is difficult.",
-        "Even if symptoms pass after adrenaline — you MUST go to the hospital. Secondary attack (biphasic anaphylaxis) is possible.",
-        "For mild allergy (hives without swelling) — take antihistamine (Suprastin, Cetrin, Zyrtec, Benadryl).",
+        "Lay the person down, elevate legs (for shock). Don't give fluids if there are swallowing problems.",
+        "Even if symptoms subside after adrenaline — you must go to the hospital.",
+        "For mild allergies (hives without swelling) — take antihistamines (Suprastin, Cetrin, Zyrtec, Benadryl).",
         "Try to identify the allergen: new food, insect bite, medication, cosmetics — tell the doctor."
       ],
       warnings: [
-        "Anaphylaxis can kill within 15 minutes — don't wait, call emergency.",
-        "Always carry antihistamines and an adrenaline auto-injector if you have known allergies."
-      ],
-      meta: { severity: "critical", time: "immediately" }
+        "Anaphylaxis can kill in 15 minutes — don't wait, call emergency.",
+        "Always carry antihistamines and adrenaline auto-injector if you have known allergies."
+      ]
     },
     {
       id: "mental_crisis",
-      title: "Panic attack / psychological crisis",
-      icon: "🧠",
-      match: { issue: "mental" },
-      description: "Panic attacks are terrifying but not life-threatening. There are techniques for quick relief.",
+      title: "🧠 Panic attack / psychological crisis",
+      description: "Panic attacks are very scary but not life-threatening. There are techniques for quick relief.",
+      conditions: { issue: ["mental"] },
+      priority: "medium",
+      reliability: "medium",
+      time_estimate: "15-30 min",
+      yield_estimate: "Relief",
+      tags: ["mental", "panic", "anxiety"],
       steps: [
-        "Remind yourself: 'This is a panic attack, it will pass. I am safe.' Panic attacks rarely last longer than 20–30 minutes.",
-        "Breathe slowly: inhale 4 seconds — hold 4 seconds — exhale 6 seconds. Repeat for 2–3 minutes.",
-        "Apply a cold object to your face or immerse your face in cold water — this activates the dive reflex and calms the nervous system.",
-        "Look around and name 5 objects you see, 4 sounds you hear, 3 things you can touch.",
-        "Step away from crowds, find a quiet place. Ask someone nearby to help or just sit with you.",
-        "If attacks recur — see a doctor. In some countries you can get online consultation (Teladoc, BetterHelp, Russian-speaking psychologists on YouTalk).",
-        "If having thoughts of self-harm — immediately call emergency psychological helpline."
+        "Remind yourself: 'This is a panic attack, it will pass. I'm safe.' Panic attacks rarely last more than 20–30 minutes.",
+        "Breathe slowly: inhale 4 seconds — pause 4 seconds — exhale 6 seconds. Repeat for 2–3 minutes.",
+        "Apply a cold object to your face or dip your face in cold water.",
+        "Look around and name 5 things you see, 4 sounds you hear, 3 things you can touch.",
+        "Move away from crowds, find a quiet place. Ask someone nearby to help or just sit with you.",
+        "If attacks recur — see a doctor. You can get an online consultation.",
+        "If you have self-harm thoughts — immediately call a psychological crisis hotline."
       ],
       warnings: [
-        "Don't drink alcohol to 'calm down' — it worsens anxiety the next day.",
-        "If taking antidepressants — don't skip doses, even with time zone changes."
-      ],
-      meta: { severity: "medium", time: "15-30 min" }
+        "Don't drink alcohol to 'calm down' — it will worsen anxiety the next day.",
+        "If you're taking antidepressants — don't skip doses, even when changing time zones."
+      ]
     }
   ]
 };
 
-// ===== ЭКСПОРТ =====
-window.travelHealthData = travelHealthData;
+// ===== EXPORT =====
+window.travelHealthDataEn = travelHealthDataEn;
+console.log('✅ travelHealthDataEn loaded');
