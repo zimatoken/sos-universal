@@ -233,6 +233,15 @@ function t(key) {
   if (typeof HOME_LOCALES !== 'undefined') {
     moduleTexts = { ...moduleTexts, ...HOME_LOCALES[lang] };
   }
+  if (typeof BABY_LOCALES !== 'undefined') {
+    moduleTexts = { ...moduleTexts, ...BABY_LOCALES[lang] };
+  }
+  if (typeof PETS_LOCALES !== 'undefined') {
+    moduleTexts = { ...moduleTexts, ...PETS_LOCALES[lang] };
+  }
+  if (typeof TRAVEL_LOCALES !== 'undefined') {
+    moduleTexts = { ...moduleTexts, ...TRAVEL_LOCALES[lang] };
+  }
   
   const texts = { ...coreTexts, ...moduleTexts };
   return texts[key] || key;
