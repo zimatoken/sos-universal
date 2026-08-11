@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#0ea5e9">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -10,8 +10,8 @@
 
   <meta name="apple-mobile-web-app-title" content="SOS TRAVEL">
 
+  <title>SOS Universal — Путешествия</title>
   <link rel="manifest" href="../../manifest.json">
-  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="../../css/modules/travel.css">
 </head>
@@ -311,5 +311,78 @@
   });
 </script>
 
+=======
+  <div id="app">
+    <!-- Шапка -->
+    <header class="screen active" id="header-screen">
+      <div class="header-content">
+        <a href="../../index.html" class="back-btn">←</a>
+        <h1 id="module-title">✈️ Путешествия</h1>
+        <p id="module-subtitle">Экстренные ситуации за границей и в поездках</p>
+      </div>
+    </header>
+
+    <!-- Экран категорий -->
+    <div class="screen active" id="categories-screen">
+      <div class="content">
+        <div class="grid" id="categories-grid"></div>
+      </div>
+    </div>
+
+    <!-- Экран квиза -->
+    <div class="screen" id="quiz-screen">
+      <div class="content">
+        <div class="progress-bar">
+          <div class="progress-fill" id="quiz-progress"></div>
+        </div>
+        <div id="quiz-question"></div>
+        <div class="options" id="quiz-options"></div>
+        <button class="btn btn-secondary" id="quiz-back">← Назад</button>
+      </div>
+    </div>
+
+    <!-- Экран результата -->
+    <div class="screen" id="result-screen">
+      <div class="content">
+        <div id="result-content"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="result-restart">🔄 Пройти заново</button>
+          <button class="btn btn-secondary" id="result-print">🖨️ Печать</button>
+          <a href="../../index.html" class="btn btn-secondary">← На главную</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOS кнопка -->
+    <button id="sos-btn" class="sos-btn" title="Экстренный вызов">SOS</button>
+  </div>
+
+  <!-- ===== ЯДРО (загружается первым) ===== -->
+  <script src="../../core/locales.js"></script>
+  <script src="i18n.js"></script>
+  <script src="../../core/theme.js"></script>
+  <script src="../../core/voice.js"></script>
+
+  <!-- ===== ДАННЫЕ RU (до engine.js, чтобы dataRegistry их увидел) ===== -->
+  <script src="data/documents.js"></script>
+  <script src="data/money.js"></script>
+  <script src="data/health.js"></script>
+  <script src="data/flight.js"></script>
+  <script src="data/hotel.js"></script>
+  <script src="data/theft.js"></script>
+  <script src="data/lost.js"></script>
+
+  <!-- ===== ДАННЫЕ EN (тоже статически, не конфликтуют с RU) ===== -->
+  <script src="data/en/documents-en.js"></script>
+  <script src="data/en/money-en.js"></script>
+  <script src="data/en/health-en.js"></script>
+  <script src="data/en/flight-en.js"></script>
+  <script src="data/en/hotel-en.js"></script>
+  <script src="data/en/theft-en.js"></script>
+  <script src="data/en/lost-en.js"></script>
+
+  <!-- ===== ДВИЖОК + ПРИЛОЖЕНИЕ (после данных) ===== -->
+  <script src="../../core/engine.js"></script>
+  <script src="../../core/app.js"></script>
 </body>
 </html>
