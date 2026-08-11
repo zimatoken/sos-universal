@@ -201,4 +201,3 @@ const theftDataEn = {
 
 // ===== EXPORT =====
 window.theftDataEn = theftDataEn;
-console.log('✅ theftDataEn loaded');

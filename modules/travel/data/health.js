@@ -225,4 +225,3 @@ const travelHealthData = {
 
 // ===== ЭКСПОРТ =====
 window.travelHealthData = travelHealthData;
-console.log('✅ travelHealthData загружен');

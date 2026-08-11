@@ -227,4 +227,3 @@ const travelLostDataEn = {
 
 // ===== EXPORT =====
 window.travelLostDataEn = travelLostDataEn;
-console.log('✅ travelLostDataEn loaded');

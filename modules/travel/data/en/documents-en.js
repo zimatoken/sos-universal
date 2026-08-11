@@ -191,4 +191,3 @@ const documentsDataEn = {
 
 // ===== EXPORT =====
 window.documentsDataEn = documentsDataEn;
-console.log('✅ documentsDataEn loaded');

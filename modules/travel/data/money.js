@@ -199,4 +199,3 @@ const moneyData = {
 
 // ===== ЭКСПОРТ =====
 window.moneyData = moneyData;
-console.log('✅ moneyData загружен');

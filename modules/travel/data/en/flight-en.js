@@ -203,4 +203,3 @@ const flightDataEn = {
 
 // ===== EXPORT =====
 window.flightDataEn = flightDataEn;
-console.log('✅ flightDataEn loaded');

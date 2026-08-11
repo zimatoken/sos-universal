@@ -199,4 +199,3 @@ const moneyDataEn = {
 
 // ===== EXPORT =====
 window.moneyDataEn = moneyDataEn;
-console.log('✅ moneyDataEn loaded');

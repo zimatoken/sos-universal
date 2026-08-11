@@ -207,4 +207,3 @@ const hotelDataEn = {
 
 // ===== EXPORT =====
 window.hotelDataEn = hotelDataEn;
-console.log('✅ hotelDataEn loaded');

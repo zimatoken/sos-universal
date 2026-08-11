@@ -203,4 +203,3 @@ const flightData = {
 
 // ===== ЭКСПОРТ =====
 window.flightData = flightData;
-console.log('✅ flightData загружен');

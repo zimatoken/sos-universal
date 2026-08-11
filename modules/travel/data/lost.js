@@ -227,4 +227,3 @@ const travelLostData = {
 
 // ===== ЭКСПОРТ =====
 window.travelLostData = travelLostData;
-console.log('✅ travelLostData загружен');

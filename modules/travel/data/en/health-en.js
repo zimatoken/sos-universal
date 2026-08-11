@@ -225,4 +225,3 @@ const travelHealthDataEn = {
 
 // ===== EXPORT =====
 window.travelHealthDataEn = travelHealthDataEn;
-console.log('✅ travelHealthDataEn loaded');

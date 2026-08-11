@@ -201,4 +201,3 @@ const theftData = {
 
 // ===== ЭКСПОРТ =====
 window.theftData = theftData;
-console.log('✅ theftData загружен');

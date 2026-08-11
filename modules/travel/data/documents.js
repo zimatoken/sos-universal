@@ -191,4 +191,3 @@ const documentsData = {
 
 // ===== ЭКСПОРТ =====
 window.documentsData = documentsData;
-console.log('✅ documentsData загружен');

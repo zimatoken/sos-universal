@@ -207,4 +207,3 @@ const hotelData = {
 
 // ===== ЭКСПОРТ =====
 window.hotelData = hotelData;
-console.log('✅ hotelData загружен');
