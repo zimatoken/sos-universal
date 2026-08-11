@@ -10,12 +10,12 @@ const poisonDataEn = {
       text: "What did the pet eat / drink?",
       type: "single",
       options: [
-        { id: "food", label: "Spoiled food / foreign food / garbage", tags: ["food"] },
-        { id: "chemical", label: "Household chemical (detergent, bleach, antifreeze)", tags: ["chemical"] },
-        { id: "medicine", label: "Human medicine (pills, drops, ointments)", tags: ["medicine"] },
-        { id: "plant", label: "Plant (lily, azalea, oleander, mushrooms)", tags: ["plant"] },
-        { id: "pest", label: "Rat / cockroach / flea / tick poison", tags: ["pest"] },
-        { id: "unknown", label: "Don't know — just lethargic, vomiting, diarrhea", tags: ["unknown"] }
+        { id: "food", label: "🍖 Spoiled food / foreign food / garbage", tags: ["food"] },
+        { id: "chemical", label: "🧪 Household chemical (detergent, bleach, antifreeze)", tags: ["chemical"] },
+        { id: "medicine", label: "💊 Human medicine (pills, drops, ointments)", tags: ["medicine"] },
+        { id: "plant", label: "🌿 Plant (lily, azalea, oleander, mushrooms)", tags: ["plant"] },
+        { id: "pest", label: "☠️ Rat / cockroach / flea / tick poison", tags: ["pest"] },
+        { id: "unknown", label: "❓ Don't know — just lethargic, vomiting, diarrhea", tags: ["unknown"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const poisonDataEn = {
       text: "What animal?",
       type: "single",
       options: [
-        { id: "dog", label: "Dog", tags: ["dog"] },
-        { id: "cat", label: "Cat", tags: ["cat"] },
-        { id: "small", label: "Rabbit / hamster / bird", tags: ["small"] }
+        { id: "dog", label: "🐕 Dog", tags: ["dog"] },
+        { id: "cat", label: "🐱 Cat", tags: ["cat"] },
+        { id: "small", label: "🐰 Rabbit / hamster / bird", tags: ["small"] }
       ]
     },
     {
@@ -33,10 +33,10 @@ const poisonDataEn = {
       text: "How much time has passed?",
       type: "single",
       options: [
-        { id: "just", label: "Just now (I see it in real time)", tags: ["just"] },
-        { id: "1h", label: "Up to 1 hour", tags: ["1h"] },
-        { id: "hours", label: "1–6 hours", tags: ["hours"] },
-        { id: "day", label: "More than 6 hours", tags: ["day"] }
+        { id: "just", label: "⏰ Just now (I see it in real time)", tags: ["just"] },
+        { id: "1h", label: "📅 Up to 1 hour", tags: ["1h"] },
+        { id: "hours", label: "📆 1–6 hours", tags: ["hours"] },
+        { id: "day", label: "📈 More than 6 hours", tags: ["day"] }
       ]
     }
   ],

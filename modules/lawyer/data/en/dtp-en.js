@@ -10,12 +10,12 @@ const dtpDataEn = {
       text: "What happened in the accident?",
       type: "single",
       options: [
-        { id: "minor", label: "Minor accident, slight damage", tags: ["minor", "simple"] },
-        { id: "serious", label: "Serious accident, injuries", tags: ["serious", "injuries"] },
-        { id: "pedestrian", label: "Hit a pedestrian / cyclist", tags: ["pedestrian", "injuries"] },
-        { id: "hit_run", label: "Hit and run — driver fled", tags: ["hit_run", "unknown"] },
-        { id: "dispute", label: "Dispute about fault / insurance refuses to pay", tags: ["dispute", "insurance"] },
-        { id: "with_osago", label: "At-fault driver has OSAGO, insurance undervalues payout", tags: ["osago", "underpayment"] }
+        { id: "minor", label: "🚗 Minor accident, slight damage", tags: ["minor", "simple"] },
+        { id: "serious", label: "🚨 Serious accident, injuries", tags: ["serious", "injuries"] },
+        { id: "pedestrian", label: "🚶 Hit a pedestrian / cyclist", tags: ["pedestrian", "injuries"] },
+        { id: "hit_run", label: "🏃 Hit and run — driver fled", tags: ["hit_run", "unknown"] },
+        { id: "dispute", label: "⚖️ Dispute about fault / insurance refuses to pay", tags: ["dispute", "insurance"] },
+        { id: "with_osago", label: "📄 At-fault driver has OSAGO, insurance undervalues payout", tags: ["osago", "underpayment"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const dtpDataEn = {
       text: "Does the at-fault driver have an OSAGO policy?",
       type: "single",
       options: [
-        { id: "osago_yes", label: "Yes, there is a valid policy", tags: ["osago_yes"] },
-        { id: "osago_no", label: "No, no policy or expired", tags: ["osago_no"] },
-        { id: "osago_unknown", label: "I don't know / the driver fled", tags: ["osago_unknown"] }
+        { id: "osago_yes", label: "✅ Yes, there is a valid policy", tags: ["osago_yes"] },
+        { id: "osago_no", label: "❌ No, no policy or expired", tags: ["osago_no"] },
+        { id: "osago_unknown", label: "❓ I don't know / the driver fled", tags: ["osago_unknown"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const dtpDataEn = {
       text: "What documents do you have?",
       type: "single",
       options: [
-        { id: "full", label: "All: OSAGO, license, vehicle registration, europrotocol/police certificate", tags: ["full", "complete"] },
-        { id: "partial", label: "Partial (something is missing)", tags: ["partial", "incomplete"] },
-        { id: "none", label: "No documents / the at-fault driver fled", tags: ["none", "missing"] }
+        { id: "full", label: "📄 All: OSAGO, license, vehicle registration, europrotocol/police certificate", tags: ["full", "complete"] },
+        { id: "partial", label: "📋 Partial (something is missing)", tags: ["partial", "incomplete"] },
+        { id: "none", label: "❌ No documents / the at-fault driver fled", tags: ["none", "missing"] }
       ]
     },
     {
@@ -43,9 +43,9 @@ const dtpDataEn = {
       text: "Are there any witnesses to the accident?",
       type: "single",
       options: [
-        { id: "yes_witness", label: "Yes, there are witnesses (contacts recorded)", tags: ["witness_yes"] },
-        { id: "no_witness", label: "No witnesses", tags: ["witness_no"] },
-        { id: "video", label: "There is video footage (cameras, dashcam)", tags: ["video"] }
+        { id: "yes_witness", label: "👥 Yes, there are witnesses (contacts recorded)", tags: ["witness_yes"] },
+        { id: "no_witness", label: "❌ No witnesses", tags: ["witness_no"] },
+        { id: "video", label: "📹 There is video footage (cameras, dashcam)", tags: ["video"] }
       ]
     },
     {

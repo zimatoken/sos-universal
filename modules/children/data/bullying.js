@@ -10,11 +10,11 @@ const bullyingData = {
       text: "Какой тип травли?",
       type: "single",
       options: [
-        { id: "physical", label: "Физическое насилие (толкания, удары, отняли вещи)", tags: ["physical"] },
-        { id: "verbal", label: "Слова, оскорбления, угрозы, шантаж", tags: ["verbal"] },
-        { id: "cyber", label: "Кибербуллинг (соцсети, мессенджеры, игры)", tags: ["cyber"] },
-        { id: "social", label: "Социальная травля (изгнание, сплетни, бойкот)", tags: ["social"] },
-        { id: "sexual", label: "Сексуальные домогательства / непристойные комментарии", tags: ["sexual"] }
+        { id: "physical", label: "👊 Физическое насилие (толкания, удары, отняли вещи)", tags: ["physical"] },
+        { id: "verbal", label: "🗣️ Слова, оскорбления, угрозы, шантаж", tags: ["verbal"] },
+        { id: "cyber", label: "💻 Кибербуллинг (соцсети, мессенджеры, игры)", tags: ["cyber"] },
+        { id: "social", label: "👥 Социальная травля (изгнание, сплетни, бойкот)", tags: ["social"] },
+        { id: "sexual", label: "⚠️ Сексуальные домогательства / непристойные комментарии", tags: ["sexual"] }
       ]
     },
     {
@@ -22,9 +22,9 @@ const bullyingData = {
       text: "Какая роль вашего ребёнка?",
       type: "single",
       options: [
-        { id: "victim", label: "Мой ребёнок — жертва", tags: ["victim"] },
-        { id: "witness", label: "Я узнал(а) как свидетель / от другого ребёнка", tags: ["witness"] },
-        { id: "aggressor", label: "Мой ребёнок — агрессор / травит других", tags: ["aggressor"] }
+        { id: "victim", label: "😢 Мой ребёнок — жертва", tags: ["victim"] },
+        { id: "witness", label: "👁️ Я узнал(а) как свидетель / от другого ребёнка", tags: ["witness"] },
+        { id: "aggressor", label: "😠 Мой ребёнок — агрессор / травит других", tags: ["aggressor"] }
       ]
     },
     {

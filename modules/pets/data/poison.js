@@ -10,12 +10,12 @@ const poisonData = {
       text: "Что съел / выпил питомец?",
       type: "single",
       options: [
-        { id: "food", label: "Испорченная еда / чужой корм / мусор", tags: ["food"] },
-        { id: "chemical", label: "Бытовая химия (моющее, отбеливатель, антифриз)", tags: ["chemical"] },
-        { id: "medicine", label: "Лекарства человека (таблетки, капли, мази)", tags: ["medicine"] },
-        { id: "plant", label: "Растение (лилия, азалия, олеандр, грибы)", tags: ["plant"] },
-        { id: "pest", label: "Яд от грызунов / тараканов / блох / клещей", tags: ["pest"] },
-        { id: "unknown", label: "Не знаю — просто вялый, рвёт, поносит", tags: ["unknown"] }
+        { id: "food", label: "🍖 Испорченная еда / чужой корм / мусор", tags: ["food"] },
+        { id: "chemical", label: "🧪 Бытовая химия (моющее, отбеливатель, антифриз)", tags: ["chemical"] },
+        { id: "medicine", label: "💊 Лекарства человека (таблетки, капли, мази)", tags: ["medicine"] },
+        { id: "plant", label: "🌿 Растение (лилия, азалия, олеандр, грибы)", tags: ["plant"] },
+        { id: "pest", label: "☠️ Яд от грызунов / тараканов / блох / клещей", tags: ["pest"] },
+        { id: "unknown", label: "❓ Не знаю — просто вялый, рвёт, поносит", tags: ["unknown"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const poisonData = {
       text: "Какое животное?",
       type: "single",
       options: [
-        { id: "dog", label: "Собака", tags: ["dog"] },
-        { id: "cat", label: "Кошка", tags: ["cat"] },
-        { id: "small", label: "Кролик / хомяк / птица", tags: ["small"] }
+        { id: "dog", label: "🐕 Собака", tags: ["dog"] },
+        { id: "cat", label: "🐱 Кошка", tags: ["cat"] },
+        { id: "small", label: "🐰 Кролик / хомяк / птица", tags: ["small"] }
       ]
     },
     {

@@ -10,12 +10,12 @@ const inheritanceData = {
       text: "Какая у вас ситуация с наследством?",
       type: "single",
       options: [
-        { id: "no_will", label: "Умер близкий, завещания нет", tags: ["no_will", "law"] },
-        { id: "will_exists", label: "Есть завещание, но есть спор", tags: ["will", "dispute"] },
-        { id: "missed", label: "Пропустил срок вступления (более 6 месяцев)", tags: ["missed", "deadline"] },
-        { id: "foreign", label: "Наследство за границей / у иностранца", tags: ["foreign", "international"] },
-        { id: "debts", label: "Наследство с долгами (кредиты, налоги)", tags: ["debts", "liabilities"] },
-        { id: "property_only", label: "Только недвижимость / автомобиль", tags: ["property", "real_estate"] }
+        { id: "no_will", label: "❌ Умер близкий, завещания нет", tags: ["no_will", "law"] },
+        { id: "will_exists", label: "📜 Есть завещание, но есть спор", tags: ["will", "dispute"] },
+        { id: "missed", label: "⏰ Пропустил срок вступления (более 6 месяцев)", tags: ["missed", "deadline"] },
+        { id: "foreign", label: "🌍 Наследство за границей / у иностранца", tags: ["foreign", "international"] },
+        { id: "debts", label: "💸 Наследство с долгами (кредиты, налоги)", tags: ["debts", "liabilities"] },
+        { id: "property_only", label: "🏠 Только недвижимость / автомобиль", tags: ["property", "real_estate"] }
       ]
     },
     {
@@ -23,11 +23,11 @@ const inheritanceData = {
       text: "Кем вы приходитесь умершему?",
       condition: { inheritance_situation: ["no_will", "missed"] },
       options: [
-        { id: "spouse", label: "Супруг(а)", tags: ["spouse", "first"] },
-        { id: "child", label: "Ребёнок (включая внебрачного)", tags: ["child", "first"] },
-        { id: "parent", label: "Родитель", tags: ["parent", "first"] },
-        { id: "sibling", label: "Брат / сестра", tags: ["sibling", "second"] },
-        { id: "other", label: "Другой родственник (племянник, дедушка, бабушка)", tags: ["other", "third"] }
+        { id: "spouse", label: "💑 Супруг(а)", tags: ["spouse", "first"] },
+        { id: "child", label: "👶 Ребёнок (включая внебрачного)", tags: ["child", "first"] },
+        { id: "parent", label: "👨‍👩‍👧 Родитель", tags: ["parent", "first"] },
+        { id: "sibling", label: "👫 Брат / сестра", tags: ["sibling", "second"] },
+        { id: "other", label: "👥 Другой родственник (племянник, дедушка, бабушка)", tags: ["other", "third"] }
       ]
     },
     {
@@ -35,10 +35,10 @@ const inheritanceData = {
       text: "В чём суть спора по завещанию?",
       condition: { inheritance_situation: ["will_exists"] },
       options: [
-        { id: "invalid", label: "Сомневаюсь в законности завещания", tags: ["invalid", "law"] },
-        { id: "forced", label: "Завещание под давлением / недееспособный", tags: ["forced", "invalid"] },
-        { id: "dependents", label: "Есть нетрудоспособные иждивенцы, которых обделили", tags: ["dependents", "forced"] },
-        { id: "forgery", label: "Подозреваю, что подпись подделана", tags: ["forgery", "expertise"] }
+        { id: "invalid", label: "⚖️ Сомневаюсь в законности завещания", tags: ["invalid", "law"] },
+        { id: "forced", label: "😰 Завещание под давлением / недееспособный", tags: ["forced", "invalid"] },
+        { id: "dependents", label: "👶 Есть нетрудоспособные иждивенцы, которых обделили", tags: ["dependents", "forced"] },
+        { id: "forgery", label: "✍️ Подозреваю, что подпись подделана", tags: ["forgery", "expertise"] }
       ]
     },
     {
@@ -46,9 +46,9 @@ const inheritanceData = {
       text: "Есть ли у наследодателя долги?",
       condition: { inheritance_situation: ["debts", "no_will", "will_exists"] },
       options: [
-        { id: "debts_yes", label: "Да, есть кредиты / налоги / коммунальные долги", tags: ["debts_yes"] },
-        { id: "debts_no", label: "Нет, долгов нет", tags: ["debts_no"] },
-        { id: "debts_unknown", label: "Не знаю, но есть подозрения", tags: ["debts_unknown"] }
+        { id: "debts_yes", label: "💰 Да, есть кредиты / налоги / коммунальные долги", tags: ["debts_yes"] },
+        { id: "debts_no", label: "✅ Нет, долгов нет", tags: ["debts_no"] },
+        { id: "debts_unknown", label: "❓ Не знаю, но есть подозрения", tags: ["debts_unknown"] }
       ]
     },
     {
@@ -56,11 +56,11 @@ const inheritanceData = {
       text: "Что входит в состав наследства?",
       condition: { inheritance_situation: ["property_only", "no_will", "will_exists"] },
       options: [
-        { id: "apartment", label: "Квартира / дом", tags: ["apartment"] },
-        { id: "car", label: "Автомобиль", tags: ["car"] },
-        { id: "land", label: "Земельный участок / дача", tags: ["land"] },
-        { id: "money", label: "Деньги / вклады в банках", tags: ["money"] },
-        { id: "business", label: "Бизнес / доля в ООО", tags: ["business"] }
+        { id: "apartment", label: "🏠 Квартира / дом", tags: ["apartment"] },
+        { id: "car", label: "🚗 Автомобиль", tags: ["car"] },
+        { id: "land", label: "🌳 Земельный участок / дача", tags: ["land"] },
+        { id: "money", label: "💰 Деньги / вклады в банках", tags: ["money"] },
+        { id: "business", label: "💼 Бизнес / доля в ООО", tags: ["business"] }
       ]
     }
   ],

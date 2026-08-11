@@ -10,14 +10,14 @@ const laborData = {
       text: "Какая у вас проблема на работе?",
       type: "single",
       options: [
-        { id: "fired", label: "Уволили / заставили уволиться", tags: ["fired", "unfair"] },
-        { id: "salary", label: "Не платят зарплату / задерживают", tags: ["salary", "delayed"] },
-        { id: "boss_pressure", label: "Давление начальства / травля (моббинг)", tags: ["mobbing", "harassment"] },
-        { id: "contract", label: "Не оформляют официально / нет трудового договора", tags: ["contract", "illegal"] },
-        { id: "overtime", label: "Заставляют работать сверхурочно без оплаты", tags: ["overtime", "unpaid"] },
-        { id: "vacation", label: "Не дают отпуск / не оплачивают отпускные", tags: ["vacation", "denied"] },
-        { id: "discrimination", label: "Дискриминация (пол, возраст, национальность)", tags: ["discrimination", "unfair"] },
-        { id: "injury", label: "Несчастный случай на производстве", tags: ["injury", "safety"] }
+        { id: "fired", label: "🚪 Уволили / заставили уволиться", tags: ["fired", "unfair"] },
+        { id: "salary", label: "💰 Не платят зарплату / задерживают", tags: ["salary", "delayed"] },
+        { id: "boss_pressure", label: "😤 Давление начальства / травля (моббинг)", tags: ["mobbing", "harassment"] },
+        { id: "contract", label: "📄 Не оформляют официально / нет трудового договора", tags: ["contract", "illegal"] },
+        { id: "overtime", label: "⏰ Заставляют работать сверхурочно без оплаты", tags: ["overtime", "unpaid"] },
+        { id: "vacation", label: "🏖️ Не дают отпуск / не оплачивают отпускные", tags: ["vacation", "denied"] },
+        { id: "discrimination", label: "⚖️ Дискриминация (пол, возраст, национальность)", tags: ["discrimination", "unfair"] },
+        { id: "injury", label: "🩹 Несчастный случай на производстве", tags: ["injury", "safety"] }
       ]
     },
     {
@@ -25,10 +25,10 @@ const laborData = {
       text: "Как именно уволили?",
       condition: { labor_issue: ["fired"] },
       options: [
-        { id: "article", label: "По статье (прогул, опоздания, нарушения)", tags: ["article", "disciplinary"] },
-        { id: "agreement", label: "По соглашению сторон (подписали бумаги)", tags: ["agreement", "mutual"] },
-        { id: "own_will", label: "Заставили написать по собственному желанию", tags: ["own_will", "forced"] },
-        { id: "layoff", label: "Сокращение штата", tags: ["layoff", "reduction"] }
+        { id: "article", label: "📜 По статье (прогул, опоздания, нарушения)", tags: ["article", "disciplinary"] },
+        { id: "agreement", label: "🤝 По соглашению сторон (подписали бумаги)", tags: ["agreement", "mutual"] },
+        { id: "own_will", label: "✍️ Заставили написать по собственному желанию", tags: ["own_will", "forced"] },
+        { id: "layoff", label: "📉 Сокращение штата", tags: ["layoff", "reduction"] }
       ]
     },
     {
@@ -36,27 +36,27 @@ const laborData = {
       text: "Как долго не платят зарплату?",
       condition: { labor_issue: ["salary"] },
       options: [
-        { id: "week", label: "1-2 недели", tags: ["short"] },
-        { id: "month", label: "1-2 месяца", tags: ["medium"] },
-        { id: "long", label: "Более 2 месяцев", tags: ["long"] }
+        { id: "week", label: "📅 1-2 недели", tags: ["short"] },
+        { id: "month", label: "📆 1-2 месяца", tags: ["medium"] },
+        { id: "long", label: "📈 Более 2 месяцев", tags: ["long"] }
       ]
     },
     {
       id: "is_official",
       text: "Вы официально оформлены (трудовой договор, запись в трудовой)?",
       options: [
-        { id: "official_yes", label: "Да, оформлен официально", tags: ["official"] },
-        { id: "official_no", label: "Нет, работаю неофициально", tags: ["unofficial"] },
-        { id: "official_gray", label: "Оформлен, но зарплата 'в конверте'", tags: ["gray"] }
+        { id: "official_yes", label: "✅ Да, оформлен официально", tags: ["official"] },
+        { id: "official_no", label: "❌ Нет, работаю неофициально", tags: ["unofficial"] },
+        { id: "official_gray", label: "📦 Оформлен, но зарплата 'в конверте'", tags: ["gray"] }
       ]
     },
     {
       id: "work_duration",
       text: "Как долго вы работаете у этого работодателя?",
       options: [
-        { id: "less_year", label: "Менее года", tags: ["short_term"] },
-        { id: "one_three", label: "1-3 года", tags: ["medium_term"] },
-        { id: "more_three", label: "Более 3 лет", tags: ["long_term"] }
+        { id: "less_year", label: "📅 Менее года", tags: ["short_term"] },
+        { id: "one_three", label: "📆 1-3 года", tags: ["medium_term"] },
+        { id: "more_three", label: "📈 Более 3 лет", tags: ["long_term"] }
       ]
     },
     {

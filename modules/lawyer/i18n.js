@@ -6,10 +6,9 @@
 const LAWYER_LOCALES = {
   // ===== РУССКИЙ =====
   ru: {
-    app_title: "YRIST",
+    app_title: "⚖️ YRIST",
     app_subtitle: "Юридическая помощь в любой ситуации",
 
-    // Категории
     cat_dtp: "🚨 ДТП / Авария",
     cat_labor: "💼 Трудовые споры",
     cat_housing: "🏠 Жилищные вопросы",
@@ -21,10 +20,9 @@ const LAWYER_LOCALES = {
 
   // ===== АНГЛИЙСКИЙ =====
   en: {
-    app_title: "LAWYER",
+    app_title: "⚖️ LAWYER",
     app_subtitle: "Legal assistance in any situation",
 
-    // Categories
     cat_dtp: "🚨 Accident / Crash",
     cat_labor: "💼 Labor Disputes",
     cat_housing: "🏠 Housing Issues",
@@ -35,6 +33,5 @@ const LAWYER_LOCALES = {
   }
 };
 
-// ===== ЭКСПОРТ =====
 window.LAWYER_LOCALES = LAWYER_LOCALES;
 console.log('✅ Локализации загружены (SOS LAWYER module)');

@@ -10,12 +10,12 @@ const behaviorData = {
       text: "Какая проблема с поведением?",
       type: "single",
       options: [
-        { id: "aggression_people", label: "Агрессия к людям (кусается, рычит, кидается)", tags: ["aggression_people"] },
-        { id: "aggression_animals", label: "Агрессия к другим животным", tags: ["aggression_animals"] },
-        { id: "anxiety", label: "Тревожность / страх (трясётся, прячется, не выходит)", tags: ["anxiety"] },
-        { id: "destruction", label: "Деструктивное поведение (грызёт мебель, копает, метит)", tags: ["destruction"] },
-        { id: "barking", label: "Непрекращающийся лай / вой / мяуканье", tags: ["barking"] },
-        { id: "leash", label: "Тянет поводок / убегает / не слушается", tags: ["leash"] }
+        { id: "aggression_people", label: "😠 Агрессия к людям (кусается, рычит, кидается)", tags: ["aggression_people"] },
+        { id: "aggression_animals", label: "🐕 Агрессия к другим животным", tags: ["aggression_animals"] },
+        { id: "anxiety", label: "😰 Тревожность / страх (трясётся, прячется, не выходит)", tags: ["anxiety"] },
+        { id: "destruction", label: "🪑 Деструктивное поведение (грызёт мебель, копает, метит)", tags: ["destruction"] },
+        { id: "barking", label: "🔊 Непрекращающийся лай / вой / мяуканье", tags: ["barking"] },
+        { id: "leash", label: "🐕 Тянет поводок / убегает / не слушается", tags: ["leash"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const behaviorData = {
       text: "Какое животное?",
       type: "single",
       options: [
-        { id: "dog", label: "Собака", tags: ["dog"] },
-        { id: "cat", label: "Кошка", tags: ["cat"] },
-        { id: "other", label: "Другое", tags: ["other"] }
+        { id: "dog", label: "🐕 Собака", tags: ["dog"] },
+        { id: "cat", label: "🐱 Кошка", tags: ["cat"] },
+        { id: "other", label: "🦎 Другое", tags: ["other"] }
       ]
     },
     {

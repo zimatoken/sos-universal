@@ -10,11 +10,11 @@ const consumerDataEn = {
       text: "What is your problem?",
       type: "single",
       options: [
-        { id: "defective", label: "Bought a defective / non-working product", tags: ["defective", "goods"] },
-        { id: "service_bad", label: "Service was poor / not provided", tags: ["service", "bad"] },
-        { id: "food_bad", label: "Spoiled food / food poisoning", tags: ["food", "poison"] },
-        { id: "online_scam", label: "Online purchase fraud / didn't receive item", tags: ["online", "scam"] },
-        { id: "refund_refusal", label: "Seller refuses to refund money", tags: ["refund", "dispute"] }
+        { id: "defective", label: "❌ Bought a defective / non-working product", tags: ["defective", "goods"] },
+        { id: "service_bad", label: "🔧 Service was poor / not provided", tags: ["service", "bad"] },
+        { id: "food_bad", label: "🍖 Spoiled food / food poisoning", tags: ["food", "poison"] },
+        { id: "online_scam", label: "💻 Online purchase fraud / didn't receive item", tags: ["online", "scam"] },
+        { id: "refund_refusal", label: "💸 Seller refuses to refund money", tags: ["refund", "dispute"] }
       ]
     },
     {
@@ -22,10 +22,10 @@ const consumerDataEn = {
       text: "How did you buy the product?",
       type: "single",
       options: [
-        { id: "offline_store", label: "In a regular store (offline)", tags: ["offline"] },
-        { id: "online_store", label: "In an online store", tags: ["online"] },
-        { id: "marketplace", label: "On a marketplace (Ozon, Wildberries, Yandex.Market)", tags: ["marketplace"] },
-        { id: "private_person", label: "From an individual / on Avito", tags: ["private"] }
+        { id: "offline_store", label: "🏪 In a regular store (offline)", tags: ["offline"] },
+        { id: "online_store", label: "🛒 In an online store", tags: ["online"] },
+        { id: "marketplace", label: "📦 On a marketplace (Ozon, Wildberries, Yandex.Market)", tags: ["marketplace"] },
+        { id: "private_person", label: "👤 From an individual / on Avito", tags: ["private"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const consumerDataEn = {
       text: "Do you have a receipt or other proof of purchase?",
       type: "single",
       options: [
-        { id: "yes_receipt", label: "Yes, I have a receipt / electronic receipt", tags: ["receipt"] },
-        { id: "yes_other", label: "I have a bank statement / transfer record", tags: ["bank_statement"] },
-        { id: "no_document", label: "No receipt or other documents", tags: ["no_receipt"] }
+        { id: "yes_receipt", label: "🧾 Yes, I have a receipt / electronic receipt", tags: ["receipt"] },
+        { id: "yes_other", label: "📄 I have a bank statement / transfer record", tags: ["bank_statement"] },
+        { id: "no_document", label: "❌ No receipt or other documents", tags: ["no_receipt"] }
       ]
     },
     {
@@ -43,11 +43,11 @@ const consumerDataEn = {
       text: "What product did you buy?",
       condition: { consumer_issue: ["defective", "refund_refusal"] },
       options: [
-        { id: "electronics", label: "Electronics / appliances", tags: ["electronics"] },
-        { id: "clothes", label: "Clothing / footwear", tags: ["clothes"] },
-        { id: "car", label: "Car / spare parts", tags: ["car"] },
-        { id: "furniture", label: "Furniture / home goods", tags: ["furniture"] },
-        { id: "other_goods", label: "Other", tags: ["other"] }
+        { id: "electronics", label: "📱 Electronics / appliances", tags: ["electronics"] },
+        { id: "clothes", label: "👕 Clothing / footwear", tags: ["clothes"] },
+        { id: "car", label: "🚗 Car / spare parts", tags: ["car"] },
+        { id: "furniture", label: "🪑 Furniture / home goods", tags: ["furniture"] },
+        { id: "other_goods", label: "📦 Other", tags: ["other"] }
       ]
     },
     {
@@ -55,9 +55,9 @@ const consumerDataEn = {
       text: "How long since purchase?",
       condition: { consumer_issue: ["defective", "refund_refusal"] },
       options: [
-        { id: "14_days", label: "Up to 14 days", tags: ["short"] },
-        { id: "2_years", label: "Up to 2 years (within warranty)", tags: ["warranty"] },
-        { id: "over_2y", label: "More than 2 years (out of warranty)", tags: ["out_of_warranty"] }
+        { id: "14_days", label: "📅 Up to 14 days", tags: ["short"] },
+        { id: "2_years", label: "📆 Up to 2 years (within warranty)", tags: ["warranty"] },
+        { id: "over_2y", label: "📈 More than 2 years (out of warranty)", tags: ["out_of_warranty"] }
       ]
     },
     {

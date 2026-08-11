@@ -10,11 +10,11 @@ const consumerData = {
       text: "С чем у вас проблема?",
       type: "single",
       options: [
-        { id: "defective", label: "Купил товар — брак / не работает", tags: ["defective", "goods"] },
-        { id: "service_bad", label: "Услуга оказана плохо / не оказана", tags: ["service", "bad"] },
-        { id: "food_bad", label: "Испорченные продукты / отравление", tags: ["food", "poison"] },
-        { id: "online_scam", label: "Обман при покупке онлайн / не прислали товар", tags: ["online", "scam"] },
-        { id: "refund_refusal", label: "Продавец отказывается вернуть деньги", tags: ["refund", "dispute"] }
+        { id: "defective", label: "❌ Купил товар — брак / не работает", tags: ["defective", "goods"] },
+        { id: "service_bad", label: "🔧 Услуга оказана плохо / не оказана", tags: ["service", "bad"] },
+        { id: "food_bad", label: "🍖 Испорченные продукты / отравление", tags: ["food", "poison"] },
+        { id: "online_scam", label: "💻 Обман при покупке онлайн / не прислали товар", tags: ["online", "scam"] },
+        { id: "refund_refusal", label: "💸 Продавец отказывается вернуть деньги", tags: ["refund", "dispute"] }
       ]
     },
     {
@@ -22,10 +22,10 @@ const consumerData = {
       text: "Как вы покупали товар?",
       type: "single",
       options: [
-        { id: "offline_store", label: "В обычном магазине (офлайн)", tags: ["offline"] },
-        { id: "online_store", label: "В интернет-магазине", tags: ["online"] },
-        { id: "marketplace", label: "На маркетплейсе (Ozon, Wildberries, Яндекс.Маркет)", tags: ["marketplace"] },
-        { id: "private_person", label: "У частного лица / на Авито", tags: ["private"] }
+        { id: "offline_store", label: "🏪 В обычном магазине (офлайн)", tags: ["offline"] },
+        { id: "online_store", label: "🛒 В интернет-магазине", tags: ["online"] },
+        { id: "marketplace", label: "📦 На маркетплейсе (Ozon, Wildberries, Яндекс.Маркет)", tags: ["marketplace"] },
+        { id: "private_person", label: "👤 У частного лица / на Авито", tags: ["private"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const consumerData = {
       text: "У вас есть чек или другой документ, подтверждающий покупку?",
       type: "single",
       options: [
-        { id: "yes_receipt", label: "Есть чек / электронный чек", tags: ["receipt"] },
-        { id: "yes_other", label: "Есть выписка по карте / перевод", tags: ["bank_statement"] },
-        { id: "no_document", label: "Нет чека и других документов", tags: ["no_receipt"] }
+        { id: "yes_receipt", label: "🧾 Есть чек / электронный чек", tags: ["receipt"] },
+        { id: "yes_other", label: "📄 Есть выписка по карте / перевод", tags: ["bank_statement"] },
+        { id: "no_document", label: "❌ Нет чека и других документов", tags: ["no_receipt"] }
       ]
     },
     {
@@ -43,11 +43,11 @@ const consumerData = {
       text: "Какой товар вы купили?",
       condition: { consumer_issue: ["defective", "refund_refusal"] },
       options: [
-        { id: "electronics", label: "Техника / электроника", tags: ["electronics"] },
-        { id: "clothes", label: "Одежда / обувь", tags: ["clothes"] },
-        { id: "car", label: "Автомобиль / запчасти", tags: ["car"] },
-        { id: "furniture", label: "Мебель / товары для дома", tags: ["furniture"] },
-        { id: "other_goods", label: "Другое", tags: ["other"] }
+        { id: "electronics", label: "📱 Техника / электроника", tags: ["electronics"] },
+        { id: "clothes", label: "👕 Одежда / обувь", tags: ["clothes"] },
+        { id: "car", label: "🚗 Автомобиль / запчасти", tags: ["car"] },
+        { id: "furniture", label: "🪑 Мебель / товары для дома", tags: ["furniture"] },
+        { id: "other_goods", label: "📦 Другое", tags: ["other"] }
       ]
     },
     {
@@ -55,9 +55,9 @@ const consumerData = {
       text: "Сколько времени прошло с покупки?",
       condition: { consumer_issue: ["defective", "refund_refusal"] },
       options: [
-        { id: "14_days", label: "До 14 дней", tags: ["short"] },
-        { id: "2_years", label: "До 2 лет (в пределах гарантии)", tags: ["warranty"] },
-        { id: "over_2y", label: "Более 2 лет (после гарантии)", tags: ["out_of_warranty"] }
+        { id: "14_days", label: "📅 До 14 дней", tags: ["short"] },
+        { id: "2_years", label: "📆 До 2 лет (в пределах гарантии)", tags: ["warranty"] },
+        { id: "over_2y", label: "📈 Более 2 лет (после гарантии)", tags: ["out_of_warranty"] }
       ]
     },
     {

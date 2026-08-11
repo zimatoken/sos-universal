@@ -10,12 +10,12 @@ const schoolData = {
       text: "Какая ситуация?",
       type: "single",
       options: [
-        { id: "grades", label: "Проблемы с успеваемостью / двойки / не понимает", tags: ["grades"] },
-        { id: "teacher", label: "Конфликт с учителем / несправедливость / оскорбления", tags: ["teacher"] },
-        { id: "refusal", label: "Ребёнок не хочет идти в школу / прогулы", tags: ["refusal"] },
-        { id: "substances", label: "Наркотики / курение / алкоголь в школе / компании", tags: ["substances"] },
-        { id: "aggression", label: "Агрессия / драки / нарушение дисциплины", tags: ["aggression"] },
-        { id: "bullying", label: "Травля / изгнание / буллинг в классе", tags: ["bullying"] }
+        { id: "grades", label: "📊 Проблемы с успеваемостью / двойки / не понимает", tags: ["grades"] },
+        { id: "teacher", label: "👨‍🏫 Конфликт с учителем / несправедливость / оскорбления", tags: ["teacher"] },
+        { id: "refusal", label: "🚫 Ребёнок не хочет идти в школу / прогулы", tags: ["refusal"] },
+        { id: "substances", label: "🚫 Наркотики / курение / алкоголь в школе / компании", tags: ["substances"] },
+        { id: "aggression", label: "😠 Агрессия / драки / нарушение дисциплины", tags: ["aggression"] },
+        { id: "bullying", label: "💔 Травля / изгнание / буллинг в классе", tags: ["bullying"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const schoolData = {
       text: "Какой класс / возраст?",
       type: "single",
       options: [
-        { id: "primary", label: "1–4 класс (6–10 лет)", tags: ["primary"] },
-        { id: "middle", label: "5–9 класс (10–15 лет)", tags: ["middle"] },
-        { id: "high", label: "10–11 класс / колледж (15–18 лет)", tags: ["high"] }
+        { id: "primary", label: "📚 1–4 класс (6–10 лет)", tags: ["primary"] },
+        { id: "middle", label: "📖 5–9 класс (10–15 лет)", tags: ["middle"] },
+        { id: "high", label: "🎓 10–11 класс / колледж (15–18 лет)", tags: ["high"] }
       ]
     },
     {

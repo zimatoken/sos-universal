@@ -10,12 +10,12 @@ const internetData = {
       text: "Какая угроза?",
       type: "single",
       options: [
-        { id: "grooming", label: "Общение с незнакомцем / подозрительные сообщения", tags: ["grooming"] },
-        { id: "sexting", label: "Ребёнок отправил/получил интимные фото или видео", tags: ["sexting"] },
-        { id: "addiction", label: "Зависимость от гаджетов / игр / соцсетей", tags: ["addiction"] },
-        { id: "scam", label: "Мошенничество / вымогательство / фишинг", tags: ["scam"] },
-        { id: "content", label: "Опасный контент (жестокость, суицид, наркотики)", tags: ["content"] },
-        { id: "leak", label: "Утечка личных данных / взлом аккаунта", tags: ["leak"] }
+        { id: "grooming", label: "👤 Общение с незнакомцем / подозрительные сообщения", tags: ["grooming"] },
+        { id: "sexting", label: "📷 Ребёнок отправил/получил интимные фото или видео", tags: ["sexting"] },
+        { id: "addiction", label: "📱 Зависимость от гаджетов / игр / соцсетей", tags: ["addiction"] },
+        { id: "scam", label: "💸 Мошенничество / вымогательство / фишинг", tags: ["scam"] },
+        { id: "content", label: "⚠️ Опасный контент (жестокость, суицид, наркотики)", tags: ["content"] },
+        { id: "leak", label: "🔓 Утечка личных данных / взлом аккаунта", tags: ["leak"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const internetData = {
       text: "Возраст ребёнка?",
       type: "single",
       options: [
-        { id: "preschool", label: "3–7 лет", tags: ["preschool"] },
-        { id: "school", label: "7–12 лет", tags: ["school_age"] },
-        { id: "teen", label: "Подросток 13–17 лет", tags: ["teen"] }
+        { id: "preschool", label: "🧒 3–7 лет", tags: ["preschool"] },
+        { id: "school", label: "🧑 7–12 лет", tags: ["school_age"] },
+        { id: "teen", label: "🧑‍🎓 Подросток 13–17 лет", tags: ["teen"] }
       ]
     },
     {

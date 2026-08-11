@@ -10,13 +10,13 @@ const injuryData = {
       text: "Какая травма?",
       type: "single",
       options: [
-        { id: "cut", label: "Порез / рана / кровотечение", tags: ["cut"] },
-        { id: "burn", label: "Ожог (кипяток, огонь, химия, электричество)", tags: ["burn"] },
-        { id: "bruise", label: "Ушиб / синяк / растяжение", tags: ["bruise"] },
-        { id: "fracture", label: "Перелом / подозрение на перелом", tags: ["fracture"] },
-        { id: "head", label: "Удар по голове / сотрясение", tags: ["head"] },
-        { id: "eye", label: "Попадание в глаз / химия / инородное тело", tags: ["eye"] },
-        { id: "choking", label: "Подавился / поперхнулся / задыхается", tags: ["choking"] }
+        { id: "cut", label: "🩸 Порез / рана / кровотечение", tags: ["cut"] },
+        { id: "burn", label: "🔥 Ожог (кипяток, огонь, химия, электричество)", tags: ["burn"] },
+        { id: "bruise", label: "🤕 Ушиб / синяк / растяжение", tags: ["bruise"] },
+        { id: "fracture", label: "🦴 Перелом / подозрение на перелом", tags: ["fracture"] },
+        { id: "head", label: "🤕 Удар по голове / сотрясение", tags: ["head"] },
+        { id: "eye", label: "👁️ Попадание в глаз / химия / инородное тело", tags: ["eye"] },
+        { id: "choking", label: "😮 Подавился / поперхнулся / задыхается", tags: ["choking"] }
       ]
     },
     {
@@ -24,9 +24,9 @@ const injuryData = {
       text: "Насколько серьёзно?",
       type: "single",
       options: [
-        { id: "minor", label: "Мелкий порез / синяк / ссадина", tags: ["minor"] },
-        { id: "moderate", label: "Глубокая рана / сильный ожог / отёк", tags: ["moderate"] },
-        { id: "severe", label: "Сильное кровотечение / перелом / потеря сознания", tags: ["severe"] }
+        { id: "minor", label: "🩹 Мелкий порез / синяк / ссадина", tags: ["minor"] },
+        { id: "moderate", label: "🩸 Глубокая рана / сильный ожог / отёк", tags: ["moderate"] },
+        { id: "severe", label: "🚨 Сильное кровотечение / перелом / потеря сознания", tags: ["severe"] }
       ]
     },
     {

@@ -10,12 +10,12 @@ const careDataEn = {
       text: "What is needed?",
       type: "single",
       options: [
-        { id: "parasites", label: "Fleas / ticks / worms / fungus", tags: ["parasites"] },
-        { id: "grooming", label: "Grooming / mats / haircut / bathing", tags: ["grooming"] },
-        { id: "claws", label: "Claws / trim / broken claw", tags: ["claws"] },
-        { id: "ears", label: "Ears / dirt / smell / mites", tags: ["ears"] },
-        { id: "teeth", label: "Teeth / bad breath / tartar", tags: ["teeth"] },
-        { id: "skin", label: "Skin / dandruff / flaking / itching", tags: ["skin"] }
+        { id: "parasites", label: "🦟 Fleas / ticks / worms / fungus", tags: ["parasites"] },
+        { id: "grooming", label: "✂️ Grooming / mats / haircut / bathing", tags: ["grooming"] },
+        { id: "claws", label: "🐾 Claws / trim / broken claw", tags: ["claws"] },
+        { id: "ears", label: "👂 Ears / dirt / smell / mites", tags: ["ears"] },
+        { id: "teeth", label: "🦷 Teeth / bad breath / tartar", tags: ["teeth"] },
+        { id: "skin", label: "🩹 Skin / dandruff / flaking / itching", tags: ["skin"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const careDataEn = {
       text: "What animal?",
       type: "single",
       options: [
-        { id: "dog", label: "Dog", tags: ["dog"] },
-        { id: "cat", label: "Cat", tags: ["cat"] },
-        { id: "small", label: "Rabbit / hamster / guinea pig", tags: ["small"] }
+        { id: "dog", label: "🐕 Dog", tags: ["dog"] },
+        { id: "cat", label: "🐱 Cat", tags: ["cat"] },
+        { id: "small", label: "🐰 Rabbit / hamster / guinea pig", tags: ["small"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const careDataEn = {
       text: "How serious is it?",
       type: "single",
       options: [
-        { id: "prevention", label: "Prevention / routine care", tags: ["prevention"] },
-        { id: "mild", label: "Minor problem (few fleas, light tartar)", tags: ["mild"] },
-        { id: "severe", label: "Serious problem (many parasites, pus, strong smell)", tags: ["severe"] }
+        { id: "prevention", label: "✅ Prevention / routine care", tags: ["prevention"] },
+        { id: "mild", label: "⚠️ Minor problem (few fleas, light tartar)", tags: ["mild"] },
+        { id: "severe", label: "🚨 Serious problem (many parasites, pus, strong smell)", tags: ["severe"] }
       ]
     }
   ],

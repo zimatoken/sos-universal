@@ -10,12 +10,12 @@ const lockData = {
       text: "Что произошло?",
       type: "single",
       options: [
-        { id: "lost_keys", label: "Потерял ключи / оставил внутри", tags: ["lost"] },
-        { id: "jammed", label: "Замок заклинило / ключ не поворачивается", tags: ["jammed"] },
-        { id: "broken_key", label: "Ключ сломался в замке", tags: ["broken"] },
-        { id: "forced_entry", label: "Пытались взломать / взломали дверь", tags: ["forced"] },
-        { id: "suspicious", label: "Подозрительные лица у двери / пытались войти", tags: ["suspicious"] },
-        { id: "cant_lock", label: "Дверь не закрывается / не запирается", tags: ["cant_lock"] }
+        { id: "lost_keys", label: "🔑 Потерял ключи / оставил внутри", tags: ["lost"] },
+        { id: "jammed", label: "🔒 Замок заклинило / ключ не поворачивается", tags: ["jammed"] },
+        { id: "broken_key", label: "🔑 Ключ сломался в замке", tags: ["broken"] },
+        { id: "forced_entry", label: "🚨 Пытались взломать / взломали дверь", tags: ["forced"] },
+        { id: "suspicious", label: "👤 Подозрительные лица у двери / пытались войти", tags: ["suspicious"] },
+        { id: "cant_lock", label: "🚪 Дверь не закрывается / не запирается", tags: ["cant_lock"] }
       ]
     },
     {
@@ -23,10 +23,10 @@ const lockData = {
       text: "Какая дверь?",
       type: "single",
       options: [
-        { id: "metal", label: "Металлическая / бронированная", tags: ["metal"] },
-        { id: "wooden", label: "Деревянная / межкомнатная", tags: ["wooden"] },
-        { id: "plastic", label: "Пластиковая / балконная", tags: ["plastic"] },
-        { id: "car", label: "Автомобильная", tags: ["car"] }
+        { id: "metal", label: "🔒 Металлическая / бронированная", tags: ["metal"] },
+        { id: "wooden", label: "🚪 Деревянная / межкомнатная", tags: ["wooden"] },
+        { id: "plastic", label: "🪟 Пластиковая / балконная", tags: ["plastic"] },
+        { id: "car", label: "🚗 Автомобильная", tags: ["car"] }
       ]
     },
     {

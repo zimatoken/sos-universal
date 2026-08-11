@@ -10,11 +10,11 @@ const lostData = {
       text: "Какая ситуация?",
       type: "single",
       options: [
-        { id: "not_home", label: "Не пришёл из школы / с секции / от друзей", tags: ["not_home"] },
-        { id: "no_contact", label: "Не отвечает на звонки / сообщения (сутки+)", tags: ["no_contact"] },
-        { id: "runaway", label: "Убежал из дома после ссоры", tags: ["runaway"] },
-        { id: "abduction", label: "Подозреваю похищение / увез незнакомец", tags: ["abduction"] },
-        { id: "online", label: "Пропал после общения в интернете / соцсетях", tags: ["online"] }
+        { id: "not_home", label: "🏫 Не пришёл из школы / с секции / от друзей", tags: ["not_home"] },
+        { id: "no_contact", label: "📵 Не отвечает на звонки / сообщения (сутки+)", tags: ["no_contact"] },
+        { id: "runaway", label: "🏃 Убежал из дома после ссоры", tags: ["runaway"] },
+        { id: "abduction", label: "🚨 Подозреваю похищение / увез незнакомец", tags: ["abduction"] },
+        { id: "online", label: "💻 Пропал после общения в интернете / соцсетях", tags: ["online"] }
       ]
     },
     {
@@ -22,10 +22,10 @@ const lostData = {
       text: "Сколько времени прошло?",
       type: "single",
       options: [
-        { id: "less_1h", label: "Менее 1 часа", tags: ["recent"] },
-        { id: "1_3h", label: "1–3 часа", tags: ["short"] },
-        { id: "3_12h", label: "3–12 часов", tags: ["medium"] },
-        { id: "more_12h", label: "Более 12 часов", tags: ["long"] }
+        { id: "less_1h", label: "⏰ Менее 1 часа", tags: ["recent"] },
+        { id: "1_3h", label: "📅 1–3 часа", tags: ["short"] },
+        { id: "3_12h", label: "📆 3–12 часов", tags: ["medium"] },
+        { id: "more_12h", label: "📈 Более 12 часов", tags: ["long"] }
       ]
     },
     {

@@ -10,14 +10,14 @@ const laborDataEn = {
       text: "What is your problem at work?",
       type: "single",
       options: [
-        { id: "fired", label: "Fired / forced to resign", tags: ["fired", "unfair"] },
-        { id: "salary", label: "Salary not paid / delayed", tags: ["salary", "delayed"] },
-        { id: "boss_pressure", label: "Pressure from management / harassment (mobbing)", tags: ["mobbing", "harassment"] },
-        { id: "contract", label: "Not officially employed / no employment contract", tags: ["contract", "illegal"] },
-        { id: "overtime", label: "Forced to work overtime without pay", tags: ["overtime", "unpaid"] },
-        { id: "vacation", label: "Vacation denied / vacation pay not given", tags: ["vacation", "denied"] },
-        { id: "discrimination", label: "Discrimination (gender, age, nationality)", tags: ["discrimination", "unfair"] },
-        { id: "injury", label: "Workplace accident / injury", tags: ["injury", "safety"] }
+        { id: "fired", label: "🚪 Fired / forced to resign", tags: ["fired", "unfair"] },
+        { id: "salary", label: "💰 Salary not paid / delayed", tags: ["salary", "delayed"] },
+        { id: "boss_pressure", label: "😤 Pressure from management / harassment (mobbing)", tags: ["mobbing", "harassment"] },
+        { id: "contract", label: "📄 Not officially employed / no employment contract", tags: ["contract", "illegal"] },
+        { id: "overtime", label: "⏰ Forced to work overtime without pay", tags: ["overtime", "unpaid"] },
+        { id: "vacation", label: "🏖️ Vacation denied / vacation pay not given", tags: ["vacation", "denied"] },
+        { id: "discrimination", label: "⚖️ Discrimination (gender, age, nationality)", tags: ["discrimination", "unfair"] },
+        { id: "injury", label: "🩹 Workplace accident / injury", tags: ["injury", "safety"] }
       ]
     },
     {
@@ -25,10 +25,10 @@ const laborDataEn = {
       text: "How exactly were you fired?",
       condition: { labor_issue: ["fired"] },
       options: [
-        { id: "article", label: "Under a disciplinary article (truancy, lateness, violations)", tags: ["article", "disciplinary"] },
-        { id: "agreement", label: "By mutual agreement (signed papers)", tags: ["agreement", "mutual"] },
-        { id: "own_will", label: "Forced to resign voluntarily", tags: ["own_will", "forced"] },
-        { id: "layoff", label: "Redundancy / layoff", tags: ["layoff", "reduction"] }
+        { id: "article", label: "📜 Under a disciplinary article (truancy, lateness, violations)", tags: ["article", "disciplinary"] },
+        { id: "agreement", label: "🤝 By mutual agreement (signed papers)", tags: ["agreement", "mutual"] },
+        { id: "own_will", label: "✍️ Forced to resign voluntarily", tags: ["own_will", "forced"] },
+        { id: "layoff", label: "📉 Redundancy / layoff", tags: ["layoff", "reduction"] }
       ]
     },
     {
@@ -36,27 +36,27 @@ const laborDataEn = {
       text: "How long have you not been paid?",
       condition: { labor_issue: ["salary"] },
       options: [
-        { id: "week", label: "1-2 weeks", tags: ["short"] },
-        { id: "month", label: "1-2 months", tags: ["medium"] },
-        { id: "long", label: "More than 2 months", tags: ["long"] }
+        { id: "week", label: "📅 1-2 weeks", tags: ["short"] },
+        { id: "month", label: "📆 1-2 months", tags: ["medium"] },
+        { id: "long", label: "📈 More than 2 months", tags: ["long"] }
       ]
     },
     {
       id: "is_official",
       text: "Are you officially employed (employment contract, work record)?",
       options: [
-        { id: "official_yes", label: "Yes, officially employed", tags: ["official"] },
-        { id: "official_no", label: "No, working unofficially", tags: ["unofficial"] },
-        { id: "official_gray", label: "Officially employed but salary 'in envelope'", tags: ["gray"] }
+        { id: "official_yes", label: "✅ Yes, officially employed", tags: ["official"] },
+        { id: "official_no", label: "❌ No, working unofficially", tags: ["unofficial"] },
+        { id: "official_gray", label: "📦 Officially employed but salary 'in envelope'", tags: ["gray"] }
       ]
     },
     {
       id: "work_duration",
       text: "How long have you worked for this employer?",
       options: [
-        { id: "less_year", label: "Less than a year", tags: ["short_term"] },
-        { id: "one_three", label: "1-3 years", tags: ["medium_term"] },
-        { id: "more_three", label: "More than 3 years", tags: ["long_term"] }
+        { id: "less_year", label: "📅 Less than a year", tags: ["short_term"] },
+        { id: "one_three", label: "📆 1-3 years", tags: ["medium_term"] },
+        { id: "more_three", label: "📈 More than 3 years", tags: ["long_term"] }
       ]
     },
     {

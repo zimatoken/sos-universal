@@ -10,12 +10,12 @@ const emergencyPetDataEn = {
       text: "What happened?",
       type: "single",
       options: [
-        { id: "birth", label: "Birth / labor / retained fetus", tags: ["birth"] },
-        { id: "heatstroke", label: "Heat stroke / hypothermia", tags: ["heatstroke"] },
-        { id: "drowning", label: "Drowning / choked on water", tags: ["drowning"] },
-        { id: "electric", label: "Electric shock / electrocution", tags: ["electric"] },
-        { id: "snake", label: "Snake / spider / scorpion bite", tags: ["snake"] },
-        { id: "accident", label: "Car accident / fall from height / crushed by door", tags: ["accident"] }
+        { id: "birth", label: "👶 Birth / labor / retained fetus", tags: ["birth"] },
+        { id: "heatstroke", label: "🌡️ Heat stroke / hypothermia", tags: ["heatstroke"] },
+        { id: "drowning", label: "💧 Drowning / choked on water", tags: ["drowning"] },
+        { id: "electric", label: "⚡ Electric shock / electrocution", tags: ["electric"] },
+        { id: "snake", label: "🐍 Snake / spider / scorpion bite", tags: ["snake"] },
+        { id: "accident", label: "🚗 Car accident / fall from height / crushed by door", tags: ["accident"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const emergencyPetDataEn = {
       text: "What animal?",
       type: "single",
       options: [
-        { id: "dog", label: "Dog", tags: ["dog"] },
-        { id: "cat", label: "Cat", tags: ["cat"] },
-        { id: "small", label: "Rabbit / hamster / bird", tags: ["small"] }
+        { id: "dog", label: "🐕 Dog", tags: ["dog"] },
+        { id: "cat", label: "🐱 Cat", tags: ["cat"] },
+        { id: "small", label: "🐰 Rabbit / hamster / bird", tags: ["small"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const emergencyPetDataEn = {
       text: "Is the pet conscious?",
       type: "single",
       options: [
-        { id: "yes", label: "Yes, reacts, moves", tags: ["conscious"] },
-        { id: "no", label: "No, unconscious or lethargic", tags: ["unconscious"] },
-        { id: "shock", label: "In shock (shaking, gasping, pale)", tags: ["shock"] }
+        { id: "yes", label: "✅ Yes, reacts, moves", tags: ["conscious"] },
+        { id: "no", label: "❌ No, unconscious or lethargic", tags: ["unconscious"] },
+        { id: "shock", label: "😰 In shock (shaking, gasping, pale)", tags: ["shock"] }
       ]
     }
   ],

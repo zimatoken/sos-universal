@@ -1,7 +1,15 @@
+// modules/home/i18n.js
+// ============================================================
+// ЛОКАЛИЗАЦИЯ — Переводы для модуля Дом
+// ============================================================
+
 const HOME_LOCALES = {
+  // ===== РУССКИЙ =====
   ru: {
     app_title: "🏠 Дом",
     app_subtitle: "Что делать в экстренной ситуации дома",
+
+    // Категории
     cat_plumbing: "🚿 Вода и канализация",
     cat_electricity: "⚡ Электричество",
     cat_fire: "🔥 Пожар",
@@ -10,9 +18,12 @@ const HOME_LOCALES = {
     cat_heating: "🌡️ Отопление",
     cat_natural: "🌪️ Стихия"
   },
+
+  // ===== АНГЛИЙСКИЙ =====
   en: {
     app_title: "🏠 Home",
     app_subtitle: "What to do in a home emergency",
+
     cat_plumbing: "🚿 Water & Plumbing",
     cat_electricity: "⚡ Electricity",
     cat_fire: "🔥 Fire",
@@ -24,3 +35,4 @@ const HOME_LOCALES = {
 };
 
 window.HOME_LOCALES = HOME_LOCALES;
+console.log('✅ Локализации загружены (SOS HOME module)');

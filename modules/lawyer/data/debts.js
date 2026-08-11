@@ -10,11 +10,11 @@ const debtsData = {
       text: "Какой у вас долг?",
       type: "single",
       options: [
-        { id: "bank_loan", label: "Кредит в банке / микрозайм", tags: ["bank", "loan"] },
-        { id: "collector", label: "Коллекторы звонят / угрожают", tags: ["collector", "harassment"] },
-        { id: "bailiff", label: "Приставы арестовали счёт / имущество", tags: ["bailiff", "seizure"] },
-        { id: "bankruptcy", label: "Долгов больше, чем могу выплатить", tags: ["bankruptcy", "insolvency"] },
-        { id: "court_order", label: "Получил судебный приказ о взыскании", tags: ["court", "order"] }
+        { id: "bank_loan", label: "🏦 Кредит в банке / микрозайм", tags: ["bank", "loan"] },
+        { id: "collector", label: "📞 Коллекторы звонят / угрожают", tags: ["collector", "harassment"] },
+        { id: "bailiff", label: "⚖️ Приставы арестовали счёт / имущество", tags: ["bailiff", "seizure"] },
+        { id: "bankruptcy", label: "📉 Долгов больше, чем могу выплатить", tags: ["bankruptcy", "insolvency"] },
+        { id: "court_order", label: "🏛️ Получил судебный приказ о взыскании", tags: ["court", "order"] }
       ]
     },
     {
@@ -22,19 +22,19 @@ const debtsData = {
       text: "Где вы взяли кредит?",
       condition: { debt_type: ["bank_loan", "bankruptcy"] },
       options: [
-        { id: "bank", label: "Банк (Сбер, Тинькофф, ВТБ и т.д.)", tags: ["bank"] },
-        { id: "mfo", label: "Микрофинансовая организация (МФО)", tags: ["mfo"] },
-        { id: "credit_card", label: "Кредитная карта", tags: ["credit_card"] },
-        { id: "multiple", label: "Несколько кредитов в разных местах", tags: ["multiple"] }
+        { id: "bank", label: "🏦 Банк (Сбер, Тинькофф, ВТБ и т.д.)", tags: ["bank"] },
+        { id: "mfo", label: "📄 Микрофинансовая организация (МФО)", tags: ["mfo"] },
+        { id: "credit_card", label: "💳 Кредитная карта", tags: ["credit_card"] },
+        { id: "multiple", label: "📚 Несколько кредитов в разных местах", tags: ["multiple"] }
       ]
     },
     {
       id: "overdue",
       text: "Есть ли просрочка платежа?",
       options: [
-        { id: "no_overdue", label: "Нет, плачу вовремя", tags: ["no_overdue"] },
-        { id: "up_to_3_months", label: "Просрочка до 3 месяцев", tags: ["short_overdue"] },
-        { id: "over_3_months", label: "Просрочка более 3 месяцев", tags: ["long_overdue"] }
+        { id: "no_overdue", label: "✅ Нет, плачу вовремя", tags: ["no_overdue"] },
+        { id: "up_to_3_months", label: "⏰ Просрочка до 3 месяцев", tags: ["short_overdue"] },
+        { id: "over_3_months", label: "⚠️ Просрочка более 3 месяцев", tags: ["long_overdue"] }
       ]
     },
     {
@@ -42,10 +42,10 @@ const debtsData = {
       text: "Что именно делают коллекторы?",
       condition: { debt_type: ["collector"] },
       options: [
-        { id: "calls", label: "Звонки родственникам / на работу", tags: ["calls", "harassment"] },
-        { id: "threats", label: "Угрозы физической расправой", tags: ["threats", "violence"] },
-        { id: "door", label: "Пришли домой / к соседям", tags: ["door", "intimidation"] },
-        { id: "fake_docs", label: "Предъявляют фальшивые документы / судебные решения", tags: ["fake", "fraud"] }
+        { id: "calls", label: "📞 Звонки родственникам / на работу", tags: ["calls", "harassment"] },
+        { id: "threats", label: "⚠️ Угрозы физической расправой", tags: ["threats", "violence"] },
+        { id: "door", label: "🚪 Пришли домой / к соседям", tags: ["door", "intimidation"] },
+        { id: "fake_docs", label: "📄 Предъявляют фальшивые документы / судебные решения", tags: ["fake", "fraud"] }
       ]
     },
     {
@@ -53,9 +53,9 @@ const debtsData = {
       text: "Какова общая сумма долга?",
       condition: { debt_type: ["bank_loan", "bankruptcy", "court_order"] },
       options: [
-        { id: "small", label: "До 500 тыс. руб.", tags: ["small"] },
-        { id: "medium", label: "500 тыс. — 1 млн руб.", tags: ["medium"] },
-        { id: "large", label: "Более 1 млн руб.", tags: ["large"] }
+        { id: "small", label: "💵 До 500 тыс. руб.", tags: ["small"] },
+        { id: "medium", label: "💰 500 тыс. — 1 млн руб.", tags: ["medium"] },
+        { id: "large", label: "💸 Более 1 млн руб.", tags: ["large"] }
       ]
     },
     {

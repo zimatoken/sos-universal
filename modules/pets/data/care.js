@@ -10,12 +10,12 @@ const careData = {
       text: "Что нужно?",
       type: "single",
       options: [
-        { id: "parasites", label: "Блохи / клещи / глисты / грибок", tags: ["parasites"] },
-        { id: "grooming", label: "Груминг / колтуны / стрижка / мытьё", tags: ["grooming"] },
-        { id: "claws", label: "Когти / подстричь / сломан коготь", tags: ["claws"] },
-        { id: "ears", label: "Уши / грязь / запах / чесотка", tags: ["ears"] },
-        { id: "teeth", label: "Зубы / запах изо рта / зубной камень", tags: ["teeth"] },
-        { id: "skin", label: "Кожа / перхоть / шелушение / зуд", tags: ["skin"] }
+        { id: "parasites", label: "🦟 Блохи / клещи / глисты / грибок", tags: ["parasites"] },
+        { id: "grooming", label: "✂️ Груминг / колтуны / стрижка / мытьё", tags: ["grooming"] },
+        { id: "claws", label: "🐾 Когти / подстричь / сломан коготь", tags: ["claws"] },
+        { id: "ears", label: "👂 Уши / грязь / запах / чесотка", tags: ["ears"] },
+        { id: "teeth", label: "🦷 Зубы / запах изо рта / зубной камень", tags: ["teeth"] },
+        { id: "skin", label: "🩹 Кожа / перхоть / шелушение / зуд", tags: ["skin"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const careData = {
       text: "Какое животное?",
       type: "single",
       options: [
-        { id: "dog", label: "Собака", tags: ["dog"] },
-        { id: "cat", label: "Кошка", tags: ["cat"] },
-        { id: "small", label: "Кролик / хомяк / морская свинка", tags: ["small"] }
+        { id: "dog", label: "🐕 Собака", tags: ["dog"] },
+        { id: "cat", label: "🐱 Кошка", tags: ["cat"] },
+        { id: "small", label: "🐰 Кролик / хомяк / морская свинка", tags: ["small"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const careData = {
       text: "Насколько серьёзно?",
       type: "single",
       options: [
-        { id: "prevention", label: "Профилактика / плановый уход", tags: ["prevention"] },
-        { id: "mild", label: "Небольшая проблема (немного блох, лёгкий зубной камень)", tags: ["mild"] },
-        { id: "severe", label: "Серьёзная проблема (много паразитов, гной, сильный запах)", tags: ["severe"] }
+        { id: "prevention", label: "✅ Профилактика / плановый уход", tags: ["prevention"] },
+        { id: "mild", label: "⚠️ Небольшая проблема (немного блох, лёгкий зубной камень)", tags: ["mild"] },
+        { id: "severe", label: "🚨 Серьёзная проблема (много паразитов, гной, сильный запах)", tags: ["severe"] }
       ]
     }
   ],

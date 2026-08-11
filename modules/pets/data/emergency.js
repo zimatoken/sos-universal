@@ -10,12 +10,12 @@ const emergencyPetData = {
       text: "Что произошло?",
       type: "single",
       options: [
-        { id: "birth", label: "Роды / родовая деятельность / задержка плода", tags: ["birth"] },
-        { id: "heatstroke", label: "Тепловой удар / переохлаждение", tags: ["heatstroke"] },
-        { id: "drowning", label: "Утопление / захлебнулся водой", tags: ["drowning"] },
-        { id: "electric", label: "Электроудар / удар током", tags: ["electric"] },
-        { id: "snake", label: "Укус змеи / паука / скорпиона", tags: ["snake"] },
-        { id: "accident", label: "ДТП / падение с высоты / зажало дверью", tags: ["accident"] }
+        { id: "birth", label: "👶 Роды / родовая деятельность / задержка плода", tags: ["birth"] },
+        { id: "heatstroke", label: "🌡️ Тепловой удар / переохлаждение", tags: ["heatstroke"] },
+        { id: "drowning", label: "💧 Утопление / захлебнулся водой", tags: ["drowning"] },
+        { id: "electric", label: "⚡ Электроудар / удар током", tags: ["electric"] },
+        { id: "snake", label: "🐍 Укус змеи / паука / скорпиона", tags: ["snake"] },
+        { id: "accident", label: "🚗 ДТП / падение с высоты / зажало дверью", tags: ["accident"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const emergencyPetData = {
       text: "Какое животное?",
       type: "single",
       options: [
-        { id: "dog", label: "Собака", tags: ["dog"] },
-        { id: "cat", label: "Кошка", tags: ["cat"] },
-        { id: "small", label: "Кролик / хомяк / птица", tags: ["small"] }
+        { id: "dog", label: "🐕 Собака", tags: ["dog"] },
+        { id: "cat", label: "🐱 Кошка", tags: ["cat"] },
+        { id: "small", label: "🐰 Кролик / хомяк / птица", tags: ["small"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const emergencyPetData = {
       text: "Питомец в сознании?",
       type: "single",
       options: [
-        { id: "yes", label: "Да, реагирует, двигается", tags: ["conscious"] },
-        { id: "no", label: "Нет, без сознания или вялый", tags: ["unconscious"] },
-        { id: "shock", label: "В шоке (трясётся, задыхается, бледный)", tags: ["shock"] }
+        { id: "yes", label: "✅ Да, реагирует, двигается", tags: ["conscious"] },
+        { id: "no", label: "❌ Нет, без сознания или вялый", tags: ["unconscious"] },
+        { id: "shock", label: "😰 В шоке (трясётся, задыхается, бледный)", tags: ["shock"] }
       ]
     }
   ],

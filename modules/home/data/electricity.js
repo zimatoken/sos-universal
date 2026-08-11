@@ -10,11 +10,11 @@ const electricityData = {
       text: "Что произошло?",
       type: "single",
       options: [
-        { id: "no_power", label: "Нет света / отключили электричество", tags: ["no_power"] },
-        { id: "spark", label: "Искрение / треск / запах гари из розетки / щитка", tags: ["spark", "fire_risk"] },
-        { id: "shock", label: "Удар током / пощипывание от прибора / крана", tags: ["shock", "danger"] },
-        { id: "breaker", label: "Выбило автомат / пробки / RCD", tags: ["breaker"] },
-        { id: "burned_smell", label: "Запах гари / дыма без видимого огня", tags: ["smell", "fire_risk"] }
+        { id: "no_power", label: "💡 Нет света / отключили электричество", tags: ["no_power"] },
+        { id: "spark", label: "⚡ Искрение / треск / запах гари из розетки / щитка", tags: ["spark", "fire_risk"] },
+        { id: "shock", label: "⚡ Удар током / пощипывание от прибора / крана", tags: ["shock", "danger"] },
+        { id: "breaker", label: "🔌 Выбило автомат / пробки / RCD", tags: ["breaker"] },
+        { id: "burned_smell", label: "🔥 Запах гари / дыма без видимого огня", tags: ["smell", "fire_risk"] }
       ]
     },
     {
@@ -22,10 +22,10 @@ const electricityData = {
       text: "Где именно проблема?",
       type: "single",
       options: [
-        { id: "whole_house", label: "Во всей квартире / доме", tags: ["whole"] },
-        { id: "one_room", label: "В одной комнате / на одной линии", tags: ["room"] },
-        { id: "one_device", label: "Один прибор / розетка", tags: ["device"] },
-        { id: "dont_know", label: "Не уверен", tags: ["unknown"] }
+        { id: "whole_house", label: "🏠 Во всей квартире / доме", tags: ["whole"] },
+        { id: "one_room", label: "🚪 В одной комнате / на одной линии", tags: ["room"] },
+        { id: "one_device", label: "📱 Один прибор / розетка", tags: ["device"] },
+        { id: "dont_know", label: "❓ Не уверен", tags: ["unknown"] }
       ]
     },
     {

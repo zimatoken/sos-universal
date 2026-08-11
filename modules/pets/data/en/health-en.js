@@ -10,12 +10,12 @@ const petHealthDataEn = {
       text: "What is the main symptom?",
       type: "single",
       options: [
-        { id: "fever", label: "High temperature / fever / chills", tags: ["fever"] },
-        { id: "vomit", label: "Vomiting / diarrhea / refusal to eat", tags: ["vomit"] },
-        { id: "cough", label: "Cough / sneezing / difficulty breathing", tags: ["cough"] },
-        { id: "lethargy", label: "Lethargy / drowsiness / won't get up", tags: ["lethargy"] },
-        { id: "urine", label: "Urination problems / blood in urine", tags: ["urine"] },
-        { id: "skin", label: "Rash / itching / hair loss / dandruff", tags: ["skin"] }
+        { id: "fever", label: "🌡️ High temperature / fever / chills", tags: ["fever"] },
+        { id: "vomit", label: "🤢 Vomiting / diarrhea / refusal to eat", tags: ["vomit"] },
+        { id: "cough", label: "🫁 Cough / sneezing / difficulty breathing", tags: ["cough"] },
+        { id: "lethargy", label: "😴 Lethargy / drowsiness / won't get up", tags: ["lethargy"] },
+        { id: "urine", label: "💧 Urination problems / blood in urine", tags: ["urine"] },
+        { id: "skin", label: "🩹 Rash / itching / hair loss / dandruff", tags: ["skin"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const petHealthDataEn = {
       text: "What animal?",
       type: "single",
       options: [
-        { id: "dog", label: "Dog", tags: ["dog"] },
-        { id: "cat", label: "Cat", tags: ["cat"] },
-        { id: "small", label: "Rabbit / hamster / guinea pig", tags: ["small"] }
+        { id: "dog", label: "🐕 Dog", tags: ["dog"] },
+        { id: "cat", label: "🐱 Cat", tags: ["cat"] },
+        { id: "small", label: "🐰 Rabbit / hamster / guinea pig", tags: ["small"] }
       ]
     },
     {
@@ -33,10 +33,10 @@ const petHealthDataEn = {
       text: "How long has it been going on?",
       type: "single",
       options: [
-        { id: "hours", label: "Several hours", tags: ["hours"] },
-        { id: "day", label: "1 day", tags: ["day"] },
-        { id: "days", label: "2–3 days", tags: ["days"] },
-        { id: "week", label: "A week or more", tags: ["week"] }
+        { id: "hours", label: "⏰ Several hours", tags: ["hours"] },
+        { id: "day", label: "📅 1 day", tags: ["day"] },
+        { id: "days", label: "📆 2–3 days", tags: ["days"] },
+        { id: "week", label: "📈 A week or more", tags: ["week"] }
       ]
     }
   ],

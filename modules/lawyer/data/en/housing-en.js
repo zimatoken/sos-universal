@@ -10,12 +10,12 @@ const housingDataEn = {
       text: "What is your housing problem?",
       type: "single",
       options: [
-        { id: "neighbors", label: "Problems with neighbors (noise, flooding, smell)", tags: ["neighbors", "noise", "flood"] },
-        { id: "uk", label: "Utilities not working / poor services", tags: ["uk", "housing_services"] },
-        { id: "rent", label: "Rental problems / eviction", tags: ["rent", "eviction"] },
-        { id: "flood", label: "Apartment was flooded", tags: ["flood", "damage"] },
-        { id: "neighbors_illegal", label: "Neighbors renting illegally / making noise", tags: ["neighbors_illegal", "rental"] },
-        { id: "overpay", label: "Overcharged utility bills", tags: ["overpay", "utilities"] }
+        { id: "neighbors", label: "🏠 Problems with neighbors (noise, flooding, smell)", tags: ["neighbors", "noise", "flood"] },
+        { id: "uk", label: "🏢 Utilities not working / poor services", tags: ["uk", "housing_services"] },
+        { id: "rent", label: "🔑 Rental problems / eviction", tags: ["rent", "eviction"] },
+        { id: "flood", label: "💧 Apartment was flooded", tags: ["flood", "damage"] },
+        { id: "neighbors_illegal", label: "🚫 Neighbors renting illegally / making noise", tags: ["neighbors_illegal", "rental"] },
+        { id: "overpay", label: "💰 Overcharged utility bills", tags: ["overpay", "utilities"] }
       ]
     },
     {
@@ -23,10 +23,10 @@ const housingDataEn = {
       text: "What exactly are the neighbors doing?",
       condition: { housing_issue: ["neighbors", "neighbors_illegal"] },
       options: [
-        { id: "noise", label: "Constant noise (renovation, music, shouting)", tags: ["noise", "law"] },
-        { id: "flood_neighbor", label: "Flooded from upstairs", tags: ["flood", "damage"] },
-        { id: "smell", label: "Unpleasant smell / trash in the entrance", tags: ["smell", "sanitary"] },
-        { id: "illegal_rental", label: "Renting to noisy tenants / illegally", tags: ["illegal_rental", "police"] }
+        { id: "noise", label: "🔊 Constant noise (renovation, music, shouting)", tags: ["noise", "law"] },
+        { id: "flood_neighbor", label: "💧 Flooded from upstairs", tags: ["flood", "damage"] },
+        { id: "smell", label: "😷 Unpleasant smell / trash in the entrance", tags: ["smell", "sanitary"] },
+        { id: "illegal_rental", label: "🚫 Renting to noisy tenants / illegally", tags: ["illegal_rental", "police"] }
       ]
     },
     {
@@ -34,11 +34,11 @@ const housingDataEn = {
       text: "What is wrong with the utility services?",
       condition: { housing_issue: ["uk", "overpay"] },
       options: [
-        { id: "cold", label: "No heating / cold radiators", tags: ["cold", "heating"] },
-        { id: "water_off", label: "Water / electricity cut without notice", tags: ["water", "electricity"] },
-        { id: "garbage", label: "Trash / snow not cleaned", tags: ["garbage", "cleanliness"] },
-        { id: "overpay_uk", label: "Inflated bills / extra services", tags: ["overpay", "utilities"] },
-        { id: "emergency", label: "Emergency condition of the building / roof", tags: ["emergency", "safety"] }
+        { id: "cold", label: "❄️ No heating / cold radiators", tags: ["cold", "heating"] },
+        { id: "water_off", label: "💡 Water / electricity cut without notice", tags: ["water", "electricity"] },
+        { id: "garbage", label: "🗑️ Trash / snow not cleaned", tags: ["garbage", "cleanliness"] },
+        { id: "overpay_uk", label: "💰 Inflated bills / extra services", tags: ["overpay", "utilities"] },
+        { id: "emergency", label: "⚠️ Emergency condition of the building / roof", tags: ["emergency", "safety"] }
       ]
     },
     {
@@ -46,8 +46,8 @@ const housingDataEn = {
       text: "Do you have a rental contract?",
       condition: { housing_issue: ["rent"] },
       options: [
-        { id: "contract_yes", label: "Yes, there is a written contract", tags: ["contract_yes"] },
-        { id: "contract_no", label: "No contract (verbal agreement)", tags: ["contract_no"] }
+        { id: "contract_yes", label: "📄 Yes, there is a written contract", tags: ["contract_yes"] },
+        { id: "contract_no", label: "🗣️ No contract (verbal agreement)", tags: ["contract_no"] }
       ]
     },
     {
@@ -55,9 +55,9 @@ const housingDataEn = {
       text: "What is the amount of damage?",
       condition: { housing_issue: ["flood", "neighbors"], neighbor_type: ["flood_neighbor"] },
       options: [
-        { id: "damage_small", label: "Up to 50,000 RUB", tags: ["small"] },
-        { id: "damage_medium", label: "50,000 – 200,000 RUB", tags: ["medium"] },
-        { id: "damage_large", label: "More than 200,000 RUB", tags: ["large"] }
+        { id: "damage_small", label: "💵 Up to 50,000 RUB", tags: ["small"] },
+        { id: "damage_medium", label: "💰 50,000 – 200,000 RUB", tags: ["medium"] },
+        { id: "damage_large", label: "💸 More than 200,000 RUB", tags: ["large"] }
       ]
     }
   ],

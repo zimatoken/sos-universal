@@ -10,12 +10,12 @@ const plumbingData = {
       text: "Что произошло?",
       type: "single",
       options: [
-        { id: "leak_pipe", label: "Течёт труба / кран / соединение", tags: ["leak", "pipe"] },
-        { id: "leak_ceiling", label: "Течёт с потолка / затопили сверху", tags: ["leak", "ceiling", "flood"] },
-        { id: "clog_sink", label: "Засорился раковина / ванна / душ", tags: ["clog", "sink"] },
-        { id: "clog_toilet", label: "Засорился унитаз", tags: ["clog", "toilet"] },
-        { id: "no_water", label: "Нет воды (холодной или горячей)", tags: ["no_water"] },
-        { id: "burst_pipe", label: "Труба лопнула / фонтан воды", tags: ["burst", "emergency"] }
+        { id: "leak_pipe", label: "💧 Течёт труба / кран / соединение", tags: ["leak", "pipe"] },
+        { id: "leak_ceiling", label: "💦 Течёт с потолка / затопили сверху", tags: ["leak", "ceiling", "flood"] },
+        { id: "clog_sink", label: "🚿 Засорился раковина / ванна / душ", tags: ["clog", "sink"] },
+        { id: "clog_toilet", label: "🚽 Засорился унитаз", tags: ["clog", "toilet"] },
+        { id: "no_water", label: "❌ Нет воды (холодной или горячей)", tags: ["no_water"] },
+        { id: "burst_pipe", label: "💥 Труба лопнула / фонтан воды", tags: ["burst", "emergency"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const plumbingData = {
       text: "Насколько сильно течёт?",
       type: "single",
       options: [
-        { id: "drop", label: "Капает / небольшая струйка", tags: ["minor"] },
-        { id: "stream", label: "Течёт сильно / льётся", tags: ["major"] },
-        { id: "flood", label: "Затопление / вода на полу", tags: ["flood"] }
+        { id: "drop", label: "💧 Капает / небольшая струйка", tags: ["minor"] },
+        { id: "stream", label: "🌊 Течёт сильно / льётся", tags: ["major"] },
+        { id: "flood", label: "🌊 Затопление / вода на полу", tags: ["flood"] }
       ]
     },
     {

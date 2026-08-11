@@ -10,12 +10,12 @@ const safetyData = {
       text: "Что произошло?",
       type: "single",
       options: [
-        { id: "stranger", label: "Ребёнок ушёл с незнакомцем / разговаривал с чужим", tags: ["stranger"] },
-        { id: "alone_home", label: "Остался один дома / потерялся в магазине", tags: ["alone", "lost"] },
-        { id: "dangerous_item", label: "Нашёл опасный предмет (нож, таблетки, оружие)", tags: ["dangerous"] },
-        { id: "traffic", label: "Попал в опасную ситуацию на дороге", tags: ["traffic"] },
-        { id: "animal", label: "Укусило / поцарапало животное", tags: ["animal"] },
-        { id: "fire", label: "Играл с огнём / спичками / зажигалкой", tags: ["fire"] }
+        { id: "stranger", label: "👤 Ребёнок ушёл с незнакомцем / разговаривал с чужим", tags: ["stranger"] },
+        { id: "alone_home", label: "🏠 Остался один дома / потерялся в магазине", tags: ["alone", "lost"] },
+        { id: "dangerous_item", label: "⚠️ Нашёл опасный предмет (нож, таблетки, оружие)", tags: ["dangerous"] },
+        { id: "traffic", label: "🚗 Попал в опасную ситуацию на дороге", tags: ["traffic"] },
+        { id: "animal", label: "🐕 Укусило / поцарапало животное", tags: ["animal"] },
+        { id: "fire", label: "🔥 Играл с огнём / спичками / зажигалкой", tags: ["fire"] }
       ]
     },
     {
@@ -23,10 +23,10 @@ const safetyData = {
       text: "Сколько лет ребёнку?",
       type: "single",
       options: [
-        { id: "baby", label: "До 3 лет", tags: ["baby"] },
-        { id: "preschool", label: "3–7 лет", tags: ["preschool"] },
-        { id: "school", label: "7–12 лет", tags: ["school_age"] },
-        { id: "teen", label: "Подросток 13–17 лет", tags: ["teen"] }
+        { id: "baby", label: "👶 До 3 лет", tags: ["baby"] },
+        { id: "preschool", label: "🧒 3–7 лет", tags: ["preschool"] },
+        { id: "school", label: "🧑 7–12 лет", tags: ["school_age"] },
+        { id: "teen", label: "🧑‍🎓 Подросток 13–17 лет", tags: ["teen"] }
       ]
     },
     {
@@ -34,10 +34,10 @@ const safetyData = {
       text: "Где это произошло?",
       type: "single",
       options: [
-        { id: "home", label: "Дома / квартира", tags: ["home"] },
-        { id: "street", label: "На улице / во дворе / парке", tags: ["street"] },
-        { id: "public", label: "В магазине / ТЦ / транспорте", tags: ["public"] },
-        { id: "school", label: "В школе / садике", tags: ["school_place"] }
+        { id: "home", label: "🏠 Дома / квартира", tags: ["home"] },
+        { id: "street", label: "🌳 На улице / во дворе / парке", tags: ["street"] },
+        { id: "public", label: "🏪 В магазине / ТЦ / транспорте", tags: ["public"] },
+        { id: "school", label: "🏫 В школе / садике", tags: ["school_place"] }
       ]
     }
   ],

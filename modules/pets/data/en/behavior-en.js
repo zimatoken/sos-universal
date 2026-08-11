@@ -10,12 +10,12 @@ const behaviorDataEn = {
       text: "What is the behavior problem?",
       type: "single",
       options: [
-        { id: "aggression_people", label: "Aggression toward people (bites, growls, lunges)", tags: ["aggression_people"] },
-        { id: "aggression_animals", label: "Aggression toward other animals", tags: ["aggression_animals"] },
-        { id: "anxiety", label: "Anxiety / fear (shakes, hides, won't go out)", tags: ["anxiety"] },
-        { id: "destruction", label: "Destructive behavior (chews furniture, digs, marks)", tags: ["destruction"] },
-        { id: "barking", label: "Non-stop barking / howling / meowing", tags: ["barking"] },
-        { id: "leash", label: "Pulls leash / runs away / doesn't obey", tags: ["leash"] }
+        { id: "aggression_people", label: "😠 Aggression toward people (bites, growls, lunges)", tags: ["aggression_people"] },
+        { id: "aggression_animals", label: "🐕 Aggression toward other animals", tags: ["aggression_animals"] },
+        { id: "anxiety", label: "😰 Anxiety / fear (shakes, hides, won't go out)", tags: ["anxiety"] },
+        { id: "destruction", label: "🪑 Destructive behavior (chews furniture, digs, marks)", tags: ["destruction"] },
+        { id: "barking", label: "🔊 Non-stop barking / howling / meowing", tags: ["barking"] },
+        { id: "leash", label: "🐕 Pulls leash / runs away / doesn't obey", tags: ["leash"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const behaviorDataEn = {
       text: "What animal?",
       type: "single",
       options: [
-        { id: "dog", label: "Dog", tags: ["dog"] },
-        { id: "cat", label: "Cat", tags: ["cat"] },
-        { id: "other", label: "Other", tags: ["other"] }
+        { id: "dog", label: "🐕 Dog", tags: ["dog"] },
+        { id: "cat", label: "🐱 Cat", tags: ["cat"] },
+        { id: "other", label: "🦎 Other", tags: ["other"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const behaviorDataEn = {
       text: "How long has this been going on?",
       type: "single",
       options: [
-        { id: "recent", label: "Recently (after moving, injury, new pet)", tags: ["recent"] },
-        { id: "long", label: "For a long time (since childhood / adoption)", tags: ["long"] },
-        { id: "sudden", label: "Suddenly (was fine, became bad)", tags: ["sudden"] }
+        { id: "recent", label: "📅 Recently (after moving, injury, new pet)", tags: ["recent"] },
+        { id: "long", label: "📈 For a long time (since childhood / adoption)", tags: ["long"] },
+        { id: "sudden", label: "⚡ Suddenly (was fine, became bad)", tags: ["sudden"] }
       ]
     }
   ],

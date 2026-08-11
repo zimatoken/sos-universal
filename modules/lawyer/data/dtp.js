@@ -10,12 +10,12 @@ const dtpData = {
       text: "Что произошло в ДТП?",
       type: "single",
       options: [
-        { id: "minor", label: "Мелкое ДТП, повреждения незначительные", tags: ["minor", "simple"] },
-        { id: "serious", label: "Серьёзное ДТП, есть пострадавшие", tags: ["serious", "injuries"] },
-        { id: "pedestrian", label: "Наезд на пешехода / велосипедиста", tags: ["pedestrian", "injuries"] },
-        { id: "hit_run", label: "Виновник скрылся с места ДТП", tags: ["hit_run", "unknown"] },
-        { id: "dispute", label: "Спор о вине / страховая не платит", tags: ["dispute", "insurance"] },
-        { id: "with_osago", label: "У виновника есть ОСАГО, страховая занижает выплату", tags: ["osago", "underpayment"] }
+        { id: "minor", label: "🚗 Мелкое ДТП, повреждения незначительные", tags: ["minor", "simple"] },
+        { id: "serious", label: "🚨 Серьёзное ДТП, есть пострадавшие", tags: ["serious", "injuries"] },
+        { id: "pedestrian", label: "🚶 Наезд на пешехода / велосипедиста", tags: ["pedestrian", "injuries"] },
+        { id: "hit_run", label: "🏃 Виновник скрылся с места ДТП", tags: ["hit_run", "unknown"] },
+        { id: "dispute", label: "⚖️ Спор о вине / страховая не платит", tags: ["dispute", "insurance"] },
+        { id: "with_osago", label: "📄 У виновника есть ОСАГО, страховая занижает выплату", tags: ["osago", "underpayment"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const dtpData = {
       text: "У виновника есть полис ОСАГО?",
       type: "single",
       options: [
-        { id: "osago_yes", label: "Да, есть действующий полис", tags: ["osago_yes"] },
-        { id: "osago_no", label: "Нет, полиса нет или просрочен", tags: ["osago_no"] },
-        { id: "osago_unknown", label: "Не знаю / виновник скрылся", tags: ["osago_unknown"] }
+        { id: "osago_yes", label: "✅ Да, есть действующий полис", tags: ["osago_yes"] },
+        { id: "osago_no", label: "❌ Нет, полиса нет или просрочен", tags: ["osago_no"] },
+        { id: "osago_unknown", label: "❓ Не знаю / виновник скрылся", tags: ["osago_unknown"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const dtpData = {
       text: "Какие документы у вас есть?",
       type: "single",
       options: [
-        { id: "full", label: "Все: ОСАГО, права, СТС, европротокол/справка ГИБДД", tags: ["full", "complete"] },
-        { id: "partial", label: "Частично (чего-то не хватает)", tags: ["partial", "incomplete"] },
-        { id: "none", label: "Нет документов / виновник скрылся", tags: ["none", "missing"] }
+        { id: "full", label: "📄 Все: ОСАГО, права, СТС, европротокол/справка ГИБДД", tags: ["full", "complete"] },
+        { id: "partial", label: "📋 Частично (чего-то не хватает)", tags: ["partial", "incomplete"] },
+        { id: "none", label: "❌ Нет документов / виновник скрылся", tags: ["none", "missing"] }
       ]
     },
     {
@@ -43,9 +43,9 @@ const dtpData = {
       text: "Есть ли свидетели ДТП?",
       type: "single",
       options: [
-        { id: "yes_witness", label: "Да, есть свидетели (контакты записаны)", tags: ["witness_yes"] },
-        { id: "no_witness", label: "Нет свидетелей", tags: ["witness_no"] },
-        { id: "video", label: "Есть видеозапись (камеры, регистратор)", tags: ["video"] }
+        { id: "yes_witness", label: "👥 Да, есть свидетели (контакты записаны)", tags: ["witness_yes"] },
+        { id: "no_witness", label: "❌ Нет свидетелей", tags: ["witness_no"] },
+        { id: "video", label: "📹 Есть видеозапись (камеры, регистратор)", tags: ["video"] }
       ]
     },
     {

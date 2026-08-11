@@ -10,12 +10,12 @@ const firstaidData = {
       text: "Что случилось?",
       type: "single",
       options: [
-        { id: "bleeding", label: "Кровотечение / рана / порез", tags: ["bleeding"] },
-        { id: "burn", label: "Ожог (кипяток, огонь, химия)", tags: ["burn"] },
-        { id: "fracture", label: "Перелом / подозрение на перелом", tags: ["fracture"] },
-        { id: "choking", label: "Подавился / задыхается", tags: ["choking"] },
-        { id: "eye", label: "Травма глаза / инородное тело", tags: ["eye"] },
-        { id: "bite_wound", label: "Укус другого животного / человека", tags: ["bite_wound"] }
+        { id: "bleeding", label: "🩸 Кровотечение / рана / порез", tags: ["bleeding"] },
+        { id: "burn", label: "🔥 Ожог (кипяток, огонь, химия)", tags: ["burn"] },
+        { id: "fracture", label: "🦴 Перелом / подозрение на перелом", tags: ["fracture"] },
+        { id: "choking", label: "😮 Подавился / задыхается", tags: ["choking"] },
+        { id: "eye", label: "👁️ Травма глаза / инородное тело", tags: ["eye"] },
+        { id: "bite_wound", label: "🐕 Укус другого животного / человека", tags: ["bite_wound"] }
       ]
     },
     {
@@ -23,10 +23,10 @@ const firstaidData = {
       text: "Какое животное?",
       type: "single",
       options: [
-        { id: "dog", label: "Собака", tags: ["dog"] },
-        { id: "cat", label: "Кошка", tags: ["cat"] },
-        { id: "small", label: "Кролик / хомяк / морская свинка / птица", tags: ["small"] },
-        { id: "other", label: "Другое (черепаха, змея, игуана)", tags: ["other"] }
+        { id: "dog", label: "🐕 Собака", tags: ["dog"] },
+        { id: "cat", label: "🐱 Кошка", tags: ["cat"] },
+        { id: "small", label: "🐰 Кролик / хомяк / морская свинка / птица", tags: ["small"] },
+        { id: "other", label: "🦎 Другое (черепаха, змея, игуана)", tags: ["other"] }
       ]
     },
     {

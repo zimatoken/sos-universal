@@ -10,12 +10,12 @@ const naturalData = {
       text: "Что происходит?",
       type: "single",
       options: [
-        { id: "earthquake", label: "Землетрясение / толчки", tags: ["earthquake"] },
-        { id: "hurricane", label: "Ураган / сильный ветер / шторм", tags: ["hurricane"] },
-        { id: "flood", label: "Наводнение / подтопление", tags: ["flood"] },
-        { id: "hail", label: "Град / ливень / гроза", tags: ["hail"] },
-        { id: "snow", label: "Сильный снегопад / метель", tags: ["snow"] },
-        { id: "heat", label: "Сильная жара / засуха", tags: ["heat"] }
+        { id: "earthquake", label: "🌍 Землетрясение / толчки", tags: ["earthquake"] },
+        { id: "hurricane", label: "🌪️ Ураган / сильный ветер / шторм", tags: ["hurricane"] },
+        { id: "flood", label: "🌊 Наводнение / подтопление", tags: ["flood"] },
+        { id: "hail", label: "🌨️ Град / ливень / гроза", tags: ["hail"] },
+        { id: "snow", label: "❄️ Сильный снегопад / метель", tags: ["snow"] },
+        { id: "heat", label: "☀️ Сильная жара / засуха", tags: ["heat"] }
       ]
     },
     {
@@ -23,9 +23,9 @@ const naturalData = {
       text: "Насколько серьёзно?",
       type: "single",
       options: [
-        { id: "warning", label: "Предупреждение / ещё не началось", tags: ["warning"] },
-        { id: "ongoing", label: "Уже происходит прямо сейчас", tags: ["ongoing"] },
-        { id: "aftermath", label: "Прошло, остались последствия", tags: ["aftermath"] }
+        { id: "warning", label: "⚠️ Предупреждение / ещё не началось", tags: ["warning"] },
+        { id: "ongoing", label: "🚨 Уже происходит прямо сейчас", tags: ["ongoing"] },
+        { id: "aftermath", label: "🔧 Прошло, остались последствия", tags: ["aftermath"] }
       ]
     },
     {

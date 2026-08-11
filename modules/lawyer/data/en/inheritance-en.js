@@ -10,12 +10,12 @@ const inheritanceDataEn = {
       text: "What is your inheritance situation?",
       type: "single",
       options: [
-        { id: "no_will", label: "A relative died, no will", tags: ["no_will", "law"] },
-        { id: "will_exists", label: "There is a will, but there is a dispute", tags: ["will", "dispute"] },
-        { id: "missed", label: "Missed the inheritance deadline (more than 6 months)", tags: ["missed", "deadline"] },
-        { id: "foreign", label: "Inheritance abroad / from a foreigner", tags: ["foreign", "international"] },
-        { id: "debts", label: "Inheritance with debts (loans, taxes)", tags: ["debts", "liabilities"] },
-        { id: "property_only", label: "Only real estate / car", tags: ["property", "real_estate"] }
+        { id: "no_will", label: "❌ A relative died, no will", tags: ["no_will", "law"] },
+        { id: "will_exists", label: "📜 There is a will, but there is a dispute", tags: ["will", "dispute"] },
+        { id: "missed", label: "⏰ Missed the inheritance deadline (more than 6 months)", tags: ["missed", "deadline"] },
+        { id: "foreign", label: "🌍 Inheritance abroad / from a foreigner", tags: ["foreign", "international"] },
+        { id: "debts", label: "💸 Inheritance with debts (loans, taxes)", tags: ["debts", "liabilities"] },
+        { id: "property_only", label: "🏠 Only real estate / car", tags: ["property", "real_estate"] }
       ]
     },
     {
@@ -23,11 +23,11 @@ const inheritanceDataEn = {
       text: "What is your relationship to the deceased?",
       condition: { inheritance_situation: ["no_will", "missed"] },
       options: [
-        { id: "spouse", label: "Spouse", tags: ["spouse", "first"] },
-        { id: "child", label: "Child (including out-of-wedlock)", tags: ["child", "first"] },
-        { id: "parent", label: "Parent", tags: ["parent", "first"] },
-        { id: "sibling", label: "Brother / sister", tags: ["sibling", "second"] },
-        { id: "other", label: "Other relative (nephew, grandfather, grandmother)", tags: ["other", "third"] }
+        { id: "spouse", label: "💑 Spouse", tags: ["spouse", "first"] },
+        { id: "child", label: "👶 Child (including out-of-wedlock)", tags: ["child", "first"] },
+        { id: "parent", label: "👨‍👩‍👧 Parent", tags: ["parent", "first"] },
+        { id: "sibling", label: "👫 Brother / sister", tags: ["sibling", "second"] },
+        { id: "other", label: "👥 Other relative (nephew, grandfather, grandmother)", tags: ["other", "third"] }
       ]
     },
     {
@@ -35,10 +35,10 @@ const inheritanceDataEn = {
       text: "What is the nature of the will dispute?",
       condition: { inheritance_situation: ["will_exists"] },
       options: [
-        { id: "invalid", label: "I doubt the validity of the will", tags: ["invalid", "law"] },
-        { id: "forced", label: "The will was made under pressure / testator was incapacitated", tags: ["forced", "invalid"] },
-        { id: "dependents", label: "There are disabled dependents who were left out", tags: ["dependents", "forced"] },
-        { id: "forgery", label: "I suspect the signature was forged", tags: ["forgery", "expertise"] }
+        { id: "invalid", label: "⚖️ I doubt the validity of the will", tags: ["invalid", "law"] },
+        { id: "forced", label: "😰 The will was made under pressure / testator was incapacitated", tags: ["forced", "invalid"] },
+        { id: "dependents", label: "👶 There are disabled dependents who were left out", tags: ["dependents", "forced"] },
+        { id: "forgery", label: "✍️ I suspect the signature was forged", tags: ["forgery", "expertise"] }
       ]
     },
     {
@@ -46,9 +46,9 @@ const inheritanceDataEn = {
       text: "Did the deceased have debts?",
       condition: { inheritance_situation: ["debts", "no_will", "will_exists"] },
       options: [
-        { id: "debts_yes", label: "Yes, there are loans / taxes / utility debts", tags: ["debts_yes"] },
-        { id: "debts_no", label: "No, there are no debts", tags: ["debts_no"] },
-        { id: "debts_unknown", label: "I don't know, but I suspect so", tags: ["debts_unknown"] }
+        { id: "debts_yes", label: "💰 Yes, there are loans / taxes / utility debts", tags: ["debts_yes"] },
+        { id: "debts_no", label: "✅ No, there are no debts", tags: ["debts_no"] },
+        { id: "debts_unknown", label: "❓ I don't know, but I suspect so", tags: ["debts_unknown"] }
       ]
     },
     {
@@ -56,11 +56,11 @@ const inheritanceDataEn = {
       text: "What is included in the inheritance?",
       condition: { inheritance_situation: ["property_only", "no_will", "will_exists"] },
       options: [
-        { id: "apartment", label: "Apartment / house", tags: ["apartment"] },
-        { id: "car", label: "Car", tags: ["car"] },
-        { id: "land", label: "Land plot / summer cottage", tags: ["land"] },
-        { id: "money", label: "Money / bank deposits", tags: ["money"] },
-        { id: "business", label: "Business / share in an LLC", tags: ["business"] }
+        { id: "apartment", label: "🏠 Apartment / house", tags: ["apartment"] },
+        { id: "car", label: "🚗 Car", tags: ["car"] },
+        { id: "land", label: "🌳 Land plot / summer cottage", tags: ["land"] },
+        { id: "money", label: "💰 Money / bank deposits", tags: ["money"] },
+        { id: "business", label: "💼 Business / share in an LLC", tags: ["business"] }
       ]
     }
   ],

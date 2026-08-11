@@ -10,12 +10,12 @@ const healthData = {
       text: "Какой главный симптом?",
       type: "single",
       options: [
-        { id: "fever", label: "Высокая температура", tags: ["fever"] },
-        { id: "vomit", label: "Рвота / понос", tags: ["vomit"] },
-        { id: "allergy", label: "Сыпь / отёк / крапивница", tags: ["allergy"] },
-        { id: "seizure", label: "Судороги / потеря сознания", tags: ["seizure"] },
-        { id: "breath", label: "Затруднённое дыхание / кашель", tags: ["breath"] },
-        { id: "pain", label: "Сильная боль (живот, голова, ухо)", tags: ["pain"] }
+        { id: "fever", label: "🌡️ Высокая температура", tags: ["fever"] },
+        { id: "vomit", label: "🤢 Рвота / понос", tags: ["vomit"] },
+        { id: "allergy", label: "🤧 Сыпь / отёк / крапивница", tags: ["allergy"] },
+        { id: "seizure", label: "⚡ Судороги / потеря сознания", tags: ["seizure"] },
+        { id: "breath", label: "🫁 Затруднённое дыхание / кашель", tags: ["breath"] },
+        { id: "pain", label: "🤕 Сильная боль (живот, голова, ухо)", tags: ["pain"] }
       ]
     },
     {
@@ -23,10 +23,10 @@ const healthData = {
       text: "Возраст ребёнка?",
       type: "single",
       options: [
-        { id: "infant", label: "Младенец (0–1 год)", tags: ["infant"] },
-        { id: "toddler", label: "1–3 года", tags: ["toddler"] },
-        { id: "preschool", label: "3–7 лет", tags: ["preschool"] },
-        { id: "school", label: "7+ лет", tags: ["school"] }
+        { id: "infant", label: "👶 Младенец (0–1 год)", tags: ["infant"] },
+        { id: "toddler", label: "🧒 1–3 года", tags: ["toddler"] },
+        { id: "preschool", label: "🧒 3–7 лет", tags: ["preschool"] },
+        { id: "school", label: "🧑 7+ лет", tags: ["school"] }
       ]
     },
     {

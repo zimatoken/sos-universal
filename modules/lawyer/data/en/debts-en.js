@@ -10,11 +10,11 @@ const debtsDataEn = {
       text: "What type of debt do you have?",
       type: "single",
       options: [
-        { id: "bank_loan", label: "Bank loan / microfinance", tags: ["bank", "loan"] },
-        { id: "collector", label: "Collectors are calling / threatening", tags: ["collector", "harassment"] },
-        { id: "bailiff", label: "Bailiffs have seized account / property", tags: ["bailiff", "seizure"] },
-        { id: "bankruptcy", label: "More debt than I can pay", tags: ["bankruptcy", "insolvency"] },
-        { id: "court_order", label: "Received a court order for collection", tags: ["court", "order"] }
+        { id: "bank_loan", label: "🏦 Bank loan / microfinance", tags: ["bank", "loan"] },
+        { id: "collector", label: "📞 Collectors are calling / threatening", tags: ["collector", "harassment"] },
+        { id: "bailiff", label: "⚖️ Bailiffs have seized account / property", tags: ["bailiff", "seizure"] },
+        { id: "bankruptcy", label: "📉 More debt than I can pay", tags: ["bankruptcy", "insolvency"] },
+        { id: "court_order", label: "🏛️ Received a court order for collection", tags: ["court", "order"] }
       ]
     },
     {
@@ -22,19 +22,19 @@ const debtsDataEn = {
       text: "Where did you take the loan?",
       condition: { debt_type: ["bank_loan", "bankruptcy"] },
       options: [
-        { id: "bank", label: "Bank (Sber, Tinkoff, VTB, etc.)", tags: ["bank"] },
-        { id: "mfo", label: "Microfinance organization (MFO)", tags: ["mfo"] },
-        { id: "credit_card", label: "Credit card", tags: ["credit_card"] },
-        { id: "multiple", label: "Multiple loans from different places", tags: ["multiple"] }
+        { id: "bank", label: "🏦 Bank (Sber, Tinkoff, VTB, etc.)", tags: ["bank"] },
+        { id: "mfo", label: "📄 Microfinance organization (MFO)", tags: ["mfo"] },
+        { id: "credit_card", label: "💳 Credit card", tags: ["credit_card"] },
+        { id: "multiple", label: "📚 Multiple loans from different places", tags: ["multiple"] }
       ]
     },
     {
       id: "overdue",
       text: "Is there a missed payment?",
       options: [
-        { id: "no_overdue", label: "No, I pay on time", tags: ["no_overdue"] },
-        { id: "up_to_3_months", label: "Up to 3 months overdue", tags: ["short_overdue"] },
-        { id: "over_3_months", label: "More than 3 months overdue", tags: ["long_overdue"] }
+        { id: "no_overdue", label: "✅ No, I pay on time", tags: ["no_overdue"] },
+        { id: "up_to_3_months", label: "⏰ Up to 3 months overdue", tags: ["short_overdue"] },
+        { id: "over_3_months", label: "⚠️ More than 3 months overdue", tags: ["long_overdue"] }
       ]
     },
     {
@@ -42,10 +42,10 @@ const debtsDataEn = {
       text: "What exactly are the collectors doing?",
       condition: { debt_type: ["collector"] },
       options: [
-        { id: "calls", label: "Calling relatives / workplace", tags: ["calls", "harassment"] },
-        { id: "threats", label: "Threats of physical harm", tags: ["threats", "violence"] },
-        { id: "door", label: "Came to my home / neighbors", tags: ["door", "intimidation"] },
-        { id: "fake_docs", label: "Presenting fake documents / court decisions", tags: ["fake", "fraud"] }
+        { id: "calls", label: "📞 Calling relatives / workplace", tags: ["calls", "harassment"] },
+        { id: "threats", label: "⚠️ Threats of physical harm", tags: ["threats", "violence"] },
+        { id: "door", label: "🚪 Came to my home / neighbors", tags: ["door", "intimidation"] },
+        { id: "fake_docs", label: "📄 Presenting fake documents / court decisions", tags: ["fake", "fraud"] }
       ]
     },
     {
@@ -53,9 +53,9 @@ const debtsDataEn = {
       text: "What is the total debt amount?",
       condition: { debt_type: ["bank_loan", "bankruptcy", "court_order"] },
       options: [
-        { id: "small", label: "Up to 500,000 RUB", tags: ["small"] },
-        { id: "medium", label: "500,000 – 1,000,000 RUB", tags: ["medium"] },
-        { id: "large", label: "More than 1,000,000 RUB", tags: ["large"] }
+        { id: "small", label: "💵 Up to 500,000 RUB", tags: ["small"] },
+        { id: "medium", label: "💰 500,000 – 1,000,000 RUB", tags: ["medium"] },
+        { id: "large", label: "💸 More than 1,000,000 RUB", tags: ["large"] }
       ]
     },
     {

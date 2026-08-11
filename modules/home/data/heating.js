@@ -10,12 +10,12 @@ const heatingData = {
       text: "Что произошло?",
       type: "single",
       options: [
-        { id: "cold", label: "Холодно в квартире / батареи холодные", tags: ["cold"] },
-        { id: "leak", label: "Течёт батарея / труба / кран", tags: ["leak"] },
-        { id: "boiler_off", label: "Котёл / колонка не работает / ошибка", tags: ["boiler"] },
-        { id: "frozen_pipes", label: "Трубы замёрзли / нет воды", tags: ["frozen"] },
-        { id: "noise", label: "Стук / шум / гул в батареях", tags: ["noise"] },
-        { id: "overheat", label: "Слишком жарко / нельзя регулировать", tags: ["overheat"] }
+        { id: "cold", label: "❄️ Холодно в квартире / батареи холодные", tags: ["cold"] },
+        { id: "leak", label: "💧 Течёт батарея / труба / кран", tags: ["leak"] },
+        { id: "boiler_off", label: "🔧 Котёл / колонка не работает / ошибка", tags: ["boiler"] },
+        { id: "frozen_pipes", label: "🧊 Трубы замёрзли / нет воды", tags: ["frozen"] },
+        { id: "noise", label: "🔊 Стук / шум / гул в батареях", tags: ["noise"] },
+        { id: "overheat", label: "🌡️ Слишком жарко / нельзя регулировать", tags: ["overheat"] }
       ]
     },
     {
@@ -23,10 +23,10 @@ const heatingData = {
       text: "Какое отопление?",
       type: "single",
       options: [
-        { id: "central", label: "Центральное (батареи от УК)", tags: ["central"] },
-        { id: "individual", label: "Индивидуальное (свой котёл)", tags: ["individual"] },
-        { id: "electric", label: "Электрическое (конвектор, тёплый пол)", tags: ["electric"] },
-        { id: "stove", label: "Печное / камин / буржуйка", tags: ["stove"] }
+        { id: "central", label: "🏢 Центральное (батареи от УК)", tags: ["central"] },
+        { id: "individual", label: "🏠 Индивидуальное (свой котёл)", tags: ["individual"] },
+        { id: "electric", label: "⚡ Электрическое (конвектор, тёплый пол)", tags: ["electric"] },
+        { id: "stove", label: "🔥 Печное / камин / буржуйка", tags: ["stove"] }
       ]
     },
     {

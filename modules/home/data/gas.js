@@ -10,11 +10,11 @@ const gasData = {
       text: "Что произошло?",
       type: "single",
       options: [
-        { id: "smell", label: "Чувствую запах газа", tags: ["smell", "leak"] },
-        { id: "no_gas", label: "Нет газа (плита не горит, котёл не работает)", tags: ["no_gas"] },
-        { id: "yellow_flame", label: "Пламя жёлтое / коптит / трещит", tags: ["yellow", "incomplete"] },
-        { id: "co_alarm", label: "Сработала сигнализация угарного газа (CO)", tags: ["co", "alarm"] },
-        { id: "explosion", label: "Взрыв / хлопок / пожар из-за газа", tags: ["explosion", "fire"] }
+        { id: "smell", label: "😷 Чувствую запах газа", tags: ["smell", "leak"] },
+        { id: "no_gas", label: "❌ Нет газа (плита не горит, котёл не работает)", tags: ["no_gas"] },
+        { id: "yellow_flame", label: "🔥 Пламя жёлтое / коптит / трещит", tags: ["yellow", "incomplete"] },
+        { id: "co_alarm", label: "🚨 Сработала сигнализация угарного газа (CO)", tags: ["co", "alarm"] },
+        { id: "explosion", label: "💥 Взрыв / хлопок / пожар из-за газа", tags: ["explosion", "fire"] }
       ]
     },
     {
@@ -22,10 +22,10 @@ const gasData = {
       text: "Где чувствуется запах?",
       type: "single",
       options: [
-        { id: "kitchen", label: "На кухне (плита, духовка)", tags: ["kitchen"] },
-        { id: "bathroom", label: "В ванной (колонка, котёл)", tags: ["bathroom"] },
-        { id: "hallway", label: "В коридоре / подъезде", tags: ["hallway"] },
-        { id: "everywhere", label: "Везде / сильный запах", tags: ["strong"] }
+        { id: "kitchen", label: "🍳 На кухне (плита, духовка)", tags: ["kitchen"] },
+        { id: "bathroom", label: "🚿 В ванной (колонка, котёл)", tags: ["bathroom"] },
+        { id: "hallway", label: "🚪 В коридоре / подъезде", tags: ["hallway"] },
+        { id: "everywhere", label: "🏠 Везде / сильный запах", tags: ["strong"] }
       ]
     },
     {

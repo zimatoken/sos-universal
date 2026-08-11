@@ -10,11 +10,11 @@ const lostPetDataEn = {
       text: "What animal is lost?",
       type: "single",
       options: [
-        { id: "dog", label: "Dog", tags: ["dog"] },
-        { id: "cat", label: "Cat", tags: ["cat"] },
-        { id: "small", label: "Rabbit / hamster / guinea pig", tags: ["small"] },
-        { id: "bird", label: "Bird (parrot, canary)", tags: ["bird"] },
-        { id: "other", label: "Other (turtle, snake, iguana)", tags: ["other"] }
+        { id: "dog", label: "🐕 Dog", tags: ["dog"] },
+        { id: "cat", label: "🐱 Cat", tags: ["cat"] },
+        { id: "small", label: "🐰 Rabbit / hamster / guinea pig", tags: ["small"] },
+        { id: "bird", label: "🦜 Bird (parrot, canary)", tags: ["bird"] },
+        { id: "other", label: "🦎 Other (turtle, snake, iguana)", tags: ["other"] }
       ]
     },
     {
@@ -22,10 +22,10 @@ const lostPetDataEn = {
       text: "Under what circumstances?",
       type: "single",
       options: [
-        { id: "door_open", label: "Escaped through open door / window", tags: ["door_open"] },
-        { id: "walk", label: "Ran away during walk / in the yard", tags: ["walk"] },
-        { id: "frightened", label: "Frightened by fireworks / thunder / car and ran", tags: ["frightened"] },
-        { id: "stolen", label: "Suspect theft / caught by catchers", tags: ["stolen"] }
+        { id: "door_open", label: "🚪 Escaped through open door / window", tags: ["door_open"] },
+        { id: "walk", label: "🚶 Ran away during walk / in the yard", tags: ["walk"] },
+        { id: "frightened", label: "⚡ Frightened by fireworks / thunder / car and ran", tags: ["frightened"] },
+        { id: "stolen", label: "🚨 Suspect theft / caught by catchers", tags: ["stolen"] }
       ]
     },
     {
@@ -33,10 +33,10 @@ const lostPetDataEn = {
       text: "How much time has passed?",
       type: "single",
       options: [
-        { id: "less_1h", label: "Less than 1 hour", tags: ["recent"] },
-        { id: "1_6h", label: "1–6 hours", tags: ["short"] },
-        { id: "6_24h", label: "6–24 hours", tags: ["medium"] },
-        { id: "more_24h", label: "More than a day", tags: ["long"] }
+        { id: "less_1h", label: "⏰ Less than 1 hour", tags: ["recent"] },
+        { id: "1_6h", label: "📅 1–6 hours", tags: ["short"] },
+        { id: "6_24h", label: "📆 6–24 hours", tags: ["medium"] },
+        { id: "more_24h", label: "📈 More than a day", tags: ["long"] }
       ]
     }
   ],

@@ -10,12 +10,12 @@ const fireData = {
       text: "Где возник пожар?",
       type: "single",
       options: [
-        { id: "kitchen", label: "Кухня (плита, духовка, микроволновка)", tags: ["kitchen"] },
-        { id: "electrical", label: "Розетка / щиток / проводка", tags: ["electrical"] },
-        { id: "heater", label: "Обогреватель / камин / печь", tags: ["heater"] },
-        { id: "other_room", label: "Другая комната / мебель / шторы", tags: ["room"] },
-        { id: "outside", label: "Снаружи (подъезд, соседи, улица)", tags: ["outside"] },
-        { id: "smell_only", label: "Только запах гари / дым, без видимого огня", tags: ["smell"] }
+        { id: "kitchen", label: "🍳 Кухня (плита, духовка, микроволновка)", tags: ["kitchen"] },
+        { id: "electrical", label: "🔌 Розетка / щиток / проводка", tags: ["electrical"] },
+        { id: "heater", label: "🔥 Обогреватель / камин / печь", tags: ["heater"] },
+        { id: "other_room", label: "🪑 Другая комната / мебель / шторы", tags: ["room"] },
+        { id: "outside", label: "🏠 Снаружи (подъезд, соседи, улица)", tags: ["outside"] },
+        { id: "smell_only", label: "😷 Только запах гари / дым, без видимого огня", tags: ["smell"] }
       ]
     },
     {
@@ -23,10 +23,10 @@ const fireData = {
       text: "Насколько сильный пожар?",
       type: "single",
       options: [
-        { id: "small", label: "Небольшой очаг (горшок, тряпка, розетка)", tags: ["small"] },
-        { id: "medium", label: "Горит мебель / шторы / часть комнаты", tags: ["medium"] },
-        { id: "large", label: "Горит вся комната / квартира / дым везде", tags: ["large"] },
-        { id: "blocked", label: "Путь эвакуации заблокирован огнём / дымом", tags: ["blocked"] }
+        { id: "small", label: "🔥 Небольшой очаг (горшок, тряпка, розетка)", tags: ["small"] },
+        { id: "medium", label: "🔥🔥 Горит мебель / шторы / часть комнаты", tags: ["medium"] },
+        { id: "large", label: "🔥🔥🔥 Горит вся комната / квартира / дым везде", tags: ["large"] },
+        { id: "blocked", label: "🚫 Путь эвакуации заблокирован огнём / дымом", tags: ["blocked"] }
       ]
     },
     {
