@@ -60,6 +60,14 @@ console.log("  flightData:", typeof window.flightData !== 'undefined' ? '✅' : 
 console.log("  hotelData:", typeof window.hotelData !== 'undefined' ? '✅' : '❌');
 console.log("  theftData:", typeof window.theftData !== 'undefined' ? '✅' : '❌');
 console.log("  travelLostData:", typeof window.travelLostData !== 'undefined' ? '✅' : '❌');
+// Drone (Дроны)
+console.log("  detectData:", typeof window.detectData !== 'undefined' ? '✅' : '❌');
+console.log("  identifyData:", typeof window.identifyData !== 'undefined' ? '✅' : '❌');
+console.log("  droneShelterData:", typeof window.droneShelterData !== 'undefined' ? '✅' : '❌');
+console.log("  droneCommsData:", typeof window.droneCommsData !== 'undefined' ? '✅' : '❌');
+console.log("  droneEvacData:", typeof window.droneEvacData !== 'undefined' ? '✅' : '❌');
+console.log("  droneFirstaidData:", typeof window.droneFirstaidData !== 'undefined' ? '✅' : '❌');
+console.log("  dronePrepData:", typeof window.dronePrepData !== 'undefined' ? '✅' : '❌');
 
 console.log("🔍 Проверка данных (EN):");
 // Survival
@@ -119,6 +127,14 @@ console.log("  flightDataEn:", typeof window.flightDataEn !== 'undefined' ? '✅
 console.log("  hotelDataEn:", typeof window.hotelDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  theftDataEn:", typeof window.theftDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  travelLostDataEn:", typeof window.travelLostDataEn !== 'undefined' ? '✅' : '❌');
+// Drone (Дроны) EN
+console.log("  detectDataEn:", typeof window.detectDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  identifyDataEn:", typeof window.identifyDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  droneShelterDataEn:", typeof window.droneShelterDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  droneCommsDataEn:", typeof window.droneCommsDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  droneEvacDataEn:", typeof window.droneEvacDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  droneFirstaidDataEn:", typeof window.droneFirstaidDataEn !== 'undefined' ? '✅' : '❌');
+console.log("  dronePrepDataEn:", typeof window.dronePrepDataEn !== 'undefined' ? '✅' : '❌');
 
 // Регистр всех данных (русские и английские версии)
 const dataRegistry = {
@@ -185,7 +201,16 @@ const dataRegistry = {
     flight: typeof window.flightData !== 'undefined' ? window.flightData : null,
     hotel: typeof window.hotelData !== 'undefined' ? window.hotelData : null,
     theft: typeof window.theftData !== 'undefined' ? window.theftData : null,
-    travel_lost: typeof window.travelLostData !== 'undefined' ? window.travelLostData : null
+    travel_lost: typeof window.travelLostData !== 'undefined' ? window.travelLostData : null,
+
+    // ===== DRONE (Дроны) =====
+    detect: typeof window.detectData !== 'undefined' ? window.detectData : null,
+    identify: typeof window.identifyData !== 'undefined' ? window.identifyData : null,
+    drone_shelter: typeof window.droneShelterData !== 'undefined' ? window.droneShelterData : null,
+    drone_comms: typeof window.droneCommsData !== 'undefined' ? window.droneCommsData : null,
+    drone_evac: typeof window.droneEvacData !== 'undefined' ? window.droneEvacData : null,
+    drone_firstaid: typeof window.droneFirstaidData !== 'undefined' ? window.droneFirstaidData : null,
+    drone_prep: typeof window.dronePrepData !== 'undefined' ? window.dronePrepData : null
   },
   en: {}
 };
@@ -255,6 +280,15 @@ if (typeof window.hotelDataEn !== 'undefined') dataRegistry.en.hotel = window.ho
 if (typeof window.theftDataEn !== 'undefined') dataRegistry.en.theft = window.theftDataEn;
 if (typeof window.travelLostDataEn !== 'undefined') dataRegistry.en.travel_lost = window.travelLostDataEn;
 
+// Drone (Дроны) EN
+if (typeof window.detectDataEn !== 'undefined') dataRegistry.en.detect = window.detectDataEn;
+if (typeof window.identifyDataEn !== 'undefined') dataRegistry.en.identify = window.identifyDataEn;
+if (typeof window.droneShelterDataEn !== 'undefined') dataRegistry.en.drone_shelter = window.droneShelterDataEn;
+if (typeof window.droneCommsDataEn !== 'undefined') dataRegistry.en.drone_comms = window.droneCommsDataEn;
+if (typeof window.droneEvacDataEn !== 'undefined') dataRegistry.en.drone_evac = window.droneEvacDataEn;
+if (typeof window.droneFirstaidDataEn !== 'undefined') dataRegistry.en.drone_firstaid = window.droneFirstaidDataEn;
+if (typeof window.dronePrepDataEn !== 'undefined') dataRegistry.en.drone_prep = window.dronePrepDataEn;
+
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
 }
@@ -309,6 +343,18 @@ function getCategoryData(category) {
   }
   if (category === 'lost' && langData.travel_lost) {
     mappedCategory = 'travel_lost';
+  }
+
+  // 7. DRONE: маппинг для конфликтующих категорий (shelter, comms, evac, firstaid, prep)
+  const droneMapping = {
+    'shelter': 'drone_shelter',
+    'comms': 'drone_comms',
+    'evac': 'drone_evac',
+    'firstaid': 'drone_firstaid',
+    'prep': 'drone_prep'
+  };
+  if (droneMapping[category] && langData[droneMapping[category]]) {
+    mappedCategory = droneMapping[category];
   }
 
   const data = langData[mappedCategory];
