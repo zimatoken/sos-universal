@@ -1,9 +1,15 @@
 /* === МОДУЛЬ: ЖИВОТНЫЕ (SOS PETS) === */
 :root {
-  --pets-primary: #10b981;
-  --pets-primary-dark: #059669;
-  --pets-accent: #14b8a6;
-  --pets-bg: rgba(16, 185, 129, 0.08);
+  --pets-primary: #ec4899;
+  --pets-primary-dark: #be185d;
+  --pets-accent: #f472b6;
+  --pets-bg: rgba(236, 72, 153, 0.08);
+}
+
+[data-theme="dark"] {
+  --pets-primary: #4a1c36;
+  --pets-primary-dark: #ec4899;
+  --pets-bg: rgba(74, 28, 54, 0.15);
 }
 
 /* ===== BACK BUTTON ===== */

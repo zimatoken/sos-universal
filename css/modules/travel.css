@@ -15,6 +15,8 @@
 
 /* --- Тёмная тема --- */
 [data-theme="dark"] {
+  --travel-primary: #0c4a6e;
+  --travel-primary-dark: #0ea5e9;
   --travel-bg: #0c1929;
   --travel-primary-light: #1e3a5f;
 }

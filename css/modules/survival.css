@@ -1,3 +1,17 @@
+/* ===== MODULE: SURVIVAL ===== */
+:root {
+  --survival-primary: #3b82f6;
+  --survival-secondary: #60a5fa;
+  --survival-accent: #f59e0b;
+  --survival-bg: rgba(59, 130, 246, 0.08);
+}
+
+[data-theme="dark"] {
+  --survival-primary: #1e3a5f;
+  --survival-secondary: #3b82f6;
+  --survival-bg: rgba(30, 58, 95, 0.15);
+}
+
 /* ===== BACK BUTTON ===== */
 .back-btn {
   background: transparent; 
@@ -43,7 +57,7 @@
 
 .progress, .progress-fill { 
   height: 100%; 
-  background: linear-gradient(90deg, var(--water), #60a5fa); 
+  background: linear-gradient(90deg, var(--survival-primary), var(--survival-secondary)); 
   border-radius: 2px; 
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 8px rgba(59,130,246,0.3);
@@ -69,7 +83,7 @@
 
 .question-num {
   display: inline-block;
-  background: var(--water);
+  background: var(--survival-primary);
   color: white;
   padding: 4px 10px;
   border-radius: 20px;
@@ -118,21 +132,21 @@
 }
 
 .option.selected { 
-  background: rgba(59,130,246,0.08); 
-  border-color: var(--water);
-  color: var(--water);
+  background: var(--survival-bg); 
+  border-color: var(--survival-primary);
+  color: var(--survival-primary);
 }
 
 .option.selected .check { 
-  background: var(--water); 
-  border-color: var(--water); 
+  background: var(--survival-primary); 
+  border-color: var(--survival-primary); 
   color: white;
   box-shadow: 0 0 8px rgba(59,130,246,0.4);
 }
 
 /* ===== NEXT BUTTON ===== */
 .next-btn, .restart-btn {
-  background: var(--water); 
+  background: var(--survival-primary); 
   border: none; 
   border-radius: 14px; 
   color: white;
@@ -200,7 +214,7 @@
   border-radius: 16px; 
   padding: 20px; 
   margin-bottom: 14px;
-  border-left: 4px solid var(--water);
+  border-left: 4px solid var(--survival-primary);
   border: 1px solid var(--border);
   border-left-width: 4px;
   cursor: pointer;
@@ -210,7 +224,7 @@
 .result-card:hover {
   transform: translateX(4px);
   border-color: var(--border-hover);
-  border-left-color: var(--water);
+  border-left-color: var(--survival-primary);
 }
 
 .result-card:active {
@@ -340,7 +354,7 @@
   color: var(--text2);
 }
 
-.steps-block h4 { color: var(--water); }
+.steps-block h4 { color: var(--survival-primary); }
 .warnings-block h4 { color: var(--accent); }
 
 .step-item, .warning-item {
@@ -355,7 +369,7 @@
 .step-num {
   width: 28px;
   height: 28px;
-  background: var(--water);
+  background: var(--survival-primary);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -512,7 +526,7 @@
 
 .contact-input:focus {
   outline: none;
-  border-color: var(--water);
+  border-color: var(--survival-primary);
   background: rgba(255,255,255,0.04);
 }
 
@@ -716,7 +730,7 @@
   font-weight: 600;
 }
 
-.cat-btn.water::after { background: var(--water); }
+.cat-btn.water::after { background: var(--survival-primary); }
 .cat-btn.fire::after { background: var(--fire); }
 .cat-btn.shelter::after { background: var(--shelter); }
 .cat-btn.food::after { background: var(--food); }

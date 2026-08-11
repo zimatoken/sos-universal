@@ -6,6 +6,12 @@
   --children-bg: rgba(245, 158, 11, 0.08);
 }
 
+[data-theme="dark"] {
+  --children-primary: #4a2c0a;
+  --children-primary-dark: #f59e0b;
+  --children-bg: rgba(74, 44, 10, 0.15);
+}
+
 /* ===== BACK BUTTON ===== */
 .back-btn {
   background: transparent;

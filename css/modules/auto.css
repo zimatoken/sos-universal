@@ -1,3 +1,17 @@
+/* ===== MODULE: AUTO ===== */
+:root {
+  --auto-primary: #ef4444;
+  --auto-secondary: #f87171;
+  --auto-accent: #f97316;
+  --auto-bg: rgba(239, 68, 68, 0.08);
+}
+
+[data-theme="dark"] {
+  --auto-primary: #2d1b1b;
+  --auto-secondary: #ef4444;
+  --auto-bg: rgba(45, 27, 27, 0.15);
+}
+
 /* ===== BACK BUTTON ===== */
 .back-btn {
   background: transparent; 
@@ -43,10 +57,10 @@
 
 .progress, .progress-fill { 
   height: 100%; 
-  background: linear-gradient(90deg, var(--water), #60a5fa); 
+  background: linear-gradient(90deg, var(--auto-primary), var(--auto-secondary)); 
   border-radius: 2px; 
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 8px rgba(59,130,246,0.3);
+  box-shadow: 0 0 8px rgba(239,68,68,0.3);
   width: 0%;
 }
 
@@ -69,7 +83,7 @@
 
 .question-num {
   display: inline-block;
-  background: var(--water);
+  background: var(--auto-primary);
   color: white;
   padding: 4px 10px;
   border-radius: 20px;
@@ -118,21 +132,21 @@
 }
 
 .option.selected { 
-  background: rgba(59,130,246,0.08); 
-  border-color: var(--water);
-  color: var(--water);
+  background: var(--auto-bg); 
+  border-color: var(--auto-primary);
+  color: var(--auto-primary);
 }
 
 .option.selected .check { 
-  background: var(--water); 
-  border-color: var(--water); 
+  background: var(--auto-primary); 
+  border-color: var(--auto-primary); 
   color: white;
-  box-shadow: 0 0 8px rgba(59,130,246,0.4);
+  box-shadow: 0 0 8px rgba(239,68,68,0.4);
 }
 
 /* ===== NEXT BUTTON ===== */
 .next-btn, .restart-btn {
-  background: var(--water); 
+  background: var(--auto-primary); 
   border: none; 
   border-radius: 14px; 
   color: white;
@@ -143,7 +157,7 @@
   cursor: pointer;
   margin-top: 8px; 
   transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+  box-shadow: 0 4px 16px rgba(239,68,68,0.3);
 }
 
 .next-btn:disabled { 
@@ -154,7 +168,7 @@
 
 .next-btn:hover:not(:disabled) { 
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(59,130,246,0.4);
+  box-shadow: 0 6px 20px rgba(239,68,68,0.4);
 }
 
 .next-btn:active:not(:disabled) { transform: scale(0.98); }
@@ -200,7 +214,7 @@
   border-radius: 16px; 
   padding: 20px; 
   margin-bottom: 14px;
-  border-left: 4px solid var(--water);
+  border-left: 4px solid var(--auto-primary);
   border: 1px solid var(--border);
   border-left-width: 4px;
   cursor: pointer;
@@ -210,7 +224,7 @@
 .result-card:hover {
   transform: translateX(4px);
   border-color: var(--border-hover);
-  border-left-color: var(--water);
+  border-left-color: var(--auto-primary);
 }
 
 .result-card:active {
@@ -297,11 +311,11 @@
   margin-bottom: 4px;
 }
 
-.badge.fast { background: rgba(239,68,68,0.12); color: var(--water); }
+.badge.fast { background: rgba(239,68,68,0.12); color: var(--auto-primary); }
 .badge.medium { background: rgba(245,158,11,0.12); color: #f59e0b; }
 .badge.slow { background: rgba(16,185,129,0.12); color: #10b981; }
 .badge.high { background: rgba(16,185,129,0.12); color: #10b981; }
-.badge.low { background: rgba(239,68,68,0.12); color: var(--water); }
+.badge.low { background: rgba(239,68,68,0.12); color: var(--auto-primary); }
 .badge.medium-rel { background: rgba(245,158,11,0.12); color: #f59e0b; }
 
 /* ===== DETAIL VIEW ===== */
@@ -340,8 +354,8 @@
   color: var(--text2);
 }
 
-.steps-block h4 { color: var(--water); }
-.warnings-block h4 { color: var(--water); }
+.steps-block h4 { color: var(--auto-primary); }
+.warnings-block h4 { color: var(--auto-accent); }
 
 .step-item, .warning-item {
   display: flex;
@@ -355,7 +369,7 @@
 .step-num {
   width: 28px;
   height: 28px;
-  background: var(--water);
+  background: var(--auto-primary);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -370,7 +384,7 @@
   width: 28px;
   height: 28px;
   background: rgba(239,68,68,0.15);
-  color: var(--water);
+  color: var(--auto-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -512,7 +526,7 @@
 
 .contact-input:focus {
   outline: none;
-  border-color: var(--water);
+  border-color: var(--auto-primary);
   background: rgba(255,255,255,0.04);
 }
 

@@ -1,6 +1,20 @@
 /* === MODULE: HOME === */
 /* Home module styling with green/blue theme */
 
+/* ===== MODULE: HOME ===== */
+:root {
+  --home-primary: #10b981;
+  --home-secondary: #34d399;
+  --home-accent: #059669;
+  --home-bg: rgba(16, 185, 129, 0.08);
+}
+
+[data-theme="dark"] {
+  --home-primary: #064e3b;
+  --home-secondary: #10b981;
+  --home-bg: rgba(6, 78, 59, 0.15);
+}
+
 /* ===== BACK BUTTON ===== */
 .back-btn {
   background: transparent; 
@@ -46,7 +60,7 @@
 
 .progress, .progress-fill { 
   height: 100%; 
-  background: linear-gradient(90deg, #10b981, #3b82f6); 
+  background: linear-gradient(90deg, var(--home-primary), var(--home-secondary)); 
   border-radius: 2px; 
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 8px rgba(16,185,129,0.3);
@@ -72,7 +86,7 @@
 
 .question-num {
   display: inline-block;
-  background: #10b981;
+  background: var(--home-primary);
   color: white;
   padding: 4px 10px;
   border-radius: 20px;
@@ -121,21 +135,21 @@
 }
 
 .option.selected { 
-  background: rgba(16,185,129,0.08); 
-  border-color: #10b981;
-  color: #10b981;
+  background: var(--home-bg); 
+  border-color: var(--home-primary);
+  color: var(--home-primary);
 }
 
 .option.selected .check { 
-  background: #10b981; 
-  border-color: #10b981; 
+  background: var(--home-primary); 
+  border-color: var(--home-primary); 
   color: white;
   box-shadow: 0 0 8px rgba(16,185,129,0.4);
 }
 
 /* ===== NEXT BUTTON ===== */
 .next-btn, .restart-btn {
-  background: #10b981; 
+  background: var(--home-primary); 
   border: none; 
   border-radius: 14px; 
   color: white;
@@ -203,7 +217,7 @@
   border-radius: 16px; 
   padding: 20px; 
   margin-bottom: 14px;
-  border-left: 4px solid #10b981;
+  border-left: 4px solid var(--home-primary);
   border: 1px solid var(--border);
   border-left-width: 4px;
   cursor: pointer;
@@ -213,7 +227,7 @@
 .result-card:hover {
   transform: translateX(4px);
   border-color: var(--border-hover);
-  border-left-color: #10b981;
+  border-left-color: var(--home-primary);
 }
 
 .result-card:active {
@@ -342,7 +356,7 @@
   color: var(--text2);
 }
 
-.steps-block h4 { color: #10b981; }
+.steps-block h4 { color: var(--home-primary); }
 .warnings-block h4 { color: #10b981; }
 
 .step-item, .warning-item {
@@ -357,7 +371,7 @@
 .step-num {
   width: 28px;
   height: 28px;
-  background: #10b981;
+  background: var(--home-primary);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -514,7 +528,7 @@
 
 .contact-input:focus {
   outline: none;
-  border-color: #10b981;
+  border-color: var(--home-primary);
   background: rgba(255,255,255,0.04);
 }
 
