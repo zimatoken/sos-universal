@@ -1,6 +1,6 @@
 // modules/drone/data/en/firstaid-en.js
 // === MODULE: DRONES — FIRST AID ===
-const firstaidDataEn = {
+const droneFirstaidDataEn = {
   category: "firstaid",
   title: "🩹 First Aid",
   description: "How to help victims of explosions, wounds, concussion, and bleeding",
@@ -240,5 +240,5 @@ const firstaidDataEn = {
   ]
 };
 
-window.firstaidDataEn = firstaidDataEn;
-console.log('✅ firstaidDataEn loaded');
+window.droneFirstaidDataEn = droneFirstaidDataEn;
+console.log('✅ droneFirstaidDataEn loaded');

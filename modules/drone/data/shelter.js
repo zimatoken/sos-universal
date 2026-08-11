@@ -1,6 +1,6 @@
 // modules/drone/data/shelter.js
 // === МОДУЛЬ: ДРОНЫ — УКРЫТИЕ ===
-const shelterData = {
+const droneShelterData = {
   category: "shelter",
   title: "🛡️ Укрытие от дрона",
   description: "Как и где укрыться от беспилотника, чтобы сохранить жизнь",
@@ -215,5 +215,5 @@ const shelterData = {
   ]
 };
 
-window.shelterData = shelterData;
-console.log('✅ shelterData загружен');
+window.droneShelterData = droneShelterData;
+console.log('✅ droneShelterData загружен');

@@ -1,6 +1,6 @@
 // modules/drone/data/en/comms-en.js
 // === MODULE: DRONES — COMMUNICATION ===
-const commsDataEn = {
+const droneCommsDataEn = {
   category: "comms",
   title: "📡 Communication and Alerting",
   description: "How to report a threat, call for help, and coordinate actions",
@@ -186,5 +186,5 @@ const commsDataEn = {
   ]
 };
 
-window.commsDataEn = commsDataEn;
-console.log('✅ commsDataEn loaded');
+window.droneCommsDataEn = droneCommsDataEn;
+console.log('✅ droneCommsDataEn loaded');

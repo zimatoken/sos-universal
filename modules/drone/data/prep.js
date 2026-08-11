@@ -1,6 +1,6 @@
 // modules/drone/data/prep.js
 // === МОДУЛЬ: ДРОНЫ — ПОДГОТОВКА ===
-const prepData = {
+const dronePrepData = {
   category: "prep",
   title: "📋 Подготовка",
   description: "Как подготовиться к угрозе с воздуха: документы, укрытие, связь, план действий",
@@ -193,5 +193,5 @@ const prepData = {
   ]
 };
 
-window.prepData = prepData;
-console.log('✅ prepData загружен');
+window.dronePrepData = dronePrepData;
+console.log('✅ dronePrepData загружен');

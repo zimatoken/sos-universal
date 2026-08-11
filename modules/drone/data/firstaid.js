@@ -1,6 +1,6 @@
 // modules/drone/data/firstaid.js
 // === МОДУЛЬ: ДРОНЫ — ПЕРВАЯ ПОМОЩЬ ===
-const firstaidData = {
+const droneFirstaidData = {
   category: "firstaid",
   title: "🩹 Первая помощь",
   description: "Как помочь пострадавшим при взрыве, ранениях, контузии и кровотечении",
@@ -240,5 +240,5 @@ const firstaidData = {
   ]
 };
 
-window.firstaidData = firstaidData;
-console.log('✅ firstaidData загружен');
+window.droneFirstaidData = droneFirstaidData;
+console.log('✅ droneFirstaidData загружен');

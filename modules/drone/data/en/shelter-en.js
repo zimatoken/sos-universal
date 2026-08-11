@@ -1,6 +1,6 @@
 // modules/drone/data/en/shelter-en.js
 // === MODULE: DRONES — SHELTER ===
-const shelterDataEn = {
+const droneShelterDataEn = {
   category: "shelter",
   title: "🛡️ Drone Shelter",
   description: "How and where to take cover from a drone to stay safe",
@@ -215,5 +215,5 @@ const shelterDataEn = {
   ]
 };
 
-window.shelterDataEn = shelterDataEn;
-console.log('✅ shelterDataEn loaded');
+window.droneShelterDataEn = droneShelterDataEn;
+console.log('✅ droneShelterDataEn loaded');

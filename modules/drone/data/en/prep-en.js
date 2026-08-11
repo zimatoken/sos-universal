@@ -1,6 +1,6 @@
 // modules/drone/data/en/prep-en.js
 // === MODULE: DRONES — PREPARATION ===
-const prepDataEn = {
+const dronePrepDataEn = {
   category: "prep",
   title: "📋 Preparation",
   description: "How to prepare for an aerial threat: documents, shelter, communication, action plan",
@@ -193,5 +193,5 @@ const prepDataEn = {
   ]
 };
 
-window.prepDataEn = prepDataEn;
-console.log('✅ prepDataEn loaded');
+window.dronePrepDataEn = dronePrepDataEn;
+console.log('✅ dronePrepDataEn loaded');

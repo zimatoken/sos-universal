@@ -1,6 +1,6 @@
 // modules/drone/data/comms.js
 // === МОДУЛЬ: ДРОНЫ — СВЯЗЬ И ОПОВЕЩЕНИЕ ===
-const commsData = {
+const droneCommsData = {
   category: "comms",
   title: "📡 Связь и оповещение",
   description: "Как сообщить об угрозе, вызвать помощь и координировать действия",
@@ -186,5 +186,5 @@ const commsData = {
   ]
 };
 
-window.commsData = commsData;
-console.log('✅ commsData загружен');
+window.droneCommsData = droneCommsData;
+console.log('✅ droneCommsData загружен');

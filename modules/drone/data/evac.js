@@ -1,6 +1,6 @@
 // modules/drone/data/evac.js
 // === МОДУЛЬ: ДРОНЫ — ЭВАКУАЦИЯ ===
-const evacData = {
+const droneEvacData = {
   category: "evac",
   title: "🏃 Эвакуация",
   description: "Как безопасно покинуть опасную зону при угрозе с воздуха",
@@ -209,5 +209,5 @@ const evacData = {
   ]
 };
 
-window.evacData = evacData;
-console.log('✅ evacData загружен');
+window.droneEvacData = droneEvacData;
+console.log('✅ droneEvacData загружен');
