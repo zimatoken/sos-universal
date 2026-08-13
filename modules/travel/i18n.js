@@ -6,7 +6,7 @@
 const TRAVEL_LOCALES = {
   // ===== РУССКИЙ =====
   ru: {
-    app_title: "✈️ TRAVEL",
+    app_title: "✈️ ПУТЕШЕСТВИЯ",
     app_subtitle: "Экстренные ситуации за границей и в поездках",
 
     // Категории

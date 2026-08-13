@@ -1,4 +1,4 @@
-/* === МОДУЛЬ: ДЕТИ (SOS BABY) === */
+﻿/* === РњРћР”РЈР›Р¬: Р”Р•РўР (SOS BABY) === */
 :root {
   --children-primary: #f59e0b;
   --children-primary-dark: #d97706;
@@ -856,7 +856,7 @@
   line-height: 1.5;
 }
 
-/* ===== MICROPHONE BUTTON (завершающий блок) ===== */
+/* ===== MICROPHONE BUTTON (Р·Р°РІРµСЂС€Р°СЋС‰РёР№ Р±Р»РѕРє) ===== */
 .mic-btn {
   background: var(--card);
   border: 2px solid var(--border);

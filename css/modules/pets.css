@@ -1,4 +1,4 @@
-/* === МОДУЛЬ: ЖИВОТНЫЕ (SOS PETS) === */
+﻿/* === РњРћР”РЈР›Р¬: Р–РР’РћРўРќР«Р• (SOS PETS) === */
 :root {
   --pets-primary: #ec4899;
   --pets-primary-dark: #be185d;
@@ -737,7 +737,7 @@
   font-weight: 600;
 }
 
-/* Цвета для каждой категории (можно добавить по желанию) */
+/* Р¦РІРµС‚Р° РґР»СЏ РєР°Р¶РґРѕР№ РєР°С‚РµРіРѕСЂРёРё (РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ РїРѕ Р¶РµР»Р°РЅРёСЋ) */
 .cat-btn.firstaid::after { background: var(--pets-primary); }
 .cat-btn.lost::after { background: var(--pets-accent); }
 .cat-btn.behavior::after { background: #f59e0b; }

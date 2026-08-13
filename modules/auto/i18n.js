@@ -6,7 +6,7 @@
 const AUTO_LOCALES = {
   // ===== РУССКИЙ =====
   ru: {
-    app_title: "🚗 AUTO",
+    app_title: "🚗 АВТО",
     app_subtitle: "Помощь при поломке автомобиля",
 
     cat_wont_start: "🔌 Не заводится",

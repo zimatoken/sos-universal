@@ -6,7 +6,7 @@
 const SURVIVAL_LOCALES = {
   // ===== РУССКИЙ =====
   ru: {
-    app_title: "🆘 SURVIVE",
+    app_title: "ВЫЖИВАНИЕ",
     app_subtitle: "Офлайн-ассистент выживания",
 
     cat_water: "💧 Вода",
@@ -21,7 +21,7 @@ const SURVIVAL_LOCALES = {
 
   // ===== АНГЛИЙСКИЙ =====
   en: {
-    app_title: "🆘 SURVIVE",
+    app_title: "SURVIVE",
     app_subtitle: "Offline Survival Assistant",
 
     cat_water: "💧 Water",

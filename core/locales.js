@@ -54,8 +54,8 @@ const LOCALES = {
     badge_low: "❌ Риск",
     
     // Детали
-    detail_steps: "📋 Шаги выполнения",
-    detail_warnings: "⚠️ Важные предупреждения",
+    detail_steps: "Шаги выполнения",
+    detail_warnings: "Важные предупреждения",
     
     // SOS
     sos_title: "Режим SOS",

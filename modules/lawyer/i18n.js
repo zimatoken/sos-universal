@@ -6,7 +6,7 @@
 const LAWYER_LOCALES = {
   // ===== РУССКИЙ =====
   ru: {
-    app_title: "⚖️ YRIST",
+    app_title: "⚖️ ЮРИСТ",
     app_subtitle: "Юридическая помощь в любой ситуации",
 
     cat_dtp: "🚨 ДТП / Авария",

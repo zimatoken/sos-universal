@@ -1,9 +1,9 @@
-/* ============================================
-   SOS UNIVERSAL — Модуль: ПУТЕШЕСТВИЯ (Travel)
-   Цвета: синий/голубой (#0ea5e9, #0284c7)
+﻿/* ============================================
+   SOS UNIVERSAL вЂ” РњРѕРґСѓР»СЊ: РџРЈРўР•РЁР•РЎРўР’РРЇ (Travel)
+   Р¦РІРµС‚Р°: СЃРёРЅРёР№/РіРѕР»СѓР±РѕР№ (#0ea5e9, #0284c7)
    ============================================ */
 
-/* --- Переменные модуля --- */
+/* --- РџРµСЂРµРјРµРЅРЅС‹Рµ РјРѕРґСѓР»СЏ --- */
 :root {
   --travel-primary: #0ea5e9;
   --travel-primary-dark: #0284c7;
@@ -13,7 +13,7 @@
   --travel-success: #22c55e;
 }
 
-/* --- Тёмная тема --- */
+/* --- РўС‘РјРЅР°СЏ С‚РµРјР° --- */
 [data-theme="dark"] {
   --travel-primary: #0c4a6e;
   --travel-primary-dark: #0ea5e9;
@@ -741,7 +741,7 @@
   font-weight: 600;
 }
 
-/* Цвета для категорий Travel */
+/* Р¦РІРµС‚Р° РґР»СЏ РєР°С‚РµРіРѕСЂРёР№ Travel */
 .cat-btn.documents::after { background: var(--travel-primary); }
 .cat-btn.money::after { background: var(--travel-accent); }
 .cat-btn.health::after { background: var(--travel-danger); }
