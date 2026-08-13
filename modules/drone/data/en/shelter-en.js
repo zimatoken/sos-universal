@@ -1,17 +1,18 @@
 // modules/drone/data/en/shelter-en.js
 // === MODULE: DRONES — SHELTER ===
+
 const droneShelterDataEn = {
   category: "shelter",
-  title: "🛡️ Drone Shelter",
+  title: "🛡️ Shelter from drone",
   description: "How and where to take cover from a drone to stay safe",
 
   questions: [
     {
       id: "location",
       type: "single",
-      text: "Where are you currently?",
+      text: "Where are you right now?",
       options: [
-        { id: "building", label: "🏢 In a building / apartment", tags: ["building"] },
+        { id: "apartment", label: "🏢 In a building / apartment", tags: ["building"] },
         { id: "street", label: "🚶 On the street / in the yard", tags: ["street"] },
         { id: "car", label: "🚗 In a car", tags: ["car"] },
         { id: "field", label: "🌾 In a field / open area", tags: ["field"] },
@@ -19,24 +20,24 @@ const droneShelterDataEn = {
       ]
     },
     {
-      id: "time",
-      type: "single",
-      text: "How much time do you have before a possible threat?",
-      options: [
-        { id: "seconds", label: "⏱️ Seconds (drone is already close)", tags: ["seconds"] },
-        { id: "minutes", label: "⏱️ Minutes (drone is approaching)", tags: ["minutes"] },
-        { id: "plenty", label: "⏱️ Plenty of time (drone is far away)", tags: ["plenty"] }
-      ]
-    },
-    {
       id: "shelter_type",
       type: "single",
       text: "Is there a basement or bomb shelter nearby?",
       options: [
-        { id: "basement", label: "✅ Yes, a basement / cellar", tags: ["basement"] },
-        { id: "bomb_shelter", label: "✅ Yes, a bomb shelter", tags: ["bomb_shelter"] },
-        { id: "none", label: "❌ No, nothing available", tags: ["no_shelter"] },
+        { id: "basement", label: "✅ Yes, there is a basement/cellar", tags: ["basement"] },
+        { id: "bomb_shelter", label: "✅ Yes, there is a bomb shelter", tags: ["bomb_shelter"] },
+        { id: "none", label: "❌ No, nothing", tags: ["no_shelter"] },
         { id: "unknown", label: "❓ I don't know", tags: ["unknown_shelter"] }
+      ]
+    },
+    {
+      id: "time",
+      type: "single",
+      text: "How much time do you have before the threat?",
+      options: [
+        { id: "seconds", label: "⏱️ Seconds (drone is nearby)", tags: ["seconds"] },
+        { id: "minutes", label: "⏱️ Minutes (drone is approaching)", tags: ["minutes"] },
+        { id: "plenty", label: "⏱️ Plenty of time (drone is far)", tags: ["plenty"] }
       ]
     },
     {
@@ -46,13 +47,13 @@ const droneShelterDataEn = {
       options: [
         { id: "alone", label: "👤 Alone", tags: ["alone"] },
         { id: "family", label: "👨‍👩‍👧‍👦 Family / children", tags: ["family"] },
-        { id: "group", label: "👥 A group of people", tags: ["group"] }
+        { id: "group", label: "👥 Group of people", tags: ["group"] }
       ]
     },
     {
       id: "escape_route",
       type: "single",
-      text: "Do you know the route to shelter?",
+      text: "Do you know the way to the shelter?",
       options: [
         { id: "know", label: "✅ Yes, I know the route", tags: ["know"] },
         { id: "rough", label: "❓ Approximately", tags: ["rough"] },
@@ -62,61 +63,78 @@ const droneShelterDataEn = {
   ],
 
   solutions: [
+    // ===== 1. SHELTER IN APARTMENT WITH BASEMENT =====
     {
-      id: "building_shelter",
-      title: "🏢 Shelter in a building — safety rules",
-      description: "A building is a good shelter, but rules must be followed.",
-      conditions: { location: ["building"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "1-2 minutes",
-      yield_estimate: "Safe shelter",
-      tags: ["building", "shelter", "safe"],
-      steps: [
-        "Enter the nearest building. Close the door behind you.",
-        "Move away from windows and glass doors — at least 3-4 meters.",
-        "Close curtains or blinds — blackout reduces visibility.",
-        "Find an interior room without windows (hallway, bathroom, storage).",
-        "If there is a basement — go down.",
-        "Crouch or lie on the floor — reduce your silhouette.",
-        "Do not use open flames, do not turn on bright lights.",
-        "Stay in shelter for at least 10-15 minutes after the last contact."
-      ],
-      warnings: [
-        "Glass facades and panoramic windows are dangerous during blast waves.",
-        "Do not stand by the entrance door — it could be damaged.",
-        "In high-rise buildings, choose a floor below the third — higher floors mean higher risk."
-      ]
-    },
-    {
-      id: "basement_shelter",
-      title: "⬇️ Basement or bomb shelter — best protection",
-      description: "A basement is the safest place during a drone attack or bombardment.",
-      conditions: { shelter_type: ["basement", "bomb_shelter"] },
+      id: "shelter_apartment_basement",
+      title: "🏢 Shelter in apartment with basement",
+      description: "Basement or bomb shelter is the best protection against drone strikes.",
+      conditions: { location: ["apartment"], shelter_type: ["basement", "bomb_shelter"] },
       priority: "fast",
       reliability: "high",
       time_estimate: "immediately",
       yield_estimate: "Maximum protection",
-      tags: ["basement", "bomb_shelter", "safe"],
+      tags: ["building", "basement", "safe"],
       steps: [
-        "Immediately go down to the basement or bomb shelter.",
-        "Close the door behind you (if available).",
-        "Turn on a flashlight — the power may go out.",
-        "Sit against a wall, away from the entrance.",
-        "If there are children — keep them close, calm them down.",
-        "Stay in shelter until the all-clear is given.",
-        "Do not leave unless necessary — a secondary threat is possible."
+        "Immediately go down to the basement / bomb shelter.",
+        "Take with you: phone, documents, first aid kit, water, warm clothes.",
+        "DO NOT use the elevator — use the stairs.",
+        "Close the basement door behind you, but don't lock it.",
+        "Go deeper into the basement, away from the entrance and windows.",
+        "Sit against the wall, away from the entrance.",
+        "If you have children — keep them close, calm them down.",
+        "Stay in the shelter until the all-clear signal.",
+        "Do not leave unless necessary — a second attack is possible."
       ],
       warnings: [
-        "Do not use the elevator — the power may go out.",
-        "Do not enter the basement with a gas cylinder — explosive hazard.",
-        "If the basement is damp — find a dry spot, use a mat."
+        "Do not use the elevator — electricity may shut off.",
+        "Do not enter the basement with a gas cylinder — explosive risk.",
+        "Do not stand near basement windows — shrapnel can come through ventilation."
+      ],
+      tips: [
+        "Know in advance where the basement is and how to get there.",
+        "Keep water, a flashlight, and a radio in the basement.",
+        "If the basement is flooded — find an interior room without windows on the ground floor."
       ]
     },
+
+    // ===== 2. SHELTER IN APARTMENT WITHOUT BASEMENT =====
     {
-      id: "street_shelter",
+      id: "shelter_apartment_no_basement",
+      title: "🏠 Shelter in apartment without basement",
+      description: "Without a basement, find a place with few windows and load-bearing walls. The bathroom is the best option.",
+      conditions: { location: ["apartment"], shelter_type: ["none", "unknown"] },
+      priority: "fast",
+      reliability: "medium",
+      time_estimate: "immediately",
+      yield_estimate: "Good protection",
+      tags: ["building", "no_basement", "safe"],
+      steps: [
+        "Immediately leave rooms with large windows (living room, bedroom).",
+        "Go to the bathroom — thick walls, pipes, small window.",
+        "Alternative — interior hallway, pantry, storage room.",
+        "Lie on the floor along a load-bearing wall, face to the wall.",
+        "Cover yourself with a mattress, blanket, pillows — protection from shrapnel.",
+        "Stay away from doors — they can be blown off by the blast wave.",
+        "DO NOT look out the window — glass shards are dangerous.",
+        "Tape windows crosswise with tape — shards will hold together."
+      ],
+      warnings: [
+        "Balconies and loggias are the most dangerous places — shrapnel flies through glass.",
+        "The kitchen is dangerous due to gas and broken dishes.",
+        "One aerated concrete wall DOES NOT protect — shrapnel penetrates it."
+      ],
+      tips: [
+        "Remove heavy items from shelves in advance — they will fall during an explosion.",
+        "Keep a first aid kit, water, flashlight, and radio in the shelter.",
+        "The rule of three walls: the more walls between you and the blast, the better."
+      ]
+    },
+
+    // ===== 3. SHELTER ON THE STREET =====
+    {
+      id: "shelter_street",
       title: "🚶 On the street — how to find shelter",
-      description: "If you're on the street, it's important to find a safe place quickly.",
+      description: "On the street you are most vulnerable. The main thing is don't run — find shelter and lie down.",
       conditions: { location: ["street"] },
       priority: "fast",
       reliability: "medium",
@@ -124,24 +142,33 @@ const droneShelterDataEn = {
       yield_estimate: "Quick shelter",
       tags: ["street", "quick_shelter"],
       steps: [
-        "Assess the situation: where is the nearest building, underground passage, park, dense vegetation.",
-        "Don't stand still — move in a zigzag toward shelter.",
-        "Run into a doorway, store, or café — any enclosed space.",
-        "If no buildings — lie on the ground, pressed against a curb or terrain depression.",
+        "Assess the situation: where is the nearest building, underground passage, park.",
+        "DO NOT run in a straight line — move in zigzags toward shelter.",
+        "Run into an entrance, store, or cafe — any enclosed space.",
+        "If there are no buildings — lie on the ground, pressed against a curb or terrain irregularity.",
         "Cover your head with your hands, cover your ears.",
-        "If there's a ditch or trench nearby — use it.",
-        "After things calm down — wait 5-10 minutes, then move on."
+        "If there's a pit or trench nearby — use it.",
+        "After things quiet down — wait 5-10 minutes, then move on.",
+        "Don't cluster together — spread out 10-15 m apart."
       ],
       warnings: [
         "Do not hide under cars — they don't protect against blast waves.",
-        "Do not stand near glass shop windows — shards are dangerous.",
-        "Do not run in a straight line — move in a zigzag."
+        "Do not stand near glass storefronts — shrapnel is dangerous.",
+        "Glass storefronts are dangerous during explosions — stay away.",
+        "Power lines — shrapnel can cut wires."
+      ],
+      tips: [
+        "Remember the location of basements and bomb shelters on your route.",
+        "Wear lace-up shoes — run in shoes that won't come off.",
+        "If with a child — hold them close and cover them with your body."
       ]
     },
+
+    // ===== 4. SHELTER IN A CAR =====
     {
-      id: "car_shelter",
-      title: "🚗 In a car — what to do",
-      description: "A car is a poor shelter but can provide temporary protection.",
+      id: "shelter_car",
+      title: "🚗 What to do in a car",
+      description: "A car is NOT a shelter. Shrapnel pierces the body, the fuel tank ignites. Leave it.",
       conditions: { location: ["car"] },
       priority: "fast",
       reliability: "low",
@@ -149,23 +176,33 @@ const droneShelterDataEn = {
       yield_estimate: "Temporary protection",
       tags: ["car", "vehicle"],
       steps: [
-        "If the drone is close — immediately exit the car and find a building or shelter.",
-        "If you can't leave — close the windows, duck below window level.",
-        "Turn off the engine — noise may attract attention.",
-        "Cover yourself with a light cloth or jacket — camouflage.",
-        "In case of explosion — open doors (so they don't jam) and lie on the floor.",
-        "As soon as possible — leave the car and run to shelter."
+        "Stop immediately, NOT on the shoulder under power lines.",
+        "GET OUT of the car — staying inside is deadly dangerous.",
+        "Run 30-50 meters away from the car — risk of fire and tank explosion.",
+        "Find shelter: ditch, curb, wall, pit.",
+        "Lie on the ground, face down, hands over head.",
+        "DO NOT return to the car until the threat is over.",
+        "After an impact, the car may catch fire — stay away.",
+        "If in traffic — leave the car, don't remove the keys (don't block the road for emergency vehicles)."
       ],
       warnings: [
-        "Cars are a target for drones. Do not stay in them for long.",
-        "Metal amplifies shrapnel damage.",
-        "Do not start the engine if a drone is nearby — sound attracts attention."
+        "The fuel tank explodes from shrapnel or sparks — keep your distance.",
+        "Don't hide UNDER the car — it may catch fire or crush you in an explosion.",
+        "A car is a target for drones. Don't stay in it for long.",
+        "Metal amplifies shrapnel damage."
+      ],
+      tips: [
+        "Take your phone and documents — the rest doesn't matter.",
+        "If there's a bridge or overpass nearby — hiding under them is dangerous due to collapse.",
+        "Don't start the engine if a drone is nearby — sound attracts attention."
       ]
     },
+
+    // ===== 5. SHELTER IN THE FOREST =====
     {
-      id: "forest_shelter",
-      title: "🌲 In a forest or park — natural shelter",
-      description: "A forest is a good natural shelter, especially in leafy seasons.",
+      id: "shelter_forest",
+      title: "🌲 In the forest or park — natural shelter",
+      description: "The forest is good natural cover, especially in leafy seasons.",
       conditions: { location: ["forest"] },
       priority: "medium",
       reliability: "medium",
@@ -174,24 +211,32 @@ const droneShelterDataEn = {
       tags: ["forest", "nature", "cover"],
       steps: [
         "Run into dense vegetation — bushes, thickets, tall grass.",
-        "Lie on the ground, pressed against a tree trunk or rock.",
+        "Lie on the ground, press against a tree trunk or rock.",
         "Cover yourself with branches or leaves — camouflage.",
-        "Do not wear bright colors (yellow, red) — they are visible from the air.",
-        "Stay quiet, freeze.",
-        "If the drone passes by — don't raise your head for 2-3 minutes.",
-        "After it passes — move along the shaded side."
+        "Don't wear bright colors (yellow, red) — they are visible from above.",
+        "Try to stay quiet, freeze.",
+        "If a drone flies past — don't raise your head for 2-3 minutes.",
+        "After it passes — move along the shaded side.",
+        "DO NOT hide under a lone tree — it can be a landmark."
       ],
       warnings: [
-        "In the forest, don't create smoke or use open flames.",
-        "Don't hide under a lone tree — it could be a landmark.",
-        "In winter, shelter is worse — use snow depressions."
+        "In the forest, it's important not to create smoke or use open fire.",
+        "Dry grass and forest easily ignite from an explosion — fire risk.",
+        "In winter, cover is worse — use snow depressions."
+      ],
+      tips: [
+        "Study the route in advance — mark shelters on the map.",
+        "Carry a whistle — it will attract rescuers' attention.",
+        "Power bank and phone — the main things to report coordinates."
       ]
     },
+
+    // ===== 6. EMERGENCY — NO SHELTER =====
     {
-      id: "no_shelter_emergency",
-      title: "⚠️ No shelter — what to do in an emergency",
-      description: "If there is no shelter and a drone is approaching — use any opportunity for protection.",
-      conditions: { shelter_type: ["no_shelter", "unknown_shelter"] },
+      id: "shelter_no_shelter_emergency",
+      title: "⚠️ No shelter — emergency actions",
+      description: "If there's no shelter and a drone is approaching — use any opportunity for protection.",
+      conditions: { location: ["field"], shelter_type: ["none", "unknown"] },
       priority: "fast",
       reliability: "low",
       time_estimate: "immediately",
@@ -200,16 +245,56 @@ const droneShelterDataEn = {
       steps: [
         "DO NOT stand — lie face down on the ground.",
         "Cover your head with your hands, cover your ears.",
-        "Press against a curb, ditch, or terrain depression.",
+        "Press against a curb, ditch, or terrain irregularity.",
         "If you have a backpack or bag — put it on your head.",
-        "Try to find a hollow or hole.",
-        "Don't move until the drone leaves.",
-        "After it passes — quickly move toward buildings."
+        "Try to find a depression or pit.",
+        "Don't move until the drone is gone.",
+        "After it passes — quickly move toward buildings.",
+        "Breathe evenly, don't make sudden movements."
       ],
       warnings: [
-        "Open terrain is extremely dangerous — move in a zigzag.",
+        "Open terrain is extremely dangerous — move in zigzags.",
         "Don't look at the drone — it may spot you by the glint of your eyes.",
-        "Breathe steadily, don't make sudden movements."
+        "Don't run in a straight line — it makes you an easy target."
+      ],
+      tips: [
+        "Carry a whistle or flashlight — they will help attract rescuers' attention.",
+        "Study the area in advance — know where you can take shelter.",
+        "Stay calm — panic interferes with decision-making."
+      ]
+    },
+
+    // ===== 7. UNIVERSAL RULES =====
+    {
+      id: "shelter_universal",
+      title: "📋 Universal shelter rules",
+      description: "The main rule of shelter — maximum obstacles between you and the source of the threat.",
+      conditions: {},
+      priority: 999,
+      reliability: "high",
+      time_estimate: "always",
+      yield_estimate: "Knowledge",
+      tags: ["universal", "rules"],
+      steps: [
+        "Rule of three walls: concrete wall + earth embankment + another wall = good protection.",
+        "Look for shelter BEHIND terrain, not IN FRONT of it — the blast wave travels in a straight line.",
+        "Lie down, don't stand — shrapnel flies at a height of 0.5–2 m.",
+        "Cover your ears with your hands — concussion from the blast is dangerous for hearing.",
+        "Open your mouth during the blast — equalizes pressure in your ears.",
+        "DO NOT look at the blast — the light flash can damage your vision.",
+        "DO NOT use the elevator — electricity may shut off.",
+        "Stay in the shelter until the official all-clear."
+      ],
+      warnings: [
+        "One aerated concrete wall DOES NOT protect — shrapnel penetrates it.",
+        "Wooden houses burn and don't protect from shrapnel.",
+        "Don't leave unless necessary — a second attack is possible."
+      ],
+      tips: [
+        "Designate a 'gathering point' at home in advance — bathroom or hallway.",
+        "Practice shelter drills with family — everyone should know the route.",
+        "Keep in the shelter: water, first aid kit, flashlight, radio, documents.",
+        "Tape windows crosswise with tape — shrapnel will hold together."
       ]
     }
   ]

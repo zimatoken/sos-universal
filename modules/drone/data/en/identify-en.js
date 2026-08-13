@@ -1,9 +1,11 @@
 // modules/drone/data/en/identify-en.js
 // === MODULE: DRONES — IDENTIFICATION ===
-const identifyDataEn = {
+
+const droneIdentifyDataEn = {
   category: "identify",
-  title: "🔊 Drone Identification",
-  description: "How to determine the type, ownership and threat level of a UAV",
+  icon: "🔊",
+  title: "🔊 Drone identification",
+  description: "How to determine the type, affiliation and danger level of a drone",
 
   questions: [
     {
@@ -13,7 +15,7 @@ const identifyDataEn = {
       options: [
         { id: "small", label: "📏 Small (quadcopter, up to 1 m)", tags: ["small"] },
         { id: "medium", label: "📏 Medium (1–3 m, like 'Orlan')", tags: ["medium"] },
-        { id: "large", label: "📏 Large (more than 3 m, like 'Bayraktar')", tags: ["large"] },
+        { id: "large", label: "📏 Large (over 3 m, like 'Bayraktar')", tags: ["large"] },
         { id: "unknown", label: "❓ Can't determine", tags: ["unknown"] }
       ]
     },
@@ -23,7 +25,7 @@ const identifyDataEn = {
       text: "Do you see any weapons?",
       options: [
         { id: "no_weapon", label: "❌ No, just flying", tags: ["no_weapon"] },
-        { id: "suspicious", label: "⚠️ Suspicious pods / containers", tags: ["suspicious"] },
+        { id: "suspicious", label: "⚠️ Suspicious attachments / containers", tags: ["suspicious"] },
         { id: "missiles", label: "🚀 I see missiles / bombs", tags: ["missiles"] },
         { id: "camera", label: "📷 Only camera / sensors", tags: ["camera"] }
       ]
@@ -33,20 +35,20 @@ const identifyDataEn = {
       type: "single",
       text: "Where is the drone heading?",
       options: [
-        { id: "towards_city", label: "🏙️ Towards a city / village", tags: ["towards_city"] },
+        { id: "towards_city", label: "🏙️ Towards a city / town", tags: ["towards_city"] },
         { id: "away", label: "🌲 Away from populated areas", tags: ["away"] },
-        { id: "circling", label: "🔄 Circling over one place", tags: ["circling"] },
+        { id: "circling", label: "🔄 Circling over one spot", tags: ["circling"] },
         { id: "unknown_dir", label: "❓ I don't know / can't see", tags: ["unknown_dir"] }
       ]
     },
     {
       id: "markings",
       type: "single",
-      text: "Are there any identification marks?",
+      text: "Are there any identification markings?",
       options: [
-        { id: "friendly", label: "✅ Friendly markings (star, flag, inscription)", tags: ["friendly"] },
-        { id: "enemy", label: "❌ Enemy markings (Z, V, other)", tags: ["enemy"] },
-        { id: "none", label: "❓ No marks / can't see", tags: ["none"] }
+        { id: "friendly", label: "✅ Friendly markings (star, flag, text)", tags: ["friendly"] },
+        { id: "enemy", label: "❌ Enemy markings (Z, V, etc.)", tags: ["enemy"] },
+        { id: "none", label: "❓ No markings / not visible", tags: ["none"] }
       ]
     },
     {
@@ -62,123 +64,156 @@ const identifyDataEn = {
   ],
 
   solutions: [
+    // ===== 1. FRIENDLY DRONE =====
     {
       id: "friendly_identified",
-      title: "✅ Identified as a friendly drone",
-      description: "If you are sure the drone is friendly (by markings, shape, or military information) — no immediate danger, but stay cautious.",
+      title: "✅ Identified as friendly drone",
+      description: "If you're sure it's friendly (markings, shape, military info) — no immediate danger, but take basic precautions.",
       conditions: { markings: ["friendly"], weapon: ["no_weapon", "camera"] },
-      priority: "slow",
+      priority: 1,
       reliability: "high",
-      time_estimate: "not applicable",
+      time_estimate: "N/A",
       yield_estimate: "Peace of mind",
       tags: ["friendly", "safe"],
       steps: [
-        "Confirm that the markings are indeed friendly — compare with known examples.",
-        "Do not report the drone to emergency services unless required.",
-        "Continue observing but without panic.",
-        "If the drone descends — just step aside, it may be landing.",
-        "If other drones appear — report via 112."
+        "Confirm the markings match known friendly patterns.",
+        "Don't report to emergency services unless required.",
+        "Keep observing without panic.",
+        "If it descends, step aside — it may be landing.",
+        "If other drones appear, call 112."
       ],
       warnings: [
-        "Even a friendly drone can be dangerous if malfunctioning — keep a safe distance.",
-        "Do not approach a crashed drone — it may be charged or have a damaged battery."
+        "Even a friendly drone can be dangerous if malfunctioning — stay clear.",
+        "Don't approach a crashed drone — it may be live or have a damaged battery."
+      ],
+      tips: [
+        "Learn the signature features of friendly drones (sound, silhouette, lights).",
+        "When in doubt, err on the side of caution and take shelter."
       ]
     },
+
+    // ===== 2. ENEMY ARMED DRONE =====
     {
       id: "enemy_armed",
       title: "🚨 Enemy armed drone — immediate action",
       description: "A drone with missiles or bombs heading toward a city is a serious threat. Act fast.",
       conditions: { weapon: ["missiles"], direction: ["towards_city"] },
-      priority: "fast",
+      priority: 5,
       reliability: "high",
       time_estimate: "immediately",
       yield_estimate: "Safety",
       tags: ["enemy", "armed", "danger"],
       steps: [
-        "IMMEDIATELY move to shelter: basement, bomb shelter, building with thick walls.",
-        "Warn everyone: shout 'Drone! Take cover!'",
-        "Report to 112: drone type, weapons, direction, altitude.",
-        "Do not leave shelter until the all-clear.",
-        "If you are in a car — get out and move to shelter (car is a target).",
-        "Help children, elderly, and wounded."
+        "IMMEDIATELY take shelter: basement, bomb shelter, building with thick walls.",
+        "Warn everyone nearby: shout 'Drone! Take cover!'",
+        "Call 112: describe type, weapons, direction, altitude.",
+        "Don't leave shelter until official all-clear.",
+        "If in a car — leave it and go to shelter (car is a target).",
+        "Help children, elderly, injured."
       ],
       warnings: [
-        "DO NOT try to shoot down the drone — it could explode.",
+        "DO NOT try to shoot the drone — could cause explosion.",
         "DO NOT stop to take photos or videos.",
         "DO NOT go back for belongings."
+      ],
+      tips: [
+        "Know the nearest shelters along your route in advance.",
+        "Carry a whistle — it can attract rescuers' attention.",
+        "Keep your phone handy for quick 112 call."
       ]
     },
+
+    // ===== 3. ENEMY RECONNAISSANCE DRONE =====
     {
       id: "enemy_unarmed",
       title: "🔍 Enemy reconnaissance drone (unarmed)",
-      description: "A drone without visible missiles but with a camera — likely reconnaissance. Danger exists but not immediate.",
+      description: "Drone without visible missiles but with cameras — likely reconnaissance. Danger exists but not immediate.",
       conditions: { markings: ["enemy"], weapon: ["camera", "no_weapon"] },
-      priority: "medium",
+      priority: 3,
       reliability: "high",
       time_estimate: "1-3 minutes",
-      yield_estimate: "Situation assessment",
+      yield_estimate: "Situational awareness",
       tags: ["enemy", "reconnaissance"],
       steps: [
         "Report the drone to 112 or military command.",
-        "Note direction, altitude, time of observation.",
+        "Record flight direction, altitude, observation time.",
         "Warn neighbors and family.",
         "Close windows and doors, stay away from glass.",
-        "Do not openly discuss the drone — it may be recording audio.",
-        "Monitor the drone's actions — if it descends, take cover."
+        "Don't talk openly about the drone — it may record audio.",
+        "Monitor its actions — if it starts descending, take shelter."
       ],
       warnings: [
-        "Reconnaissance drones can adjust fire — do not stay in open areas.",
-        "Do not use radio devices (phone, radio) near the drone — it can detect the signal."
+        "Recon drones can adjust fire — avoid open spaces.",
+        "Don't use radio devices (phone, radio) near the drone — it may detect your signal."
+      ],
+      tips: [
+        "Use drone detection apps (e.g., 'Sky Alert').",
+        "Keep a log of observations — useful for military.",
+        "Don't relax if it flies away — it may return."
       ]
     },
+
+    // ===== 4. UNKNOWN DRONE =====
     {
       id: "unknown_drone",
-      title: "❓ Unidentified drone — general protocol",
-      description: "If you cannot determine the drone's affiliation — follow the universal plan.",
+      title: "❓ Unknown drone — general procedure",
+      description: "If you can't determine affiliation, follow the universal plan.",
       conditions: { markings: ["none"], type: ["unknown"] },
-      priority: "medium",
+      priority: 2,
       reliability: "medium",
       time_estimate: "1-2 minutes",
       yield_estimate: "Safety",
       tags: ["unknown", "precaution"],
       steps: [
-        "Observe the drone: direction, altitude, behavior.",
-        "Report the drone to 112 — describe everything you see.",
+        "Observe: direction, altitude, behavior.",
+        "Report to 112 — describe everything you see.",
         "Close windows and doors, stay away from glass.",
-        "If the drone approaches — take shelter.",
-        "If the drone moves away — stay alert but resume normal activities.",
-        "If military or police are nearby — inform them personally."
+        "If it approaches — take shelter.",
+        "If it moves away — stay alert but resume normal activities.",
+        "If military/police nearby — inform them directly."
       ],
       warnings: [
-        "Do not trust the drone's 'calm' behavior — it may be reconnaissance.",
-        "Do not share information about the drone on social media — it could cause harm."
+        "Don't trust 'calm' behavior — it may be reconnaissance.",
+        "Don't share drone info on social media — could be harmful."
+      ],
+      tips: [
+        "Take a photo (if safe) — helps identification.",
+        "Remember approximate time and location.",
+        "Stay away from crowds if it circles — it may be targeting."
       ]
     },
+
+    // ===== 5. NIGHT DRONE =====
     {
       id: "night_drone",
-      title: "🌙 Night drone — increased danger",
+      title: "🌙 Night drone — elevated danger",
       description: "Night drones are often used for attacks or reconnaissance. Be extra cautious.",
       conditions: { time: ["night"] },
-      priority: "fast",
+      priority: 4,
       reliability: "high",
       time_estimate: "immediately",
       yield_estimate: "Safety",
       tags: ["night", "danger"],
       steps: [
         "If you see lights or hear sound at night — immediately take shelter.",
-        "Report the drone to 112 — night drones are often dangerous.",
-        "Close all curtains, turn off lights — blackout reduces visibility.",
-        "Do not use flashlights or look up — it may attract attention.",
-        "If the drone starts descending — urgently evacuate to a basement.",
+        "Report to 112 — night drones are often dangerous.",
+        "Close all curtains, turn off lights — darkening reduces visibility.",
+        "Don't use flashlights or look up — may attract attention.",
+        "If it starts descending — urgently evacuate to basement.",
         "Alert neighbors by knocking on walls or via messengers."
       ],
       warnings: [
-        "At night, drones are harder to spot but may be armed.",
-        "Do not turn on bright lights — it could signal the operator."
+        "Night drones are harder to spot but may be armed.",
+        "Don't turn on bright lights — could be a signal for the operator."
+      ],
+      tips: [
+        "Keep a red-light flashlight (less visible from above).",
+        "Know your route to shelter in the dark.",
+        "Night drone sound carries further — use hearing for early detection."
       ]
     }
   ]
 };
 
 // ===== EXPORT =====
-window.identifyDataEn = identifyDataEn;
+window.droneIdentifyDataEn = droneIdentifyDataEn;
