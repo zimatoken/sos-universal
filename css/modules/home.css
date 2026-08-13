@@ -350,7 +350,8 @@
 
 .steps-block h4, .warnings-block h4 {
   margin: 0 0 12px;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 700;  /* добавить эту строку */
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--text2);
