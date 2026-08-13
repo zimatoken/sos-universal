@@ -157,8 +157,8 @@ const LOCALES = {
     badge_low: "❌ Risky",
     
     // Details
-    detail_steps: "📋 Steps",
-    detail_warnings: "⚠️ Warnings",
+    detail_steps: "Steps",
+    detail_warnings: "Warnings",
     
     // SOS
     sos_title: "SOS Mode",

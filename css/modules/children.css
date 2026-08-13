@@ -1,4 +1,4 @@
-﻿/* === РњРћР”РЈР›Р¬: Р”Р•РўР (SOS BABY) === */
+﻿/* === МОДУЛЬ: ДЕТИ (SOS BABY) === */
 :root {
   --children-primary: #f59e0b;
   --children-primary-dark: #d97706;
@@ -7,9 +7,9 @@
 }
 
 [data-theme="dark"] {
-  --children-primary: #4a2c0a;
-  --children-primary-dark: #f59e0b;
-  --children-bg: rgba(74, 44, 10, 0.15);
+  --children-primary: #f59e0b;
+  --children-primary-dark: #d97706;
+  --children-bg: rgba(245, 158, 11, 0.15);
 }
 
 /* ===== BACK BUTTON ===== */
@@ -308,7 +308,7 @@
   color: var(--text2);
 }
 
-.steps-block h4 { color: var(--children-primary); }
+.steps-block h4 { color: var(--text); }
 .warnings-block h4 { color: var(--accent); }
 
 .step-item, .warning-item {
@@ -856,7 +856,7 @@
   line-height: 1.5;
 }
 
-/* ===== MICROPHONE BUTTON (Р·Р°РІРµСЂС€Р°СЋС‰РёР№ Р±Р»РѕРє) ===== */
+/* ===== MICROPHONE BUTTON ===== */
 .mic-btn {
   background: var(--card);
   border: 2px solid var(--border);

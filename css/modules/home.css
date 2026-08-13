@@ -10,9 +10,9 @@
 }
 
 [data-theme="dark"] {
-  --home-primary: #064e3b;
-  --home-secondary: #10b981;
-  --home-bg: rgba(6, 78, 59, 0.15);
+  --home-primary: #10b981;
+  --home-secondary: #34d399;
+  --home-bg: rgba(16, 185, 129, 0.15);
 }
 
 /* ===== BACK BUTTON ===== */
@@ -313,11 +313,11 @@
   margin-bottom: 4px;
 }
 
-.badge.fast { background: rgba(239,68,68,0.12); color: #10b981; }
+.badge.fast { background: rgba(239,68,68,0.12); color: #ef4444; }
 .badge.medium { background: rgba(245,158,11,0.12); color: #f59e0b; }
 .badge.slow { background: rgba(16,185,129,0.12); color: #10b981; }
 .badge.high { background: rgba(16,185,129,0.12); color: #10b981; }
-.badge.low { background: rgba(239,68,68,0.12); color: #10b981; }
+.badge.low { background: rgba(239,68,68,0.12); color: #ef4444; }
 .badge.medium-rel { background: rgba(245,158,11,0.12); color: #f59e0b; }
 
 /* ===== DETAIL VIEW ===== */
@@ -356,8 +356,8 @@
   color: var(--text2);
 }
 
-.steps-block h4 { color: var(--home-primary); }
-.warnings-block h4 { color: #10b981; }
+.steps-block h4 { color: var(--text); }
+.warnings-block h4 { color: var(--home-accent); }
 
 .step-item, .warning-item {
   display: flex;
@@ -386,7 +386,7 @@
   width: 28px;
   height: 28px;
   background: rgba(239,68,68,0.15);
-  color: #10b981;
+  color: var(--home-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -589,7 +589,7 @@
 
 .signal-item.active {
   background: rgba(16,185,129,0.08);
-  border-color: #10b981;
+  border-color: var(--home-primary);
 }
 
 .signal-check {
@@ -606,8 +606,8 @@
 }
 
 .signal-item.active .signal-check {
-  background: #10b981;
-  border-color: #10b981;
+  background: var(--home-primary);
+  border-color: var(--home-primary);
   color: white;
 }
 
@@ -732,7 +732,7 @@
 }
 
 /* Home module category colors - green/blue theme */
-.cat-btn.plumbing::after { background: #10b981; }
+.cat-btn.plumbing::after { background: var(--home-primary); }
 .cat-btn.electrical::after { background: #3b82f6; }
 .cat-btn.appliances::after { background: #06b6d4; }
 .cat-btn.security::after { background: #8b5cf6; }
