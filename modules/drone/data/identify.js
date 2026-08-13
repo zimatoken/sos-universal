@@ -180,5 +180,5 @@ const identifyData = {
   ]
 };
 
+// ===== EXPORT =====
 window.identifyData = identifyData;
-console.log('✅ identifyData загружен');

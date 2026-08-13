@@ -163,5 +163,5 @@ const detectData = {
   ]
 };
 
+// ===== EXPORT =====
 window.detectData = detectData;
-console.log('✅ detectData загружен');

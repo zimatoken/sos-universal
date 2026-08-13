@@ -215,5 +215,5 @@ const droneShelterData = {
   ]
 };
 
+// ===== EXPORT =====
 window.droneShelterData = droneShelterData;
-console.log('✅ droneShelterData загружен');

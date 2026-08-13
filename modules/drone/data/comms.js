@@ -186,5 +186,5 @@ const droneCommsData = {
   ]
 };
 
+// ===== EXPORT =====
 window.droneCommsData = droneCommsData;
-console.log('✅ droneCommsData загружен');

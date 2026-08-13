@@ -215,5 +215,5 @@ const droneShelterDataEn = {
   ]
 };
 
+// ===== EXPORT =====
 window.droneShelterDataEn = droneShelterDataEn;
-console.log('✅ droneShelterDataEn loaded');

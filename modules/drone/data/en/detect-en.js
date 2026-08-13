@@ -163,5 +163,5 @@ const detectDataEn = {
   ]
 };
 
+// ===== EXPORT =====
 window.detectDataEn = detectDataEn;
-console.log('✅ detectDataEn loaded');

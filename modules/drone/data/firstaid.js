@@ -240,5 +240,5 @@ const droneFirstaidData = {
   ]
 };
 
+// ===== EXPORT =====
 window.droneFirstaidData = droneFirstaidData;
-console.log('✅ droneFirstaidData загружен');
