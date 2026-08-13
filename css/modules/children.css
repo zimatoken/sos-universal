@@ -1,4 +1,4 @@
-/* === МОДУЛЬ: ДЕТИ (SOS BABY) === */
+﻿/* === МОДУЛЬ: ДЕТИ (SOS BABY) === */
 :root {
   --children-primary: #f59e0b;
   --children-primary-dark: #d97706;
@@ -7,9 +7,9 @@
 }
 
 [data-theme="dark"] {
-  --children-primary: #4a2c0a;
-  --children-primary-dark: #f59e0b;
-  --children-bg: rgba(74, 44, 10, 0.15);
+  --children-primary: #f59e0b;
+  --children-primary-dark: #d97706;
+  --children-bg: rgba(245, 158, 11, 0.15);
 }
 
 /* ===== BACK BUTTON ===== */
@@ -302,14 +302,20 @@
 
 .steps-block h4, .warnings-block h4 {
   margin: 0 0 12px;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text2);
 }
 
-.steps-block h4 { color: var(--children-primary); }
-.warnings-block h4 { color: var(--accent); }
+/* 📋 Шаги выполнения — зелёный (хорошо читается в обеих темах) */
+
+
+/* ⚠️ Важные предупреждения — золотой (хорошо читается в обеих темах) */
+
+
+
+
 
 .step-item, .warning-item {
   display: flex;
@@ -856,7 +862,7 @@
   line-height: 1.5;
 }
 
-/* ===== MICROPHONE BUTTON (завершающий блок) ===== */
+/* ===== MICROPHONE BUTTON ===== */
 .mic-btn {
   background: var(--card);
   border: 2px solid var(--border);

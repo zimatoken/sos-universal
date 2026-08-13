@@ -193,5 +193,5 @@ const dronePrepDataEn = {
   ]
 };
 
+// ===== EXPORT =====
 window.dronePrepDataEn = dronePrepDataEn;
-console.log('✅ dronePrepDataEn loaded');

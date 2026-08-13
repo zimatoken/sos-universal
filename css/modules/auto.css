@@ -1,4 +1,4 @@
-/* ===== MODULE: AUTO ===== */
+﻿/* ===== MODULE: AUTO ===== */
 :root {
   --auto-primary: #ef4444;
   --auto-secondary: #f87171;
@@ -7,9 +7,9 @@
 }
 
 [data-theme="dark"] {
-  --auto-primary: #2d1b1b;
-  --auto-secondary: #ef4444;
-  --auto-bg: rgba(45, 27, 27, 0.15);
+  --auto-primary: #ef4444;
+  --auto-secondary: #f87171;
+  --auto-bg: rgba(239, 68, 68, 0.15);
 }
 
 /* ===== BACK BUTTON ===== */
@@ -348,14 +348,20 @@
 
 .steps-block h4, .warnings-block h4 {
   margin: 0 0 12px;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text2);
 }
 
-.steps-block h4 { color: var(--auto-primary); }
-.warnings-block h4 { color: var(--auto-accent); }
+/* 📋 Шаги выполнения — зелёный (хорошо читается в обеих темах) */
+
+
+/* ⚠️ Важные предупреждения — золотой (хорошо читается в обеих темах) */
+
+
+
+
 
 .step-item, .warning-item {
   display: flex;

@@ -10,13 +10,13 @@ const BABY_LOCALES = {
     app_subtitle: "Безопасность, здоровье и помощь детям",
 
     // Категории
-    cat_safety: "🛡️ Безопасность",
-    cat_health: "🤒 Здоровье",
-    cat_injury: "🩹 Травмы и первая помощь",
-    cat_lost: "🔍 Пропажа ребёнка",
-    cat_bullying: "💔 Буллинг",
-    cat_internet: "📱 Интернет-безопасность",
-    cat_school: "🏫 Школа"
+    cat_safety: "Безопасность",
+    cat_health: "Здоровье",
+    cat_injury: "Травмы и первая помощь",
+    cat_lost: "Пропажа ребёнка",
+    cat_bullying: "Буллинг",
+    cat_internet: "Интернет-безопасность",
+    cat_school: "Школа"
   },
 
   // ===== АНГЛИЙСКИЙ =====
@@ -24,13 +24,13 @@ const BABY_LOCALES = {
     app_title: "👶 Children",
     app_subtitle: "Safety, health and help for children",
 
-    cat_safety: "🛡️ Safety",
-    cat_health: "🤒 Health",
-    cat_injury: "🩹 Injuries & First Aid",
-    cat_lost: "🔍 Missing Child",
-    cat_bullying: "💔 Bullying",
-    cat_internet: "📱 Internet Safety",
-    cat_school: "🏫 School"
+    cat_safety: "Safety",
+    cat_health: "Health",
+    cat_injury: "Injuries & First Aid",
+    cat_lost: "Missing Child",
+    cat_bullying: "Bullying",
+    cat_internet: "Internet Safety",
+    cat_school: "School"
   }
 };
 

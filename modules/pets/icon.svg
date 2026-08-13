@@ -1,19 +1,29 @@
-<!-- icon.svg for PETS module -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- Orange circle background -->
-  <circle cx="50" cy="50" r="45" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="#ec4899" opacity="0.08"/>
+  <circle cx="32" cy="32" r="30" stroke="#ec4899" stroke-width="2"/>
   
-  <!-- White pet icon (cat/dog face) -->
-  <g fill="white" transform="translate(25, 25) scale(0.6)">
-    <!-- Cat body -->
-    <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.855-1.24 2.333-1.5"/>
-    <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.24-2.333-1.5"/>
-    <path d="M8 14v.5"/>
-    <path d="M16 14v.5"/>
-    <path d="M11.25 16.25h1.5L12 17l-.75-.75Z"/>
-    <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/>
-  </g>
+  <!-- Голова -->
+  <circle cx="32" cy="28" r="12" stroke="#ec4899" stroke-width="2" fill="none"/>
   
-  <!-- PETS text below -->
-  <text x="50" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">PETS</text>
+  <!-- Ушки (кошачьи) -->
+  <path d="M22 20L18 10L26 16" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M42 20L46 10L38 16" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Глазки -->
+  <circle cx="27" cy="26" r="2.5" stroke="#ec4899" stroke-width="1.5" fill="none"/>
+  <circle cx="37" cy="26" r="2.5" stroke="#ec4899" stroke-width="1.5" fill="none"/>
+  <circle cx="27" cy="26" r="1" fill="#ec4899"/>
+  <circle cx="37" cy="26" r="1" fill="#ec4899"/>
+  
+  <!-- Носик -->
+  <circle cx="32" cy="31" r="2" stroke="#ec4899" stroke-width="1.5" fill="none"/>
+  
+  <!-- Улыбка -->
+  <path d="M28 34Q32 38 36 34" stroke="#ec4899" stroke-width="2" stroke-linecap="round" fill="none"/>
+  
+  <!-- Усы -->
+  <line x1="22" y1="30" x2="28" y2="31" stroke="#ec4899" stroke-width="1" opacity="0.5"/>
+  <line x1="22" y1="34" x2="28" y2="33" stroke="#ec4899" stroke-width="1" opacity="0.5"/>
+  <line x1="42" y1="30" x2="36" y2="31" stroke="#ec4899" stroke-width="1" opacity="0.5"/>
+  <line x1="42" y1="34" x2="36" y2="33" stroke="#ec4899" stroke-width="1" opacity="0.5"/>
 </svg>

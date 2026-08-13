@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    SOS UNIVERSAL — Модуль: ПУТЕШЕСТВИЯ (Travel)
    Цвета: синий/голубой (#0ea5e9, #0284c7)
    ============================================ */
@@ -6,19 +6,20 @@
 /* --- Переменные модуля --- */
 :root {
   --travel-primary: #0ea5e9;
-  --travel-primary-dark: #0284c7;
-  --travel-primary-light: #e0f2fe;
+  --travel-secondary: #0284c7;
   --travel-accent: #f59e0b;
+  --travel-bg: rgba(14, 165, 233, 0.08);
   --travel-danger: #ef4444;
   --travel-success: #22c55e;
 }
 
 /* --- Тёмная тема --- */
 [data-theme="dark"] {
-  --travel-primary: #0c4a6e;
-  --travel-primary-dark: #0ea5e9;
-  --travel-bg: #0c1929;
-  --travel-primary-light: #1e3a5f;
+  --travel-primary: #0ea5e9;
+  --travel-secondary: #0284c7;
+  --travel-bg: rgba(14, 165, 233, 0.15);
+  --travel-danger: #ef4444;
+  --travel-success: #22c55e;
 }
 
 /* ===== BACK BUTTON ===== */
@@ -66,7 +67,7 @@
 
 .progress, .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--travel-primary), var(--travel-primary-dark));
+  background: linear-gradient(90deg, var(--travel-primary), var(--travel-secondary));
   border-radius: 2px;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 8px rgba(14, 165, 233, 0.3);
@@ -142,7 +143,7 @@
 }
 
 .option.selected {
-  background: rgba(14, 165, 233, 0.08);
+  background: var(--travel-bg);
   border-color: var(--travel-primary);
   color: var(--travel-primary);
 }
@@ -359,14 +360,20 @@
 
 .steps-block h4, .warnings-block h4 {
   margin: 0 0 12px;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text2);
 }
 
-.steps-block h4 { color: var(--travel-primary); }
-.warnings-block h4 { color: var(--travel-danger); }
+/* 📋 Шаги выполнения — зелёный (хорошо читается в обеих темах) */
+
+
+/* ⚠️ Важные предупреждения — золотой (хорошо читается в обеих темах) */
+
+
+
+
 
 .step-item, .warning-item {
   display: flex;
@@ -395,7 +402,7 @@
   width: 28px;
   height: 28px;
   background: rgba(239,68,68,0.15);
-  color: var(--travel-danger);
+  color: var(--travel-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -745,10 +752,12 @@
 .cat-btn.documents::after { background: var(--travel-primary); }
 .cat-btn.money::after { background: var(--travel-accent); }
 .cat-btn.health::after { background: var(--travel-danger); }
-.cat-btn.flight::after { background: var(--travel-primary-dark); }
+.cat-btn.flight::after { background: var(--travel-secondary); }
 .cat-btn.hotel::after { background: var(--travel-success); }
 .cat-btn.theft::after { background: #8b5cf6; }
-.cat-btn.lost::after { background: #f59e0b; }
+.cat-btn.lost::after { background: var(--travel-accent); }
+
+.cat-btn:hover::after { opacity: 1; }
 
 .cat-btn.documents:hover { border-color: rgba(14,165,233,0.4); background: rgba(14,165,233,0.06); }
 .cat-btn.money:hover { border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.06); }
@@ -757,8 +766,6 @@
 .cat-btn.hotel:hover { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.06); }
 .cat-btn.theft:hover { border-color: rgba(139,92,246,0.4); background: rgba(139,92,246,0.06); }
 .cat-btn.lost:hover { border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.06); }
-
-.cat-btn:hover::after { opacity: 1; }
 
 /* ===== MICROPHONE BUTTON ===== */
 .mic-btn {

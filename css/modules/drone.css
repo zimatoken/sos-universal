@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    SOS UNIVERSAL — Модуль: ДРОНЫ (Drone)
    Цвета: оранжевый/янтарный (#ea580c, #d97706)
    ============================================ */
@@ -6,15 +6,16 @@
 /* ===== MODULE: DRONE ===== */
 :root {
   --drone-primary: #ea580c;
+  --drone-primary-dark: #c2410c;
   --drone-secondary: #f97316;
   --drone-accent: #fb923c;
   --drone-bg: rgba(234, 88, 12, 0.08);
 }
 
 [data-theme="dark"] {
-  --drone-primary: #4a2a1a;
-  --drone-secondary: #ea580c;
-  --drone-bg: rgba(74, 42, 26, 0.15);
+  --drone-primary: #ea580c;
+  --drone-primary-dark: #c2410c;
+  --drone-bg: rgba(234, 88, 12, 0.15);
 }
 
 /* ===== BACK BUTTON ===== */
@@ -62,10 +63,10 @@
 
 .progress, .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--drone-primary), var(--drone-primary-dark));
+  background: linear-gradient(90deg, var(--drone-primary), var(--drone-secondary));
   border-radius: 2px;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 0 8px rgba(234, 88, 12, 0.3);
   width: 0%;
 }
 
@@ -138,7 +139,7 @@
 }
 
 .option.selected {
-  background: rgba(245, 158, 11, 0.08);
+  background: rgba(234, 88, 12, 0.08);
   border-color: var(--drone-primary);
   color: var(--drone-primary);
 }
@@ -147,7 +148,7 @@
   background: var(--drone-primary);
   border-color: var(--drone-primary);
   color: white;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 8px rgba(234, 88, 12, 0.4);
 }
 
 /* ===== NEXT BUTTON ===== */
@@ -163,7 +164,7 @@
   cursor: pointer;
   margin-top: 8px;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.3);
 }
 
 .next-btn:disabled {
@@ -175,7 +176,7 @@
 .next-btn:hover:not(:disabled) {
   background: var(--drone-primary-dark);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
 }
 
 .next-btn:active:not(:disabled) { transform: scale(0.98); }
@@ -356,14 +357,20 @@
 
 .steps-block h4, .warnings-block h4 {
   margin: 0 0 12px;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text2);
 }
 
-.steps-block h4 { color: var(--drone-primary); }
-.warnings-block h4 { color: var(--accent); }
+/* 📋 Шаги выполнения — зелёный (хорошо читается в обеих темах) */
+
+
+/* ⚠️ Важные предупреждения — золотой (хорошо читается в обеих темах) */
+
+
+
+
 
 .step-item, .warning-item {
   display: flex;
@@ -747,8 +754,8 @@
 .cat-btn.firstaid::after { background: #ec4899; }
 .cat-btn.prep::after { background: #8b5cf6; }
 
-.cat-btn.detect:hover { border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.06); }
-.cat-btn.identify:hover { border-color: rgba(217,119,6,0.4); background: rgba(217,119,6,0.06); }
+.cat-btn.detect:hover { border-color: rgba(234,88,12,0.4); background: rgba(234,88,12,0.06); }
+.cat-btn.identify:hover { border-color: rgba(194,65,12,0.4); background: rgba(194,65,12,0.06); }
 .cat-btn.shelter:hover { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.06); }
 .cat-btn.comms:hover { border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.06); }
 .cat-btn.evac:hover { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.06); }

@@ -186,5 +186,5 @@ const droneCommsDataEn = {
   ]
 };
 
+// ===== EXPORT =====
 window.droneCommsDataEn = droneCommsDataEn;
-console.log('✅ droneCommsDataEn loaded');

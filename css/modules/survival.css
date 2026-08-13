@@ -1,4 +1,4 @@
-/* ===== MODULE: SURVIVAL ===== */
+﻿/* ===== MODULE: SURVIVAL ===== */
 :root {
   --survival-primary: #3b82f6;
   --survival-secondary: #60a5fa;
@@ -7,9 +7,9 @@
 }
 
 [data-theme="dark"] {
-  --survival-primary: #1e3a5f;
-  --survival-secondary: #3b82f6;
-  --survival-bg: rgba(30, 58, 95, 0.15);
+  --survival-primary: #3b82f6;
+  --survival-secondary: #60a5fa;
+  --survival-bg: rgba(59, 130, 246, 0.15);
 }
 
 /* ===== BACK BUTTON ===== */
@@ -348,14 +348,20 @@
 
 .steps-block h4, .warnings-block h4 {
   margin: 0 0 12px;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text2);
 }
 
-.steps-block h4 { color: var(--survival-primary); }
-.warnings-block h4 { color: var(--accent); }
+/* 📋 Шаги выполнения — зелёный (хорошо читается в обеих темах) */
+
+
+/* ⚠️ Важные предупреждения — золотой (хорошо читается в обеих темах) */
+
+
+
+
 
 .step-item, .warning-item {
   display: flex;
@@ -384,7 +390,7 @@
   width: 28px;
   height: 28px;
   background: rgba(239,68,68,0.15);
-  color: var(--accent);
+  color: var(--survival-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;

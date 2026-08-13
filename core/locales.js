@@ -46,16 +46,16 @@ const LOCALES = {
     no_results_desc: "Попробуйте изменить параметры или выберите другой раздел.",
     
     // Бейджи
-    badge_fast: "⚡ Быстро",
-    badge_medium: "⏱️ Средне",
-    badge_slow: "🐢 Медленно",
-    badge_high: "✅ Надёжно",
-    badge_medium_rel: "⚠️ Средне",
-    badge_low: "❌ Риск",
+    badge_fast: "Быстро",
+    badge_medium: "⏱Средне",
+    badge_slow: "Медленно",
+    badge_high: "Надёжно",
+    badge_medium_rel: "Средне",
+    badge_low: "Риск",
     
     // Детали
-    detail_steps: "📋 Шаги выполнения",
-    detail_warnings: "⚠️ Важные предупреждения",
+    detail_steps: "Шаги выполнения",
+    detail_warnings: "Важные предупреждения",
     
     // SOS
     sos_title: "Режим SOS",
@@ -149,16 +149,16 @@ const LOCALES = {
     no_results_desc: "Try changing parameters or choose another section.",
     
     // Badges
-    badge_fast: "⚡ Fast",
-    badge_medium: "⏱️ Medium",
-    badge_slow: "🐢 Slow",
-    badge_high: "✅ Reliable",
-    badge_medium_rel: "⚠️ Medium",
-    badge_low: "❌ Risky",
+    badge_fast: "Fast",
+    badge_medium: "⏱Medium",
+    badge_slow: "Slow",
+    badge_high: "Reliable",
+    badge_medium_rel: "Medium",
+    badge_low: "Risky",
     
     // Details
-    detail_steps: "📋 Steps",
-    detail_warnings: "⚠️ Warnings",
+    detail_steps: "Steps",
+    detail_warnings: "Warnings",
     
     // SOS
     sos_title: "SOS Mode",

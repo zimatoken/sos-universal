@@ -1,21 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- Blue circle background -->
-  <circle cx="50" cy="50" r="45" fill="#3b82f6" stroke="#2563eb" stroke-width="3"/>
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="#f97316" opacity="0.08"/>
+  <circle cx="32" cy="32" r="30" stroke="#f97316" stroke-width="2"/>
   
-  <!-- White car icon -->
-  <g fill="white" transform="translate(25, 35) scale(0.5)">
-    <!-- Car body -->
-    <path d="M10 50 L10 40 Q10 30 20 30 L80 30 Q90 30 90 40 L90 50 L90 55 Q90 60 85 60 L15 60 Q10 60 10 55 Z"/>
-    <!-- Windows -->
-    <path d="M20 32 L25 25 L75 25 L80 32 Z" fill="#3b82f6"/>
-    <!-- Wheels -->
-    <circle cx="25" cy="55" r="8" fill="#1e293b"/>
-    <circle cx="75" cy="55" r="8" fill="#1e293b"/>
-    <!-- Headlights -->
-    <circle cx="12" cy="42" r="3" fill="#fbbf24"/>
-    <circle cx="88" cy="42" r="3" fill="#fbbf24"/>
-  </g>
+  <!-- Кузов -->
+  <path d="M14 42L16 34Q16 30 20 30H44Q48 30 48 34L50 42" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M20 30L24 24H40L44 30" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   
-  <!-- SOS text below -->
-  <text x="50" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">AUTO</text>
+  <!-- Окна -->
+  <path d="M24 26H40" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
+  
+  <!-- Колёса -->
+  <circle cx="22" cy="42" r="5" stroke="#f97316" stroke-width="2" fill="none"/>
+  <circle cx="42" cy="42" r="5" stroke="#f97316" stroke-width="2" fill="none"/>
+  <circle cx="22" cy="42" r="2" fill="#f97316" opacity="0.3"/>
+  <circle cx="42" cy="42" r="2" fill="#f97316" opacity="0.3"/>
+  
+  <!-- Фары -->
+  <circle cx="16" cy="36" r="2" fill="#f97316"/>
+  <circle cx="48" cy="36" r="2" fill="#f97316"/>
 </svg>

@@ -193,5 +193,5 @@ const dronePrepData = {
   ]
 };
 
+// ===== EXPORT =====
 window.dronePrepData = dronePrepData;
-console.log('✅ dronePrepData загружен');

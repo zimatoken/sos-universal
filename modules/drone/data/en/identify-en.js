@@ -180,5 +180,5 @@ const identifyDataEn = {
   ]
 };
 
+// ===== EXPORT =====
 window.identifyDataEn = identifyDataEn;
-console.log('✅ identifyDataEn loaded');

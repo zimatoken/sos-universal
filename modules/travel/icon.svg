@@ -1,7 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <circle cx="32" cy="32" r="30" fill="#0ea5e9" opacity="0.1"/>
+  <circle cx="32" cy="32" r="30" fill="#0ea5e9" opacity="0.08"/>
   <circle cx="32" cy="32" r="30" stroke="#0ea5e9" stroke-width="2"/>
-  <path d="M52 32L40 24V28H24V24L12 32L24 40V36H40V40L52 32Z" fill="#0ea5e9"/>
-  <path d="M28 18H36V22H28V18Z" fill="#0284c7"/>
-  <path d="M28 42H36V46H28V42Z" fill="#0284c7"/>
+  
+  <!-- Фюзеляж -->
+  <path d="M50 32L40 24V28H24V24L14 32L24 40V36H40V40L50 32Z" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Крылья -->
+  <line x1="40" y1="32" x2="50" y2="32" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+  <line x1="24" y1="32" x2="14" y2="32" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+  
+  <!-- Хвост -->
+  <path d="M28 18H36V22H28V18Z" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M28 42H36V46H28V42Z" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Иллюминаторы -->
+  <circle cx="30" cy="32" r="1.5" fill="#0ea5e9" opacity="0.4"/>
+  <circle cx="34" cy="32" r="1.5" fill="#0ea5e9" opacity="0.4"/>
+  <circle cx="38" cy="32" r="1.5" fill="#0ea5e9" opacity="0.4"/>
 </svg>
