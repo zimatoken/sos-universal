@@ -1,90 +1,17 @@
-<<<<<<< HEAD
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- Purple circle background -->
-  <circle cx="50" cy="50" r="45" fill="#a855f7" stroke="#7c3aed" stroke-width="3"/>
-  
-  <!-- White justice/lawyer icon (scales of justice) -->
-  <g fill="white" transform="translate(25, 30) scale(0.5)">
-    <!-- Base/stand -->
-    <rect x="40" y="70" width="20" height="6" rx="2"/>
-    <rect x="47" y="50" width="6" height="20"/>
-    
-    <!-- Balance beam -->
-    <rect x="25" y="48" width="50" height="5" rx="2"/>
-    
-    <!-- Left scale pan (золото/весы) -->
-    <circle cx="15" cy="35" r="12" fill="none" stroke="white" stroke-width="3"/>
-    <line x1="15" y1="23" x2="15" y2="35" stroke="white" stroke-width="2"/>
-    
-    <!-- Right scale pan -->
-    <circle cx="85" cy="35" r="12" fill="none" stroke="white" stroke-width="3"/>
-    <line x1="85" y1="23" x2="85" y2="35" stroke="white" stroke-width="2"/>
-    
-    <!-- Center decoration -->
-    <circle cx="50" cy="40" r="4" fill="#a855f7"/>
-  </g>
-  
-  <!-- LAWYER text below -->
-  <text x="50" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">LAWYER</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="#a855f7" opacity="0.1"/>
+  <circle cx="32" cy="32" r="30" stroke="#a855f7" stroke-width="2"/>
+  <!-- Стойка -->
+  <rect x="29" y="36" width="6" height="18" rx="1" fill="#a855f7"/>
+  <rect x="24" y="52" width="16" height="4" rx="1" fill="#a855f7"/>
+  <!-- Коромысло -->
+  <rect x="12" y="34" width="40" height="3" rx="1.5" fill="#a855f7"/>
+  <!-- Левая чаша -->
+  <path d="M14 34L12 26Q18 24 22 26L20 34Z" fill="none" stroke="#a855f7" stroke-width="2"/>
+  <line x1="16" y1="26" x2="16" y2="34" stroke="#a855f7" stroke-width="1.5"/>
+  <!-- Правая чаша -->
+  <path d="M44 34L42 26Q48 24 52 26L50 34Z" fill="none" stroke="#a855f7" stroke-width="2"/>
+  <line x1="48" y1="26" x2="48" y2="34" stroke="#a855f7" stroke-width="1.5"/>
+  <!-- Центр -->
+  <circle cx="32" cy="30" r="3" fill="#a855f7"/>
 </svg>
-=======
-<<<<<<< HEAD
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- Purple circle background -->
-  <circle cx="50" cy="50" r="45" fill="#a855f7" stroke="#7c3aed" stroke-width="3"/>
-  
-  <!-- White justice/lawyer icon (scales of justice) -->
-  <g fill="white" transform="translate(25, 30) scale(0.5)">
-    <!-- Base/stand -->
-    <rect x="40" y="70" width="20" height="6" rx="2"/>
-    <rect x="47" y="50" width="6" height="20"/>
-    
-    <!-- Balance beam -->
-    <rect x="25" y="48" width="50" height="5" rx="2"/>
-    
-    <!-- Left scale pan (золото/весы) -->
-    <circle cx="15" cy="35" r="12" fill="none" stroke="white" stroke-width="3"/>
-    <line x1="15" y1="23" x2="15" y2="35" stroke="white" stroke-width="2"/>
-    
-    <!-- Right scale pan -->
-    <circle cx="85" cy="35" r="12" fill="none" stroke="white" stroke-width="3"/>
-    <line x1="85" y1="23" x2="85" y2="35" stroke="white" stroke-width="2"/>
-    
-    <!-- Center decoration -->
-    <circle cx="50" cy="40" r="4" fill="#a855f7"/>
-  </g>
-  
-  <!-- LAWYER text below -->
-  <text x="50" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">LAWYER</text>
-</svg>
-=======
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- Purple circle background -->
-  <circle cx="50" cy="50" r="45" fill="#a855f7" stroke="#7c3aed" stroke-width="3"/>
-  
-  <!-- White justice/lawyer icon (scales of justice) -->
-  <g fill="white" transform="translate(25, 30) scale(0.5)">
-    <!-- Base/stand -->
-    <rect x="40" y="70" width="20" height="6" rx="2"/>
-    <rect x="47" y="50" width="6" height="20"/>
-    
-    <!-- Balance beam -->
-    <rect x="25" y="48" width="50" height="5" rx="2"/>
-    
-    <!-- Left scale pan (золото/весы) -->
-    <circle cx="15" cy="35" r="12" fill="none" stroke="white" stroke-width="3"/>
-    <line x1="15" y1="23" x2="15" y2="35" stroke="white" stroke-width="2"/>
-    
-    <!-- Right scale pan -->
-    <circle cx="85" cy="35" r="12" fill="none" stroke="white" stroke-width="3"/>
-    <line x1="85" y1="23" x2="85" y2="35" stroke="white" stroke-width="2"/>
-    
-    <!-- Center decoration -->
-    <circle cx="50" cy="40" r="4" fill="#a855f7"/>
-  </g>
-  
-  <!-- LAWYER text below -->
-  <text x="50" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">LAWYER</text>
-</svg>
->>>>>>> 57522793a60f67c90dd6befc66693a2a0762d34e
->>>>>>> 92849c5936c3da4acab85528b91f11224f9f55d1
