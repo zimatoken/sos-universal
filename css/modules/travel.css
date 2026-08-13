@@ -367,17 +367,13 @@
 }
 
 /* 📋 Шаги выполнения — зелёный (хорошо читается в обеих темах) */
-.steps-block h4 {
-  color: #10b981;
-}
+
 
 /* ⚠️ Важные предупреждения — золотой (хорошо читается в обеих темах) */
-.warnings-block h4 {
-  color: #f59e0b;
-}
 
-.steps-block h4 { color: var(--text); }
-.warnings-block h4 { color: var(--travel-accent); }
+
+
+
 
 .step-item, .warning-item {
   display: flex;

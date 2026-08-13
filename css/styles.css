@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    SOS UNIVERSAL — Основные стили
    ============================================ */
 
@@ -646,7 +646,16 @@ html, body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text2);
+}
+
+/* 📋 Шаги выполнения — яркий зелёный */
+.steps-block h4 {
+  color: #10b981 !important;
+}
+
+/* ⚠️ ажные предупреждения — яркий золотой */
+.warnings-block h4 {
+  color: #f59e0b !important;
 }
 
 .steps-block h4 {
