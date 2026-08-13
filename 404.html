@@ -1,14 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/sos-survive/">
-  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOS UNIVERSAL</title>
+  <meta http-equiv="refresh" content="0; url=/sos-universal/">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .container {
+      text-align: center;
+      color: #f1f5f9;
+      padding: 20px;
+    }
+    .logo {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+    .sos-badge {
+      background: #ef4444;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+    .loader {
+      margin-top: 24px;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #1e293b;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
   <script>
-    window.location.replace('/sos-survive/');
+    setTimeout(function() {
+      window.location.replace('/sos-universal/');
+    }, 500);
   </script>
 </head>
 <body>
-  <p>Redirecting to SOS SURVIVE...</p>
+  <div class="container">
+    <div class="logo">🆘</div>
+    <div class="sos-badge">SOS</div>
+    <h1>UNIVERSAL</h1>
+    <p>Универсальный ассистент в любой ситуации</p>
+    <div class="loader"></div>
+    <p style="font-size: 14px; color: #64748b; margin-top: 16px;">Загрузка приложения...</p>
+  </div>
 </body>
 </html>
