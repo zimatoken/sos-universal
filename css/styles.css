@@ -213,7 +213,6 @@ html, body {
   gap: 12px;
 }
 
-/* На очень маленьких экранах — 2 колонки */
 @media (max-width: 480px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
@@ -474,7 +473,7 @@ html, body {
 }
 
 .option.multi .check {
-  border-radius: 50%;
+  border-radius: 4px !important;
 }
 
 .option.selected {
@@ -488,6 +487,18 @@ html, body {
   border-color: var(--water);
   color: white;
   box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+/* ===== ПОДСКАЗКА ДЛЯ MULTI-ВОПРОСОВ ===== */
+.question-hint {
+  font-size: 14px;
+  color: var(--text2);
+  margin-bottom: 16px;
+  padding: 8px 14px;
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 8px;
+  border-left: 3px solid var(--water);
+  font-weight: 500;
 }
 
 /* ===== NEXT BUTTON ===== */
@@ -668,17 +679,9 @@ html, body {
   color: #10b981 !important;
 }
 
-/* ⚠️ ажные предупреждения — яркий золотой */
+/* ⚠️ Важные предупреждения — яркий золотой */
 .warnings-block h4 {
   color: #f59e0b !important;
-}
-
-.steps-block h4 {
-  color: var(--text);
-}
-
-.warnings-block h4 {
-  color: var(--accent);
 }
 
 .step-item,
