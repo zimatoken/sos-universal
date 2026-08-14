@@ -1,7 +1,8 @@
 import logging
+import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
-from config import TOKEN
+from config import TOKEN, APP_URL
 
 # Настройка логов
 logging.basicConfig(
@@ -9,9 +10,6 @@ logging.basicConfig(
     level=logging.INFO
 )
 logger = logging.getLogger(__name__)
-
-# Ссылка на приложение
-APP_URL = "https://zimatoken.github.io/sos-universal/"
 
 # --- КОМАНДЫ БОТА ---
 
@@ -134,6 +132,17 @@ async def modules_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "📋 *Модули SOS UNIVERSAL:*\n\n"
         "Выбери нужный модуль, чтобы узнать подробности:",
         reply_markup=reply_markup,
+        parse_mode='Markdown'
+    )
+
+# Команда /about — информация о боте
+async def about_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "🤖 *SOS UNIVERSAL Bot*\n\n"
+        "Версия: 2.0\n"
+        "Разработан для помощи в любых ситуациях.\n"
+        "Исходный код: https://github.com/zimatoken/sos-universal\n"
+        f"Приложение: {APP_URL}",
         parse_mode='Markdown'
     )
 
@@ -361,22 +370,35 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # --- ГЛАВНАЯ ФУНКЦИЯ ---
 
 def main():
-    app = Application.builder().token(TOKEN).build()
+    try:
+        # Пытаемся создать приложение
+        app = Application.builder().token(TOKEN).build()
+        logger.info("✅ Приложение успешно создано")
+    except Exception as e:
+        logger.error(f"❌ Ошибка при создании приложения: {e}")
+        logger.error("Проверьте токен в config.py и интернет-соединение.")
+        return
     
-    # Команды
+    # Регистрируем команды
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("demo", demo_command))
     app.add_handler(CommandHandler("sos", sos_command))
     app.add_handler(CommandHandler("modules", modules_command))
+    app.add_handler(CommandHandler("about", about_command))
     
-    # Кнопки
+    # Регистрируем обработчик кнопок
     app.add_handler(CallbackQueryHandler(button_handler))
     
     # Запуск
+    logger.info("🤖 Бот SOS UNIVERSAL запущен! Нажми Ctrl+C для остановки.")
     print("🤖 Бот SOS UNIVERSAL запущен! Нажми Ctrl+C для остановки.")
-    app.run_polling(allowed_updates=Update.ALL_TYPES)
+    
+    try:
+        app.run_polling(allowed_updates=Update.ALL_TYPES)
+    except Exception as e:
+        logger.error(f"❌ Ошибка при запуске polling: {e}")
+        print(f"❌ Ошибка: {e}")
 
 if __name__ == '__main__':
     main()
-    
