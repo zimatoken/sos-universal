@@ -7,7 +7,7 @@ const autoOverheatingData = {
   questions: [
     {
       id: "symptom",
-      text: "Какие симптомы вы заметили? (выберите все, что применимо)",
+      text: "Какие симптомы вы заметили?",
       type: "multi",
       options: [
         { id: "temp_high", label: "🌡️ Стрелка температуры ушла в красную зону", tags: ["temp_high", "alert"] },

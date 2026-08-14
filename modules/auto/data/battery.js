@@ -7,7 +7,7 @@ const autoBatteryData = {
   questions: [
     {
       id: "symptom",
-      text: "Какие симптомы? (выберите все, что применимо)",
+      text: "Какие симптомы?",
       type: "multi",
       options: [
         { id: "click", label: "🔊 Щелчок при повороте ключа", tags: ["starter", "battery", "click"] },

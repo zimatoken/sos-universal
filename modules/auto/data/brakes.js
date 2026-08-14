@@ -7,7 +7,7 @@ const autoBrakesData = {
   questions: [
     {
       id: "symptom",
-      text: "Какие симптомы вы заметили? (выберите все, что применимо)",
+      text: "Какие симптомы вы заметили?",
       type: "multi",
       options: [
         { id: "soft_pedal", label: "🦶 Педаль тормоза мягкая / проваливается", tags: ["soft_pedal", "air", "fluid"] },

@@ -8,7 +8,7 @@ const autoWontStartData = {
   questions: [
     {
       id: "symptom",
-      text: "Какие симптомы вы заметили? (выберите все, что применимо)",
+      text: "Какие симптомы вы заметили?",
       type: "multi",
       options: [
         { id: "click", label: "🔊 Щелчок при повороте ключа", tags: ["starter", "battery", "click"] },

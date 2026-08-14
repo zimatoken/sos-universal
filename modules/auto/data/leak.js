@@ -7,7 +7,7 @@ const autoLeakData = {
   questions: [
     {
       id: "symptom",
-      text: "Что вы заметили? (выберите все, что применимо)",
+      text: "Что вы заметили?",
       type: "multi",
       options: [
         { id: "puddle", label: "💧 Лужа под машиной", tags: ["puddle", "leak"] },

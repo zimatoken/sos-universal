@@ -7,7 +7,7 @@ const autoFlatTireData = {
   questions: [
     {
       id: "symptom",
-      text: "Что случилось с колесом? (выберите все, что применимо)",
+      text: "Что случилось с колесом?",
       type: "multi",
       options: [
         { id: "flat", label: "📉 Шина полностью спущена", tags: ["flat", "urgent"] },
