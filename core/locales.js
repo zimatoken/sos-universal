@@ -21,7 +21,18 @@ const LOCALES = {
     mod_kids: "Дети",
     mod_animals: "Животные",
     mod_travel: "Путешествия",
+    mod_drone: "Дроны",
     mod_soon: "Скоро",
+    
+    // Модули (для data-i18n на главной)
+    cat_survival: "Выживание",
+    cat_auto: "Авто",
+    cat_lawyer: "Юрист",
+    cat_home: "Дом",
+    cat_kids: "Дети",
+    cat_animals: "Животные",
+    cat_travel: "Путешествия",
+    cat_drone: "Дроны",
     
     // Общие
     back: "← Назад",
@@ -124,7 +135,18 @@ const LOCALES = {
     mod_kids: "Kids",
     mod_animals: "Animals",
     mod_travel: "Travel",
+    mod_drone: "Drones",
     mod_soon: "Coming soon",
+    
+    // Modules (for data-i18n on main page)
+    cat_survival: "Survival",
+    cat_auto: "Auto",
+    cat_lawyer: "Lawyer",
+    cat_home: "Home",
+    cat_kids: "Kids",
+    cat_animals: "Animals",
+    cat_travel: "Travel",
+    cat_drone: "Drones",
     
     // Common
     back: "← Back",
@@ -241,6 +263,9 @@ function t(key) {
   }
   if (typeof TRAVEL_LOCALES !== 'undefined') {
     moduleTexts = { ...moduleTexts, ...TRAVEL_LOCALES[lang] };
+  }
+  if (typeof DRONE_LOCALES !== 'undefined') {
+    moduleTexts = { ...moduleTexts, ...DRONE_LOCALES[lang] };
   }
   
   const texts = { ...coreTexts, ...moduleTexts };
