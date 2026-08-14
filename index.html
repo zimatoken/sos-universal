@@ -41,7 +41,8 @@
         <button class="theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
       </div>
 
-      <button class="sos-btn" onclick="showSOS()">
+      <!-- ===== КНОПКА SOS — ТЕПЕРЬ РАБОТАЕТ ===== -->
+      <button class="sos-btn" onclick="openSOS()">
         <div class="pulse"></div>
         <span data-i18n="sos_button">SOS — Я в опасности</span>
       </button>
@@ -77,12 +78,17 @@
           <span class="label" data-i18n="mod_travel">Путешествия</span>
         </button>
         <button class="mod-btn drone" onclick="window.location.href='./modules/drone/index.html'">
-         <span class="icon">🚁</span>
-         <span class="label" data-i18n="mod_drone">Дроны</span>
+          <span class="icon">🚁</span>
+          <span class="label" data-i18n="mod_drone">Дроны</span>
+        </button>
       </div>
 
+      <!-- ===== ФУТЕР С ПОЧТОЙ ===== -->
       <div class="footer">
         <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
+        <span style="display:block; margin-top:4px; font-size:12px; color:var(--text3);">
+          📧 <a href="mailto:sos.universal@yandex.ru" style="color:var(--text3); text-decoration:none;" data-i18n="footer_email">sos.universal@yandex.ru</a>
+        </span>
       </div>
 
       <!-- Карта и поддержка -->
@@ -133,7 +139,10 @@
   <!-- 3. ГОЛОС -->
   <script src="./core/voice.js"></script>
 
-  <!-- 4. ПРИЛОЖЕНИЕ (для глобальных функций) -->
+  <!-- 4. ДВИЖОК -->
+  <script src="./core/engine.js"></script>
+
+  <!-- 5. ПРИЛОЖЕНИЕ (для глобальных функций) -->
   <script src="./core/app.js"></script>
 
   <script>
@@ -168,12 +177,17 @@
       });
     }
 
-    function showComingSoon(name) {
-      alert('🚧 Модуль "' + name + '" в разработке! Скоро появится.');
-    }
-
-    function showSOS() {
-      alert('🆘 SOS-режим доступен внутри модулей "Выживание" и "Авто"');
+    // ==========================================
+    // КНОПКА SOS — ОТКРЫВАЕТ РЕАЛЬНЫЙ SOS-ЭКРАН
+    // ==========================================
+    function openSOS() {
+      // Проверяем, что функция showSOS существует (из app.js)
+      if (typeof showSOS === 'function') {
+        showSOS();
+      } else {
+        // Если app.js не загружен — пробуем перейти на SOS-экран вручную
+        window.location.href = './modules/survival/index.html?mode=sos';
+      }
     }
 
     // Загрузка сохранённого языка и темы
