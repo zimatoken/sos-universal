@@ -1,7 +1,7 @@
 // modules/drone/data/en/identify-en.js
 // === MODULE: DRONES — IDENTIFICATION ===
 
-const droneIdentifyDataEn = {
+const identifyDataEn = {
   category: "identify",
   icon: "🔊",
   title: "🔊 Drone identification",
@@ -216,4 +216,4 @@ const droneIdentifyDataEn = {
 };
 
 // ===== EXPORT =====
-window.droneIdentifyDataEn = droneIdentifyDataEn;
+window.identifyDataEn = identifyDataEn;

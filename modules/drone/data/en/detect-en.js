@@ -1,7 +1,7 @@
 // modules/drone/data/en/detect-en.js
 // === MODULE: DRONES — DETECTION ===
 
-const droneDetectDataEn = {
+const detectDataEn = {
   category: "detect",
   icon: "🛸",
   title: "🛸 Drone detection",
@@ -225,4 +225,4 @@ const droneDetectDataEn = {
 };
 
 // ===== EXPORT =====
-window.droneDetectDataEn = droneDetectDataEn;
+window.detectDataEn = detectDataEn;
