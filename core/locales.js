@@ -49,6 +49,8 @@ const LOCALES = {
     
     // Вопросы
     question_of: "Вопрос {current} из {total}",
+    select_all: "✅ Выберите все, что применимо",  // ← НОВОЕ
+    select_one: "Выберите один вариант",           // ← НОВОЕ
     
     // Результаты
     results_title: "{title} — Результаты",
@@ -163,6 +165,8 @@ const LOCALES = {
     
     // Questions
     question_of: "Question {current} of {total}",
+    select_all: "✅ Select all that apply",  // ← НОВОЕ
+    select_one: "Select one option",         // ← НОВОЕ
     
     // Results
     results_title: "{title} — Results",
@@ -269,6 +273,17 @@ function t(key) {
   }
   
   const texts = { ...coreTexts, ...moduleTexts };
+  
+  // Подстановка параметров (для question_of, results_title и т.д.)
+  if (arguments.length > 1 && typeof arguments[1] === 'object') {
+    let result = texts[key] || key;
+    const params = arguments[1];
+    for (const [k, v] of Object.entries(params)) {
+      result = result.replace(`{${k}}`, v);
+    }
+    return result;
+  }
+  
   return texts[key] || key;
 }
 

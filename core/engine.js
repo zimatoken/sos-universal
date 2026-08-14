@@ -484,7 +484,127 @@ function refreshDataRegistry() {
   console.log(`📋 Доступно категорий (${lang}): ${categories.join(", ")}`);
 }
 
+// ============================================================
+// РЕНДЕРИНГ ВОПРОСОВ (поддержка multi выбор)
+// ============================================================
+
+/**
+ * Рендеринг одного вопроса
+ * @param {Object} question - объект вопроса
+ * @param {number} index - номер вопроса (0-based)
+ * @param {number} total - общее количество вопросов
+ * @param {Object} answers - текущие ответы (для восстановления состояния)
+ * @returns {string} HTML строка
+ */
+function renderQuestion(question, index, total, answers) {
+    answers = answers || {};
+    const isMulti = question.type === 'multi';
+    const inputType = isMulti ? 'checkbox' : 'radio';
+    const nameAttr = `question_${question.id}`;
+    const selectedValues = answers[question.id] || [];
+    
+    let html = `
+        <div class="question-card" data-question-id="${question.id}">
+            <div class="question-num">${t('question_of', { current: index + 1, total: total })}</div>
+            <h3>${question.text}</h3>
+    `;
+    
+    // Подсказка для множественного выбора
+    if (isMulti) {
+        html += `<p class="question-hint">${t('select_all')}</p>`;
+    }
+    
+    html += `<div class="options-container">`;
+    
+    question.options.forEach(option => {
+        const isChecked = selectedValues.includes(option.id);
+        const checkedAttr = isChecked ? 'checked' : '';
+        
+        html += `
+            <label class="option ${isMulti ? 'multi' : ''} ${isChecked ? 'selected' : ''}">
+                <input type="${inputType}" 
+                       name="${nameAttr}" 
+                       value="${option.id}" 
+                       ${checkedAttr}
+                       data-question-id="${question.id}">
+                <span class="check"></span>
+                <span class="option-label">${option.label}</span>
+            </label>
+        `;
+    });
+    
+    html += `
+            </div>
+        </div>
+    `;
+    
+    return html;
+}
+
+/**
+ * Рендеринг всех вопросов
+ * @param {Array} questions - массив вопросов
+ * @param {Object} answers - текущие ответы
+ * @returns {string} HTML строка
+ */
+function renderQuestions(questions, answers) {
+    if (!questions || questions.length === 0) {
+        return '<p>⚠️ Вопросы не загружены</p>';
+    }
+    
+    answers = answers || {};
+    let html = '';
+    questions.forEach((q, index) => {
+        html += renderQuestion(q, index, questions.length, answers);
+    });
+    
+    return html;
+}
+
+/**
+ * Подсветка подсказки для мульти-вопросов (добавляет стиль)
+ */
+function applyMultiHintStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .question-hint {
+            font-size: 14px;
+            color: var(--text2);
+            margin-bottom: 16px;
+            padding: 8px 12px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid var(--water);
+            font-weight: 500;
+        }
+        
+        .option.multi .check {
+            border-radius: 4px !important;
+        }
+        
+        .option.multi.selected .check {
+            background: var(--water);
+            border-color: var(--water);
+            color: white;
+        }
+        
+        .option.multi .check::after {
+            content: '✓';
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .option.multi.selected .check::after {
+            opacity: 1;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
 // ===== ЭКСПОРТ =====
+window.renderQuestion = renderQuestion;
+window.renderQuestions = renderQuestions;
+window.applyMultiHintStyles = applyMultiHintStyles;
 window.getCategoryData = getCategoryData;
 window.filterSolutions = filterSolutions;
 window.getSolutionById = getSolutionById;
