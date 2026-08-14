@@ -1,7 +1,7 @@
 // modules/drone/data/identify.js
 // === МОДУЛЬ: ДРОНЫ — ИДЕНТИФИКАЦИЯ ===
 
-const droneIdentifyData = {
+const identifyData = {
   category: "identify",
   icon: "🔊",
   title: "🔊 Идентификация дрона",
@@ -216,4 +216,4 @@ const droneIdentifyData = {
 };
 
 // ===== ЭКСПОРТ =====
-window.droneIdentifyData = droneIdentifyData;
+window.identifyData = identifyData;

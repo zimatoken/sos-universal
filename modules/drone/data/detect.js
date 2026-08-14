@@ -1,7 +1,7 @@
 // modules/drone/data/detect.js
 // === МОДУЛЬ: ДРОНЫ — ОБНАРУЖЕНИЕ ===
 
-const droneDetectData = {
+const detectData = {
   category: "detect",
   icon: "🛸",
   title: "🛸 Обнаружение дрона",
@@ -225,4 +225,4 @@ const droneDetectData = {
 };
 
 // ===== ЭКСПОРТ =====
-window.droneDetectData = droneDetectData;
+window.detectData = detectData;
