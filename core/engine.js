@@ -156,7 +156,7 @@ const dataRegistry = {
     brakes: typeof window.autoBrakesData !== 'undefined' ? window.autoBrakesData : null,
     battery: typeof window.autoBatteryData !== 'undefined' ? window.autoBatteryData : null,
     leak: typeof window.autoLeakData !== 'undefined' ? window.autoLeakData : null,
-    dtp: typeof window.autoDtpData !== 'undefined' ? window.autoDtpData : null,  // Auto ДТП
+    dtp: typeof window.autoDtpData !== 'undefined' ? window.autoDtpData : null,
 
     // ===== LAWYER =====
     dtp_lawyer: typeof window.dtpData !== 'undefined' ? window.dtpData : null,
@@ -178,9 +178,9 @@ const dataRegistry = {
 
     // ===== BABY (Дети) =====
     safety: typeof window.safetyData !== 'undefined' ? window.safetyData : null,
-    health: typeof window.healthData !== 'undefined' ? window.healthData : null,  // детский health
+    health: typeof window.healthData !== 'undefined' ? window.healthData : null,
     injury: typeof window.injuryData !== 'undefined' ? window.injuryData : null,
-    lost: typeof window.lostData !== 'undefined' ? window.lostData : null,       // детский lost
+    lost: typeof window.lostData !== 'undefined' ? window.lostData : null,
     bullying: typeof window.bullyingData !== 'undefined' ? window.bullyingData : null,
     internet: typeof window.internetData !== 'undefined' ? window.internetData : null,
     school: typeof window.schoolData !== 'undefined' ? window.schoolData : null,
@@ -300,9 +300,17 @@ function getCategoryData(category) {
   const lang = getCurrentLang();
   const langData = dataRegistry[lang] || dataRegistry.ru;
   
+  // Если категория есть напрямую — сразу возвращаем
+  if (langData[category]) {
+    const data = langData[category];
+    console.log(`✅ Загружена категория: ${category} (язык: ${lang})`);
+    console.log(`   Вопросов: ${data.questions?.length || 0}, решений: ${data.solutions?.length || 0}`);
+    return data;
+  }
+  
+  // ===== МАППИНГ КОНФЛИКТОВ (только для пересекающихся названий) =====
   let mappedCategory = category;
   
-  // ===== МАППИНГ КОНФЛИКТОВ =====
   // 1. LAWYER / AUTO: dtp конфликтует
   if (category === 'dtp' && langData.dtp_lawyer) {
     mappedCategory = 'dtp_lawyer';
