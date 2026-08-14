@@ -192,10 +192,7 @@ function stopSOSFlash() {
   if (navigator.vibrate) navigator.vibrate(0);
 }
 
-// ============================================================
-// QUIZ — С ПОДДЕРЖКОЙ MULTI И ПОДСКАЗКОЙ
-// ============================================================
-
+// ===== QUIZ =====
 function startFlow(category) {
   currentFlow = getCategoryData(category);
   if (!currentFlow) {
@@ -204,11 +201,11 @@ function startFlow(category) {
   }
   currentQuestion = 0;
   answers = {};
-  renderQuestionSOS();
+  renderQuestion();
   showScreen("screen-questions");
 }
 
-function renderQuestionSOS() {
+function renderQuestion() {
   const q = currentFlow.questions[currentQuestion];
   const progress = ((currentQuestion) / currentFlow.questions.length) * 100;
   const progressBar = document.getElementById("progress");
@@ -228,9 +225,9 @@ function renderQuestionSOS() {
   html += '<div class="question-num">' + numText + '</div>';
   html += "<h3>" + q.text + "</h3>";
   
-  // ════════════════════════════════════════════════════════════
+  // ============================================================
   // ПОДСКАЗКА ДЛЯ MULTI-ВОПРОСОВ
-  // ════════════════════════════════════════════════════════════
+  // ============================================================
   if (isMulti) {
     html += `<p class="question-hint">✅ Выберите все, что применимо</p>`;
   }
@@ -285,7 +282,7 @@ function nextQuestion() {
 
   if (currentQuestion < currentFlow.questions.length - 1) {
     currentQuestion++;
-    renderQuestionSOS();
+    renderQuestion();
   } else {
     showResults();
   }
