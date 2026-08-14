@@ -226,10 +226,26 @@ function renderQuestion() {
   html += "<h3>" + q.text + "</h3>";
   
   // ============================================================
-  // ПОДСКАЗКА ДЛЯ MULTI-ВОПРОСОВ
+  // ПОДСКАЗКА ДЛЯ MULTI-ВОПРОСОВ — с inline-стилями
   // ============================================================
   if (isMulti) {
-    html += `<p class="question-hint">✅ Выберите все, что применимо</p>`;
+    html += `<p class="question-hint" style="
+      margin: 0 0 14px 0;
+      padding: 10px 14px;
+      background: rgba(59, 130, 246, 0.15);
+      border-left: 3px solid #3b82f6;
+      border-radius: 0 8px 8px 0;
+      color: #60a5fa;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    ">
+      <span style="margin-right: 4px;">✅</span>
+      Можно выбрать <strong>несколько вариантов</strong>
+    </p>`;
   }
   
   html += '<div class="options-container">';

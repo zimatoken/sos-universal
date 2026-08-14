@@ -970,3 +970,33 @@ html, body {
   .support-title { font-size: 13px; }
   .support-btn { font-size: 13px; padding: 8px 12px; }
 }
+
+/* ===== ПОДСКАЗКА ДЛЯ MULTI-ВОПРОСОВ ===== */
+.question-hint {
+  margin: 0 0 14px 0;
+  padding: 10px 14px;
+  background: rgba(59, 130, 246, 0.12);
+  border-left: 3px solid #3b82f6;
+  border-radius: 0 8px 8px 0;
+  color: #60a5fa;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Тёмная тема */
+[data-theme="dark"] .question-hint,
+body.dark .question-hint {
+  background: rgba(59, 130, 246, 0.18);
+  color: #93c5fd;
+}
+
+/* Светлая тема */
+[data-theme="light"] .question-hint,
+body.light .question-hint {
+  background: rgba(59, 130, 246, 0.08);
+  color: #2563eb;
+}
