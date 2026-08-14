@@ -73,7 +73,6 @@ function sendSOS() {
   const now = new Date();
   const timeStr = String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
   
-  // Парсим координаты для ссылки
   let mapUrl = "";
   const match = coords.match(/([\d.]+)° N, ([\d.]+)° E/);
   if (match) {
@@ -89,10 +88,8 @@ ${name ? '👤 Имя: ' + name : ''}
   
   const smsUrl = `sms:${phone}?body=${encodeURIComponent(message)}`;
   
-  // Пытаемся открыть SMS
   window.location.href = smsUrl;
   
-  // Копируем в буфер обмена
   setTimeout(() => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(message).then(() => {
@@ -184,7 +181,7 @@ function startSOSFlash() {
   }
   
   flashInterval = setInterval(flash, 200);
-  flash(); // immediate first flash
+  flash();
 }
 
 function stopSOSFlash() {
@@ -217,6 +214,8 @@ function renderQuestion() {
   const container = document.getElementById("question-container");
   if (!container) return;
   
+  const isMulti = q.type === "multi";
+  
   let html = '<div class="question-card">';
   
   const numText = t('question_of')
@@ -225,21 +224,32 @@ function renderQuestion() {
   
   html += '<div class="question-num">' + numText + '</div>';
   html += "<h3>" + q.text + "</h3>";
-
+  
+  // ============================================================
+  // ПОДСКАЗКА ДЛЯ MULTI-ВОПРОСОВ
+  // ============================================================
+  if (isMulti) {
+    html += `<p class="question-hint">✅ Выберите все, что применимо</p>`;
+  }
+  
+  html += '<div class="options-container">';
+  
   q.options.forEach((opt) => {
-    const isMulti = q.type === "multi";
     const cls = isMulti ? "option multi" : "option";
-    html += `<div class="${cls}" data-id="${opt.id}" onclick="selectOption(this, '${q.id}', ${isMulti})">`;
+    const checked = answers[q.id] && answers[q.id].includes(opt.id) ? 'selected' : '';
+    html += `<div class="${cls} ${checked}" data-id="${opt.id}" onclick="selectOption(this, '${q.id}', ${isMulti})">`;
     html += '<div class="check"></div>';
     html += "<span>" + opt.label + "</span>";
     html += "</div>";
   });
-  html += "</div>";
+  
+  html += "</div></div>";
   container.innerHTML = html;
 
   const nextBtn = document.getElementById("next-btn");
   if (nextBtn) {
-    nextBtn.disabled = true;
+    const hasSelected = container.querySelectorAll('.option.selected').length > 0;
+    nextBtn.disabled = !hasSelected;
     const isLast = currentQuestion === currentFlow.questions.length - 1;
     nextBtn.textContent = isLast ? t('show_results') : t('next');
   }
@@ -400,7 +410,6 @@ function closeSupportBanner(event) {
 
 // ===== DOM READY =====
 document.addEventListener('DOMContentLoaded', function() {
-  // Support banner
   const dismissed = localStorage.getItem('supportBannerDismissed');
   const banner = document.getElementById('supportBanner');
   if (banner && dismissed && Date.now() < parseInt(dismissed)) {
