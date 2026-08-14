@@ -236,7 +236,7 @@ function renderQuestion() {
       border-left: 3px solid #3b82f6;
       border-radius: 0 8px 8px 0;
       color: #60a5fa;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 500;
       line-height: 1.4;
       display: flex;

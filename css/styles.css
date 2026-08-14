@@ -948,6 +948,7 @@ html, body {
   .support-title { font-size: 14px; }
   .support-desc { font-size: 13px; }
   .support-btn { font-size: 14px; padding: 10px 16px; }
+  .question-hint { font-size: 15px; padding: 8px 12px; }
 }
 
 @media (max-width: 360px) {
@@ -979,7 +980,7 @@ html, body {
   border-left: 3px solid #3b82f6;
   border-radius: 0 8px 8px 0;
   color: #60a5fa;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
   display: flex;
