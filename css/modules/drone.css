@@ -782,20 +782,3 @@
   gap: 12px;
   margin-bottom: 20px;
 }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .cat-btn {
-    padding: 20px 8px;
-  }
-  .cat-btn .icon {
-    font-size: 28px;
-  }
-  .cat-btn .label {
-    font-size: 13px;
-  }
-}
