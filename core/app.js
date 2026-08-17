@@ -4,7 +4,8 @@ let currentFlow = null;
 let currentQuestion = 0;
 let answers = {};
 let lastResults = [];
-let filteredQuestions = []; // ← ДОБАВЛЯЕМ
+let filteredQuestions = [];
+let isMultiStep = false;
 
 // ===== TOAST =====
 function showToast(msg) {
@@ -32,6 +33,7 @@ function goHome() {
   currentQuestion = 0;
   answers = {};
   filteredQuestions = [];
+  isMultiStep = false;
   showScreen("screen-home");
 }
 
@@ -195,33 +197,48 @@ function stopSOSFlash() {
 }
 
 // ============================================================
-// === НОВАЯ ФУНКЦИЯ: ФИЛЬТРАЦИЯ ВОПРОСОВ ПО УСЛОВИЯМ ===
+// === ОСНОВНАЯ ФУНКЦИЯ ФИЛЬТРАЦИИ ВОПРОСОВ ===
 // ============================================================
 function filterQuestionsByConditions(questions, answers) {
   if (!questions || questions.length === 0) return [];
   
-  return questions.filter(q => {
-    // Если нет условий — показываем всегда
-    if (!q.conditions) return true;
+  const result = [];
+  let skipNext = false;
+  
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
     
-    // Проверяем каждое условие
+    // Если нет условий — показываем всегда
+    if (!q.conditions) {
+      result.push(q);
+      continue;
+    }
+    
+    // Проверяем условия
+    let allConditionsMet = true;
     for (let [key, allowedValues] of Object.entries(q.conditions)) {
       const userAnswer = answers[key];
       
       // Если ответа нет — условие не выполнено
       if (!userAnswer || userAnswer.length === 0) {
-        return false;
+        allConditionsMet = false;
+        break;
       }
       
-      // Проверяем пересечение: есть ли у пользователя хоть одно значение из разрешённых
+      // Проверяем пересечение
       const hasMatch = userAnswer.some(val => allowedValues.includes(val));
       if (!hasMatch) {
-        return false;
+        allConditionsMet = false;
+        break;
       }
     }
     
-    return true;
-  });
+    if (allConditionsMet) {
+      result.push(q);
+    }
+  }
+  
+  return result;
 }
 
 // ===== QUIZ =====
@@ -231,13 +248,14 @@ function startFlow(category) {
     showToastKey("toast_develop");
     return;
   }
+  
   currentQuestion = 0;
   answers = {};
+  isMultiStep = false;
   
-  // ✅ ФИЛЬТРУЕМ ВОПРОСЫ по условиям (пока ответов нет — показываем только первый вопрос без условий)
+  // Фильтруем вопросы
   filteredQuestions = filterQuestionsByConditions(currentFlow.questions, answers);
   
-  // Если нет вопросов — показываем ошибку
   if (filteredQuestions.length === 0) {
     showToast("❌ Нет доступных вопросов для вашего случая");
     return;
@@ -248,7 +266,7 @@ function startFlow(category) {
 }
 
 function renderQuestion() {
-  // Проверяем, что есть вопросы
+  // Проверяем наличие вопросов
   if (!filteredQuestions || filteredQuestions.length === 0) {
     const container = document.getElementById("question-container");
     if (container) {
@@ -259,7 +277,6 @@ function renderQuestion() {
   
   // Проверяем индекс
   if (currentQuestion >= filteredQuestions.length) {
-    // Все вопросы пройдены — показываем результаты
     showResults();
     return;
   }
@@ -267,7 +284,8 @@ function renderQuestion() {
   const q = filteredQuestions[currentQuestion];
   const total = filteredQuestions.length;
   
-  const progress = ((currentQuestion) / total) * 100;
+  // Обновляем прогресс
+  const progress = (currentQuestion / total) * 100;
   const progressBar = document.getElementById("progress");
   if (progressBar) progressBar.style.width = progress + "%";
 
@@ -275,9 +293,11 @@ function renderQuestion() {
   if (!container) return;
   
   const isMulti = q.type === "multi";
+  const selectedValues = answers[q.id] || [];
   
   let html = '<div class="question-card">';
   
+  // Номер вопроса
   const numText = t('question_of')
     .replace('{current}', currentQuestion + 1)
     .replace('{total}', total);
@@ -285,7 +305,7 @@ function renderQuestion() {
   html += '<div class="question-num">' + numText + '</div>';
   html += "<h3>" + q.text + "</h3>";
   
-  // Подсказка для multi-вопросов
+  // Подсказка для multi
   if (isMulti) {
     html += `<p class="question-hint" style="
       margin: 0 0 14px 0;
@@ -309,10 +329,12 @@ function renderQuestion() {
   html += '<div class="options-container">';
   
   q.options.forEach((opt) => {
+    const isSelected = selectedValues.includes(opt.id);
     const cls = isMulti ? "option multi" : "option";
-    const checked = answers[q.id] && answers[q.id].includes(opt.id) ? 'selected' : '';
-    html += `<div class="${cls} ${checked}" data-id="${opt.id}" onclick="selectOption(this, '${q.id}', ${isMulti})">`;
-    html += '<div class="check"></div>';
+    const selectedClass = isSelected ? 'selected' : '';
+    
+    html += `<div class="${cls} ${selectedClass}" data-id="${opt.id}" onclick="selectOption(this, '${q.id}', ${isMulti})">`;
+    html += '<div class="check">' + (isSelected ? '✓' : '') + '</div>';
     html += "<span>" + opt.label + "</span>";
     html += "</div>";
   });
@@ -320,6 +342,7 @@ function renderQuestion() {
   html += "</div></div>";
   container.innerHTML = html;
 
+  // Обновляем кнопку
   const nextBtn = document.getElementById("next-btn");
   if (nextBtn) {
     const hasSelected = container.querySelectorAll('.option.selected').length > 0;
@@ -333,29 +356,34 @@ function selectOption(el, qid, isMulti) {
   if (!el) return;
   
   if (!isMulti) {
-    document.querySelectorAll(".option").forEach(o => {
+    // Для single — снимаем все остальные
+    const parent = el.parentElement;
+    parent.querySelectorAll(".option").forEach(o => {
       o.classList.remove("selected");
       const check = o.querySelector(".check");
       if (check) check.textContent = "";
     });
   }
+  
+  // Переключаем текущий
   el.classList.toggle("selected");
   const check = el.querySelector(".check");
-  if (check) check.textContent = el.classList.contains("selected") ? "✓" : "";
+  if (check) {
+    check.textContent = el.classList.contains("selected") ? "✓" : "";
+  }
 
+  // Обновляем кнопку
   const selected = document.querySelectorAll(".option.selected");
   const nextBtn = document.getElementById("next-btn");
   if (nextBtn) nextBtn.disabled = selected.length === 0;
 }
 
 function nextQuestion() {
-  // Проверяем, что есть вопросы
   if (!filteredQuestions || filteredQuestions.length === 0) {
     showToast("❌ Ошибка: нет вопросов");
     return;
   }
   
-  // Проверяем индекс
   if (currentQuestion >= filteredQuestions.length) {
     showResults();
     return;
@@ -371,14 +399,28 @@ function nextQuestion() {
   // Переходим к следующему вопросу
   currentQuestion++;
   
-  // ✅ Перефильтровываем вопросы на основе новых ответов
-  filteredQuestions = filterQuestionsByConditions(currentFlow.questions, answers);
+  // ✅ КРИТИЧЕСКИ ВАЖНО: перефильтровываем вопросы на основе новых ответов
+  const newFiltered = filterQuestionsByConditions(currentFlow.questions, answers);
+  
+  // Проверяем, не изменился ли список вопросов
+  // Если изменился — корректируем currentQuestion
+  if (newFiltered.length !== filteredQuestions.length) {
+    // Пересобираем filteredQuestions и проверяем позицию
+    filteredQuestions = newFiltered;
+    
+    // Если currentQuestion выходит за пределы нового списка — показываем результаты
+    if (currentQuestion >= filteredQuestions.length) {
+      showResults();
+      return;
+    }
+  } else {
+    filteredQuestions = newFiltered;
+  }
   
   // Проверяем, есть ли ещё вопросы
   if (currentQuestion < filteredQuestions.length) {
     renderQuestion();
   } else {
-    // Все вопросы пройдены — показываем результаты
     showResults();
   }
 }
@@ -526,6 +568,6 @@ window.showDetail = showDetail;
 window.showResultsBack = showResultsBack;
 window.handleSupportBannerClick = handleSupportBannerClick;
 window.closeSupportBanner = closeSupportBanner;
-window.filterQuestionsByConditions = filterQuestionsByConditions; // ← ЭКСПОРТ ДЛЯ ОТЛАДКИ
+window.filterQuestionsByConditions = filterQuestionsByConditions;
 
 console.log('✅ Приложение загружено (SOS UNIVERSAL core)');
