@@ -20,7 +20,7 @@ const autoDtpDataEn = {
     {
       id: "injuries",
       text: "Are there any injuries?",
-      condition: { severity: ["major"] },
+      conditions: { severity: ["major"] },
       options: [
         { id: "injuries_severe", label: "Serious injuries (needs ambulance)", tags: ["severe", "ambulance"] },
         { id: "injuries_light", label: "Minor injuries (bruises, scrapes)", tags: ["light", "first_aid"] },

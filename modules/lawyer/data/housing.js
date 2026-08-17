@@ -21,7 +21,7 @@ const housingData = {
     {
       id: "neighbor_type",
       text: "Что именно делают соседи?",
-      condition: { housing_issue: ["neighbors", "neighbors_illegal"] },
+      conditions: { housing_issue: ["neighbors", "neighbors_illegal"] },
       options: [
         { id: "noise", label: "🔊 Постоянный шум (ремонт, музыка, крики)", tags: ["noise", "law"] },
         { id: "flood_neighbor", label: "💧 Затопили сверху", tags: ["flood", "damage"] },
@@ -32,7 +32,7 @@ const housingData = {
     {
       id: "uk_problem",
       text: "Что не так с ЖКХ?",
-      condition: { housing_issue: ["uk", "overpay"] },
+      conditions: { housing_issue: ["uk", "overpay"] },
       options: [
         { id: "cold", label: "❄️ Нет отопления / холодные батареи", tags: ["cold", "heating"] },
         { id: "water_off", label: "💡 Отключили воду / свет без предупреждения", tags: ["water", "electricity"] },
@@ -44,7 +44,7 @@ const housingData = {
     {
       id: "have_contract",
       text: "У вас есть договор аренды?",
-      condition: { housing_issue: ["rent"] },
+      conditions: { housing_issue: ["rent"] },
       options: [
         { id: "contract_yes", label: "📄 Да, есть письменный договор", tags: ["contract_yes"] },
         { id: "contract_no", label: "🗣️ Нет договора (устная договорённость)", tags: ["contract_no"] }
@@ -53,7 +53,7 @@ const housingData = {
     {
       id: "damage_amount",
       text: "Какова сумма ущерба?",
-      condition: { housing_issue: ["flood", "neighbors"], neighbor_type: ["flood_neighbor"] },
+      conditions: { housing_issue: ["flood", "neighbors"], neighbor_type: ["flood_neighbor"] },
       options: [
         { id: "damage_small", label: "💵 До 50 тыс. руб.", tags: ["small"] },
         { id: "damage_medium", label: "💰 50-200 тыс. руб.", tags: ["medium"] },

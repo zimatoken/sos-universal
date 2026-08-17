@@ -21,7 +21,7 @@ const inheritanceData = {
     {
       id: "relation",
       text: "Кем вы приходитесь умершему?",
-      condition: { inheritance_situation: ["no_will", "missed"] },
+      conditions: { inheritance_situation: ["no_will", "missed"] },
       options: [
         { id: "spouse", label: "💑 Супруг(а)", tags: ["spouse", "first"] },
         { id: "child", label: "👶 Ребёнок (включая внебрачного)", tags: ["child", "first"] },
@@ -33,7 +33,7 @@ const inheritanceData = {
     {
       id: "will_dispute_type",
       text: "В чём суть спора по завещанию?",
-      condition: { inheritance_situation: ["will_exists"] },
+      conditions: { inheritance_situation: ["will_exists"] },
       options: [
         { id: "invalid", label: "⚖️ Сомневаюсь в законности завещания", tags: ["invalid", "law"] },
         { id: "forced", label: "😰 Завещание под давлением / недееспособный", tags: ["forced", "invalid"] },
@@ -44,7 +44,7 @@ const inheritanceData = {
     {
       id: "has_debts",
       text: "Есть ли у наследодателя долги?",
-      condition: { inheritance_situation: ["debts", "no_will", "will_exists"] },
+      conditions: { inheritance_situation: ["debts", "no_will", "will_exists"] },
       options: [
         { id: "debts_yes", label: "💰 Да, есть кредиты / налоги / коммунальные долги", tags: ["debts_yes"] },
         { id: "debts_no", label: "✅ Нет, долгов нет", tags: ["debts_no"] },
@@ -54,7 +54,7 @@ const inheritanceData = {
     {
       id: "property_type",
       text: "Что входит в состав наследства?",
-      condition: { inheritance_situation: ["property_only", "no_will", "will_exists"] },
+      conditions: { inheritance_situation: ["property_only", "no_will", "will_exists"] },
       options: [
         { id: "apartment", label: "🏠 Квартира / дом", tags: ["apartment"] },
         { id: "car", label: "🚗 Автомобиль", tags: ["car"] },

@@ -32,7 +32,7 @@ const divorceData = {
       id: "property_type",
       text: "Какое имущество в споре?",
       type: "single",
-      condition: { divorce_situation: ["property"] },
+      conditions: { divorce_situation: ["property"] },
       options: [
         { id: "apartment", label: "🏢 Квартира / дом", tags: ["real_estate"] },
         { id: "car_money", label: "🚗 Автомобиль / деньги / вклады", tags: ["movable", "money"] },
@@ -44,7 +44,7 @@ const divorceData = {
       id: "alimony_agreement",
       text: "Есть ли соглашение об алиментах?",
       type: "single",
-      condition: { divorce_situation: ["alimony"] },
+      conditions: { divorce_situation: ["alimony"] },
       options: [
         { id: "agreement_yes", label: "✅ Да, есть нотариальное соглашение", tags: ["agreement_yes"] },
         { id: "agreement_no", label: "❌ Нет соглашения", tags: ["agreement_no"] }

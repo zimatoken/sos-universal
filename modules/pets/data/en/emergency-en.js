@@ -1,5 +1,5 @@
 // === MODULE: PETS — EMERGENCY SITUATIONS ===
-const emergencyDataEn = {
+const emergencyPetDataEn = {
   category: "emergency",
   title: "🚨 Emergency situations",
   description: "Birth, heatstroke, accident, drowning, electric shock, snake bite — emergency help",
@@ -206,4 +206,4 @@ const emergencyDataEn = {
 };
 
 // ===== EXPORT =====
-window.emergencyDataEn = emergencyDataEn;
+window.emergencyPetDataEn = emergencyPetDataEn;

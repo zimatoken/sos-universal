@@ -35,7 +35,7 @@ const autoLeakData = {
     {
       id: "fluid_color",
       text: "Какого цвета жидкость?",
-      condition: { symptom: ["puddle"] },
+      conditions: { symptom: ["puddle"] },
       options: [
         { id: "brown_black", label: "🟫 Коричневый / чёрный (масло)", tags: ["brown", "oil"] },
         { id: "red_blue", label: "🔴 Красный / синий (антифриз, ГУР)", tags: ["red", "coolant"] },

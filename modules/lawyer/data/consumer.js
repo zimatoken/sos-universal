@@ -41,7 +41,7 @@ const consumerData = {
     {
       id: "product_type",
       text: "Какой товар вы купили?",
-      condition: { consumer_issue: ["defective", "refund_refusal"] },
+      conditions: { consumer_issue: ["defective", "refund_refusal"] },
       options: [
         { id: "electronics", label: "📱 Техника / электроника", tags: ["electronics"] },
         { id: "clothes", label: "👕 Одежда / обувь", tags: ["clothes"] },
@@ -53,7 +53,7 @@ const consumerData = {
     {
       id: "time_passed",
       text: "Сколько времени прошло с покупки?",
-      condition: { consumer_issue: ["defective", "refund_refusal"] },
+      conditions: { consumer_issue: ["defective", "refund_refusal"] },
       options: [
         { id: "14_days", label: "📅 До 14 дней", tags: ["short"] },
         { id: "2_years", label: "📆 До 2 лет (в пределах гарантии)", tags: ["warranty"] },
@@ -63,7 +63,7 @@ const consumerData = {
     {
       id: "return_reason",
       text: "Почему вы хотите вернуть товар?",
-      condition: { consumer_issue: ["refund_refusal"] },
+      conditions: { consumer_issue: ["refund_refusal"] },
       options: [
         { id: "not_satisfied", label: "Не подошёл по размеру / цвету / фасону", tags: ["change_mind"] },
         { id: "defect_found", label: "Обнаружил недостаток (брак)", tags: ["defective"] },

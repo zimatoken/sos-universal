@@ -21,7 +21,7 @@ const inheritanceDataEn = {
     {
       id: "relation",
       text: "What is your relationship to the deceased?",
-      condition: { inheritance_situation: ["no_will", "missed"] },
+      conditions: { inheritance_situation: ["no_will", "missed"] },
       options: [
         { id: "spouse", label: "💑 Spouse", tags: ["spouse", "first"] },
         { id: "child", label: "👶 Child (including out-of-wedlock)", tags: ["child", "first"] },
@@ -33,7 +33,7 @@ const inheritanceDataEn = {
     {
       id: "will_dispute_type",
       text: "What is the nature of the will dispute?",
-      condition: { inheritance_situation: ["will_exists"] },
+      conditions: { inheritance_situation: ["will_exists"] },
       options: [
         { id: "invalid", label: "⚖️ I doubt the validity of the will", tags: ["invalid", "law"] },
         { id: "forced", label: "😰 The will was made under pressure / testator was incapacitated", tags: ["forced", "invalid"] },
@@ -44,7 +44,7 @@ const inheritanceDataEn = {
     {
       id: "has_debts",
       text: "Did the deceased have debts?",
-      condition: { inheritance_situation: ["debts", "no_will", "will_exists"] },
+      conditions: { inheritance_situation: ["debts", "no_will", "will_exists"] },
       options: [
         { id: "debts_yes", label: "💰 Yes, there are loans / taxes / utility debts", tags: ["debts_yes"] },
         { id: "debts_no", label: "✅ No, there are no debts", tags: ["debts_no"] },
@@ -54,7 +54,7 @@ const inheritanceDataEn = {
     {
       id: "property_type",
       text: "What is included in the inheritance?",
-      condition: { inheritance_situation: ["property_only", "no_will", "will_exists"] },
+      conditions: { inheritance_situation: ["property_only", "no_will", "will_exists"] },
       options: [
         { id: "apartment", label: "🏠 Apartment / house", tags: ["apartment"] },
         { id: "car", label: "🚗 Car", tags: ["car"] },

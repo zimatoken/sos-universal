@@ -1,5 +1,6 @@
 // === SOS UNIVERSAL — ЯДРО ПРИЛОЖЕНИЯ ===
 // Версия 2.0 — модульная архитектура с поддержкой условий
+// Полностью рабочий движок для всех разделов
 
 // ============================================================
 // 1. ГЛОБАЛЬНОЕ СОСТОЯНИЕ
@@ -146,8 +147,8 @@ function renderQuestion() {
   const total = App.allQuestions.length; // ← ВСЕ вопросы для нумерации!
   const current = App.currentIndex + 1;
   
-  // Прогресс-бар
-  const progress = (App.currentIndex / total) * 100;
+  // Прогресс-бар (по всем вопросам)
+  const progress = (App.currentIndex / Math.max(total, 1)) * 100;
   const progressBar = document.getElementById("progress");
   if (progressBar) progressBar.style.width = progress + "%";
   
@@ -417,13 +418,175 @@ function showResultsBack() {
 }
 
 // ============================================================
-// 10. SOS, SIGNALS, FLASHLIGHT (без изменений)
+// 10. SOS
 // ============================================================
 
-// ... (функции showSOS, toggleSignal, toggleFlashlight, sendSOS, updateGPS — остаются как были)
+function showSOS() {
+  showScreen("screen-sos");
+  updateGPS();
+  loadContactData();
+  showToastKey("sos_coords_saved");
+}
+
+function loadContactData() {
+  const phone = localStorage.getItem('sos_contact_phone');
+  const name = localStorage.getItem('sos_contact_name');
+  const phoneEl = document.getElementById('sos-phone');
+  const nameEl = document.getElementById('sos-name');
+  if (phoneEl && phone) phoneEl.value = phone;
+  if (nameEl && name) nameEl.value = name;
+}
+
+function saveContactData() {
+  const phone = document.getElementById('sos-phone')?.value?.trim() || '';
+  const name = document.getElementById('sos-name')?.value?.trim() || '';
+  if (phone) localStorage.setItem('sos_contact_phone', phone);
+  if (name) localStorage.setItem('sos_contact_name', name);
+}
+
+function sendSOS() {
+  const phone = document.getElementById('sos-phone')?.value?.trim() || '';
+  const name = document.getElementById('sos-name')?.value?.trim() || '';
+  
+  if (!phone) {
+    showToast("Введите номер телефона!");
+    return;
+  }
+  
+  saveContactData();
+  
+  const coordsEl = document.getElementById("gps-coords");
+  const coords = coordsEl ? coordsEl.textContent : "Координаты не определены";
+  const now = new Date();
+  const timeStr = String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
+  
+  let mapUrl = "";
+  const match = coords.match(/([\d.]+)° N, ([\d.]+)° E/);
+  if (match) {
+    mapUrl = `https://maps.google.com/?q=${match[1]},${match[2]}`;
+  }
+  
+  const message = `🆘 SOS! Я в опасности!
+📍 Координаты: ${coords}
+📱 Карта: ${mapUrl || coords}
+⏰ Время: ${timeStr}
+${name ? '👤 Имя: ' + name : ''}
+Пожалуйста, вызовите помощь!`;
+  
+  const smsUrl = `sms:${phone}?body=${encodeURIComponent(message)}`;
+  
+  window.location.href = smsUrl;
+  
+  setTimeout(() => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(message).then(() => {
+        showToast("Сообщение скопировано в буфер обмена");
+      }).catch(() => {
+        showToast("SMS открыт. Скопируйте координаты вручную.");
+      });
+    } else {
+      showToast("SMS открыт. Скопируйте координаты вручную.");
+    }
+  }, 1000);
+}
+
+function updateGPS() {
+  const coordsEl = document.getElementById("gps-coords");
+  const timeEl = document.getElementById("gps-time");
+
+  if (!coordsEl || !timeEl) return;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        const lat = pos.coords.latitude.toFixed(4);
+        const lon = pos.coords.longitude.toFixed(4);
+        coordsEl.textContent = lat + "° N, " + lon + "° E";
+        const now = new Date();
+        timeEl.textContent = "Обновлено: " + String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
+      },
+      () => {
+        coordsEl.textContent = "GPS недоступен — координаты не определены";
+        timeEl.textContent = "Используйте компас и ориентиры";
+      }
+    );
+  } else {
+    coordsEl.textContent = "GPS не поддерживается устройством";
+  }
+}
 
 // ============================================================
-// 11. SUPPORT BANNER
+// 11. SIGNALS
+// ============================================================
+
+function toggleSignal(el) {
+  if (!el) return;
+  el.classList.toggle("active");
+  const check = el.querySelector(".signal-check");
+  if (check) check.textContent = el.classList.contains("active") ? "✓" : "";
+}
+
+// ============================================================
+// 12. FLASHLIGHT
+// ============================================================
+
+let flashlightOn = false;
+let flashInterval = null;
+
+function toggleFlashlight() {
+  const btn = document.querySelector(".flashlight-btn");
+  if (!btn) return;
+  
+  flashlightOn = !flashlightOn;
+  btn.classList.toggle("on", flashlightOn);
+
+  if (flashlightOn) {
+    btn.textContent = "🔦 Фонарик ВКЛ (SOS-мигание)";
+    startSOSFlash();
+  } else {
+    btn.textContent = "🔦 Фонарик (SOS-мигание)";
+    stopSOSFlash();
+  }
+}
+
+function startSOSFlash() {
+  if (flashInterval) {
+    clearInterval(flashInterval);
+    flashInterval = null;
+  }
+  
+  const pattern = [200, 200, 200, 200, 200, 200, 600, 200, 600, 200, 600, 200, 200, 200, 200, 200, 200, 200, 1000];
+  let i = 0;
+
+  function flash() {
+    if (!flashlightOn) {
+      clearInterval(flashInterval);
+      flashInterval = null;
+      return;
+    }
+    const duration = pattern[i % pattern.length];
+    const isOn = i % 2 === 0 && duration < 500;
+
+    if (navigator.vibrate) {
+      if (isOn) navigator.vibrate(duration);
+    }
+    i++;
+  }
+  
+  flashInterval = setInterval(flash, 200);
+  flash();
+}
+
+function stopSOSFlash() {
+  if (flashInterval) {
+    clearInterval(flashInterval);
+    flashInterval = null;
+  }
+  if (navigator.vibrate) navigator.vibrate(0);
+}
+
+// ============================================================
+// 13. SUPPORT BANNER
 // ============================================================
 
 function handleSupportBannerClick(event) {
@@ -444,7 +607,7 @@ function closeSupportBanner(event) {
 }
 
 // ============================================================
-// 12. DOM READY
+// 14. DOM READY
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -456,7 +619,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================================
-// 13. ГЛОБАЛЬНЫЙ ЭКСПОРТ
+// 15. ГЛОБАЛЬНЫЙ ЭКСПОРТ
 // ============================================================
 
 window.showSOS = showSOS;
@@ -474,3 +637,4 @@ window.handleSupportBannerClick = handleSupportBannerClick;
 window.closeSupportBanner = closeSupportBanner;
 
 console.log('✅ SOS UNIVERSAL core v2.0 загружен');
+console.log(`📊 Всего вопросов: ${App.allQuestions.length}, видимых: ${App.visibleQuestions.length}`);

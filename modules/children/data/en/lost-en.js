@@ -1,8 +1,8 @@
-Ôªø// === MODULE: CHILDREN ‚Äî MISSING CHILD ===
+// === MODULE: CHILDREN ó MISSING CHILD ===
 const lostDataEn = {
   category: "lost",
-  title: "üîç Missing Child",
-  description: "Child didn't come home from school, isn't answering calls, went missing ‚Äî action algorithm",
+  title: "?? Missing Child",
+  description: "Child didn't come home from school, isn't answering calls, went missing ó action algorithm",
 
   questions: [
     {
@@ -10,11 +10,11 @@ const lostDataEn = {
       text: "What is the situation?",
       type: "single",
       options: [
-        { id: "not_home", label: "üè´ Didn't come home from school / activity / friends", tags: ["not_home"] },
-        { id: "no_contact", label: "üìµ Not answering calls / messages (24+ hours)", tags: ["no_contact"] },
-        { id: "runaway", label: "üèÉ Ran away from home after an argument", tags: ["runaway"] },
-        { id: "abduction", label: "üö® Suspect abduction / taken by a stranger", tags: ["abduction"] },
-        { id: "online", label: "üíª Went missing after online / social media communication", tags: ["online"] }
+        { id: "not_home", label: "?? Didn't come home from school / activity / friends", tags: ["not_home"] },
+        { id: "no_contact", label: "?? Not answering calls / messages (24+ hours)", tags: ["no_contact"] },
+        { id: "runaway", label: "?? Ran away from home after an argument", tags: ["runaway"] },
+        { id: "abduction", label: "?? Suspect abduction / taken by a stranger", tags: ["abduction"] },
+        { id: "online", label: "?? Went missing after online / social media communication", tags: ["online"] }
       ]
     },
     {
@@ -23,10 +23,10 @@ const lostDataEn = {
       type: "single",
       conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online"] },
       options: [
-        { id: "less_1h", label: "‚è∞ Less than 1 hour", tags: ["recent"] },
-        { id: "1_3h", label: "üìÖ 1‚Äì3 hours", tags: ["short"] },
-        { id: "3_12h", label: "üìÜ 3‚Äì12 hours", tags: ["medium"] },
-        { id: "more_12h", label: "üìà More than 12 hours", tags: ["long"] }
+        { id: "less_1h", label: "? Less than 1 hour", tags: ["recent"] },
+        { id: "1_3h", label: "?? 1ñ3 hours", tags: ["short"] },
+        { id: "3_12h", label: "?? 3ñ12 hours", tags: ["medium"] },
+        { id: "more_12h", label: "?? More than 12 hours", tags: ["long"] }
       ]
     },
     {
@@ -35,9 +35,9 @@ const lostDataEn = {
       type: "single",
       conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online"] },
       options: [
-        { id: "preschool", label: "üë∂ 3‚Äì7 years old", tags: ["preschool"] },
-        { id: "school", label: "üßë 7‚Äì12 years old", tags: ["school_age"] },
-        { id: "teen", label: "üßë‚Äçüéì Teenager 13‚Äì17 years old", tags: ["teen"] }
+        { id: "preschool", label: "?? 3ñ7 years old", tags: ["preschool"] },
+        { id: "school", label: "?? 7ñ12 years old", tags: ["school_age"] },
+        { id: "teen", label: "????? Teenager 13ñ17 years old", tags: ["teen"] }
       ]
     }
   ],
@@ -48,7 +48,7 @@ const lostDataEn = {
     // ==========================================
     {
       id: "missing_immediate",
-      title: "üö® Child didn't come home ‚Äî the first 3 hours are critical",
+      title: "?? Child didn't come home ó the first 3 hours are critical",
       description: "Statistics: 76% of missing children are found in the first 3 hours. Every minute counts.",
       conditions: { lost_type: ["not_home"] },
       priority: "fast",
@@ -58,26 +58,26 @@ const lostDataEn = {
       tags: ["missing", "search", "emergency"],
       steps: [
         "DON'T panic. Activate 'search mode': gather all relatives, friends, neighbors. Divide areas",
-        "Call the child. If phone is off / unavailable ‚Äî check last location: Find My iPhone, Google Timeline, Life360, Telegram location",
+        "Call the child. If phone is off / unavailable ó check last location: Find My iPhone, Google Timeline, Life360, Telegram location",
         "Contact everyone: school, kindergarten, coach, friends' parents, neighbors. Ask: when was the child last seen, what did they say, where were they going, who were they with",
-        "If the child has been missing for more than 3 hours (teen) or 1 hour (young child) ‚Äî call 911. A missing child ‚Äî don't wait 3 days like for adults. Police must respond immediately",
-        "File a missing person report at the nearest police station. Get a receipt (case number). If they refuse ‚Äî demand a written refusal, contact the precinct officer, the prosecutor's office",
-        "Create a post on social media (Facebook, Telegram, Instagram): photo of the child, description, where last seen, contacts. Ask for reposts. Don't share home address ‚Äî safety",
-        "Share photos in parent chats of the school, neighborhood, yard. Ask to forward. The more people know ‚Äî the higher the chances",
+        "If the child has been missing for more than 3 hours (teen) or 1 hour (young child) ó call 911. A missing child ó don't wait 3 days like for adults. Police must respond immediately",
+        "File a missing person report at the nearest police station. Get a receipt (case number). If they refuse ó demand a written refusal, contact the precinct officer, the prosecutor's office",
+        "Create a post on social media (Facebook, Telegram, Instagram): photo of the child, description, where last seen, contacts. Ask for reposts. Don't share home address ó safety",
+        "Share photos in parent chats of the school, neighborhood, yard. Ask to forward. The more people know ó the higher the chances",
         "Check security cameras: entrance, yard, school, stores, bus stops, subway. Save footage. Give to police",
         "Check the child's bank cards: statements, recent purchases, ATM withdrawals. This will indicate direction",
-        "If a teenager ‚Äî check social media, messages, diary, phone notes. Don't invade personal space unnecessarily, but life is more important"
+        "If a teenager ó check social media, messages, diary, phone notes. Don't invade personal space unnecessarily, but life is more important"
       ],
       warnings: [
-        "DON'T wait 'a little longer' ‚Äî the first 3 hours are critical. Police must accept a missing child report immediately, without waiting (Article 144 of the Criminal Procedure Code)",
-        "DON'T spread false information on social media ‚Äî it interferes with the search and scares the child (if they just went for a walk)",
+        "DON'T wait 'a little longer' ó the first 3 hours are critical. Police must accept a missing child report immediately, without waiting (Article 144 of the Criminal Procedure Code)",
+        "DON'T spread false information on social media ó it interferes with the search and scares the child (if they just went for a walk)",
         "DON'T blame the child after finding them (even if they ran away). This will close trust forever. Talk calmly, find out the reasons",
-        "If the child is found with a stranger ‚Äî immediately go to the police. Even if 'nothing happened' ‚Äî it's a crime (Articles 132, 135 of the Criminal Code)"
+        "If the child is found with a stranger ó immediately go to the police. Even if 'nothing happened' ó it's a crime (Articles 132, 135 of the Criminal Code)"
       ]
     },
     {
       id: "missing_young_child",
-      title: "üë∂ Young child (3‚Äì7 years) missing ‚Äî emergency search",
+      title: "?? Young child (3ñ7 years) missing ó emergency search",
       description: "Young children can't survive on the street for long. Act immediately, even if only 15 minutes have passed.",
       conditions: { lost_type: ["not_home", "no_contact"], age: ["preschool"] },
       priority: "fast",
@@ -88,15 +88,15 @@ const lostDataEn = {
       steps: [
         "A young child can't go far. Check: entrance, yard, playgrounds, basements, attics, elevators, trash containers",
         "Young children hide in closets, under beds, in the bathroom. Check EVERY room, even if it seems 'they couldn't be there'",
-        "If not found in the house and yard in 15‚Äì20 minutes ‚Äî call 911. Don't wait!",
+        "If not found in the house and yard in 15ñ20 minutes ó call 911. Don't wait!",
         "Go outside, call the child's name. Ask neighbors and passersby to help search",
-        "Check bodies of water (ponds, fountains) ‚Äî young children can fall in",
+        "Check bodies of water (ponds, fountains) ó young children can fall in",
         "Notify the school/kindergarten, even if the child wasn't supposed to be there"
       ],
       warnings: [
-        "A young child cannot return on their own from another area. DON'T wait ‚Äî search immediately",
+        "A young child cannot return on their own from another area. DON'T wait ó search immediately",
         "Bodies of water are the main danger for young children. Check them first",
-        "DON'T think 'everything will be fine' ‚Äî it will only be fine if you find them quickly"
+        "DON'T think 'everything will be fine' ó it will only be fine if you find them quickly"
       ]
     },
     // ==========================================
@@ -104,8 +104,8 @@ const lostDataEn = {
     // ==========================================
     {
       id: "no_contact_search",
-      title: "üìµ Not answering calls for 24 hours ‚Äî what to do?",
-      description: "24 hours without contact ‚Äî a worrying signal. Act systematically.",
+      title: "?? Not answering calls for 24 hours ó what to do?",
+      description: "24 hours without contact ó a worrying signal. Act systematically.",
       conditions: { lost_type: ["no_contact"] },
       priority: "fast",
       reliability: "high",
@@ -114,17 +114,17 @@ const lostDataEn = {
       tags: ["no_contact", "missing", "search"],
       steps: [
         "Check the phone's last location: Find My iPhone, Google Timeline, Life360, Telegram location",
-        "Contact the mobile provider ‚Äî they may provide the last cell towers the phone connected to (only upon police request)",
-        "Check bank cards: recent purchases, ATM withdrawals, transit payments ‚Äî this will indicate the route",
+        "Contact the mobile provider ó they may provide the last cell towers the phone connected to (only upon police request)",
+        "Check bank cards: recent purchases, ATM withdrawals, transit payments ó this will indicate the route",
         "Check social media: were they online, did they message anyone, did they like anything",
         "Contact all friends, classmates, their parents. Ask: were they seen, what did they write, where were they going",
-        "If the child is a minor ‚Äî file a police report immediately. Don't wait",
+        "If the child is a minor ó file a police report immediately. Don't wait",
         "Share photos on social media, parent chats, neighborhood groups"
       ],
       warnings: [
         "24 hours without contact for a minor is already an emergency. Don't wait 3 days",
-        "DON'T think 'they just don't want to talk' ‚Äî maybe they can't",
-        "If the child is found ‚Äî don't scold them for not answering. Find out the reason"
+        "DON'T think 'they just don't want to talk' ó maybe they can't",
+        "If the child is found ó don't scold them for not answering. Find out the reason"
       ]
     },
     // ==========================================
@@ -132,7 +132,7 @@ const lostDataEn = {
     // ==========================================
     {
       id: "abduction_response",
-      title: "üö® Child abduction ‚Äî rescue algorithm",
+      title: "?? Child abduction ó rescue algorithm",
       description: "Abduction is the most dangerous situation. Act clearly and quickly. Every minute could cost a life.",
       conditions: { lost_type: ["abduction"] },
       priority: "fast",
@@ -144,15 +144,15 @@ const lostDataEn = {
         "IMMEDIATELY call 911. Report: where and when last seen, description of the abductor, vehicle make/plate number, direction of travel",
         "Remember all details: height, clothing, tattoos, scars, speech characteristics, accent of the abductor. Write it down immediately while memory is fresh",
         "Check security cameras: entrance, yard, stores, bus stops. Save footage. Give to police",
-        "Contact the mobile provider ‚Äî they may provide data on the phone's last signal",
+        "Contact the mobile provider ó they may provide data on the phone's last signal",
         "Share photos on social media, parent chats, neighborhood groups. Ask for reposts",
-        "Contact search and rescue organizations ‚Äî they work with police",
-        "After the child is freed ‚Äî immediately see a psychologist. Abduction is severe trauma",
-        "Don't give interviews to media until coordinating with police ‚Äî it could interfere with the search"
+        "Contact search and rescue organizations ó they work with police",
+        "After the child is freed ó immediately see a psychologist. Abduction is severe trauma",
+        "Don't give interviews to media until coordinating with police ó it could interfere with the search"
       ],
       warnings: [
-        "Abduction is not 'maybe I imagined it'. If you suspect it ‚Äî act",
-        "DON'T try to search for the abductor yourself ‚Äî it's dangerous. Give all information to police",
+        "Abduction is not 'maybe I imagined it'. If you suspect it ó act",
+        "DON'T try to search for the abductor yourself ó it's dangerous. Give all information to police",
         "DON'T share information with media that could interfere with the search (where police are going, what evidence)",
         "Abduction is a criminal offense (Article 126 of the Criminal Code). Police must respond immediately"
       ]
@@ -162,54 +162,54 @@ const lostDataEn = {
     // ==========================================
     {
       id: "runaway_teen",
-      title: "üèÉ Teenager ran away from home ‚Äî why and how to find them",
+      title: "?? Teenager ran away from home ó why and how to find them",
       description: "A runaway teenager is not a criminal. It's a cry for help. Find them, talk, don't punish.",
       conditions: { lost_type: ["runaway"] },
       priority: "fast",
       reliability: "medium",
-      time_estimate: "1‚Äì24 hours",
+      time_estimate: "1ñ24 hours",
       yield_estimate: "Return and understanding",
       tags: ["runaway", "teen", "psychology"],
       steps: [
         "Don't panic. Teenagers often go to friends, parks, shopping malls, train stations. Most return on their own within 24 hours",
-        "Call friends, classmates, their parents. Ask: were they seen, what did they say, where were they going. Don't yell at them ‚Äî they might hide things",
-        "Check social media: Facebook, Telegram, Instagram, TikTok. Teens often post plans, stories. Don't write angry comments ‚Äî it will push them away",
+        "Call friends, classmates, their parents. Ask: were they seen, what did they say, where were they going. Don't yell at them ó they might hide things",
+        "Check social media: Facebook, Telegram, Instagram, TikTok. Teens often post plans, stories. Don't write angry comments ó it will push them away",
         "Check bank cards: where they withdrew money, what they bought. This will indicate the area",
-        "If more than 6 hours have passed ‚Äî call 911. A missing teenager is still a missing person. Police must search",
-        "If the teenager is in contact (reading messages but not responding) ‚Äî write calmly: 'We're worried, we love you, come home, let's talk'. No threats, no manipulation",
-        "After they return ‚Äî DO NOT punish, DO NOT scold. This will close trust forever. Talk: what happened, what's bothering them, what can be changed",
+        "If more than 6 hours have passed ó call 911. A missing teenager is still a missing person. Police must search",
+        "If the teenager is in contact (reading messages but not responding) ó write calmly: 'We're worried, we love you, come home, let's talk'. No threats, no manipulation",
+        "After they return ó DO NOT punish, DO NOT scold. This will close trust forever. Talk: what happened, what's bothering them, what can be changed",
         "See a family psychologist. Running away is a symptom: bullying, depression, family problems, school pressure. Treat the cause, not the symptom",
-        "If the teenager runs away regularly ‚Äî consider temporary living with grandparents/relatives, changing schools, working with a psychologist"
+        "If the teenager runs away regularly ó consider temporary living with grandparents/relatives, changing schools, working with a psychologist"
       ],
       warnings: [
-        "DON'T threaten the teenager with police, psychiatric hospital, taking away their phone ‚Äî this will only push them away. Talk about love and concern",
-        "DON'T blame friends ‚Äî they may be the only support. Better to befriend the friends' parents, build a network",
+        "DON'T threaten the teenager with police, psychiatric hospital, taking away their phone ó this will only push them away. Talk about love and concern",
+        "DON'T blame friends ó they may be the only support. Better to befriend the friends' parents, build a network",
         "Running away is not 'bad behavior' but an attempt to cope with an unbearable situation. Punishment will worsen the problem",
-        "If the teenager is in contact but refuses to return ‚Äî don't pressure. Arrange a meeting in a neutral place (cafe, park) with a psychologist or trusted adult"
+        "If the teenager is in contact but refuses to return ó don't pressure. Arrange a meeting in a neutral place (cafe, park) with a psychologist or trusted adult"
       ]
     },
     {
       id: "runaway_teen_older",
-      title: "üßë‚Äçüéì Teenager 16‚Äì17 ran away ‚Äî search specifics",
+      title: "????? Teenager 16ñ17 ran away ó search specifics",
       description: "Older teenagers may leave to another city, stay with friends, rent an apartment. The search is different.",
       conditions: { lost_type: ["runaway"], age: ["teen"] },
       priority: "medium",
       reliability: "medium",
-      time_estimate: "1‚Äì7 days",
+      time_estimate: "1ñ7 days",
       yield_estimate: "Returning home",
       tags: ["runaway", "teen", "older"],
       steps: [
-        "Teenagers 16‚Äì17 may go to another city. Check train/bus tickets purchased with their card",
-        "Check listings on local classifieds ‚Äî they might be renting an apartment",
+        "Teenagers 16ñ17 may go to another city. Check train/bus tickets purchased with their card",
+        "Check listings on local classifieds ó they might be renting an apartment",
         "Check social media: they may have created a new account, talking to someone in another city",
         "At 16 in many countries they can get a job. Check job listings they viewed",
-        "If more than 12 hours have passed ‚Äî police. They can check stations, hostels",
-        "Don't cut off paths to return ‚Äî make it clear that home is always open"
+        "If more than 12 hours have passed ó police. They can check stations, hostels",
+        "Don't cut off paths to return ó make it clear that home is always open"
       ],
       warnings: [
-        "At 16‚Äì17, the teenager is almost an adult. Force and threats don't work ‚Äî only conversation and trust",
-        "DON'T publicly scold them ‚Äî it's humiliation and will break the relationship",
-        "If they run away regularly ‚Äî consider changing schools, cities, psychotherapy"
+        "At 16ñ17, the teenager is almost an adult. Force and threats don't work ó only conversation and trust",
+        "DON'T publicly scold them ó it's humiliation and will break the relationship",
+        "If they run away regularly ó consider changing schools, cities, psychotherapy"
       ]
     },
     // ==========================================
@@ -217,7 +217,7 @@ const lostDataEn = {
     // ==========================================
     {
       id: "online_predator",
-      title: "üíª Went missing after online communication ‚Äî grooming and danger",
+      title: "?? Went missing after online communication ó grooming and danger",
       description: "Online predators use social media, games, messengers. The child may not understand the danger.",
       conditions: { lost_type: ["online"] },
       priority: "fast",
@@ -229,17 +229,17 @@ const lostDataEn = {
         "Immediately check messages: Facebook, Telegram, WhatsApp, Instagram, Discord, game chats (Roblox, Minecraft). Look for: arranged meetings, addresses, photos, video calls",
         "Save EVERYTHING: screenshots of messages, photos of the contact, profile links, IP addresses (if you can get them). These are evidence for police",
         "Check browser history, search queries, deleted messages (Telegram 'recently deleted', trash folder)",
-        "If the child arranged a meeting or has already left ‚Äî call 911 immediately. Report: online communication, suspect's profile, meeting location",
+        "If the child arranged a meeting or has already left ó call 911 immediately. Report: online communication, suspect's profile, meeting location",
         "Block the contact on all of the child's platforms. Change passwords. Enable two-factor authentication",
-        "After finding them ‚Äî DON'T scold the child. Predators manipulate, deceive, blackmail. The child is a victim, not at fault",
+        "After finding them ó DON'T scold the child. Predators manipulate, deceive, blackmail. The child is a victim, not at fault",
         "File a police report for indecent acts / abduction (Articles 132, 135 of the Criminal Code). Provide screenshots and messages",
         "See a child psychologist. Grooming is traumatic: shame, fear, guilt. The child may withdraw, become depressed",
         "Prevention: talk to children about online dangers. Rule: don't meet online friends without parents. Don't send intimate photos/videos. Don't share address, school"
       ],
       warnings: [
-        "DON'T blame the child for 'stupidity' ‚Äî predators professionally manipulate, using emotions, fear, loneliness. Any child can become a victim",
-        "DON'T delete messages before going to police ‚Äî these are key evidence. Take screenshots, save to the cloud",
-        "Predators often pose as peers, use fake photos, build trust over months. The child may be in love ‚Äî don't yell, explain",
+        "DON'T blame the child for 'stupidity' ó predators professionally manipulate, using emotions, fear, loneliness. Any child can become a victim",
+        "DON'T delete messages before going to police ó these are key evidence. Take screenshots, save to the cloud",
+        "Predators often pose as peers, use fake photos, build trust over months. The child may be in love ó don't yell, explain",
         "Sexting (sharing intimate photos) is criminally punishable even between minors. But the child is a victim, not a criminal. Consult a lawyer"
       ]
     }

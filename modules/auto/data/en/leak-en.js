@@ -35,7 +35,7 @@ const autoLeakDataEn = {
     {
       id: "fluid_color",
       text: "What color is the fluid?",
-      condition: { symptom: ["puddle"] },
+      conditions: { symptom: ["puddle"] },
       options: [
         { id: "brown_black", label: "🟫 Brown / black (oil)", tags: ["brown", "oil"] },
         { id: "red_blue", label: "🔴 Red / blue (coolant, power steering)", tags: ["red", "coolant"] },

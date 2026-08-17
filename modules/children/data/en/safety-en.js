@@ -1,8 +1,8 @@
-Ôªø// === MODULE: CHILDREN ‚Äî SAFETY ===
+// === MODULE: CHILDREN ó SAFETY ===
 const safetyDataEn = {
   category: "safety",
-  title: "üõ°Ô∏è Safety",
-  description: "Lost child, went with a stranger, left alone, dangerous items ‚Äî what to do",
+  title: "??? Safety",
+  description: "Lost child, went with a stranger, left alone, dangerous items ó what to do",
 
   questions: [
     {
@@ -10,13 +10,13 @@ const safetyDataEn = {
       text: "What happened? (select all that apply)",
       type: "multi",
       options: [
-        { id: "stranger", label: "üë§ Child went with a stranger / talked to someone unknown", tags: ["stranger"] },
-        { id: "alone_home", label: "üè† Left home alone", tags: ["alone_home"] },
-        { id: "lost", label: "üîç Got lost in a store / mall / on the street", tags: ["lost"] },
-        { id: "dangerous_item", label: "‚ö†Ô∏è Found a dangerous item (knife, pills, weapon)", tags: ["dangerous"] },
-        { id: "traffic", label: "üöó Dangerous situation on the road", tags: ["traffic"] },
-        { id: "animal", label: "üêï Bitten / scratched by an animal", tags: ["animal"] },
-        { id: "fire", label: "üî• Playing with fire / matches / lighter", tags: ["fire"] }
+        { id: "stranger", label: "?? Child went with a stranger / talked to someone unknown", tags: ["stranger"] },
+        { id: "alone_home", label: "?? Left home alone", tags: ["alone_home"] },
+        { id: "lost", label: "?? Got lost in a store / mall / on the street", tags: ["lost"] },
+        { id: "dangerous_item", label: "?? Found a dangerous item (knife, pills, weapon)", tags: ["dangerous"] },
+        { id: "traffic", label: "?? Dangerous situation on the road", tags: ["traffic"] },
+        { id: "animal", label: "?? Bitten / scratched by an animal", tags: ["animal"] },
+        { id: "fire", label: "?? Playing with fire / matches / lighter", tags: ["fire"] }
       ]
     },
     {
@@ -25,10 +25,10 @@ const safetyDataEn = {
       type: "single",
       conditions: { situation: ["stranger", "alone_home", "lost", "dangerous_item", "traffic", "animal", "fire"] },
       options: [
-        { id: "baby", label: "üë∂ Under 3 years old", tags: ["baby"] },
-        { id: "preschool", label: "üßí 3‚Äì7 years old", tags: ["preschool"] },
-        { id: "school", label: "üßë 7‚Äì12 years old", tags: ["school_age"] },
-        { id: "teen", label: "üßë‚Äçüéì Teenager 13‚Äì17 years old", tags: ["teen"] }
+        { id: "baby", label: "?? Under 3 years old", tags: ["baby"] },
+        { id: "preschool", label: "?? 3ñ7 years old", tags: ["preschool"] },
+        { id: "school", label: "?? 7ñ12 years old", tags: ["school_age"] },
+        { id: "teen", label: "????? Teenager 13ñ17 years old", tags: ["teen"] }
       ]
     },
     {
@@ -37,10 +37,10 @@ const safetyDataEn = {
       type: "single",
       conditions: { situation: ["stranger", "alone_home", "lost", "dangerous_item", "traffic", "animal", "fire"] },
       options: [
-        { id: "home", label: "üè† At home / apartment", tags: ["home"] },
-        { id: "street", label: "üå≥ On the street / in the yard / park", tags: ["street"] },
-        { id: "public", label: "üè™ In a store / mall / public transport", tags: ["public"] },
-        { id: "school_place", label: "üè´ At school / kindergarten", tags: ["school_place"] }
+        { id: "home", label: "?? At home / apartment", tags: ["home"] },
+        { id: "street", label: "?? On the street / in the yard / park", tags: ["street"] },
+        { id: "public", label: "?? In a store / mall / public transport", tags: ["public"] },
+        { id: "school_place", label: "?? At school / kindergarten", tags: ["school_place"] }
       ]
     }
   ],
@@ -51,8 +51,8 @@ const safetyDataEn = {
     // ==========================================
     {
       id: "stranger_danger",
-      title: "üö® Child is talking to a stranger ‚Äî immediate action",
-      description: "If the child has already left with a stranger or is talking to a suspicious person ‚Äî every second counts.",
+      title: "?? Child is talking to a stranger ó immediate action",
+      description: "If the child has already left with a stranger or is talking to a suspicious person ó every second counts.",
       conditions: { situation: ["stranger"] },
       priority: "fast",
       reliability: "high",
@@ -60,25 +60,25 @@ const safetyDataEn = {
       yield_estimate: "Saving the child",
       tags: ["stranger", "kidnapping", "emergency"],
       steps: [
-        "If you see this happening in real time ‚Äî immediately approach the child, take their hand, and walk away. Don't hesitate to shout, draw attention",
-        "If the child has already left with a stranger ‚Äî call 911 immediately. Report: child's description, suspect's description, direction, time",
+        "If you see this happening in real time ó immediately approach the child, take their hand, and walk away. Don't hesitate to shout, draw attention",
+        "If the child has already left with a stranger ó call 911 immediately. Report: child's description, suspect's description, direction, time",
         "Enable location tracking on the child's phone (if available): Find My iPhone, Google Family Link, Life360. Track their movement",
         "Describe EVERYTHING to police: height, weight, clothing, hair, distinguishing marks (scars, birthmarks), last words, child's mood",
         "Share the child's photo in neighborhood chats, school, kindergarten, social media. Ask to forward. The first hours are critical",
         "Check security cameras: entrance, yard, stores, bus stops. Save footage, give to police",
-        "Don't panic in front of other children ‚Äî they are scared. Explain that the police are looking and everything will be okay",
-        "After the child is found ‚Äî see a psychologist. Even brief contact with a stranger is traumatic. Don't scold the child, support them"
+        "Don't panic in front of other children ó they are scared. Explain that the police are looking and everything will be okay",
+        "After the child is found ó see a psychologist. Even brief contact with a stranger is traumatic. Don't scold the child, support them"
       ],
       warnings: [
-        "DON'T wait 'just a little longer' ‚Äî statistics show the first 3 hours after abduction are critical. The faster the police act, the better the chances",
-        "DON'T try to chase the car yourself ‚Äî it's dangerous, you could lose the trail. Remember the plate number, make, color, direction",
-        "DON'T spread false information on social media ‚Äî it interferes with police work. Only confirmed facts",
-        "After the incident ‚Äî be sure to talk to your child about safety rules: don't go with strangers, code word, 'no ‚Äî run ‚Äî yell'"
+        "DON'T wait 'just a little longer' ó statistics show the first 3 hours after abduction are critical. The faster the police act, the better the chances",
+        "DON'T try to chase the car yourself ó it's dangerous, you could lose the trail. Remember the plate number, make, color, direction",
+        "DON'T spread false information on social media ó it interferes with police work. Only confirmed facts",
+        "After the incident ó be sure to talk to your child about safety rules: don't go with strangers, code word, 'no ó run ó yell'"
       ]
     },
     {
       id: "stranger_young_child",
-      title: "üë∂ Young child with a stranger ‚Äî special attention",
+      title: "?? Young child with a stranger ó special attention",
       description: "Children under 7 don't recognize danger. A stranger can be a 'nice uncle' with candy.",
       conditions: { situation: ["stranger"], child_age: ["baby", "preschool"] },
       priority: "fast",
@@ -87,16 +87,16 @@ const safetyDataEn = {
       yield_estimate: "Saving the child",
       tags: ["stranger", "young", "emergency"],
       steps: [
-        "Young children cannot resist. If you see a stranger with a child ‚Äî approach, ask 'Who are you?', record on video",
+        "Young children cannot resist. If you see a stranger with a child ó approach, ask 'Who are you?', record on video",
         "Don't hesitate to shout, call for help, call the police, even if you're wrong. Better safe than sorry",
-        "Teach the child a 'code word' ‚Äî if a stranger doesn't know the code word, they must not go anywhere",
+        "Teach the child a 'code word' ó if a stranger doesn't know the code word, they must not go anywhere",
         "In public places, always hold the child's hand or keep them in a carrier / stroller",
-        "If the child gets lost in a crowded place ‚Äî immediately go to security, administration, the information desk"
+        "If the child gets lost in a crowded place ó immediately go to security, administration, the information desk"
       ],
       warnings: [
-        "Young children cannot assess danger ‚Äî they trust all adults. All responsibility is on you",
-        "DON'T leave young children unattended in public places ‚Äî even for a second",
-        "Predators often use candy, toys, puppies to attract children ‚Äî teach your child to say 'no'"
+        "Young children cannot assess danger ó they trust all adults. All responsibility is on you",
+        "DON'T leave young children unattended in public places ó even for a second",
+        "Predators often use candy, toys, puppies to attract children ó teach your child to say 'no'"
       ]
     },
     // ==========================================
@@ -104,29 +104,29 @@ const safetyDataEn = {
     // ==========================================
     {
       id: "lost_child_action",
-      title: "üîç Child is lost ‚Äî search algorithm",
-      description: "In a store, park, mall ‚Äî anyone can get lost. Act quickly and systematically.",
+      title: "?? Child is lost ó search algorithm",
+      description: "In a store, park, mall ó anyone can get lost. Act quickly and systematically.",
       conditions: { situation: ["lost"] },
       priority: "fast",
       reliability: "high",
-      time_estimate: "10‚Äì30 minutes",
+      time_estimate: "10ñ30 minutes",
       yield_estimate: "Finding the child",
       tags: ["lost", "search", "emergency"],
       steps: [
-        "DON'T panic. Stop, look around ‚Äî the child could be within 20 meters, just behind a shelf / tree",
-        "If in a store / mall ‚Äî contact security, administration, the checkout. They'll make an announcement, close exits",
-        "If on the street ‚Äî ask passersby, vendors, drivers. Show a photo. Children often hide out of fear ‚Äî check around corners, in bushes, under benches",
-        "If not found in 10‚Äì15 minutes ‚Äî call 911. Report: description, clothing, last location, time",
-        "Enable location tracking on the child's phone / watch (if available). Children often try to go 'home' from memory ‚Äî check the route",
+        "DON'T panic. Stop, look around ó the child could be within 20 meters, just behind a shelf / tree",
+        "If in a store / mall ó contact security, administration, the checkout. They'll make an announcement, close exits",
+        "If on the street ó ask passersby, vendors, drivers. Show a photo. Children often hide out of fear ó check around corners, in bushes, under benches",
+        "If not found in 10ñ15 minutes ó call 911. Report: description, clothing, last location, time",
+        "Enable location tracking on the child's phone / watch (if available). Children often try to go 'home' from memory ó check the route",
         "Share the photo in neighborhood chats, parent groups, social media. Ask to forward",
-        "If the child is found ‚Äî don't scold, don't punish. Hug them, calm them down. Talk about rules later: stay in place, call mom/dad, approach a store employee or police officer",
+        "If the child is found ó don't scold, don't punish. Hug them, calm them down. Talk about rules later: stay in place, call mom/dad, approach a store employee or police officer",
         "Teach your child in advance: first name, last name, address, parents' phone number. A contact bracelet. Code word 'I'm lost'"
       ],
       warnings: [
-        "DON'T run chaotically ‚Äî you could run right past the child. Act systematically: circle by circle, expanding the radius",
-        "DON'T wait '5 more minutes' ‚Äî if the child is missing for 10 minutes in an unfamiliar place, it's already an emergency. Call the police",
+        "DON'T run chaotically ó you could run right past the child. Act systematically: circle by circle, expanding the radius",
+        "DON'T wait '5 more minutes' ó if the child is missing for 10 minutes in an unfamiliar place, it's already an emergency. Call the police",
         "Children under 5 often hide out of fear rather than looking for parents. Check hiding places, behind curtains, under tables",
-        "After finding them ‚Äî don't scold. The child is already in shock. Discuss the rules later, in a calm setting"
+        "After finding them ó don't scold. The child is already in shock. Discuss the rules later, in a calm setting"
       ]
     },
     // ==========================================
@@ -134,28 +134,28 @@ const safetyDataEn = {
     // ==========================================
     {
       id: "alone_home_safety",
-      title: "üè† Child home alone ‚Äî safety rules",
+      title: "?? Child home alone ó safety rules",
       description: "If you have to leave your child alone, it's important to teach them basic safety rules.",
       conditions: { situation: ["alone_home"] },
       priority: "medium",
       reliability: "high",
-      time_estimate: "5‚Äì15 minutes",
+      time_estimate: "5ñ15 minutes",
       yield_estimate: "Child's safety at home",
       tags: ["alone", "home", "safety"],
       steps: [
         "Immediately contact the child by phone/video call. Make sure they are okay",
-        "Remind the rules: DO NOT open the door to anyone, even 'police', 'mailman', 'plumber'. If someone calls ‚Äî don't answer, don't show yourself",
+        "Remind the rules: DO NOT open the door to anyone, even 'police', 'mailman', 'plumber'. If someone calls ó don't answer, don't show yourself",
         "DO NOT turn on the gas, DO NOT use sharp objects (knife, scissors), DO NOT take medicine, DO NOT climb on the windowsill",
-        "Leave the phone number of neighbors or relatives ‚Äî someone to contact in an emergency",
-        "Agree that the child will call you every 30‚Äì60 minutes (or message you) so you know everything is okay",
+        "Leave the phone number of neighbors or relatives ó someone to contact in an emergency",
+        "Agree that the child will call you every 30ñ60 minutes (or message you) so you know everything is okay",
         "Prepare a simple snack in advance (sandwiches, yogurt, cookies, water) so the child doesn't need to use the gas/stove",
-        "If the child is under 7 ‚Äî don't leave them alone for more than 1‚Äì2 hours",
-        "Install a video surveillance camera (smart home) ‚Äî so you can see what's happening at home"
+        "If the child is under 7 ó don't leave them alone for more than 1ñ2 hours",
+        "Install a video surveillance camera (smart home) ó so you can see what's happening at home"
       ],
       warnings: [
-        "Children under 7 are not recommended to be left home alone. Under Russian law ‚Äî children under 7 cannot be left unattended (Article 14, Federal Law No. 124)",
+        "Children under 7 are not recommended to be left home alone. Under Russian law ó children under 7 cannot be left unattended (Article 14, Federal Law No. 124)",
         "DON'T leave matches, lighters, or dangerous items within reach",
-        "DON'T tell the child 'don't be afraid of anything' ‚Äî instead explain what to do in each situation",
+        "DON'T tell the child 'don't be afraid of anything' ó instead explain what to do in each situation",
         "Install an emergency communication app on the child's phone (direct call to you with one button)"
       ]
     },
@@ -164,29 +164,29 @@ const safetyDataEn = {
     // ==========================================
     {
       id: "dangerous_item_found",
-      title: "‚ö†Ô∏è Child found a dangerous item",
-      description: "Pills, knives, weapons, chemicals ‚Äî children put everything in their mouths and try things. Act immediately.",
+      title: "?? Child found a dangerous item",
+      description: "Pills, knives, weapons, chemicals ó children put everything in their mouths and try things. Act immediately.",
       conditions: { situation: ["dangerous_item"] },
       priority: "fast",
       reliability: "high",
-      time_estimate: "1‚Äì10 minutes",
+      time_estimate: "1ñ10 minutes",
       yield_estimate: "Preventing poisoning / injury",
       tags: ["poison", "dangerous", "emergency"],
       steps: [
-        "If the child swallowed something ‚Äî DO NOT induce vomiting without medical consultation! Some substances burn the esophagus on the way back up",
+        "If the child swallowed something ó DO NOT induce vomiting without medical consultation! Some substances burn the esophagus on the way back up",
         "Immediately call 911 or poison control center. Report: what was swallowed, how much, when, age, weight",
-        "Keep the packaging, remaining substance, pills ‚Äî the doctor needs to know the composition and dosage. Take a photo",
-        "If the child handled a weapon ‚Äî don't yell, don't scare them. Calmly take it away, hide it, call the police (911)",
-        "If the child cut / poked themselves ‚Äî wash the wound with soap and water, treat with antiseptic, apply a sterile bandage. For severe bleeding ‚Äî tourniquet above the wound",
+        "Keep the packaging, remaining substance, pills ó the doctor needs to know the composition and dosage. Take a photo",
+        "If the child handled a weapon ó don't yell, don't scare them. Calmly take it away, hide it, call the police (911)",
+        "If the child cut / poked themselves ó wash the wound with soap and water, treat with antiseptic, apply a sterile bandage. For severe bleeding ó tourniquet above the wound",
         "Check: are there other dangerous items within reach? Remove EVERYTHING: medications, household chemicals, sharp objects, weapons, small parts",
-        "After the incident ‚Äî explain to the child: 'this is dangerous, painful, not allowed'. Don't yell, show with examples (torn paper, bitter taste)",
-        "Install locks on cabinets with chemicals and medications. Store weapons in a safe. Small parts ‚Äî out of reach"
+        "After the incident ó explain to the child: 'this is dangerous, painful, not allowed'. Don't yell, show with examples (torn paper, bitter taste)",
+        "Install locks on cabinets with chemicals and medications. Store weapons in a safe. Small parts ó out of reach"
       ],
       warnings: [
-        "DON'T induce vomiting in case of poisoning with acid, alkali, gasoline, oil ‚Äî this will double the esophageal burn. Only as directed by a doctor",
-        "DON'T give milk, water, juice in case of poisoning without consultation ‚Äî some substances increase absorption with liquid",
-        "Children under 3 ‚Äî everything goes in the mouth. Any small item (<3 cm) = choking hazard. Medicine = poisoning. Chemicals = burns",
-        "After contact with a weapon ‚Äî even if it didn't fire ‚Äî see a psychologist. Children under 7 can't distinguish a toy from a weapon"
+        "DON'T induce vomiting in case of poisoning with acid, alkali, gasoline, oil ó this will double the esophageal burn. Only as directed by a doctor",
+        "DON'T give milk, water, juice in case of poisoning without consultation ó some substances increase absorption with liquid",
+        "Children under 3 ó everything goes in the mouth. Any small item (<3 cm) = choking hazard. Medicine = poisoning. Chemicals = burns",
+        "After contact with a weapon ó even if it didn't fire ó see a psychologist. Children under 7 can't distinguish a toy from a weapon"
       ]
     },
     // ==========================================
@@ -194,29 +194,29 @@ const safetyDataEn = {
     // ==========================================
     {
       id: "road_safety_child",
-      title: "üö∏ Child on the road ‚Äî accident or dangerous situation",
+      title: "?? Child on the road ó accident or dangerous situation",
       description: "Child ran onto the road, got hit by a car, playing on the roadway. Fast, but safe.",
       conditions: { situation: ["traffic"] },
       priority: "fast",
       reliability: "high",
-      time_estimate: "1‚Äì5 minutes",
+      time_estimate: "1ñ5 minutes",
       yield_estimate: "Saving a life",
       tags: ["traffic", "accident", "emergency"],
       steps: [
-        "If the child is on the roadway ‚Äî approach from the side, not from the direction of traffic. Cars may not have time to stop",
-        "If an accident ‚Äî don't move the child if you suspect a spinal fracture. Call an ambulance: 911. Describe: age, consciousness, breathing, bleeding",
-        "If the child is conscious ‚Äî calm them down, don't panic. Children copy adult emotions. Speak quietly, confidently",
-        "For bleeding ‚Äî press a sterile cloth/rag on the wound. For a fracture ‚Äî immobilize with an improvised splint (cardboard, ruler, board)",
-        "If the child is unconscious ‚Äî check breathing, pulse. If no breathing ‚Äî start CPR (rescue breathing + chest compressions). For children: 30 compressions + 2 breaths (for infants ‚Äî 2 fingers, for older ‚Äî palm)",
-        "After the accident ‚Äî document: license plate number, driver's description, witnesses. Photos, video. Don't sign anything without a lawyer",
-        "Even with a 'minor' impact ‚Äî see a doctor. Concussion and internal injuries may show up hours later",
-        "After the incident ‚Äî talk to your child about traffic rules. Play 'traffic light', 'zebra crossing'. Explain with examples"
+        "If the child is on the roadway ó approach from the side, not from the direction of traffic. Cars may not have time to stop",
+        "If an accident ó don't move the child if you suspect a spinal fracture. Call an ambulance: 911. Describe: age, consciousness, breathing, bleeding",
+        "If the child is conscious ó calm them down, don't panic. Children copy adult emotions. Speak quietly, confidently",
+        "For bleeding ó press a sterile cloth/rag on the wound. For a fracture ó immobilize with an improvised splint (cardboard, ruler, board)",
+        "If the child is unconscious ó check breathing, pulse. If no breathing ó start CPR (rescue breathing + chest compressions). For children: 30 compressions + 2 breaths (for infants ó 2 fingers, for older ó palm)",
+        "After the accident ó document: license plate number, driver's description, witnesses. Photos, video. Don't sign anything without a lawyer",
+        "Even with a 'minor' impact ó see a doctor. Concussion and internal injuries may show up hours later",
+        "After the incident ó talk to your child about traffic rules. Play 'traffic light', 'zebra crossing'. Explain with examples"
       ],
       warnings: [
-        "DON'T move an injured child if you suspect a spinal or neck fracture ‚Äî this can lead to paralysis",
-        "DON'T give water, food, or medication for a concussion ‚Äî risk of vomiting and choking. Only after a doctor's examination",
+        "DON'T move an injured child if you suspect a spinal or neck fracture ó this can lead to paralysis",
+        "DON'T give water, food, or medication for a concussion ó risk of vomiting and choking. Only after a doctor's examination",
         "Children under 7 have poor judgment of car speed and distance. Don't let them near the road alone. Hold their hand",
-        "After an accident ‚Äî even without visible injuries ‚Äî see a neurologist. Concussion in children shows up later: vomiting, drowsiness, headache"
+        "After an accident ó even without visible injuries ó see a neurologist. Concussion in children shows up later: vomiting, drowsiness, headache"
       ]
     },
     // ==========================================
@@ -224,29 +224,29 @@ const safetyDataEn = {
     // ==========================================
     {
       id: "animal_bite_child",
-      title: "üêï Animal bite / scratch ‚Äî first aid",
-      description: "Dog, cat, rat, snake ‚Äî a bite can be dangerous due to rabies, infection, or venom.",
+      title: "?? Animal bite / scratch ó first aid",
+      description: "Dog, cat, rat, snake ó a bite can be dangerous due to rabies, infection, or venom.",
       conditions: { situation: ["animal"] },
       priority: "fast",
       reliability: "high",
-      time_estimate: "10‚Äì30 minutes",
+      time_estimate: "10ñ30 minutes",
       yield_estimate: "Preventing infection / rabies",
       tags: ["animal", "bite", "first_aid"],
       steps: [
-        "Immediately wash the wound thoroughly with soap and water for 10‚Äì15 minutes. Soap destroys the rabies virus. Do not suture the wound",
-        "If bleeding ‚Äî press with sterile cloth. Don't bandage tightly ‚Äî infection multiplies in a closed wound",
+        "Immediately wash the wound thoroughly with soap and water for 10ñ15 minutes. Soap destroys the rabies virus. Do not suture the wound",
+        "If bleeding ó press with sterile cloth. Don't bandage tightly ó infection multiplies in a closed wound",
         "Treat with hydrogen peroxide, chlorhexidine, iodine (around the edges, not in the wound). Apply antibiotic ointment (Levomekol, Fucidin)",
-        "If bitten by a dog/cat (stray, unvaccinated) ‚Äî immediately go to a trauma center / infectious disease hospital. Rabies vaccine: day 0, 3, 7, 14, 28. Do not miss any!",
-        "If bitten by a snake ‚Äî immediately go to the hospital. Do not suck out venom, do not make incisions. Apply cold, immobilize the limb, keep below heart level",
-        "If bitten by a tick ‚Äî remove the tick with tweezers (by the head, not the body), twisting counterclockwise. Save the tick in a jar for encephalitis / borreliosis testing",
-        "Monitor the condition: fever, redness, swelling, pus. If it worsens ‚Äî see a doctor immediately",
-        "After the incident ‚Äî teach your child: don't touch unfamiliar animals, don't run from dogs (they'll chase), stand still, hands behind back, don't make eye contact"
+        "If bitten by a dog/cat (stray, unvaccinated) ó immediately go to a trauma center / infectious disease hospital. Rabies vaccine: day 0, 3, 7, 14, 28. Do not miss any!",
+        "If bitten by a snake ó immediately go to the hospital. Do not suck out venom, do not make incisions. Apply cold, immobilize the limb, keep below heart level",
+        "If bitten by a tick ó remove the tick with tweezers (by the head, not the body), twisting counterclockwise. Save the tick in a jar for encephalitis / borreliosis testing",
+        "Monitor the conditions: fever, redness, swelling, pus. If it worsens ó see a doctor immediately",
+        "After the incident ó teach your child: don't touch unfamiliar animals, don't run from dogs (they'll chase), stand still, hands behind back, don't make eye contact"
       ],
       warnings: [
-        "DON'T suture a bite wound ‚Äî this traps infection inside. The wound must remain open and be washed",
-        "DON'T suck snake venom with your mouth ‚Äî venom will enter your blood through micro-cuts. Don't make incisions ‚Äî risk of infection",
-        "Rabies is 100% fatal if not vaccinated in time. First symptoms appear in 1‚Äì3 months, then it's too late. Don't delay vaccination",
-        "Tick-borne encephalitis is dangerous for children. After a tick bite ‚Äî get vaccinated (EnceVir) or have the tick tested. Prevention: vaccination before tick season"
+        "DON'T suture a bite wound ó this traps infection inside. The wound must remain open and be washed",
+        "DON'T suck snake venom with your mouth ó venom will enter your blood through micro-cuts. Don't make incisions ó risk of infection",
+        "Rabies is 100% fatal if not vaccinated in time. First symptoms appear in 1ñ3 months, then it's too late. Don't delay vaccination",
+        "Tick-borne encephalitis is dangerous for children. After a tick bite ó get vaccinated (EnceVir) or have the tick tested. Prevention: vaccination before tick season"
       ]
     },
     // ==========================================
@@ -254,28 +254,28 @@ const safetyDataEn = {
     // ==========================================
     {
       id: "fire_safety",
-      title: "üî• Child played with fire ‚Äî consequences and prevention",
-      description: "Playing with matches, lighters, candles ‚Äî a common cause of fires and burns in children.",
+      title: "?? Child played with fire ó consequences and prevention",
+      description: "Playing with matches, lighters, candles ó a common cause of fires and burns in children.",
       conditions: { situation: ["fire"] },
       priority: "fast",
       reliability: "high",
-      time_estimate: "10‚Äì30 minutes",
+      time_estimate: "10ñ30 minutes",
       yield_estimate: "Preventing fire and burns",
       tags: ["fire", "burn", "emergency"],
       steps: [
-        "If the child got burned ‚Äî rinse the burn with running water for 15‚Äì20 minutes. Don't apply oil, sour cream, or toothpaste",
-        "If a fire started ‚Äî immediately evacuate the child from the room, close the door, call 911",
-        "If the child lit something ‚Äî put out the fire with a blanket, water, or fire extinguisher. Don't leave burning items unattended",
+        "If the child got burned ó rinse the burn with running water for 15ñ20 minutes. Don't apply oil, sour cream, or toothpaste",
+        "If a fire started ó immediately evacuate the child from the room, close the door, call 911",
+        "If the child lit something ó put out the fire with a blanket, water, or fire extinguisher. Don't leave burning items unattended",
         "Check if the child left matches/lighters in their pockets, under their pillow. Hide all dangerous items",
         "Explain the consequences to the child: burns, pain, fire, damage. Show videos/photos of consequences (age-appropriate)",
-        "If the child has played with fire repeatedly ‚Äî see a psychologist. This may be a behavioral sign requiring attention",
+        "If the child has played with fire repeatedly ó see a psychologist. This may be a behavioral sign requiring attention",
         "Prevention: store matches/lighters out of reach. Install fire detectors. Conduct a 'safety lesson'"
       ],
       warnings: [
         "Matches and lighters are not toys. Children under 7 don't understand the consequences",
-        "DON'T leave burning candles unattended ‚Äî children can knock them over",
-        "If the child gets burned ‚Äî DON'T apply oil, sour cream ‚Äî it traps heat",
-        "Regularly conduct 'fire drills' with children ‚Äî evacuation plan, meeting point"
+        "DON'T leave burning candles unattended ó children can knock them over",
+        "If the child gets burned ó DON'T apply oil, sour cream ó it traps heat",
+        "Regularly conduct 'fire drills' with children ó evacuation plan, meeting point"
       ]
     }
   ]

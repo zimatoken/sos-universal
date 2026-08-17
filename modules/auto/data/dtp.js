@@ -20,7 +20,7 @@ const autoDtpData = {
     {
       id: "injuries",
       text: "Есть ли пострадавшие?",
-      condition: { severity: ["major"] },
+      conditions: { severity: ["major"] },
       options: [
         { id: "injuries_severe", label: "Тяжёлые травмы (требуется скорая)", tags: ["severe", "ambulance"] },
         { id: "injuries_light", label: "Лёгкие травмы (синяки, ссадины)", tags: ["light", "first_aid"] },

@@ -41,7 +41,7 @@ const consumerDataEn = {
     {
       id: "product_type",
       text: "What product did you buy?",
-      condition: { consumer_issue: ["defective", "refund_refusal"] },
+      conditions: { consumer_issue: ["defective", "refund_refusal"] },
       options: [
         { id: "electronics", label: "📱 Electronics / appliances", tags: ["electronics"] },
         { id: "clothes", label: "👕 Clothing / footwear", tags: ["clothes"] },
@@ -53,7 +53,7 @@ const consumerDataEn = {
     {
       id: "time_passed",
       text: "How long since purchase?",
-      condition: { consumer_issue: ["defective", "refund_refusal"] },
+      conditions: { consumer_issue: ["defective", "refund_refusal"] },
       options: [
         { id: "14_days", label: "📅 Up to 14 days", tags: ["short"] },
         { id: "2_years", label: "📆 Up to 2 years (within warranty)", tags: ["warranty"] },
@@ -63,7 +63,7 @@ const consumerDataEn = {
     {
       id: "return_reason",
       text: "Why do you want to return the product?",
-      condition: { consumer_issue: ["refund_refusal"] },
+      conditions: { consumer_issue: ["refund_refusal"] },
       options: [
         { id: "not_satisfied", label: "Doesn't fit / wrong size / color", tags: ["change_mind"] },
         { id: "defect_found", label: "Found a defect", tags: ["defective"] },

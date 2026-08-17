@@ -32,7 +32,7 @@ const divorceDataEn = {
       id: "property_type",
       text: "What property is in dispute?",
       type: "single",
-      condition: { divorce_situation: ["property"] },
+      conditions: { divorce_situation: ["property"] },
       options: [
         { id: "apartment", label: "🏢 Apartment / house", tags: ["real_estate"] },
         { id: "car_money", label: "🚗 Car / money / bank deposits", tags: ["movable", "money"] },
@@ -44,7 +44,7 @@ const divorceDataEn = {
       id: "alimony_agreement",
       text: "Do you have a child support agreement?",
       type: "single",
-      condition: { divorce_situation: ["alimony"] },
+      conditions: { divorce_situation: ["alimony"] },
       options: [
         { id: "agreement_yes", label: "✅ Yes, there is a notarized agreement", tags: ["agreement_yes"] },
         { id: "agreement_no", label: "❌ No agreement", tags: ["agreement_no"] }

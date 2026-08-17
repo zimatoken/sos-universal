@@ -166,7 +166,7 @@ const petHealthDataEn = {
         "Check: are there any behavioral changes? Peeing on the floor, in inappropriate places? Could be more than usual or almost not going? Record frequency and volume",
         "Do not give diuretics (Furosemide) without prescription — it can be deadly for urinary tract obstruction",
         "For cats: struvites and oxalates — common cause of urethral blockage. Diet: special food (Royal Canin Urinary, Hill's c/d). Only by veterinary prescription",
-        "Monitor general condition: lethargy, refusal to eat, vomiting — signs of kidney failure, urea in the blood. Immediate vet care",
+        "Monitor general conditions: lethargy, refusal to eat, vomiting — signs of kidney failure, urea in the blood. Immediate vet care",
         "If a cat has urinary retention (can't pee > 12 hours) — this is 100% emergency. Needs catheterization, bladder flushing. Every hour counts",
         "Prevention: clean water (filtered), wet food, regular urine analysis (every 6 months). Don't feed cheap dry food — it causes stones"
       ],
