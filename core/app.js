@@ -4,6 +4,7 @@ let currentFlow = null;
 let currentQuestion = 0;
 let answers = {};
 let lastResults = [];
+let filteredQuestions = []; // ← ДОБАВЛЯЕМ
 
 // ===== TOAST =====
 function showToast(msg) {
@@ -30,6 +31,7 @@ function goHome() {
   currentFlow = null;
   currentQuestion = 0;
   answers = {};
+  filteredQuestions = [];
   showScreen("screen-home");
 }
 
@@ -192,6 +194,36 @@ function stopSOSFlash() {
   if (navigator.vibrate) navigator.vibrate(0);
 }
 
+// ============================================================
+// === НОВАЯ ФУНКЦИЯ: ФИЛЬТРАЦИЯ ВОПРОСОВ ПО УСЛОВИЯМ ===
+// ============================================================
+function filterQuestionsByConditions(questions, answers) {
+  if (!questions || questions.length === 0) return [];
+  
+  return questions.filter(q => {
+    // Если нет условий — показываем всегда
+    if (!q.conditions) return true;
+    
+    // Проверяем каждое условие
+    for (let [key, allowedValues] of Object.entries(q.conditions)) {
+      const userAnswer = answers[key];
+      
+      // Если ответа нет — условие не выполнено
+      if (!userAnswer || userAnswer.length === 0) {
+        return false;
+      }
+      
+      // Проверяем пересечение: есть ли у пользователя хоть одно значение из разрешённых
+      const hasMatch = userAnswer.some(val => allowedValues.includes(val));
+      if (!hasMatch) {
+        return false;
+      }
+    }
+    
+    return true;
+  });
+}
+
 // ===== QUIZ =====
 function startFlow(category) {
   currentFlow = getCategoryData(category);
@@ -201,13 +233,41 @@ function startFlow(category) {
   }
   currentQuestion = 0;
   answers = {};
+  
+  // ✅ ФИЛЬТРУЕМ ВОПРОСЫ по условиям (пока ответов нет — показываем только первый вопрос без условий)
+  filteredQuestions = filterQuestionsByConditions(currentFlow.questions, answers);
+  
+  // Если нет вопросов — показываем ошибку
+  if (filteredQuestions.length === 0) {
+    showToast("❌ Нет доступных вопросов для вашего случая");
+    return;
+  }
+  
   renderQuestion();
   showScreen("screen-questions");
 }
 
 function renderQuestion() {
-  const q = currentFlow.questions[currentQuestion];
-  const progress = ((currentQuestion) / currentFlow.questions.length) * 100;
+  // Проверяем, что есть вопросы
+  if (!filteredQuestions || filteredQuestions.length === 0) {
+    const container = document.getElementById("question-container");
+    if (container) {
+      container.innerHTML = '<p style="color: var(--accent2);">❌ Вопросы не загружены. Вернитесь назад.</p>';
+    }
+    return;
+  }
+  
+  // Проверяем индекс
+  if (currentQuestion >= filteredQuestions.length) {
+    // Все вопросы пройдены — показываем результаты
+    showResults();
+    return;
+  }
+  
+  const q = filteredQuestions[currentQuestion];
+  const total = filteredQuestions.length;
+  
+  const progress = ((currentQuestion) / total) * 100;
   const progressBar = document.getElementById("progress");
   if (progressBar) progressBar.style.width = progress + "%";
 
@@ -220,14 +280,12 @@ function renderQuestion() {
   
   const numText = t('question_of')
     .replace('{current}', currentQuestion + 1)
-    .replace('{total}', currentFlow.questions.length);
+    .replace('{total}', total);
   
   html += '<div class="question-num">' + numText + '</div>';
   html += "<h3>" + q.text + "</h3>";
   
-  // ============================================================
-  // ПОДСКАЗКА ДЛЯ MULTI-ВОПРОСОВ — с inline-стилями
-  // ============================================================
+  // Подсказка для multi-вопросов
   if (isMulti) {
     html += `<p class="question-hint" style="
       margin: 0 0 14px 0;
@@ -266,7 +324,7 @@ function renderQuestion() {
   if (nextBtn) {
     const hasSelected = container.querySelectorAll('.option.selected').length > 0;
     nextBtn.disabled = !hasSelected;
-    const isLast = currentQuestion === currentFlow.questions.length - 1;
+    const isLast = currentQuestion === total - 1;
     nextBtn.textContent = isLast ? t('show_results') : t('next');
   }
 }
@@ -291,15 +349,36 @@ function selectOption(el, qid, isMulti) {
 }
 
 function nextQuestion() {
-  const q = currentFlow.questions[currentQuestion];
+  // Проверяем, что есть вопросы
+  if (!filteredQuestions || filteredQuestions.length === 0) {
+    showToast("❌ Ошибка: нет вопросов");
+    return;
+  }
+  
+  // Проверяем индекс
+  if (currentQuestion >= filteredQuestions.length) {
+    showResults();
+    return;
+  }
+  
+  const q = filteredQuestions[currentQuestion];
   const selected = document.querySelectorAll(".option.selected");
   const vals = Array.from(selected).map(el => el.dataset.id);
+  
+  // Сохраняем ответ
   answers[q.id] = vals;
-
-  if (currentQuestion < currentFlow.questions.length - 1) {
-    currentQuestion++;
+  
+  // Переходим к следующему вопросу
+  currentQuestion++;
+  
+  // ✅ Перефильтровываем вопросы на основе новых ответов
+  filteredQuestions = filterQuestionsByConditions(currentFlow.questions, answers);
+  
+  // Проверяем, есть ли ещё вопросы
+  if (currentQuestion < filteredQuestions.length) {
     renderQuestion();
   } else {
+    // Все вопросы пройдены — показываем результаты
     showResults();
   }
 }
@@ -447,5 +526,6 @@ window.showDetail = showDetail;
 window.showResultsBack = showResultsBack;
 window.handleSupportBannerClick = handleSupportBannerClick;
 window.closeSupportBanner = closeSupportBanner;
+window.filterQuestionsByConditions = filterQuestionsByConditions; // ← ЭКСПОРТ ДЛЯ ОТЛАДКИ
 
 console.log('✅ Приложение загружено (SOS UNIVERSAL core)');
