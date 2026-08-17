@@ -21,6 +21,7 @@ const electricityData = {
       id: "scope",
       text: "Где именно проблема?",
       type: "single",
+      conditions: { elec_issue: ["no_power", "spark", "breaker", "burned_smell"] },
       options: [
         { id: "whole_house", label: "🏠 Во всей квартире / доме", tags: ["whole"] },
         { id: "one_room", label: "🚪 В одной комнате / на одной линии", tags: ["room"] },
@@ -32,10 +33,11 @@ const electricityData = {
       id: "can_access_panel",
       text: "Есть ли доступ к электрощиту?",
       type: "single",
+      conditions: { elec_issue: ["spark", "breaker", "burned_smell"] },
       options: [
-        { id: "yes", label: "Да, щит доступен", tags: ["panel"] },
-        { id: "no", label: "Нет / щит заперт / в подъезде", tags: ["no_panel"] },
-        { id: "scared", label: "Боюсь трогать / нет опыта", tags: ["scared"] }
+        { id: "panel_yes", label: "Да, щит доступен", tags: ["panel"] },
+        { id: "panel_no", label: "Нет / щит заперт / в подъезде", tags: ["no_panel"] },
+        { id: "panel_scared", label: "Боюсь трогать / нет опыта", tags: ["scared"] }
       ]
     }
   ],
@@ -123,7 +125,7 @@ const electricityData = {
       ]
     },
     {
-      id: "no_power_check",
+      id: "no_power_restore",
       title: "🚱 Нет света — проверка и действия",
       description: "Отключение может быть плановым, аварийным или только у вас. Проверьте, защитите технику.",
       conditions: { elec_issue: ["no_power"] },
@@ -153,4 +155,5 @@ const electricityData = {
   ]
 };
 
+// ===== EXPORT =====
 window.electricityData = electricityData;

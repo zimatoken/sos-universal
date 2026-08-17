@@ -12,7 +12,7 @@ const plumbingData = {
       options: [
         { id: "leak_pipe", label: "💧 Течёт труба / кран / соединение", tags: ["leak", "pipe"] },
         { id: "leak_ceiling", label: "💦 Течёт с потолка / затопили сверху", tags: ["leak", "ceiling", "flood"] },
-        { id: "clog_sink", label: "🚿 Засорилас раковина / ванна / душ", tags: ["clog", "sink"] },
+        { id: "clog_sink", label: "🚿 Засорилась раковина / ванна / душ", tags: ["clog", "sink"] },
         { id: "clog_toilet", label: "🚽 Засорился унитаз", tags: ["clog", "toilet"] },
         { id: "no_water", label: "❌ Нет воды (холодной или горячей)", tags: ["no_water"] },
         { id: "burst_pipe", label: "💥 Труба лопнула / фонтан воды", tags: ["burst", "emergency"] }
@@ -22,31 +22,34 @@ const plumbingData = {
       id: "leak_severity",
       text: "Насколько сильно течёт?",
       type: "single",
+      conditions: { plumbing_issue: ["leak_pipe", "leak_ceiling", "burst_pipe"] },
       options: [
-        { id: "drop", label: "💧 Капает / небольшая струйка", tags: ["minor"] },
-        { id: "stream", label: "🌊 Течёт сильно / льётся", tags: ["major"] },
-        { id: "flood", label: "🌊 Затопление / вода на полу", tags: ["flood"] }
+        { id: "severity_drop", label: "💧 Капает / небольшая струйка", tags: ["minor"] },
+        { id: "severity_stream", label: "🌊 Течёт сильно / льётся", tags: ["major"] },
+        { id: "severity_flood", label: "🌊 Затопление / вода на полу", tags: ["flood"] }
       ]
     },
     {
       id: "water_source",
       text: "Откуда вода?",
       type: "single",
+      conditions: { plumbing_issue: ["leak_pipe", "leak_ceiling", "burst_pipe"] },
       options: [
-        { id: "cold", label: "Холодная вода", tags: ["cold"] },
-        { id: "hot", label: "Горячая вода", tags: ["hot"] },
-        { id: "sewage", label: "Канализация / грязная вода", tags: ["sewage"] },
-        { id: "dont_know", label: "Не уверен", tags: ["unknown"] }
+        { id: "source_cold", label: "Холодная вода", tags: ["cold"] },
+        { id: "source_hot", label: "Горячая вода", tags: ["hot"] },
+        { id: "source_sewage", label: "Канализация / грязная вода", tags: ["sewage"] },
+        { id: "source_unknown", label: "Не уверен", tags: ["unknown"] }
       ]
     },
     {
       id: "has_valve",
       text: "Есть ли доступ к запорному крану?",
       type: "single",
+      conditions: { plumbing_issue: ["leak_pipe", "burst_pipe"] },
       options: [
-        { id: "yes", label: "Да, кран доступен", tags: ["valve"] },
-        { id: "no", label: "Нет / не знаю, где он", tags: ["no_valve"] },
-        { id: "stuck", label: "Кран заклинило / не крутится", tags: ["stuck"] }
+        { id: "valve_yes", label: "Да, кран доступен", tags: ["valve"] },
+        { id: "valve_no", label: "Нет / не знаю, где он", tags: ["no_valve"] },
+        { id: "valve_stuck", label: "Кран заклинило / не крутится", tags: ["stuck"] }
       ]
     }
   ],
@@ -56,7 +59,7 @@ const plumbingData = {
       id: "burst_pipe_emergency",
       title: "🚨 Лопнула труба — экстренные действия",
       description: "Фонтан воды может залить квартиру за минуты. Действуйте немедленно.",
-      conditions: { plumbing_issue: ["burst_pipe"], leak_severity: ["stream", "flood"] },
+      conditions: { plumbing_issue: ["burst_pipe"], leak_severity: ["severity_stream", "severity_flood"] },
       priority: "fast",
       reliability: "high",
       time_estimate: "5–15 минут",
@@ -83,7 +86,7 @@ const plumbingData = {
       id: "minor_leak_fix",
       title: "🔧 Мелкая протечка — временный ремонт",
       description: "Капающий кран или трубу можно временно залатить до прихода сантехника.",
-      conditions: { plumbing_issue: ["leak_pipe"], leak_severity: ["drop"] },
+      conditions: { plumbing_issue: ["leak_pipe"], leak_severity: ["severity_drop"] },
       priority: "medium",
       reliability: "medium",
       time_estimate: "10–30 минут",
@@ -107,7 +110,7 @@ const plumbingData = {
       ]
     },
     {
-      id: "ceiling_leak",
+      id: "flood_from_above",
       title: "🏢 Затопили сверху — алгоритм действий",
       description: "Вода с потолка — это всегда чужая вина. Зафиксируйте ущерб, действуйте по закону.",
       conditions: { plumbing_issue: ["leak_ceiling"] },
@@ -133,7 +136,7 @@ const plumbingData = {
         "НЕ подписывайте акт, если не согласны с содержанием. Впишите возражения, требуйте независимую экспертизу",
         "Срок исковой давности по заливу — 3 года. Но действуйте сразу, пока свидетели помнят",
         "Если виновник — УК (прорыв стояка), иск к УК. Если сосед — к соседу. Если неясно — к обоим",
-        "Страховка квартиры покрывает ущерб от залива, но не всегда — читайте договор (исключения: плохая герметизация, старые трубы)"
+        "Страховка квартиры покрывает ущерб от залива, но не всегда — читайте договор"
       ]
     },
     {
@@ -217,4 +220,5 @@ const plumbingData = {
   ]
 };
 
+// ===== EXPORT =====
 window.plumbingData = plumbingData;

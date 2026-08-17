@@ -21,22 +21,24 @@ const gasData = {
       id: "smell_location",
       text: "Где чувствуется запах?",
       type: "single",
+      conditions: { gas_issue: ["smell"] },
       options: [
-        { id: "kitchen", label: "🍳 На кухне (плита, духовка)", tags: ["kitchen"] },
-        { id: "bathroom", label: "🚿 В ванной (колонка, котёл)", tags: ["bathroom"] },
-        { id: "hallway", label: "🚪 В коридоре / подъезде", tags: ["hallway"] },
-        { id: "everywhere", label: "🏠 Везде / сильный запах", tags: ["strong"] }
+        { id: "smell_kitchen", label: "🍳 На кухне (плита, духовка)", tags: ["kitchen"] },
+        { id: "smell_bathroom", label: "🚿 В ванной (колонка, котёл)", tags: ["bathroom"] },
+        { id: "smell_hallway", label: "🚪 В коридоре / подъезде", tags: ["hallway"] },
+        { id: "smell_everywhere", label: "🏠 Везде / сильный запах", tags: ["strong"] }
       ]
     },
     {
       id: "gas_appliance",
       text: "Какой газовый прибор используется?",
       type: "single",
+      conditions: { gas_issue: ["smell", "yellow_flame"] },
       options: [
-        { id: "stove", label: "Газовая плита / духовка", tags: ["stove"] },
-        { id: "water_heater", label: "Газовая колонка / бойлер", tags: ["heater"] },
-        { id: "boiler", label: "Газовый котёл отопления", tags: ["boiler"] },
-        { id: "none", label: "Нет газовых приборов / не уверен", tags: ["none"] }
+        { id: "appliance_stove", label: "Газовая плита / духовка", tags: ["stove"] },
+        { id: "appliance_heater", label: "Газовая колонка / бойлер", tags: ["heater"] },
+        { id: "appliance_boiler", label: "Газовый котёл отопления", tags: ["boiler"] },
+        { id: "appliance_none", label: "Нет газовых приборов / не уверен", tags: ["none"] }
       ]
     }
   ],
@@ -155,4 +157,5 @@ const gasData = {
   ]
 };
 
+// ===== EXPORT =====
 window.gasData = gasData;
