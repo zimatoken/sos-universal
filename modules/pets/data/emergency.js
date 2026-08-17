@@ -1,5 +1,5 @@
 // === МОДУЛЬ: ЖИВОТНЫЕ — ЧРЕЗВЫЧАЙНЫЕ СИТУАЦИИ ===
-const emergencyPetData = {
+const emergencyData = {
   category: "emergency",
   title: "🚨 Чрезвычайные ситуации",
   description: "Роды, тепловой удар, ДТП, утопление, электроудар, укус змеи — экстренная помощь",
@@ -23,9 +23,9 @@ const emergencyPetData = {
       text: "Какое животное?",
       type: "single",
       options: [
-        { id: "dog", label: "🐕 Собака", tags: ["dog"] },
-        { id: "cat", label: "🐱 Кошка", tags: ["cat"] },
-        { id: "small", label: "🐰 Кролик / хомяк / птица", tags: ["small"] }
+        { id: "pet_dog", label: "🐕 Собака", tags: ["dog"] },
+        { id: "pet_cat", label: "🐱 Кошка", tags: ["cat"] },
+        { id: "pet_small", label: "🐰 Кролик / хомяк / птица", tags: ["small"] }
       ]
     },
     {
@@ -33,9 +33,9 @@ const emergencyPetData = {
       text: "Питомец в сознании?",
       type: "single",
       options: [
-        { id: "yes", label: "✅ Да, реагирует, двигается", tags: ["conscious"] },
-        { id: "no", label: "❌ Нет, без сознания или вялый", tags: ["unconscious"] },
-        { id: "shock", label: "😰 В шоке (трясётся, задыхается, бледный)", tags: ["shock"] }
+        { id: "conscious_yes", label: "✅ Да, реагирует, двигается", tags: ["conscious"] },
+        { id: "conscious_no", label: "❌ Нет, без сознания или вялый", tags: ["unconscious"] },
+        { id: "conscious_shock", label: "😰 В шоке (трясётся, задыхается, бледный)", tags: ["shock"] }
       ]
     }
   ],
@@ -205,4 +205,5 @@ const emergencyPetData = {
   ]
 };
 
-window.emergencyPetData = emergencyPetData;
+// ===== EXPORT =====
+window.emergencyData = emergencyData;

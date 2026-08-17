@@ -1,8 +1,8 @@
-// === MODULE: PETS — EMERGENCIES (EN) ===
-const emergencyPetDataEn = {
+// === MODULE: PETS — EMERGENCY SITUATIONS ===
+const emergencyDataEn = {
   category: "emergency",
-  title: "🚨 Emergencies",
-  description: "Birth, heat stroke, car accident, drowning, electric shock, snake bite — emergency help",
+  title: "🚨 Emergency situations",
+  description: "Birth, heatstroke, accident, drowning, electric shock, snake bite — emergency help",
 
   questions: [
     {
@@ -11,31 +11,31 @@ const emergencyPetDataEn = {
       type: "single",
       options: [
         { id: "birth", label: "👶 Birth / labor / retained fetus", tags: ["birth"] },
-        { id: "heatstroke", label: "🌡️ Heat stroke / hypothermia", tags: ["heatstroke"] },
-        { id: "drowning", label: "💧 Drowning / choked on water", tags: ["drowning"] },
-        { id: "electric", label: "⚡ Electric shock / electrocution", tags: ["electric"] },
+        { id: "heatstroke", label: "🌡️ Heatstroke / hypothermia", tags: ["heatstroke"] },
+        { id: "drowning", label: "💧 Drowning / inhaled water", tags: ["drowning"] },
+        { id: "electric", label: "⚡ Electric shock", tags: ["electric"] },
         { id: "snake", label: "🐍 Snake / spider / scorpion bite", tags: ["snake"] },
         { id: "accident", label: "🚗 Car accident / fall from height / crushed by door", tags: ["accident"] }
       ]
     },
     {
       id: "pet_type",
-      text: "What animal?",
+      text: "What kind of pet?",
       type: "single",
       options: [
-        { id: "dog", label: "🐕 Dog", tags: ["dog"] },
-        { id: "cat", label: "🐱 Cat", tags: ["cat"] },
-        { id: "small", label: "🐰 Rabbit / hamster / bird", tags: ["small"] }
+        { id: "pet_dog", label: "🐕 Dog", tags: ["dog"] },
+        { id: "pet_cat", label: "🐱 Cat", tags: ["cat"] },
+        { id: "pet_small", label: "🐰 Rabbit / hamster / bird", tags: ["small"] }
       ]
     },
     {
       id: "conscious",
-      text: "Is the pet conscious?",
+      text: "Is your pet conscious?",
       type: "single",
       options: [
-        { id: "yes", label: "✅ Yes, reacts, moves", tags: ["conscious"] },
-        { id: "no", label: "❌ No, unconscious or lethargic", tags: ["unconscious"] },
-        { id: "shock", label: "😰 In shock (shaking, gasping, pale)", tags: ["shock"] }
+        { id: "conscious_yes", label: "✅ Yes, responding, moving", tags: ["conscious"] },
+        { id: "conscious_no", label: "❌ No, unconscious or lethargic", tags: ["unconscious"] },
+        { id: "conscious_shock", label: "😰 In shock (shaking, gasping, pale)", tags: ["shock"] }
       ]
     }
   ],
@@ -43,8 +43,8 @@ const emergencyPetDataEn = {
   solutions: [
     {
       id: "pet_birth",
-      title: "🍼 Pet birth — assistance and complications",
-      description: "Labor has started but is taking long, or a kitten/puppy is stuck. When to intervene?",
+      title: "🍼 Birth in a pet — help and complications",
+      description: "Labor has started but is taking too long, or a kitten/puppy is stuck. When to intervene?",
       conditions: { emergency_type: ["birth"] },
       priority: "fast",
       reliability: "high",
@@ -52,26 +52,26 @@ const emergencyPetDataEn = {
       yield_estimate: "Safe delivery",
       tags: ["birth", "pregnancy", "emergency"],
       steps: [
-        "Prepare a 'maternity ward': box with soft clean towels, warm place (25–28°C), good lighting. Do not use newspapers — ink is toxic",
-        "Normal: interval between births 30–60 minutes. If more than 2 hours between puppies/kittens — this is a delay. Go to the vet immediately",
-        "If fetus is stuck in the vagina (head or paws visible but not coming out for 10–15 minutes): treat hands with peroxide, put on gloves. Gently pull the fetus in rhythm with mother's contractions. DO NOT jerk sharply — you can tear",
-        "If mother is very tired and cannot push — give glucose (honey on gums), warm milk. But if no progress in 30 minutes — vet",
-        "After each puppy/kitten is born: wipe nose and mouth with cotton swab, remove amniotic sac. Bring to nipple. If mother doesn't lick — lick yourself with soft cloth (stimulates breathing)",
-        "If mother rejects kittens/puppies — feed yourself: special formula (Beaphar, Royal Canin Babycat), every 2–3 hours, with needleless syringe. Massage belly with cotton swab (stimulates defecation)",
-        "Watch the mother: temperature > 39.5°C, purulent discharge, lethargy, refusal to eat — postpartum infection (endometritis). Emergency care",
-        "Do not give away kittens/puppies before 2 months. Minimum: 8 weeks with mother. This is important for immunity and socialization"
+        "Prepare a 'birthing box': a box with soft clean towels, warm place (25–28°C), good lighting. Don't use newspapers — ink is toxic",
+        "Normal: intervals between births 30–60 minutes. If more than 2 hours pass between puppies/kittens — it's a delay. Immediate vet care",
+        "If a fetus is stuck in the birth canal (head or paws visible but not emerging for 10–15 minutes): disinfect your hands with peroxide, wear gloves. Gently pull the fetus in rhythm with the mother's contractions. DON'T pull sharply — you can tear",
+        "If the mother is exhausted and can't push — give glucose (honey on gums), warm milk. But if no progress in 30 minutes — vet",
+        "After each puppy/kitten is born: wipe the nose and mouth with a cotton swab, remove the fetal membranes. Bring to the nipple. If the mother doesn't lick — you can stimulate breathing by gently rubbing with a soft cloth",
+        "If the mother rejects the kittens/puppies — hand-feed: special formula (Beaphar, Royal Canin Babycat), every 2–3 hours, with a syringe without a needle. Massage the belly with a cotton swab (stimulates defecation)",
+        "Monitor the mother: temperature > 39.5°C, purulent discharge, lethargy, refusal to eat — postpartum infection (endometritis). Emergency care",
+        "Don't give kittens/puppies away before 2 months. Minimum: 8 weeks with mom. This is important for immunity and socialization"
       ],
       warnings: [
-        "DO NOT pull the fetus without gloves and disinfection — infection can kill both mother and babies. Care and cleanliness are paramount",
-        "DO NOT give human oxytocin or other labor-stimulating drugs without a vet — dosage is critical, overdose ruptures the uterus",
-        "Brachycephalic breeds (pugs, bulldogs, Persians) often cannot give birth naturally — cesarean section is required. Plan birth in advance with a vet",
-        "If mother gave birth to 1–2 kittens and stopped pushing — there may be more fetuses inside. Ultrasound before birth helps know the count. Don't relax after the first births"
+        "DO NOT pull the fetus without gloves and disinfection — infection can kill both mother and babies. Cleanliness is key",
+        "DO NOT give human oxytocin or other labor stimulants without a vet — dosage is critical, overdose can rupture the uterus",
+        "Brachycephalic breeds (pugs, bulldogs, Persians) often can't give birth naturally — C-section is required. Plan birth with your vet in advance",
+        "If the mother gave birth to 1–2 kittens and stopped pushing — there may be more fetuses inside. Ultrasound before birth helps determine the number. Don't relax after the first birth"
       ]
     },
     {
       id: "pet_heatstroke",
-      title: "🌡️ Heat stroke and hypothermia",
-      description: "Dog in a car, cat on a balcony, long walk in heat — heat stroke develops quickly and kills.",
+      title: "🌡️ Heatstroke and hypothermia",
+      description: "Dog in a car, cat on a balcony, long walk in the heat — heatstroke develops quickly and kills.",
       conditions: { emergency_type: ["heatstroke"] },
       priority: "fast",
       reliability: "high",
@@ -79,26 +79,26 @@ const emergencyPetDataEn = {
       yield_estimate: "Temperature reduction / saving a life",
       tags: ["heatstroke", "temperature", "emergency"],
       steps: [
-        "Heat stroke symptoms: heavy breathing with open mouth, excessive drooling, lethargy, disorientation, seizures, loss of consciousness. Brachycephalic breeds (pug, bulldog) are at risk",
-        "Immediately remove pet from heat source. To shade, cool room, under air conditioner. DO NOT leave in a car even for 5 minutes! Car temperature rises 10°C in 10 minutes",
-        "Cool gradually: douse with cool (not icy!) water, apply wet towels to neck, armpits, groin (where large vessels are). NO ice, NO ice water — vasospasm will worsen",
-        "Give cool water to drink in small amounts. Do not force — vomiting. If won't drink — moisten gums with water",
-        "Fan helps evaporation and cooling. Point at the pet but not too close",
-        "Go to the vet immediately. Heat stroke causes brain, kidney, liver, blood clotting damage. Even if it 'passed' — IV fluids and examination are needed",
-        "Hypothermia: symptoms — shaking, pale, cold paws/ears, lethargy, slowed breathing. Wrap in warm blankets, heating pad (not hot!) to belly. Warm milk (if drinks). Go to vet",
-        "Prevention: do not walk in heat (> 25°C for pugs, > 30°C for others). Always carry water. Do not leave in car. For cats — do not open balconies without nets in heat"
+        "Symptoms of heatstroke: heavy breathing with open mouth, excessive drooling, lethargy, disorientation, seizures, loss of consciousness. Brachycephalic breeds (pugs, bulldogs) — high risk group",
+        "Immediately move your pet away from the heat source. Into the shade, a cool room, under air conditioning. DO NOT leave in a car even for 5 minutes! Car temperature rises by 10°C in 10 minutes",
+        "Cool gradually: pour cool (NOT ice cold!) water over them, apply wet towels to the neck, armpits, groin (where large vessels are). NOT ice, NOT ice water — vasospasm worsens the condition",
+        "Give cool water in small amounts. Don't force — vomiting. If not drinking — moisten the gums with water",
+        "A fan helps evaporation and cooling. Direct it at your pet, but not too close",
+        "Immediately see a vet. Heatstroke causes brain, kidney, liver damage, and blood clotting disorders. Even if it 'passed' — IV fluids and examination are needed",
+        "Hypothermia: symptoms — shaking, pale, cold paws/ears, lethargy, slow breathing. Wrap in warm blankets, a heating pad (NOT hot!) to the belly. Warm milk (if drinking). See a vet",
+        "Prevention: don't walk in heat (> 25°C for pugs, > 30°C for others). Always carry water. Don't leave in a car. For cats — don't open balconies without screens in hot weather"
       ],
       warnings: [
-        "DO NOT use ice or ice water — rapid cooling causes vasospasm, chills, even greater internal organ overheating. Only cool water",
-        "DO NOT give antipyretics (Paracetamol, Ibuprofen) — they don't work for heat stroke and are toxic. Only physical cooling and vet",
-        "Heat stroke in dogs develops faster than in humans. Dogs don't sweat (only through paws), they cool through breathing. Fast breathing in heat is normal, but if heavy with lethargy — alarm",
-        "Cats on balconies in heat: even 'shade' can turn into an oven. Balcony temperature can be 15°C higher than outside. Window nets are mandatory but don't save from heat"
+        "DO NOT use ice or ice water — rapid cooling causes vasospasm, chills, and even more internal organ overheating. Only cool water",
+        "DO NOT give antipyretics (Paracetamol, Ibuprofen) — they don't work for heatstroke and are toxic. Only physical cooling and a vet",
+        "Heatstroke develops faster in dogs than in humans. Dogs don't sweat (only through paws), they cool through breathing. Breathing fast in heat is normal, but if heavy breathing with lethargy — alarm",
+        "Cats on balconies in heat: even 'shade' can become an oven. Balcony temperature can be 15°C higher than outside. Window screens are essential but don't protect from heat"
       ]
     },
     {
       id: "pet_drowning",
-      title: "💧 Drowning / choked on water",
-      description: "Fell in bathtub, pool, river, fell through ice. Immediate help is critical.",
+      title: "💧 Drowning / inhaled water",
+      description: "Fell into a bathtub, pool, river, broke through ice. Immediate help is critical.",
       conditions: { emergency_type: ["drowning"] },
       priority: "fast",
       reliability: "high",
@@ -106,26 +106,26 @@ const emergencyPetDataEn = {
       yield_estimate: "Restoring breathing",
       tags: ["drowning", "emergency", "first_aid"],
       steps: [
-        "Immediately pull the pet out of water. If under ice — do not climb yourself, use a board, rope, branch. Call rescuers if you cannot reach",
-        "Hang the animal head down (dog — by hind legs, cat — by torso). Tap on the back so water drains from lungs. Do not shake hard — injury",
-        "Clear mouth and nose of water, silt, algae. Pull out tongue, check breathing. If no breathing — immediately artificial respiration",
-        "Artificial respiration: close mouth with your hand (so air doesn't escape through mouth), blow into nose. For small animals — into mouth and nose together. 20–30 breaths per minute. Chest should rise",
-        "If no pulse — heart massage. Dog: palm on chest (behind elbow), 100–120 compressions/min. Cat: 2 fingers on chest, 120–140/min. Alternate 30 compressions + 2 breaths",
-        "Even if pet started breathing — definitely go to the vet. Water in lungs causes pneumonia, pulmonary edema, electrolyte imbalance. Oxygen therapy, X-ray, IV needed",
-        "Warm the pet: wrap in dry warm towels, heating pad to belly. Hypothermia after drowning is a common complication",
-        "Prevention: do not leave pet near open bathtub / pool. Close toilet lid (kittens drown in toilets). On walks near water — leash"
+        "Immediately pull your pet out of the water. If under ice — don't go in yourself, use a board, rope, branch. Call rescuers if you can't reach them",
+        "Hang the animal head down (dog — by back legs, cat — by the body). Tap the back to drain water from the lungs. Don't shake hard — injury",
+        "Clean the mouth and nose of water, mud, algae. Pull out the tongue, check breathing. If no breathing — immediately start artificial respiration",
+        "Artificial respiration: close the mouth with your hand (so air doesn't escape through the mouth), blow into the nose. For small animals — into mouth and nose together. 20–30 breaths per minute. The chest should rise",
+        "If no pulse — chest compressions. Dog: palm on the chest (behind the elbow joint), 100–120 compressions/min. Cat: 2 fingers on the chest, 120–140/min. Alternate 30 compressions + 2 breaths",
+        "Even if your pet starts breathing — обязательно see a vet. Water in the lungs causes pneumonia, pulmonary edema, electrolyte imbalance. Oxygen therapy, X-ray, IV fluids are needed",
+        "Warm your pet: wrap in dry warm towels, a heating pad to the belly. Hypothermia after drowning is a common complication",
+        "Prevention: don't leave your pet near an open bathtub/pool. Close the toilet lid (kittens drown in toilets). On walks near water — keep on a leash"
       ],
       warnings: [
-        "DO NOT perform 'Heimlich maneuver' for water — it doesn't help. The animal needs to be hung head down so water drains by itself",
-        "DO NOT stop resuscitation before 10–15 minutes. Animals sometimes 'come back' after prolonged cardiac arrest. Continue until vet arrives",
-        "Even 'light' choking in a bathtub for a kitten / puppy is dangerous. Small lungs fill with water quickly. Monitor breathing for 24 hours",
-        "Water in lungs can cause 'secondary drowning' within 24–48 hours. Even if pet seems 'fine' — veterinary examination is mandatory"
+        "DO NOT perform the 'Heimlich maneuver' for water — it doesn't help. Hang the animal head down to let water drain out",
+        "DO NOT stop resuscitation before 10–15 minutes. Animals sometimes 'come back' after prolonged cardiac arrest. Continue until the vet arrives",
+        "Even 'mild' choking in a bathtub for a kitten/puppy is dangerous. Small lungs fill with water quickly. Monitor breathing for 24 hours",
+        "Water in the lungs can cause 'secondary drowning' in 24–48 hours. Even if your pet seems 'fine' — a vet examination is mandatory"
       ]
     },
     {
       id: "pet_electric_shock",
-      title: "⚡ Electric shock / electrocution",
-      description: "Chewing wires, bit electric razor, got under current. Internal burns may be worse than external.",
+      title: "⚡ Electric shock",
+      description: "Chewed wires, bit an electric razor, came into contact with electricity. Internal burns may be worse than external ones.",
       conditions: { emergency_type: ["electric"] },
       priority: "fast",
       reliability: "high",
@@ -133,25 +133,25 @@ const emergencyPetDataEn = {
       yield_estimate: "Saving a life",
       tags: ["electric", "burn", "emergency"],
       steps: [
-        "DO NOT touch the pet while it is under current! Turn off the breaker, unplug, de-energize the area. If you cannot — use dry wooden stick, rubber gloves to move the wire",
-        "After de-energizing: check breathing and pulse. Electric shock causes cardiac arrest. If no breathing — artificial respiration + heart massage (see 'Drowning' section)",
-        "Check mouth: wires, cables may burn the oral cavity, tongue, gums. If there are burns — rinse with cool water, do not give food or drink (esophagus is also burned)",
-        "Check paws: entry and exit points of current. There may be a small burn outside but serious inside. Cool with cool water for 10–15 minutes",
-        "Go to the vet immediately. Electrical burns are internal: heart, lungs, liver, kidneys may be damaged. ECG, blood tests, IV needed. Even if 'everything is fine' — hidden damage appears within a day",
-        "Monitor for 48 hours: lethargy, cough (indicates pulmonary edema), vomiting, seizures, change in urine color (dark = kidney damage). Any symptom = vet",
-        "Prevention: hide ALL wires in cable channels, behind furniture. Do not leave chargers, electric razors, irons on. Kittens and puppies chew everything"
+        "DO NOT touch your pet while they are in contact with electricity! Turn off the breaker, unplug the cord, de-energize the area. If you can't — use a dry wooden stick, rubber gloves to move the wire",
+        "After de-energizing: check breathing and pulse. Electric shock causes cardiac arrest. If no breathing — artificial respiration + chest compressions (see 'Drowning' section)",
+        "Check the mouth: wires and cables can burn the oral cavity, tongue, gums. If there are burns — rinse with cool water, don't give food or water (the esophagus may also be burned)",
+        "Check the paws: entry and exit points of the shock. There may be a small external burn but serious internal damage. Cool with cool water for 10–15 minutes",
+        "Immediately see a vet. Internal electrical burns: heart, lungs, liver, kidneys may be damaged. EKG, blood tests, IV fluids are needed. Even if 'everything is fine' — hidden damage may appear in 24 hours",
+        "Monitor for 48 hours: lethargy, coughing (indicates pulmonary edema), vomiting, seizures, changes in urine color (dark = kidney damage). Any symptom = see a doctor",
+        "Prevention: hide ALL wires in cable channels, behind furniture. Don't leave chargers, electric razors, irons plugged in. Kittens and puppies chew everything"
       ],
       warnings: [
-        "DO NOT touch the pet with bare hands while in contact with current — you will also get shocked. De-energize first",
-        "Electrical burns are often 'invisible'. A small dot on the paw may hide fatal internal damage. Always see a vet after electric shock",
-        "DO NOT give painkillers without vet — many are toxic with internal damage. Only veterinary care",
-        "Kittens and puppies are especially prone to electric shocks. They chew everything including wires. Protect like children — they don't understand danger"
+        "DO NOT touch your pet with bare hands while they are in contact with electricity — you will also get shocked. De-energize first",
+        "Electrical burns are often 'invisible'. A small spot on the paw may hide deadly internal damage. Always see a vet after an electric shock",
+        "DO NOT give painkillers without a doctor — many are toxic with internal injuries. Only veterinary care",
+        "Kittens and puppies are especially prone to electric shocks. They chew everything, including wires. Protect them like children — they don't understand the danger"
       ]
     },
     {
       id: "snake_bite_pet",
       title: "🐍 Snake / spider / scorpion bite",
-      description: "On a walk, in the forest, at the dacha — venomous snake bite requires immediate help.",
+      description: "On a walk, in the forest, at the dacha — a venomous snake bite requires immediate help.",
       conditions: { emergency_type: ["snake"] },
       priority: "fast",
       reliability: "high",
@@ -159,26 +159,26 @@ const emergencyPetDataEn = {
       yield_estimate: "Preventing venom spread",
       tags: ["snake", "bite", "poison", "emergency"],
       steps: [
-        "Stay calm. Panic accelerates heartbeat and venom spread. Restrict pet movement — carry in arms, in carrier",
-        "DO NOT suck out venom with your mouth — venom enters your blood through microcracks. DO NOT make cuts — infection and blood loss",
-        "DO NOT apply tourniquet — it worsens tissue death. Instead — immobilization: fix the bitten limb in a calm position, elevate slightly",
-        "Rinse the wound with water and soap. Do not treat with alcohol, iodine inside the wound — only on edges. Apply antibiotic (Levomekol)",
-        "If possible — photograph the snake (don't catch!). This helps the vet determine species and choose antivenom. In Russia: viper, grass snake (non-venomous), rarely — other species",
-        "Go to the vet immediately. Antivenom is effective in the first 1–2 hours. After that — only supportive therapy. The faster — the better",
-        "Monitor: swelling, redness, bleeding from wound, lethargy, vomiting, seizures, blood clotting disorders (nose/gum bleeding). All require emergency care",
-        "Prevention: do not walk in tall grass, bushes. Keep on leash in forest. Teach 'heel' command. For cats — window nets, do not let outside in snake regions"
+        "Stay calm. Panic increases heart rate and venom spread. Limit your pet's movement — carry them in your arms, in a carrier",
+        "DO NOT suck out venom with your mouth — it will enter your bloodstream through micro-cracks. DO NOT make incisions — infection and blood loss",
+        "DO NOT apply a tourniquet — it worsens tissue death. Instead of a tourniquet — immobilization: fix the bitten limb in a resting position, elevate it slightly",
+        "Rinse the wound with soap and water. Don't treat with alcohol or iodine inside the wound — only on the edges. Apply antibiotic (Levomekol)",
+        "If possible — take a photo of the snake (don't catch it!). This will help the vet identify the species and choose an antivenom. In Russia: viper, grass snake (non-venomous), rarely — gurza, efa, viper",
+        "Immediately see a vet. Antivenom is effective in the first 1–2 hours. After that — only supportive therapy. The faster — the better",
+        "Monitor: swelling, redness, bleeding from the wound, lethargy, vomiting, seizures, blood clotting disorders (blood from nose, gums). All require emergency care",
+        "Prevention: don't walk in tall grass, bushes. Keep on a leash in the forest. Teach the 'heel' command. For cats — window screens, don't let them out in snake regions"
       ],
       warnings: [
-        "DO NOT try to catch the snake for a photo — risk of second bite. Photograph from a distance or remember color, size, head shape",
-        "DO NOT give alcohol, caffeine, stimulants — this accelerates heartbeat and venom spread. Calm and immobilization are key",
-        "Viper bite in a dog may seem 'not scary' — swelling, redness. But within 6–12 hours hemolysis, kidney failure, clotting disorders develop. Do not underestimate",
-        "Cats die from viper bites more often than dogs — they are smaller, venom spreads faster. Even a 'light' bite in a cat = immediately to the vet"
+        "DO NOT try to catch the snake for a photo — risk of a second bite. Take photos from a distance or remember the color, size, head shape",
+        "DO NOT give alcohol, caffeine, stimulants — they increase heart rate and venom spread. Calmness and immobilization are key",
+        "A viper bite in a dog may seem 'not scary' — swelling, redness. But in 6–12 hours, hemolysis, kidney failure, and blood clotting disorders develop. Don't underestimate it",
+        "Cats die from viper bites more often than dogs — they are smaller, venom spreads faster. Even a 'mild' bite in a cat = immediately see a vet"
       ]
     },
     {
       id: "pet_accident",
       title: "🚗 Car accident / fall from height / crushed by door",
-      description: "Dog hit by car, cat fell from balcony, paw crushed by door. Internal injuries may be hidden.",
+      description: "Dog hit by a car, cat fell from a balcony, paw crushed by a door. Internal injuries may be hidden.",
       conditions: { emergency_type: ["accident"] },
       priority: "fast",
       reliability: "high",
@@ -186,23 +186,24 @@ const emergencyPetDataEn = {
       yield_estimate: "Diagnosis and help",
       tags: ["accident", "trauma", "emergency"],
       steps: [
-        "Ensure safety: stop cars, move away onlookers. Injured animals may bite from pain — use muzzle, blanket, gloves. Do not approach from the front",
-        "DO NOT move the pet if you suspect spinal or neck fracture. Place on a board/shield, fix head with rolls. Any movement = paralysis",
-        "Check breathing and pulse. If no breathing — artificial respiration + heart massage. If bleeding — press with sterile cloth, tourniquet above wound (record time)",
-        "For fall from height (cat from balcony): check mouth for blood (jaw fracture), breathing (pneumothorax), belly (internal bleeding). Cats often 'survive' but with fractures, lung rupture, liver damage",
-        "For car accident: record car number, driver description, witnesses. Photo, video. Do not sign anything. In Russia: traffic accident with animal = administrative offense",
-        "Even for a 'light' hit — see the vet. Internal injuries (spleen, liver, kidney rupture) appear within hours. X-ray, ultrasound — mandatory",
-        "Transportation: on hard surface (board, shield), minimize shaking. For cat — dark carrier. Wrap to prevent freezing (shock causes hypothermia)",
-        "After examination: rest 2–4 weeks. Do not overload, do not play actively. Internal injuries heal slowly. Second injury on top of first = dangerous"
+        "Ensure safety: stop traffic, move onlookers away. An injured animal may bite from pain — use a muzzle, blanket, gloves. Don't approach from the front",
+        "DO NOT move your pet if you suspect a spinal or neck fracture. Place on a shield/board, secure the head with supports. Any movement = paralysis",
+        "Check breathing and pulse. If no breathing — artificial respiration + chest compressions. If bleeding — press with sterile cloth, apply a tourniquet above the wound (write down the time)",
+        "For a fall from height (cat from balcony): check the mouth for blood (jaw fracture), breathing (pneumothorax), abdomen (internal bleeding). Cats often 'survive' but with fractures, lung tears, liver damage",
+        "For a car accident: record the license plate, driver's description, witnesses. Photos, videos. Don't sign anything. In Russia: accident with an animal = administrative offense",
+        "Even with a 'minor' impact — see a vet. Internal injuries (spleen, liver, kidney rupture) appear hours later. X-ray, ultrasound — mandatory",
+        "Transport: on a hard surface (board, shield), minimize shaking. For cats — a dark carrier. Wrap to prevent hypothermia (shock causes cooling)",
+        "After examination: rest for 2–4 weeks. Don't overexert, don't play actively. Internal injuries heal slowly. A second injury on top of the first is dangerous"
       ],
       warnings: [
-        "DO NOT move the victim if spinal fracture is suspected. This can lead to paralysis. Fix on a board, transport carefully",
-        "DO NOT give food and water if internal injuries are suspected — anesthesia for surgery requires empty stomach. Can moisten gums",
-        "Cats 'survive' falls from balconies thanks to righting reflex, but often get serious injuries. 'Cat fell from 10th floor and is fine' is a myth. Always vet after a fall",
-        "DO NOT give painkillers without vet — they mask symptoms of internal injuries and may be toxic. Only veterinary care"
+        "DO NOT move the victim if you suspect a spinal fracture. This can cause paralysis. Secure on a board, transport carefully",
+        "DO NOT give food and water if internal injuries are suspected — before surgery, anesthesia requires an empty stomach. You can moisten the gums",
+        "Cats 'survive' falls from balconies due to the righting reflex, but often get serious injuries. 'A cat fell from 10 floors and nothing' — a myth. Always see a vet after a fall",
+        "DO NOT give painkillers without a doctor — they mask symptoms of internal injuries and may be toxic. Only veterinary care"
       ]
     }
   ]
 };
 
-window.emergencyPetDataEn = emergencyPetDataEn;
+// ===== EXPORT =====
+window.emergencyDataEn = emergencyDataEn;
