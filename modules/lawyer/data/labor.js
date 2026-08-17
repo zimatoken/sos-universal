@@ -23,7 +23,8 @@ const laborData = {
     {
       id: "fired_type",
       text: "Как именно уволили?",
-      condition: { labor_issue: ["fired"] },
+      type: "single",
+      conditions: { labor_issue: ["fired"] },
       options: [
         { id: "article", label: "📜 По статье (прогул, опоздания, нарушения)", tags: ["article", "disciplinary"] },
         { id: "agreement", label: "🤝 По соглашению сторон (подписали бумаги)", tags: ["agreement", "mutual"] },
@@ -34,7 +35,8 @@ const laborData = {
     {
       id: "salary_delay",
       text: "Как долго не платят зарплату?",
-      condition: { labor_issue: ["salary"] },
+      type: "single",
+      conditions: { labor_issue: ["salary"] },
       options: [
         { id: "week", label: "📅 1-2 недели", tags: ["short"] },
         { id: "month", label: "📆 1-2 месяца", tags: ["medium"] },
@@ -44,6 +46,7 @@ const laborData = {
     {
       id: "is_official",
       text: "Вы официально оформлены (трудовой договор, запись в трудовой)?",
+      type: "single",
       options: [
         { id: "official_yes", label: "✅ Да, оформлен официально", tags: ["official"] },
         { id: "official_no", label: "❌ Нет, работаю неофициально", tags: ["unofficial"] },
@@ -53,6 +56,7 @@ const laborData = {
     {
       id: "work_duration",
       text: "Как долго вы работаете у этого работодателя?",
+      type: "single",
       options: [
         { id: "less_year", label: "📅 Менее года", tags: ["short_term"] },
         { id: "one_three", label: "📆 1-3 года", tags: ["medium_term"] },
@@ -62,7 +66,8 @@ const laborData = {
     {
       id: "has_documents",
       text: "Получили ли вы копии документов (приказ об увольнении, расчётный листок)?",
-      condition: { labor_issue: ["fired", "salary"] },
+      type: "single",
+      conditions: { labor_issue: ["fired", "salary"] },
       options: [
         { id: "docs_yes", label: "Да, все документы на руках", tags: ["docs_yes"] },
         { id: "docs_no", label: "Нет, работодатель не выдал", tags: ["docs_no"] },
@@ -72,7 +77,8 @@ const laborData = {
     {
       id: "discrimination_type",
       text: "Какая дискриминация?",
-      condition: { labor_issue: ["discrimination"] },
+      type: "single",
+      conditions: { labor_issue: ["discrimination"] },
       options: [
         { id: "gender", label: "По половому признаку (женщина/мужчина)", tags: ["gender"] },
         { id: "age", label: "По возрасту (молодой/пожилой)", tags: ["age"] },

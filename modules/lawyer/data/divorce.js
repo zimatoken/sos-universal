@@ -25,13 +25,14 @@ const divorceData = {
       options: [
         { id: "yes_minor", label: "Да, несовершеннолетние (до 18 лет)", tags: ["minor", "children"] },
         { id: "yes_adult", label: "Да, но уже взрослые (18+)", tags: ["adult", "children"] },
-        { id: "no", label: "Нет детей", tags: ["no_children"] }
+        { id: "no_children", label: "Нет детей", tags: ["no_children"] }
       ]
     },
     {
       id: "property_type",
       text: "Какое имущество в споре?",
       type: "single",
+      condition: { divorce_situation: ["property"] },
       options: [
         { id: "apartment", label: "🏢 Квартира / дом", tags: ["real_estate"] },
         { id: "car_money", label: "🚗 Автомобиль / деньги / вклады", tags: ["movable", "money"] },
@@ -40,21 +41,13 @@ const divorceData = {
       ]
     },
     {
-      id: "marriage_contract_exists",
-      text: "Есть ли брачный договор?",
-      type: "single",
-      options: [
-        { id: "yes", label: "✅ Да, есть брачный договор", tags: ["contract_yes"] },
-        { id: "no", label: "❌ Нет брачного договора", tags: ["contract_no"] }
-      ]
-    },
-    {
       id: "alimony_agreement",
       text: "Есть ли соглашение об алиментах?",
       type: "single",
+      condition: { divorce_situation: ["alimony"] },
       options: [
-        { id: "yes", label: "✅ Да, есть нотариальное соглашение", tags: ["agreement_yes"] },
-        { id: "no", label: "❌ Нет соглашения", tags: ["agreement_no"] }
+        { id: "agreement_yes", label: "✅ Да, есть нотариальное соглашение", tags: ["agreement_yes"] },
+        { id: "agreement_no", label: "❌ Нет соглашения", tags: ["agreement_no"] }
       ]
     }
   ],
@@ -67,7 +60,7 @@ const divorceData = {
       id: "divorce_mutual",
       title: "🤝 Развод по обоюдному согласию (ЗАГС)",
       description: "Самый простой и быстрый способ — в ЗАГСе, без суда. Подходит, если нет споров и оба согласны.",
-      conditions: { divorce_situation: ["mutual"], children: ["no", "yes_adult"] },
+      conditions: { divorce_situation: ["mutual"], children: ["no_children", "yes_adult"] },
       priority: "fast",
       reliability: "high",
       time_estimate: "1 месяц",
@@ -94,7 +87,7 @@ const divorceData = {
       id: "divorce_court",
       title: "⚖️ Развод через суд (если супруг против)",
       description: "Если супруг не согласен или уклоняется — развод через мирового судью. При наличии детей — обязательно через суд.",
-      conditions: { divorce_situation: ["one_side"], children: ["yes_minor", "no"] },
+      conditions: { divorce_situation: ["one_side"] },
       priority: "medium",
       reliability: "high",
       time_estimate: "2-4 месяца",

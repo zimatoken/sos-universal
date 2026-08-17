@@ -1,20 +1,20 @@
 // === MODULE: LABOR DISPUTES (ENGLISH) ===
 const laborDataEn = {
   category: "labor",
-  title: "💼 Labor Disputes",
+  title: "💼 Labor disputes",
   description: "Employee rights protection: dismissal, salary, discrimination, harassment",
 
   questions: [
     {
       id: "labor_issue",
-      text: "What is your problem at work?",
+      text: "What is your workplace problem?",
       type: "single",
       options: [
         { id: "fired", label: "🚪 Fired / forced to resign", tags: ["fired", "unfair"] },
         { id: "salary", label: "💰 Salary not paid / delayed", tags: ["salary", "delayed"] },
-        { id: "boss_pressure", label: "😤 Pressure from management / harassment (mobbing)", tags: ["mobbing", "harassment"] },
+        { id: "boss_pressure", label: "😤 Pressure from management / bullying (mobbing)", tags: ["mobbing", "harassment"] },
         { id: "contract", label: "📄 Not officially employed / no employment contract", tags: ["contract", "illegal"] },
-        { id: "overtime", label: "⏰ Forced to work overtime without pay", tags: ["overtime", "unpaid"] },
+        { id: "overtime", label: "⏰ Forced overtime without pay", tags: ["overtime", "unpaid"] },
         { id: "vacation", label: "🏖️ Vacation denied / vacation pay not given", tags: ["vacation", "denied"] },
         { id: "discrimination", label: "⚖️ Discrimination (gender, age, nationality)", tags: ["discrimination", "unfair"] },
         { id: "injury", label: "🩹 Workplace accident / injury", tags: ["injury", "safety"] }
@@ -23,18 +23,20 @@ const laborDataEn = {
     {
       id: "fired_type",
       text: "How exactly were you fired?",
-      condition: { labor_issue: ["fired"] },
+      type: "single",
+      conditions: { labor_issue: ["fired"] },
       options: [
-        { id: "article", label: "📜 Under a disciplinary article (truancy, lateness, violations)", tags: ["article", "disciplinary"] },
-        { id: "agreement", label: "🤝 By mutual agreement (signed papers)", tags: ["agreement", "mutual"] },
+        { id: "article", label: "📜 Under article (absenteeism, lateness, violations)", tags: ["article", "disciplinary"] },
+        { id: "agreement", label: "🤝 By mutual agreement (signed documents)", tags: ["agreement", "mutual"] },
         { id: "own_will", label: "✍️ Forced to resign voluntarily", tags: ["own_will", "forced"] },
-        { id: "layoff", label: "📉 Redundancy / layoff", tags: ["layoff", "reduction"] }
+        { id: "layoff", label: "📉 Staff reduction / layoff", tags: ["layoff", "reduction"] }
       ]
     },
     {
       id: "salary_delay",
-      text: "How long have you not been paid?",
-      condition: { labor_issue: ["salary"] },
+      text: "How long has the salary not been paid?",
+      type: "single",
+      conditions: { labor_issue: ["salary"] },
       options: [
         { id: "week", label: "📅 1-2 weeks", tags: ["short"] },
         { id: "month", label: "📆 1-2 months", tags: ["medium"] },
@@ -44,15 +46,17 @@ const laborDataEn = {
     {
       id: "is_official",
       text: "Are you officially employed (employment contract, work record)?",
+      type: "single",
       options: [
         { id: "official_yes", label: "✅ Yes, officially employed", tags: ["official"] },
         { id: "official_no", label: "❌ No, working unofficially", tags: ["unofficial"] },
-        { id: "official_gray", label: "📦 Officially employed but salary 'in envelope'", tags: ["gray"] }
+        { id: "official_gray", label: "📦 Officially employed, but salary is 'in cash' (off-the-books)", tags: ["gray"] }
       ]
     },
     {
       id: "work_duration",
-      text: "How long have you worked for this employer?",
+      text: "How long have you been working for this employer?",
+      type: "single",
       options: [
         { id: "less_year", label: "📅 Less than a year", tags: ["short_term"] },
         { id: "one_three", label: "📆 1-3 years", tags: ["medium_term"] },
@@ -61,10 +65,11 @@ const laborDataEn = {
     },
     {
       id: "has_documents",
-      text: "Did you receive copies of documents (termination order, pay slip)?",
-      condition: { labor_issue: ["fired", "salary"] },
+      text: "Have you received copies of documents (dismissal order, pay slip)?",
+      type: "single",
+      conditions: { labor_issue: ["fired", "salary"] },
       options: [
-        { id: "docs_yes", label: "Yes, all documents in hand", tags: ["docs_yes"] },
+        { id: "docs_yes", label: "Yes, all documents are in hand", tags: ["docs_yes"] },
         { id: "docs_no", label: "No, the employer did not provide them", tags: ["docs_no"] },
         { id: "docs_partial", label: "Partially", tags: ["docs_partial"] }
       ]
@@ -72,11 +77,12 @@ const laborDataEn = {
     {
       id: "discrimination_type",
       text: "What type of discrimination?",
-      condition: { labor_issue: ["discrimination"] },
+      type: "single",
+      conditions: { labor_issue: ["discrimination"] },
       options: [
-        { id: "gender", label: "Gender-based (female/male)", tags: ["gender"] },
-        { id: "age", label: "Age-based (young/elderly)", tags: ["age"] },
-        { id: "nationality", label: "Nationality / citizenship-based", tags: ["nationality"] },
+        { id: "gender", label: "Gender (woman/man)", tags: ["gender"] },
+        { id: "age", label: "Age (young/elderly)", tags: ["age"] },
+        { id: "nationality", label: "Nationality / citizenship", tags: ["nationality"] },
         { id: "other", label: "Other (religion, appearance, etc.)", tags: ["other"] }
       ]
     }
@@ -84,40 +90,40 @@ const laborDataEn = {
 
   solutions: [
     // ========================================
-    // 1. Forced resignation
+    // 1. Forced resignation (Article 80 of the Labor Code)
     // ========================================
     {
       id: "forced_quit",
-      title: "📝 Forced resignation (Article 80 of the Labor Code)",
-      description: "If you were forced to resign voluntarily — it is illegal. You can be reinstated and receive compensation.",
+      title: "📝 Forced resignation 'of own free will'",
+      description: "If you were forced to resign voluntarily — it's illegal. You can be reinstated and receive compensation.",
       conditions: { labor_issue: ["fired"], fired_type: ["own_will"] },
       priority: "fast",
       reliability: "high",
       time_estimate: "1-3 months",
-      yield_estimate: "Reinstatement + pay for forced leave + moral damages",
+      yield_estimate: "Reinstatement + payment for forced absence + moral damages",
       tags: ["fired", "unfair", "court"],
       steps: [
-        "Gather evidence of pressure: correspondence, witnesses, audio recordings (legal if you are a participant)",
-        "Check your work record — if it says 'voluntarily' — this is your advantage",
-        "Send a claim to the employer demanding recognition of the dismissal as illegal (registered mail)",
-        "File a lawsuit within 1 month of the dismissal!",
-        "In the lawsuit, demand: reinstatement, payment for forced leave, moral damages",
-        "If you don't want reinstatement — demand changing the entry to 'by agreement' + severance pay"
+        "Collect evidence of pressure: correspondence, witnesses, audio recordings (legal if you are a participant)",
+        "Check your work record — if the entry says 'voluntary resignation' — that's your advantage",
+        "Send a claim to the employer regarding the illegality of dismissal (registered mail)",
+        "File a lawsuit within 1 month from the date of dismissal!",
+        "In the claim demand: reinstatement, payment for forced absence, compensation for moral damages",
+        "If you don't want reinstatement — demand a change of wording to 'by agreement' + severance pay"
       ],
       warnings: [
-        "LIMITATION PERIOD — 1 MONTH from the date of dismissal. If you miss it, you lose.",
-        "DO NOT sign anything under pressure — write 'I disagree' on all documents",
-        "If fired 'for absenteeism' — check if a violation report was made (without a report, dismissal is illegal)",
+        "STATUTE OF LIMITATIONS — 1 MONTH from the date of dismissal. Miss it — you lose.",
+        "DO NOT sign anything under pressure — write 'disagree' on all documents",
+        "If fired 'for absenteeism' — check if there was a violation report (without one — dismissal is illegal)",
         "Court costs (state fee) — the employer reimburses if you win"
       ]
     },
     // ========================================
-    // 2. Salary arrears claim
+    // 2. Wage recovery
     // ========================================
     {
       id: "salary_claim",
-      title: "💰 Salary arrears claim",
-      description: "Non-payment of salary is a violation of the law (Article 145.1 of the Criminal Code). There are several ways to resolve it.",
+      title: "💰 Wage recovery for salary arrears",
+      description: "Non-payment of wages is a violation of the law (Article 145.1 of the Criminal Code). There are several ways to resolve it.",
       conditions: { labor_issue: ["salary"] },
       priority: "fast",
       reliability: "high",
@@ -125,18 +131,18 @@ const laborDataEn = {
       yield_estimate: "Debt + penalty + compensation",
       tags: ["salary", "debt", "court"],
       steps: [
-        "Record the arrears: pay slips, bank statements, correspondence about salary",
-        "Send a written claim to the employer with a calculation of the debt (registered mail)",
-        "Contact the Labor Inspectorate (online via Gosuslugi) — they are required to investigate",
-        "File a complaint with the prosecutor's office (if the debt is more than 2 months — criminal liability)",
-        "File a lawsuit simultaneously: demand the debt + 1/150 of the Central Bank rate for each day of delay + compensation",
-        "If the employer is a sole proprietor or LLC with one founder — you can recover from the founder personally"
+        "Record the debt: pay slips, bank statements, correspondence about salary",
+        "Send a written claim to the employer with the debt calculation (registered mail)",
+        "Contact the Labor Inspectorate (online via State Services) — they are required to conduct an inspection",
+        "File a complaint with the prosecutor's office (if the debt exceeds 2 months — criminal liability)",
+        "File a lawsuit simultaneously — demand: wages + penalty of 1/150 of the Central Bank rate for each day of delay + compensation",
+        "If the employer is an individual entrepreneur or LLC with one founder — you can collect from the founder personally"
       ],
       warnings: [
-        "DO NOT wait 'a little longer' — the longer you wait, the harder it is to recover",
-        "Limitation period — 1 year, but the penalty is calculated from the first day of delay",
-        "If the employer is bankrupt — register as a creditor through the arbitration manager",
-        "Being fired for demanding salary is ILLEGAL — it can also be challenged in court"
+        "DO NOT wait — the longer you wait, the harder it is to collect",
+        "Statute of limitations — 1 year, but the penalty is calculated from the first day of delay",
+        "If the employer is bankrupt — register as a creditor through the bankruptcy trustee",
+        "Being fired for demanding wages is ILLEGAL — you can also challenge it in court"
       ]
     },
     // ========================================
@@ -150,88 +156,88 @@ const laborDataEn = {
       priority: "medium",
       reliability: "medium",
       time_estimate: "2-6 months",
-      yield_estimate: "Recognition of employment + payments",
+      yield_estimate: "Recognition of employment relationship + payments",
       tags: ["contract", "illegal", "court"],
       steps: [
-        "Gather evidence of work: correspondence about tasks, photos at the workplace, meeting records, witnesses",
-        "Request 2-NDFL or bank statements — any traces of payment",
-        "Send a claim to the employer demanding an employment contract and payment",
-        "Contact the Labor Inspectorate — a fine for an unregistered employee is up to 100,000 RUB",
-        "File a lawsuit: recognition of employment + salary + vacation pay + sick leave",
+        "Collect proof of work: task correspondence, photos at the workplace, meeting records, witnesses",
+        "Request 2-NDFL or bank statement — any traces of payment",
+        "Send a claim to the employer regarding the conclusion of an employment contract and payment",
+        "Contact the Labor Inspectorate — fines for unregistered employees up to 100,000 rubles",
+        "File a lawsuit: recognition of employment relationship + wage recovery + vacation pay + sick leave",
         "If you win — the employer will pay all contributions to the Pension Fund and Social Insurance Fund for the entire period"
       ],
       warnings: [
-        "DO NOT leave work immediately — first document the evidence",
+        "DO NOT leave work immediately — first record evidence",
         "Any correspondence in messengers is evidence (save screenshots)",
-        "If paid in cash — look for witnesses or cash book records",
-        "The court can recognize employment even without a contract — based on the fact of work"
+        "If paid in cash — look for witnesses or entries in the cash book",
+        "The court can recognize an employment relationship even without a contract — based on the fact of work"
       ]
     },
     // ========================================
-    // 4. Harassment at work (mobbing)
+    // 4. Workplace bullying (mobbing)
     // ========================================
     {
       id: "bullying_work",
-      title: "😰 Harassment at work / mobbing",
-      description: "Psychological pressure, insults, humiliation at work — this is mobbing. The law since 2022 protects you.",
+      title: "😰 Workplace bullying / mobbing",
+      description: "Psychological pressure, insults, humiliation at work — this is mobbing. The law has protected you since 2022.",
       conditions: { labor_issue: ["boss_pressure"] },
       priority: "medium",
       reliability: "medium",
       time_estimate: "1-6 months",
-      yield_estimate: "Moral damages + protection",
+      yield_estimate: "Compensation for moral damage + protection",
       tags: ["mobbing", "harassment", "law"],
       steps: [
-        "Record ALL incidents of harassment: dates, times, what was said, witnesses",
-        "Save correspondence, audio, video (if you are a participant — the recording is legal)",
-        "Send a written complaint to the employer (director, HR, ethics committee)",
-        "If the employer does nothing — complaint to the Labor Inspectorate",
-        "Consult a psychologist and document the diagnosis (for moral damages)",
-        "For severe consequences (depression, PTSD) — lawsuit against the employer and the perpetrators",
-        "You can request a transfer to another position or termination by agreement with compensation"
+        "Record ALL incidents of bullying: dates, times, what was said, witnesses",
+        "Save correspondence, audio, video (if you are a participant — recording is legal)",
+        "Submit a written complaint to the employer (director, HR, ethics committee)",
+        "If the employer is inactive — complaint to the Labor Inspectorate",
+        "Consult a psychologist and document the diagnosis (for moral damages compensation)",
+        "For severe consequences (depression, PTSD) — lawsuit against the employer and perpetrators",
+        "You can demand transfer to another position or dismissal by agreement with compensation"
       ],
       warnings: [
-        "DO NOT remain silent — mobbing destroys health, seek professional help",
-        "DO NOT sign a voluntary resignation under pressure — it's your protection",
-        "Since 2022, the employer is OBLIGATED to stop harassment — inaction = fine",
+        "DO NOT stay silent — mobbing destroys health, seek professional help",
+        "DO NOT sign a voluntary resignation under pressure — that's your protection",
+        "Since 2022, the employer is OBLIGATED to stop bullying — inaction = fine",
         "If fired for complaining — it's illegal, challenge it in court"
       ]
     },
     // ========================================
-    // 5. Overtime without pay
+    // 5. Unpaid overtime
     // ========================================
     {
       id: "overtime_pay",
-      title: "⏰ Overtime pay claim",
-      description: "Overtime must be paid at an increased rate. If not paid — demand it.",
+      title: "⏰ Claiming payment for overtime work",
+      description: "Overtime work must be paid at an increased rate. If not paid — demand it.",
       conditions: { labor_issue: ["overtime"] },
       priority: "medium",
       reliability: "high",
       time_estimate: "1-3 months",
-      yield_estimate: "Overtime pay + penalty",
+      yield_estimate: "Overtime payment + penalty",
       tags: ["overtime", "unpaid", "law"],
       steps: [
-        "Record overtime hours: timesheets, correspondence, work logs",
+        "Record overtime hours: timesheets, correspondence, printouts from work",
         "Check the employment contract — is there a clause on overtime",
-        "Send a claim to the employer with a calculation and demand for payment",
+        "Send a claim to the employer with calculation and demand for payment",
         "Contact the Labor Inspectorate — they will conduct an inspection",
-        "If refused — file a lawsuit: demand overtime pay + penalty",
-        "If the employer forces overtime systematically — complain to the prosecutor's office",
-        "You can also demand moral damages"
+        "If refused — file a lawsuit: demand overtime payment + penalty",
+        "If the employer systematically forces overtime — complain to the prosecutor's office",
+        "You can also demand compensation for moral damages"
       ],
       warnings: [
         "Overtime is allowed only with the employee's consent (Article 99 of the Labor Code)",
-        "Payment: first 2 hours — time-and-a-half, subsequent — double (Article 152 of the Labor Code)",
-        "If the employer requires overtime without consent — it's a violation",
-        "Limitation period — 3 months, but better to act immediately"
+        "Payment: first 2 hours — at 1.5× rate, subsequent — at 2× (Article 152 of the Labor Code)",
+        "If the employer engages overtime without consent — it's a violation",
+        "Statute of limitations — 3 months, but it's better to act immediately"
       ]
     },
     // ========================================
-    // 6. Vacation denial / unpaid vacation
+    // 6. Vacation denial / unpaid vacation pay
     // ========================================
     {
       id: "vacation_refusal",
-      title: "🏖️ Vacation denial or unpaid vacation",
-      description: "Every employee has the right to annual paid vacation. Denial or delay is a violation.",
+      title: "🏖️ Vacation denial or unpaid vacation pay",
+      description: "Every employee has the right to annual paid leave. Denial or delay is a violation.",
       conditions: { labor_issue: ["vacation"] },
       priority: "medium",
       reliability: "high",
@@ -239,19 +245,19 @@ const laborDataEn = {
       yield_estimate: "Vacation pay + compensation",
       tags: ["vacation", "denied", "law"],
       steps: [
-        "Check the vacation schedule — if there is one, you have the right to vacation",
-        "Submit a vacation application to the employer (keep a copy)",
-        "If refused — written complaint demanding vacation pay",
-        "Contact the Labor Inspectorate — they will compel the employer to pay",
+        "Check the vacation schedule — if it exists, you have the right to leave",
+        "Submit a vacation request to the employer (keep a copy)",
+        "If denied — written claim demanding vacation pay",
+        "Contact the Labor Inspectorate — they will obligate the employer to pay",
         "If vacation is denied for more than 2 years — you can demand compensation",
         "If resigning — demand compensation for unused vacation",
-        "File a lawsuit: recover vacation pay + penalty"
+        "Lawsuit: recovery of vacation pay + penalty"
       ],
       warnings: [
-        "Vacation for the first year of work can be taken after 6 months (Article 122 of the Labor Code)",
-        "If the employer does not give vacation for more than 2 years — it's a violation",
-        "Compensation for unused vacation upon dismissal is mandatory",
-        "Limitation period — 1 year, but better not to delay"
+        "Vacation in the first year of work can be taken after 6 months (Article 122 of the Labor Code)",
+        "If the employer does not provide vacation for more than 2 years — it's a violation",
+        "Compensation for unused vacation upon dismissal — mandatory",
+        "Statute of limitations — 1 year, but it's better not to delay"
       ]
     },
     // ========================================
@@ -268,18 +274,18 @@ const laborDataEn = {
       yield_estimate: "Compensation + restoration of rights",
       tags: ["discrimination", "unfair", "court"],
       steps: [
-        "Gather evidence: job rejections, orders, correspondence, witness testimony",
-        "File a complaint with the employer (internal company policy)",
+        "Collect evidence: work refusals, orders, correspondence, witness statements",
+        "Submit a complaint to the employer (internal company policy)",
         "Contact the Labor Inspectorate — they will conduct an inspection",
-        "File a complaint with the prosecutor's office if discrimination is widespread",
-        "If there is damage (non-payment, denial of promotion) — file a lawsuit",
-        "In the lawsuit, demand: reinstatement, payment for forced leave, moral damages",
+        "Submit a complaint to the prosecutor's office if discrimination is widespread",
+        "If there is damage (non-payment, denial of position) — file a lawsuit",
+        "In the claim demand: reinstatement, payment for forced absence, compensation for moral damages",
         "Contact the ethics committee or ombudsman (if available)"
       ],
       warnings: [
         "Discrimination is prohibited by Article 3 of the Labor Code",
-        "Limitation period — 3 months, but for discrimination, you can file immediately",
-        "If you win the case — the employer may face administrative and criminal liability",
+        "Statute of limitations — 3 months, but for discrimination you can file immediately",
+        "If you win the lawsuit — the employer may face administrative and criminal liability",
         "DO NOT be afraid to speak up — courts often side with the employee"
       ]
     }

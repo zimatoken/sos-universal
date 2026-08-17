@@ -20,7 +20,8 @@ const debtsData = {
     {
       id: "loan_source",
       text: "Где вы взяли кредит?",
-      condition: { debt_type: ["bank_loan", "bankruptcy"] },
+      type: "single",
+      conditions: { debt_type: ["bank_loan", "bankruptcy"] },
       options: [
         { id: "bank", label: "🏦 Банк (Сбер, Тинькофф, ВТБ и т.д.)", tags: ["bank"] },
         { id: "mfo", label: "📄 Микрофинансовая организация (МФО)", tags: ["mfo"] },
@@ -31,6 +32,8 @@ const debtsData = {
     {
       id: "overdue",
       text: "Есть ли просрочка платежа?",
+      type: "single",
+      conditions: { debt_type: ["bank_loan", "collector", "bailiff", "bankruptcy"] },
       options: [
         { id: "no_overdue", label: "✅ Нет, плачу вовремя", tags: ["no_overdue"] },
         { id: "up_to_3_months", label: "⏰ Просрочка до 3 месяцев", tags: ["short_overdue"] },
@@ -40,7 +43,8 @@ const debtsData = {
     {
       id: "collector_method",
       text: "Что именно делают коллекторы?",
-      condition: { debt_type: ["collector"] },
+      type: "single",
+      conditions: { debt_type: ["collector"] },
       options: [
         { id: "calls", label: "📞 Звонки родственникам / на работу", tags: ["calls", "harassment"] },
         { id: "threats", label: "⚠️ Угрозы физической расправой", tags: ["threats", "violence"] },
@@ -51,7 +55,8 @@ const debtsData = {
     {
       id: "loan_amount",
       text: "Какова общая сумма долга?",
-      condition: { debt_type: ["bank_loan", "bankruptcy", "court_order"] },
+      type: "single",
+      conditions: { debt_type: ["bank_loan", "bankruptcy", "court_order"] },
       options: [
         { id: "small", label: "💵 До 500 тыс. руб.", tags: ["small"] },
         { id: "medium", label: "💰 500 тыс. — 1 млн руб.", tags: ["medium"] },
@@ -61,7 +66,8 @@ const debtsData = {
     {
       id: "court_order_status",
       text: "Судебный приказ уже вступил в силу?",
-      condition: { debt_type: ["court_order"] },
+      type: "single",
+      conditions: { debt_type: ["court_order"] },
       options: [
         { id: "not_yet", label: "Нет, я подал возражения в течение 10 дней", tags: ["dispute"] },
         { id: "entered", label: "Да, уже вступил в силу", tags: ["active"] }
