@@ -3,7 +3,6 @@
 
 const dronePrepData = {
   category: "prep",
-  icon: "📋",
   title: "📋 Подготовка",
   description: "Как подготовиться к угрозе с воздуха: документы, укрытие, связь, план действий",
 
@@ -22,6 +21,7 @@ const dronePrepData = {
       id: "shelter_prep",
       type: "single",
       text: "Есть ли у вас готовое укрытие?",
+      conditions: { documents_ready: ["docs_ready", "docs_partial", "docs_no"] }, // ← ДОБАВЛЕНО
       options: [
         { id: "shelter_ready", label: "✅ Да, подвал / бомбоубежище", tags: ["shelter_ready"] },
         { id: "shelter_partial", label: "⚠️ Есть, но требует подготовки", tags: ["shelter_partial"] },
@@ -32,6 +32,7 @@ const dronePrepData = {
       id: "supplies",
       type: "single",
       text: "Есть ли у вас запас воды, еды и лекарств?",
+      conditions: { documents_ready: ["docs_ready", "docs_partial", "docs_no"] }, // ← ДОБАВЛЕНО
       options: [
         { id: "supplies_ready", label: "✅ Да, всё есть на 3–7 дней", tags: ["supplies_ready"] },
         { id: "supplies_partial", label: "⚠️ Частично, но не хватает", tags: ["supplies_partial"] },
@@ -42,6 +43,7 @@ const dronePrepData = {
       id: "comms_prep",
       type: "single",
       text: "Есть ли у вас план связи с близкими?",
+      conditions: { documents_ready: ["docs_ready", "docs_partial", "docs_no"] }, // ← ДОБАВЛЕНО
       options: [
         { id: "comms_plan", label: "✅ Да, есть общий чат / точка сбора", tags: ["comms_plan"] },
         { id: "comms_partial", label: "⚠️ Примерно знаем, но не всё", tags: ["comms_partial"] },
@@ -52,6 +54,7 @@ const dronePrepData = {
       id: "route_prep",
       type: "single",
       text: "Знаете ли вы маршруты эвакуации и безопасные места?",
+      conditions: { documents_ready: ["docs_ready", "docs_partial", "docs_no"] }, // ← ДОБАВЛЕНО
       options: [
         { id: "route_ready", label: "✅ Да, знаю несколько маршрутов", tags: ["route_ready"] },
         { id: "route_partial", label: "⚠️ Знаю примерно, но не уверен", tags: ["route_partial"] },
@@ -67,7 +70,7 @@ const dronePrepData = {
       title: "🎒 Сбор тревожного рюкзака (готовность)",
       description: "Тревожный рюкзак должен быть собран заранее и лежать на видном месте.",
       conditions: { documents_ready: ["docs_no", "docs_partial"] },
-      priority: 10,
+      priority: "fast",
       reliability: "high",
       time_estimate: "2–4 часа",
       yield_estimate: "Готовый рюкзак",
@@ -88,11 +91,6 @@ const dronePrepData = {
         "НЕ кладите в рюкзак лишние вещи — только самое необходимое.",
         "НЕ забывайте проверять срок годности продуктов и лекарств раз в 6 месяцев.",
         "НЕ храните рюкзак в труднодоступном месте — он должен быть под рукой."
-      ],
-      tips: [
-        "Держите рюкзак у выхода, чтобы быстро взять при эвакуации.",
-        "Раз в месяц проверяйте содержимое и обновляйте (сезонная одежда, сроки).",
-        "Положите в рюкзак список всех вещей — так проще проверять."
       ]
     },
 
@@ -102,7 +100,7 @@ const dronePrepData = {
       title: "🏠 Подготовка дома к угрозе",
       description: "Что нужно сделать дома, чтобы минимизировать риски.",
       conditions: { shelter_prep: ["shelter_partial", "shelter_no"] },
-      priority: 20,
+      priority: "fast",
       reliability: "high",
       time_estimate: "1–2 часа",
       yield_estimate: "Безопасный дом",
@@ -121,11 +119,6 @@ const dronePrepData = {
         "НЕ оставляйте окна открытыми при угрозе — осколки могут поранить.",
         "НЕ держите газовые баллоны и легковоспламеняющиеся вещества в квартире.",
         "НЕ загромождайте выходы — должен быть свободный проход."
-      ],
-      tips: [
-        "Держите на видном месте фонарик и ключи от всех замков.",
-        "Проверьте, что все окна закрываются и запираются.",
-        "Подготовьте сумку для документов — они должны быть под рукой."
       ]
     },
 
@@ -135,7 +128,7 @@ const dronePrepData = {
       title: "👨‍👩‍👧‍👦 Семейный план действий",
       description: "Обсудите и запишите план действий для всей семьи.",
       conditions: { comms_prep: ["comms_no", "comms_partial"] },
-      priority: 30,
+      priority: "fast",
       reliability: "high",
       time_estimate: "1 час",
       yield_estimate: "Семейный план",
@@ -153,11 +146,6 @@ const dronePrepData = {
         "НЕ откладывайте обсуждение плана на 'потом' — время может не быть.",
         "НЕ забудьте про домашних животных — у них должен быть свой план.",
         "НЕ думайте, что 'это не случится' — лучше подготовиться."
-      ],
-      tips: [
-        "Напишите план на бумаге и положите на видное место.",
-        "Обсудите план с соседями — возможно, у них есть бомбоубежище.",
-        "Проверьте, чтобы у всех членов семьи были заряжены телефоны."
       ]
     },
 
@@ -167,7 +155,7 @@ const dronePrepData = {
       title: "🗺️ Подготовка маршрута эвакуации",
       description: "Заранее продумайте маршруты и альтернативные пути.",
       conditions: { route_prep: ["route_no", "route_partial"] },
-      priority: 40,
+      priority: "fast",
       reliability: "high",
       time_estimate: "1–2 часа",
       yield_estimate: "Готовый маршрут",
@@ -185,11 +173,6 @@ const dronePrepData = {
         "НЕ используйте только один маршрут — он может быть перекрыт.",
         "НЕ забывайте о пеших маршрутах — не всегда можно выехать на машине.",
         "НЕ полагайтесь только на GPS — бумажная карта не разряжается."
-      ],
-      tips: [
-        "Нанесите на карту все подвалы и укрытия по пути.",
-        "Проверьте, есть ли на маршруте опасные зоны (мосты, эстакады).",
-        "Сделайте фото маршрута на телефон и распечатайте копию."
       ]
     },
 
@@ -199,7 +182,7 @@ const dronePrepData = {
       title: "🛡️ Оборудование укрытия",
       description: "Как подготовить укрытие для длительного пребывания.",
       conditions: { shelter_prep: ["shelter_ready"] },
-      priority: 50,
+      priority: "medium",
       reliability: "high",
       time_estimate: "2–4 часа",
       yield_estimate: "Оборудованное укрытие",
@@ -219,11 +202,6 @@ const dronePrepData = {
         "НЕ загромождайте укрытие вещами — должно быть место для движения.",
         "НЕ забывайте о безопасности в укрытии: не используйте открытый огонь.",
         "НЕ оставляйте укрытие без присмотра — назначьте дежурных."
-      ],
-      tips: [
-        "Проверьте, есть ли в укрытии огнетушитель.",
-        "Держите в укрытии тёплые одеяла и сменную одежду.",
-        "Раз в месяц проверяйте запасы и сроки годности."
       ]
     }
   ]
