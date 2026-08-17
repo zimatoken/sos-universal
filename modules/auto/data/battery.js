@@ -223,13 +223,13 @@ const autoBatteryData = {
       ]
     },
     // ========================================
-    // 6. Обслуживание и зарядка
+    // 6. Обслуживание и зарядка (ИСПРАВЛЕНО)
     // ========================================
     {
       id: "battery_maintenance",
       title: "🧽 Обслуживание аккумулятора",
       description: "Продлить жизнь батарее можно простым обслуживанием: чистка клемм, проверка электролита.",
-      conditions: { location: ["home", "parking"], time_season: ["warm", "moderate"] },
+      conditions: { location: ["home", "parking"], time_season: ["summer", "season_other"] },
       priority: "slow",
       reliability: "medium",
       time_estimate: "30-60 мин",

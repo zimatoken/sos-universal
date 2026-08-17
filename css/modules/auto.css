@@ -29,14 +29,46 @@
   display: inline-block;
 }
 
-/* Home screen back button - less margin */
-#screen-home .back-btn {
-  margin-bottom: 8px;
-}
+<!-- ===== ЭКРАН SOS ===== -->
+<div id="screen-sos" class="screen">
+  <div class="sos-header">
+    <button class="btn-back" onclick="goHome()">← Назад</button>
+    <h2>🆘 SOS</h2>
+  </div>
+
+  <div class="sos-content">
+    <!-- GPS -->
+    <div class="sos-card gps-card">
+      <div class="gps-label">📍 Координаты</div>
+      <div id="gps-coords" class="gps-value">Определяем местоположение…</div>
+      <div id="gps-time" class="gps-time">Обновление…</div>
+      <button class="btn-refresh" onclick="updateGPS()">🔄 Обновить GPS</button>
+    </div>
+
+    <!-- Контакт -->
+    <div class="sos-card">
+      <div class="gps-label">👤 Контакт для экстренного оповещения</div>
+      <input type="tel" id="sos-phone" placeholder="Телефон (+7...)" class="sos-input">
+      <input type="text" id="sos-name" placeholder="Имя контакта (необязательно)" class="sos-input">
+    </div>
+
+    <!-- Кнопки -->
+    <button class="sos-send-btn" onclick="sendSOS()">
+      📨 Отправить SOS-сообщение
+    </button>
+
+    <button class="flashlight-btn" onclick="toggleFlashlight()">
+      🔦 Фонарик (SOS-мигание)
+    </button>
+
+    <p class="sos-hint">
+      Сообщение отправится через SMS с вашими координатами и временем.
+    </p>
+  </div>
+</div>
 
 .header {
   position: relative;
-}
 
 .back-btn:hover { 
   border-color: var(--border-hover); 
