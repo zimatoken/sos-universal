@@ -23,6 +23,7 @@ const autoBrakesData = {
       id: "location",
       text: "Где вы находитесь?",
       type: "single",
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
         { id: "home", label: "🏠 Дома / гараж", tags: ["safe", "tools", "garage"] },
         { id: "road", label: "🛣️ На дороге (город)", tags: ["road", "traffic", "low_speed"] },
@@ -34,6 +35,7 @@ const autoBrakesData = {
       id: "has_tools",
       text: "Что у вас есть с собой?",
       type: "multi",
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
         { id: "jack", label: "🛠️ Домкрат", tags: ["jack"] },
         { id: "tools", label: "🔧 Набор ключей / головок", tags: ["tools"] },
@@ -45,6 +47,7 @@ const autoBrakesData = {
       id: "car_type",
       text: "Какой у вас автомобиль?",
       type: "single",
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
         { id: "standard", label: "🚗 Легковой стандартный", tags: ["standard"] },
         { id: "suv", label: "🚙 Внедорожник / SUV", tags: ["suv", "heavy"] },
@@ -55,6 +58,7 @@ const autoBrakesData = {
       id: "brake_light",
       text: "Горит ли на приборной панели значок тормозной системы (красный/жёлтый)?",
       type: "single",
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
         { id: "yes_red", label: "🔴 Да, красный (срочно)", tags: ["red_light", "emergency"] },
         { id: "yes_yellow", label: "🟡 Да, жёлтый (ABS / проблема)", tags: ["yellow_light", "abs"] },
@@ -127,7 +131,7 @@ const autoBrakesData = {
       ]
     },
     // ========================================
-    // 3. Прокачка тормозов (удаление воздуха)
+    // 3. Прокачка тормозов
     // ========================================
     {
       id: "bleed_brakes",
@@ -219,7 +223,7 @@ const autoBrakesData = {
       ]
     },
     // ========================================
-    // 6. Визуальный осмотр тормозных дисков и суппортов
+    // 6. Визуальный осмотр
     // ========================================
     {
       id: "visual_inspection",
@@ -248,7 +252,7 @@ const autoBrakesData = {
       ]
     },
     // ========================================
-    // 7. Вызов эвакуатора / буксировка
+    // 7. Вызов эвакуатора
     // ========================================
     {
       id: "tow_truck_brakes",

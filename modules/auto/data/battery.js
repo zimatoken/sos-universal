@@ -22,6 +22,7 @@ const autoBatteryData = {
       id: "location",
       text: "Где вы находитесь?",
       type: "single",
+      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark", "smell", "swollen"] },
       options: [
         { id: "home", label: "🏠 Дома / гараж", tags: ["safe", "tools", "garage"] },
         { id: "road", label: "🛣️ На дороге (трасса)", tags: ["road", "traffic", "emergency"] },
@@ -33,6 +34,7 @@ const autoBatteryData = {
       id: "has_tools",
       text: "Что у вас есть с собой?",
       type: "multi",
+      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark", "smell", "swollen"] },
       options: [
         { id: "cables", label: "🔌 Провода для прикуривания", tags: ["jump_cables"] },
         { id: "voltmeter", label: "📟 Мультиметр / тестер", tags: ["diagnostics"] },
@@ -44,6 +46,7 @@ const autoBatteryData = {
       id: "time_season",
       text: "Какое время года?",
       type: "single",
+      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark", "smell", "swollen"] },
       options: [
         { id: "summer", label: "☀️ Лето / тепло", tags: ["warm"] },
         { id: "winter", label: "❄️ Зима / мороз", tags: ["cold"] },
@@ -54,6 +57,7 @@ const autoBatteryData = {
       id: "car_type",
       text: "Какой у вас автомобиль?",
       type: "single",
+      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark", "smell", "swollen"] },
       options: [
         { id: "standard", label: "🚗 Легковой стандартный (12V)", tags: ["standard"] },
         { id: "diesel", label: "🛻 Дизельный (тяжелый запуск)", tags: ["diesel"] },
@@ -223,7 +227,7 @@ const autoBatteryData = {
       ]
     },
     // ========================================
-    // 6. Обслуживание и зарядка (ИСПРАВЛЕНО)
+    // 6. Обслуживание и зарядка
     // ========================================
     {
       id: "battery_maintenance",

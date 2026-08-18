@@ -22,6 +22,7 @@ const autoFlatTireData = {
       id: "location",
       text: "Где вы находитесь?",
       type: "single",
+      conditions: { symptom: ["flat", "slow_leak", "blowout", "sidewall_damage", "bulge", "vibration"] },
       options: [
         { id: "home", label: "🏠 Дома / гараж", tags: ["safe", "tools", "garage"] },
         { id: "road", label: "🛣️ На дороге (город)", tags: ["road", "traffic", "low_speed"] },
@@ -33,6 +34,7 @@ const autoFlatTireData = {
       id: "has_tools",
       text: "Что у вас есть с собой?",
       type: "multi",
+      conditions: { symptom: ["flat", "slow_leak", "blowout", "sidewall_damage", "bulge", "vibration"] },
       options: [
         { id: "jack", label: "🛠️ Домкрат", tags: ["jack"] },
         { id: "spare", label: "🛞 Запасное колесо (полноценное)", tags: ["spare_full"] },
@@ -46,6 +48,7 @@ const autoFlatTireData = {
       id: "tire_type",
       text: "Какая шина повреждена?",
       type: "single",
+      conditions: { symptom: ["flat", "slow_leak", "blowout", "sidewall_damage", "bulge", "vibration"] },
       options: [
         { id: "front_left", label: "Передняя левая", tags: ["front", "steering"] },
         { id: "front_right", label: "Передняя правая", tags: ["front", "steering"] },
@@ -57,6 +60,7 @@ const autoFlatTireData = {
       id: "time_of_day",
       text: "Какое сейчас время суток?",
       type: "single",
+      conditions: { symptom: ["flat", "slow_leak", "blowout", "sidewall_damage", "bulge", "vibration"] },
       options: [
         { id: "day", label: "☀️ День (светло)", tags: ["day"] },
         { id: "night", label: "🌙 Ночь (темно)", tags: ["night", "low_vis"] },
@@ -67,6 +71,7 @@ const autoFlatTireData = {
       id: "has_passengers",
       text: "Есть ли в машине пассажиры, которым нужна помощь?",
       type: "single",
+      conditions: { symptom: ["flat", "slow_leak", "blowout", "sidewall_damage", "bulge", "vibration"] },
       options: [
         { id: "alone", label: "Я один", tags: ["alone"] },
         { id: "with_kids", label: "С детьми", tags: ["kids"] },
@@ -111,13 +116,13 @@ const autoFlatTireData = {
       ]
     },
     // ========================================
-    // 2. Ремонт шины без снятия (жгут)
+    // 2. Ремонт шины жгутом
     // ========================================
     {
       id: "tire_repair_kit",
       title: "🧰 Ремонт шины жгутом (без снятия)",
       description: "Если повреждение небольшое (гвоздь, саморез) — можно отремонтировать жгутом на месте.",
-      conditions: { symptom: ["flat", "slow_leak"], has_tools: ["repair_kit", "compressor"], tire_type: ["front_left", "front_right", "rear_left", "rear_right"] },
+      conditions: { symptom: ["flat", "slow_leak"], has_tools: ["repair_kit", "compressor"] },
       priority: "fast",
       reliability: "medium",
       time_estimate: "10-20 мин",
@@ -143,13 +148,13 @@ const autoFlatTireData = {
       ]
     },
     // ========================================
-    // 3. Доливка воздуха (если медленно спускает)
+    // 3. Доливка воздуха
     // ========================================
     {
       id: "inflate_tire",
       title: "💨 Подкачка колеса (если медленно спускает)",
       description: "Если шина медленно спускает — можно подкачать и доехать до шиномонтажа.",
-      conditions: { symptom: ["slow_leak"], has_tools: ["compressor"], location: ["home", "parking", "road"] },
+      conditions: { symptom: ["slow_leak"], has_tools: ["compressor"] },
       priority: "fast",
       reliability: "medium",
       time_estimate: "2-5 мин",
@@ -172,7 +177,7 @@ const autoFlatTireData = {
       ]
     },
     // ========================================
-    // 4. Экстренная помощь на дороге (без запаски)
+    // 4. Экстренная помощь на дороге
     // ========================================
     {
       id: "emergency_tire_help",
@@ -260,7 +265,7 @@ const autoFlatTireData = {
       ]
     },
     // ========================================
-    // 7. Использование герметика для шин (временное решение)
+    // 7. Использование герметика
     // ========================================
     {
       id: "tire_sealant",
