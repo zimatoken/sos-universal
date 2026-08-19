@@ -1,210 +1,285 @@
+// modules/pets/data/en/behavior-en.js
 // === MODULE: PETS — BEHAVIOR AND AGGRESSION ===
-const behaviorDataEn = {
-  category: "behavior",
-  title: "🐾 Behavior and aggression",
-  description: "Biting, barking, scratching, anxiety, destructive behavior — how to understand and help",
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "pets",
+    category: "behavior",
+    version: "1.0.0",
+    lang: "en",
+    title: "🐾 Behavior and Aggression",
+    description: "Biting, barking, scratching, anxiety, destructive behavior — how to understand and help",
+    icon: "🐾",
+    color: "#9333ea"
+  },
 
   questions: [
     {
       id: "problem",
-      text: "What is the behavioral problem?",
       type: "single",
+      text: "What behavior problem is occurring?",
       options: [
         { id: "aggression_people", label: "😠 Aggression toward people (biting, growling, lunging)", tags: ["aggression_people"] },
         { id: "aggression_animals", label: "🐕 Aggression toward other animals", tags: ["aggression_animals"] },
         { id: "anxiety", label: "😰 Anxiety / fear (trembling, hiding, won't come out)", tags: ["anxiety"] },
         { id: "destruction", label: "🪑 Destructive behavior (chewing furniture, digging, marking)", tags: ["destruction"] },
-        { id: "barking", label: "🔊 Non-stop barking / howling / meowing", tags: ["barking"] },
-        { id: "leash", label: "🐕 Pulling on leash / running away / disobeying", tags: ["leash"] }
+        { id: "barking", label: "🔊 Excessive barking / howling / meowing", tags: ["barking"] },
+        { id: "leash", label: "🐕 Pulls leash / runs away / doesn't obey", tags: ["leash"] }
       ]
     },
     {
       id: "pet_type",
-      text: "What kind of pet?",
       type: "single",
+      text: "What kind of pet?",
+      conditions: { problem: ["aggression_people", "aggression_animals", "anxiety", "destruction", "barking", "leash"] },
       options: [
         { id: "pet_dog", label: "🐕 Dog", tags: ["dog"] },
         { id: "pet_cat", label: "🐱 Cat", tags: ["cat"] },
-        { id: "pet_other", label: "🦎 Other", tags: ["other"] }
+        { id: "pet_rabbit", label: "🐰 Rabbit", tags: ["rabbit"] },
+        { id: "pet_parrot", label: "🦜 Parrot", tags: ["parrot"] }
       ]
     },
     {
       id: "duration",
-      text: "How long has this been happening?",
       type: "single",
+      text: "How long has this been happening?",
+      conditions: { problem: ["aggression_people", "aggression_animals", "anxiety", "destruction", "barking", "leash"] },
       options: [
         { id: "recent", label: "Recently (after moving, injury, new pet)", tags: ["recent"] },
         { id: "long", label: "Long time (since childhood / adoption)", tags: ["long"] },
-        { id: "sudden", label: "Sudden (was normal, now bad)", tags: ["sudden"] }
+        { id: "sudden", label: "Suddenly (was fine, now not)", tags: ["sudden"] }
       ]
     }
   ],
 
   solutions: [
+    // ============================================================
+    // 1. DOG AGGRESSION TOWARD PEOPLE
+    // ============================================================
     {
       id: "dog_aggression_people",
       title: "🐕 Dog aggressive toward people — causes and correction",
-      description: "Growling, biting, lunging at passersby, guests, children. This is dangerous, but most often fixable.",
+      description: "Growling, biting, lunging at passersby, guests, children. This is dangerous but usually fixable.",
       conditions: { problem: ["aggression_people"], pet_type: ["pet_dog"] },
-      priority: "fast",
-      reliability: "medium",
+      scoring: { priority: "fast", reliability: "medium" },
       time_estimate: "1–6 months",
       yield_estimate: "Reduced aggression, safety",
       tags: ["dog", "aggression", "behavior"],
       steps: [
-        "Ensure safety of others. Muzzle in public places, leash no longer than 1.5 m, warn guests. An aggressive dog is your responsibility",
-        "Don't punish your dog physically (hitting, choking, shaking). This increases aggression and destroys trust. The dog starts defending itself even more",
-        "Book a behavioral trainer (not a command-based trainer, but a behavior specialist). Aggression is a complex problem requiring an individual approach",
-        "Find the cause: fear (afraid and bites), territorial defense, resource guarding (food, toys), pain (if sudden aggression — check health), lack of socialization",
-        "If aggression is sudden — see a vet immediately. Pain (ears, teeth, joints, internal organs) often causes aggression. A dog can't say 'I'm in pain', it growls",
-        "For fear-based aggression: desensitization and counter-conditioning. Gradually expose the dog to the trigger (people, children, men), associating it with something pleasant (treats, play)",
-        "For resource guarding: teach 'drop it' / 'leave it'. Don't take things by force — it increases guarding. Trade for something better: 'give the bone — get a treat'",
-        "Socialization: regular walks in busy places, meetings with friendly dogs, visits to dog parks. But DON'T force it — if the dog is scared, back off",
-        "Consider neutering / spaying. Hormones often increase aggression, especially toward other dogs. Consult your vet"
+        "Ensure safety of others. Muzzle in public, leash no longer than 1.5 m, warn guests.",
+        "Don't physically punish — it increases aggression.",
+        "See a canine behaviorist (not just a trainer).",
+        "Identify the cause: fear, territorial defense, resource guarding, pain.",
+        "If sudden aggression — see a vet immediately.",
+        "Desensitization and counterconditioning.",
+        "Teach 'drop it' / 'leave it'.",
+        "Socialization: regular walks in busy areas.",
+        "Consider neutering/spaying."
       ],
       warnings: [
-        "DO NOT ignore the first signs of aggression (growling, baring teeth). It's a warning. If you punish the warning, the dog will go straight to biting",
-        "DO NOT let children approach an aggressive dog to 'make friends'. Children often can't read signals. It's dangerous for the child and worsens the problem",
-        "DO NOT use shock collars, choke chains, prong collars as 'treatment' for aggression. They cause pain, fear, and more aggression. Only positive methods",
-        "If the dog has already bitten someone — it's an administrative / criminal offense. You are responsible. See a behaviorist immediately"
+        "DON'T ignore early aggression signs.",
+        "DON'T let children approach an aggressive dog.",
+        "DON'T use shock collars or choke chains.",
+        "If the dog has bitten — see a behaviorist immediately."
       ]
     },
+    // ============================================================
+    // 2. CAT AGGRESSION
+    // ============================================================
     {
       id: "cat_aggression",
       title: "🐈 Cat aggressive / scratching / biting",
-      description: "Cat hisses, scratches, bites when you try to pet, pick up, or approach. Causes vary.",
+      description: "Cat hisses, scratches, bites when petted, picked up, or approached.",
       conditions: { problem: ["aggression_people"], pet_type: ["pet_cat"] },
-      priority: "medium",
-      reliability: "medium",
+      scoring: { priority: "medium", reliability: "medium" },
       time_estimate: "2–8 weeks",
       yield_estimate: "Reduced aggression",
       tags: ["cat", "aggression", "behavior"],
       steps: [
-        "Don't punish physically (hitting, spraying water, yelling). Cats don't connect punishment with 'bad behavior' — they connect it with you and start fearing / hating you",
-        "Check health. Sudden aggression = pain. Most common: urinary tract disease (cystitis), teeth, ears, arthritis, injury. The cat bites because it hurts. Vet is the first step",
-        "Identify the trigger: when is the cat aggressive? When being petted? When approaching the food bowl? When another animal appears? When being picked up? At certain sounds? Write it down — it helps the behaviorist / vet",
-        "Give the cat space. If it's hiding — don't drag it out. Respect personal space. Let it have a 'safe room' where no one goes",
-        "Use pheromones (Feliway, Feliway Friends). They reduce stress and aggression. Diffuser in a socket, spray on the carrier, drops on the collar",
-        "Fishing rod toys (wand toys) help release aggression on the toy, not on you. Play 2 times a day for 15 minutes. After playing — treat. The cat will associate you with something pleasant",
-        "If aggression is directed at another pet — separate the space: separate food bowls, litter boxes, beds. Feliway Friends for multi-cat households. Slow introduction through a door",
-        "If the problem persists — see a veterinary behaviorist (not just a trainer, but a cat specialist). Cats have a unique psychology requiring a specific approach"
+        "Don't physically punish.",
+        "Check health — sudden aggression = pain.",
+        "Identify the trigger.",
+        "Give the cat space.",
+        "Use pheromones (Feliway).",
+        "Wand toys for energy release.",
+        "If aggression toward other pets — separate spaces.",
+        "If problem persists — see a veterinary behaviorist."
       ],
       warnings: [
-        "DO NOT drag a cat out of hiding by force. It causes panic and aggression. Let it come out on its own, lure it with treats",
-        "DO NOT pet a cat if it's hissing, ears back, tail thrashing. These are clear 'don't touch' signals. Respect them",
-        "Cat scratches are not 'just scratches'. Infection (bartonellosis) is dangerous for people with weakened immune systems. Wash wounds thoroughly",
-        "If a cat is aggressive after giving birth — it's normal protection of kittens. Don't approach, don't touch kittens in the first 2–3 weeks unless absolutely necessary"
+        "DON'T force a cat out of hiding.",
+        "DON'T pet if cat hisses, ears back.",
+        "Cat scratches can cause infection.",
+        "After birth — don't touch kittens unnecessarily."
       ]
     },
+    // ============================================================
+    // 3. RABBIT AGGRESSION
+    // ============================================================
+    {
+      id: "rabbit_aggression",
+      title: "🐰 Rabbit aggressive — biting, scratching, thumping",
+      description: "Rabbits bite not from malice — it's territory defense, fear, or pain. Females are aggressive during heat.",
+      conditions: { problem: ["aggression_people"], pet_type: ["pet_rabbit"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "2–4 weeks",
+      yield_estimate: "Reduced aggression",
+      tags: ["rabbit", "aggression", "behavior"],
+      steps: [
+        "Don't punish — rabbits don't understand.",
+        "Check health: teeth (malocclusion), ears, nails, bladder stones.",
+        "Neutering/spaying reduces hormonal aggression.",
+        "Give space — the cage is their territory.",
+        "Approach at eye level, not from above.",
+        "Hand-train with treats.",
+        "Avoid sudden movements and loud noises.",
+        "If they bite when picked up — don't pick up unless necessary."
+      ],
+      warnings: [
+        "Rabbits are fragile — falling is fatal.",
+        "Don't pick up by ears or scruff — painful, injury.",
+        "Rabbit bites hurt — use gloves if needed.",
+        "Pregnant females are especially aggressive."
+      ]
+    },
+    // ============================================================
+    // 4. PARROT AGGRESSION
+    // ============================================================
+    {
+      id: "parrot_aggression",
+      title: "🦜 Parrot aggressive — biting, screaming, hissing",
+      description: "Parrots bite from fear, territory defense, or hormonal spikes. It's not 'meanness' — it's body language.",
+      conditions: { problem: ["aggression_people"], pet_type: ["pet_parrot"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "2–4 weeks",
+      yield_estimate: "Reduced aggression",
+      tags: ["parrot", "aggression", "behavior"],
+      steps: [
+        "Don't punish — parrots don't connect punishment to behavior.",
+        "Check health: vitamins, parasites, hormones.",
+        "Learn body language: pinned eyes, fluffed feathers, hissing — 'stay away'.",
+        "Don't reach into the cage if aggressive — it's their territory.",
+        "Hand-train through cage bars with treats, then open door.",
+        "Hormonal spikes (spring): reduce daylight to 10 hours, remove mirrors.",
+        "Provide toys and activities — boredom makes parrots aggressive.",
+        "Don't yell — parrot sees it as approval."
+      ],
+      warnings: [
+        "Parrot beak is very strong — can remove a finger.",
+        "Don't use aerosols near parrots — toxic.",
+        "Parrots remember grudges — don't punish, lose trust.",
+        "If aggressive to everyone — possible hormonal imbalance."
+      ]
+    },
+    // ============================================================
+    // 5. ANXIETY
+    // ============================================================
     {
       id: "pet_anxiety",
       title: "😰 Anxiety, fear, phobias in pets",
-      description: "Trembling during thunderstorms, afraid of fireworks, panics when owner leaves, hides from people.",
+      description: "Trembling from thunder, afraid of fireworks, panics when owner leaves, hides from people.",
       conditions: { problem: ["anxiety"] },
-      priority: "medium",
-      reliability: "medium",
+      scoring: { priority: "medium", reliability: "medium" },
       time_estimate: "1–3 months",
       yield_estimate: "Reduced anxiety",
       tags: ["anxiety", "fear", "behavior"],
       steps: [
-        "Don't scold or punish for anxious behavior. Yelling increases stress. The dog/cat isn't 'being naughty' — they're scared and can't cope",
-        "Create a 'safe place': dark crate / carrier with a blanket, a quiet corner, a closet. Let your pet hide there during stress. Don't pull them out by force",
-        "For fear of thunder / fireworks: close windows with curtains, turn on TV / music (white noise). Pheromones (Adaptil, Feliway). Heating pad / wrap (pressure calms)",
-        "For separation anxiety (panic when owner leaves): leave for 1–2 minutes, return, ignore for 5 minutes. Gradually increase the time. Don't say emotional goodbyes",
-        "Leave an 'activity' for when you're away: treat-filled toy (Kong, puzzle), chew bone, recording of your voice. The pet should associate your departure with something good",
-        "Regular exercise: long walks, running, playing. A tired pet is less anxious. But DON'T overdo it — that's also stress",
-        "If anxiety is severe (destroys furniture, defecates/urinates from fear, won't eat) — the vet may prescribe calming medications (Zylkene, Sileo, Gabapentin). Only by prescription",
-        "Consider a second pet? Sometimes a cat/dog is calmer with a companion. But sometimes it worsens the problem. Consult a veterinary behaviorist"
+        "Don't scold or punish.",
+        "Create a 'safe place'.",
+        "For thunder/fireworks fear: close curtains, play music.",
+        "For separation anxiety: leave for 1-2 minutes, gradually increase.",
+        "Leave an 'activity' when gone.",
+        "Regular exercise.",
+        "If severe — vet may prescribe calming medication.",
+        "Consider a second pet (with caution)."
       ],
       warnings: [
-        "DO NOT use human sedatives (Valerian, Corvalol, Analgin) — they are toxic to animals. Only veterinary drugs by prescription",
-        "DO NOT 'comfort' your pet during fear ('baby, don't be scared'). This rewards anxious behavior. Stay calm, act like everything is normal",
-        "Anxiety is often hereditary (especially in some breeds: dachshunds, Chihuahuas, Spitz). This is not 'bad training'. It's a trait that needs management",
-        "If anxiety appears suddenly — check health. Thyroid, pain, neurological issues can manifest as anxiety"
+        "DON'T use human calming medications — toxic.",
+        "DON'T 'comfort' during fear — reinforces it.",
+        "Anxiety is often genetic.",
+        "If sudden — check health."
       ]
     },
+    // ============================================================
+    // 6. DESTRUCTIVE BEHAVIOR
+    // ============================================================
     {
       id: "destruction_behavior",
       title: "🪑 Destructive behavior — chewing, digging, marking",
-      description: "Chewing furniture, shoes, wallpaper, digging into the sofa, marking corners. This is not 'revenge' — it's boredom, stress, or instinct.",
+      description: "Chews furniture, shoes, wallpaper, digs couch, marks corners. This isn't 'revenge' — it's boredom, stress, or instinct.",
       conditions: { problem: ["destruction"] },
-      priority: "medium",
-      reliability: "medium",
+      scoring: { priority: "medium", reliability: "medium" },
       time_estimate: "2–8 weeks",
       yield_estimate: "Stopping destruction",
       tags: ["destruction", "behavior", "boredom"],
       steps: [
-        "Don't punish after the fact. The animal won't connect the punishment with 'can't chew' — it will connect it with your arrival and chew secretly. Catch them 'in the act' and redirect",
-        "Check physical exercise. Is the dog chewing out of boredom? Increase walks to 2–3 hours a day, add running, games, training. A tired dog doesn't chew furniture",
-        "Give 'approved' alternatives: chew bones (natural, not chicken), Kong toys with frozen food, ropes, rubber rings. Praise when they chew approved items",
-        "For cats: scratching posts (vertical, horizontal, different materials). The scratching point should be more attractive than the sofa. Place it near where they scratch. Reward with catnip",
-        "Remove temptation: put shoes in closets, hide wires in cable channels, protect furniture corners. While the pet is learning, reduce temptation",
-        "For marking (dogs): neutering often reduces marking behavior. But not always. Use deterrent sprays (Anti-Gadin). Thoroughly clean old marks with enzymatic cleaners",
-        "For marking (cats): spaying usually solves the problem. If not — check for urinary tract disease (cystitis makes them urinate outside the box). Clean litter box, proper litter, enough boxes (1 per cat + 1)",
-        "If destruction only happens when you're away — it's separation anxiety. See the 'Anxiety' section. Treat the cause, not the symptom"
+        "Don't punish after the fact.",
+        "Check physical exercise.",
+        "Provide 'approved' alternatives.",
+        "For cats: scratching posts.",
+        "Remove temptation.",
+        "For marking — neutering/spaying.",
+        "If destruction only when you're gone — separation anxiety."
       ],
       warnings: [
-        "DO NOT hit your pet for chewed shoes. It causes fear, not understanding. The animal will chew secretly when you're gone",
-        "DO NOT use sharp bones (chicken, turkey) — they can get stuck in the throat, tear the stomach. Only special chew bones from pet stores",
-        "DO NOT poison your pet with chemical deterrents (vinegar, pepper, ammonia). They are toxic and cause stress. Use safe sprays",
-        "A cat that urinates outside the litter box is NOT 'taking revenge'. It's always a signal: illness, stress, dirty box, wrong litter, conflict with another cat"
+        "DON'T hit pet for chewed shoes.",
+        "DON'T use sharp bones — choking hazard.",
+        "DON'T poison with chemical deterrents.",
+        "Cat urinating outside litter box is always a signal."
       ]
     },
+    // ============================================================
+    // 7. EXCESSIVE BARKING / HOWLING
+    // ============================================================
     {
       id: "excessive_barking",
-      title: "🔊 Non-stop barking / howling — how to stop it",
-      description: "Dog barks, howls, or cat meows non-stop. This is not 'just personality' — it's always a signal of a problem.",
+      title: "🔊 Excessive barking / howling — how to stop",
+      description: "Dog barks, howls, or cat meows nonstop. It's always a signal of a problem.",
       conditions: { problem: ["barking"] },
-      priority: "medium",
-      reliability: "medium",
+      scoring: { priority: "medium", reliability: "medium" },
       time_estimate: "2–8 weeks",
       yield_estimate: "Peace and quiet",
       tags: ["barking", "noise", "behavior"],
       steps: [
-        "Check health. Pain, itching, ear infections, dementia, hearing/vision loss can cause constant vocalization. Sudden barking = vet visit",
-        "Identify the cause: boredom (not enough exercise and activities), fear (thunder, fireworks, people), attention (barking demands your attention), territorial (passersby), anxiety (separation)",
-        "If barking from boredom — increase physical exercise: walks 2–3 hours, running, games, training. A tired dog barks less. Add mental exercise: puzzles, treat searches",
-        "If barking at passersby — teach 'quiet'. When barking, calmly say 'quiet', when they stop — give a treat. Practice in different places, gradually increasing difficulty",
-        "If barking from anxiety (you leaving) — see the 'Anxiety' section. Leave an 'activity' for when you're away",
-        "Don't yell at your dog for barking — it reinforces it as 'got attention'. Better to ignore if barking at you. If barking at noise — don't react, show that everything is normal",
-        "Remove triggers: close windows if barking at passersby. Turn on white noise / TV. If barking at the doorbell — practice 'place' command when the bell rings",
-        "If nothing helps — see a behaviorist. Sometimes barking is stereotypic behavior requiring professional correction. Don't use shock collars"
+        "Check health.",
+        "Identify cause: boredom, fear, attention, territorial.",
+        "If boredom — increase exercise.",
+        "Teach 'quiet' command.",
+        "Don't yell at dog for barking.",
+        "Remove triggers.",
+        "If nothing helps — see a behaviorist."
       ],
       warnings: [
-        "DO NOT use shock collars, choke chains, prong collars for barking — they cause pain, fear, aggression, and barking may increase or turn into other destructive behavior",
-        "Night barking — often from boredom or anxiety. If a dog barks at night, it's not 'guarding' — it's suffering. Daytime exercise is the best medicine",
-        "If a cat constantly meows — check: is it hungry, does it need the litter box, is something painful? Old cats meow from dementia or hearing loss"
+        "DON'T use shock collars.",
+        "Night barking — often boredom or anxiety.",
+        "Cat meowing — check hunger, litter box, health."
       ]
     },
+    // ============================================================
+    // 8. LEASH PULLING
+    // ============================================================
     {
       id: "leash_pulling",
-      title: "🐕 Pulling on leash / running away / disobeying",
-      description: "Dog pulls on leash, breaks free, runs away, ignores commands. This is not 'stubbornness' — it's lack of skills and motivation.",
+      title: "🐕 Pulls leash / runs away / doesn't obey",
+      description: "Dog pulls leash, breaks free, runs away, ignores commands.",
       conditions: { problem: ["leash"] },
-      priority: "medium",
-      reliability: "medium",
+      scoring: { priority: "medium", reliability: "medium" },
       time_estimate: "2–8 weeks",
-      yield_estimate: "Peaceful walks",
+      yield_estimate: "Calm walks",
       tags: ["leash", "training", "walk"],
       steps: [
-        "Use a harness (not a collar) for walks, especially if your dog pulls hard. A harness distributes pressure and doesn't injure the neck (important for health, especially small breeds)",
-        "Never pull or jerk the leash — it causes pain and resistance. Stop when the dog pulls. Walk only when the leash is loose. Repeat patiently",
-        "Start with short walks (15 minutes) in a quiet place. As soon as the dog walks on a loose leash — reward with treats. Gradually increase time and difficulty",
-        "Teach the 'heel' command — in a calm environment, without distractions. Reward for every correct position. Then add distractions (other dogs, passersby). Patience is key",
-        "If the dog runs away (off-leash) — practice recall in a safe environment (long line 10–20 m). Call their name, show a treat, celebrate when they come. Never scold when they come — even if you were angry for 5 minutes",
-        "If the dog doesn't obey commands — check motivation. Use high-value treats (cheese, sausage, boiled meat). In early training, reward frequently, then less often. Play is also a great reward",
-        "Use a long line for freedom with control. Don't let your dog off-leash without a muzzle in crowded places. Don't let them off if you're not confident in recall. Safety is more important",
-        "If the problem persists — sign up for group obedience classes (basic obedience) or individual sessions with a trainer. The dog must learn to listen in any situation"
+        "Use a harness.",
+        "Never pull or jerk the leash.",
+        "Start with short walks.",
+        "Teach 'heel'.",
+        "Practice recall on a long line.",
+        "Use high-value treats.",
+        "If problem persists — see a trainer."
       ],
       warnings: [
-        "DO NOT use choke chains, prong collars without experience — they injure the neck, throat, spine. Only with a trainer. A harness is safer and more effective",
-        "DO NOT chase your dog if it runs away — it's a game. Better run in the other direction, make funny sounds, show a treat. The dog will come on its own",
-        "A dog that pulls on the leash is not 'bad'. It just doesn't know any other way. Your job is to teach, not punish. Patience and consistency are more important than force",
-        "If the dog pulls due to aggression toward other dogs — see the 'Aggression toward animals' section. Don't practice 'heel' near triggers until basic calm behavior is established"
+        "DON'T use choke chains without experience.",
+        "DON'T chase if dog runs away.",
+        "Dog isn't 'bad' — just doesn't know better."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.behaviorDataEn = behaviorDataEn;
+});

@@ -1,211 +1,255 @@
-// === MODULE: PETS ó FIRST AID ===
-const firstaidDataEn = {
-  category: "firstaid",
-  title: "?? First aid",
-  description: "Wounds, bleeding, burns, fractures, choking ó what to do before seeing a vet",
+// modules/pets/data/en/firstaid-en.js
+// === MODULE: PETS ‚Äî FIRST AID ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "pets",
+    category: "firstaid",
+    version: "1.0.0",
+    lang: "en",
+    title: "ü©π First Aid",
+    description: "Wounds, bleeding, burns, fractures, choking ‚Äî what to do before seeing a vet",
+    icon: "ü©π",
+    color: "#9333ea"
+  },
 
   questions: [
     {
       id: "injury_type",
-      text: "What happened?",
       type: "single",
+      text: "What happened?",
       options: [
-        { id: "bleeding", label: "?? Bleeding / wound / cut", tags: ["bleeding"] },
-        { id: "burn", label: "?? Burn (boiling water, fire, chemicals)", tags: ["burn"] },
-        { id: "fracture", label: "?? Fracture / suspected fracture", tags: ["fracture"] },
-        { id: "choking", label: "?? Choking / difficulty breathing", tags: ["choking"] },
-        { id: "eye", label: "??? Eye injury / foreign body", tags: ["eye"] },
-        { id: "bite_wound", label: "?? Bite from another animal / human", tags: ["bite_wound"] }
+        { id: "bleeding", label: "ü©∏ Bleeding / wound / cut", tags: ["bleeding"] },
+        { id: "burn", label: "üî• Burn (boiling water, fire, chemicals)", tags: ["burn"] },
+        { id: "fracture", label: "ü¶¥ Fracture / suspected fracture", tags: ["fracture"] },
+        { id: "choking", label: "üòÆ Choking / difficulty breathing", tags: ["choking"] },
+        { id: "eye", label: "üëÅÔ∏è Eye injury / foreign body", tags: ["eye"] },
+        { id: "bite_wound", label: "üêï Bite from another animal / human", tags: ["bite_wound"] }
       ]
     },
     {
       id: "pet_type",
-      text: "What kind of pet?",
       type: "single",
+      text: "What kind of pet?",
+      conditions: { injury_type: ["bleeding", "burn", "fracture", "choking", "eye", "bite_wound"] },
       options: [
-        { id: "pet_dog", label: "?? Dog", tags: ["dog"] },
-        { id: "pet_cat", label: "?? Cat", tags: ["cat"] },
-        { id: "pet_small", label: "?? Rabbit / hamster / guinea pig / bird", tags: ["small"] },
-        { id: "pet_other", label: "?? Other (turtle, snake, iguana)", tags: ["other"] }
+        { id: "pet_dog", label: "üêï Dog", tags: ["dog"] },
+        { id: "pet_cat", label: "üê± Cat", tags: ["cat"] },
+        { id: "pet_small", label: "üê∞ Rabbit / hamster / guinea pig / bird", tags: ["small"] },
+        { id: "pet_other", label: "ü¶é Other (turtle, snake, iguana)", tags: ["other"] }
       ]
     },
     {
       id: "severity",
-      text: "How serious is it?",
       type: "single",
+      text: "How serious is it?",
+      conditions: { injury_type: ["bleeding", "burn", "fracture", "choking", "eye", "bite_wound"] },
       options: [
-        { id: "severity_minor", label: "Minor cut / scrape / mild burn", tags: ["minor"] },
-        { id: "severity_moderate", label: "Deep wound / severe burn / swelling", tags: ["moderate"] },
-        { id: "severity_severe", label: "Heavy bleeding / fracture / unconsciousness", tags: ["severe"] }
+        { id: "severity_minor", label: "‚úÖ Small cut / scrape / mild burn", tags: ["minor"] },
+        { id: "severity_moderate", label: "‚ö†Ô∏è Deep wound / severe burn / swelling", tags: ["moderate"] },
+        { id: "severity_severe", label: "üö® Heavy bleeding / fracture / unconsciousness", tags: ["severe"] }
       ]
     }
   ],
 
   solutions: [
+    // ============================================================
+    // 1. BLEEDING (moderate/severe)
+    // ============================================================
     {
-      id: "pet_bleeding",
-      title: "?? Bleeding in a pet ó stopping the bleed",
-      description: "Even a small bleed in small pets is dangerous. Act quickly and calmly.",
+      id: "pet_bleeding_severe",
+      title: "ü©∏ Stopping bleeding in pets",
+      description: "Even minor bleeding in small pets is dangerous. Act quickly and calmly.",
       conditions: { injury_type: ["bleeding"], severity: ["severity_moderate", "severity_severe"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5ñ15 minutes",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5‚Äì15 minutes",
       yield_estimate: "Bleeding stopped",
       tags: ["bleeding", "wound", "first_aid"],
       steps: [
-        "Stay calm. The animal senses your anxiety and may panic. Speak softly, move smoothly",
-        "Wear gloves (if available). Rinse the wound with saline or clean water. Gently remove visible debris (sand, fur)",
-        "For capillary bleeding (drops): treat with hydrogen peroxide or chlorhexidine, apply antibacterial ointment (Levomekol, Fucidin), apply sterile bandage",
-        "For venous / arterial bleeding: apply sterile gauze or clean cloth, press for 10ñ15 minutes. Don't peek under the cloth ó it disrupts clotting",
-        "If bleeding doesn't stop ó apply a tourniquet above the wound (3ñ5 cm). Write down the application time. Don't keep the tourniquet on for more than 20ñ30 minutes for dogs/cats, 10ñ15 for small animals",
-        "For small animals (hamsters, birds): even a drop of blood is critical. Immediate vet care. Use a cotton swab with hydrogen peroxide, press very gently",
-        "After bleeding stops: treat the edges with iodine, apply a bandage. Check rabies vaccination status (especially for bites)",
-        "Immediate vet care for: arterial bleeding, wound > 2 cm, visible internal organs, shock (pale, cold paws, rapid breathing)"
+        "Stay calm. The pet senses your anxiety and may panic. Speak softly, move smoothly",
+        "Put on gloves (if available). Rinse the wound with saline or clean water. Gently remove visible debris (sand, fur)",
+        "For capillary bleeding (drops): treat with hydrogen peroxide or chlorhexidine, apply antibacterial ointment (Levomekol, Fucidin), put on sterile bandage",
+        "For venous/arterial bleeding: apply sterile gauze or clean cloth, press for 10‚Äì15 minutes. Don't lift to check ‚Äî you'll break the clot",
+        "If bleeding doesn't stop ‚Äî tourniquet above the wound (3‚Äì5 cm). Note the time. Don't leave for more than 20‚Äì30 min for dogs/cats, 10‚Äì15 for small pets",
+        "For small animals (hamsters, birds): even a drop of blood is critical. Vet immediately. Use a cotton swab with peroxide, press very gently",
+        "After bleeding stops: treat edges with iodine, apply bandage. Check rabies vaccination status (especially for bites)",
+        "Immediate vet for: arterial bleeding, wound > 2 cm, visible organs, shock (pale, cold paws, rapid breathing)"
       ],
       warnings: [
-        "DO NOT use alcohol, cologne, or iodine INSIDE the wound ó it causes severe pain and tissue damage. Only on the edges",
-        "DO NOT remove objects stuck in the wound (glass, nails) ó it will increase bleeding. Stabilize with a bandage, take to the vet",
-        "DO NOT give human painkillers (Nurofen, Paracetamol) without veterinary advice ó dosages for animals differ, some drugs are toxic",
-        "Cats hide pain and bleeding. If a cat is hiding, refusing food, lethargic ó check the entire body for wounds"
+        "DON'T put alcohol, cologne, or iodine INSIDE the wound ‚Äî causes severe pain and tissue damage. Only on the edges",
+        "DON'T remove objects stuck in the wound (glass, nail) ‚Äî increases bleeding. Stabilize with bandage, go to vet",
+        "DON'T give human painkillers (Nurofen, Paracetamol) without vet consultation ‚Äî dosage differs, some are toxic",
+        "Cats hide pain and bleeding. If a cat hides, refuses food, lethargic ‚Äî check the whole body for wounds"
       ]
     },
+    // ============================================================
+    // 2. BLEEDING (minor)
+    // ============================================================
+    {
+      id: "pet_bleeding_minor",
+      title: "ü©∏ Minor wound / scrape ‚Äî home care",
+      description: "Small cuts, scratches, scrapes ‚Äî home treatment",
+      conditions: { injury_type: ["bleeding"], severity: ["severity_minor"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "5‚Äì10 minutes",
+      yield_estimate: "Healing",
+      tags: ["bleeding", "wound", "minor"],
+      steps: [
+        "Rinse the wound with water and soap or chlorhexidine",
+        "Treat with hydrogen peroxide (once, don't overuse)",
+        "Apply antibacterial ointment (Levomekol, Bepanten) in a thin layer",
+        "If on the paw ‚Äî protect with a bandage or sock (to prevent licking)",
+        "Monitor for 2‚Äì3 days ‚Äî redness, swelling, pus = see a vet"
+      ],
+      warnings: [
+        "DON'T let them lick the wound ‚Äî saliva contains bacteria",
+        "DON'T use alcohol or iodine on open wounds"
+      ]
+    },
+    // ============================================================
+    // 3. BURN
+    // ============================================================
     {
       id: "pet_burn",
-      title: "?? Burn in a pet ó first aid",
-      description: "Burns from boiling water, heaters, chemicals. Fur hides the extent of the damage.",
+      title: "üî• Burn in pets ‚Äî first aid",
+      description: "Burns from boiling water, heaters, chemicals. Fur hides the extent of damage.",
       conditions: { injury_type: ["burn"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "10ñ20 minutes",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10‚Äì20 minutes",
       yield_estimate: "Reduced burn depth",
       tags: ["burn", "first_aid", "emergency"],
       steps: [
-        "Remove the burn source. If fur is burning ó cover with thick fabric (smother with oxygen), DO NOT beat the fur ó it spreads the fire",
-        "Cool the burn with running water for 15ñ20 minutes. Temperature 15ñ25∞C. NOT ice, NOT snow ó it causes frostbite on top of the burn",
-        "Carefully cut the fur around the burn (not on the burn itself!). If fur is stuck to the skin ó don't pull. Use blunt-tipped scissors",
-        "DO NOT pop blisters. DO NOT apply oil, sour cream, toothpaste, iodine on the burn ó they trap heat and prevent the vet from assessing the depth",
-        "Cover the burn with sterile gauze or clean cloth. You can use plastic wrap ó it protects from infection and pain",
-        "For chemical burns: rinse with water for 20ñ30 minutes. If you know the chemical ó you can neutralize it (acid > baking soda, alkali > vinegar). Better ó only water and a vet",
-        "Give water (if the animal is conscious and can drink). Burns cause dehydration. Don't force ó a few sips at a time",
-        "Emergency vet care for: burn > 5% of body, burns on face/paws/genitals, chemical/electrical burns, shock"
+        "Remove the burn source. If fur is burning ‚Äî cover with thick fabric (smother oxygen), DON'T beat the fur ‚Äî spreads fire",
+        "Cool the burn with running water for 15‚Äì20 minutes. Temperature 15‚Äì25¬∞C. NOT ice, NOT snow ‚Äî causes frostbite on top of burn",
+        "Carefully trim fur around the burn (not on the burn itself!). Fur stuck to skin ‚Äî don't pull. Use blunt-tip scissors",
+        "DON'T pop blisters. DON'T apply oil, sour cream, toothpaste, iodine to the burn ‚Äî holds heat and hinders diagnosis",
+        "Cover with sterile gauze or clean cloth. Plastic wrap can be used ‚Äî protects from infection and pain",
+        "For chemical burns: rinse with water for 20‚Äì30 minutes. If you know the chemical ‚Äî can neutralize (acid ‚Üí baking soda, alkali ‚Üí vinegar). Better ‚Äî just water and vet",
+        "Give water (if conscious and can drink). Burns cause dehydration. Don't force ‚Äî a few sips at a time",
+        "Emergency vet for: burn > 5% body, burn on face/paws/genitals, chemical/electrical burn, shock"
       ],
       warnings: [
-        "DO NOT apply oil, sour cream, toothpaste to burns ó they trap heat, worsen the burn, hinder diagnosis",
-        "DO NOT use ice ó it causes frostbite on top of the burn. Only cool running water",
-        "Fur hides the depth of the burn. What looks like a 'minor paw burn' may be deep through the entire skin thickness",
-        "Electrical burns are often internal. Even if the outside looks 'minor' ó always see a vet. Disconnect power before helping"
+        "DON'T apply oil, sour cream, toothpaste to burns ‚Äî holds heat, worsens burn, hinders diagnosis",
+        "DON'T use ice ‚Äî causes frostbite on top of burn. Only cool running water",
+        "Fur hides burn depth. What looks like a 'small paw burn' may be deep through the entire skin thickness",
+        "Electrical burns are often internal. Even if external looks 'minor' ‚Äî always see a vet. De-energize before helping"
       ]
     },
+    // ============================================================
+    // 4. FRACTURE
+    // ============================================================
     {
       id: "pet_fracture",
-      title: "?? Fracture in a pet ó immobilization",
-      description: "The animal limps, won't put weight on the paw, cries when touched. A fracture requires immobilization.",
+      title: "ü¶¥ Fracture in pets ‚Äî immobilization",
+      description: "Limping, won't put weight on a limb, cries when touched. Fractures require immobilization.",
       conditions: { injury_type: ["fracture"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "10ñ20 minutes",
-      yield_estimate: "Immobilization until the vet",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10‚Äì20 minutes",
+      yield_estimate: "Stabilization before vet",
       tags: ["fracture", "first_aid", "emergency"],
       steps: [
-        "Signs: won't put weight on the paw, limping, cries/hisses when touched, swelling, deformity, bone protruding (open fracture). Don't try to 'check' ó it's painful",
-        "DO NOT try to straighten the bone, DO NOT pull the limb. This will damage nerves and blood vessels. Immobilize in the position you found it",
-        "For dogs: place on a hard surface (board, shield, cardboard). Secure with tape or bandage to prevent movement during transport",
-        "For cats: use a carrier or box with holes. Cats in stress bite and scratch ó don't catch with bare hands. Cover with a towel, carefully transfer to a container",
-        "Limb immobilization: secure with a board, ruler, cardboard, umbrella. Secure TWO joints ó above and below the fracture. Wrap gently",
-        "For open fracture (bone protruding): cover with sterile gauze, DO NOT try to push it back, DO NOT wash. Transport carefully, minimize shaking",
-        "Relieve pain: apply cold (ice pack in cloth) for 10ñ15 minutes. Not on skin ó frostbite. Don't press on the fracture",
-        "Immediately see a vet. Fractures require X-rays, pain relief, possibly surgery. Delay = complications"
+        "Signs: won't put weight on limb, limping, cries/hisses when touched, swelling, deformity, bone visible (open fracture). Don't try to 'check' ‚Äî painful",
+        "DON'T try to set the bone, DON'T pull the limb. This damages nerves and vessels. Immobilize in the position found",
+        "For dogs: place on a hard surface (board, plank, cardboard). Secure with tape or bandage to prevent movement during transport",
+        "For cats: use a carrier or box with holes. Cats in stress bite and scratch ‚Äî don't handle bare-handed. Cover with towel, carefully transfer to container",
+        "Limb immobilization: secure with a board, ruler, cardboard, umbrella. Immobilize TWO joints ‚Äî above and below the fracture. Bandage gently",
+        "For open fractures (bone protruding): cover with sterile gauze, DON'T push back in, DON'T rinse. Transport carefully, minimize jostling",
+        "Relieve pain: apply cold (ice pack in cloth) for 10‚Äì15 minutes. Don't put on skin ‚Äî frostbite. Don't press on the fracture",
+        "Immediately to the vet. Fractures require X-rays, pain relief, possibly surgery. Delay = complications"
       ],
       warnings: [
-        "DO NOT give human painkillers (Ibuprofen, Paracetamol, Aspirin) ó they are toxic to animals. Only by veterinary prescription",
-        "DO NOT feed or water before going to the vet ó if surgery under anesthesia is needed, the stomach should be empty",
-        "Cats with fractures may seem 'normal' but hide and not eat. Any suspicion of a fracture = vet",
-        "Small animals (hamsters, birds) heal fractures quickly but require precise immobilization. A poorly healed fracture = disability"
+        "DON'T give human painkillers (Ibuprofen, Paracetamol, Aspirin) ‚Äî toxic to pets. Only as prescribed by a vet",
+        "DON'T feed or give water before going to the vet ‚Äî if surgery under anesthesia, stomach must be empty",
+        "Cats with fractures may seem 'normal' but hide and not eat. Any suspicion of fracture = vet",
+        "Small animals (hamsters, birds) heal quickly but require precise fixation. Improper healing = disability"
       ]
     },
+    // ============================================================
+    // 5. CHOKING
+    // ============================================================
     {
       id: "pet_choking",
-      title: "?? Pet is choking ó removing a foreign object",
-      description: "Bone, toy, ball, food stuck in the throat. The animal is struggling to breathe, coughing, drooling.",
+      title: "üòÆ Pet is choking ‚Äî removing foreign object",
+      description: "Bone, toy, ball, food stuck in throat. Heavy breathing, coughing, drooling.",
       conditions: { injury_type: ["choking"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ5 minutes",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì5 minutes",
       yield_estimate: "Object removed",
       tags: ["choking", "first_aid", "emergency"],
       steps: [
-        "If the animal is coughing effectively ó encourage coughing. DON'T hit the back, DON'T reach into the mouth. Coughing is the best way to expel the object",
-        "If coughing is weak, the animal can't breathe, drooling, tongue blue ó immediately start helping",
-        "Dog (large): open the mouth, look ó can you see the object? If visible ó remove with fingers or tweezers. DON'T poke blindly ó you'll push it deeper",
-        "Dog (small) / cat: hold by the back legs, hang head down (like a chicken). Tap the back between the shoulder blades. Check the mouth ó did the object come out?",
-        "Modified Heimlich maneuver for dogs: stand behind, wrap arms around the abdomen above the navel, fist inward. Sharp upward-inward thrusts 5 times. Check the mouth",
-        "If the animal has lost consciousness: lay on its side, open the mouth, pull out the tongue, check breathing. If no breathing ó start artificial respiration (nose + mouth) and chest compressions",
-        "After removal ó Ó·ˇÁ‡ÚÂÎ¸ÌÓ see a vet. There may be damage to the larynx, esophagus. Swelling may develop in a few hours",
+        "If the pet is coughing effectively ‚Äî encourage coughing. DON'T hit the back, DON'T reach into the mouth. Coughing is the best way to expel the object",
+        "If coughing is weak, pet can't breathe, drooling, blue tongue ‚Äî start help immediately",
+        "Dog (large): open the mouth, check ‚Äî is the object visible? If yes ‚Äî remove with fingers or tweezers. DON'T probe blindly ‚Äî pushes it deeper",
+        "Dog (small) / cat: hold by hind legs, hang head down. Tap between shoulder blades. Check mouth ‚Äî did object come out?",
+        "Modified Heimlich maneuver for dogs: stand behind, wrap arms above navel, fist inward. Sharp upward-inward thrusts 5 times. Check mouth",
+        "If pet loses consciousness: lay on side, open mouth, pull tongue out, check breathing. If no breathing ‚Äî start artificial respiration and CPR",
+        "After removal ‚Äî must see a vet. There may be damage to larynx, esophagus. Swelling can develop hours later",
         "Prevention: don't give small bones (chicken, rabbit), toys smaller than the mouth, candies, nuts. Keep small objects off the floor"
       ],
       warnings: [
-        "DO NOT hit the back of a standing animal ó it can push the object deeper into the airway",
-        "DO NOT poke blindly with fingers in the mouth ó it pushes the object deeper, injures the larynx",
-        "DO NOT perform the Heimlich maneuver if the animal is coughing effectively ó coughing is stronger than any maneuver",
-        "Balls, marbles, socks ó common causes of choking in dogs. Cats often choke on toy mice, threads"
+        "DON'T hit the back of a standing animal ‚Äî can push object deeper into airways",
+        "DON'T blindly probe the mouth with fingers ‚Äî pushes object deeper, injures larynx",
+        "DON'T do Heimlich if pet is coughing effectively ‚Äî coughing is stronger than any maneuver",
+        "Balls, marbles, socks are common choking hazards in dogs. Cats often choke on toy mice, strings"
       ]
     },
+    // ============================================================
+    // 6. EYE INJURY
+    // ============================================================
     {
       id: "pet_eye_injury",
-      title: "??? Eye injury in an animal",
-      description: "Eye is red, closed, watery, the animal rubs it with a paw. Foreign body, scratch, impact.",
+      title: "üëÅÔ∏è Eye injury in pets",
+      description: "Eye red, closed, watering, pet rubs with paw. Foreign body, scratch, impact.",
       conditions: { injury_type: ["eye"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5ñ15 minutes",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5‚Äì15 minutes",
       yield_estimate: "Preserving vision",
       tags: ["eye", "first_aid", "emergency"],
       steps: [
-        "Don't let the animal rub the eye with its paw ó it worsens the injury. Put on a protective collar (from cardboard if you don't have one) or bandage the paw",
-        "If chemicals got in (shampoo, cleaner): rinse the eye thoroughly with running water or saline for 10ñ15 minutes. Hold the eyelid open. Emergency vet care!",
-        "For foreign bodies (sand, grass, eyelash): try rinsing with saline or clean water. Don't rub! Blinking and tears often wash out the particle",
-        "If the particle doesn't wash out ó DON'T try to remove it with a cotton swab or fingers. It scratches the cornea. The vet has special tools",
-        "For impact / bruise: apply cold (ice pack in cloth) for 5ñ10 minutes. Don't press on the eyeball. The animal should be calm",
-        "For penetrating wound (stick, nail, claw): DO NOT remove the object! Stabilize with a bandage or cup to prevent movement. Immediate emergency care",
-        "Cover the eye with sterile gauze or clean cloth. Don't press. Don't apply eye drops without a doctor's prescription ó some worsen the injury",
-        "After any eye injury ó see a veterinary ophthalmologist within 2ñ4 hours. The cornea heals quickly, but infection also develops quickly"
+        "Don't let the pet rub the eye with a paw ‚Äî worsens the injury. Use an E-collar (from cardboard if not available) or bandage the paw",
+        "For chemical exposure (shampoo, detergent): flush eye with running water or saline for 10‚Äì15 minutes. Hold the eyelid open. Emergency vet!",
+        "For foreign body (sand, grass, eyelash): try flushing with saline or clean water. Don't rub! Blinking and tears often wash out the particle",
+        "If particle doesn't wash out ‚Äî DON'T try to remove with cotton swab or fingers. This scratches the cornea. Vets have special tools",
+        "For impact/bruise: apply cold (ice pack in cloth) for 5‚Äì10 minutes. Don't press on the eyeball. Keep the pet calm",
+        "For penetrating wound (stick, nail, claw): DON'T remove the object! Stabilize with bandage or cup so it doesn't move. Emergency help immediately",
+        "Cover the eye with sterile gauze or clean cloth. Don't press. Don't use eye drops without vet prescription ‚Äî some worsen the injury",
+        "After any eye injury ‚Äî see a veterinary ophthalmologist within 2‚Äì4 hours. Corneas heal fast, but infections develop fast too"
       ],
       warnings: [
-        "DO NOT apply human eye drops (Vizin, Tobrex) without veterinary consultation ó dosage and composition may be toxic",
-        "DO NOT use cotton swabs on the cornea ó fibers remain and cause irritation. Only for cleaning the eyelids",
-        "DO NOT give human painkillers ó many are toxic to animals (acetaminophen is deadly for cats)",
-        "Eye injuries in cats are often accompanied by hidden damage (glaucoma, retinal detachment). Even a 'minor' injury requires examination"
+        "DON'T use human eye drops (Visine, Tobramycin) without vet consultation ‚Äî dosage and composition may be toxic",
+        "DON'T use cotton swabs on the cornea ‚Äî fibers remain and cause irritation. Only for eyelid cleaning",
+        "DON'T give human painkillers ‚Äî many are toxic to pets (paracetamol is lethal to cats)",
+        "Eye injury in cats often has hidden damage (glaucoma, retinal detachment). Even 'minor' injury needs examination"
       ]
     },
+    // ============================================================
+    // 7. BITE WOUND
+    // ============================================================
     {
       id: "animal_bite_wound",
-      title: "?? Bite from another animal / human",
+      title: "üêï Bite from another animal / human",
       description: "Dog bit dog, cat scratched, human bite. Risk of infection, rabies, abscess.",
       conditions: { injury_type: ["bite_wound"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "10ñ30 minutes",
-      yield_estimate: "Preventing infection",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10‚Äì30 minutes",
+      yield_estimate: "Infection prevention",
       tags: ["bite", "infection", "rabies"],
       steps: [
-        "Separate the aggressor from the victim. Be careful ó an injured animal may bite from pain and fear. Use a muzzle, blanket, gloves",
-        "Rinse the wound thoroughly with soap and water for 10ñ15 minutes. Soap destroys bacteria. For cat scratches ó rinse especially carefully (high risk of infection)",
-        "Treat with hydrogen peroxide or chlorhexidine on the edges of the wound. Not inside the deep wound ó only on the edges. Apply antibiotic (Levomekol)",
-        "Cover with sterile gauze, apply a bandage. Don't stitch the bite wound yourself ó it traps infection inside",
-        "If bitten by an unknown / stray dog / cat ó immediately see a vet to assess the risk of rabies. Vaccination: 0, 3, 7, 14, 28, 90 days",
-        "If your dog / cat bit another animal / human ó isolate your pet for 10 days for observation. Inform the victim's owner about your pet's condition",
-        "If bitten by a human ó the human needs medical attention: washing, antibiotics, tetanus shot. Tell the doctor it was a pet bite",
-        "Monitor the wound for 3ñ5 days: redness, swelling, pus, smell ó signs of infection. Abscesses in cats develop 2ñ5 days after a bite"
+        "Separate the aggressor from the victim. Be careful ‚Äî injured animals may bite from pain and fear. Use muzzle, blanket, gloves",
+        "Rinse the wound with water and soap for 10‚Äì15 minutes. Soap destroys bacteria. For cat scratches ‚Äî rinse extra thoroughly (high infection risk)",
+        "Treat with hydrogen peroxide or chlorhexidine on wound edges. Not deep inside ‚Äî only edges. Apply antibiotic (Levomekol)",
+        "Cover with sterile gauze, apply bandage. Don't stitch a bite wound yourself ‚Äî this traps infection inside",
+        "If bitten by an unknown/stray dog/cat ‚Äî immediately see a vet for rabies risk assessment. Vaccination: 0, 3, 7, 14, 28, 90 days",
+        "If your dog/cat bit another animal/person ‚Äî isolate your pet for 10 days for observation. Inform the victim's owner about your pet's status",
+        "If a human was bitten ‚Äî the human needs medical care: flushing, antibiotics, tetanus shot. Inform the doctor that a pet caused the bite",
+        "Monitor the wound for 3‚Äì5 days: redness, swelling, pus, odor ‚Äî signs of infection. Cat abscess develops 2‚Äì5 days after a bite"
       ],
       warnings: [
-        "DO NOT stitch the bite wound yourself ó infection (especially pasteurellosis) grows in a closed wound. The wound should remain open",
-        "DO NOT apply iodine, brilliant green, alcohol INSIDE the wound ó it damages tissue and increases pain. Only on the edges",
-        "Cat scratches and bites become infected in 80% of cases. Even a 'minor' scratch can lead to an abscess or sepsis",
-        "Rabies is 100% fatal. If there's even the slightest suspicion ó get vaccinated immediately. Don't postpone 'for later'"
+        "DON'T stitch a bite wound yourself ‚Äî infection (especially pasteurellosis) multiplies in closed wounds. The wound must remain open",
+        "DON'T put iodine, brilliant green, alcohol INSIDE the wound ‚Äî damages tissue and increases pain. Only on edges",
+        "Cat scratches and bites get infected in 80% of cases. Even a 'minor' scratch can lead to abscess or sepsis",
+        "Rabies is 100% fatal. If there's any suspicion ‚Äî vaccinate immediately. Don't 'wait and see'"
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.firstaidDataEn = firstaidDataEn;
+});
