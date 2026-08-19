@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body data-module="auto">
+<body>   <!-- ← data-module НЕ НУЖЕН! -->
 
   <div class="app">
     <!-- ЭКРАН 1: Главная (выбор модуля) -->
@@ -41,7 +41,7 @@
         <button class="theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
       </div>
 
-      <!-- ===== КНОПКА SOS — ТЕПЕРЬ РАБОТАЕТ ===== -->
+      <!-- КНОПКА SOS -->
       <button class="sos-btn" onclick="openSOS()">
         <div class="pulse"></div>
         <span data-i18n="sos_button">SOS — Я в опасности</span>
@@ -83,7 +83,7 @@
         </button>
       </div>
 
-      <!-- ===== ФУТЕР С ПОЧТОЙ ===== -->
+      <!-- ФУТЕР -->
       <div class="footer">
         <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
         <span style="display:block; margin-top:4px; font-size:12px; color:var(--text3);">
@@ -133,16 +133,19 @@
   <!-- 1. ЛОКАЛИЗАЦИЯ -->
   <script src="./core/locales.js"></script>
 
-  <!-- 2. ТЕМА -->
+  <!-- 2. SMART ADAPTER (НОВЫЙ!) ← ДОБАВЛЯЕМ -->
+  <script src="./core/registry-adapter.js"></script>
+
+  <!-- 3. ТЕМА -->
   <script src="./core/theme.js"></script>
 
-  <!-- 3. ГОЛОС -->
+  <!-- 4. ГОЛОС -->
   <script src="./core/voice.js"></script>
 
-  <!-- 4. ДВИЖОК -->
+  <!-- 5. ДВИЖОК -->
   <script src="./core/engine.js"></script>
 
-  <!-- 5. ПРИЛОЖЕНИЕ (для глобальных функций) -->
+  <!-- 6. ПРИЛОЖЕНИЕ -->
   <script src="./core/app.js"></script>
 
   <script>
@@ -177,20 +180,14 @@
       });
     }
 
-    // ==========================================
-    // КНОПКА SOS — ОТКРЫВАЕТ РЕАЛЬНЫЙ SOS-ЭКРАН
-    // ==========================================
     function openSOS() {
-      // Проверяем, что функция showSOS существует (из app.js)
       if (typeof showSOS === 'function') {
         showSOS();
       } else {
-        // Если app.js не загружен — пробуем перейти на SOS-экран вручную
         window.location.href = './modules/survival/index.html?mode=sos';
       }
     }
 
-    // Загрузка сохранённого языка и темы
     document.addEventListener('DOMContentLoaded', function() {
       const savedLang = localStorage.getItem('language') || 'ru';
       setLanguage(savedLang);
