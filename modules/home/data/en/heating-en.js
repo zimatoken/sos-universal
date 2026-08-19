@@ -1,209 +1,372 @@
+// modules/home/data/en/heating-en.js
 // === MODULE: HOME — HEATING ===
-const heatingDataEn = {
-  category: "heating",
-  title: "🌡️ Heating",
-  description: "Cold in the apartment, radiator leak, boiler not working, frozen pipes",
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "home",
+    category: "heating",
+    version: "1.0.0",
+    lang: "en",
+    title: "🌡️ Heating",
+    description: "Cold apartment, radiator leak, boiler not working, frozen pipes, recalculation",
+    icon: "🌡️",
+    color: "#0891b2"
+  },
 
   questions: [
     {
       id: "heating_issue",
-      text: "What happened?",
       type: "single",
+      text: "What happened?",
       options: [
-        { id: "cold", label: "❄️ Cold in the apartment / radiators are cold", tags: ["cold"] },
-        { id: "leak", label: "💧 Radiator / pipe / faucet is leaking", tags: ["leak"] },
+        { id: "cold", label: "❄️ Cold in apartment / radiators are cold", tags: ["cold"] },
+        { id: "leak", label: "💧 Radiator / pipe / valve is leaking", tags: ["leak"] },
         { id: "boiler_off", label: "🔧 Boiler / water heater not working / error", tags: ["boiler"] },
         { id: "frozen_pipes", label: "🧊 Pipes frozen / no water", tags: ["frozen"] },
-        { id: "noise", label: "🔊 Knocking / noise / humming in radiators", tags: ["noise"] },
-        { id: "overheat", label: "🌡️ Too hot / cannot regulate", tags: ["overheat"] }
+        { id: "noise", label: "🔊 Banging / noise / humming in radiators", tags: ["noise"] },
+        { id: "overheat", label: "🌡️ Too hot / can't regulate", tags: ["overheat"] },
+        { id: "season_start", label: "📅 Heating hasn't been turned on yet, it's cold", tags: ["season"] },
+        { id: "air_pocket", label: "💨 Radiator cold on top, warm on bottom (air)", tags: ["air_pocket"] }
       ]
     },
     {
       id: "heating_type",
-      text: "What type of heating do you have?",
       type: "single",
+      text: "What type of heating?",
+      conditions: { heating_issue: ["cold", "leak", "boiler", "frozen", "noise", "overheat", "season", "air_pocket"] },
       options: [
-        { id: "central", label: "🏢 Central (radiators from management company)", tags: ["central"] },
-        { id: "individual", label: "🏠 Individual (own boiler)", tags: ["individual"] },
+        { id: "central", label: "🏢 Central heating (radiators from management company)", tags: ["central"] },
+        { id: "individual", label: "🏠 Individual heating (own boiler)", tags: ["individual"] },
         { id: "electric", label: "⚡ Electric (convector, heated floor)", tags: ["electric"] },
         { id: "stove", label: "🔥 Wood stove / fireplace / potbelly stove", tags: ["stove"] }
       ]
     },
     {
       id: "scope_cold",
-      text: "Where exactly is it cold?",
       type: "single",
+      text: "Where exactly is it cold?",
+      conditions: { heating_issue: ["cold"], heating_type: ["central", "individual"] },
+      options: [
+        { id: "whole_flat", label: "🏠 In the entire apartment", tags: ["whole"] },
+        { id: "one_room", label: "🚪 In one room", tags: ["room"] },
+        { id: "one_radiator", label: "🪟 One radiator / section", tags: ["radiator"] },
+        { id: "cold_windows", label: "🪟 Near windows / draft", tags: ["windows"] }
+      ]
+    },
+    {
+      id: "room_temperature",
+      type: "single",
+      text: "What is the temperature in the apartment?",
+      conditions: { heating_issue: ["cold", "overheat"] },
+      options: [
+        { id: "below_18", label: "❄️ Below 18°C", tags: ["below_18"] },
+        { id: "18_20", label: "🌡️ 18–20°C", tags: ["18_20"] },
+        { id: "20_22", label: "🌡️ 20–22°C", tags: ["20_22"] },
+        { id: "above_22", label: "🔥 Above 22°C", tags: ["above_22"] }
+      ]
+    },
+    {
+      id: "has_valves",
+      type: "single",
+      text: "Are there shutoff valves on the radiators?",
+      conditions: { heating_issue: ["cold", "leak", "noise", "overheat"], heating_type: ["central", "individual"] },
+      options: [
+        { id: "valves_yes", label: "✅ Yes, there are valves", tags: ["valves_yes"] },
+        { id: "valves_no", label: "❌ No valves", tags: ["valves_no"] },
+        { id: "valves_unknown", label: "❓ Don't know", tags: ["valves_unknown"] }
+      ]
+    },
+    {
+      id: "radiator_type",
+      type: "single",
+      text: "What type of radiators?",
+      conditions: { heating_issue: ["cold", "leak", "noise", "air_pocket"], heating_type: ["central"] },
+      options: [
+        { id: "cast_iron", label: "🔩 Cast iron (old, heavy)", tags: ["cast_iron"] },
+        { id: "aluminum", label: "🔩 Aluminum (light, modern)", tags: ["aluminum"] },
+        { id: "bimetallic", label: "🔩 Bimetallic (steel+aluminum)", tags: ["bimetallic"] },
+        { id: "unknown_radiator", label: "❓ Don't know", tags: ["unknown_radiator"] }
+      ]
+    },
+    {
+      id: "has_debt_heating",
+      type: "single",
+      text: "Is there any debt for heating?",
       conditions: { heating_issue: ["cold"] },
       options: [
-        { id: "whole_flat", label: "Throughout the entire apartment", tags: ["whole"] },
-        { id: "one_room", label: "In one room", tags: ["room"] },
-        { id: "one_radiator", label: "One radiator / section", tags: ["radiator"] },
-        { id: "cold_windows", label: "Near windows / draft", tags: ["windows"] }
+        { id: "debt_heat_yes", label: "💰 Yes, there is debt", tags: ["debt_yes"] },
+        { id: "debt_heat_no", label: "✅ No, I pay on time", tags: ["debt_no"] },
+        { id: "debt_heat_unknown", label: "❓ Don't know / possibly", tags: ["debt_unknown"] }
+      ]
+    },
+    {
+      id: "heating_season",
+      type: "single",
+      text: "Has the heating season started?",
+      conditions: { heating_issue: ["season"] },
+      options: [
+        { id: "season_not_started", label: "❌ Not started yet (cold, radiators cold)", tags: ["not_started"] },
+        { id: "season_started", label: "✅ Started, but radiators are cold", tags: ["started_cold"] },
+        { id: "season_unknown", label: "❓ Don't know", tags: ["unknown_season"] }
       ]
     }
   ],
 
   solutions: [
+    // ============================================================
+    // 1. COLD WITH CENTRAL HEATING — LAW AND ACTIONS
+    // ============================================================
     {
       id: "cold_central_heating",
       title: "❄️ Cold with central heating — what to do",
-      description: "Radiators are cold, apartment is below 18°C. The management company is required to maintain temperature. Act according to the law.",
+      description: "Radiators are cold, temperature below 18°C. The management company must maintain temperature. Act by law.",
       conditions: { heating_issue: ["cold"], heating_type: ["central"] },
-      priority: "fast",
-      reliability: "high",
+      scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1–7 days",
-      yield_estimate: "Warmth in the apartment",
+      yield_estimate: "Heat restored + recalculation",
       tags: ["heating", "central", "law"],
       steps: [
-        "Check the radiators: are the valves on the supply pipes open? Valves should be fully open (handle parallel to the pipe). If closed — open them",
-        "Check for air in the radiator: if the top is cold and the bottom is warm — airlock. Open the Mayevsky valve (small valve on the radiator) with a key or screwdriver, release air until water appears. Place a container",
-        "Check the radiator for blockage: if the bottom is cold — possible blockage. Flushing the radiator is the management company's job, submit a request",
-        "Measure the temperature in the room with a thermometer. Standard: daytime 18–20°C (for living rooms), 20–22°C (for corner rooms). Nighttime 15–17°C (Article 15 of the Housing Code, Decree No. 354)",
-        "If the temperature is below normal — draw up a report with a management company representative. If the management company refuses — draw up a report with 2 witnesses, photos, videos",
-        "Send a claim to the management company: demand to eliminate violations, recalculate heating fees (reduction coefficient of 0.15 for each degree below normal)",
-        "If the management company doesn't respond — complaint to the State Housing Inspectorate (GZHI), prosecutor's office, Rospotrebnadzor. Review period: 30 days",
-        "Temporary solution: electric heaters, heated floors, convectors. But watch the wiring — don't overload it",
-        "Insulate windows: film, foam, sealant. Close gaps under the door with a threshold or cloth. This will add 2–3°C"
+        "Check: are the valves on the radiator open? Valves should be fully open (handle parallel to pipe)",
+        "Check for air in the radiator: if top is cold and bottom is warm — air pocket",
+        "Check for blockage: if bottom is cold — possible clog. Flushing is the management company's job",
+        "Measure room temperature with a thermometer. Norm: 18–20°C (living rooms), 20–22°C (corner rooms)",
+        "If temperature is below normal — draw up a report with the management company. If they refuse — report with 2 witnesses",
+        "Send a claim to the management company: demand fixing the issue and recalculation",
+        "If the management company doesn't respond — complaint to housing inspection, prosecutor's office",
+        "Temporary solution: electric heaters. Insulate windows"
       ],
       warnings: [
-        "DO NOT cover the radiator with a screen, cabinet, drywall — this reduces heat output by 30–50%",
-        "DO NOT drain water from the radiator yourself — it's a violation, a fine, and can leave neighbors without heating",
-        "Recalculation for heating: if the temperature is 1°C below normal — 15% discount, 2°C — 30%",
-        "Winter, no heating > 24 hours — emergency situation. Complaint to the prosecutor's office, demand for relocation to temporary housing"
+        "DON'T cover radiators with screens or furniture — reduces heat output by 30–50%",
+        "DON'T drain water from the radiator yourself — violation, fine",
+        "Recalculation: if temperature is 1°C below normal — 15% discount"
       ]
     },
+    // ============================================================
+    // 2. HEATING NOT TURNED ON FOR THE SEASON
+    // ============================================================
+    {
+      id: "heating_season_start",
+      title: "📅 Heating not turned on for the season — what to do",
+      description: "The heating season starts when the average daily temperature is below +8°C for 5 days.",
+      conditions: { heating_issue: ["season"], heating_season: ["not_started"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–3 days",
+      yield_estimate: "Heating turned on",
+      tags: ["season", "heating", "law"],
+      steps: [
+        "Check: is the average daily temperature outside below +8°C for 5 days? This is the condition for starting the season",
+        "If conditions are met — call the management company and demand heating be turned on",
+        "If the management company doesn't turn it on — submit a written request",
+        "If the management company ignores — complaint to housing inspection and prosecutor's office",
+        "Record the temperature in the apartment: photo of thermometer, date, time"
+      ],
+      warnings: [
+        "Season start is a regional rule. The exact date depends on the weather",
+        "If the management company doesn't turn it on when conditions are met — violation of law"
+      ]
+    },
+    // ============================================================
+    // 3. AIR POCKET IN RADIATOR
+    // ============================================================
+    {
+      id: "air_pocket_removal",
+      title: "💨 Air pocket in radiator — how to remove",
+      description: "Radiator cold on top, warm on bottom — air pocket. Remove air with the bleed valve.",
+      conditions: { heating_issue: ["air_pocket"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Radiator heated",
+      tags: ["air", "radiator", "maintenance"],
+      steps: [
+        "Find the bleed valve on the radiator — a small metal screw with a hole (on top)",
+        "Place a container (bowl, basin, towel) under the hole",
+        "Slowly turn the bleed valve with a key or screwdriver (don't unscrew completely!)",
+        "When air starts coming out (hissing) — wait until water flows in a steady stream without bubbles",
+        "Close the valve. Check — the radiator has heated up",
+        "If the radiator is still cold — possibly clogged. Call a plumber"
+      ],
+      warnings: [
+        "DON'T unscrew the valve completely — water under pressure can flood everything",
+        "Water may be dirty (rusty) — avoid getting it on you or things"
+      ]
+    },
+    // ============================================================
+    // 4. HEATING RECALCULATION
+    // ============================================================
+    {
+      id: "heating_recalculation",
+      title: "📊 Heating recalculation — how to get money back",
+      description: "If the temperature was below normal, you have the right to recalculation.",
+      conditions: { heating_issue: ["cold"], room_temperature: ["below_18"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1–3 months",
+      yield_estimate: "Refund of overpayment",
+      tags: ["recalculation", "heating", "law"],
+      steps: [
+        "Record the temperature in the apartment: daily measurements at 8:00, 13:00, 20:00 (for 3 consecutive days)",
+        "For each degree below normal — 0.15% reduction in payment",
+        "Submit an application to the management company demanding recalculation. Attach reports, photos, temperature chart",
+        "If the management company refuses — complaint to housing inspection, prosecutor's office",
+        "If heating was off for > 24 hours — reduction for each hour",
+        "If you win — the management company must recalculate and return the money"
+      ],
+      warnings: [
+        "Record temperature strictly according to rules: 3 days, 3 measurements per day",
+        "Reports must be signed by neighbors or witnesses"
+      ]
+    },
+    // ============================================================
+    // 5. RADIATOR / PIPE LEAK
+    // ============================================================
     {
       id: "radiator_leak",
-      title: "💧 Radiator / pipe is leaking — stopping the leak",
-      description: "Heating leak — hot water under pressure. Quickly close it, cool it down, call a specialist.",
+      title: "💧 Radiator / pipe leak — stopping the leak",
+      description: "Heating leak — hot water under pressure. Quickly shut off, cool down, call a master.",
       conditions: { heating_issue: ["leak"] },
-      priority: "fast",
-      reliability: "high",
+      scoring: { priority: "fast", reliability: "high" },
       time_estimate: "5–15 minutes",
       yield_estimate: "Leak stopped",
       tags: ["heating", "leak", "emergency"],
       steps: [
-        "Immediately close the valve on the radiator supply (usually bottom left and right). Turn CLOCKWISE until it stops",
-        "If the valve doesn't work or the pipe is leaking — close the main riser in the apartment (valve in the floor, in a box, in the toilet). Turn until it stops",
-        "If you can't close it — call the management company emergency service: 01 (101/112) or the management company dispatcher. Report: 'Heating leak, address, floor'",
-        "Place containers, lay out rags, towels. Hot water burns — be careful",
-        "If the leak is from a joint — tighten the nut with a wrench. Don't overtighten — the thread can strip",
-        "If the leak is from cast iron / aluminum — temporarily plug it with chewing gum, epoxy, a clamp. But this is temporary — replacement is needed",
-        "After stopping the leak — call a plumber / management company. Radiator replacement: 3000–8000 rubles"
+        "Close the valve on the radiator supply (usually bottom left and right). Turn CLOCKWISE until it stops",
+        "If the valve doesn't work — close the main riser in the apartment",
+        "If you can't close it — call the emergency service: 01 (101/112)",
+        "Place containers, lay out rags. Hot water burns — be careful",
+        "If the leak is from a connection — tighten the nut with a wrench (don't overtighten)",
+        "If the leak is from cast iron/aluminum — temporarily plug with epoxy putty, clamp",
+        "After stopping — call a plumber / management company"
       ],
       warnings: [
-        "DO NOT try to close the valve with bare hands if the water is hot (>60°C) — burns",
-        "DO NOT drill or cut a pipe with water under pressure — a fountain of hot water, burns, flooding",
-        "If the leak is in the riser (common pipe) — DO NOT close the riser unless absolutely necessary",
-        "Cast iron radiators (>30 years) — cracks appear unexpectedly. Prevention: replacement before an accident"
+        "DON'T try to close the valve with bare hands if water is hot (>60°C)",
+        "DON'T drill or cut a pipe with water under pressure — burns, flooding"
       ]
     },
+    // ============================================================
+    // 6. RADIATOR REPLACEMENT
+    // ============================================================
+    {
+      id: "radiator_replacement",
+      title: "🔧 Radiator replacement — algorithm for management company",
+      description: "Replacing a radiator in a central heating system requires coordination with the management company.",
+      conditions: { heating_issue: ["leak"], heating_type: ["central"] },
+      scoring: { priority: "slow", reliability: "medium" },
+      time_estimate: "1–2 weeks",
+      yield_estimate: "New radiator",
+      tags: ["radiator", "replacement", "uk"],
+      steps: [
+        "Replacing a radiator in central heating is a redevelopment. Requires approval from the management company",
+        "Write an application to the management company for radiator replacement. Attach a photo of the old one",
+        "Coordinate the timing — shutting off the riser during work",
+        "Choose the type: cast iron, aluminum, bimetallic. Consider system pressure",
+        "Hire a licensed plumber (with the management company's consent)",
+        "After installation — check for leaks, sign a report with the management company"
+      ],
+      warnings: [
+        "Without management company approval — violation, fine",
+        "Consider system pressure (cast iron up to 10 bar, aluminum up to 6)"
+      ]
+    },
+    // ============================================================
+    // 7. BOILER NOT WORKING
+    // ============================================================
     {
       id: "boiler_error",
       title: "🔥 Boiler / water heater not working — diagnostics",
-      description: "The gas boiler shows an error, won't start, won't heat. Often the problem can be solved independently.",
-      conditions: { heating_issue: ["boiler_off"], heating_type: ["individual"] },
-      priority: "medium",
-      reliability: "high",
+      description: "Gas boiler shows an error, won't start, won't heat. Often the problem can be fixed yourself.",
+      conditions: { heating_issue: ["boiler"], heating_type: ["individual"] },
+      scoring: { priority: "medium", reliability: "high" },
       time_estimate: "10–30 minutes",
-      yield_estimate: "Restoration of operation",
+      yield_estimate: "Operation restored",
       tags: ["boiler", "individual", "repair"],
       steps: [
-        "Check the boiler display: what error? Write down the code. Find the explanation in the manual or on the manufacturer's website",
-        "Check the electricity: is the display on? If not — check the circuit breaker, plug, boiler fuse",
-        "Check the gas: is the stove working? If not — gas outage. If gas is available — check the valve before the boiler",
-        "Check the water pressure in the system: the pressure gauge on the boiler should show 1–1.5 bar. If lower — add water through the make-up valve to 1.2 bar",
-        "Check the chimney: is it blocked? Snow, ice, birds, soot — common causes",
-        "Restart the boiler: turn it off for 5 minutes, turn it back on. Sometimes this clears the error",
-        "If the error is ignition-related — check the electrodes, spark plug, gas valve. Clean the electrodes with fine sandpaper",
-        "If it doesn't help — call a service technician. Cost: 1500–4000 rubles",
-        "Annual boiler maintenance: cleaning, adjustment, chimney check. Prevents 80% of breakdowns"
+        "Check the boiler display: what error? Write down the code. Find the meaning in the manual",
+        "Check electricity: is the display on? If not — check the breaker, plug",
+        "Check gas: does the stove light? If not — gas shutoff",
+        "Check water pressure: the manometer should show 1–1.5 bar. Add water to 1.2 bar",
+        "Check the chimney: is it blocked? Snow, ice, birds, soot",
+        "Reset the boiler: turn off for 5 minutes, turn on again",
+        "If it doesn't help — call a service technician"
       ],
       warnings: [
-        "DO NOT disassemble the gas part of the boiler without experience — gas leak, explosion, CO poisoning",
-        "If the boiler shows a CO / overheating / chimney error — immediately turn it off, ventilate, call a technician",
-        "Adding water to the system: don't overdo it (>2 bar) — the safety valve will activate",
-        "If the boiler is old (>10–15 years) — repair may not be cost-effective"
+        "DON'T disassemble the gas part of the boiler without experience — gas leak, explosion",
+        "If the boiler shows a CO error — immediately turn off, ventilate",
+        "Adding water: don't exceed (>2 bar) — safety valve will activate"
       ]
     },
+    // ============================================================
+    // 8. FROZEN PIPES
+    // ============================================================
     {
       id: "frozen_pipes_thaw",
       title: "🧊 Frozen pipes — thawing without damage",
-      description: "Pipes are frozen, no water, risk of bursting. Thaw correctly, don't use open flame.",
-      conditions: { heating_issue: ["frozen_pipes"] },
-      priority: "fast",
-      reliability: "medium",
+      description: "Pipes are frozen, no water, risk of bursting. Thaw correctly, do not use open flame.",
+      conditions: { heating_issue: ["frozen"] },
+      scoring: { priority: "fast", reliability: "medium" },
       time_estimate: "30–120 minutes",
-      yield_estimate: "Restoration of water supply",
+      yield_estimate: "Water supply restored",
       tags: ["frozen", "pipes", "emergency"],
       steps: [
-        "DO NOT use open flame (torch, soldering lamp) on plastic pipes — they will melt, burst, cause a fire",
-        "Open faucets (hot and cold) — when thawing, water should have somewhere to flow",
-        "Find the freezing point: usually at exterior walls, in the basement, on the balcony, in unheated areas",
-        "Thawing methods: hair dryer (best), warm cloth (change every 5 minutes), heating pad, heater directed at the pipe",
-        "Start from the freezing point and move toward the faucet. Don't heat one spot — heat evenly along the section",
-        "If the pipe burst during freezing — close the valve, call a plumber",
-        "After thawing: check for leaks. Ice expands and can crack the pipe",
-        "Prevention: insulate pipes (mineral wool, foam, pipe insulation). Leave faucets slightly open during frost (<-15°C)"
+        "DON'T use open flame on plastic pipes — they will melt",
+        "Open faucets — when thawing, water should have somewhere to flow",
+        "Find the frozen area: near exterior walls, in the basement, on the balcony",
+        "Thawing methods: construction hair dryer (best), warm cloth, heating pad, heater",
+        "Start from the frozen area and move toward the faucet",
+        "If the pipe burst — close the valve, call a plumber",
+        "Prevention: insulate pipes, leave faucets slightly open when it's freezing (<-15°C)"
       ],
       warnings: [
-        "Open flame + plastic = fire + toxic gases. NEVER use a gas torch on plastic pipes",
-        "If the pipe burst and you can't close the valve — call the emergency service",
-        "After freezing, pipes become brittle. Check for micro-leaks over the next week",
-        "Unheated summer houses / garages: drain water for the winter"
+        "Open flame + plastic = fire. NEVER use a gas torch",
+        "After freezing, pipes become brittle — check for micro-leaks within a week"
       ]
     },
+    // ============================================================
+    // 9. RADIATOR NOISE
+    // ============================================================
     {
       id: "radiator_noise",
-      title: "🔊 Knocking / noise / humming in radiators — causes and fixes",
-      description: "Noise in radiators — usually air, dirt, or pressure drop. Often solved simply.",
+      title: "🔊 Banging / noise / humming in radiators — causes and solutions",
+      description: "Noise in radiators is usually air, dirt, or pressure fluctuations. Often fixed simply.",
       conditions: { heating_issue: ["noise"] },
-      priority: "medium",
-      reliability: "high",
+      scoring: { priority: "medium", reliability: "high" },
       time_estimate: "10–30 minutes",
-      yield_estimate: "Quiet radiators",
+      yield_estimate: "Silence in radiators",
       tags: ["noise", "radiator", "maintenance"],
       steps: [
-        "Knocking in the radiator — air or dirt. Release air with the Mayevsky valve (key or screwdriver) until water appears",
-        "Humming / howling — pressure drop or blockage in the system. Report to the management company, they should adjust it",
-        "Clicking / rattling — pipe expansion when heating. Make sure pipes are not touching the wall, floor, furniture",
-        "Water noise — air or low pressure. Release air, check pressure with neighbors",
-        "If the noise continues — call a plumber from the management company. Flushing the system or radiator replacement may be needed",
-        "Prevention: install automatic air vents (cost 300–800 rubles) — they release air automatically"
+        "Banging in radiator — air or dirt. Bleed air through the valve until water appears",
+        "Humming / howling — pressure drop or blockage. Report to the management company",
+        "Clicking / rattling — pipe expansion during heating. Make sure pipes don't touch walls",
+        "Water noise — air or low pressure. Bleed air",
+        "If noise persists — call a plumber from the management company"
       ],
       warnings: [
-        "DO NOT ignore strong humming — it may indicate pipe or pump damage",
-        "DO NOT try to disassemble the radiator yourself — that's a plumber's job",
-        "If the noise is heard by neighbors — the problem may be common. Call the management company collectively"
+        "DON'T ignore strong humming — may indicate pipe or pump damage",
+        "DON'T try to disassemble the radiator yourself"
       ]
     },
+    // ============================================================
+    // 10. TOO HOT
+    // ============================================================
     {
       id: "overheat_control",
       title: "🌡️ Too hot — how to regulate heating",
-      description: "If the apartment is too hot, there are ways to lower the temperature without overpaying.",
+      description: "If it's too hot in the apartment, there are ways to lower the temperature without overpaying.",
       conditions: { heating_issue: ["overheat"] },
-      priority: "medium",
-      reliability: "high",
+      scoring: { priority: "medium", reliability: "high" },
       time_estimate: "5–15 minutes",
       yield_estimate: "Comfortable temperature",
       tags: ["overheat", "control", "regulation"],
       steps: [
-        "Close the valves on the radiators (if available) — turn clockwise until it stops. Open partially to regulate the heat",
-        "Install a thermostat on the radiator (cost 500–2000 rubles) — automatically maintains the desired temperature",
-        "Open windows (vents) — ventilation lowers the temperature. But don't leave them open at night in winter",
-        "With central heating: if neighbors also have it too hot — the problem is with the management company. Demand adjustment (Decree No. 354)",
-        "With individual heating: adjust the temperature on the boiler (usually 50–60°C for heated floors, 60–70°C for radiators)",
-        "If you're overpaying for heating — demand a recalculation from the management company for poor-quality service (temperature above normal is also a violation)",
-        "Install a regulator on the return line (bypass) — reduces pressure and temperature in the system"
+        "Close the valves on the radiators — turn clockwise until it stops",
+        "Install a thermostat on the radiator — automatically maintains the temperature",
+        "Open windows (vents) — ventilation lowers the temperature",
+        "With central heating: if neighbors also have it hot — problem with the management company",
+        "With individual heating: adjust the temperature on the boiler",
+        "If you're overpaying — demand recalculation from the management company"
       ],
       warnings: [
-        "DO NOT close all valves completely — the system may get airlocked, then there will be no heat at all",
-        "DO NOT open windows wide in winter for a long time — pipes may freeze (though this is rare with central heating)",
-        "If you have a gas boiler — lowering the temperature by 1°C saves 5–7% of gas per month"
+        "DON'T close all valves completely — the system will get airlocked",
+        "DON'T leave windows wide open in winter for long — pipes may freeze"
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.heatingDataEn = heatingDataEn;
+});

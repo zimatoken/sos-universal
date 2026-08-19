@@ -1,224 +1,386 @@
-// === MODULE: HOME ó WATER AND SEWERAGE ===
-const plumbingDataEn = {
-  category: "plumbing",
-  title: "?? Water and sewerage",
-  description: "Leaks, clogs, flooding, water outage ó what to do right now",
+// modules/home/data/en/plumbing-en.js
+// === MODULE: HOME ‚Äî WATER AND SEWERAGE ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "home",
+    category: "plumbing",
+    version: "1.0.0",
+    lang: "en",
+    title: "üöø Water and Sewerage",
+    description: "Leaks, clogs, flooding, water shutoff, low pressure ‚Äî what to do right now",
+    icon: "üöø",
+    color: "#0891b2"
+  },
 
   questions: [
     {
       id: "plumbing_issue",
-      text: "What happened?",
       type: "single",
+      text: "What happened?",
       options: [
-        { id: "leak_pipe", label: "?? Pipe / faucet / joint is leaking", tags: ["leak", "pipe"] },
-        { id: "leak_ceiling", label: "?? Leaking from ceiling / flooded from above", tags: ["leak", "ceiling", "flood"] },
-        { id: "clog_sink", label: "?? Sink / bathtub / shower is clogged", tags: ["clog", "sink"] },
-        { id: "clog_toilet", label: "?? Toilet is clogged", tags: ["clog", "toilet"] },
-        { id: "no_water", label: "? No water (cold or hot)", tags: ["no_water"] },
-        { id: "burst_pipe", label: "?? Pipe burst / water fountain", tags: ["burst", "emergency"] }
+        { id: "leak_pipe", label: "üíß Pipe / faucet / connection is leaking", tags: ["leak"] },
+        { id: "leak_ceiling", label: "üí¶ Water leaking from ceiling (flooded from above)", tags: ["flood_above"] },
+        { id: "leak_downstairs", label: "üí¶ Neighbors downstairs complain I flooded them", tags: ["flood_downstairs"] },
+        { id: "clog_sink", label: "üöø Sink / bath / shower is clogged", tags: ["clog_sink"] },
+        { id: "clog_toilet", label: "üöΩ Toilet is clogged", tags: ["clog_toilet"] },
+        { id: "clog_main", label: "üí© Main sewer pipe is clogged (water drains slowly)", tags: ["clog_main"] },
+        { id: "no_water", label: "‚ùå No water (cold or hot)", tags: ["no_water"] },
+        { id: "low_pressure", label: "üíß Low water pressure", tags: ["low_pressure"] },
+        { id: "burst_pipe", label: "üí• Pipe burst / water fountain", tags: ["burst"] },
+        { id: "water_smell", label: "ü§¢ Water smells / has unpleasant taste", tags: ["water_smell"] }
       ]
     },
     {
       id: "leak_severity",
-      text: "How severe is the leak?",
       type: "single",
-      conditions: { plumbing_issue: ["leak_pipe", "leak_ceiling", "burst_pipe"] },
+      text: "How severe is the leak?",
+      conditions: { plumbing_issue: ["leak_pipe", "leak_ceiling", "burst", "leak_downstairs"] },
       options: [
-        { id: "severity_drop", label: "?? Dripping / small trickle", tags: ["minor"] },
-        { id: "severity_stream", label: "?? Heavy flow / pouring", tags: ["major"] },
-        { id: "severity_flood", label: "?? Flooding / water on the floor", tags: ["flood"] }
+        { id: "severity_drop", label: "üíß Dripping / small stream", tags: ["minor"] },
+        { id: "severity_stream", label: "üåä Flowing heavily / pouring", tags: ["major"] },
+        { id: "severity_flood", label: "üåä Flooding / water on the floor", tags: ["flood"] }
       ]
     },
     {
       id: "water_source",
-      text: "Where is the water from?",
       type: "single",
-      conditions: { plumbing_issue: ["leak_pipe", "leak_ceiling", "burst_pipe"] },
+      text: "Where is the water from?",
+      conditions: { plumbing_issue: ["leak_pipe", "leak_ceiling", "burst"] },
       options: [
-        { id: "source_cold", label: "Cold water", tags: ["cold"] },
-        { id: "source_hot", label: "Hot water", tags: ["hot"] },
-        { id: "source_sewage", label: "Sewage / dirty water", tags: ["sewage"] },
-        { id: "source_unknown", label: "Not sure", tags: ["unknown"] }
+        { id: "source_cold", label: "‚ùÑÔ∏è Cold water", tags: ["cold"] },
+        { id: "source_hot", label: "üî• Hot water", tags: ["hot"] },
+        { id: "source_sewage", label: "üí© Sewage / dirty water", tags: ["sewage"] },
+        { id: "source_unknown", label: "‚ùì Not sure", tags: ["unknown_source"] }
       ]
     },
     {
       id: "has_valve",
-      text: "Do you have access to the shut-off valve?",
       type: "single",
-      conditions: { plumbing_issue: ["leak_pipe", "burst_pipe"] },
+      text: "Do you have access to the shutoff valve?",
+      conditions: { plumbing_issue: ["leak_pipe", "burst", "leak_downstairs"] },
       options: [
-        { id: "valve_yes", label: "Yes, the valve is accessible", tags: ["valve"] },
-        { id: "valve_no", label: "No / I don't know where it is", tags: ["no_valve"] },
-        { id: "valve_stuck", label: "The valve is stuck / won't turn", tags: ["stuck"] }
+        { id: "valve_yes", label: "‚úÖ Yes, valve is accessible", tags: ["valve"] },
+        { id: "valve_no", label: "‚ùå No / don't know where it is", tags: ["no_valve"] },
+        { id: "valve_stuck", label: "‚ö†Ô∏è Valve is stuck / won't turn", tags: ["stuck"] }
+      ]
+    },
+    {
+      id: "pipe_type",
+      type: "single",
+      text: "What type of pipes do you have?",
+      conditions: { plumbing_issue: ["leak_pipe", "burst"] },
+      options: [
+        { id: "pipe_metal", label: "üî© Metal (steel, cast iron)", tags: ["metal"] },
+        { id: "pipe_plastic", label: "üß™ Plastic (PP-R, metal-plastic)", tags: ["plastic"] },
+        { id: "pipe_unknown", label: "‚ùì Don't know", tags: ["unknown_pipe"] }
+      ]
+    },
+    {
+      id: "is_planned_water",
+      type: "single",
+      text: "Is this a planned or emergency water shutoff?",
+      conditions: { plumbing_issue: ["no_water"] },
+      options: [
+        { id: "planned_water", label: "üìã Planned (were notified / there is a schedule)", tags: ["planned"] },
+        { id: "emergency_water", label: "üö® Emergency (sudden, without warning)", tags: ["emergency_water"] },
+        { id: "debt_water", label: "üí∏ Possibly shut off due to debt", tags: ["debt_water"] }
+      ]
+    },
+    {
+      id: "has_debt_water",
+      type: "single",
+      text: "Is there any debt for water?",
+      conditions: { plumbing_issue: ["no_water"], is_planned_water: ["debt_water"] },
+      options: [
+        { id: "debt_water_yes", label: "üí∞ Yes, there is debt", tags: ["debt_yes"] },
+        { id: "debt_water_no", label: "‚úÖ No, I pay on time", tags: ["debt_no"] },
+        { id: "debt_water_unknown", label: "‚ùì Don't know / possibly", tags: ["debt_unknown"] }
       ]
     }
   ],
 
   solutions: [
+    // ============================================================
+    // 1. BURST PIPE ‚Äî EMERGENCY ACTION
+    // ============================================================
     {
       id: "burst_pipe_emergency",
-      title: "?? Burst pipe ó emergency actions",
+      title: "üö® Burst pipe ‚Äî emergency actions",
       description: "A water fountain can flood your apartment in minutes. Act immediately.",
-      conditions: { plumbing_issue: ["burst_pipe"], leak_severity: ["severity_stream", "severity_flood"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5ñ15 minutes",
-      yield_estimate: "Stop the flood",
+      conditions: { plumbing_issue: ["burst"], leak_severity: ["major", "flood"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5‚Äì15 minutes",
+      yield_estimate: "Flood stopped",
       tags: ["emergency", "water", "pipe"],
       steps: [
-        "DON'T panic. Find the shut-off valve: usually in the bathroom, kitchen, toilet, hallway behind a panel, or in the basement",
-        "Turn the valve CLOCKWISE until it stops (usually 2ñ5 turns). If it's a ball valve ó the handle should be perpendicular to the pipe",
-        "If the valve is stuck ó use a wrench or pliers. Put a cloth on it to avoid damaging the surface",
-        "If you can't find/close the valve ó call the emergency service: 01 (from mobile 101 or 112). Report: 'Pipe burst, need emergency shut-off'",
-        "While waiting ó direct the stream into the bathtub/sink, place containers, lay out rags, towels, blankets",
-        "If water is leaking onto electrical appliances ó DO NOT touch them with wet hands! Turn off the circuit breaker in the panel, then clean up",
+        "DON'T panic. Find the shutoff valve: usually in the bathroom, kitchen, toilet, hallway behind a panel, or basement",
+        "Turn the valve CLOCKWISE until it stops (usually 2‚Äì5 turns). For a ball valve, the handle should be perpendicular to the pipe",
+        "If the valve is stuck ‚Äî use a wrench or pliers. Wrap a cloth to avoid damaging the coating",
+        "If you can't find/close the valve ‚Äî call emergency services: 01 (101 or 112). Report: 'Pipe burst, need emergency shutoff'",
+        "While waiting ‚Äî direct the stream into the bath/sink, place containers, spread rags, towels, blankets",
+        "If water is flowing onto electrical appliances ‚Äî DON'T touch them! Turn off the breaker at the panel, then clean up",
         "Take photos of the damage for insurance and the management company",
-        "After shutting off the water ó call a plumber or the emergency service of the management company. Don't try to replace the pipe yourself if you lack experience"
+        "After shutting off the water ‚Äî call a plumber or the management company's emergency service"
       ],
       warnings: [
-        "DO NOT touch electrical appliances with wet hands ó risk of electric shock",
-        "If water is leaking onto sockets/switches ó turn off the electricity in the panel BEFORE cleaning up the water",
-        "Hot water ó be careful, burns! Let the pipe cool down for 10ñ15 minutes before working",
-        "Don't try to fix a burst pipe with tape or a clamp ó it's temporary, the section needs replacement"
+        "DON'T touch electrical appliances with wet hands ‚Äî electric shock",
+        "If water is flowing onto outlets/switches ‚Äî turn off the electricity BEFORE cleaning",
+        "Hot water ‚Äî beware of burns! Let the pipe cool for 10‚Äì15 minutes before working",
+        "Don't try to patch a burst pipe with tape or a clamp ‚Äî temporary measure, needs replacement"
       ]
     },
+    // ============================================================
+    // 2. MINOR LEAK ‚Äî TEMPORARY REPAIR
+    // ============================================================
     {
       id: "minor_leak_fix",
-      title: "?? Minor leak ó temporary fix",
+      title: "üîß Minor leak ‚Äî temporary repair",
       description: "A dripping faucet or pipe can be temporarily patched until the plumber arrives.",
-      conditions: { plumbing_issue: ["leak_pipe"], leak_severity: ["severity_drop"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "10ñ30 minutes",
-      yield_estimate: "Temporary stop of the leak",
+      conditions: { plumbing_issue: ["leak_pipe"], leak_severity: ["minor"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "10‚Äì30 minutes",
+      yield_estimate: "Leak temporarily stopped",
       tags: ["leak", "diy", "temporary"],
       steps: [
-        "Close the shut-off valve on this pipe (if there is a separate one). If not ó the main valve in the apartment",
-        "Open the faucet below the leak to drain the remaining water from the pipe",
+        "Close the shutoff valve on this pipe (if there is a separate one). If not ‚Äî the main valve in the apartment",
+        "Open the tap below the leak to drain remaining water from the pipe",
         "Wipe the pipe dry. Sand the leak area with sandpaper",
-        "Temporary repair options: plumbing clamp (compression tape), epoxy putty, rubber gasket + clamp, plumbing tape (PTFE)",
-        "For a faucet: disassemble the faucet, replace the gasket or cartridge. Buy it at any hardware store (~50ñ200 rubles)",
-        "For a 'American' fitting: tighten the nut with a wrench. Don't overtighten ó you can strip the threads",
-        "After the repair ó open the faucet, check if it's leaking. If it's still leaking ó call a plumber",
-        "Take photos, write down the measurements ó for buying spare parts or calling a master"
+        "Temporary repair options: plumbing clamp (compression band), epoxy putty, rubber gasket + clamp, plumbing tape",
+        "For a faucet: disassemble, replace the gasket or cartridge. Buy at any hardware store (~$1-5)",
+        "For a 'American' connection: tighten the nut with a wrench. Don't overtighten ‚Äî can strip the threads",
+        "After repair ‚Äî open the valve, check for leaks. If still leaking ‚Äî call a plumber",
+        "Take photos, note sizes ‚Äî for buying parts or calling a master"
       ],
       warnings: [
-        "Temporary repair is temporary. Call a plumber within 24ñ48 hours",
-        "Don't use superglue or expanding foam for pipes ó it's useless and dangerous",
-        "If the pipe is plastic (PP-R, metal-plastic) ó don't overheat it, don't use open flame",
-        "Hot water under pressure ó be careful, you can get burned"
+        "Temporary repair is temporary. Call a plumber within 24‚Äì48 hours",
+        "Don't use superglue or spray foam on pipes ‚Äî useless and dangerous",
+        "If the pipe is plastic (PP-R, metal-plastic) ‚Äî don't overheat, don't use open flame",
+        "Hot water under pressure ‚Äî be careful, you can get burned"
       ]
     },
+    // ============================================================
+    // 3. FLOOD FROM ABOVE
+    // ============================================================
     {
       id: "flood_from_above",
-      title: "?? Flooded from above ó action plan",
-      description: "Water from the ceiling is always someone else's fault. Document the damage, act according to the law.",
+      title: "üè¢ Flooded from above ‚Äî action plan",
+      description: "Water from the ceiling is always someone else's fault. Document the damage, follow the law.",
       conditions: { plumbing_issue: ["leak_ceiling"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "30ñ60 minutes",
-      yield_estimate: "Property preservation + evidence",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "30‚Äì60 minutes",
+      yield_estimate: "Property saved + evidence collected",
       tags: ["flood", "neighbor", "law"],
       steps: [
-        "Immediately move valuables, electronics, documents out of the flood zone",
+        "Immediately remove valuables, electronics, documents from the flood zone",
         "Place containers, lay out rags, towels. Remove wallpaper/tiles if water is accumulating behind them",
-        "Go upstairs to your neighbors and knock. If no one is home ó call the management company / emergency service",
-        "Call the emergency service: 01 (101/112). They are required to come and shut off the water in the guilty apartment",
-        "Document EVERYTHING: photos, videos, time, witness statements. Take pictures of damage to ceilings, walls, furniture, appliances",
-        "Draw up a flood report: call a representative from the management company, record the causes and damages. Signatures from both parties",
-        "If neighbors refuse to sign the report ó call the police (102) to document the fact. Or draw up the report yourself with 2 witnesses",
-        "Contact your insurance company (if you have apartment insurance) within 3ñ5 days",
-        "Send a claim to the perpetrator by registered mail with acknowledgment: demand for compensation with calculation",
-        "If the perpetrator doesn't pay ó file a lawsuit in magistrate's court. Maximum amount without state fee ó 100,000 rubles (Article 23 of the Code of Civil Procedure). Above ó district court"
+        "Go upstairs to the neighbors, knock. If no one is there ‚Äî call the management company / emergency service",
+        "Call emergency services: 01 (101/112). They must come and turn off the water in the at-fault apartment",
+        "Record EVERYTHING: photos, video, time, witness statements. Document ceiling, wall, furniture, appliance damage",
+        "Draw up a flood report: call a management company representative, record the cause and damage. Signatures of both parties",
+        "If neighbors refuse to sign ‚Äî call the police (102) to record the fact. Or make a report yourself with 2 witnesses",
+        "Contact your insurance company (if you have apartment insurance) within 3‚Äì5 days",
+        "Send a claim to the at-fault party by certified mail: demand for damages with calculation",
+        "If the at-fault party doesn't pay ‚Äî file a claim in court"
       ],
       warnings: [
-        "DO NOT repair the ceiling until a report is made and the damage is assessed ó otherwise it's hard to prove",
-        "DO NOT sign the report if you disagree with its content. Write objections, demand an independent assessment",
-        "Statute of limitations for flooding ó 3 years. But act immediately, while witnesses remember",
-        "If the culprit is the management company (riser burst) ó claim against the management company. If neighbor ó claim against neighbor. If unclear ó against both",
-        "Apartment insurance covers flood damage, but not always ó read the contract"
+        "DON'T repair the ceiling until the report is drawn up and damage assessed ‚Äî difficult to prove later",
+        "DON'T sign the report if you disagree with its content. Write objections, demand an independent expert assessment",
+        "Statute of limitations for flooding ‚Äî 3 years. But act immediately",
+        "If the at-fault party is the management company ‚Äî claim against the management company"
       ]
     },
+    // ============================================================
+    // 4. I FLOODED THE NEIGHBORS DOWNSTAIRS
+    // ============================================================
+    {
+      id: "flood_downstairs",
+      title: "üí¶ I flooded the neighbors downstairs ‚Äî what to do",
+      description: "You are at fault for the flooding. Act responsibly: stop the water, document the damage, settle with neighbors.",
+      conditions: { plumbing_issue: ["leak_downstairs"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "30‚Äì60 minutes",
+      yield_estimate: "Conflict resolved + damage minimized",
+      tags: ["flood", "neighbor", "liability"],
+      steps: [
+        "IMMEDIATELY turn off the water in your apartment (shutoff valves on pipes)",
+        "Go down to the neighbors, apologize, offer help with cleanup",
+        "Call a management company representative to draw up a flood report",
+        "Document the damage: photos, video of the neighbors' damage",
+        "If you have apartment insurance ‚Äî notify your insurance company within 3‚Äì5 days",
+        "Offer the neighbors a settlement: payment for repairs based on an independent estimate",
+        "If neighbors agree ‚Äî sign a written agreement for compensation",
+        "If there is a dispute ‚Äî insurance or court. In court, you may face compensation + moral damages"
+      ],
+      warnings: [
+        "DON'T offer cash without a receipt ‚Äî only by bank transfer with a report",
+        "DON'T admit fault verbally ‚Äî only in writing in the report and agreement",
+        "If the flood was caused by a burst riser ‚Äî responsibility is on the management company, not you",
+        "If you rent out the apartment ‚Äî responsibility is on the tenant"
+      ]
+    },
+    // ============================================================
+    // 5. CLOGGED SINK / BATH
+    // ============================================================
     {
       id: "clog_sink_diy",
-      title: "?? Clogged sink / bathtub ó DIY unclogging",
-      description: "Most household clogs can be cleared without a plumber in 15ñ30 minutes.",
+      title: "ü™† Clogged sink / bath ‚Äî unclogging yourself",
+      description: "Most household clogs can be cleared without a plumber in 15‚Äì30 minutes.",
       conditions: { plumbing_issue: ["clog_sink"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "15ñ30 minutes",
-      yield_estimate: "Unclogged in 80% of cases",
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "15‚Äì30 minutes",
+      yield_estimate: "Cleared in 80% of cases",
       tags: ["clog", "diy", "sink"],
       steps: [
-        "Try a plunger: pour water into the sink/bathtub, cover the drain with the plunger, pump sharply 5ñ10 times. For double sinks ó cover the other drain with a cloth",
-        "If the plunger doesn't work ó remove the siphon under the sink: unscrew the nuts by hand or with a wrench, clean the siphon, reassemble",
-        "For grease clogs: pour 1 cup of baking soda + 1 cup of vinegar, cover with a stopper for 30 minutes, then pour boiling water",
-        "For hair clogs: use a special hook (~100 rubles at a hardware store) or a straightened paperclip. Twist it in the drain, pull out the clump",
-        "Chemical agents (Domeestos, Mole, Tiret): pour in, wait 15ñ30 minutes, rinse with water. Caution: poisons, wear gloves, ventilate",
-        "Plumbing snake (flexible): insert into the drain, twist, push through the clog. For deep clogs ó 3ñ5 meter snake",
-        "If nothing helps ó call a plumber. Cost of unclogging: 1000ñ3000 rubles (depends on complexity)"
+        "Try a plunger: add water to the sink/bath, cover the drain with the plunger, push sharply 5‚Äì10 times",
+        "If the plunger doesn't help ‚Äî remove the siphon under the sink: unscrew the nuts, wash the siphon, reassemble",
+        "For grease clogs: pour 1 cup of baking soda + 1 cup of vinegar, cover for 30 minutes, then boiling water",
+        "For hair clogs: use a special hook or a straightened paperclip. Twist in the drain, pull out the clump",
+        "Chemical products: pour in, wait 15‚Äì30 minutes, rinse with water. Caution: poisons, gloves",
+        "Plumbing snake: insert into the drain, twist, push through the clog",
+        "If nothing helps ‚Äî call a plumber. Cost: $20-60"
       ],
       warnings: [
-        "DO NOT pour boiling water into plastic pipes ó deformation, cracks, subsequent leaks",
-        "Chemical agents are poisons. Don't mix different agents (there may be a reaction with chlorine). Gloves, goggles, ventilation",
-        "If the clog repeats every week ó the problem is in the pipes. Professional cleaning with a snake or hydro-dynamic cleaning is needed",
-        "DO NOT use electrical wire ó it can get stuck in the pipe and worsen the clog"
+        "DON'T pour boiling water into plastic pipes ‚Äî deformation, cracks",
+        "Chemical products are poisons. Don't mix different products. Gloves, goggles, ventilation",
+        "If the clog happens every week ‚Äî problem with the pipes"
       ]
     },
+    // ============================================================
+    // 6. CLOGGED TOILET
+    // ============================================================
     {
       id: "clog_toilet",
-      title: "?? Clogged toilet ó how to unclog",
-      description: "A clogged toilet is a delicate but solvable problem. The main thing is not to panic and not to add more water.",
+      title: "üöΩ Clogged toilet ‚Äî how to clear",
+      description: "A clogged toilet is a delicate but solvable problem. Main thing ‚Äî don't panic and don't flush more water.",
       conditions: { plumbing_issue: ["clog_toilet"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "15ñ30 minutes",
-      yield_estimate: "Unclogged in 70% of cases",
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "15‚Äì30 minutes",
+      yield_estimate: "Cleared in 70% of cases",
       tags: ["clog", "toilet", "diy"],
       steps: [
-        "DO NOT flush again ó water will overflow. Close the valve under the tank (small tap on the side or below) so the tank doesn't refill",
-        "Use a toilet plunger (with a flange): press firmly, pump sharply 10ñ15 times. A sink plunger is NOT suitable",
-        "If the plunger doesn't work ó use a plumbing snake (flexible 3ñ5 m): insert, twist, push through the clog. Don't scratch the porcelain",
-        "Chemical agents for toilets (Tiret, Domeestos): pour in, wait 30 minutes, try to flush. Don't use boiling water ó cracks in the porcelain",
-        "If the clog is from an object (toy, phone, wipes) ó a snake with a hook at the end. Carefully pull out the object",
-        "If nothing helps ó call a plumber. Cost: 1500ñ4000 rubles. For complex cases ó high-pressure cleaning (5000ñ8000 rubles)"
+        "DON'T flush again ‚Äî water will overflow. Close the valve under the tank",
+        "Use a toilet plunger (with a flange): press firmly, push sharply 10‚Äì15 times",
+        "If the plunger doesn't help ‚Äî use a plumbing snake: insert, twist, push through the clog",
+        "Chemical products for toilets: pour in, wait 30 minutes, try to flush",
+        "If the clog is from an object ‚Äî a snake with a hook on the end. Carefully pull out the object",
+        "If nothing helps ‚Äî call a plumber. Cost: $30-80"
       ],
       warnings: [
-        "DO NOT flush wet wipes, paper towels, tampons, diapers ó they don't dissolve and create clogs",
-        "DO NOT use boiling water ó porcelain can crack from temperature shock",
-        "Toilet chemicals are aggressive. Gloves, goggles, ventilation. Don't mix with other products",
-        "If water rises in the bathtub/sink when flushing ó the clog is in the common pipe, not in the toilet. Need a plumber with a snake"
+        "DON'T flush wet wipes, paper towels, tampons, diapers ‚Äî they don't break down and cause clogs",
+        "DON'T use boiling water ‚Äî porcelain can crack from temperature shock",
+        "If water rises in the bath/sink when flushing ‚Äî clog in the main pipe"
       ]
     },
+    // ============================================================
+    // 7. MAIN PIPE CLOG ‚Äî RESPONSIBILITY OF MANAGEMENT COMPANY
+    // ============================================================
     {
-      id: "no_water_action",
-      title: "?? No water ó what to do",
-      description: "Water outage ó planned or emergency. Check the cause, stock up on water, protect your plumbing.",
-      conditions: { plumbing_issue: ["no_water"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "10ñ30 minutes",
-      yield_estimate: "Restoration of supply or adaptation",
-      tags: ["no_water", "supply", "emergency"],
+      id: "clog_main_pipe",
+      title: "üí© Main sewer pipe clog ‚Äî management company responsibility",
+      description: "If the clog is in the riser (common building pipe) ‚Äî it's the management company's responsibility, not yours.",
+      conditions: { plumbing_issue: ["clog_main"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1‚Äì24 hours",
+      yield_estimate: "Riser cleared by management company",
+      tags: ["clog", "main_pipe", "uk"],
       steps: [
-        "Check: is there no water only for you or for the neighbors too? Ask neighbors, check announcements in the entrance / building chat",
-        "Check the shut-off valves: they might have been accidentally closed during repairs. Valves should be parallel to the pipe",
-        "Check the water meters: if they don't spin when the faucet is open ó the problem is before the meters (management company) or after (your apartment)",
-        "If there's no water in the building ó call the management company / emergency service. Ask: planned outage or emergency, restoration time",
-        "Stock up on water: fill the bathtub with 50ñ100 liters (for flushing the toilet, washing), buy bottled water for drinking and cooking",
-        "Close the valves on the washing machine, dishwasher, water heater ó to avoid water hammer when the supply returns",
-        "If the outage is prolonged (more than a day) ó don't leave faucets open. When the supply returns, there may be dirty water ó let it flow into the bathtub first",
-        "If the water was cut off for debts ó check: are they only for your debts? If the management company owes for water ó it's illegal, complaint to GZHI and the prosecutor's office"
+        "If water drains slowly in all fixtures ‚Äî it's a riser clog",
+        "DON'T try to clear the riser yourself ‚Äî it's the management company's responsibility",
+        "Immediately call the management company's emergency service and report the riser clog",
+        "The management company must send a plumber to clear the riser within 24 hours",
+        "If the management company doesn't respond ‚Äî complaint to the Housing Inspectorate and prosecutor's office",
+        "If the clog was caused by you (you flushed something large) ‚Äî responsibility is yours",
+        "If flooding occurs from the clog ‚Äî document the damage, demand compensation"
       ],
       warnings: [
-        "DO NOT leave faucets open during an outage ó when the supply returns, it will flood your apartment and neighbors",
-        "On first supply after an outage ó the water may be rusty or dirty. Let it run into the bathtub for 5ñ10 minutes, then open the kitchen faucet",
-        "If the water was cut off without warning ó it's a violation. Planned outages must be announced 3 days in advance (Decree No. 354)",
-        "Don't try to open the shut-off valves in the entrance ó it's vandalism and criminal liability"
+        "The riser is common property. It is maintained by the management company",
+        "DON'T try to clear the riser yourself ‚Äî you can damage the pipe",
+        "If the management company doesn't fix it ‚Äî you have the right to a recalculation of fees"
+      ]
+    },
+    // ============================================================
+    // 8. NO WATER
+    // ============================================================
+    {
+      id: "no_water_action",
+      title: "üö± No water ‚Äî what to do",
+      description: "Water shutoff ‚Äî planned or emergency. Check the cause, stock up on water, protect your plumbing.",
+      conditions: { plumbing_issue: ["no_water"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "10‚Äì30 minutes",
+      yield_estimate: "Water restored or adapted",
+      tags: ["no_water", "supply", "emergency"],
+      steps: [
+        "Check: is there no water only in your apartment or with neighbors too? Ask neighbors, check notices in the entrance",
+        "Check the shutoff valves: they may have been accidentally closed. Valves should be parallel to the pipe",
+        "Check the water meters: if they don't turn with the tap open ‚Äî problem is before the meters (management company) or after",
+        "If there's no water in the building ‚Äî call the management company / emergency service",
+        "Stock up on water: fill the bath with 50‚Äì100 liters, buy bottled water",
+        "Close the valves on the washing machine, dishwasher, water heater",
+        "If the shutoff is long-term ‚Äî don't leave taps open. There may be dirty water when supply returns",
+        "If water was shut off for debt ‚Äî check the amount, pay it, demand reconnection"
+      ],
+      warnings: [
+        "DON'T leave taps open during a shutoff ‚Äî when water returns, you'll flood the apartment",
+        "When water first returns after a shutoff ‚Äî it may be rusty, dirty",
+        "Planned shutoffs must be announced 3 days in advance",
+        "Don't try to open the building's shutoff valves ‚Äî vandalism"
+      ]
+    },
+    // ============================================================
+    // 9. LOW WATER PRESSURE
+    // ============================================================
+    {
+      id: "low_pressure",
+      title: "üíß Low water pressure ‚Äî causes and solutions",
+      description: "Low pressure can be due to a clogged aerator, pipe problem, or low pressure in the riser.",
+      conditions: { plumbing_issue: ["low_pressure"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "10‚Äì30 minutes",
+      yield_estimate: "Pressure restored",
+      tags: ["pressure", "water", "supply"],
+      steps: [
+        "Check: low pressure in all taps or just one?",
+        "If only one ‚Äî remove the aerator (faucet tip), clean it from scale and sand",
+        "If in all ‚Äî check the coarse filter at the apartment entrance (mesh filter)",
+        "If the filter is clean ‚Äî call the management company: pressure may be low in the riser",
+        "If low hot water pressure ‚Äî the heat exchanger in the boiler may be clogged. Call a technician",
+        "If low cold water pressure ‚Äî check the meter: the meter filter may be clogged"
+      ],
+      warnings: [
+        "Low pressure may be due to a hidden pipe leak ‚Äî check the meters",
+        "Don't try to disassemble water meters yourself ‚Äî illegal (seals)",
+        "If pressure drops suddenly ‚Äî possible pipe burst in the basement. Call the management company"
+      ]
+    },
+    // ============================================================
+    // 10. WATER SMELL / TASTE
+    // ============================================================
+    {
+      id: "water_smell",
+      title: "ü§¢ Water smells / has unpleasant taste ‚Äî action plan",
+      description: "Water smell is a sign of problems with the water supply. Follow the plan.",
+      conditions: { plumbing_issue: ["water_smell"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "1‚Äì3 days",
+      yield_estimate: "Cause identified and eliminated",
+      tags: ["water", "smell", "quality"],
+      steps: [
+        "Check: is the smell/taste in cold or hot water? If hot ‚Äî problem with the boiler",
+        "If cold ‚Äî check with neighbors: do they have the same smell?",
+        "If neighbors also have it ‚Äî problem with the water utility. Call the management company or water utility",
+        "If only you ‚Äî problem with pipes inside the apartment (stagnation, rust)",
+        "Sulfur smell (rotten eggs) ‚Äî sign of organic decomposition in pipes",
+        "Chlorine smell ‚Äî normal (chlorination), but if strong ‚Äî complain",
+        "Musty/earthy smell ‚Äî signs of biofouling in pipes",
+        "Call a plumber for inspection. For serious violations ‚Äî complaint to sanitary authorities"
+      ],
+      warnings: [
+        "DON'T drink water with a smell/taste until you find the cause",
+        "Sulfur smell is dangerous to health. Contact the management company and water utility",
+        "If the smell is after a long shutoff ‚Äî normal, just run the water"
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.plumbingDataEn = plumbingDataEn;
+});

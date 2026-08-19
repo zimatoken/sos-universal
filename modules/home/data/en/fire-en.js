@@ -1,303 +1,373 @@
-// === MODULE: HOME — FIRE (ENGLISH) ===
-const fireDataEn = {
-  category: "fire",
-  title: "🔥 Fire",
-  description: "Fire in apartment, house, entrance — evacuation, extinguishing, rescue",
+// modules/home/data/en/fire-en.js
+// === MODULE: HOME — FIRE ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "home",
+    category: "fire",
+    version: "1.0.0",
+    lang: "en",
+    title: "🔥 Fire",
+    description: "Fire in apartment, house, hallway — evacuation, extinguishing, rescue of people and pets",
+    icon: "🔥",
+    color: "#0891b2"
+  },
 
   questions: [
     {
       id: "fire_location",
-      text: "Where did the fire start?",
       type: "single",
+      text: "Where did the fire start?",
       options: [
-        { id: "kitchen", label: "🍳 Kitchen (stove, oven, microwave, oil)", tags: ["kitchen", "grease"] },
-        { id: "electrical", label: "⚡ Outlet / panel / wiring / appliance", tags: ["electrical", "wire"] },
-        { id: "heater", label: "🔥 Heater / fireplace / stove", tags: ["heater", "heat"] },
-        { id: "furniture", label: "🛋️ Furniture / curtains / carpet / mattress", tags: ["furniture", "fabric"] },
-        { id: "outside", label: "🚪 Outside (entrance, neighbors, street)", tags: ["outside", "building"] },
-        { id: "smell_only", label: "👃 Only burning smell / smoke, no visible fire", tags: ["smell", "hidden"] },
-        { id: "garbage", label: "🗑️ Trash can / balcony / storage room", tags: ["garbage", "storage"] }
+        { id: "kitchen", label: "🍳 Kitchen (stove, oven, oil, microwave)", tags: ["kitchen"] },
+        { id: "electrical", label: "🔌 Outlet / panel / wiring / electrical appliance", tags: ["electrical"] },
+        { id: "heater", label: "🔥 Heater / fireplace / stove / radiator", tags: ["heater"] },
+        { id: "room_furniture", label: "🪑 Room / furniture / curtains / carpet", tags: ["room"] },
+        { id: "outside_building", label: "🏢 Outside the apartment (hallway, neighbors, street)", tags: ["outside"] },
+        { id: "smell_smoke", label: "😷 Burning smell / smoke, no visible fire", tags: ["smell"] }
       ]
     },
     {
       id: "fire_size",
-      text: "How strong is the fire?",
       type: "single",
+      text: "How strong is the fire?",
+      conditions: { fire_location: ["kitchen", "electrical", "heater", "room_furniture", "outside_building", "smell_smoke"] },
       options: [
-        { id: "small", label: "🔥 Small source (pot, rag, outlet, trash)", tags: ["small", "contained"] },
-        { id: "medium", label: "🔥 Furniture / curtains / part of a room is burning", tags: ["medium", "spreading"] },
-        { id: "large", label: "🔥 Entire room / apartment / smoke everywhere", tags: ["large", "critical"] },
-        { id: "blocked", label: "🚫 Escape route is blocked by fire / smoke", tags: ["blocked", "trapped"] }
+        { id: "small", label: "🔥 Small fire (pan, rag, outlet)", tags: ["small"] },
+        { id: "medium", label: "🔥🔥 Furniture / curtains / part of room on fire", tags: ["medium"] },
+        { id: "large", label: "🔥🔥🔥 Whole room / apartment on fire / smoke everywhere", tags: ["large"] },
+        { id: "blocked", label: "🚫 Escape route blocked by fire / smoke", tags: ["blocked"] }
       ]
     },
     {
       id: "people_present",
-      text: "Who is in the building? (select all that apply)",
-      type: "multi",
+      type: "single",
+      text: "Who is in the room?",
+      conditions: { fire_location: ["kitchen", "electrical", "heater", "room_furniture", "outside_building"] },
       options: [
         { id: "alone", label: "👤 Only me", tags: ["alone"] },
         { id: "family", label: "👨‍👩‍👧‍👦 Family / adults", tags: ["family"] },
-        { id: "children", label: "👶 Children / infants", tags: ["children", "vulnerable"] },
-        { id: "elderly", label: "👴 Elderly / mobility-impaired", tags: ["elderly", "vulnerable"] },
-        { id: "pets", label: "🐕 Pets", tags: ["pets"] },
-        { id: "neighbors", label: "🚪 Neighbors (may not know about the fire)", tags: ["neighbors"] }
-      ]
-    },
-    {
-      id: "time_of_day",
-      text: "What time of day is it?",
-      type: "single",
-      options: [
-        { id: "day", label: "☀️ Day (light, visible)", tags: ["day"] },
-        { id: "night", label: "🌙 Night (dark, people asleep)", tags: ["night", "sleep"] },
-        { id: "evening", label: "🌅 Evening / dusk", tags: ["evening"] }
-      ]
-    },
-    {
-      id: "has_smoke_detector",
-      text: "Is there a smoke detector in the apartment?",
-      type: "single",
-      options: [
-        { id: "yes", label: "✅ Yes, there is and it works", tags: ["detector_yes"] },
-        { id: "no", label: "❌ No, not installed", tags: ["detector_no"] },
-        { id: "unknown", label: "❓ Don't know / not sure", tags: ["detector_unknown"] }
+        { id: "children", label: "🧒 Children / infants", tags: ["children"] },
+        { id: "elderly", label: "👴 Elderly / mobility-impaired", tags: ["elderly"] },
+        { id: "pets", label: "🐕 Pets", tags: ["pets"] }
       ]
     },
     {
       id: "has_extinguisher",
-      text: "Do you have a fire extinguisher on hand?",
       type: "single",
+      text: "Do you have a fire extinguisher in your apartment?",
+      conditions: { fire_location: ["kitchen", "electrical", "heater", "room_furniture"], fire_size: ["small"] },
       options: [
-        { id: "yes", label: "✅ Yes, I have a fire extinguisher", tags: ["extinguisher_yes"] },
-        { id: "no", label: "❌ No fire extinguisher", tags: ["extinguisher_no"] }
+        { id: "ext_yes", label: "✅ Yes, I have a fire extinguisher", tags: ["ext_yes"] },
+        { id: "ext_no", label: "❌ No fire extinguisher", tags: ["ext_no"] },
+        { id: "ext_unknown", label: "❓ Don't know / can't see", tags: ["ext_unknown"] }
       ]
     },
     {
-      id: "escape_route",
-      text: "Is the escape route clear?",
+      id: "know_evacuation_plan",
       type: "single",
+      text: "Do you know the evacuation plan from your building?",
+      conditions: { fire_location: ["kitchen", "electrical", "heater", "room_furniture", "outside_building"], fire_size: ["medium", "large", "blocked"] },
       options: [
-        { id: "clear", label: "✅ Yes, the route is clear", tags: ["route_clear"] },
-        { id: "blocked", label: "🚫 No, the route is blocked by fire or smoke", tags: ["route_blocked"] },
-        { id: "unknown", label: "❓ Don't know / haven't checked", tags: ["route_unknown"] }
+        { id: "plan_yes", label: "✅ Yes, I know the way out", tags: ["plan_yes"] },
+        { id: "plan_no", label: "❌ No, I don't know", tags: ["plan_no"] },
+        { id: "plan_unknown", label: "❓ Not sure", tags: ["plan_unknown"] }
+      ]
+    },
+    {
+      id: "has_gas",
+      type: "single",
+      text: "Is there gas in the apartment (stove, water heater, cylinder)?",
+      conditions: { fire_location: ["kitchen", "heater", "room_furniture"] },
+      options: [
+        { id: "gas_yes", label: "✅ Yes, there is gas equipment", tags: ["gas_yes"] },
+        { id: "gas_no", label: "❌ No, everything is electric", tags: ["gas_no"] },
+        { id: "gas_unknown", label: "❓ Don't know", tags: ["gas_unknown"] }
       ]
     }
   ],
 
   solutions: [
-    // ========================================
-    // 1. Critical evacuation — life comes first
-    // ========================================
+    // ============================================================
+    // 1. EVACUATION — LIFE IS THE PRIORITY
+    // ============================================================
     {
       id: "fire_evacuation",
-      title: "🚨 Critical evacuation — life comes first",
-      description: "For a large fire, don't try to extinguish it. Save people, call firefighters, leave the building.",
+      title: "🚨 Evacuation during a fire — life is the priority",
+      description: "In a large fire, don't try to extinguish. Save people, call firefighters, leave the building.",
       conditions: { fire_size: ["medium", "large", "blocked"] },
-      priority: "fast",
-      reliability: "high",
+      scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1–3 minutes",
       yield_estimate: "Lives saved",
       tags: ["fire", "evacuation", "emergency"],
       steps: [
-        "IMMEDIATELY call 01 (or 101/112 from a mobile). Report: address, floor, apartment, what's burning, if there are people",
-        "If the fire is in an apartment — close the door to the burning room (it will hold back fire and smoke for 10–15 minutes)",
+        "Immediately call 01 (101 or 112 from mobile). Report: address, floor, apartment, what's burning, if there are people",
+        "If the fire is in the apartment — close the door to the burning room (holds back fire and smoke for 10–15 minutes)",
         "Leave the apartment: crouch or crawl — smoke rises, clean air is near the floor. Close the front door behind you",
-        "DO NOT use the elevator during a fire — use the stairs. If the stairwell is smoky — find another way (balcony, window, neighbors)",
-        "If the route is blocked — go to the bathroom, close the door, turn on the shower, wet towels, seal gaps. Signal from the window",
+        "DON'T use elevators during a fire — use stairs. If stairs are smoky — find another way",
+        "If the path is blocked — go to the bathroom, close the door, turn on the shower, wet towels, seal gaps. Signal from the window",
         "If on the balcony — close the balcony door, signal, shout. Don't jump from above the 2nd floor",
-        "If you need to escape through a window: use sheets, ropes, cords. Tie to a radiator, lower yourself carefully",
-        "Help neighbors, children, the elderly — but DO NOT risk your own life. Firefighters will arrive in 5–15 minutes",
-        "Outside: move away from the building, meet the firefighters, tell them where people may be, if there are gas cylinders"
+        "If you need to exit through a window: use sheets, ropes, cords. Tie to the radiator",
+        "Help neighbors, children, elderly — but DON'T risk your own life",
+        "Outside: move away from the building, meet the firefighters, tell them where people may be"
       ],
       warnings: [
-        "DO NOT go back into a burning building for belongings, documents, or animals — you may not come back out",
-        "Smoke kills faster than fire. 2–3 breaths of hot smoke = unconsciousness. Crawl, breathe through a wet cloth",
-        "DO NOT open windows in the burning room — oxygen will feed the fire",
-        "Metal doors can heat up to 200°C — don't touch with bare hands, use cloth",
-        "If your clothes catch fire — DON'T stand still. Drop to the ground, roll, smother the flames. Don't remove burning clothing while standing"
+        "DON'T return to a burning building for belongings, documents, animals — you may not get out",
+        "Smoke kills faster than fire. 2–3 breaths of hot smoke = unconsciousness. Crawl, breathe through wet cloth",
+        "DON'T open windows in a burning room — oxygen feeds the fire",
+        "Metal doors heat up to 200°C — don't touch with bare hands",
+        "If your clothes catch fire — drop to the ground, roll, smother the flames"
       ]
     },
-    // ========================================
-    // 2. Kitchen fire — extinguishing the source
-    // ========================================
+    // ============================================================
+    // 2. KITCHEN FIRE — EXTINGUISHING THE SOURCE
+    // ============================================================
     {
       id: "kitchen_fire",
       title: "🍳 Kitchen fire — extinguishing the source",
       description: "Burning oil, food, appliances — extinguish correctly, don't make it worse.",
       conditions: { fire_location: ["kitchen"], fire_size: ["small"] },
-      priority: "fast",
-      reliability: "high",
+      scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1–5 minutes",
-      yield_estimate: "Extinguished without spreading",
+      yield_estimate: "Fire extinguished without spreading",
       tags: ["kitchen", "fire", "extinguishing"],
       steps: [
-        "DO NOT extinguish burning oil with water! The oil will flare up, splash, and the fire will grow 10 times. Life-threatening",
-        "Turn off the stove (if safe). Cover the pan with a lid — cut off the oxygen. The fire will go out in 1–2 minutes",
-        "Cover the pan with a damp (but not dripping) towel or blanket. Lower from the side, not from above, to avoid fanning the flames",
-        "Pour baking soda, salt, or flour on the fire — they smother it by removing oxygen. Don't use sugar — it burns",
-        "Use a fire extinguisher (powder OP-2, OP-4) — aim at the BASE of the flames, not the tongues. Keep 1–1.5 meters away",
-        "If the fire is in the oven — DO NOT open the door. Turn off the oven, close the door. The fire will go out from lack of oxygen",
-        "If the microwave is burning inside — unplug it, DO NOT open the door. The fire will go out. Then dispose of the appliance",
-        "If you can't handle it in 30 seconds — evacuate, call 01 (101/112). Better to lose the kitchen than your life"
+        "DON'T extinguish burning oil with water! Oil will flare up, splatter, fire will increase 10 times",
+        "Turn off the stove (if safe). Cover the pan with a lid — cut off oxygen",
+        "Throw a damp (but not dripping) towel or blanket over the pan",
+        "Pour baking soda, salt, or flour on the fire — they smother flames",
+        "Use a fire extinguisher (powder) — aim at the BASE of the flames from bottom to top",
+        "If the fire is in the oven — DON'T open the door. Turn off the oven, close the door",
+        "If microwave is burning inside — unplug, DON'T open the door",
+        "If you can't handle it in 30 seconds — evacuate, call 01 (101/112)"
       ],
       warnings: [
         "Water + burning oil = explosive flare-up. NEVER extinguish oil with water",
-        "Sugar, starch, aerosols — burn and explode. Don't use them for extinguishing",
-        "A kitchen fire extinguisher should be powder (OP) or CO2 (OU). Foam — only after power is disconnected",
-        "If you're exhausted, panicked, or choking — RUN. Firefighters will arrive in 5 minutes"
+        "Sugar, starch, aerosols — burn and explode. Don't use for extinguishing",
+        "Kitchen extinguisher should be powder (OP) or CO2 (OU)",
+        "If you're exhausted, panicked — RUN. Firefighters will arrive in 5 minutes"
       ]
     },
-    // ========================================
-    // 3. Electrical fire — disconnect power
-    // ========================================
+    // ============================================================
+    // 3. ELECTRICAL FIRE — SHUT OFF POWER!
+    // ============================================================
     {
       id: "electrical_fire",
-      title: "⚡ Electrical fire — disconnect and extinguish",
-      description: "Electrical fires require a special approach. First disconnect power, then extinguish.",
+      title: "🔌 Electrical fire — shut off power!",
+      description: "Electrical fires are dangerous due to shock and rapid spread. DON'T use water!",
       conditions: { fire_location: ["electrical"], fire_size: ["small"] },
-      priority: "fast",
-      reliability: "high",
+      scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1–3 minutes",
-      yield_estimate: "Extinguished safely",
+      yield_estimate: "Fire contained",
       tags: ["electrical", "fire", "safety"],
       steps: [
-        "IMMEDIATELY disconnect the power: turn off the breaker in the panel (switch down). This is the main rule",
-        "If the breaker is inaccessible — unplug the burning appliance (only if there's no open flame or sparks)",
-        "Use a CO2 (carbon dioxide) or powder fire extinguisher. WATER IS NOT ALLOWED — you can be electrocuted!",
-        "If no extinguisher — cover the burning appliance with a thick blanket or wet cloth (ONLY after disconnecting!)",
-        "If the panel is burning — DO NOT approach, touch, or pour water on it. Call 01 (101/112)",
-        "If an outlet is sparking and smoking — turn off the breaker, call an electrician. Don't try to repair it yourself",
-        "After extinguishing — do not turn power back on until inspected by a specialist. The appliance and wiring must be checked",
-        "If there's a burning smell from the panel — it could be smoldering inside. Call the emergency service at 01 (101/112)"
+        "IMMEDIATELY turn off power at the panel (lower ALL breakers). If the panel is smoky — don't approach",
+        "DON'T use water to extinguish — electric shock!",
+        "Use a fire extinguisher: powder (OP) or CO2 (OU). NOT foam",
+        "If no extinguisher — pour baking soda, sand, or soil from a flower pot",
+        "If an outlet is burning — turn off the breaker, then carefully remove the plug (only in gloves)",
+        "If an appliance is burning — unplug it (if safe), cover with a blanket",
+        "If you can't handle it — evacuate, call 01 (101/112)"
       ],
       warnings: [
-        "Water on electricity = deadly! Only CO2 or powder fire extinguisher",
-        "DO NOT try to extinguish a live appliance — risk of electric shock",
-        "If the panel is sparking and smoking — evacuate immediately, call firefighters",
-        "Wires inside walls can burn hidden. If you smell burning but don't see fire — turn off the power"
+        "Water + electricity = deadly. NEVER extinguish electrical appliances with water",
+        "If you're not sure it's de-energized — DON'T approach. Call firefighters",
+        "CO2 extinguisher — for electrical panels and appliances up to 1000V",
+        "If the panel is smoky — don't approach, it may explode"
       ]
     },
-    // ========================================
-    // 4. Burning smell — hidden fire
-    // ========================================
+    // ============================================================
+    // 4. HEATER FIRE
+    // ============================================================
     {
-      id: "smell_fire",
-      title: "👃 Burning smell / smoke without visible fire",
-      description: "A burning smell can mean smoldering wiring or a fire at the neighbors'. Don't ignore it.",
-      conditions: { fire_location: ["smell_only"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "2–5 minutes",
-      yield_estimate: "Source found",
-      tags: ["smell", "hidden", "safety"],
+      id: "heater_fire",
+      title: "🔥 Heater fire — action plan",
+      description: "Heaters are a common cause of fires. Dry things correctly, don't overload the circuit.",
+      conditions: { fire_location: ["heater"], fire_size: ["small"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–3 minutes",
+      yield_estimate: "Fire extinguished",
+      tags: ["heater", "fire", "safety"],
       steps: [
-        "DO NOT turn on lights or light matches — there could be gas or a leak",
-        "Immediately disconnect the power at the panel (turn off all breakers)",
-        "Check all rooms: is there any smoke, sparking, hot outlets, or appliances",
-        "Check the panel, meter, main breaker — they should not be hot or smoking",
-        "Check with neighbors: knock on their door, ask if they smell anything",
-        "If the smell intensifies or smoke appears — call 01 (101/112), go outside",
-        "If the cause is not found — call an electrician to check the wiring (insulation tester)",
-        "Don't ignore this symptom — smoldering in the wall can ignite hours later"
+        "IMMEDIATELY unplug the heater (if safe). If it's on fire — DON'T touch",
+        "DON'T use water on oil heaters — can explode from oil overheating",
+        "Use a fire extinguisher (powder) or smother with sand/soil",
+        "If clothing on the heater is burning — cover with a damp blanket (DON'T pour water!)",
+        "If you can't handle it — evacuate, call 01 (101/112)"
       ],
       warnings: [
-        "DO NOT turn power back on until you find the cause of the smell",
-        "If it smells like gas (mercaptan smell — rotten eggs) — don't turn on lights, ventilate, call 04 (104/112)",
-        "Hidden smoldering in the wall is dangerous because it's invisible. It can burn for hours and then flare up",
-        "If the smell comes from the panel or meter — call the emergency service immediately"
+        "Don't dry clothes on heaters — common cause of fires",
+        "Oil heaters cannot be extinguished with water — explosion",
+        "Heaters must be 1 meter away from curtains and furniture"
       ]
     },
-    // ========================================
-    // 5. Using a fire extinguisher
-    // ========================================
+    // ============================================================
+    // 5. HOW TO USE A FIRE EXTINGUISHER
+    // ============================================================
     {
       id: "fire_extinguisher_use",
-      title: "🧯 How to use a fire extinguisher",
-      description: "Proper use of a fire extinguisher is the key to extinguishing a small fire.",
-      conditions: { fire_size: ["small"], has_extinguisher: ["yes"] },
-      priority: "fast",
-      reliability: "high",
+      title: "🧯 How to use a fire extinguisher — guide",
+      description: "Correct use of a fire extinguisher is key to extinguishing an incipient fire.",
+      conditions: { fire_size: ["small"], has_extinguisher: ["ext_yes"] },
+      scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1–3 minutes",
-      yield_estimate: "Small fire extinguished",
+      yield_estimate: "Incipient fire extinguished",
       tags: ["extinguisher", "fire", "safety"],
       steps: [
-        "Check the type of extinguisher: OP (powder, yellow) — universal; OU (CO2, red) — for electrical; OV (water, red) — NOT for electricity or oil",
-        "Remove from the bracket, pull the pin, remove the safety clip",
-        "Aim the nozzle at the BASE of the flame, not the flames themselves. Keep 1.5–2 meters away",
-        "Squeeze the handle, sweep from side to side at the base of the fire. Don't stop until the fire is completely out",
-        "For CO2 (OU): hold the nozzle by the insulated handle (otherwise frostbite), DO NOT touch the metal part",
-        "After extinguishing: check for smoldering. Powder extinguishes well but doesn't cool. Oil may reignite",
-        "If the fire doesn't go out in 10–15 seconds — drop the extinguisher, evacuate, call 01 (101/112)"
+        "Check the type: OP (powder) — universal; OU (CO2) — for electrical equipment; OV (water) — NOT for electricity and oil",
+        "Remove from mount, break the seal, pull out the pin",
+        "Aim the nozzle at the BASE of the flames, not the tongues. Distance: 1.5–2 meters",
+        "Squeeze the handle, move the stream from bottom to top, sweeping. Don't stop until the fire is out",
+        "For CO2: hold the nozzle by the insulated handle (otherwise frostbite)",
+        "After extinguishing: check for smoldering. Oil can re-ignite",
+        "If not out in 10–15 seconds — drop the extinguisher, evacuate, call 01"
       ],
       warnings: [
-        "Water extinguisher (OV) — NOT for electricity, oil, chemicals. Only for paper, wood, fabric",
-        "CO2 extinguisher (OU) — not suitable for open spaces (CO2 displaces oxygen). Use in kitchen, panel",
-        "Powder extinguisher damages appliances and furniture but saves lives. Don't spare your belongings",
-        "Check the expiry date (printed on the body). An expired one may not work"
+        "OV (water) — CANNOT be used on electricity, oil, chemicals",
+        "Powder extinguishers damage equipment but save lives",
+        "Check the expiration date. Expired may not work"
       ]
     },
-    // ========================================
-    // 6. Rescuing people and animals
-    // ========================================
+    // ============================================================
+    // 6. BURNING SMELL / SMOKE WITHOUT FIRE
+    // ============================================================
     {
-      id: "rescue_people",
-      title: "🆘 Rescuing people and animals during a fire",
-      description: "In a fire, the priority is to save people and animals. Belongings come later.",
-      conditions: { fire_size: ["medium", "large", "blocked"] },
-      priority: "fast",
-      reliability: "high",
+      id: "smoke_smell_no_fire",
+      title: "😷 Burning smell / smoke without visible fire — what to do",
+      description: "Burning smell without fire is smoldering in the wall, wiring, or ventilation. Act carefully.",
+      conditions: { fire_location: ["smell_smoke"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5–15 minutes",
+      yield_estimate: "Source found and eliminated",
+      tags: ["smell", "smoke", "fire_risk"],
+      steps: [
+        "Turn off electricity at the panel (lower ALL breakers) — smoldering may be in the wiring",
+        "Check all rooms, sniffing. The smell is stronger near outlets, switches, ventilation, panel",
+        "Check ventilation grilles: smoke may be coming from neighbors",
+        "If smell is from the wall — call firefighters (01/101/112) — wall smoldering is dangerous",
+        "If smell is from an appliance — turn it off, unplug, call an electrician",
+        "If smell is from ventilation — check with neighbors, notify the management company",
+        "If you can't find the cause — don't turn power back on until a specialist arrives"
+      ],
+      warnings: [
+        "Burning smell is already fire (smoldering). DON'T ignore it",
+        "If smell is from the wall — don't try to break the wall yourself",
+        "If smell is strong — call firefighters, even if there's no fire"
+      ]
+    },
+    // ============================================================
+    // 7. FIRE OUTSIDE (HALLWAY / NEIGHBORS)
+    // ============================================================
+    {
+      id: "fire_outside_building",
+      title: "🏢 Fire in hallway / neighbors — actions",
+      description: "Fire outside the apartment requires quick evacuation. Main thing — don't go into a smoky hallway.",
+      conditions: { fire_location: ["outside_building"], fire_size: ["medium", "large"] },
+      scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1–5 minutes",
-      yield_estimate: "Lives saved",
-      tags: ["rescue", "people", "animals"],
+      yield_estimate: "Safe evacuation",
+      tags: ["outside", "fire", "evacuation"],
       steps: [
-        "DO NOT try to fight the fire if there's a threat to life. First, get people out",
-        "Carry children or evacuate them in a stroller — they may be scared and hide",
-        "Help the elderly to stand, support them while going down the stairs",
-        "Animals: dogs on a leash, cats in a carrier (or in your arms, but they may scratch)",
-        "If people are in the neighboring apartment — knock, shout, warn them about the fire",
-        "Don't look for documents, money, valuables — they're not worth your life",
-        "If someone is still inside — tell firefighters the exact location",
-        "Don't re-enter a burning room for belongings — you may not come back out"
+        "Call firefighters: 01 (101/112). Report address, floor, where it's burning",
+        "Close all windows and doors — to prevent smoke from entering",
+        "Check: is there smoke in the hallway? If yes — DON'T go out!",
+        "If it's safe to leave — leave the apartment, close the door, go down the stairs (NOT elevator!)",
+        "If smoke is in the hallway — stay in the apartment. Seal doors with wet towels",
+        "Go to the balcony, close the door, signal, shout. Don't jump from above the 2nd floor",
+        "If there's a second staircase — use it",
+        "If neighbors have a fire — knock on their door, warn them, help them leave"
       ],
       warnings: [
-        "DON'T risk your life for belongings — material things can be replaced, life cannot",
-        "If a child is hiding (under the bed, in a closet) — call their name, listen for them",
-        "Pets may hide in fear — look in hiding places",
-        "If you can't find a pet — don't stay in the room for more than 20 seconds"
+        "DON'T go into a smoky hallway — you can suffocate",
+        "DON'T use elevators — power may be cut",
+        "If smoke enters the apartment — go to the bathroom, turn on the shower, breathe through a wet cloth"
       ]
     },
-    // ========================================
-    // 7. Fire prevention and preparedness
-    // ========================================
+    // ============================================================
+    // 8. STAIRWELL SMOKE — SURVIVAL ALGORITHM
+    // ============================================================
     {
-      id: "fire_prevention",
-      title: "🔥 Fire prevention and preparedness",
-      description: "Preventing a fire is easier than extinguishing it. Install detectors and check equipment.",
-      conditions: { fire_size: ["small"] },
-      priority: "slow",
-      reliability: "high",
-      time_estimate: "1–2 hours (setup)",
-      yield_estimate: "Emergency preparedness",
-      tags: ["prevention", "safety", "preparedness"],
+      id: "stairwell_smoke",
+      title: "🌫️ Stairwell smoke — survival algorithm",
+      description: "Smoke in the hallway is more dangerous than fire. Act carefully, don't panic.",
+      conditions: { fire_location: ["outside_building"], fire_size: ["blocked"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–5 minutes",
+      yield_estimate: "Safe waiting for rescue",
+      tags: ["smoke", "stairwell", "survival"],
       steps: [
-        "Install smoke detectors in every room and hallway — they save lives",
-        "Check the condition of wiring, outlets, breakers — hire an electrician every 2–3 years",
-        "Keep a fire extinguisher in a visible place (kitchen, hallway, garage). Check the expiry date",
-        "Don't leave appliances unattended: irons, kettles, heaters",
-        "Don't overload outlets — no more than 2–3 kW total per outlet",
-        "Don't smoke in bed, don't throw cigarette butts off the balcony — a common cause of fires",
-        "Carry a flashlight, power bank — during a fire it may be dark",
-        "Evacuation plan: practice routes, discuss with family where to meet after exiting"
+        "DON'T go into a smoky hallway — it's deadly",
+        "Close the front door and seal all gaps with wet towels, rags, sheets",
+        "Cover ventilation grilles with wet cloth",
+        "Go to the balcony (if available), close the door, signal",
+        "Turn on water in the bathroom (shower) — reduces smoke concentration",
+        "Breathe through a wet cloth (towel, shirt, scarf)",
+        "Crouch or lie down — there's less smoke near the floor",
+        "Signal through the window: shine a flashlight, wave bright cloth, shout",
+        "Wait for firefighters — they'll arrive in 5–15 minutes"
       ],
       warnings: [
-        "Smoke detectors should be tested once a month — press the test button",
-        "Fire extinguisher in the kitchen and hallway — the minimum set",
-        "Wires behind baseboards, in walls, extension cords — the main sources of fire",
-        "Don't leave chargers plugged in without a phone — they can overheat"
+        "DON'T go into smoke — 2–3 breaths can kill",
+        "DON'T open windows wide — creates draft and pulls in smoke",
+        "If smoke enters the apartment — go to the bathroom, close the door",
+        "Don't jump from above the 2nd floor — almost always fatal"
+      ]
+    },
+    // ============================================================
+    // 9. RESCUE PETS
+    // ============================================================
+    {
+      id: "rescue_pets",
+      title: "🐕 Rescuing pets during a fire",
+      description: "Pets panic and hide during fires. Act quickly but don't risk your life.",
+      conditions: { people_present: ["pets"], fire_size: ["small", "medium"] },
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "1–3 minutes",
+      yield_estimate: "Pet rescued",
+      tags: ["pets", "rescue", "emergency"],
+      steps: [
+        "Pets hide during fires — check under beds, in closets, behind furniture",
+        "Call the dog by name — it may come",
+        "For cats or small animals — look in hiding places, take a carrier or bag",
+        "Wrap the pet in a wet blanket or towel (protects from smoke)",
+        "If the pet resists — don't waste time, leave yourself. Smoke kills faster",
+        "If the pet is in a burning room — DON'T risk your life, call firefighters",
+        "Outside: tell firefighters there's a pet in the apartment"
+      ],
+      warnings: [
+        "DON'T risk your life for animals — you may not get out",
+        "Pets often hide in hard-to-reach places",
+        "If the pet is rescued — check for smoke inhalation",
+        "After the fire — take the pet to a vet"
+      ]
+    },
+    // ============================================================
+    // 10. FIRE IN A MULTI-STOREY BUILDING
+    // ============================================================
+    {
+      id: "multi_storey_fire",
+      title: "🏢 Fire in a multi-storey building — general algorithm",
+      description: "Fire in a multi-storey building requires special caution. Follow the plan.",
+      conditions: { fire_location: ["outside_building", "room_furniture"], fire_size: ["large", "blocked"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–5 minutes",
+      yield_estimate: "Safe evacuation",
+      tags: ["building", "fire", "evacuation"],
+      steps: [
+        "Call firefighters: 01 (101/112). Clearly state address, floor, apartment number",
+        "Alert neighbors: knock on doors, shout 'Fire!'",
+        "If you leave — close the apartment door, but DON'T lock it (firefighters need access)",
+        "Go down the stairs (NOT elevator!), keeping near the wall, bent over",
+        "If there's smoke on the stairs — stay in the apartment, follow the survival algorithm",
+        "If you're outside — move away from the building, meet firefighters",
+        "Tell firefighters: if there are people inside, animals, gas cylinders"
+      ],
+      warnings: [
+        "DON'T use elevators — power may be cut",
+        "DON'T open windows wide — creates draft and feeds the fire",
+        "If smoke is on the stairs — don't go out. Stay in the apartment",
+        "A closed apartment door is your protection from fire and smoke"
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.fireDataEn = fireDataEn;
+});
