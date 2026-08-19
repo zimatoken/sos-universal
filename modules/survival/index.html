@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="../../css/modules/survival.css">
 </head>
-<body>
+<body data-module="survival">
 
   <div class="app">
     <!-- ЭКРАН 1: Главная (категории) -->
@@ -238,11 +238,14 @@
   <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
   <script src="../../core/locales.js"></script>
 
-  <!-- 2. ТЕМА И ГОЛОС -->
+  <!-- 2. SMART ADAPTER (НОВЫЙ!) -->
+  <script src="../../core/registry-adapter.js"></script>  
+
+  <!-- 3. ТЕМА И ГОЛОС -->
   <script src="../../core/theme.js"></script>
   <script src="../../core/voice.js"></script>
 
-  <!-- 3. РУССКИЕ ДАННЫЕ -->
+  <!-- 4. РУССКИЕ ДАННЫЕ -->
   <script src="data/water.js"></script>
   <script src="data/fire.js"></script>
   <script src="data/shelter.js"></script>
@@ -252,7 +255,7 @@
   <script src="data/radio.js"></script>
   <script src="data/kit.js"></script>
 
-  <!-- 4. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
+  <!-- 5. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
   <script src="data/en/water-en.js"></script>
   <script src="data/en/fire-en.js"></script>
   <script src="data/en/shelter-en.js"></script>
@@ -262,20 +265,20 @@
   <script src="data/en/radio-en.js"></script>
   <script src="data/en/kit-en.js"></script>
 
-  <!-- 5. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
+  <!-- 6. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
   <script>
     // Инициализируем текущий язык из localStorage
     window.currentLang = localStorage.getItem('language') || 'ru';
     console.log('🌍 Текущий язык инициализирован:', window.currentLang);
   </script>
 
-  <!-- 6. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
+  <!-- 7. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
   <script src="../../core/engine.js"></script>
 
-  <!-- 7. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
+  <!-- 8. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
   <script src="i18n.js"></script>
 
-  <!-- 8. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
+  <!-- 9. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
   <script src="../../core/app.js"></script>
 
   <script>
