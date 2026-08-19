@@ -1,371 +1,356 @@
-// === SECTION: FIRE (ENGLISH) ===
-const fireDataEn = {
-  category: "fire",
-  title: "🔥 Fire",
-  description: "Making fire in any conditions",
+// modules/survival/data/en/fire-en.js
+// === MODULE: SURVIVAL — FIRE ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "survival",
+    category: "fire",
+    version: "1.0.0",
+    lang: "en",
+    title: "🔥 Fire",
+    description: "How to make and maintain fire in any conditions — from forest to desert",
+    icon: "🔥",
+    color: "#16a34a"
+  },
 
   questions: [
     {
       id: "location",
-      text: "Where are you?",
       type: "single",
+      text: "Where are you?",
       options: [
-        { id: "forest",    label: "🌲 Forest / taiga",      tags: ["forest", "wood", "resin"] },
-        { id: "desert",    label: "🏜️ Desert / steppe",    tags: ["desert", "dry", "sand"] },
-        { id: "mountain",  label: "⛰️ Mountains",              tags: ["mountain", "wind", "cold"] },
-        { id: "coast",     label: "🏖️ Coast / island", tags: ["coast", "wet", "driftwood"] },
-        { id: "urban",     label: "🏙️ City / industrial zone",   tags: ["urban", "debris", "chemicals"] },
-        { id: "swamp",     label: "🌿 Swamp / tundra",   tags: ["swamp", "peat", "moss", "damp"] }
+        { id: "forest", label: "🌲 Forest / taiga", tags: ["forest", "wood", "resin"] },
+        { id: "desert", label: "🏜️ Desert / steppe", tags: ["desert", "dry", "sand"] },
+        { id: "mountain", label: "⛰️ Mountains", tags: ["mountain", "wind", "cold"] },
+        { id: "coast", label: "🏖️ Coast / island", tags: ["coast", "wet", "driftwood"] },
+        { id: "urban", label: "🏙️ City / industrial area", tags: ["urban", "debris", "chemicals"] },
+        { id: "swamp", label: "🌿 Swamp / tundra", tags: ["swamp", "peat", "moss", "damp"] }
       ]
     },
     {
       id: "inventory",
-      text: "What do you have at hand?",
       type: "multi",
+      text: "What do you have on hand?",
+      conditions: { location: ["forest", "desert", "mountain", "coast", "urban", "swamp"] },
       options: [
-        { id: "matches",   label: "🪄 Matches / lighter",           tags: ["fire_source", "easy"] },
-        { id: "magnesium", label: "🪨 Ferro rod / magnesium stick",   tags: ["spark", "reliable"] },
-        { id: "lens",      label: "🔍 Lens / glasses / bottle",       tags: ["solar", "lens"] },
-        { id: "battery",   label: "🔋 Battery + wire/foil", tags: ["electric", "short"] },
-        { id: "knife",     label: "🔪 Knife / multitool",              tags: ["tool", "friction"] },
-        { id: "rope",      label: "🪢 Rope / paracord",           tags: ["fiber", "bow_drill"] },
-        { id: "plastic",   label: "🧊 Plastic / bag",              tags: ["lens", "magnifier"] },
-        { id: "chemical",  label: "🧪 Chemicals (KMNO4, glycerin)",     tags: ["chemical", "reliable"] },
-        { id: "nothing",   label: "❌ Nothing",                   tags: ["primitive", "friction"] }
+        { id: "matches", label: "🪄 Matches / lighter", tags: ["fire_source", "easy"] },
+        { id: "magnesium", label: "🪨 Ferro rod / magnesium stick", tags: ["spark", "reliable"] },
+        { id: "lens", label: "🔍 Lens / glasses / bottle", tags: ["solar", "lens"] },
+        { id: "battery", label: "🔋 Battery + wire / foil", tags: ["electric", "short"] },
+        { id: "knife", label: "🔪 Knife / multi-tool", tags: ["tool", "friction"] },
+        { id: "rope", label: "🪢 Rope / paracord", tags: ["fiber", "bow_drill"] },
+        { id: "plastic", label: "🧊 Plastic / bag", tags: ["lens", "magnifier"] },
+        { id: "chemical", label: "🧪 Chemicals (KMNO4, glycerin)", tags: ["chemical", "reliable"] },
+        { id: "nothing", label: "❌ Nothing at all", tags: ["primitive", "friction"] }
       ]
     },
     {
       id: "weather",
-      text: "What's the weather?",
       type: "single",
+      text: "What's the weather like?",
+      conditions: { location: ["forest", "desert", "mountain", "coast", "urban", "swamp"] },
       options: [
-        { id: "dry",    label: "☀️ Dry / warm",      tags: ["dry", "easy"] },
-        { id: "damp",   label: "🌫️ Damp / dew",    tags: ["damp", "tinder_needed"] },
-        { id: "rain",   label: "🌧️ Rain / downpour",   tags: ["wet", "shelter_needed"] },
-        { id: "wind",   label: "💨 Strong wind",     tags: ["wind", "windbreak"] },
-        { id: "snow",   label: "❄️ Snow / frost",      tags: ["cold", "frozen_fuel"] }
+        { id: "dry", label: "☀️ Dry / warm", tags: ["dry", "easy"] },
+        { id: "damp", label: "🌫️ Damp / dew", tags: ["damp", "tinder_needed"] },
+        { id: "rain", label: "🌧️ Rain / downpour", tags: ["wet", "shelter_needed"] },
+        { id: "wind", label: "💨 Strong wind", tags: ["wind", "windbreak"] },
+        { id: "snow", label: "❄️ Snow / freezing", tags: ["cold", "frozen_fuel"] }
       ]
     },
     {
       id: "urgency",
-      text: "How urgently do you need fire?",
       type: "single",
+      text: "How urgently do you need fire?",
+      conditions: { location: ["forest", "desert", "mountain", "coast", "urban", "swamp"] },
       options: [
-        { id: "now",  label: "⚠️ Now! Cold / night", tags: ["critical", "immediate"] },
-        { id: "hour", label: "⏱️ Have 1-2 hours",       tags: ["urgent", "short"] },
-        { id: "day",  label: "🌅 Have a day",           tags: ["planned", "medium"] },
+        { id: "now", label: "⚠️ Now! Cold / night", tags: ["critical", "immediate"] },
+        { id: "hour", label: "⏱️ 1-2 hours available", tags: ["urgent", "short"] },
+        { id: "day", label: "🌅 A full day available", tags: ["planned", "medium"] },
         { id: "days", label: "📅 Need for several days", tags: ["long_term", "strategic"] }
       ]
     },
     {
       id: "fuel",
-      text: "What do you have for fuel?",
       type: "single",
+      text: "What fuel is available?",
+      conditions: { location: ["forest", "desert", "mountain", "coast", "urban", "swamp"] },
       options: [
-        { id: "wood",      label: "🪵 Firewood / dry branches",  tags: ["wood", "dry_fuel"] },
-        { id: "wet_wood",  label: "🌧️ Wet wood",        tags: ["wet", "needs_drying"] },
-        { id: "grass",     label: "🌾 Grass / straw",      tags: ["grass", "quick_burn"] },
-        { id: "peat",      label: "🌿 Peat / moss",         tags: ["peat", "slow_burn"] },
-        { id: "chemicals", label: "🧪 Chemicals / plastic",    tags: ["chemical", "toxic"] }
+        { id: "wood", label: "🪵 Firewood / dry branches", tags: ["wood", "dry_fuel"] },
+        { id: "wet_wood", label: "🌧️ Wet firewood", tags: ["wet", "needs_drying"] },
+        { id: "grass", label: "🌾 Grass / straw", tags: ["grass", "quick_burn"] },
+        { id: "peat", label: "🌿 Peat / moss", tags: ["peat", "slow_burn"] },
+        { id: "chemicals", label: "🧪 Chemicals / plastic", tags: ["chemical", "toxic"] }
       ]
     }
   ],
 
   solutions: [
-    // ===== FAST SOLUTIONS =====
+    // ============================================================
+    // 1. MATCHES / LIGHTER
+    // ============================================================
     {
       id: "matches_easy",
-      title: "🪄 Matches / lighter — fast fire",
-      description: "The easiest way. Collect dry tinder (birch bark, dry grass, moss). Make a nest. Light with a match. Add thin twigs, then thicker ones.",
+      title: "🪄 Matches / lighter — quick fire",
+      description: "The easiest method. Prepare dry tinder and protect the fire from wind.",
       conditions: { location: ["forest", "mountain", "coast", "urban", "swamp"], inventory: ["matches"], weather: ["dry", "damp"], urgency: ["now", "hour"], fuel: ["wood", "grass", "peat"] },
-      priority: "fast", reliability: "high",
-      time_estimate: "2-5 min", yield_estimate: "fire on first try",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "2-5 min",
+      yield_estimate: "fire on first try",
       tags: ["matches", "easy", "universal"],
       steps: [
-        "🌿 Collect dry tinder: birch bark, dry grass, moss, fluff",
-        "✊ Make a nest the size of a fist",
-        "🔥 Light from inside with a match or lighter",
-        "💨 Blow gently, adding thin twigs",
-        "🪵 Gradually increase the thickness of the wood"
+        "1. FIND TINDER: in forest — birch bark (peel outer layer like paper), dry moss under spruce trees, dry grass, fireweed fluff. In city — cardboard, paper, cotton.",
+        "2. MAKE A NEST: fist-sized, from fine fibers. Create a small depression in the center.",
+        "3. IGNITE: bring match/lighter to the center of the nest. Hold vertically so flame doesn't go out.",
+        "4. BLOW: when tinder catches, gently blow to create a flame.",
+        "5. ADD TWIGS: matchstick thickness → finger thickness → arm thickness.",
+        "6. PROTECT FROM WIND: stand with back to wind or build stone/log windbreak."
       ],
       warnings: [
-        "💧 Store matches in a waterproof container",
-        "💨 In wind — protect flame with your body",
-        "🧊 Don't put out fire with water in frost — ice",
-        "🔥 Don't use all matches at once — save some"
+        "💧 Store matches in waterproof container (condom, Ziploc, sealed bag).",
+        "💨 In strong wind — build fire in a pit or behind rocks.",
+        "🔥 Don't use all matches at once — save 2-3 for backup.",
+        "🌧️ In wet weather, carry matches in breast pocket — body heat dries them."
       ]
     },
+    // ============================================================
+    // 2. FERRO ROD (MAGNESIUM STICK)
+    // ============================================================
     {
       id: "magnesium_striker",
-      title: "🪨 Ferro rod (magnesium stick)",
-      description: "Scrape magnesium shavings onto dry tinder. Strike the rod with the striker — sparks will ignite the shavings. Works in any weather, even wet.",
+      title: "🪨 Ferro rod / magnesium stick",
+      description: "Works in any weather, even in rain. 3000°C sparks ignite even damp tinder.",
       conditions: { location: ["forest", "desert", "mountain", "coast", "urban", "swamp"], inventory: ["magnesium"], weather: ["dry", "damp", "rain", "wind", "snow"], urgency: ["now", "hour"], fuel: ["wood", "grass", "peat", "wet_wood"] },
-      priority: "fast", reliability: "high",
-      time_estimate: "3-7 min", yield_estimate: "fire in 1-3 attempts",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "3-7 min",
+      yield_estimate: "fire in 1-3 attempts",
       tags: ["magnesium", "reliable", "all_weather"],
       steps: [
-        "🪨 Scrape magnesium shavings the size of a coin onto dry tinder",
-        "💥 Strike the ferrocerium rod with the striker",
-        "✨ Sparks hit the shavings — they ignite at 3000°C",
-        "💨 Quickly add tinder and blow",
-        "🪵 Add twigs"
+        "1. SCRAPE MAGNESIUM: use knife or rod edge to scrape 1-2g of shavings (coin-sized) directly onto tinder.",
+        "2. PREPARE TINDER: dry moss, birch bark, or cotton under the shavings. The finer the shavings, the better.",
+        "3. STRIKE: hold rod at 45° angle to shavings. Sharply strike the ferrocerium rod with striker — sparks will fly.",
+        "4. IGNITE: shavings will flare up for 2-3 seconds — enough to ignite tinder.",
+        "5. BLOW: gently blow, add thin twigs."
       ],
       warnings: [
-        "⚡ Shavings burn very fast — be ready",
-        "🛑 Don't keep the rod wet — rusts",
-        "💥 Strike sharply at 45° angle",
-        "🔥 Keep away from gasoline and gases"
+        "⚡ Shavings burn very fast — be ready to add twigs.",
+        "🛑 Don't keep rod wet — ferrocerium rusts.",
+        "💥 Strike sharply but not too hard — rod is brittle.",
+        "🔥 Keep away from gasoline and gases."
       ]
     },
+    // ============================================================
+    // 3. BATTERY + FOIL
+    // ============================================================
     {
       id: "battery_short",
       title: "🔋 Battery + foil / wire",
-      description: "Connect + and - of a battery with thin wire, gum foil, or steel wool. The wire heats red-hot and ignites tinder. Works with any battery.",
+      description: "Short circuit heats metal to 500-800°C — enough to ignite tinder.",
       conditions: { location: ["forest", "desert", "mountain", "coast", "urban", "swamp"], inventory: ["battery"], weather: ["dry", "damp", "rain", "wind", "snow"], urgency: ["now", "hour"], fuel: ["wood", "grass"] },
-      priority: "fast", reliability: "medium",
-      time_estimate: "1-3 min", yield_estimate: "fire in 1-2 attempts",
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "1-3 min",
+      yield_estimate: "fire in 1-2 attempts",
       tags: ["battery", "electric", "urban", "quick"],
       steps: [
-        "🔋 Find any battery (AA, AAA, phone, flashlight)",
-        "🔗 Make a thin bridge of foil/wire between + and -",
-        "🔥 The bridge heats red-hot in 1-3 seconds",
-        "🌿 Place tinder against the hot bridge",
-        "💨 Blow into flame"
+        "1. FIND BATTERY: any — AA, AAA, 9V, phone. Higher voltage = faster heating.",
+        "2. MAKE A BRIDGE: foil from chocolate/gum wrapper, steel wool, thin wire. Connect + and -.",
+        "3. HEAT: in 1-3 seconds the bridge will glow red. Carefully bring to tinder.",
+        "4. BLOW: as soon as tinder smokes — blow, add twigs.",
+        "5. FOR 9V BATTERY: just touch steel wool to both terminals — sparks guaranteed."
       ],
       warnings: [
-        "💥 Battery can explode on short circuit — keep distance",
-        "⛔ Don't use thick wire — won't heat",
-        "🧊 Gum foil is the ideal bridge",
-        "🔋 Use only as last resort — drains the battery"
+        "💥 Battery can explode with prolonged short circuit — hold 1-3 seconds only.",
+        "⛔ Don't use thick wire — won't heat up (needs thin resistance).",
+        "🧊 Gum/chocolate wrapper foil is ideal bridge (2-3 mm wide).",
+        "🔋 Use only in emergency — battery drains quickly."
       ]
     },
+    // ============================================================
+    // 4. CHEMICAL IGNITION (KMNO4 + GLYCERIN)
+    // ============================================================
     {
       id: "chemical_fire",
       title: "🧪 Chemical ignition (KMNO4 + glycerin)",
-      description: "Mix glycerin with potassium permanganate (KMNO4). In 10-30 seconds a reaction starts with heat and flame. Works in any weather.",
+      description: "Instant exothermic reaction — ignition in 10-30 seconds. Works in any weather.",
       conditions: { location: ["urban", "forest", "mountain", "coast"], inventory: ["chemical"], weather: ["dry", "damp", "rain", "wind", "snow"], urgency: ["now", "hour"], fuel: ["wood", "grass"] },
-      priority: "fast", reliability: "high",
-      time_estimate: "1-2 min", yield_estimate: "fire guaranteed",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1-2 min",
+      yield_estimate: "fire guaranteed",
       tags: ["chemical", "urban", "first_aid_kit", "reliable"],
       steps: [
-        "🧪 Find potassium permanganate (KMNO4) — purple crystals",
-        "💧 Find glycerin (in first aid kit, cosmetics)",
-        "🧴 Mix on tinder: 1 tsp KMNO4 + a few drops of glycerin",
-        "💨 In 10-30 seconds smoke appears, then flame",
-        "🌿 Add tinder and blow"
+        "1. FIND KMNO4: purple crystals in first aid kit (potassium permanganate).",
+        "2. FIND GLYCERIN: in first aid kit (emollient), in cosmetics (moisturizer).",
+        "3. MIX: pour 1 tsp KMNO4 onto tinder. Add 3-5 drops of glycerin.",
+        "4. WAIT: in 10-30 seconds smoke will appear, then flame flare.",
+        "5. BLOW: add thin twigs.",
+        "6. ALTERNATIVE: KMNO4 + sugar (1:1) — grind until ignition."
       ],
       warnings: [
-        "🟣 KMNO4 stains everything purple — avoid eyes",
-        "⚡ Reaction is uncontrollable — prepare tinder in advance",
-        "💧 Store KMNO4 in a dry place — moisture activates it",
-        "🔥 Oxygen is released during reaction — don't breathe the smoke"
+        "🟣 KMNO4 stains everything purple — avoid eyes and clothing.",
+        "⚡ Reaction is uncontrollable — prepare tinder and twigs in advance.",
+        "💧 Store KMNO4 in dry place — moisture activates reaction.",
+        "🔥 Toxic smoke is released — don't breathe it."
       ]
     },
+    // ============================================================
+    // 5. FIRE IN RAIN
+    // ============================================================
     {
       id: "wet_weather_fire",
       title: "🌧️ Fire in rain / wet weather",
-      description: "In wet weather look for dry fuel under trees, in rock crevices, under roots. Use resin, birch bark, dry pine needles. Build fire under shelter.",
+      description: "Find DRY fuel. In the forest it's always available, even in rain.",
       conditions: { location: ["forest", "mountain", "coast", "swamp"], inventory: ["matches", "magnesium", "battery", "nothing", "chemical"], weather: ["rain", "damp", "snow"], urgency: ["now", "hour"], fuel: ["wet_wood"] },
-      priority: "fast", reliability: "medium",
-      time_estimate: "10-20 min", yield_estimate: "depends on skill",
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "10-20 min",
+      yield_estimate: "depends on skill",
       tags: ["wet", "rain", "survival", "skill"],
       steps: [
-        "🌲 Look for dry fuel: birch bark, resin, dry needles under spruce",
-        "🏔️ Collect tinder under tree roots, in caves, crevices",
-        "🏕️ Build fire under shelter: under a large tree, in a cave",
-        "🔥 Use plenty of tinder — wet wood is harder to ignite",
-        "🌞 Dry wet wood by the fire before using"
+        "1. FIND DRY FUEL UNDER SPRUCE: lower spruce branches protect from rain — dry needles and twigs there.",
+        "2. BIRCH BARK: even wet birch bark burns due to resin. Peel outer layer — inside is dry.",
+        "3. CONIFER RESIN: on pine/spruce trunks — hardened resin (pitch). Burns like a candle, even wet.",
+        "4. UNDER ROOTS: fallen trees — always dry underneath.",
+        "5. BUILD UNDER COVER: bark/branch shelter protects from rain.",
+        "6. DRY WOOD AT FIRE: place wet logs vertically, ends toward fire — dry in 15-30 minutes."
       ],
       warnings: [
-        "🌿 Wet moss doesn't burn — look for birch bark",
-        "💨 Don't make fire under the only shelter — smoke",
-        "🔥 Resin burns bright but fast — stock up",
-        "🌧️ In rain collect wood before it gets wet"
+        "🌿 Wet moss doesn't burn — don't waste time.",
+        "💨 Don't build fire under the only shelter — smoke will kill you.",
+        "🔥 Resin burns bright but fast — stock wood in advance.",
+        "🌧️ In rain, collect wood before it gets wet."
       ]
     },
+    // ============================================================
+    // 6. DRYING WOOD AT FIRE
+    // ============================================================
     {
       id: "dry_wood_fire",
-      title: "🔥 Drying wood by the fire",
-      description: "If wood is wet — split it into small pieces, remove bark. Stack vertically around fire — dry for 15-30 minutes. Dry wood burns bright and smokeless.",
+      title: "🔥 Drying wood at the fire",
+      description: "Wet wood can be dried in 15-30 minutes if properly arranged around the fire.",
       conditions: { location: ["forest", "mountain", "coast", "swamp"], inventory: ["knife", "matches", "magnesium", "nothing"], weather: ["damp", "rain", "snow"], urgency: ["hour", "day"], fuel: ["wet_wood"] },
-      priority: "fast", reliability: "high",
-      time_estimate: "15-30 min", yield_estimate: "dry firewood",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "15-30 min",
+      yield_estimate: "dry firewood",
       tags: ["dry", "wood", "preparation", "skill"],
       steps: [
-        "🪓 Split wood into small pieces (2-5 cm thick)",
-        "🪵 Remove bark — it retains moisture",
-        "🔥 Stack vertically around fire, end toward flame",
-        "⏳ Dry for 15-30 minutes, turning occasionally",
-        "🔥 Dry wood burns bright, without smoke"
+        "1. SPLIT: logs into small pieces (2-5 cm thick). Thinner = faster drying.",
+        "2. REMOVE BARK: bark holds moisture — remove with knife.",
+        "3. ARRANGE AROUND FIRE: vertically, ends toward fire. Distance 20-30 cm — to prevent ignition.",
+        "4. ROTATE: every 5 minutes for even drying.",
+        "5. CHECK: dry wood rings when struck, bark peels easily, no wet spots.",
+        "6. USE: dry wood burns bright and smokeless."
       ],
       warnings: [
-        "💨 Don't place too close to fire — will ignite",
-        "🌧️ In rain dry under shelter",
-        "🪵 Wet wood smokes and burns poorly",
-        "🔥 For quick drying — use dry moss/grass as kindling"
+        "💨 Don't place wood too close — it will ignite.",
+        "🌧️ In rain, dry under shelter.",
+        "🪵 Wet wood smokes and burns poorly — spend time drying.",
+        "🔥 For fast kindling use resin or birch bark."
       ]
     },
-
-    // ===== MEDIUM TIME SOLUTIONS =====
+    // ============================================================
+    // 7. SOLAR LENS
+    // ============================================================
     {
       id: "solar_lens",
       title: "🔍 Solar ignition (lens)",
-      description: "Use a lens, glasses, bottom of a water bottle, ice lens. Focus sunlight on tinder. In 10-60 seconds smoke appears. Works only in dry weather.",
+      description: "Focus sunlight on tinder — in 10-60 seconds smoke appears. Works only in clear weather.",
       conditions: { location: ["forest", "desert", "mountain", "coast"], inventory: ["lens", "plastic", "nothing"], weather: ["dry"], urgency: ["hour", "day"], fuel: ["wood", "grass"] },
-      priority: "medium", reliability: "medium",
-      time_estimate: "1-5 min", yield_estimate: "depends on sun",
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "1-5 min",
+      yield_estimate: "depends on sun",
       tags: ["solar", "lens", "no_fuel"],
       steps: [
-        "🔍 Find a convex lens: glasses, magnifying glass, water bottle bottom",
-        "☀️ Point at sun, focusing beam on tinder",
-        "⏳ Hold 10-60 seconds until smoke appears",
-        "💨 Gently blow — a glowing ember appears",
-        "🌿 Place in tinder nest, blow into flame"
+        "1. FIND LENS: glasses (farsighted), magnifying glass, glass bottle bottom with water, ice lens.",
+        "2. MAKE ICE LENS: in freezing weather — carve ice, polish into lens shape.",
+        "3. FOCUS: aim at sun, concentrate beam to 2-3 mm spot on tinder.",
+        "4. WAIT: in 10-60 seconds smoke appears. Don't move the lens.",
+        "5. BLOW: when red ember appears — gently blow, place in tinder nest."
       ],
       warnings: [
-        "☀️ Only works in bright sun",
-        "😎 Don't look at the focus — damages eyes",
-        "🧊 Ice lens works but melts fast",
-        "⏳ Useless in cloudy weather"
+        "☀️ Works only in bright sun (not cloudy).",
+        "😎 Don't look at focal point — retina damage.",
+        "🧊 Ice lens melts in 5-15 minutes — work fast.",
+        "🌫️ Useless in cloudy weather — use another method."
       ]
     },
+    // ============================================================
+    // 8. BOW DRILL
+    // ============================================================
     {
       id: "bow_drill",
       title: "🪚 Bow drill",
-      description: "Classic friction method. Make a bow from a flexible branch and rope. Drill — dry straight branch. Board — dry soft wood. Rotate the drill with the bow, pressing down.",
+      description: "Classic friction method. Requires practice, but works without any tools except rope and knife.",
       conditions: { location: ["forest", "desert", "swamp"], inventory: ["rope", "knife", "nothing"], weather: ["dry", "damp"], urgency: ["hour", "day"], fuel: ["wood"] },
-      priority: "medium", reliability: "medium",
-      time_estimate: "15-45 min", yield_estimate: "fire in 3-10 attempts",
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "15-45 min",
+      yield_estimate: "fire in 3-10 attempts",
       tags: ["primitive", "friction", "skill", "forest"],
       steps: [
-        "🪵 Find dry soft wood: poplar, aspen, cedar (board)",
-        "🪚 Make a drill: straight dry branch 20-30 cm",
-        "🏹 Make a bow: flexible branch + rope/paracord/cord",
-        "🔄 Press drill into board, rotate with bow",
-        "🔥 Collect glowing dust (charcoal) in leaf/tinder, blow"
+        "1. FIND MATERIALS: board — dry softwood (poplar, aspen, cedar, willow). Drill — straight dry branch 20-30 cm.",
+        "2. MAKE BOW: flexible branch (rowan, hazel) + rope/string/paracord. String like bowstring.",
+        "3. MAKE HOLE: in board with knife or stone — small depression for drill.",
+        "4. SPIN: wrap drill with bow string. Press into board. Move bow back and forth with force and speed.",
+        "5. GET EMBER: in 30-60 seconds glowing dust appears. Collect on leaf/tinder.",
+        "6. BLOW: transfer ember to tinder nest, gently blow."
       ],
       warnings: [
-        "⏳ Requires practice — train beforehand",
-        "🌞 Everything must be absolutely dry",
-        "💪 Hand pain — normal, this is a tough method",
-        "🌿 Use resin/birch bark for kindling"
+        "⏳ Requires practice — don't give up after 3-5 failures.",
+        "🌞 Everything must be absolutely dry — moisture kills the method.",
+        "💪 Hand pain is normal — it's a hard method.",
+        "🌿 Use resin or birch bark for kindling."
       ]
     },
-    {
-      id: "fire_plough",
-      title: "🔥 Fire plough",
-      description: "Push a sharp dry branch along a groove in a dry board. Friction creates glowing dust. Collect it in a leaf and blow. Easier than hand drill, but also requires strength.",
-      conditions: { location: ["forest", "desert", "coast"], inventory: ["nothing", "knife"], weather: ["dry", "damp"], urgency: ["hour", "day"], fuel: ["wood"] },
-      priority: "medium", reliability: "low",
-      time_estimate: "10-30 min", yield_estimate: "fire in 3-10 attempts",
-      tags: ["primitive", "friction", "no_tools", "coast"],
-      steps: [
-        "🌴 Find dry soft wood (bamboo, poplar, palm)",
-        "🔪 Make a groove in the board with a knife or stone",
-        "🌿 Take a sharp dry branch as the drill",
-        "💨 Push along the groove with force and speed",
-        "🔥 Collect glowing dust, blow"
-      ],
-      warnings: [
-        "💪 Requires strong pressure — you tire quickly",
-        "📏 The groove must be straight and deep",
-        "🌧️ Doesn't work on wet wood",
-        "🔄 Practice beforehand — it's a complex method"
-      ]
-    },
-
-    // ===== SLOW SOLUTIONS =====
-    {
-      id: "hand_drill",
-      title: "🖐️ Hand drill",
-      description: "Simplest friction method: spin a dry straight branch with your palms, pressing into dry board. Requires tremendous speed and strength. Only suitable for light woods.",
-      conditions: { location: ["forest", "desert"], inventory: ["nothing", "knife"], weather: ["dry"], urgency: ["day"], fuel: ["wood"] },
-      priority: "slow", reliability: "low",
-      time_estimate: "20-60 min", yield_estimate: "fire in 5-20 attempts",
-      tags: ["primitive", "friction", "no_tools", "hard"],
-      steps: [
-        "🌳 Find dry soft wood: poplar, willow, cedar",
-        "🌿 Make a drill: straight thin branch 40-50 cm",
-        "🪵 Board: flat piece of the same wood",
-        "🔄 Rotate the drill with palms like eating chopsticks",
-        "🔥 Collect charcoal, blow"
-      ],
-      warnings: [
-        "💪 Very difficult — requires perfect technique",
-        "🩸 Palms can rub to blood",
-        "🪵 Doesn't work on hard woods (oak, birch)",
-        "⏳ Train for months — method for professionals"
-      ]
-    },
-    {
-      id: "ice_lens",
-      title: "🧊 Ice lens",
-      description: "In frost make a lens from clear ice. Polish with hands or warm water until transparent. Focus sunlight on tinder. Works, but lens melts fast.",
-      conditions: { location: ["mountain", "forest"], inventory: ["nothing", "knife"], weather: ["snow"], urgency: ["hour", "day"], fuel: ["wood"] },
-      priority: "slow", reliability: "low",
-      time_estimate: "20-40 min", yield_estimate: "depends on sun and ice",
-      tags: ["ice", "solar", "winter", "primitive"],
-      steps: [
-        "🧊 Find clear ice (river, lake — not snow)",
-        "🔍 Shape a lens 5-7 cm thick in the center",
-        "🪞 Polish with hands or warm water until transparent",
-        "☀️ Focus sunlight on tinder",
-        "⏳ Work fast — lens melts"
-      ],
-      warnings: [
-        "☀️ Only in bright sun and frost",
-        "⏳ Lens melts in 5-15 minutes",
-        "📏 Center thickness must be 5-7 cm",
-        "🧊 Use clear ice — cloudy doesn't work"
-      ]
-    },
+    // ============================================================
+    // 9. MAINTAIN FIRE LONG-TERM
+    // ============================================================
     {
       id: "fire_maintain",
       title: "🔥 How to keep fire going for a long time",
-      description: "To keep fire all night: stack wood in a 'tipi' (cone). Use thick logs (burn long). Add dry peat/moss. At night embers smolder under ash — blow in the morning.",
+      description: "Use 'star' or 'tipi' construction with thick logs to keep fire through the night.",
       conditions: { location: ["forest", "mountain", "coast", "swamp"], inventory: ["knife", "matches", "magnesium"], weather: ["dry", "damp", "rain", "wind", "snow"], urgency: ["day", "days"], fuel: ["wood", "peat"] },
-      priority: "slow", reliability: "high",
-      time_estimate: "15-30 min setup", yield_estimate: "fire for 6-12 hours",
+      scoring: { priority: "slow", reliability: "high" },
+      time_estimate: "15-30 min setup",
+      yield_estimate: "fire for 6-12 hours",
       tags: ["maintain", "night", "long_term", "skill"],
       steps: [
-        "🏕️ Stack wood in a 'tipi' — cone of logs",
-        "🪵 Use thick logs — they burn longer",
-        "🌿 Add peat/dry moss — smolders for a long time",
-        "🔥 At night embers smolder under ash layer",
-        "💨 In the morning blow — add thin twigs",
-        "🔄 For long fire — replace logs as they burn"
+        "1. 'STAR' CONSTRUCTION: place 4-5 logs with ends in center. Push in as they burn.",
+        "2. 'TIPI' CONSTRUCTION: cone of logs — burns long, gives lots of heat.",
+        "3. NIGHT MODE: use thick logs (15-20 cm diameter) — burn 6-8 hours.",
+        "4. PEAT / MOSS: add dry peat or moss on top — smolders slowly, retains heat.",
+        "5. SAVE EMBERS: in morning — rake ashes — embers smolder up to 12 hours. Add dry twigs — fire returns.",
+        "6. SHELTER: protect from rain with bark/branch cover."
       ],
       warnings: [
-        "💨 Wind can blow up fire — protect with stones",
-        "🌧️ Rain will put out — cover with shelter",
-        "🔥 Don't leave unattended — forest fire",
-        "🧊 In frost fire burns worse — use more wood"
+        "💨 Wind can spread fire — block with rocks or logs.",
+        "🌧️ Rain will put it out — cover with shelter.",
+        "🔥 Never leave unattended — forest fire risk.",
+        "🧊 In freezing weather, fire burns less — use more wood."
       ]
     },
+    // ============================================================
+    // 10. FIRE WITHOUT TINDER (EMERGENCY)
+    // ============================================================
     {
       id: "fire_without_tinder",
       title: "🔥 Fire without tinder (emergency)",
-      description: "If no tinder — use dry moss, lichen, old clothing (cotton), cotton wool, bird down. In city — newspapers, cardboard, small splinters. Even dry leaves give smoke.",
+      description: "If no tinder — use what's available. In forest and city there's always something to burn.",
       conditions: { location: ["forest", "desert", "mountain", "coast", "urban", "swamp"], inventory: ["nothing", "knife", "matches", "magnesium", "battery"], weather: ["dry", "damp", "rain", "wind", "snow"], urgency: ["now", "hour"], fuel: ["grass"] },
-      priority: "fast", reliability: "medium",
-      time_estimate: "5-15 min", yield_estimate: "fire for kindling",
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "5-15 min",
+      yield_estimate: "fire for kindling",
       tags: ["tinder", "emergency", "survival", "improvised"],
       steps: [
-        "🌿 Use dry moss, lichen, dry grass",
-        "👕 Old cotton clothing, cotton wool — excellent tinder",
-        "🪶 Bird down, dry plant fluff",
-        "📰 In city — newspapers, cardboard, small splinters",
-        "🔥 Collect in a nest, ignite, blow"
+        "1. IN FOREST: dry moss (under spruce), lichen (on rocks), birch bark (outer layer), fireweed fluff (summer).",
+        "2. ON COAST: dry seaweed, washed-up rope, dry grass behind dunes.",
+        "3. IN DESERT: dry grass (tumbleweed), animal dung (dried), dry plant roots.",
+        "4. IN CITY: newspapers, cardboard, small wood chips, cotton, cotton clothing (not synthetic!).",
+        "5. GATHER INTO A NEST: fist-sized, loose, with depression in center.",
+        "6. IGNITE: use any fire source. Blow."
       ],
       warnings: [
-        "🧪 Synthetics melt — don't use",
-        "🌧️ Wet tinder doesn't burn — find dry",
-        "🔥 Tinder must be very dry and fluffy",
-        "💨 For wind — protect fire with hand/body"
+        "🧪 Synthetics melt and release toxic smoke — don't use.",
+        "🌧️ Wet tinder won't burn — look for dry (under rocks, roots).",
+        "🔥 Tinder must be very dry and fluffy — finer fibers burn better.",
+        "💨 For wind protection — use your body, rocks, or clothing."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.fireDataEn = fireDataEn;
+});

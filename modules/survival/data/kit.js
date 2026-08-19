@@ -1,51 +1,66 @@
-// === РАЗДЕЛ: ЧЕМОДАНЧИК (ПОДГОТОВКА) ===
-const kitData = {
-  category: "kit",
-  title: "🎒 Чемоданчик",
-  description: "Что взять с собой в поход, путешествие или экстренную ситуацию",
+// modules/survival/data/kit.js
+// === МОДУЛЬ: ВЫЖИВАНИЕ — ЧЕМОДАНЧИК (ПОДГОТОВКА) ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "survival",
+    category: "kit",
+    version: "1.0.0",
+    lang: "ru",
+    title: "🎒 Чемоданчик",
+    description: "Что взять с собой в поход, путешествие или экстренную ситуацию",
+    icon: "🎒",
+    color: "#16a34a"
+  },
 
   questions: [
     {
       id: "urgency",
-      text: "Когда нужно собраться?",
       type: "single",
+      text: "Когда нужно собраться?",
       options: [
-        { id: "now",     label: "⚡ Срочно! Прямо сейчас", tags: ["urgent", "quick"] },
-        { id: "week",    label: "📅 Есть неделя на подготовку", tags: ["planned", "detailed"] },
-        { id: "future",  label: "🌍 На будущее — хочу быть готовым", tags: ["future", "complete"] }
+        { id: "now", label: "⚡ Срочно! Прямо сейчас", tags: ["urgent", "quick"] },
+        { id: "week", label: "📅 Есть неделя на подготовку", tags: ["planned", "detailed"] },
+        { id: "future", label: "🌍 На будущее — хочу быть готовым", tags: ["future", "complete"] }
       ]
     },
     {
       id: "terrain",
-      text: "Куда собираетесь?",
       type: "single",
+      text: "Куда собираетесь?",
+      conditions: { urgency: ["now", "week", "future"] },
       options: [
-        { id: "forest",   label: "🌲 Лес / горы / тайга", tags: ["forest", "wild"] },
-        { id: "desert",   label: "🏜️ Пустыня / степь", tags: ["desert", "dry"] },
-        { id: "coast",    label: "🏖️ Побережье / река", tags: ["coast", "water"] },
-        { id: "urban",    label: "🏙️ Город / путешествие", tags: ["urban", "travel"] }
+        { id: "forest", label: "🌲 Лес / горы / тайга", tags: ["forest", "wild"] },
+        { id: "desert", label: "🏜️ Пустыня / степь", tags: ["desert", "dry"] },
+        { id: "coast", label: "🏖️ Побережье / река", tags: ["coast", "water"] },
+        { id: "urban", label: "🏙️ Город / путешествие", tags: ["urban", "travel"] }
       ]
     },
     {
       id: "duration",
-      text: "На сколько времени?",
       type: "single",
+      text: "На сколько времени?",
+      conditions: { urgency: ["now", "week", "future"] },
       options: [
-        { id: "short",   label: "⏱️ 1-2 дня", tags: ["short", "light"] },
-        { id: "medium",  label: "📆 3-7 дней", tags: ["medium", "balanced"] },
-        { id: "long",    label: "📅 2+ недели / долгосрочно", tags: ["long", "complete"] }
+        { id: "short", label: "⏱️ 1-2 дня", tags: ["short", "light"] },
+        { id: "medium", label: "📆 3-7 дней", tags: ["medium", "balanced"] },
+        { id: "long", label: "📅 2+ недели / долгосрочно", tags: ["long", "complete"] }
       ]
     }
   ],
 
   solutions: [
+    // ============================================================
+    // 1. В ЛЕС НА 1-2 ДНЯ (БАЗОВЫЙ НАБОР)
+    // ============================================================
     {
       id: "forest_short",
       title: "🌲 В лес на 1-2 дня (базовый набор)",
       description: "Минимальный набор для короткой вылазки в лес. Всё помещается в небольшой рюкзак. Главное — вода, еда, огонь и защита от холода.",
       conditions: { urgency: ["now", "week"], terrain: ["forest"], duration: ["short"] },
-      priority: "fast", reliability: "high",
-      time_estimate: "Собрать за 20 мин", yield_estimate: "вес ~3-5 кг",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "Собрать за 20 мин",
+      yield_estimate: "вес ~3-5 кг",
       tags: ["checklist", "forest", "short", "basic"],
       steps: [
         "☐ 💧 Вода — 2 литра (минимум 1 л на день)",
@@ -67,13 +82,17 @@ const kitData = {
         "Не ходи один, если есть возможность"
       ]
     },
+    // ============================================================
+    // 2. В ЛЕС НА 3-7 ДНЕЙ (ПОЛНЫЙ НАБОР)
+    // ============================================================
     {
       id: "forest_medium",
       title: "🌲 В лес на 3-7 дней (полный набор)",
       description: "Для многодневного похода в лесу. Нужно больше еды, топлива и снаряжения. Добавляется палатка, спальник, котелок.",
       conditions: { urgency: ["week", "future"], terrain: ["forest"], duration: ["medium"] },
-      priority: "medium", reliability: "high",
-      time_estimate: "Собрать за 1-2 часа", yield_estimate: "вес ~10-15 кг",
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "Собрать за 1-2 часа",
+      yield_estimate: "вес ~10-15 кг",
       tags: ["checklist", "forest", "medium", "camping"],
       steps: [
         "☐ 💧 Вода — 5-10 литров (или фильтр + таблетки)",
@@ -98,13 +117,17 @@ const kitData = {
         "Будь готов к дождю и холоду"
       ]
     },
+    // ============================================================
+    // 3. В ГОРОД/ПУТЕШЕСТВИЕ НА 1-2 ДНЯ
+    // ============================================================
     {
       id: "urban_short",
       title: "🏙️ В город/путешествие на 1-2 дня",
       description: "Набор для короткой поездки в город или командировки. Минимум вещей, но всё необходимое для комфорта и безопасности.",
       conditions: { urgency: ["now", "week"], terrain: ["urban"], duration: ["short"] },
-      priority: "fast", reliability: "high",
-      time_estimate: "Собрать за 10 мин", yield_estimate: "вес ~2-3 кг",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "Собрать за 10 мин",
+      yield_estimate: "вес ~2-3 кг",
       tags: ["checklist", "urban", "short", "travel"],
       steps: [
         "☐ 💧 Вода — бутылка 0.5 л",
@@ -122,13 +145,17 @@ const kitData = {
         "Проверь заряд телефона"
       ]
     },
+    // ============================================================
+    // 4. В ПУСТЫНЮ/СТЕПЬ НА 1-2 ДНЯ
+    // ============================================================
     {
       id: "desert_short",
       title: "🏜️ В пустыню/степь на 1-2 дня",
       description: "В пустыне главное — вода и защита от солнца. Бери с собой минимум 3-4 литра воды на день. Защищай голову, глаза, кожу.",
       conditions: { urgency: ["now", "week"], terrain: ["desert"], duration: ["short"] },
-      priority: "fast", reliability: "high",
-      time_estimate: "Собрать за 20 мин", yield_estimate: "вес ~5-7 кг",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "Собрать за 20 мин",
+      yield_estimate: "вес ~5-7 кг",
       tags: ["checklist", "desert", "short", "survival"],
       steps: [
         "☐ 💧 Вода — минимум 4 литра на день",
@@ -148,13 +175,17 @@ const kitData = {
         "Ночью может быть холодно"
       ]
     },
+    // ============================================================
+    // 5. НА ПОБЕРЕЖЬЕ/РЕКУ НА 1-2 ДНЯ
+    // ============================================================
     {
       id: "coast_short",
       title: "🏖️ На побережье/реку на 1-2 дня",
       description: "Набор для отдыха у воды. Помимо обычных вещей — купальные принадлежности, защита от солнца, средства от комаров.",
       conditions: { urgency: ["now", "week"], terrain: ["coast"], duration: ["short"] },
-      priority: "fast", reliability: "high",
-      time_estimate: "Собрать за 15 мин", yield_estimate: "вес ~3-5 кг",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "Собрать за 15 мин",
+      yield_estimate: "вес ~3-5 кг",
       tags: ["checklist", "coast", "short", "beach"],
       steps: [
         "☐ 💧 Вода — 1.5-2 литра",
@@ -172,13 +203,17 @@ const kitData = {
         "Пить воду регулярно — на солнце обезвоживание"
       ]
     },
+    // ============================================================
+    // 6. ПОЛНЫЙ НАБОР ДЛЯ ВЫЖИВАНИЯ (НА БУДУЩЕЕ)
+    // ============================================================
     {
       id: "complete_kit",
       title: "🎒 Полный набор для выживания (на будущее)",
       description: "Базовая комплектация для любого путешествия. Подходит для долгосрочных походов, экспедиций или просто для хранения дома на случай ЧС.",
       conditions: { urgency: ["future"], terrain: ["forest", "desert", "coast", "urban"], duration: ["long"] },
-      priority: "slow", reliability: "high",
-      time_estimate: "Собрать за 1 день", yield_estimate: "вес ~15-20 кг",
+      scoring: { priority: "slow", reliability: "high" },
+      time_estimate: "Собрать за 1 день",
+      yield_estimate: "вес ~15-20 кг",
       tags: ["checklist", "complete", "survival", "long_term"],
       steps: [
         "☐ 💧 Вода — 5-10 литров или фильтр + таблетки",
@@ -206,7 +241,4 @@ const kitData = {
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.kitData = kitData;
+});
