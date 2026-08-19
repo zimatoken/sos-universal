@@ -97,21 +97,40 @@ function getVisibleQuestions(questions, answers) {
 // ============================================================
 
 function startFlow(category) {
-  // Загружаем данные модуля
-  const flow = typeof getCategoryData === 'function' ? getCategoryData(category) : null;
+  // Определяем модуль из data-атрибута на body
+  const moduleId = document.body.dataset.module || detectModuleFromPath();
+  
+  // Пробуем новый реестр (Smart Adapter)
+  let flow = null;
+  if (typeof SOS_GET_QUIZ === 'function') {
+    flow = SOS_GET_QUIZ(moduleId, category);
+    if (flow) {
+      console.log(`✅ Smart Adapter: ${moduleId}/${category}`);
+    }
+  }
+  
+  // Fallback на старый getCategoryData
+  if (!flow && typeof getCategoryData === 'function') {
+    flow = getCategoryData(category);
+    if (flow) {
+      console.log(`✅ Fallback: ${category}`);
+    }
+  }
+  
   if (!flow) {
     showToastKey("toast_develop");
+    console.error(`❌ Нет данных: module=${moduleId}, category=${category}`);
     return;
   }
   
-  // Инициализируем состояние
+  // Инициализируем состояние (ОСТАЛЬНОЙ КОД НЕ МЕНЯЕТСЯ!)
   App.flow = flow;
   App.allQuestions = flow.questions || [];
   App.answers = {};
   App.currentIndex = 0;
   App.isComplete = false;
   
-  // Первичная фильтрация (пока ответов нет — видны только вопросы без условий)
+  // Первичная фильтрация
   App.visibleQuestions = getVisibleQuestions(App.allQuestions, App.answers);
   
   if (App.visibleQuestions.length === 0) {
@@ -121,6 +140,16 @@ function startFlow(category) {
   
   renderQuestion();
   showScreen("screen-questions");
+}
+
+// ============================================================
+// ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ (добавить после startFlow)
+// ============================================================
+
+function detectModuleFromPath() {
+  const path = window.location.pathname;
+  const m = path.match(/modules\/([^/]+)/);
+  return m ? m[1] : 'unknown';
 }
 
 // ============================================================
