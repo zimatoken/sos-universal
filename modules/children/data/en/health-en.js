@@ -1,281 +1,455 @@
-// === MODULE: CHILDREN ó HEALTH ===
-const healthDataEn = {
-  category: "health",
-  title: "?? Health",
-  description: "Fever, vomiting, allergies, seizures, breathing difficulties, pain ó when to call a doctor",
+// modules/children/data/en/health-en.js
+// === MODULE: CHILDREN ‚Äî HEALTH ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "children",
+    category: "health",
+    version: "1.0.0",
+    lang: "en",
+    title: "ü§í Health",
+    description: "Fever, vomiting, allergy, seizures, breathing, pain ‚Äî when to call the doctor",
+    icon: "ü§í",
+    color: "#db2777"
+  },
 
   questions: [
     {
       id: "symptom",
-      text: "What symptoms does the child have? (select all that apply)",
-      type: "multi",
+      type: "single",
+      text: "What is the main symptom in your child?",
       options: [
-        { id: "fever", label: "??? High fever", tags: ["fever"] },
-        { id: "vomit", label: "?? Vomiting / diarrhea", tags: ["vomit"] },
-        { id: "allergy", label: "?? Rash / swelling / hives", tags: ["allergy"] },
-        { id: "seizure", label: "? Seizures / loss of consciousness", tags: ["seizure"] },
-        { id: "breath", label: "?? Difficulty breathing / coughing", tags: ["breath"] },
-        { id: "pain", label: "?? Severe pain (abdomen, head, ear)", tags: ["pain"] }
+        { id: "fever", label: "üå°Ô∏è High fever", tags: ["fever"] },
+        { id: "vomit", label: "ü§¢ Vomiting / diarrhea", tags: ["vomit"] },
+        { id: "allergy", label: "ü§ß Rash / swelling / hives", tags: ["allergy"] },
+        { id: "seizure", label: "‚ö° Seizures / unconsciousness", tags: ["seizure"] },
+        { id: "breath", label: "ü´Å Difficulty breathing / cough", tags: ["breath"] },
+        { id: "pain", label: "ü§ï Severe pain (abdomen, head, ear)", tags: ["pain"] },
+        { id: "rash_fever", label: "ü©π Rash with fever", tags: ["rash_fever"] },
+        { id: "cough_fever", label: "ü´Å Cough with fever", tags: ["cough_fever"] }
       ]
     },
     {
       id: "age",
-      text: "Child's age?",
       type: "single",
-      conditions: { symptom: ["fever", "vomit", "allergy", "seizure", "breath", "pain"] },
+      text: "How old is your child?",
+      conditions: { symptom: ["fever", "vomit", "allergy", "seizure", "breath", "pain", "rash_fever", "cough_fever"] },
       options: [
-        { id: "infant", label: "?? Infant (0ñ1 year)", tags: ["infant"] },
-        { id: "toddler", label: "?? 1ñ3 years", tags: ["toddler"] },
-        { id: "preschool", label: "?? 3ñ7 years", tags: ["preschool"] },
-        { id: "school", label: "?? 7+ years", tags: ["school"] }
+        { id: "infant", label: "üë∂ Infant (0‚Äì1 year)", tags: ["infant"] },
+        { id: "toddler", label: "üßí 1‚Äì3 years", tags: ["toddler"] },
+        { id: "preschool", label: "üßí 3‚Äì7 years", tags: ["preschool"] },
+        { id: "school", label: "üßë 7‚Äì12 years", tags: ["school"] },
+        { id: "teen", label: "üßë 12+ years", tags: ["teen"] }
+      ]
+    },
+    {
+      id: "temp_exact",
+      type: "single",
+      text: "What is the exact temperature?",
+      conditions: { symptom: ["fever", "rash_fever", "cough_fever"] },
+      options: [
+        { id: "temp_37_38", label: "üå°Ô∏è 37.0‚Äì38.0¬∞C (low-grade)", tags: ["temp_37_38"] },
+        { id: "temp_38_39", label: "üå°Ô∏è 38.0‚Äì39.0¬∞C (fever)", tags: ["temp_38_39"] },
+        { id: "temp_39_plus", label: "üå°Ô∏è Over 39.0¬∞C (high)", tags: ["temp_39_plus"] },
+        { id: "temp_unknown", label: "‚ùì Haven't measured", tags: ["temp_unknown"] }
+      ]
+    },
+    {
+      id: "consciousness",
+      type: "single",
+      text: "Is the child conscious?",
+      conditions: { symptom: ["fever", "vomit", "allergy", "seizure", "breath", "pain", "rash_fever", "cough_fever"] },
+      options: [
+        { id: "conscious_yes", label: "‚úÖ Yes, responsive", tags: ["conscious_yes"] },
+        { id: "conscious_confused", label: "‚ö†Ô∏è Drowsy / lethargic / not responding", tags: ["conscious_confused"] },
+        { id: "conscious_no", label: "‚ùå Unconscious", tags: ["conscious_no"] }
+      ]
+    },
+    {
+      id: "has_drunk",
+      type: "single",
+      text: "Has the child drunk water in the last 6 hours?",
+      conditions: { symptom: ["fever", "vomit", "seizure", "breath", "pain", "rash_fever", "cough_fever"] },
+      options: [
+        { id: "drunk_yes", label: "‚úÖ Yes, normally", tags: ["drunk_yes"] },
+        { id: "drunk_less", label: "‚ö†Ô∏è Yes, but little", tags: ["drunk_less"] },
+        { id: "drunk_no", label: "‚ùå No, refusing to drink", tags: ["drunk_no"] }
       ]
     },
     {
       id: "duration",
-      text: "How long have the symptoms been present?",
       type: "single",
-      conditions: { symptom: ["fever", "vomit", "allergy", "seizure", "breath", "pain"] },
+      text: "How long have the symptoms lasted?",
+      conditions: { symptom: ["fever", "vomit", "allergy", "seizure", "breath", "pain", "rash_fever", "cough_fever"] },
       options: [
         { id: "less_1h", label: "Less than 1 hour", tags: ["acute"] },
         { id: "hours", label: "Several hours", tags: ["hours"] },
-        { id: "days", label: "1ñ3 days", tags: ["days"] },
+        { id: "days", label: "1‚Äì3 days", tags: ["days"] },
         { id: "week", label: "More than 3 days", tags: ["week"] }
+      ]
+    },
+    {
+      id: "vaccinations",
+      type: "single",
+      text: "Is the child vaccinated according to schedule?",
+      conditions: { symptom: ["fever", "rash_fever", "cough_fever"] },
+      options: [
+        { id: "vax_yes", label: "‚úÖ Yes, all vaccinations done", tags: ["vax_yes"] },
+        { id: "vax_no", label: "‚ùå No, missed or not done", tags: ["vax_no"] },
+        { id: "vax_unknown", label: "‚ùì Don't know", tags: ["vax_unknown"] }
       ]
     }
   ],
 
   solutions: [
-    // ==========================================
+    // ============================================================
     // 1. HIGH FEVER
-    // ==========================================
+    // ============================================================
     {
       id: "high_fever_action",
-      title: "??? High fever ó when to sound the alarm",
-      description: "Fever is a protective response. But in infants and at high temperatures ó it's dangerous.",
+      title: "üå°Ô∏è High fever ‚Äî when to worry",
+      description: "Fever is a protective response. But in infants and at high temperatures ‚Äî it's dangerous.",
       conditions: { symptom: ["fever"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "10ñ30 minutes",
-      yield_estimate: "Reducing fever / diagnosis",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10‚Äì30 minutes",
+      yield_estimate: "Temperature reduced / diagnosis",
       tags: ["fever", "health", "emergency"],
       steps: [
-        "Measure temperature with a digital thermometer (oral, armpit, ear, rectal). Record the exact number and time",
-        "Under 3 months: temperature > 38∞C ó immediate doctor / ambulance. Immunity is weak, infection develops rapidly",
-        "3ñ36 months: > 39∞C or temperature > 38.5∞C for over 24 hours ó doctor. If seizures ó ambulance",
-        "Over 3 years: > 39.5∞C or > 39∞C for over 3 days ó doctor. If febrile seizures ó ambulance",
-        "Reduce fever if > 38.5∞C and the child feels unwell. Paracetamol (10ñ15 mg/kg) or Ibuprofen (5ñ10 mg/kg). NOT aspirin ó Reye's syndrome!",
-        "Sponging: warm water (not cold, not vinegar!), room 20ñ22∞C, light clothing. Cold sponging causes chills and raises temperature",
-        "Hydrate frequently, in small amounts: water, compote, tea. For vomiting ó 1 teaspoon every 5 minutes. Dehydration is more dangerous than fever",
-        "If temperature doesn't drop within 1 hour of antipyretic ó ambulance. This could be meningitis, sepsis, pneumonia"
+        "Measure temperature with a digital thermometer. Record the exact number and time.",
+        "Under 3 months: temperature > 38¬∞C ‚Äî IMMEDIATE doctor/ambulance.",
+        "3‚Äì36 months: > 39¬∞C or > 38.5¬∞C for over 24 hours ‚Äî doctor. If seizures ‚Äî ambulance.",
+        "Over 3 years: > 39.5¬∞C or > 39¬∞C for over 3 days ‚Äî doctor.",
+        "Reduce fever if > 38.5¬∞C and child feels unwell. Paracetamol (10‚Äì15 mg/kg) or Ibuprofen (5‚Äì10 mg/kg). NO aspirin!",
+        "Wipe with warm water (not cold, not vinegar), room 20‚Äì22¬∞C, light clothing.",
+        "Give fluids frequently, in small amounts: water, compote, tea.",
+        "If temperature doesn't drop within 1 hour after antipyretic ‚Äî ambulance."
       ],
       warnings: [
-        "DON'T give aspirin to children ó Reye's syndrome (liver and brain damage, fatal)",
-        "DON'T sponge with vinegar, alcohol, ice water ó this causes vasospasm, chills, and temperature increase",
-        "DON'T wrap the child up 'to sweat' ó overheating, heatstroke, dehydration. Light clothing, cool room",
-        "Febrile seizures (arms and legs twitching, eyes rolling back) ó call ambulance immediately. Lay on side, don't put anything in the mouth"
+        "DON'T give aspirin to children ‚Äî Reye's syndrome.",
+        "DON'T wipe with vinegar, alcohol, ice water ‚Äî causes vasospasm.",
+        "DON'T wrap the child to 'sweat' ‚Äî overheating.",
+        "Febrile seizures ‚Äî ambulance immediately. Lay on side, don't put anything in the mouth."
       ]
     },
+
+    // ============================================================
+    // 2. FEVER IN INFANT
+    // ============================================================
     {
       id: "fever_infant",
-      title: "?? Fever in an infant ó emergency situation",
-      description: "Children under 1 year have immature immunity. Even a mild fever can indicate a dangerous infection.",
+      title: "üë∂ Fever in an infant ‚Äî emergency",
+      description: "In children under 1 year, immunity is immature. Even a small fever can be dangerous.",
       conditions: { symptom: ["fever"], age: ["infant"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
       yield_estimate: "Emergency diagnosis",
       tags: ["fever", "infant", "emergency"],
       steps: [
-        "If an infant (0ñ12 months) has temperature > 38∞C ó IMMEDIATELY call an ambulance or go to the hospital",
-        "In infants, there is no 'just a fever'. It could be: meningitis, sepsis, pneumonia, urinary tract infection",
-        "Don't wait for the fever to 'go away on its own'. In infants, condition worsens in hours, not days",
-        "Before the ambulance arrives: undress the child to a diaper, ventilate the room, give water (if not vomiting)",
-        "Paracetamol or ibuprofen ó only as prescribed by a doctor. Dosage strictly by weight!",
-        "If seizures, lethargy, refusal to eat, crying without tears ó tell the doctor immediately"
+        "If an infant (0‚Äì12 months) has temperature > 38¬∞C ‚Äî IMMEDIATELY call an ambulance.",
+        "Infants don't have 'just a fever'. It could be meningitis, sepsis, pneumonia, UTI.",
+        "Don't wait for it to 'pass' ‚Äî condition worsens in hours.",
+        "Before ambulance arrives: undress to diaper, ventilate the room, give water (if not vomiting).",
+        "Paracetamol or ibuprofen ‚Äî only as prescribed by a doctor. Dosage strictly by weight!",
+        "If seizures, lethargy, refusal to eat, crying without tears ‚Äî tell the doctor immediately."
       ],
       warnings: [
-        "Fever in an infant is ALWAYS an emergency. Don't try to treat at home without a doctor",
-        "DON'T give medication without consulting a doctor ó incorrect dosage can be fatal",
-        "DON'T wrap the infant ó this causes overheating and heatstroke. Light clothing, cool room (20ñ22∞C)",
-        "DON'T bathe the child in warm water to sweat ó this is dangerous for infants"
+        "Fever in an infant is ALWAYS an emergency.",
+        "DON'T give medication without a doctor's consultation.",
+        "DON'T wrap the infant ‚Äî light clothing, cool room (20‚Äì22¬∞C).",
+        "DON'T bathe the child in warm water ‚Äî dangerous for infants."
       ]
     },
-    // ==========================================
-    // 2. VOMITING AND DIARRHEA
-    // ==========================================
+
+    // ============================================================
+    // 3. VOMITING AND DIARRHEA
+    // ============================================================
     {
       id: "vomit_diarrhea",
-      title: "?? Vomiting and diarrhea ó dehydration and infection",
-      description: "Rotavirus, poisoning, appendicitis ó causes vary. The main goal is to prevent dehydration.",
+      title: "ü§¢ Vomiting and diarrhea ‚Äî dehydration and infection",
+      description: "Rotavirus, poisoning, appendicitis ‚Äî causes vary. Main thing: prevent dehydration.",
       conditions: { symptom: ["vomit"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ6 hours",
-      yield_estimate: "Stopping vomiting / diagnosis",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì6 hours",
+      yield_estimate: "Vomiting stopped / diagnosis",
       tags: ["vomit", "poisoning", "infection"],
       steps: [
-        "If vomit is green (bile) or contains blood ó call ambulance immediately. This indicates intestinal obstruction or bleeding",
-        "If diarrhea contains blood or is black ó call ambulance. Intestinal infection, dysentery, bleeding",
-        "During vomiting ó don't give food or drink for 30ñ60 minutes. Then ó 1 teaspoon of water / rehydration solution every 5 minutes. Too much fluid will cause more vomiting",
-        "Rehydration solution (Regidron or similar: Hydrovit, Electrolyte): 1 packet per 1 liter of water. Give frequently, in small amounts. This prevents dehydration",
-        "If no rehydration solution ó homemade: 1 liter boiled water + 1 tsp salt + 8 tsp sugar. Or rice water, dried fruit compote",
-        "Diet: 4ñ6 hours after vomiting stops ó water-based porridge (rice, buckwheat), crackers, banana, apple puree. No milk, no fatty foods, no sweets",
-        "If vomiting / diarrhea > 6 times per hour, temperature > 38.5∞C, drowsiness, no urine for > 6 hours ó call ambulance. Dehydration is dangerous",
-        "If appendicitis is suspected (right side pain, nausea, fever) ó DON'T give painkillers, DON'T give enemas, DON'T feed. Call ambulance"
+        "If vomiting is green (bile) or with blood ‚Äî AMBULANCE IMMEDIATELY.",
+        "If diarrhea with blood, black stool ‚Äî AMBULANCE.",
+        "During vomiting ‚Äî no food or drink for 30‚Äì60 minutes. Then ‚Äî 1 teaspoon of water/Regidron every 5 minutes.",
+        "Regidron: 1 sachet per 1 liter of water. Give frequently, in small amounts.",
+        "If no Regidron ‚Äî homemade solution: 1 liter water + 1 tsp salt + 8 tsp sugar.",
+        "Diet: 4‚Äì6 hours after vomiting stops ‚Äî water-based cereals, crackers, banana, applesauce.",
+        "If vomiting/diarrhea > 6 times per hour, fever > 38.5¬∞C, drowsiness, no urine > 6 hours ‚Äî AMBULANCE."
       ],
       warnings: [
-        "DON'T give anti-emetics without a doctor's prescription ó they mask serious causes (appendicitis, obstruction)",
-        "DON'T give absorbents (activated charcoal, Smecta) for intestinal obstruction ó it will worsen the condition",
-        "DON'T give antibiotics on your own ó most intestinal infections are viral, antibiotics are useless and harmful",
-        "Dehydration in children develops quickly: dry lips, no tears, sunken fontanel (in infants), dark urine or no urine for 6+ hours"
+        "DON'T give antiemetics without a doctor ‚Äî mask serious causes.",
+        "DON'T give adsorbents with intestinal obstruction ‚Äî worsen it.",
+        "DON'T give antibiotics yourself ‚Äî most infections are viral.",
+        "Dehydration develops quickly: dry lips, no tears, sunken fontanelle, no urine 6+ hours."
       ]
     },
+
+    // ============================================================
+    // 4. DEHYDRATION IN INFANT
+    // ============================================================
     {
-      id: "vomit_prolonged",
-      title: "? Prolonged vomiting ó dehydration risk and hospitalization",
-      description: "If vomiting lasts more than 24 hours ó dehydration risk is very high. Medical help is required.",
-      conditions: { symptom: ["vomit"], duration: ["days", "week"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ2 hours",
-      yield_estimate: "Restoring fluid balance / hospitalization",
-      tags: ["vomit", "dehydration", "urgent"],
+      id: "dehydration_infant",
+      title: "üíß Dehydration in infants ‚Äî signs and actions",
+      description: "Infants lose water faster than adults. Dehydration can occur in 6‚Äì12 hours.",
+      conditions: { symptom: ["vomit"], age: ["infant"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì2 hours",
+      yield_estimate: "Fluid balance restored",
+      tags: ["dehydration", "infant", "emergency"],
       steps: [
-        "If vomiting > 24 hours ó call a doctor to the home or go to the hospital. Children dehydrate faster than adults",
-        "Continue giving rehydration solution 1 tsp every 5ñ10 minutes. If vomiting continues ó try frozen rehydration cubes (to lick)",
-        "Monitor weight: loss of 5ñ10% of body weight is critical dehydration, requiring IV fluids",
-        "If diarrhea > 3 days ó get a stool test for infections (salmonella, dysentery, rotavirus)",
-        "If the child refuses to drink, hasn't urinated for 8+ hours, becomes drowsy ó call ambulance. Hospitalization required",
-        "At the hospital: IV drips with Ringer's solution, monitoring, blood and urine tests"
+        "Signs of dehydration: dry lips, no tears, sunken fontanelle, dark urine or no urine 6+ hours.",
+        "If no urine 6+ hours ‚Äî IMMEDIATELY see a doctor. Critical dehydration.",
+        "If child refuses to drink ‚Äî give from a syringe without needle, 1‚Äì2 ml every 5 minutes.",
+        "Use Regidron or special oral rehydration solutions.",
+        "If vomiting prevents drinking ‚Äî call an ambulance. IV fluids may be needed.",
+        "If 5‚Äì10% weight loss ‚Äî critical dehydration, requires hospitalization."
       ],
       warnings: [
-        "Prolonged vomiting > 24 hours is a medical situation. Don't try to treat at home",
-        "Dehydration in children with vomiting and diarrhea develops in 6ñ12 hours. Don't wait for it to 'pass'",
-        "DON'T give milk, juices, or soda during vomiting ó they worsen diarrhea and vomiting"
+        "Dehydration in infants is life-threatening. Don't wait for it to 'pass'.",
+        "DON'T give juice, tea, compote ‚Äî they may worsen diarrhea.",
+        "DON'T force-feed fluids ‚Äî child may choke."
       ]
     },
-    // ==========================================
-    // 3. ALLERGY
-    // ==========================================
+
+    // ============================================================
+    // 5. ALLERGY AND ANAPHYLAXIS
+    // ============================================================
     {
       id: "allergy_emergency",
-      title: "?? Allergy and anaphylaxis ó emergency care",
-      description: "Hives ó tolerable. Angioedema and anaphylaxis ó fatal. Learn the difference.",
+      title: "ü§ß Allergy and anaphylaxis ‚Äî emergency help",
+      description: "Hives are manageable. Angioedema and anaphylaxis are deadly.",
       conditions: { symptom: ["allergy"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ10 minutes",
-      yield_estimate: "Stopping the allergic reaction",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì10 minutes",
+      yield_estimate: "Allergic reaction stopped",
       tags: ["allergy", "anaphylaxis", "emergency"],
       steps: [
-        "Mild allergy (hives, sneezing, runny nose, itching): give antihistamine (Zyrtec, Fenistil, Suprastin ó age-appropriate). Monitor for 30 minutes",
-        "Angioedema (swollen lips, tongue, eyelids, difficulty swallowing) ó call ambulance immediately. Give antihistamine, apply cold. Don't give fluids ó they may choke",
-        "Anaphylaxis (difficulty breathing, wheezing, pallor, weak pulse, loss of consciousness) ó call 911 immediately. This is fatal",
-        "If an epinephrine auto-injector (EpiPen) is available ó inject into the thigh through clothing. Hold for 10 seconds. Can repeat after 5ñ15 minutes",
-        "Lay the child on their back, legs elevated (for shock). If vomiting ó on their side. Don't give fluids, food, or oral medications during swelling",
-        "After anaphylaxis ó mandatory 24-hour observation in hospital. Recurrence can occur in 4ñ12 hours (biphasic anaphylaxis)",
-        "Find the cause: what they ate, what they applied, where they were, insect bite, medication. Save the packaging, photo. Tell the doctor",
-        "After discharge ó get a referral to an allergist. Get tested (IgE, skin prick tests). Always carry the auto-injector and antihistamine"
+        "Mild allergy (hives, sneezing): give antihistamine (Zyrtec, Fenistil, Suprastin ‚Äî by age).",
+        "Angioedema (swollen lips, tongue, eyelids) ‚Äî AMBULANCE IMMEDIATELY. Give antihistamine, apply cold.",
+        "Anaphylaxis (difficulty breathing, wheezing, pallor, unconsciousness) ‚Äî AMBULANCE. Deadly.",
+        "If you have an epinephrine auto-injector (EpiPen) ‚Äî inject into the thigh through clothing.",
+        "Lay the child on their back, legs elevated (for shock). If vomiting ‚Äî on side.",
+        "After anaphylaxis ‚Äî 24-hour hospitalization (biphasic anaphylaxis).",
+        "Find the cause: what they ate, used, insect bite. Keep packaging, take photos."
       ],
       warnings: [
-        "Anaphylaxis kills in 5ñ30 minutes. Don't wait for it to 'pass'. Epinephrine is the only cure. Antihistamines DO NOT replace epinephrine",
-        "Angioedema can progress to anaphylaxis in minutes. Monitor breathing, pulse, consciousness. If worsens ó call ambulance",
-        "DON'T give food, water, or oral medication during tongue/throat swelling ó the child may choke",
-        "EpiPen auto-injector: shelf life 12ñ18 months. Check the date. Store in a cool dark place, not in the car (overheating)"
+        "Anaphylaxis kills in 5‚Äì30 minutes. Epinephrine is the only cure.",
+        "DON'T give food, water, oral medication with tongue swelling ‚Äî may choke.",
+        "EpiPen: expiration 12‚Äì18 months. Check the date."
       ]
     },
-    // ==========================================
-    // 4. SEIZURES
-    // ==========================================
+
+    // ============================================================
+    // 6. SEIZURES
+    // ============================================================
     {
       id: "seizure_first_aid",
-      title: "? Seizures / loss of consciousness ó first aid",
-      description: "Febrile seizures in children are scary, but usually harmless. Epilepsy requires monitoring.",
+      title: "‚ö° Seizures / unconsciousness ‚Äî first aid",
+      description: "Seizures are scary but usually safe. The main thing is correct actions.",
       conditions: { symptom: ["seizure"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5ñ15 minutes",
-      yield_estimate: "Safe end of the seizure",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5‚Äì15 minutes",
+      yield_estimate: "Safe seizure ending",
       tags: ["seizure", "epilepsy", "emergency"],
       steps: [
-        "Don't panic. Most seizures last 1ñ3 minutes and stop on their own. Your job is to prevent injury and choking",
-        "Place the child on their side (recovery position) ó this prevents the tongue from blocking the airway and vomit from entering the lungs",
-        "Remove dangerous objects: furniture corners, sharp objects, hot items. Place something soft under the head (blanket, pillow, clothing)",
-        "DON'T put anything in the mouth: spoons, fingers, cloth. This can break teeth, cause vomiting, choking. The tongue CANNOT be swallowed during seizures ó this is a myth",
-        "DON'T restrain the child, DON'T try to stop the movements. This can cause fractures, dislocations, injuries",
-        "Time the seizure. If it lasts > 5 minutes ó call ambulance immediately. This is status epilepticus, requires diazepam administration",
-        "After the seizure, the child will be drowsy, confused, may not recognize you. This is normal (post-ictal state). Put them to sleep, monitor breathing",
-        "First seizure ever ó always call ambulance and get evaluation: EEG, MRI, tests. Even if it 'passed on its own' ó it's serious"
+        "Don't panic. Most seizures last 1‚Äì3 minutes and resolve on their own.",
+        "Lay the child on their side ‚Äî prevents tongue blockage and choking.",
+        "Remove dangerous objects: sharp corners, sharp items. Place something soft under the head.",
+        "DON'T put anything in the mouth ‚Äî will break teeth, cause vomiting, choking.",
+        "DON'T restrain the child ‚Äî will cause fractures, dislocations.",
+        "Time it. If seizure > 5 minutes ‚Äî AMBULANCE IMMEDIATELY.",
+        "After seizure ‚Äî child will be sleepy, confused. Lay to sleep, monitor breathing.",
+        "First seizure in life ‚Äî ambulance and tests: EEG, MRI, blood tests."
       ],
       warnings: [
-        "DON'T put anything in the mouth during seizures ó it's more dangerous than the seizure itself. Teeth will break, vomit will enter the lungs",
-        "DON'T give water, medication, or food during and immediately after a seizure ó the child may choke. Wait for full consciousness (15ñ30 minutes)",
-        "If seizure > 5 minutes ó this is an emergency. Ambulance, anticonvulsant administration. Brain damage is possible",
-        "Febrile seizures (with fever) ó most common in children 6 months ñ 5 years. Usually harmless, but the first one always requires ambulance to rule out meningitis"
+        "DON'T put anything in the mouth during seizures ‚Äî more dangerous than the seizure itself.",
+        "DON'T give water, medicine, food during or immediately after seizure.",
+        "If seizure > 5 minutes ‚Äî emergency. Ambulance.",
+        "Febrile seizures (with fever) ‚Äî first time always ambulance."
       ]
     },
-    // ==========================================
-    // 5. BREATHING DIFFICULTIES
-    // ==========================================
+
+    // ============================================================
+    // 7. DIFFICULT BREATHING
+    // ============================================================
     {
       id: "breathing_emergency",
-      title: "?? Breathing difficulties ó emergency situation",
-      description: "Difficulty breathing, wheezing, shortness of breath ó require immediate medical evaluation.",
+      title: "ü´Å Difficulty breathing ‚Äî emergency",
+      description: "Difficulty breathing, wheezing, shortness of breath ‚Äî require immediate evaluation.",
       conditions: { symptom: ["breath"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
-      yield_estimate: "Breathing assessment and emergency care",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Breathing assessment and emergency help",
       tags: ["breath", "emergency", "asthma"],
       steps: [
-        "Difficulty breathing is ALWAYS an emergency. Don't wait for it to 'pass'. Call ambulance or go to the hospital",
-        "Sit the child up (don't lay on their back!). Comfortable position: sitting, leaning slightly forward, hands on knees ó this eases breathing",
-        "If the child has asthma ó use the inhaler (bronchodilator) immediately. If no improvement in 10ñ15 minutes ó call ambulance",
-        "Wheezing, crackling, retraction of intercostal spaces ó signs of respiratory failure. Call ambulance",
-        "If breathing stops ó start CPR: 30 chest compressions, 2 breaths. Continue until ambulance arrives",
-        "If the child is blue (cyanosis of lips, nails) ó oxygen deprivation. Immediately call ambulance",
-        "If foreign body is lodged in the airway: Heimlich maneuver (for children 1+ years). For infants ó 5 back blows, 5 chest thrusts",
-        "If angioedema (allergy) is suspected ó epinephrine (if available) + ambulance"
+        "Difficulty breathing is ALWAYS an emergency. Call an ambulance.",
+        "Sit the child up (don't lay on back!). Comfortable position: sitting, leaning forward slightly.",
+        "If child has asthma ‚Äî use inhaler (bronchodilator) IMMEDIATELY.",
+        "Wheezing, intercostal retractions ‚Äî signs of respiratory failure.",
+        "If breathing stops ‚Äî start CPR: 30 chest compressions, 2 breaths.",
+        "If child is blue (lips, nails) ‚Äî oxygen deprivation. Immediately call ambulance.",
+        "If foreign body in airway ‚Äî Heimlich maneuver (for children 1+ years)."
       ],
       warnings: [
-        "Difficulty breathing is an emergency. Don't try to treat at home without a doctor",
-        "DON'T give water, food, or oral medication during severe shortness of breath ó the child may choke",
-        "DON'T lay the child on their back during breathing difficulties ó this worsens the condition",
-        "If the child turns blue or loses consciousness ó immediately start CPR"
+        "Difficulty breathing is an emergency. Don't try to treat at home.",
+        "DON'T give water, food, oral medication with severe shortness of breath.",
+        "DON'T lay the child on their back ‚Äî worsens condition.",
+        "If child turns blue, loses consciousness ‚Äî immediately start CPR."
       ]
     },
-    // ==========================================
-    // 6. SEVERE PAIN
-    // ==========================================
+
+    // ============================================================
+    // 8. RASH WITH FEVER
+    // ============================================================
     {
-      id: "severe_pain",
-      title: "?? Severe pain ó when to call an ambulance",
-      description: "Severe pain in the abdomen, head, ear, or bones ó may be a sign of a serious condition.",
-      conditions: { symptom: ["pain"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "15ñ60 minutes",
-      yield_estimate: "Assessment and pain relief",
-      tags: ["pain", "emergency", "diagnosis"],
+      id: "rash_with_fever",
+      title: "ü©π Rash with fever ‚Äî possible causes",
+      description: "Rash with fever can be a sign of infection. Don't miss meningococcemia.",
+      conditions: { symptom: ["rash_fever"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì2 hours",
+      yield_estimate: "Cause diagnosed",
+      tags: ["rash", "fever", "infection"],
       steps: [
-        "Severe pain that the child cannot tolerate ó is an emergency. Pain is the body's signal of damage",
-        "Abdominal pain with vomiting, fever, muscle tension (board-like) ó possible appendicitis. DON'T give painkillers, DON'T apply heat. Call ambulance",
-        "Headache with vomiting, photophobia, neck stiffness ó possible meningitis. Call ambulance immediately",
-        "Ear pain with fever ó otitis media. See an ENT doctor. DON'T apply heat ó it can cause abscess",
-        "Bone or joint pain with fever ó possible osteomyelitis or arthritis. See a doctor, get tests, X-ray",
-        "For pain relief: paracetamol (10ñ15 mg/kg) or ibuprofen (5ñ10 mg/kg). DON'T give aspirin!",
-        "Cold for injuries (ice, frozen vegetables wrapped in a towel) ó 15ñ20 minutes, 20-minute break",
-        "If severe pain doesn't subside 30ñ60 minutes after painkillers ó call ambulance"
+        "If rash is dark red, doesn't fade with pressure (glass test) ‚Äî IMMEDIATE AMBULANCE. Meningococcemia ‚Äî deadly.",
+        "If rash is pink, fades with pressure ‚Äî likely viral infection.",
+        "If rash is itchy ‚Äî possibly allergy. Give antihistamine.",
+        "If rash has blisters, weeping ‚Äî possible herpes infection.",
+        "Any rash with fever in an infant ‚Äî urgent doctor.",
+        "Record: when rash appeared, where it started, is there itching, temperature.",
+        "Take a photo of the rash before seeing a doctor."
       ],
       warnings: [
-        "Severe pain with vomiting, fever, muscle tension ó possible appendicitis, meningitis, peritonitis. Call ambulance",
-        "DON'T give painkillers for acute abdominal pain ó it masks appendicitis symptoms",
-        "DON'T apply heat to a painful abdomen or ear ó it can cause abscess or peritonitis",
-        "DON'T give aspirin for headache in children ó Reye's syndrome"
+        "Meningococcemia is deadly. If rash doesn't fade ‚Äî AMBULANCE IMMEDIATELY.",
+        "DON'T apply anything to the rash before seeing a doctor.",
+        "DON'T give antibiotics without a prescription."
+      ]
+    },
+
+    // ============================================================
+    // 9. COUGH WITH FEVER
+    // ============================================================
+    {
+      id: "cough_with_fever",
+      title: "ü´Å Cough with fever ‚Äî when to see a doctor",
+      description: "Cough with fever can be bronchitis, pneumonia, whooping cough.",
+      conditions: { symptom: ["cough_fever"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì3 days",
+      yield_estimate: "Diagnosis and treatment",
+      tags: ["cough", "fever", "infection"],
+      steps: [
+        "If cough is dry, barking, 'whooping' ‚Äî possible whooping cough or croup. Urgent doctor.",
+        "If cough is wet, with phlegm, fever > 38¬∞C for > 3 days ‚Äî possible pneumonia. Urgent doctor, X-ray.",
+        "If cough with wheezing ‚Äî possible asthma or bronchitis. Inhaler and doctor needed.",
+        "If cough with blood ‚Äî IMMEDIATE AMBULANCE.",
+        "Whooping cough: coughing to vomiting, 'whooping' sound on inhale ‚Äî urgent hospitalization.",
+        "Plenty of warm fluids, humidified air (20‚Äì22¬∞C, 40‚Äì60% humidity) ‚Äî help condition.",
+        "DON'T give cough suppressants for wet cough ‚Äî they prevent phlegm clearance."
+      ],
+      warnings: [
+        "Cough with fever > 3 days ‚Äî requires doctor and X-ray.",
+        "DON'T give antibiotics without prescription ‚Äî tests needed.",
+        "DON'T give cough suppressants for wet cough ‚Äî dangerous.",
+        "Whooping cough is dangerous for infants ‚Äî requires hospitalization."
+      ]
+    },
+
+    // ============================================================
+    // 10. SEVERE PAIN
+    // ============================================================
+    {
+      id: "severe_pain",
+      title: "ü§ï Severe pain ‚Äî when to call ambulance",
+      description: "Severe abdominal, head, ear, bone pain ‚Äî may be a sign of serious illness.",
+      conditions: { symptom: ["pain"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "15‚Äì60 minutes",
+      yield_estimate: "Pain assessment and relief",
+      tags: ["pain", "emergency", "diagnosis"],
+      steps: [
+        "Severe pain that the child can't bear ‚Äî emergency.",
+        "Abdominal pain with vomiting, fever, muscle tension ‚Äî possible appendicitis. DON'T give painkillers, DON'T heat. Ambulance.",
+        "Headache with vomiting, photophobia, neck stiffness ‚Äî possible meningitis. Ambulance.",
+        "Ear pain with fever ‚Äî otitis media. ENT doctor. DON'T heat.",
+        "Bone/joint pain with fever ‚Äî possible osteomyelitis or arthritis. Doctor.",
+        "For pain relief: paracetamol (10‚Äì15 mg/kg) or ibuprofen (5‚Äì10 mg/kg). NO aspirin!",
+        "Cold for trauma ‚Äî 15‚Äì20 minutes, 20-minute break.",
+        "If pain doesn't improve within 30‚Äì60 minutes after painkillers ‚Äî ambulance."
+      ],
+      warnings: [
+        "Severe pain with vomiting, fever, muscle tension ‚Äî AMBULANCE.",
+        "DON'T give painkillers for acute abdominal pain ‚Äî will mask the picture.",
+        "DON'T heat the abdomen or ear ‚Äî may cause abscess.",
+        "DON'T give aspirin for headache in children ‚Äî Reye's syndrome."
+      ]
+    },
+
+    // ============================================================
+    // 11. WHEN TO CALL AN AMBULANCE ‚Äî CHEAT SHEET
+    // ============================================================
+    {
+      id: "when_call_ambulance",
+      title: "üöë When to call an ambulance ‚Äî cheat sheet for parents",
+      description: "Save this guide. When in doubt ‚Äî call an ambulance.",
+      conditions: { symptom: ["fever", "vomit", "allergy", "seizure", "breath", "pain", "rash_fever", "cough_fever"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1 minute",
+      yield_estimate: "Quick decision",
+      tags: ["ambulance", "emergency", "checklist"],
+      steps: [
+        "CALL AMBULANCE IMMEDIATELY (03/103/112) IF:",
+        "1. Temperature in an infant > 38¬∞C.",
+        "2. Seizures > 5 minutes.",
+        "3. Difficulty breathing, bluish lips.",
+        "4. Unconsciousness or severe drowsiness.",
+        "5. Green or bloody vomiting.",
+        "6. Rash that doesn't fade with pressure.",
+        "7. Severe pain that the child can't bear.",
+        "8. Swelling of face, lips, tongue (angioedema).",
+        "9. Poisoning (child ate something dangerous).",
+        "10. Head injury with unconsciousness."
+      ],
+      warnings: [
+        "DON'T wait 'until morning' if any of these signs are present.",
+        "DON'T be afraid to call an ambulance 'unnecessarily' ‚Äî better safe than sorry.",
+        "DON'T try to treat emergencies at home ‚Äî time is against you."
+      ]
+    },
+
+    // ============================================================
+    // 12. POISONING
+    // ============================================================
+    {
+      id: "poisoning_emergency",
+      title: "‚ò†Ô∏è Poisoning ‚Äî what to do",
+      description: "Child ate medication, household chemicals, berries ‚Äî immediate actions.",
+      conditions: { symptom: ["vomit"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Life saved",
+      tags: ["poisoning", "emergency", "first_aid"],
+      steps: [
+        "If child ate something dangerous ‚Äî DON'T induce vomiting without doctor's instruction.",
+        "Keep the package, remains of the substance ‚Äî show to the doctor.",
+        "If child is unconscious ‚Äî check breathing. If none ‚Äî CPR.",
+        "Call ambulance (03/103/112). Report: age, weight, what they ate, how much, when.",
+        "If conscious ‚Äî give water or milk to drink (if not acid/alkali).",
+        "Don't give adsorbents if you don't know what was eaten.",
+        "If chemicals on skin ‚Äî rinse with water for 15‚Äì20 minutes.",
+        "If chemicals in eyes ‚Äî rinse with water for 15‚Äì20 minutes, don't put anything in."
+      ],
+      warnings: [
+        "DON'T induce vomiting for acid, alkali, gasoline poisoning ‚Äî doubles the burn.",
+        "DON'T give milk for poisoning ‚Äî it increases absorption.",
+        "DON'T try to 'neutralize' poison yourself.",
+        "DON'T leave the child alone ‚Äî they may lose consciousness."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.healthDataEn = healthDataEn;
+});
