@@ -1,280 +1,378 @@
-// === MODULE: CONSUMER PROTECTION (ENGLISH) ===
-const consumerDataEn = {
-  category: "consumer",
-  title: "🛡️ Consumer Protection",
-  description: "What to do when buying a defective product or receiving poor-quality services",
+// modules/lawyer/data/en/consumer-en.js
+// === MODULE: LAWYER — CONSUMER PROTECTION ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "lawyer",
+    category: "consumer",
+    version: "1.0.0",
+    lang: "en",
+    title: "🛡️ Consumer Protection",
+    description: "Defective goods, poor services, refunds, complaints — legal protection algorithms",
+    icon: "🛡️",
+    color: "#7c3aed"
+  },
 
   questions: [
     {
       id: "consumer_issue",
-      text: "What is your problem?",
       type: "single",
+      text: "What's your problem?",
       options: [
-        { id: "defective", label: "❌ Bought a defective / non-working product", tags: ["defective", "goods"] },
-        { id: "service_bad", label: "🔧 Service was poor / not provided", tags: ["service", "bad"] },
-        { id: "food_bad", label: "🍖 Spoiled food / food poisoning", tags: ["food", "poison"] },
-        { id: "online_scam", label: "💻 Online purchase fraud / didn't receive item", tags: ["online", "scam"] },
-        { id: "refund_refusal", label: "💸 Seller refuses to refund money", tags: ["refund", "dispute"] }
+        { id: "defective", label: "❌ Bought a defective product / doesn't work", tags: ["defective"] },
+        { id: "service_bad", label: "🔧 Poor service / service not provided", tags: ["service"] },
+        { id: "food_poison", label: "🍖 Spoiled food / food poisoning", tags: ["food"] },
+        { id: "online_scam", label: "💻 Online scam / didn't receive goods", tags: ["online"] },
+        { id: "refund_refusal", label: "💸 Seller refuses to refund", tags: ["refund"] },
+        { id: "no_receipt", label: "🧾 Lost receipt — how to return?", tags: ["no_receipt"] }
       ]
     },
     {
       id: "purchase_method",
-      text: "How did you buy the product?",
       type: "single",
+      text: "How did you purchase?",
+      conditions: { consumer_issue: ["defective", "service", "food", "online", "refund", "no_receipt"] },
       options: [
-        { id: "offline_store", label: "🏪 In a regular store (offline)", tags: ["offline"] },
-        { id: "online_store", label: "🛒 In an online store", tags: ["online"] },
-        { id: "marketplace", label: "📦 On a marketplace (Ozon, Wildberries, Yandex.Market)", tags: ["marketplace"] },
-        { id: "private_person", label: "👤 From an individual / on Avito", tags: ["private"] }
+        { id: "offline_store", label: "🏪 In a physical store", tags: ["offline"] },
+        { id: "online_store", label: "🛒 Online store", tags: ["online_store"] },
+        { id: "marketplace", label: "📦 Marketplace (Amazon, eBay, AliExpress)", tags: ["marketplace"] },
+        { id: "private_person", label: "👤 From a private individual (Craigslist, FB Marketplace)", tags: ["private"] }
       ]
     },
     {
       id: "has_receipt",
-      text: "Do you have a receipt or other proof of purchase?",
       type: "single",
+      text: "Do you have proof of purchase?",
+      conditions: { consumer_issue: ["defective", "service", "food", "online", "refund", "no_receipt"] },
       options: [
-        { id: "yes_receipt", label: "🧾 Yes, I have a receipt / electronic receipt", tags: ["receipt"] },
-        { id: "yes_other", label: "📄 I have a bank statement / transfer record", tags: ["bank_statement"] },
-        { id: "no_document", label: "❌ No receipt or other documents", tags: ["no_receipt"] }
-      ]
-    },
-    {
-      id: "product_type",
-      text: "What product did you buy?",
-      conditions: { consumer_issue: ["defective", "refund_refusal"] },
-      options: [
-        { id: "electronics", label: "📱 Electronics / appliances", tags: ["electronics"] },
-        { id: "clothes", label: "👕 Clothing / footwear", tags: ["clothes"] },
-        { id: "car", label: "🚗 Car / spare parts", tags: ["car"] },
-        { id: "furniture", label: "🪑 Furniture / home goods", tags: ["furniture"] },
-        { id: "other_goods", label: "📦 Other", tags: ["other"] }
-      ]
-    },
-    {
-      id: "time_passed",
-      text: "How long since purchase?",
-      conditions: { consumer_issue: ["defective", "refund_refusal"] },
-      options: [
-        { id: "14_days", label: "📅 Up to 14 days", tags: ["short"] },
-        { id: "2_years", label: "📆 Up to 2 years (within warranty)", tags: ["warranty"] },
-        { id: "over_2y", label: "📈 More than 2 years (out of warranty)", tags: ["out_of_warranty"] }
+        { id: "receipt", label: "🧾 Yes, receipt / digital receipt", tags: ["receipt"] },
+        { id: "bank_statement", label: "📄 Bank statement / transfer record", tags: ["bank_statement"] },
+        { id: "no_document", label: "❌ No receipt or other documents", tags: ["no_document"] }
       ]
     },
     {
       id: "return_reason",
+      type: "single",
       text: "Why do you want to return the product?",
-      conditions: { consumer_issue: ["refund_refusal"] },
+      conditions: { consumer_issue: ["defective", "refund"] },
       options: [
-        { id: "not_satisfied", label: "Doesn't fit / wrong size / color", tags: ["change_mind"] },
-        { id: "defect_found", label: "Found a defect", tags: ["defective"] },
-        { id: "does_not_work", label: "Doesn't work / broken", tags: ["broken"] }
+        { id: "change_mind", label: "Changed my mind (wrong size/color/style)", tags: ["change_mind"] },
+        { id: "defect_found", label: "Found a defect", tags: ["defect_found"] },
+        { id: "broken", label: "Broken / stopped working", tags: ["broken"] }
+      ]
+    },
+    {
+      id: "time_passed",
+      type: "single",
+      text: "How long since purchase?",
+      conditions: { consumer_issue: ["defective", "refund"] },
+      options: [
+        { id: "days_14", label: "📅 Less than 14 days", tags: ["days_14"] },
+        { id: "warranty", label: "📆 Within warranty period", tags: ["warranty"] },
+        { id: "out_of_warranty", label: "📈 Warranty expired", tags: ["out_of_warranty"] }
+      ]
+    },
+    {
+      id: "seller_response",
+      type: "single",
+      text: "Has the seller responded to your claim?",
+      conditions: { consumer_issue: ["defective", "service", "food", "online", "refund"] },
+      options: [
+        { id: "no_response", label: "❌ No response / ignoring", tags: ["no_response"] },
+        { id: "refused", label: "🚫 Refused", tags: ["refused"] },
+        { id: "offered_repair", label: "🔧 Offered repair", tags: ["offered_repair"] },
+        { id: "offered_exchange", label: "🔄 Offered exchange", tags: ["offered_exchange"] }
       ]
     }
   ],
 
   solutions: [
-    // ========================================
-    // 1. Return of goods of proper quality (14 days)
-    // ========================================
+    // ============================================================
+    // 1. RETURN OF GOOD QUALITY (14 DAYS)
+    // ============================================================
     {
-      id: "return_14_days",
-      title: "🔄 Return of goods of proper quality within 14 days",
-      description: "Within 14 days, you can return ANY product of proper quality (except the exclusion list).",
-      conditions: { consumer_issue: ["defective"], time_passed: ["14_days"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1-10 days",
-      yield_estimate: "Money refund",
+      id: "return_14_days_good",
+      title: "🔄 Return of good quality goods — 14 days",
+      description: "Within 14 days you can return ANY good quality product (except the exclusion list).",
+      conditions: { consumer_issue: ["defective", "refund"], return_reason: ["change_mind"], time_passed: ["days_14"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–10 days",
+      yield_estimate: "Money refunded",
       tags: ["return", "14_days", "law"],
       steps: [
-        "Check that the product is not on the non-returnable list (food, medicines, underwear, jewelry, etc.)",
-        "Keep the receipt, packaging, labels — without a receipt you can return with other proof of purchase",
-        "Write a return application (template on the Rospotrebnadzor website)",
-        "Demand: refund (within 10 days) or exchange for a similar product",
-        "If refused — complain to Rospotrebnadzor + file a claim in magistrate court (up to 100,000 RUB)",
-        "Upon return: the seller must refund the money on the day of return (Article 22 of the Consumer Protection Law)"
+        "Check: product is NOT on the exclusion list (food, medicine, underwear, jewelry, complex technical goods)",
+        "Keep: receipt, packaging, labels, all accessories. Without receipt, use other proof (bank statement, witness statements)",
+        "Write a return application (sample available on consumer protection websites)",
+        "Submit the application in person (2 copies) or send by registered mail. The seller must stamp your copy with date and signature",
+        "Refund deadline: 10 days from claim submission. If delayed, penalty applies 1% per day",
+        "If refused: file a complaint with the consumer protection agency + lawsuit in court"
       ],
       warnings: [
-        "Electronics with opened packaging — can also be returned within 14 days if the appearance is not damaged",
-        "If the product is of inadequate quality — there is no time limit (within warranty)",
-        "DO NOT accept 'exchange only, no refund' — it's illegal",
-        "If the seller asks for a reason for return — you are NOT obliged (Article 25 of the Consumer Protection Law)"
+        "Complex technical goods (smartphones, laptops, cameras, cars) CANNOT be returned under 'changed mind' law",
+        "If the product was used, the seller may reduce the refund amount (for wear and tear)",
+        "DON'T accept 'exchange only, no money back' — it's illegal",
+        "For online purchases, a different law applies (7 days, not 14)"
       ]
     },
-    // ========================================
-    // 2. Defective product — return or exchange
-    // ========================================
+    // ============================================================
+    // 2. DEFECTIVE PRODUCT RETURN — WITHIN WARRANTY
+    // ============================================================
     {
-      id: "defective_return",
-      title: "🛠️ Return or exchange of defective product",
-      description: "If the product is defective or doesn't work — you have the right to a refund, exchange, or repair.",
-      conditions: { consumer_issue: ["defective"], time_passed: ["2_years", "over_2y"], return_reason: ["defect_found", "does_not_work"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "7-30 days",
+      id: "defective_return_warranty",
+      title: "🛠️ Defective product return (within warranty)",
+      description: "If the product has defects — you have the right to: refund, exchange, repair, or price reduction.",
+      conditions: { consumer_issue: ["defective", "refund"], return_reason: ["defect_found", "broken"], time_passed: ["days_14", "warranty"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "7–30 days",
       yield_estimate: "Refund, exchange, or repair",
-      tags: ["defective", "return", "exchange"],
+      tags: ["defective", "return", "exchange", "law"],
       steps: [
-        "Document the defect: photos, videos, description of the problem",
-        "Contact the seller with a written claim (in 2 copies)",
-        "Demand: refund, replacement with a similar product, free repair, or price reduction",
-        "Review period — 10 days (Article 22 of the Consumer Protection Law)",
-        "If the seller does not respond — file a complaint with Rospotrebnadzor",
-        "If the product is expensive (> 100,000 RUB) — order an independent expert examination",
-        "If refused — file a lawsuit + 1% penalty for each day of delay (Article 23 of the Consumer Protection Law)"
+        "Document the defect: photos, videos, detailed description. Keep all documents: receipt, warranty card, packaging",
+        "Write a written claim (2 copies) to the SELLER (not manufacturer). Include: purchase date, defect description, your demand",
+        "Submit the claim in person (with acceptance stamp) or send by registered mail. Review period: 10 days",
+        "If the seller conducts an expert examination — you have the right to be present",
+        "If the seller misses deadlines — penalty 1% per day applies",
+        "If refused — complaint to consumer protection + lawsuit"
       ],
       warnings: [
-        "If the seller conducts an examination at their expense — you have the right to be present",
-        "If the examination shows the defect was your fault — you pay for it",
-        "The warranty period for repairs should not exceed 45 days",
-        "You can demand a penalty for each day of delay in fulfilling obligations"
+        "Repair period cannot exceed 45 days. If longer — demand exchange or refund",
+        "If repaired 2+ times — you have the right to refund or exchange",
+        "If the defect appears AFTER warranty — only if the service life hasn't expired",
+        "DON'T sign the expert report if you disagree — note your objection"
       ]
     },
-    // ========================================
-    // 3. Withdrawal from online purchase (7 days)
-    // ========================================
+    // ============================================================
+    // 3. POST-WARRANTY RETURN
+    // ============================================================
+    {
+      id: "defective_return_post_warranty",
+      title: "📈 Return AFTER warranty period",
+      description: "If warranty expired but service life hasn't — you can claim a refund or repair for significant defects.",
+      conditions: { consumer_issue: ["defective", "refund"], return_reason: ["defect_found", "broken"], time_passed: ["out_of_warranty"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "30–90 days",
+      yield_estimate: "Refund or repair (via court)",
+      tags: ["post_warranty", "defective", "law"],
+      steps: [
+        "Check the product's service life (on packaging or documents). Usually 5–10 years for most goods",
+        "If the defect occurred BEFORE service life expired — you have rights. You'll need an expert examination",
+        "File a written claim. The seller may order an examination at your expense",
+        "If the examination confirms a manufacturing defect — the seller must satisfy your claim and reimburse the examination cost",
+        "If refused — lawsuit. Statute of limitations: 2 years from defect discovery"
+      ],
+      warnings: [
+        "Service life is NOT the same as warranty. Warranty can be 1 year, service life — 10 years",
+        "If service life is not specified — 10 years applies",
+        "Court-ordered examinations are expensive but recoverable if you win"
+      ]
+    },
+    // ============================================================
+    // 4. ONLINE PURCHASE RETURN (7 DAYS)
+    // ============================================================
     {
       id: "online_return_7_days",
-      title: "📦 Withdrawal from online purchase (7 days)",
-      description: "When buying online, you can cancel the order within 7 days without giving a reason.",
-      conditions: { consumer_issue: ["defective", "refund_refusal"], purchase_method: ["online_store", "marketplace"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1-7 days",
-      yield_estimate: "Money refund",
+      title: "📦 Online purchase cancellation — 7 days",
+      description: "For online purchases, you can cancel the order within 7 days without explanation.",
+      conditions: { consumer_issue: ["defective", "refund", "online"], purchase_method: ["online_store", "marketplace"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–10 days",
+      yield_estimate: "Money refunded",
       tags: ["online", "7_days", "refund"],
       steps: [
-        "Make sure the product is not on the exclusion list (see Article 26.1 of the Consumer Protection Law)",
-        "Send a written refusal to the seller (in any form)",
-        "Demand a refund within 10 days of submitting the request",
-        "If the seller does not refund — complain to Rospotrebnadzor",
-        "If the product has already been received — return it to the seller at your own expense (unless otherwise specified)",
-        "If the seller does not respond — file a lawsuit"
+        "Check: product is NOT on the exclusion list (complex technical goods may be excluded in some jurisdictions)",
+        "Send a written cancellation notice (by email with read receipt or registered mail)",
+        "7 days are counted from RECEIPT of goods, not from order date",
+        "Return the goods at your own expense (unless otherwise agreed)",
+        "Refund deadline: 10 days from claim submission",
+        "If the seller doesn't refund — complaint to consumer protection + lawsuit"
       ],
       warnings: [
-        "The 7-day period starts from the moment of receiving the product, not from the moment of ordering",
-        "If the seller did not provide information on the return procedure — the period increases to 3 months",
-        "The product must retain its appearance, packaging, and consumer properties",
-        "If the product has been used — the seller may reduce the refund amount"
+        "Keep all correspondence — it's evidence",
+        "If the product was used, the seller may reduce the refund",
+        "The seller must refund the product price but is NOT required to refund delivery costs"
       ]
     },
-    // ========================================
-    // 4. Warranty repair
-    // ========================================
+    // ============================================================
+    // 5. MARKETPLACE DISPUTE
+    // ============================================================
     {
-      id: "warranty_repair",
-      title: "🔧 Warranty repair / replacement",
-      description: "Product broke during the warranty period? The seller must repair or replace it.",
-      conditions: { consumer_issue: ["defective"], time_passed: ["2_years"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "10-45 days",
-      yield_estimate: "Repair or replacement",
-      tags: ["warranty", "repair", "law"],
+      id: "marketplace_dispute",
+      title: "📦 Marketplace dispute — action plan",
+      description: "The marketplace is responsible for the seller. Demand refund through the platform.",
+      conditions: { consumer_issue: ["defective", "refund", "online"], purchase_method: ["marketplace"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "3–14 days",
+      yield_estimate: "Refund or exchange",
+      tags: ["marketplace", "refund", "law"],
       steps: [
-        "Check the warranty card and warranty period (usually 1-2 years, sometimes more)",
-        "Contact the seller (not the manufacturer!) with a demand to fix the defects",
-        "Write a claim: demand FREE repair, replacement, refund, or price reduction",
-        "Review period — 10 days (Article 22 of the Consumer Protection Law)",
-        "If the product is being repaired for more than 45 days — demand replacement or refund",
-        "If repair failed twice — demand replacement or refund",
-        "If refused — complain to Rospotrebnadzor + file a lawsuit + 1% penalty for each day of delay"
+        "Initiate a return through the marketplace interface (fastest method)",
+        "If the seller ignores or refuses — file a complaint with marketplace support",
+        "If the marketplace doesn't help — send a formal claim to the marketplace's legal address",
+        "File a complaint with the consumer protection agency",
+        "If paid by card — chargeback through your bank (within 180 days)",
+        "If amount is significant — go to court"
       ],
       warnings: [
-        "Keep ALL documents: receipt, warranty card, repair acceptance certificates, work orders",
-        "If the seller sends to an 'authorized service' — it's legal, but the deadlines still count",
-        "DO NOT pay for diagnosis during the warranty period — it's the seller's obligation",
-        "If the product is expensive (> 100,000 RUB) — demand an independent expert examination in case of dispute"
+        "The marketplace is NOT released from liability for seller information accuracy",
+        "Check seller ratings and reviews before purchasing",
+        "Save screenshots of all product pages and correspondence"
       ]
     },
-    // ========================================
-    // 5. Poor quality service
-    // ========================================
+    // ============================================================
+    // 6. PURCHASE FROM PRIVATE INDIVIDUAL
+    // ============================================================
+    {
+      id: "private_person_purchase",
+      title: "👤 Purchase from a private individual — legal protection",
+      description: "Consumer protection laws do NOT apply to private-to-private sales. But you still have legal options.",
+      conditions: { consumer_issue: ["defective", "refund", "online"], purchase_method: ["private"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "14–60 days",
+      yield_estimate: "Refund (only through court)",
+      tags: ["private", "law"],
+      steps: [
+        "Check: is the seller a business or individual? If business — consumer laws apply. If individual — they don't",
+        "For private sales: Civil Code applies. Remedies: contract cancellation, refund, damages",
+        "Keep all correspondence, screenshots, payment proof, photos of the item",
+        "Send a formal claim by registered mail. If no response — file a lawsuit",
+        "If the seller is a fraudster — file a police report (fraud)",
+        "Statute of limitations: 3 years"
+      ],
+      warnings: [
+        "Consumer protection laws do NOT apply to private individuals",
+        "Paying by bank transfer to an individual is risky. Use escrow or platform protection",
+        "If the seller is a sole proprietor (self-employed) — consumer laws DO apply"
+      ]
+    },
+    // ============================================================
+    // 7. POOR SERVICE
+    // ============================================================
     {
       id: "service_complaint",
-      title: "🛎️ Poor quality service — how to get a refund",
-      description: "Service was poorly provided or not provided at all — you have the right to a refund and compensation.",
-      conditions: { consumer_issue: ["service_bad"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "10-30 days",
+      title: "🛎️ Poor service — getting your money back",
+      description: "Service was bad or not provided — you have the right to refund, price reduction, or free correction.",
+      conditions: { consumer_issue: ["service"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "10–30 days",
       yield_estimate: "Refund + compensation",
       tags: ["service", "refund", "law"],
       steps: [
-        "Record evidence: photos, videos, acts, correspondence, receipts, contract",
-        "Send a claim to the contractor: demand free elimination of defects, recalculation, or refund",
-        "Review period — 10 days (Article 31 of the Consumer Protection Law)",
-        "If the service was not provided at all — demand a full refund + penalty",
-        "If you got food poisoning at a cafe/restaurant: medical certificate + complaint to Rospotrebnadzor + claim for compensation",
-        "Travel services: upon flight/tour cancellation — demand full refund + compensation (Article 230-1 of the Civil Code)",
-        "If refused — file a lawsuit + 3% penalty for each day of delay (Article 28 of the Consumer Protection Law)"
+        "Document everything: contract, receipts, correspondence, photos, videos, acceptance certificates",
+        "Send a written claim to the service provider (2 copies or registered mail). Demand: free correction, price reduction, or refund",
+        "Review period: 10 days. If service wasn't provided — demand full refund + 3% penalty per day",
+        "For food poisoning: see a doctor, get a medical certificate — this is key evidence",
+        "Travel services: in case of cancellation — demand full refund + compensation",
+        "If refused — lawsuit + 3% penalty per day"
       ],
       warnings: [
-        "The service contract is the main document. Without it, it's harder, but possible (by receipts, correspondence)",
-        "If the contractor is a sole proprietor, you can recover personally from them",
-        "Travel insurance — check the conditions, often covers cancellations",
-        "If food poisoning: get tested, get a diagnosis — it's evidence"
+        "Contract is the main document. Without it, use receipts and correspondence",
+        "Statute of limitations: 1 year for construction services, 3 years for others"
       ]
     },
-    // ========================================
-    // 6. Online fraud
-    // ========================================
+    // ============================================================
+    // 8. SPOILED FOOD / FOOD POISONING
+    // ============================================================
+    {
+      id: "food_poisoning_consumer",
+      title: "🍖 Spoiled food / food poisoning",
+      description: "Expired food, food poisoning — you have the right to compensation.",
+      conditions: { consumer_issue: ["food"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "7–30 days",
+      yield_estimate: "Refund + compensation for harm",
+      tags: ["food", "poison", "law"],
+      steps: [
+        "Keep: receipt, packaging, food remnants, photos — evidence for inspection",
+        "If poisoned at a cafe/restaurant: see a doctor within 24 hours — get a medical certificate (key evidence!)",
+        "Send a claim to the seller or cafe. Demand: refund, medical expenses, moral damages",
+        "Review period: 10 days",
+        "File a complaint with the health department — they will conduct an inspection",
+        "If refused — lawsuit. Claim: health damages, moral damages, lost income",
+        "Statute of limitations: 3 years"
+      ],
+      warnings: [
+        "Medical certificate is MANDATORY — without it, it's almost impossible to prove food poisoning",
+        "Check expiration dates at purchase. If expired — you have the right to a refund even without a receipt",
+        "If several people were affected — file a collective claim"
+      ]
+    },
+    // ============================================================
+    // 9. ONLINE FRAUD
+    // ============================================================
     {
       id: "online_fraud",
-      title: "💻 Online purchase fraud",
-      description: "Didn't receive the item? Received a fake? Seller disappeared? Act fast.",
-      conditions: { consumer_issue: ["online_scam"] },
-      priority: "fast",
-      reliability: "medium",
-      time_estimate: "7-60 days",
-      yield_estimate: "Money refund",
+      title: "💻 Online fraud — action plan",
+      description: "Didn't receive goods? Received counterfeit? Seller vanished? Act quickly.",
+      conditions: { consumer_issue: ["online"] },
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "7–60 days",
+      yield_estimate: "Money refunded (via bank or court)",
       tags: ["online", "fraud", "chargeback"],
       steps: [
         "Save EVERYTHING: website screenshots, correspondence, payment receipt, order number, seller details",
-        "Write to the seller: demand a refund or delivery (email with read receipt)",
-        "If the seller is on a marketplace (Ozon, Wildberries, Yandex.Market) — complain to the platform, they are responsible",
-        "If paid by card — chargeback: contact your bank within 180 days of payment",
-        "Complaint to Rospotrebnadzor (if the seller is from Russia) or the prosecutor's office",
-        "Signs of fraud (seller disappeared, fake website) — file a police report (Article 159.3 of the Criminal Code)",
-        "Lawsuit: if you know the seller's details, you can recover money + compensation"
+        "Send a demand to the seller (email with read receipt)",
+        "If on a marketplace — file a complaint with the platform",
+        "If paid by card — chargeback through your bank (180 days from payment)",
+        "File a complaint with consumer protection agency (if seller is local) or prosecutor's office",
+        "If fraud (seller vanished, fake website) — file a police report",
+        "Lawsuit: if you have seller details, you can claim damages"
       ],
       warnings: [
-        "Chargeback: the bank will refund the money, but the seller may dispute it. Keep evidence.",
-        "Marketplaces are responsible for sellers — demand a refund from the platform itself",
-        "DO NOT transfer money to an individual's card when buying — only through secure services",
-        "If the website is fake — check WHOIS, reviews, TIN/OGRN availability"
+        "Chargeback is the fastest method. Bank will refund within 30–90 days",
+        "DON'T send money to an individual's card — only through protected services",
+        "Check WHOIS domain, reviews, IIN/OGRN for fake websites"
       ]
     },
-    // ========================================
-    // 7. Return without receipt
-    // ========================================
+    // ============================================================
+    // 10. REFUSAL TO REFUND
+    // ============================================================
+    {
+      id: "refund_refusal_resolution",
+      title: "💸 Seller refuses to refund — what to do",
+      description: "Refusal to refund is a violation. You have the right to penalties and court protection.",
+      conditions: { consumer_issue: ["refund"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10–45 days",
+      yield_estimate: "Refund + 1% penalty per day",
+      tags: ["refund", "dispute", "law"],
+      steps: [
+        "Check: is the seller violating the 10-day refund deadline? If yes — penalties apply",
+        "Send a second claim demanding refund + 1% penalty per day",
+        "File a complaint with consumer protection agency",
+        "If a large chain — contact their customer hotline",
+        "Lawsuit: demand refund, penalty, moral damages, and 50% fine",
+        "Statute of limitations: 3 years"
+      ],
+      warnings: [
+        "1% penalty accrues for EACH day of delay",
+        "50% fine is awarded in court if the seller refused to settle voluntarily",
+        "Courts side with the consumer in 90% of cases. Don't be afraid to sue"
+      ]
+    },
+    // ============================================================
+    // 11. RETURN WITHOUT RECEIPT
+    // ============================================================
     {
       id: "return_no_receipt",
-      title: "🧾 Return without receipt",
-      description: "Missing a receipt does not deprive you of the right to return the product. You can prove purchase by other means.",
-      conditions: { consumer_issue: ["defective", "refund_refusal"], has_receipt: ["no_document"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "10-30 days",
+      title: "🧾 Return without a receipt",
+      description: "No receipt doesn't mean no rights. You can prove purchase in other ways.",
+      conditions: { consumer_issue: ["no_receipt"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "10–30 days",
       yield_estimate: "Refund or exchange",
       tags: ["no_receipt", "return", "law"],
       steps: [
-        "Gather proof of purchase: bank statement, payment screenshot, witness testimony, warranty card, packaging with markings",
-        "Contact the seller with a claim, stating that the receipt was lost but there is other evidence",
-        "By law (Article 18 of the Consumer Protection Law), the seller must accept the product and conduct a quality check",
-        "If the seller refuses to accept without a receipt — send a written claim demanding acceptance",
-        "If refused — complaint to Rospotrebnadzor (they will conduct an inspection)",
-        "If the seller continues to evade — file a lawsuit"
+        "Gather proof of purchase: bank statement, screenshot, witness statements, warranty card, packaging with markings, correspondence",
+        "Send a claim stating the receipt is lost but you have other proof",
+        "By law, the seller must accept the product and conduct a quality check even without a receipt",
+        "If the seller refuses — file a complaint with consumer protection agency",
+        "If continues to evade — lawsuit. Courts accept any evidence, including witness statements"
       ],
       warnings: [
-        "Missing a receipt is not a ground for refusing to return a defective product",
-        "The seller may conduct an examination at their own expense, but cannot refuse to accept the product",
-        "If the seller demands a receipt — remind them of the right to prove purchase by other documents",
-        "Keep all documents related to the purchase, even if you don't have the receipt"
+        "No receipt is NOT grounds for refusing a defective product return",
+        "For 'changed mind' returns (14 days) — receipt is also not mandatory",
+        "If the seller says 'no receipt, can't help' — cite the law and demand a written refusal"
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.consumerDataEn = consumerDataEn;
+});

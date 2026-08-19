@@ -1,229 +1,425 @@
-// === MODULE: DIVORCE AND ALIMONY (ENGLISH) ===
-const divorceDataEn = {
-  category: "divorce",
-  title: "💔 Divorce and alimony",
-  description: "What to do during divorce, alimony collection, and property division",
+// modules/lawyer/data/en/divorce-en.js
+// === MODULE: LAWYER — DIVORCE AND ALIMONY ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "lawyer",
+    category: "divorce",
+    version: "1.0.0",
+    lang: "en",
+    title: "💔 Divorce and Alimony",
+    description: "Divorce, child support, alimony for spouse, property division, child residence determination",
+    icon: "💔",
+    color: "#7c3aed"
+  },
 
   questions: [
     {
       id: "divorce_situation",
-      text: "What is your situation?",
       type: "single",
+      text: "What is your situation?",
       options: [
-        { id: "mutual", label: "🤝 Mutual consent to divorce", tags: ["mutual", "simple"] },
-        { id: "one_side", label: "😤 Spouse is against / disagrees", tags: ["one_side", "dispute"] },
-        { id: "alimony", label: "👶 Need child support", tags: ["alimony", "children"] },
-        { id: "property", label: "🏠 Property dispute during divorce", tags: ["property", "division"] },
-        { id: "alimony_spouse", label: "🤱 Alimony for ex-spouse", tags: ["alimony_spouse", "ex_spouse"] },
-        { id: "marriage_contract", label: "📜 There is a prenuptial agreement", tags: ["contract", "agreement"] }
+        { id: "mutual", label: "🤝 Mutual consent divorce", tags: ["mutual"] },
+        { id: "one_side", label: "😤 Spouse disagrees / opposes", tags: ["one_side"] },
+        { id: "alimony", label: "👶 Need child support", tags: ["alimony"] },
+        { id: "alimony_debt", label: "📉 There is child support arrears", tags: ["alimony_debt"] },
+        { id: "property", label: "🏠 Need to divide property", tags: ["property"] },
+        { id: "child_residence", label: "🏠 Need to determine child's residence", tags: ["child_residence"] },
+        { id: "visitation", label: "👨‍👧‍👦 Need visitation schedule with child", tags: ["visitation"] },
+        { id: "parental_rights", label: "🚫 Want to terminate spouse's parental rights", tags: ["parental_rights"] },
+        { id: "alimony_spouse", label: "🤱 Alimony for ex-spouse", tags: ["alimony_spouse"] },
+        { id: "marriage_contract", label: "📜 Have a prenuptial agreement", tags: ["marriage_contract"] },
+        { id: "paternity", label: "👨‍👦 Need to establish paternity", tags: ["paternity"] }
       ]
     },
     {
       id: "children",
-      text: "Do you have any children together?",
       type: "single",
+      text: "Do you have minor children together?",
+      conditions: { divorce_situation: ["mutual", "one_side", "alimony", "alimony_debt", "child_residence", "visitation", "parental_rights", "alimony_spouse", "paternity"] },
       options: [
-        { id: "yes_minor", label: "Yes, minors (under 18)", tags: ["minor", "children"] },
-        { id: "yes_adult", label: "Yes, but already adults (18+)", tags: ["adult", "children"] },
-        { id: "no_children", label: "No children", tags: ["no_children"] }
+        { id: "yes_minor", label: "✅ Yes, minor children (under 18)", tags: ["minor_children"] },
+        { id: "yes_adult", label: "✅ Yes, but children are adults (18+)", tags: ["adult_children"] },
+        { id: "no_children", label: "❌ No common children", tags: ["no_children"] }
+      ]
+    },
+    {
+      id: "child_age",
+      type: "single",
+      text: "How old is the child?",
+      conditions: { children: ["yes_minor"] },
+      options: [
+        { id: "under_3", label: "👶 Under 3 years old", tags: ["under_3"] },
+        { id: "3_10", label: "🧒 3–10 years old", tags: ["3_10"] },
+        { id: "10_14", label: "🧑 10–14 years old", tags: ["10_14"] },
+        { id: "14_18", label: "👨 14–18 years old", tags: ["14_18"] }
       ]
     },
     {
       id: "property_type",
-      text: "What property is in dispute?",
       type: "single",
+      text: "What property needs to be divided?",
       conditions: { divorce_situation: ["property"] },
       options: [
-        { id: "apartment", label: "🏢 Apartment / house", tags: ["real_estate"] },
-        { id: "car_money", label: "🚗 Car / money / bank deposits", tags: ["movable", "money"] },
-        { id: "business", label: "💼 Business / individual entrepreneur / company shares", tags: ["business"] },
-        { id: "debt", label: "📉 Debts / loans (joint)", tags: ["debts"] }
+        { id: "real_estate", label: "🏢 Apartment / house / land", tags: ["real_estate"] },
+        { id: "movable", label: "🚗 Car / money / bank deposits / valuables", tags: ["movable"] },
+        { id: "business", label: "💼 Business / sole proprietorship / shares in LLC", tags: ["business"] },
+        { id: "debts", label: "📉 Debts / loans (joint)", tags: ["debts"] },
+        { id: "inheritance", label: "📜 Inherited or gifted property (disputed)", tags: ["inheritance"] }
       ]
     },
     {
       id: "alimony_agreement",
-      text: "Do you have a child support agreement?",
       type: "single",
-      conditions: { divorce_situation: ["alimony"] },
+      text: "Is there a child support agreement?",
+      conditions: { divorce_situation: ["alimony", "alimony_debt"] },
       options: [
-        { id: "agreement_yes", label: "✅ Yes, there is a notarized agreement", tags: ["agreement_yes"] },
-        { id: "agreement_no", label: "❌ No agreement", tags: ["agreement_no"] }
+        { id: "agreement_yes", label: "✅ Yes, notarized agreement exists", tags: ["agreement_yes"] },
+        { id: "agreement_no", label: "❌ No agreement, need court", tags: ["agreement_no"] },
+        { id: "agreement_broken", label: "⚠️ Agreement exists but not being honored", tags: ["agreement_broken"] }
+      ]
+    },
+    {
+      id: "child_residence_issue",
+      type: "single",
+      text: "Who does the child currently live with?",
+      conditions: { divorce_situation: ["child_residence", "visitation", "parental_rights"] },
+      options: [
+        { id: "with_mother", label: "👩 With mother", tags: ["with_mother"] },
+        { id: "with_father", label: "👨 With father", tags: ["with_father"] },
+        { id: "with_others", label: "👵 With other relatives", tags: ["with_others"] }
+      ]
+    },
+    {
+      id: "marital_duration",
+      type: "single",
+      text: "How long was the marriage?",
+      conditions: { divorce_situation: ["mutual", "one_side", "property", "alimony_spouse"] },
+      options: [
+        { id: "less_1", label: "⏰ Less than 1 year", tags: ["short"] },
+        { id: "1_5", label: "📅 1–5 years", tags: ["medium"] },
+        { id: "over_5", label: "📆 More than 5 years", tags: ["long"] }
       ]
     }
   ],
 
   solutions: [
-    // ============================
-    // MUTUAL DIVORCE
-    // ============================
+    // ============================================================
+    // 1. MUTUAL CONSENT DIVORCE
+    // ============================================================
     {
       id: "divorce_mutual",
-      title: "🤝 Mutual divorce (Registry Office)",
-      description: "The simplest and fastest way — through the registry office, without court. Suitable if there are no disputes and both agree.",
-      conditions: { divorce_situation: ["mutual"], children: ["no_children", "yes_adult"] },
-      priority: "fast",
-      reliability: "high",
+      title: "🤝 Mutual consent divorce",
+      description: "Simplest divorce method — through the civil registry office. Suitable if no minor children and both agree.",
+      conditions: { divorce_situation: ["mutual"], children: ["no_children", "adult_children"] },
+      scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1 month",
       yield_estimate: "Divorce certificate",
-      tags: ["divorce", "mutual", "registry"],
+      tags: ["divorce", "mutual"],
       steps: [
-        "Both spouses submit a joint application to the registry office (online through State Services possible)",
-        "Specify: consent to divorce, custody of children (if any), alimony amount (if agreed)",
-        "Pay the state fee — 650 rubles (split between spouses)",
-        "The registry office sets a date after 1 month (reconciliation period)",
-        "On the appointed day, appear at the registry office and receive the divorce certificate"
+        "Both spouses file a joint application with the civil registry office",
+        "If no minor children — divorce is possible through the registry",
+        "Pay state fee",
+        "The registry sets a date after 1 month",
+        "On the appointed day, appear at the registry and get the divorce certificate"
       ],
       warnings: [
-        "If the spouse is pregnant or gave birth less than 1 year ago — divorce ONLY through court (Article 17 of the Family Code)",
-        "If there are minor children — divorce in the registry office is IMPOSSIBLE, only through court (except when one spouse is declared incompetent or imprisoned)",
-        "Alimony: minimum 25% for 1 child, 33% for 2, 50% for 3+ (Article 81 of the Family Code)",
-        "If there is a property dispute — better to go through court immediately, otherwise a separate lawsuit later"
+        "If the spouse is PREGNANT or gave birth within the last year — divorce ONLY through court!",
+        "If there are minor children — divorce only through court",
+        "Alimony — only by agreement, otherwise through court"
       ]
     },
-    // ============================
-    // DIVORCE THROUGH COURT (ONE SIDE AGAINST)
-    // ============================
+    // ============================================================
+    // 2. COURT DIVORCE
+    // ============================================================
     {
       id: "divorce_court",
-      title: "⚖️ Divorce through court (if spouse is against)",
-      description: "If the spouse disagrees or evades — divorce through a magistrate. With children, it's mandatory to go through court.",
+      title: "⚖️ Court divorce (if spouse disagrees)",
+      description: "If spouse disagrees or has minor children — divorce through court.",
       conditions: { divorce_situation: ["one_side"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "2-4 months",
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "2–4 months",
       yield_estimate: "Court decision on divorce",
-      tags: ["divorce", "court", "one_side"],
+      tags: ["divorce", "court"],
       steps: [
-        "File a claim in the magistrate's court at the defendant's place of residence (or yours)",
-        "In the claim specify: request for divorce, custody of children, alimony (if there are children)",
-        "Pay the state fee — 600 rubles",
-        "If the defendant evades receiving the summons — the court may hear the case without them",
-        "At the hearing: the court will establish the fact of cessation of family relations (your testimony is sufficient)",
-        "The court issues a decision on divorce — it takes effect after 1 month",
-        "Receive the divorce certificate from the registry office based on the court decision"
+        "File a claim with the court",
+        "In the claim state: request to dissolve marriage, date of marriage, reasons, children",
+        "Pay state fee",
+        "Court may give up to 3 months for reconciliation",
+        "If the defendant doesn't appear — court can make a default judgment",
+        "Court decision takes effect after 1 month",
+        "Get divorce certificate from registry after the decision"
       ],
       warnings: [
-        "If the defendant is against it — this is NOT grounds for refusing a divorce (the Supreme Court has clarified)",
-        "The court may grant up to 3 months for reconciliation — but on a second claim, it will grant the divorce",
-        "If the spouse does not appear — the court may issue a default judgment (after 30 days)",
-        "In court divorce — property and children are decided in the same proceeding or separately"
+        "Spouse's disagreement is NOT grounds for refusing divorce",
+        "If minor children — court MUST decide on children, alimony, visitation",
+        "Pregnancy or child under 1 year — divorce only with wife's consent"
       ]
     },
-    // ============================
-    // CHILD SUPPORT
-    // ============================
+    // ============================================================
+    // 3. CHILD SUPPORT (SHARE OF INCOME)
+    // ============================================================
     {
-      id: "alimony_claim",
-      title: "👶 Child support collection",
-      description: "Child support is a child's right. It can be collected even without divorce. Filed in magistrate's court.",
-      conditions: { divorce_situation: ["alimony", "mutual", "one_side"], children: ["yes_minor"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1-2 months",
-      yield_estimate: "Alimony + arrears",
+      id: "alimony_claim_share",
+      title: "👶 Child support (share of income)",
+      description: "Child support is collected as a share of income: 25% for 1 child, 33% for 2, 50% for 3 or more.",
+      conditions: { divorce_situation: ["alimony"], children: ["yes_minor"], alimony_agreement: ["agreement_no"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–2 months",
+      yield_estimate: "Child support + arrears",
       tags: ["alimony", "children", "court"],
       steps: [
-        "Determine the format: share of income (25%/33%/50%) or a fixed amount",
-        "Share — if the payer has stable income. Fixed — if income is hidden or unstable",
-        "File a claim in magistrate's court: lawsuit for alimony (or court order — faster)",
-        "Documents: birth certificate, proof of your income, proof of the respondent's income",
-        "Court order: without a hearing, within 5 days, if there is no dispute (but the respondent may object)",
-        "Lawsuit proceedings: with a hearing, if there is a dispute about the amount or paternity",
-        "Receive the enforcement document → transfer to bailiffs or the respondent's employer",
-        "Bailiffs: will seize accounts, wages, may restrict travel abroad"
+        "File a claim with the court",
+        "Court order: issued within 5 days without a hearing",
+        "Child support rates: 1/4 of income — for 1 child, 1/3 — for 2, 1/2 — for 3+",
+        "Get enforcement document → transfer to bailiffs or employer",
+        "Bailiffs: seize accounts, property, restrict travel abroad"
       ],
       warnings: [
-        "Minimum alimony: not less than the regional child subsistence minimum (if income < minimum wage)",
-        "If the respondent hides income — demand a fixed amount (court will set it)",
-        "Alimony can be collected for the last 3 years (if you prove you attempted to collect it)",
-        "Non-payment of alimony > 2 months — criminal liability (Article 157 of the Criminal Code)"
+        "Minimum child support: not less than the child's subsistence minimum in the region",
+        "If the payer doesn't work — child support is collected in a fixed sum",
+        "Child support is collected from the date of filing, not from the court decision date"
       ]
     },
-    // ============================
-    // PROPERTY DIVISION
-    // ============================
+    // ============================================================
+    // 4. CHILD SUPPORT (FIXED AMOUNT)
+    // ============================================================
+    {
+      id: "alimony_fixed",
+      title: "💰 Child support in fixed amount",
+      description: "If the payer has irregular or hidden income — child support is collected in a fixed amount (multiple of subsistence minimum).",
+      conditions: { divorce_situation: ["alimony"], children: ["yes_minor"], alimony_agreement: ["agreement_no"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "2–3 months",
+      yield_estimate: "Child support in fixed amount",
+      tags: ["alimony", "fixed", "court"],
+      steps: [
+        "File a claim for child support in a fixed sum",
+        "Prove: payer doesn't work, has irregular income, hides income",
+        "Court sets the amount: multiple of the child's subsistence minimum",
+        "Amount is indexed proportionally to subsistence minimum growth"
+      ],
+      warnings: [
+        "Fixed amount is not always larger than percentage. Calculate which is better",
+        "Indexation — quarterly. Monitor PM changes in your region"
+      ]
+    },
+    // ============================================================
+    // 5. CHILD SUPPORT ARREARS
+    // ============================================================
+    {
+      id: "alimony_debt",
+      title: "📉 Child support arrears — collection and liability",
+      description: "Non-payment of child support creates arrears. Arrears are collected with penalties.",
+      conditions: { divorce_situation: ["alimony_debt"], alimony_agreement: ["agreement_broken"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–3 months",
+      yield_estimate: "Arrears collected + penalty",
+      tags: ["alimony", "debt", "penalty"],
+      steps: [
+        "Check the amount of arrears with bailiffs",
+        "Penalty: 0.1% of arrears amount per day of delay",
+        "If arrears over 6 months — file for administrative or criminal liability",
+        "Bailiffs: seize accounts, property, restrict travel abroad, suspend driver's license"
+      ],
+      warnings: [
+        "Penalty is collected ONLY through court. Bailiffs don't calculate it automatically!",
+        "Statute of limitations for penalty — 3 years"
+      ]
+    },
+    // ============================================================
+    // 6. CHILD RESIDENCE DETERMINATION
+    // ============================================================
+    {
+      id: "child_residence",
+      title: "🏠 Child residence determination",
+      description: "The court determines the child's place of residence based on the child's interests and opinion (from 10 years old — mandatory).",
+      conditions: { divorce_situation: ["child_residence"], children: ["yes_minor"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "2–4 months",
+      yield_estimate: "Child residence determined",
+      tags: ["child", "residence", "court"],
+      steps: [
+        "File a claim with the court",
+        "Attach: birth certificate, job references, income certificates, housing documents, guardianship authority opinion",
+        "Guardianship authority gives an opinion on both parents' conditions",
+        "Child's opinion from 10 years — mandatory",
+        "Court evaluates: child's attachment to each parent, moral qualities, material conditions"
+      ],
+      warnings: [
+        "Child's opinion from 10 years — mandatory, but court can deviate if against child's interests",
+        "Child staying with mother is not automatic. Father can win with better conditions"
+      ]
+    },
+    // ============================================================
+    // 7. CHILD VISITATION SCHEDULE
+    // ============================================================
+    {
+      id: "child_visitation",
+      title: "👨‍👧‍👦 Child visitation schedule",
+      description: "The parent living separately has the right to communicate with the child. The court determines the schedule.",
+      conditions: { divorce_situation: ["visitation"], children: ["yes_minor"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "2–3 months",
+      yield_estimate: "Visitation schedule approved",
+      tags: ["child", "visitation", "court"],
+      steps: [
+        "File a claim for visitation schedule",
+        "Propose your schedule: days, times, weekends, holidays, summer vacations",
+        "Guardianship authority gives an opinion",
+        "Court approves the schedule",
+        "If one parent obstructs visitation — court can impose a fine"
+      ],
+      warnings: [
+        "If visitation harms the child's health — court may refuse",
+        "Visitation schedule is court-ordered and mandatory"
+      ]
+    },
+    // ============================================================
+    // 8. PARENTAL RIGHTS TERMINATION
+    // ============================================================
+    {
+      id: "parental_rights_termination",
+      title: "🚫 Parental rights termination",
+      description: "Parental rights termination — extreme measure. Grounds: cruelty, evasion of alimony, alcoholism, drug addiction.",
+      conditions: { divorce_situation: ["parental_rights"], children: ["yes_minor"] },
+      scoring: { priority: "slow", reliability: "medium" },
+      time_estimate: "3–6 months",
+      yield_estimate: "Parental rights terminated",
+      tags: ["parental_rights", "termination", "court"],
+      steps: [
+        "Check grounds: evasion of parental duties, cruelty, alcoholism/drug addiction, abandonment, crime against the child",
+        "Collect evidence: police reports, court judgments, medical certificates",
+        "File a claim with the court",
+        "Guardianship authority — mandatory",
+        "Court hears with prosecutor and guardianship participation",
+        "After termination: child can be adopted after 6 months"
+      ],
+      warnings: [
+        "Termination — extreme measure. Process is complex and long",
+        "Alimony continues to be collected in full"
+      ]
+    },
+    // ============================================================
+    // 9. PROPERTY DIVISION
+    // ============================================================
     {
       id: "property_divorce",
       title: "🏠 Property division during divorce",
-      description: "Property acquired during marriage is divided equally. But there are nuances. Filed in court within 3 years after divorce.",
+      description: "Property acquired during marriage is divided equally. There are exceptions.",
       conditions: { divorce_situation: ["property"] },
-      priority: "slow",
-      reliability: "medium",
-      time_estimate: "3-12 months",
-      yield_estimate: "Property division or compensation",
+      scoring: { priority: "slow", reliability: "medium" },
+      time_estimate: "3–12 months",
+      yield_estimate: "Property divided or compensation",
       tags: ["property", "division", "court"],
       steps: [
-        "Make a list of all property acquired during marriage: real estate, car, deposits, business",
-        "Prove that the property was acquired during marriage: purchase contract, statements, certificates",
-        "EXCEPTIONS from joint property: gifts, inheritance, pre-marital property, personal items",
-        "Mortgage apartment: the value is divided, but the debt is also divided equally",
-        "If there is no agreement — file a lawsuit for property division (deadline: 3 years after divorce)",
-        "In the lawsuit: demand a specific share or compensation (if the property cannot be physically divided)",
-        "Independent property appraisal — mandatory if there is a dispute about value"
+        "List all property acquired during marriage",
+        "EXCEPTIONS: pre-marital property, inheritance, gifts, personal items",
+        "If pre-marital property was improved with joint funds — becomes joint",
+        "Mortgage — debt is also divided equally",
+        "Business opened during marriage — is divided",
+        "Statute of limitations: 3 years from when you LEARNED of the violation"
       ],
       warnings: [
-        "Property purchased BEFORE marriage but on credit — a complex case. Consult a lawyer.",
-        "If the spouse sold/donated property before divorce — you can challenge the transaction in court",
-        "A business started during marriage — is divided, even if registered to parents (prove family funds contribution)",
-        "Debts during marriage — are also divided equally (if proven to be for family needs)"
+        "Pre-marital property with joint funds — complex case. Consult a lawyer",
+        "If spouse sold property before divorce — can challenge",
+        "Court can deviate from equality of shares"
       ]
     },
-    // ============================
-    // ALIMONY FOR EX-SPOUSE
-    // ============================
+    // ============================================================
+    // 10. ALIMONY FOR SPOUSE
+    // ============================================================
     {
       id: "alimony_spouse",
       title: "🤱 Alimony for ex-spouse",
-      description: "Alimony for an ex-wife is collected if she is pregnant, caring for a common child under 3 years old, or disabled.",
+      description: "Alimony for spouse is collected during pregnancy, caring for a child under 3, disability, caring for a disabled child.",
       conditions: { divorce_situation: ["alimony_spouse"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "2-4 months",
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "2–4 months",
       yield_estimate: "Alimony for spouse",
       tags: ["alimony_spouse", "ex_spouse", "court"],
       steps: [
-        "Check the grounds: pregnancy, caring for a child under 3 years old, disability",
-        "File a lawsuit in magistrate's court for alimony for the spouse",
-        "Documents: marriage certificate, child's birth certificate, income certificate",
-        "Alimony amount: fixed amount (court sets it)",
-        "Collection period: until the child reaches 3 years old (or indefinitely if the spouse is disabled)",
-        "Bailiffs: collect from the payer's income or property"
+        "Check grounds: pregnancy, caring for child under 3, disability, caring for disabled child",
+        "File a claim with the court",
+        "Amount: fixed sum, multiple of subsistence minimum",
+        "Period: until child turns 3, until pregnancy ends, unlimited for disability"
       ],
       warnings: [
-        "Alimony for a spouse is NOT assigned automatically — only by court decision",
-        "If the spouse works and has income — alimony may not be assigned (except for disability cases)",
-        "If the payer does not pay — bailiffs may seize accounts and property"
+        "Spouse alimony is NOT automatic — only by court decision",
+        "If spouse works and has income — court may refuse"
       ]
     },
-    // ============================
-    // PRENUPTIAL AGREEMENT
-    // ============================
+    // ============================================================
+    // 11. PATERNITY ESTABLISHMENT
+    // ============================================================
     {
-      id: "marriage_contract",
-      title: "📜 Prenuptial agreement — what you need to know",
-      description: "A prenuptial agreement regulates property division. It can change the legal regime of joint ownership.",
-      conditions: { divorce_situation: ["marriage_contract", "property"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1-2 weeks",
-      yield_estimate: "Property division procedure",
-      tags: ["contract", "property", "agreement"],
+      id: "paternity_establishment",
+      title: "👨‍👦 Paternity establishment",
+      description: "If father is not recorded on the birth certificate — paternity is established in court. Gives right to child support and inheritance.",
+      conditions: { divorce_situation: ["paternity"], children: ["yes_minor"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "2–4 months",
+      yield_estimate: "Paternity established",
+      tags: ["paternity", "father", "court"],
       steps: [
-        "Check: the prenuptial agreement is notarized (mandatory!)",
-        "It applies only to the future or from the date of its conclusion",
-        "The agreement may specify: separate or shared ownership of property",
-        "The agreement CANNOT limit the child's rights or place one spouse in an extremely disadvantageous position",
-        "If the agreement violates your rights — you can challenge it in court within 1 year from the date of conclusion",
-        "During divorce — the court is guided by the prenuptial agreement, not by the property division law"
+        "File a claim with the court",
+        "Plaintiff: mother, father, guardian, the child (from 18)",
+        "Evidence: correspondence, photos, cohabitation, DNA examination",
+        "DNA examination — key evidence",
+        "After court decision — amend birth record"
       ],
       warnings: [
-        "The agreement CANNOT regulate personal non-property relationships (e.g., obligation to live together)",
-        "If the agreement clearly undervalues one spouse's share — it may be declared invalid",
-        "You can only challenge the agreement in court if it contradicts the law"
+        "DNA examination is voluntary. Court can draw conclusions from evasion",
+        "If paternity is established — child support is collected from the date of filing"
+      ]
+    },
+    // ============================================================
+    // 12. CHILD TRAVEL CONSENT
+    // ============================================================
+    {
+      id: "child_travel_consent",
+      title: "🛂 Child travel abroad — second parent's consent",
+      description: "Travel abroad requires notarized consent from the second parent.",
+      conditions: { divorce_situation: ["child_residence", "visitation"], children: ["yes_minor"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–7 days",
+      yield_estimate: "Travel permission",
+      tags: ["child", "travel", "consent"],
+      steps: [
+        "Travel requires notarized consent from the second parent",
+        "Exception: second parent terminated rights, deceased, incapacitated, missing",
+        "If second parent refuses — file a claim with the court",
+        "Court considers: child's interests, purpose of trip, country, conditions"
+      ],
+      warnings: [
+        "Without second parent's consent — child WILL NOT be allowed across the border",
+        "If second parent's whereabouts unknown — only through court"
+      ]
+    },
+    // ============================================================
+    // 13. MARRIAGE CONTRACT
+    // ============================================================
+    {
+      id: "marriage_contract",
+      title: "📜 Prenuptial agreement — rights and risks",
+      description: "Prenuptial agreement regulates property division. It cannot disadvantage a spouse or violate children's rights.",
+      conditions: { divorce_situation: ["marriage_contract"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–2 months",
+      yield_estimate: "Agreement evaluated or challenged",
+      tags: ["contract", "property", "agreement"],
+      steps: [
+        "Check: agreement is notarized (mandatory). If not — invalid",
+        "Agreement regulates: property ownership, division, payments",
+        "Agreement CANNOT regulate: personal relationships, children's rights",
+        "If agreement puts spouse in extremely unfavorable position — can be invalidated",
+        "File a claim to invalidate within 1 year of signing"
+      ],
+      warnings: [
+        "Agreement CANNOT limit child support rights",
+        "If one spouse is left without housing — court may invalidate",
+        "Agreement can only be challenged in court"
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.divorceDataEn = divorceDataEn;
+});
