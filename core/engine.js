@@ -1,5 +1,6 @@
 // === ДВИЖОК ФИЛЬТРАЦИИ РЕШЕНИЙ ===
 // Поддержка мультиязычности — выбирает данные по текущему языку
+// Версия 3.0 — с поддержкой Smart Adapter
 
 // Проверяем, что все данные загружены (русские версии)
 console.log("🔍 Проверка данных (RU):");
@@ -136,7 +137,10 @@ console.log("  droneEvacDataEn:", typeof window.droneEvacDataEn !== 'undefined' 
 console.log("  droneFirstaidDataEn:", typeof window.droneFirstaidDataEn !== 'undefined' ? '✅' : '❌');
 console.log("  dronePrepDataEn:", typeof window.dronePrepDataEn !== 'undefined' ? '✅' : '❌');
 
-// Регистр всех данных (русские и английские версии)
+// ============================================================
+// === НОВЫЙ РЕЕСТР (dataRegistry) для FALLBACK ===
+// ============================================================
+
 const dataRegistry = {
   ru: {
     // ===== SURVIVAL =====
@@ -289,101 +293,109 @@ if (typeof window.droneEvacDataEn !== 'undefined') dataRegistry.en.drone_evac = 
 if (typeof window.droneFirstaidDataEn !== 'undefined') dataRegistry.en.drone_firstaid = window.droneFirstaidDataEn;
 if (typeof window.dronePrepDataEn !== 'undefined') dataRegistry.en.drone_prep = window.dronePrepDataEn;
 
+// ============================================================
+// === ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ===
+// ============================================================
+
 function getCurrentLang() {
   return typeof currentLang !== 'undefined' ? currentLang : 'ru';
 }
 
-/**
- * Получение данных категории с учётом маппинга конфликтов
- */
+function detectModule() {
+  const path = window.location.pathname;
+  const m = path.match(/modules\/([^/]+)/);
+  return m ? m[1] : 'unknown';
+}
+
+// ============================================================
+// === getCategoryData — С НОВЫМ РЕЕСТРОМ ===
+// ============================================================
+
 function getCategoryData(category) {
+  // Определяем модуль из URL или data-атрибута
+  const moduleId = document.body.dataset.module || detectModule();
   const lang = getCurrentLang();
+  
+  // 1. Пробуем новый реестр (Smart Adapter)
+  if (typeof SOS_GET_QUIZ === 'function') {
+    const data = SOS_GET_QUIZ(moduleId, category, lang);
+    if (data) {
+      console.log(`✅ Registry: ${moduleId}/${category} (${lang})`);
+      return data;
+    }
+  }
+  
+  // 2. FALLBACK: старый dataRegistry
   const langData = dataRegistry[lang] || dataRegistry.ru;
   
   // Если категория есть напрямую — сразу возвращаем
   if (langData[category]) {
     const data = langData[category];
-    console.log(`✅ Загружена категория: ${category} (язык: ${lang})`);
-    console.log(`   Вопросов: ${data.questions?.length || 0}, решений: ${data.solutions?.length || 0}`);
+    console.log(`✅ Fallback: ${category} (${lang})`);
     return data;
   }
   
-  // ===== МАППИНГ КОНФЛИКТОВ (только для пересекающихся названий) =====
+  // 3. Маппинг конфликтов (для старых данных)
   let mappedCategory = category;
   
-  // 1. LAWYER / AUTO: dtp конфликтует
+  // LAWYER / AUTO: dtp
   if (category === 'dtp' && langData.dtp_lawyer) {
     mappedCategory = 'dtp_lawyer';
   }
-
-  // 2. HOME / SURVIVAL: fire конфликтует
-  if (category === 'fire' && langData.home_fire) {
+  // HOME / SURVIVAL: fire
+  else if (category === 'fire' && langData.home_fire) {
     mappedCategory = 'home_fire';
   }
-
-  // 3. HOME: lock конфликтует
-  if (category === 'lock' && langData.home_lock) {
+  // HOME: lock
+  else if (category === 'lock' && langData.home_lock) {
     mappedCategory = 'home_lock';
   }
-
-  // 4. Универсальный fallback с префиксом home_
-  if (!langData[mappedCategory]) {
-    const withHomePrefix = 'home_' + category;
-    if (langData[withHomePrefix]) {
-      mappedCategory = withHomePrefix;
-    }
-  }
-
-  // 5. PETS: маппинг для конфликтующих категорий (lost, health, emergency)
-  if (category === 'lost' && langData.lost_pet) {
+  // PETS: lost, health, emergency
+  else if (category === 'lost' && langData.lost_pet) {
     mappedCategory = 'lost_pet';
   }
-  if (category === 'health' && langData.pet_health) {
+  else if (category === 'health' && langData.pet_health) {
     mappedCategory = 'pet_health';
   }
-  if (category === 'emergency' && langData.emergency_pet) {
+  else if (category === 'emergency' && langData.emergency_pet) {
     mappedCategory = 'emergency_pet';
   }
-
-  // 6. TRAVEL: маппинг для конфликтующих категорий (health, lost)
-  if (category === 'health' && langData.travel_health) {
+  // TRAVEL: health, lost
+  else if (category === 'health' && langData.travel_health) {
     mappedCategory = 'travel_health';
   }
-  if (category === 'lost' && langData.travel_lost) {
+  else if (category === 'lost' && langData.travel_lost) {
     mappedCategory = 'travel_lost';
   }
-
-  // 7. DRONE: маппинг для конфликтующих категорий (shelter, comms, evac, firstaid, prep)
-  const droneMapping = {
-    'shelter': 'drone_shelter',
-    'comms': 'drone_comms',
-    'evac': 'drone_evac',
-    'firstaid': 'drone_firstaid',
-    'prep': 'drone_prep'
-  };
-  if (droneMapping[category] && langData[droneMapping[category]]) {
-    mappedCategory = droneMapping[category];
-  }
-
-  const data = langData[mappedCategory];
-
-  if (!data) {
-    console.error(`❌ Категория не найдена: ${category} (язык: ${lang})`);
-    if (lang !== 'ru' && dataRegistry.ru[mappedCategory]) {
-      console.log(`🔄 Используем русскую версию как fallback для ${category}`);
-      return dataRegistry.ru[mappedCategory];
+  // DRONE: shelter, comms, evac, firstaid, prep
+  else {
+    const droneMap = {
+      'shelter': 'drone_shelter',
+      'comms': 'drone_comms',
+      'evac': 'drone_evac',
+      'firstaid': 'drone_firstaid',
+      'prep': 'drone_prep'
+    };
+    if (droneMap[category] && langData[droneMap[category]]) {
+      mappedCategory = droneMap[category];
     }
-    return null;
   }
-
-  console.log(`✅ Загружена категория: ${category} (язык: ${lang}) -> ${mappedCategory}`);
-  console.log(`   Вопросов: ${data.questions?.length || 0}, решений: ${data.solutions?.length || 0}`);
-  return data;
+  
+  const data = langData[mappedCategory];
+  
+  if (data) {
+    console.log(`✅ Fallback (mapped): ${category} → ${mappedCategory}`);
+    return data;
+  }
+  
+  console.error(`❌ Категория не найдена: ${category} (язык: ${lang})`);
+  return null;
 }
 
-/**
- * Фильтрация решений по ответам пользователя
- */
+// ============================================================
+// === ФИЛЬТРАЦИЯ РЕШЕНИЙ ===
+// ============================================================
+
 function filterSolutions(data, answers) {
   if (!data || !data.solutions) {
     console.warn("⚠️ Нет данных или решений для фильтрации");
@@ -395,8 +407,8 @@ function filterSolutions(data, answers) {
     return data.solutions.slice(0, 5);
   }
 
-  // --- ОСНОВНАЯ ФИЛЬТРАЦИЯ ---
   let matched = data.solutions.filter(sol => {
+    if (!sol.conditions) return true;
     for (let [key, allowedValues] of Object.entries(sol.conditions)) {
       const userAnswer = answers[key];
       if (!userAnswer || userAnswer.length === 0) continue;
@@ -406,41 +418,16 @@ function filterSolutions(data, answers) {
     return true;
   });
 
-  // --- FALLBACK: если нет точных совпадений ---
   if (matched.length === 0) {
-    console.log("🔄 Нет точных совпадений, ищем ближайшие по симптомам");
-    
-    const mainSymptom = answers.symptom ? answers.symptom[0] : null;
+    console.log("🔄 Нет точных совпадений, ищем по тегам...");
     const allTags = Object.values(answers).flat();
-    
     matched = data.solutions.filter(sol => {
       if (!sol.tags) return false;
-      
-      if (mainSymptom) {
-        if (sol.conditions && sol.conditions.symptom) {
-          const solSymptoms = sol.conditions.symptom;
-          if (!solSymptoms.includes(mainSymptom)) {
-            return false;
-          }
-        } else {
-          const isMedicalUniversal = sol.tags.includes("emergency") || 
-                                     sol.tags.includes("first_aid");
-          if (!isMedicalUniversal) {
-            return false;
-          }
-        }
-      }
-      
-      const hasTagMatch = allTags.some(tag => sol.tags.includes(tag));
-      const isUniversal = sol.tags.includes("universal") || 
-                         sol.tags.includes("primitive") ||
-                         sol.tags.includes("search") ||
-                         sol.tags.includes("basic") ||
-                         sol.tags.includes("emergency") ||
-                         sol.tags.includes("first_aid") ||
-                         sol.tags.includes("checklist");
-      
-      return hasTagMatch || isUniversal;
+      const tagMatch = allTags.some(t => sol.tags.includes(t));
+      const isUniversal = sol.tags.some(t => 
+        ['universal', 'emergency', 'first_aid', 'basic'].includes(t)
+      );
+      return tagMatch || isUniversal;
     });
     
     if (matched.length === 0) {
@@ -454,7 +441,6 @@ function filterSolutions(data, answers) {
     }
   }
 
-  // --- СОРТИРОВКА ---
   const prioOrder = { fast: 3, medium: 2, slow: 1 };
   const relOrder = { high: 3, medium: 2, low: 1 };
 
@@ -493,120 +479,98 @@ function refreshDataRegistry() {
 }
 
 // ============================================================
-// РЕНДЕРИНГ ВОПРОСОВ (поддержка multi выбор)
+// === РЕНДЕРИНГ ВОПРОСОВ ===
 // ============================================================
 
-/**
- * Рендеринг одного вопроса
- * @param {Object} question - объект вопроса
- * @param {number} index - номер вопроса (0-based)
- * @param {number} total - общее количество вопросов
- * @param {Object} answers - текущие ответы (для восстановления состояния)
- * @returns {string} HTML строка
- */
 function renderQuestion(question, index, total, answers) {
-    answers = answers || {};
-    const isMulti = question.type === 'multi';
-    const inputType = isMulti ? 'checkbox' : 'radio';
-    const nameAttr = `question_${question.id}`;
-    const selectedValues = answers[question.id] || [];
-    
-    let html = `
-        <div class="question-card" data-question-id="${question.id}">
-            <div class="question-num">${t('question_of', { current: index + 1, total: total })}</div>
-            <h3>${question.text}</h3>
-    `;
-    
-    // Подсказка для множественного выбора
-    if (isMulti) {
-        html += `<p class="question-hint">${t('select_all')}</p>`;
-    }
-    
-    html += `<div class="options-container">`;
-    
-    question.options.forEach(option => {
-        const isChecked = selectedValues.includes(option.id);
-        const checkedAttr = isChecked ? 'checked' : '';
-        
-        html += `
-            <label class="option ${isMulti ? 'multi' : ''} ${isChecked ? 'selected' : ''}">
-                <input type="${inputType}" 
-                       name="${nameAttr}" 
-                       value="${option.id}" 
-                       ${checkedAttr}
-                       data-question-id="${question.id}">
-                <span class="check"></span>
-                <span class="option-label">${option.label}</span>
-            </label>
-        `;
-    });
+  answers = answers || {};
+  const isMulti = question.type === 'multi';
+  const inputType = isMulti ? 'checkbox' : 'radio';
+  const nameAttr = `question_${question.id}`;
+  const selectedValues = answers[question.id] || [];
+  
+  let html = `
+    <div class="question-card" data-question-id="${question.id}">
+      <div class="question-num">${t('question_of', { current: index + 1, total: total })}</div>
+      <h3>${question.text}</h3>
+  `;
+  
+  if (isMulti) {
+    html += `<p class="question-hint">${t('select_all')}</p>`;
+  }
+  
+  html += `<div class="options-container">`;
+  
+  question.options.forEach(option => {
+    const isChecked = selectedValues.includes(option.id);
+    const checkedAttr = isChecked ? 'checked' : '';
     
     html += `
-            </div>
-        </div>
+      <label class="option ${isMulti ? 'multi' : ''} ${isChecked ? 'selected' : ''}">
+        <input type="${inputType}" 
+               name="${nameAttr}" 
+               value="${option.id}" 
+               ${checkedAttr}
+               data-question-id="${question.id}">
+        <span class="check"></span>
+        <span class="option-label">${option.label}</span>
+      </label>
     `;
-    
-    return html;
+  });
+  
+  html += `
+      </div>
+    </div>
+  `;
+  
+  return html;
 }
 
-/**
- * Рендеринг всех вопросов
- * @param {Array} questions - массив вопросов
- * @param {Object} answers - текущие ответы
- * @returns {string} HTML строка
- */
 function renderQuestions(questions, answers) {
-    if (!questions || questions.length === 0) {
-        return '<p>⚠️ Вопросы не загружены</p>';
-    }
-    
-    answers = answers || {};
-    let html = '';
-    questions.forEach((q, index) => {
-        html += renderQuestion(q, index, questions.length, answers);
-    });
-    
-    return html;
+  if (!questions || questions.length === 0) {
+    return '<p>⚠️ Вопросы не загружены</p>';
+  }
+  
+  answers = answers || {};
+  let html = '';
+  questions.forEach((q, index) => {
+    html += renderQuestion(q, index, questions.length, answers);
+  });
+  
+  return html;
 }
 
-/**
- * Подсветка подсказки для мульти-вопросов (добавляет стиль)
- */
 function applyMultiHintStyles() {
-    const style = document.createElement('style');
-    style.textContent = `
-        .question-hint {
-            font-size: 14px;
-            color: var(--text2);
-            margin-bottom: 16px;
-            padding: 8px 12px;
-            background: rgba(59, 130, 246, 0.08);
-            border-radius: 8px;
-            border-left: 3px solid var(--water);
-            font-weight: 500;
-        }
-        
-        .option.multi .check {
-            border-radius: 4px !important;
-        }
-        
-        .option.multi.selected .check {
-            background: var(--water);
-            border-color: var(--water);
-            color: white;
-        }
-        
-        .option.multi .check::after {
-            content: '✓';
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        
-        .option.multi.selected .check::after {
-            opacity: 1;
-        }
-    `;
-    document.head.appendChild(style);
+  const style = document.createElement('style');
+  style.textContent = `
+    .question-hint {
+      font-size: 14px;
+      color: var(--text2);
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      background: rgba(59, 130, 246, 0.08);
+      border-radius: 8px;
+      border-left: 3px solid var(--water);
+      font-weight: 500;
+    }
+    .option.multi .check {
+      border-radius: 4px !important;
+    }
+    .option.multi.selected .check {
+      background: var(--water);
+      border-color: var(--water);
+      color: white;
+    }
+    .option.multi .check::after {
+      content: '✓';
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .option.multi.selected .check::after {
+      opacity: 1;
+    }
+  `;
+  document.head.appendChild(style);
 }
 
 // ===== ЭКСПОРТ =====
@@ -618,5 +582,5 @@ window.filterSolutions = filterSolutions;
 window.getSolutionById = getSolutionById;
 window.refreshDataRegistry = refreshDataRegistry;
 
-console.log("✅ Движок загружен, готов к работе!");
+console.log("✅ Движок v3.0 загружен, готов к работе!");
 console.log(`🌍 Доступные языки: ${Object.keys(dataRegistry).join(", ")}`);
