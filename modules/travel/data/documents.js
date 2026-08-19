@@ -1,60 +1,81 @@
-const documentsData = {
-  category: "documents",
-  title: "📄 Документы",
-  description: "Emergency: Документы",
+// modules/travel/data/documents.js
+// === МОДУЛЬ: ПУТЕШЕСТВИЯ — ДОКУМЕНТЫ ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "travel",
+    category: "documents",
+    version: "1.0.0",
+    lang: "ru",
+    title: "📄 Документы",
+    description: "Утеря или кража документов за границей",
+    icon: "📄",
+    color: "#0d9488"
+  },
+
   questions: [
     {
       id: "doc_type",
       type: "single",
       text: "Какой документ утерян или украден?",
       options: [
-        { id: "passport", label: "Загранпаспорт / паспорт", tags: ["passport"] },
-        { id: "visa", label: "Виза / Шенген", tags: ["visa"] },
-        { id: "tickets", label: "Билеты (авиа / ж/д / автобус)", tags: ["tickets"] },
-        { id: "insurance", label: "Страховой полис", tags: ["insurance"] },
-        { id: "all", label: "Несколько документов сразу", tags: ["all"] }
+        { id: "passport", label: "🛂 Загранпаспорт / паспорт", tags: ["passport"] },
+        { id: "visa", label: "🛂 Виза / Шенген", tags: ["visa"] },
+        { id: "tickets", label: "🎫 Билеты (авиа / ж/д / автобус)", tags: ["tickets"] },
+        { id: "insurance", label: "🩺 Страховой полис", tags: ["insurance"] },
+        { id: "all", label: "📋 Несколько документов сразу", tags: ["all"] }
       ]
     },
     {
       id: "location",
       type: "single",
       text: "Где произошла потеря?",
+      conditions: { doc_type: ["passport", "visa", "tickets", "insurance", "all"] },
       options: [
-        { id: "abroad", label: "За границей (в другой стране)", tags: ["abroad"] },
-        { id: "transit", label: "В аэропорту / на вокзале / в транспорте", tags: ["transit"] },
-        { id: "hotel", label: "В отеле / арендном жилье", tags: ["hotel"] },
-        { id: "street", label: "На улице / в общественном месте", tags: ["street"] },
-        { id: "home", label: "Дома (перед выездом)", tags: ["home"] }
+        { id: "abroad", label: "🌍 За границей (в другой стране)", tags: ["abroad"] },
+        { id: "transit", label: "✈️ В аэропорту / на вокзале / в транспорте", tags: ["transit"] },
+        { id: "hotel", label: "🏨 В отеле / арендном жилье", tags: ["hotel"] },
+        { id: "street", label: "🚶 На улице / в общественном месте", tags: ["street"] },
+        { id: "home", label: "🏠 Дома (перед выездом)", tags: ["home"] }
       ]
     },
     {
       id: "copies",
       type: "single",
       text: "Есть ли у вас копии документов (фото на телефоне, сканы)?",
+      conditions: { doc_type: ["passport", "visa", "tickets", "insurance", "all"] },
       options: [
-        { id: "yes", label: "Да, есть фото/сканы в телефоне или облаке", tags: ["yes"] },
-        { id: "no", label: "Нет, ничего нет", tags: ["no"] },
-        { id: "partial", label: "Есть только часть (например, только фото паспорта)", tags: ["partial"] }
+        { id: "yes", label: "✅ Да, есть фото/сканы в телефоне или облаке", tags: ["yes"] },
+        { id: "no", label: "❌ Нет, ничего нет", tags: ["no"] },
+        { id: "partial", label: "⚠️ Есть только часть (например, только фото паспорта)", tags: ["partial"] }
       ]
     },
     {
       id: "time",
       type: "single",
       text: "Когда обнаружили пропажу?",
+      conditions: { doc_type: ["passport", "visa", "tickets", "insurance", "all"] },
       options: [
-        { id: "urgent", label: "Прямо сейчас / только что", tags: ["urgent"] },
-        { id: "today", label: "Сегодня, несколько часов назад", tags: ["today"] },
-        { id: "days", label: "Несколько дней назад", tags: ["days"] }
+        { id: "urgent", label: "🔴 Прямо сейчас / только что", tags: ["urgent"] },
+        { id: "today", label: "🟡 Сегодня, несколько часов назад", tags: ["today"] },
+        { id: "days", label: "🟢 Несколько дней назад", tags: ["days"] }
       ]
     }
   ],
+
   solutions: [
+    // ============================================================
+    // 1. Утерян паспорт за границей
+    // ============================================================
     {
       id: "passport_abroad",
-      title: "Утерян паспорт за границей",
-      conditions: { "doc_type": ["passport"], "location": ["abroad"] },
-      tags: ["doc_type", "location", "documents"],
+      title: "🛂 Утерян паспорт за границей",
       description: "Срочно нужно получить временный проездной документ (свидетельство на возвращение) в консульстве или посольстве РФ.",
+      conditions: { doc_type: ["passport"], location: ["abroad"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1-5 дней",
+      yield_estimate: "Свидетельство на возвращение",
+      tags: ["passport", "abroad", "documents"],
       steps: [
         "Немедленно обратитесь в ближайшее консульство или посольство РФ. Найдите адрес на сайте mid.ru или через приложение «Консул».",
         "Напишите заявление об утере паспорта в местную полицию. Попросите справку (police report) — она понадобится в консульстве.",
@@ -67,18 +88,20 @@ const documentsData = {
         "Не пытайтесь выехать без документов — вас не пустят на рейс.",
         "Если украли — сначала заблокируйте банковские карты, если они были вместе с паспортом.",
         "Сохраняйте спокойствие: в 90% случаев проблема решается за 2–3 дня."
-      ],
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1-5 дней",
-      yield_estimate: "Решение найдено"
+      ]
     },
+    // ============================================================
+    // 2. Паспорт утерян в аэропорту / транспорте
+    // ============================================================
     {
       id: "passport_transit",
-      title: "Паспорт утерян в аэропорту / транспорте",
-      conditions: { "doc_type": ["passport"], "location": ["transit"] },
-      tags: ["doc_type", "location", "documents"],
+      title: "🛂 Паспорт утерян в аэропорту / транспорте",
       description: "Высокая вероятность, что документ найден службой безопасности или lost & found.",
+      conditions: { doc_type: ["passport"], location: ["transit"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "часы-дни",
+      yield_estimate: "Нахождение документа",
+      tags: ["passport", "transit", "documents"],
       steps: [
         "Немедленно обратитесь в службу находок (Lost & Found) аэропорта / вокзала. Обычно это в терминале или на сайте.",
         "Свяжитесь с авиакомпанией или перевозчиком — документ могут передать в их офис.",
@@ -89,18 +112,20 @@ const documentsData = {
       warnings: [
         "Не покидайте зону транзита без паспорта — можете не попасть обратно.",
         "Lost & Found обычно хранят находки до 30 дней."
-      ],
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "часы-дни",
-      yield_estimate: "Решение найдено"
+      ]
     },
+    // ============================================================
+    // 3. Утеряна виза / Шенген
+    // ============================================================
     {
       id: "visa_lost",
-      title: "Утеряна виза / Шенген",
-      conditions: { "doc_type": ["visa"] },
-      tags: ["doc_type", "documents"],
+      title: "🛂 Утеряна виза / Шенген",
       description: "Виза восстанавливается только через повторную подачу документов. В некоторых случаях можно получить экстренную визу.",
+      conditions: { doc_type: ["visa"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "3-10 дней",
+      yield_estimate: "Новая виза или СРВП",
+      tags: ["visa", "documents"],
       steps: [
         "Обратитесь в консульство страны, выдавшей визу. Объясните ситуацию и попросите экстренную визу (emergency visa).",
         "Подготовьте: новый паспорт (если утерян и он), фото, подтверждение цели поездки (билеты, бронь отеля), страховку.",
@@ -111,18 +136,20 @@ const documentsData = {
       warnings: [
         "Шенгенскую визу нельзя 'восстановить' — только получить новую.",
         "Экстренная виза выдаётся только при доказанной необходимости (смерть родственника, лечение и т.д.)."
-      ],
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "3-10 дней",
-      yield_estimate: "Решение найдено"
+      ]
     },
+    // ============================================================
+    // 4. Утеряны билеты
+    // ============================================================
     {
       id: "tickets_lost",
-      title: "Утеряны билеты",
-      conditions: { "doc_type": ["tickets"] },
-      tags: ["doc_type", "documents"],
+      title: "🎫 Утеряны билеты",
       description: "Электронные билеты восстанавливаются легко. Бумажные — сложнее, но тоже возможно.",
+      conditions: { doc_type: ["tickets"] },
+      scoring: { priority: "slow", reliability: "low" },
+      time_estimate: "15-60 мин",
+      yield_estimate: "Восстановление билетов",
+      tags: ["tickets", "documents"],
       steps: [
         "Если билет электронный — найдите его в email, приложении авиакомпании или личном кабинете. Распечатайте или сохраните QR-код на телефон.",
         "Свяжитесь с авиакомпанией или агентом по телефону. Назовите ФИО, дату рейса и номер бронирования (PNR).",
@@ -133,18 +160,20 @@ const documentsData = {
       warnings: [
         "Некоторые лоукостеры берут плату за перевыпуск посадочного талона на месте — до 50 €.",
         "Всегда сохраняйте подтверждение бронирования в облаке (Google Drive, Telegram Saved Messages)."
-      ],
-      priority: "slow",
-      reliability: "low",
-      time_estimate: "15-60 мин",
-      yield_estimate: "Решение найдено"
+      ]
     },
+    // ============================================================
+    // 5. Утерян страховой полис
+    // ============================================================
     {
       id: "insurance_lost",
-      title: "Утерян страховой полис",
-      conditions: { "doc_type": ["insurance"] },
-      tags: ["doc_type", "documents"],
+      title: "🩺 Утерян страховой полис",
       description: "Страховой полис всегда можно восстановить онлайн или по телефону.",
+      conditions: { doc_type: ["insurance"] },
+      scoring: { priority: "slow", reliability: "low" },
+      time_estimate: "5-30 мин",
+      yield_estimate: "Восстановление полиса",
+      tags: ["insurance", "documents"],
       steps: [
         "Найдите полис в email — страховые компании всегда отправляют его на почту.",
         "Скачайте приложение страховой компании (Ингосстрах, АльфаСтрахование, Тинькофф Страхование и др.) и авторизуйтесь.",
@@ -155,18 +184,20 @@ const documentsData = {
       warnings: [
         "Без полиса вас могут не пустить в Шенген — всегда имейте копию на телефоне.",
         "При обращении к врачу за границей страховая может принять данные по телефону без бумажного полиса."
-      ],
-      priority: "slow",
-      reliability: "low",
-      time_estimate: "5-30 мин",
-      yield_estimate: "Решение найдено"
+      ]
     },
+    // ============================================================
+    // 6. Потеря документов без копий
+    // ============================================================
     {
       id: "docs_no_copies",
-      title: "Потеря документов без копий",
-      conditions: { "copies": ["no"] },
-      tags: ["copies", "documents"],
+      title: "📋 Потеря документов без копий",
       description: "Ситуация осложняется, но решаема. Нужно собрать максимум информации из других источников.",
+      conditions: { copies: ["no"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5-10 дней",
+      yield_estimate: "Восстановление документов",
+      tags: ["copies", "documents"],
       steps: [
         "Попросите родственников в России сфотографировать и прислать внутренний паспорт, СНИЛС, свидетельство о рождении (если есть).",
         "Проверьте Telegram, WhatsApp, email — возможно, вы раньше отправляли кому-то фото документов.",
@@ -177,14 +208,7 @@ const documentsData = {
       warnings: [
         "Всегда делайте фото всех документов перед поездкой и сохраняйте в облаке.",
         "Отправьте копии родственнику или другу — это спасёт вас в критической ситуации."
-      ],
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5-10 дней",
-      yield_estimate: "Решение найдено"
+      ]
     }
   ]
-}
-
-// ===== EXPORT =====
-window.documentsData = documentsData;
+});
