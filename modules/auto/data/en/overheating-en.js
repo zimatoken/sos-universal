@@ -1,274 +1,375 @@
-// === MODULE: AUTO — ENGINE OVERHEATING (ENGLISH) ===
-const autoOverheatingDataEn = {
-  category: "overheating",
-  title: "🌡️ Engine Overheating",
-  description: "Diagnosis and solutions for cooling system problems",
+// modules/auto/data/en/overheating-en.js
+// === MODULE: AUTO — ENGINE OVERHEATING ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "auto",
+    category: "overheating",
+    version: "1.0.0",
+    lang: "en",
+    title: "🌡️ Engine Overheating",
+    description: "Diagnostics and solutions for cooling system problems — overheating, leaks, fan, thermostat",
+    icon: "🌡️",
+    color: "#2563eb"
+  },
 
   questions: [
     {
       id: "symptom",
-      text: "What symptoms did you notice?",
-      type: "multi",
+      type: "single",
+      text: "What is the main overheating symptom?",
       options: [
-        { id: "temp_high", label: "🌡️ Temperature gauge in red zone", tags: ["temp_high", "alert"] },
-        { id: "smoke", label: "💨 Steam / smoke from under hood", tags: ["smoke", "steam", "danger"] },
-        { id: "smell", label: "👃 Sweet smell (antifreeze) / burnt oil", tags: ["smell", "coolant"] },
-        { id: "warning_light", label: "⚠️ Overheat warning light on dashboard", tags: ["warning", "check"] },
-        { id: "steam_radiator", label: "🌫️ Steam from radiator or expansion tank", tags: ["steam", "pressure"] },
-        { id: "loss_power", label: "🐢 Loss of power, engine misfiring", tags: ["power_loss", "engine"] },
-        { id: "coolant_leak", label: "💧 Puddle under car (green/red fluid)", tags: ["leak", "coolant"] }
+        { id: "temp_high", label: "🌡️ Temperature gauge in the red zone", tags: ["temp_high"] },
+        { id: "smoke", label: "💨 Steam / smoke from under the hood", tags: ["smoke"] },
+        { id: "smell", label: "👃 Sweet smell (antifreeze) / burnt oil", tags: ["smell"] },
+        { id: "warning", label: "⚠️ Overheat warning light came on", tags: ["warning"] },
+        { id: "steam", label: "🌫️ Steam from radiator or expansion tank", tags: ["steam"] },
+        { id: "loss_power", label: "🐢 Power loss, engine misfiring", tags: ["loss_power"] },
+        { id: "leak", label: "💧 Puddle under the car (green/red fluid)", tags: ["leak"] },
+        { id: "stalled", label: "⛔ Engine stalled / shut off", tags: ["stalled"] }
       ]
     },
     {
       id: "location",
-      text: "Where are you?",
       type: "single",
-      conditions: { symptom: ["temp_high", "smoke", "smell", "warning_light", "steam_radiator", "loss_power", "coolant_leak"] },
+      text: "Where are you?",
+      conditions: { symptom: ["temp_high", "smoke", "smell", "warning", "steam", "loss_power", "leak", "stalled"] },
       options: [
-        { id: "home", label: "🏠 At home / garage", tags: ["safe", "tools", "garage"] },
-        { id: "road", label: "🛣️ On the road (city)", tags: ["road", "traffic"] },
-        { id: "highway", label: "🛣️ On the highway", tags: ["highway", "danger"] },
-        { id: "parking", label: "🅿️ In a parking lot", tags: ["parking", "help"] }
+        { id: "home", label: "🏠 At home / garage", tags: ["safe"] },
+        { id: "road", label: "🛣️ On the road (city)", tags: ["road"] },
+        { id: "highway", label: "🛣️ On the highway", tags: ["highway"] },
+        { id: "parking", label: "🅿️ In a parking lot", tags: ["parking"] }
       ]
     },
     {
       id: "has_tools",
+      type: "single",
       text: "What do you have with you?",
-      type: "multi",
-      conditions: { symptom: ["temp_high", "smoke", "smell", "warning_light", "steam_radiator", "loss_power", "coolant_leak"] },
+      conditions: { symptom: ["temp_high", "smoke", "smell", "warning", "steam", "loss_power", "leak", "stalled"] },
       options: [
         { id: "coolant", label: "🧊 Coolant (antifreeze)", tags: ["coolant"] },
         { id: "water", label: "💧 Water (distilled or drinking)", tags: ["water"] },
         { id: "gloves", label: "🧤 Gloves", tags: ["gloves"] },
-        { id: "nothing", label: "❌ None of the above", tags: ["no_tools"] }
+        { id: "tools_none", label: "❌ None of the above", tags: ["tools_none"] }
       ]
     },
     {
       id: "engine_state",
-      text: "Is the engine currently running?",
       type: "single",
-      conditions: { symptom: ["temp_high", "smoke", "smell", "warning_light", "steam_radiator", "loss_power", "coolant_leak"] },
+      text: "Is the engine running?",
+      conditions: { symptom: ["temp_high", "smoke", "smell", "warning", "steam", "loss_power", "leak", "stalled"] },
       options: [
         { id: "running", label: "🟢 Yes, running", tags: ["running"] },
         { id: "stopped", label: "🔴 No, turned off", tags: ["stopped"] },
-        { id: "stalled", label: "⛔ Stalled (shut off itself)", tags: ["stalled"] }
+        { id: "stalled", label: "⛔ Stalled / shut off itself", tags: ["stalled"] }
       ]
     },
     {
       id: "fan_working",
-      text: "Is the cooling fan working? (can hear or see)",
       type: "single",
-      conditions: { symptom: ["temp_high", "smoke", "smell", "warning_light", "steam_radiator", "loss_power", "coolant_leak"] },
+      text: "Is the cooling fan working?",
+      conditions: { symptom: ["temp_high", "smoke", "smell", "warning", "steam", "loss_power", "leak", "stalled"] },
       options: [
-        { id: "yes", label: "✅ Yes, working", tags: ["fan_on"] },
-        { id: "no", label: "❌ No, not working", tags: ["fan_off"] },
-        { id: "unknown", label: "❓ Don't know / can't see", tags: ["fan_unknown"] }
+        { id: "fan_yes", label: "✅ Yes, it's working", tags: ["fan_yes"] },
+        { id: "fan_no", label: "❌ No, not working", tags: ["fan_no"] },
+        { id: "fan_unknown", label: "❓ Don't know", tags: ["fan_unknown"] }
       ]
     },
     {
       id: "coolant_level_visible",
-      text: "Can you see the coolant level in the expansion tank?",
       type: "single",
-      conditions: { symptom: ["temp_high", "smoke", "smell", "warning_light", "steam_radiator", "loss_power", "coolant_leak"] },
+      text: "Is the coolant level visible in the expansion tank?",
+      conditions: { symptom: ["temp_high", "smoke", "smell", "warning", "steam", "loss_power", "leak", "stalled"] },
       options: [
-        { id: "normal", label: "✅ Normal (between MIN and MAX)", tags: ["level_ok"] },
-        { id: "low", label: "📉 Below MIN (low)", tags: ["level_low"] },
-        { id: "empty", label: "🫗 Almost empty", tags: ["level_empty"] },
-        { id: "not_visible", label: "❌ Can't see / can't check", tags: ["level_unknown"] }
+        { id: "level_ok", label: "✅ Normal (between MIN and MAX)", tags: ["level_ok"] },
+        { id: "level_low", label: "📉 Below MIN", tags: ["level_low"] },
+        { id: "level_empty", label: "🫗 Almost empty", tags: ["level_empty"] },
+        { id: "level_unknown", label: "❓ Can't see", tags: ["level_unknown"] }
+      ]
+    },
+    {
+      id: "driving_style",
+      type: "single",
+      text: "How were you driving before the overheating?",
+      conditions: { symptom: ["temp_high", "smoke", "smell", "warning", "steam", "loss_power", "leak", "stalled"] },
+      options: [
+        { id: "city_traffic", label: "🚦 City traffic (stop and go)", tags: ["city_traffic"] },
+        { id: "highway_speed", label: "🏎️ Highway (high speed)", tags: ["highway_speed"] },
+        { id: "uphill", label: "⛰️ Uphill / mountain road", tags: ["uphill"] }
       ]
     }
   ],
 
   solutions: [
-    // ===== 1. Stop and cool =====
+    // ============================================================
+    // 1. STOP AND COOL
+    // ============================================================
     {
       id: "stop_and_cool",
       title: "🛑 Stop and cool the engine",
-      description: "If overheating, IMMEDIATELY stop and let the engine cool.",
-      conditions: { symptom: ["temp_high", "smoke", "warning_light"], engine_state: ["running", "stopped", "stalled"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "15-30 min",
-      yield_estimate: "Cooled engine",
+      description: "In case of overheating, IMMEDIATELY stop and let the engine cool.",
+      conditions: { symptom: ["temp_high", "smoke", "warning"], engine_state: ["running", "stopped", "stalled"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "15–30 minutes",
+      yield_estimate: "Engine cooled down",
       tags: ["emergency", "cool_down", "safety"],
       steps: [
-        "IMMEDIATELY pull over to the side (if safe)",
-        "Turn off the engine (if it didn't stall)",
-        "Turn on hazard lights",
-        "DO NOT open the hood for 15-20 minutes — let the engine cool",
-        "DO NOT open radiator cap — pressurized steam can burn",
-        "If possible — turn heater to max (it pulls heat from engine)",
-        "After cooling, open hood and check coolant level",
-        "Don't try to drive until engine is fully cooled"
+        "IMMEDIATELY pull over to the shoulder (if safe).",
+        "Turn off the engine (if it hasn't stalled).",
+        "Turn on hazard lights.",
+        "DON'T open the hood for 15–20 minutes — let it cool.",
+        "DON'T open the radiator cap — steam under pressure can burn.",
+        "If possible — turn the heater on full blast.",
+        "After cooling, open the hood and check the coolant level."
       ],
       warnings: [
-        "NEVER open hood immediately — steam burns",
-        "DO NOT pour cold water into hot engine — risk of cracking the block",
-        "If engine stalled — don't try to restart immediately",
-        "If there's coolant leak — don't top up until engine cools"
+        "NEVER open the hood immediately — steam burns.",
+        "DON'T pour cold water into a hot engine — may crack the block.",
+        "If the engine stalled — don't try to restart immediately."
       ]
     },
-    // ===== 2. Check and top up coolant =====
+
+    // ============================================================
+    // 2. TRAFFIC OVERHEATING
+    // ============================================================
+    {
+      id: "traffic_overheat",
+      title: "🚦 Overheating in traffic — fan issue",
+      description: "In traffic, the engine overheats due to lack of airflow. Check the fan.",
+      conditions: { symptom: ["temp_high"], driving_style: ["city_traffic"], fan_working: ["fan_no"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Fan diagnosed",
+      tags: ["traffic", "fan", "overheat"],
+      steps: [
+        "Turn the heater on full blast (removes heat).",
+        "If possible — turn off the AC (loads the engine).",
+        "Check if the cooling fan is working.",
+        "If the fan isn't working — check the fuse.",
+        "If possible — open the hood (while parked) for better cooling.",
+        "If the fan isn't working — drive to a service center, avoid traffic."
+      ],
+      warnings: [
+        "If the fan isn't working — don't sit in traffic.",
+        "Don't touch fan blades with the engine running.",
+        "Check fuses with the ignition off."
+      ]
+    },
+
+    // ============================================================
+    // 3. HIGHWAY OVERHEATING
+    // ============================================================
+    {
+      id: "highway_overheat",
+      title: "🏎️ Highway overheating — thermostat or radiator",
+      description: "On the highway, overheating can be caused by a stuck thermostat or clogged radiator.",
+      conditions: { symptom: ["temp_high"], driving_style: ["highway_speed", "uphill"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "10–20 minutes",
+      yield_estimate: "Cause diagnosed",
+      tags: ["highway", "thermostat", "radiator"],
+      steps: [
+        "Reduce speed (60–80 km/h) to reduce engine load.",
+        "Turn the heater on full blast.",
+        "If possible — stop and let it cool.",
+        "Check hoses: if one is hot and the other cold — thermostat is stuck.",
+        "Inspect the radiator: not clogged with dirt, fluff, insects.",
+        "If the radiator is dirty — wash it with water (after cooling)."
+      ],
+      warnings: [
+        "If the thermostat is stuck closed — the engine will overheat.",
+        "Don't try to drive with an overheated engine — expensive repair.",
+        "After cooling, check the coolant level."
+      ]
+    },
+
+    // ============================================================
+    // 4. ENGINE STALLED
+    // ============================================================
+    {
+      id: "engine_stalled",
+      title: "⛔ Engine stalled from overheating — what to do",
+      description: "The engine stalled itself — protection from destruction. Don't try to restart immediately.",
+      conditions: { symptom: ["stalled"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "20–40 minutes",
+      yield_estimate: "Safe cooling",
+      tags: ["stalled", "overheat", "emergency"],
+      steps: [
+        "DON'T try to restart immediately — may destroy the engine.",
+        "Turn on hazard lights and place a warning triangle.",
+        "Let the engine cool for 30–40 minutes.",
+        "Check the coolant level (after cooling).",
+        "If low — top up.",
+        "If normal — possibly thermostat or fan issue.",
+        "If it starts after cooling — drive to a service center immediately.",
+        "If it doesn't start — call a tow truck."
+      ],
+      warnings: [
+        "DON'T try to start an overheated engine — may destroy it.",
+        "If the engine stalled on the highway — move behind the barrier.",
+        "If there's a coolant leak — don't top up until cooled."
+      ]
+    },
+
+    // ============================================================
+    // 5. POWER LOSS
+    // ============================================================
+    {
+      id: "power_loss_overheat",
+      title: "🐢 Power loss during overheating",
+      description: "Power loss is a sign that the engine is in limp mode.",
+      conditions: { symptom: ["loss_power"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Diagnosis",
+      tags: ["power_loss", "engine", "overheat"],
+      steps: [
+        "Power loss during overheating — engine in limp mode.",
+        "DON'T continue driving — stop and turn off the engine.",
+        "Let it cool for 15–20 minutes.",
+        "Check the coolant level.",
+        "If normal — possibly sensor or ECU issue.",
+        "If misfiring — possible head gasket damage.",
+        "In any case — go to a service center on a tow truck."
+      ],
+      warnings: [
+        "Power loss + overheating = serious problem.",
+        "Don't try to drive further — may destroy the engine.",
+        "If misfiring — possible head gasket damage."
+      ]
+    },
+
+    // ============================================================
+    // 6. COOLANT TOP UP
+    // ============================================================
     {
       id: "coolant_add",
       title: "🧊 Check and top up coolant",
-      description: "If coolant level is low — top up to normal after engine cools.",
-      conditions: { symptom: ["temp_high", "coolant_leak"], engine_state: ["stopped"], coolant_level_visible: ["low", "empty"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "10-15 min",
+      description: "If the coolant level is low — top up after the engine has cooled.",
+      conditions: { symptom: ["temp_high", "leak"], coolant_level_visible: ["level_low", "level_empty"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10–15 minutes",
       yield_estimate: "Normal coolant level",
       tags: ["coolant", "top_up", "antifreeze"],
       steps: [
-        "Make sure engine is cool (hood not hot)",
-        "Open hood, find expansion tank (usually transparent, with MIN/MAX marks)",
-        "If available — top up antifreeze to between MIN and MAX",
-        "If no antifreeze — add distilled water (last resort)",
-        "DO NOT open radiator cap while engine is hot!",
-        "Check for leaks under the car after topping up",
-        "Start engine and let idle for 2-3 minutes",
-        "Check if overheating returns"
+        "Make sure the engine is cool.",
+        "Open the hood, find the expansion tank (with MIN/MAX).",
+        "Top up antifreeze to between MIN and MAX.",
+        "If no antifreeze — top up with distilled water (last resort).",
+        "DON'T open the radiator cap while the engine is hot!",
+        "Check for leaks under the car.",
+        "Start the engine and let it run for 2–3 minutes."
       ],
       warnings: [
-        "DO NOT open radiator on hot engine — burn risk",
-        "Only mix same type of antifreeze (green with green, red with red)",
-        "If leak is large — won't help, call tow truck",
-        "Check level again after some time"
+        "DON'T open the radiator on a hot engine — burns.",
+        "Only mix the same type of antifreeze.",
+        "If there's a large leak — it won't help, call a tow truck."
       ]
     },
-    // ===== 3. Check fan =====
+
+    // ============================================================
+    // 7. AIR LOCK
+    // ============================================================
+    {
+      id: "coolant_air_lock",
+      title: "💨 Air lock in the cooling system",
+      description: "Air in the system prevents coolant circulation. Check and bleed.",
+      conditions: { symptom: ["temp_high"], coolant_level_visible: ["level_ok"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "15–20 minutes",
+      yield_estimate: "Air removed from system",
+      tags: ["air_lock", "coolant", "system"],
+      steps: [
+        "Signs of air lock: heater blows cold air, engine overheats.",
+        "Open the expansion tank cap (cold engine).",
+        "Start the engine and let it warm up to operating temperature.",
+        "Open the radiator cap (if accessible) to release air.",
+        "Monitor the fluid level — top up as it drops.",
+        "When air is out — the level will stabilize.",
+        "Close caps and check temperature."
+      ],
+      warnings: [
+        "Don't open the radiator cap on a hot engine!",
+        "If the problem persists — possible leak in the system."
+      ]
+    },
+
+    // ============================================================
+    // 8. CHECK FAN
+    // ============================================================
     {
       id: "check_fan",
       title: "💨 Check cooling fan operation",
-      description: "If fan doesn't work — engine overheats at idle and in traffic.",
-      conditions: { symptom: ["temp_high"], fan_working: ["no", "unknown"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "5-10 min",
-      yield_estimate: "Fan diagnosis",
+      description: "If the fan isn't working, the engine overheats at idle.",
+      conditions: { symptom: ["temp_high"], fan_working: ["fan_no", "fan_unknown"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Fan diagnosed",
       tags: ["fan", "diagnostics", "cooling"],
       steps: [
-        "Start engine and turn on AC (if available) — fan should turn on",
-        "If fan doesn't start — check fuse (in fuse box)",
-        "Check fan relay (can swap with similar one)",
-        "If fan turns on but not at full speed — resistor issue",
-        "If fan doesn't work — you can drive, but avoid traffic and long idling",
-        "With fan not working — keep moving (airflow while driving helps)"
+        "Start the engine and turn on the AC — the fan should start.",
+        "If not — check the fuse.",
+        "Check the fan relay (swap with a similar one).",
+        "If the fan runs but weak — possibly a resistor.",
+        "If not working — can drive, avoid traffic and long idling."
       ],
       warnings: [
-        "If fan doesn't work — don't sit in traffic, engine will overheat",
-        "Check fuses with ignition off",
-        "Don't touch fan blades with engine running",
-        "If relay is good but fan doesn't work — fan motor may be bad"
+        "Don't touch fan blades with the engine running.",
+        "Check fuses with the ignition off."
       ]
     },
-    // ===== 4. Thermostat =====
-    {
-      id: "thermostat_check",
-      title: "🌡️ Check / replace thermostat",
-      description: "If engine overheats while driving on highway — thermostat may be stuck.",
-      conditions: { symptom: ["temp_high"], engine_state: ["running"], location: ["road", "highway"] },
-      priority: "slow",
-      reliability: "medium",
-      time_estimate: "30-60 min (at service)",
-      yield_estimate: "Overheating cause fixed",
-      tags: ["thermostat", "cooling", "repair"],
-      steps: [
-        "Check temperature: if it rises quickly on highway — thermostat may be stuck closed",
-        "Check hoses: if one is hot and the other cold — thermostat not opening",
-        "In this case — go to service for thermostat replacement",
-        "If can't reach service — try removing thermostat (temporary fix)",
-        "After removing thermostat — engine will warm up slower but won't overheat",
-        "Replace with new thermostat at first opportunity"
-      ],
-      warnings: [
-        "Thermostat replacement requires draining coolant — only after engine cools",
-        "If thermostat stuck closed — engine will overheat",
-        "If stuck open — engine will run cold (slow warm-up)",
-        "Don't drive without thermostat in winter — engine will stay cold, heater won't work"
-      ]
-    },
-    // ===== 5. Radiator =====
-    {
-      id: "radiator_check",
-      title: "🧽 Check radiator (blockage, dirt, damage)",
-      description: "Clogged radiator doesn't dissipate heat well — causes overheating.",
-      conditions: { symptom: ["temp_high"], location: ["home", "parking"] },
-      priority: "slow",
-      reliability: "medium",
-      time_estimate: "20-30 min",
-      yield_estimate: "Clean radiator",
-      tags: ["radiator", "cleaning", "maintenance"],
-      steps: [
-        "Inspect radiator fins — should not be clogged with fluff, dirt, insects",
-        "Rinse radiator with water hose (carefully, don't damage fins)",
-        "Check if radiator is damaged (leaks, dents)",
-        "If radiator damaged — needs replacement or repair",
-        "Check if air flows freely through radiator (no obstructions)",
-        "If clogged — clean from outside and inside (flush system)"
-      ],
-      warnings: [
-        "Don't use high pressure water — can damage fins",
-        "When cleaning radiator — avoid getting water on electronics",
-        "If radiator is leaking — don't try to drive, call tow truck",
-        "Radiator blockage often happens from using poor quality antifreeze"
-      ]
-    },
-    // ===== 6. Heater for cooling =====
+
+    // ============================================================
+    // 9. HEATER FOR EMERGENCY COOLING
+    // ============================================================
     {
       id: "heater_cooling",
-      title: "🔥 Turn on heater for emergency cooling",
-      description: "If engine overheated — turn heater to max to pull heat away.",
+      title: "🔥 Using the heater for emergency cooling",
+      description: "If the engine overheats — turn the heater on full blast.",
       conditions: { symptom: ["temp_high"], engine_state: ["running"] },
-      priority: "fast",
-      reliability: "medium",
-      time_estimate: "1 min",
-      yield_estimate: "Engine temp drops 5-10°C",
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "1 minute",
+      yield_estimate: "Temperature reduced by 5–10°C",
       tags: ["emergency", "heater", "cooling"],
       steps: [
-        "IMMEDIATELY turn heater to max",
-        "Open windows (to remove heat from cabin)",
-        "Turn fan to max speed",
-        "Direct airflow to windshield (so it doesn't blow on you)",
-        "This will pull heat from engine and lower temperature",
-        "Watch temperature gauge — it should drop",
-        "If not helping — stop and let engine cool"
+        "IMMEDIATELY turn the heater on full blast.",
+        "Open the windows (to remove heat).",
+        "Turn the fan to maximum.",
+        "Direct airflow to the windshield.",
+        "Monitor the temperature gauge — should drop."
       ],
       warnings: [
-        "Cabin may get very hot — this is normal",
-        "If heater doesn't blow hot — possibly low coolant or air in system",
-        "This is temporary, doesn't fix the problem"
+        "It may get very hot in the cabin — this is normal.",
+        "If the heater doesn't heat — likely low coolant."
       ]
     },
-    // ===== 7. Tow truck =====
+
+    // ============================================================
+    // 10. TOW TRUCK
+    // ============================================================
     {
       id: "tow_truck_overheat",
-      title: "🚛 Call tow truck (critical situation)",
-      description: "If severe overheating, leak, stalled engine, or on highway — call tow truck.",
-      conditions: { symptom: ["smoke", "smell", "coolant_leak", "stalled"], location: ["highway", "road"] },
-      priority: "slow",
-      reliability: "high",
-      time_estimate: "30-120 min",
-      yield_estimate: "Safe delivery to service",
+      title: "🚛 Calling a tow truck (critical situation)",
+      description: "For severe overheating, leaks, or a stalled engine — call a tow truck.",
+      conditions: { symptom: ["smoke", "smell", "leak", "stalled"], location: ["highway", "road"] },
+      scoring: { priority: "slow", reliability: "high" },
+      time_estimate: "30–120 minutes",
+      yield_estimate: "Safe delivery to service center",
       tags: ["tow_truck", "emergency", "safe"],
       steps: [
-        "Turn on hazard lights, set warning triangle",
-        "If engine stalled — don't try to restart",
-        "Call tow truck (through insurance or paid)",
-        "Tell operator: car make, problem (overheating), exact location",
-        "If on highway — move behind barrier",
-        "During loading — watch for damage",
-        "Go to service or home"
+        "Turn on hazard lights and place a warning triangle.",
+        "If the engine stalled — don't try to restart.",
+        "Call a tow truck (through insurance or paid).",
+        "Tell the operator: car model, problem (overheating), location.",
+        "On the highway — move behind the barrier.",
+        "During loading — ask for caution."
       ],
       warnings: [
-        "Don't try to drive with overheating engine — leads to expensive repairs",
-        "If coolant leak — don't top up until engine cools",
-        "When towing with rope — remember brake booster may not work",
-        "If there's smoke — don't open hood until cooled"
+        "Don't try to drive with an overheated engine.",
+        "If there's a leak — don't top up until cooled.",
+        "During towing — remember that the brake booster may not work."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.autoOverheatingDataEn = autoOverheatingDataEn;
+});

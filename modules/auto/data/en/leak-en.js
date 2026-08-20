@@ -1,281 +1,394 @@
-// === MODULE: AUTO — FLUID LEAK (ENGLISH) ===
-const autoLeakDataEn = {
-  category: "leak",
-  title: "💧 Fluid Leak",
-  description: "Diagnosis and solutions for vehicle fluid leaks",
+// modules/auto/data/en/leak-en.js
+// === MODULE: AUTO — FLUID LEAK ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "auto",
+    category: "leak",
+    version: "1.0.0",
+    lang: "en",
+    title: "💧 Fluid Leak",
+    description: "Diagnostics and solutions for fluid leaks — oil, coolant, brake fluid, fuel",
+    icon: "💧",
+    color: "#2563eb"
+  },
 
   questions: [
     {
       id: "symptom",
+      type: "single",
       text: "What did you notice?",
-      type: "multi",
       options: [
-        { id: "puddle", label: "💧 Puddle under the car", tags: ["puddle", "leak"] },
-        { id: "low_level", label: "📉 Fluid level dropped (on dashboard)", tags: ["low_level", "warning"] },
-        { id: "warning_light", label: "💡 Warning light came on (oil, coolant, brake)", tags: ["warning", "alert"] },
-        { id: "smell", label: "👃 Smell (burnt oil, sweet antifreeze, gasoline)", tags: ["smell", "diagnostic"] },
-        { id: "overheat", label: "🌡️ Engine overheating", tags: ["overheat", "coolant"] },
-        { id: "smoke", label: "💨 Smoke / steam from under hood", tags: ["smoke", "overheat"] },
-        { id: "poor_brakes", label: "🛑 Brake pedal soft / goes to floor", tags: ["brake_fluid", "danger"] }
+        { id: "puddle", label: "💧 Puddle under the car", tags: ["puddle"] },
+        { id: "low_level", label: "📉 Fluid level dropped (on dashboard)", tags: ["low_level"] },
+        { id: "warning_light", label: "💡 Warning light came on", tags: ["warning_light"] },
+        { id: "smell", label: "👃 Smell (burnt oil, sweet antifreeze, gasoline)", tags: ["smell"] },
+        { id: "overheat", label: "🌡️ Engine overheating", tags: ["overheat"] },
+        { id: "smoke_hood", label: "💨 Smoke / steam from under the hood", tags: ["smoke_hood"] },
+        { id: "poor_brakes", label: "🛑 Brake pedal is soft / goes to the floor", tags: ["poor_brakes"] }
       ]
     },
     {
       id: "fluid_type",
-      text: "What fluid do you think is leaking?",
       type: "single",
-      conditions: { symptom: ["puddle", "low_level", "smell", "smoke", "warning_light"] },
+      text: "What fluid is leaking?",
+      conditions: { symptom: ["puddle", "low_level", "smell", "smoke_hood", "warning_light", "overheat"] },
       options: [
-        { id: "oil", label: "🛢️ Engine oil (dark, oily)", tags: ["oil", "engine"] },
-        { id: "coolant", label: "🧊 Coolant (antifreeze, red/green)", tags: ["coolant", "antifreeze"] },
-        { id: "brake_fluid", label: "🛑 Brake fluid (clear, oily, pungent)", tags: ["brake_fluid", "critical"] },
-        { id: "fuel", label: "⛽ Fuel (gasoline/diesel, strong smell)", tags: ["fuel", "danger"] },
-        { id: "steering_fluid", label: "🔄 Power steering fluid (red, oily)", tags: ["steering", "power_steering"] },
-        { id: "water", label: "💧 Water (condensation, clear)", tags: ["water", "normal"] },
-        { id: "unknown", label: "❓ Don't know / not sure", tags: ["unknown", "diagnostic"] }
+        { id: "oil", label: "🛢️ Motor oil (dark, oily)", tags: ["oil"] },
+        { id: "coolant", label: "🧊 Coolant (antifreeze)", tags: ["coolant"] },
+        { id: "brake_fluid", label: "🛑 Brake fluid (light, oily)", tags: ["brake_fluid"] },
+        { id: "fuel", label: "⛽ Fuel (gasoline, diesel, strong smell)", tags: ["fuel"] },
+        { id: "steering_fluid", label: "🔄 Power steering fluid (red, oily)", tags: ["steering_fluid"] },
+        { id: "water", label: "💧 Water (condensation, clear)", tags: ["water"] },
+        { id: "unknown", label: "❓ Don't know / not sure", tags: ["unknown"] }
       ]
     },
     {
-      id: "fluid_color",
-      text: "What color is the fluid?",
+      id: "fluid_color_single",
       type: "single",
+      text: "What color is the fluid?",
       conditions: { symptom: ["puddle"] },
       options: [
-        { id: "brown_black", label: "🟫 Brown / black (oil)", tags: ["brown", "oil"] },
-        { id: "red_blue", label: "🔴 Red / blue (antifreeze, power steering)", tags: ["red", "coolant"] },
-        { id: "green_yellow", label: "🟢 Green / yellow (antifreeze, coolant)", tags: ["green", "coolant"] },
-        { id: "clear", label: "💧 Clear (water)", tags: ["clear", "water"] },
-        { id: "yellow_gold", label: "🟡 Yellow / gold (brake fluid)", tags: ["yellow", "brake_fluid"] }
+        { id: "color_brown", label: "🟫 Brown / black (oil)", tags: ["brown"] },
+        { id: "color_red", label: "🔴 Red (antifreeze, power steering)", tags: ["red"] },
+        { id: "color_green", label: "🟢 Green / yellow (antifreeze)", tags: ["green"] },
+        { id: "color_clear", label: "💧 Clear (water)", tags: ["clear"] },
+        { id: "color_yellow", label: "🟡 Light yellow (brake fluid)", tags: ["yellow"] },
+        { id: "color_unknown", label: "❓ Don't know", tags: ["color_unknown"] }
+      ]
+    },
+    {
+      id: "fluid_smell",
+      type: "single",
+      text: "What does the fluid smell like?",
+      conditions: { symptom: ["puddle", "smell"] },
+      options: [
+        { id: "smell_oil", label: "🛢️ Oil smell (burnt)", tags: ["smell_oil"] },
+        { id: "smell_sweet", label: "🍬 Sweet smell (antifreeze)", tags: ["smell_sweet"] },
+        { id: "smell_fuel", label: "⛽ Strong smell (gasoline)", tags: ["smell_fuel"] },
+        { id: "smell_chemical", label: "🧪 Chemical smell (brake fluid)", tags: ["smell_chemical"] },
+        { id: "smell_none", label: "❌ No smell (water)", tags: ["smell_none"] },
+        { id: "smell_unknown", label: "❓ Don't know", tags: ["smell_unknown"] }
+      ]
+    },
+    {
+      id: "leak_location",
+      type: "single",
+      text: "Where is the puddle under the car?",
+      conditions: { symptom: ["puddle"] },
+      options: [
+        { id: "front_engine", label: "🔧 Under the engine (front)", tags: ["front_engine"] },
+        { id: "front_coolant", label: "🧊 Under the radiator (front)", tags: ["front_coolant"] },
+        { id: "middle", label: "📐 Under the middle of the car", tags: ["middle"] },
+        { id: "rear", label: "🔙 Under the rear", tags: ["rear"] },
+        { id: "wheel", label: "🛞 Under a wheel", tags: ["wheel"] }
       ]
     },
     {
       id: "location",
-      text: "Where are you?",
       type: "single",
-      conditions: { symptom: ["puddle", "low_level", "warning_light", "smell", "overheat", "smoke", "poor_brakes"] },
+      text: "Where are you?",
+      conditions: { symptom: ["puddle", "low_level", "warning_light", "smell", "overheat", "smoke_hood", "poor_brakes"] },
       options: [
-        { id: "home", label: "🏠 At home / garage", tags: ["safe", "tools"] },
-        { id: "road", label: "🛣️ On the road (city)", tags: ["road", "traffic"] },
-        { id: "highway", label: "🛣️ On the highway", tags: ["highway", "danger"] },
-        { id: "parking", label: "🅿️ In a parking lot", tags: ["parking", "help"] }
+        { id: "home", label: "🏠 At home / garage", tags: ["safe"] },
+        { id: "road", label: "🛣️ On the road (city)", tags: ["road"] },
+        { id: "highway", label: "🛣️ On the highway", tags: ["highway"] },
+        { id: "parking", label: "🅿️ In a parking lot", tags: ["parking"] }
       ]
     },
     {
       id: "has_tools",
+      type: "single",
       text: "What do you have with you?",
-      type: "multi",
-      conditions: { symptom: ["puddle", "low_level", "warning_light", "smell", "overheat", "smoke", "poor_brakes"] },
+      conditions: { symptom: ["puddle", "low_level", "warning_light", "smell", "overheat", "smoke_hood", "poor_brakes"] },
       options: [
         { id: "fluid", label: "🧴 Fluid (oil, antifreeze, brake fluid)", tags: ["fluid"] },
         { id: "funnel", label: "🔧 Funnel", tags: ["funnel"] },
-        { id: "gloves", label: "🧤 Gloves (protection)", tags: ["gloves"] },
-        { id: "nothing", label: "❌ None of the above", tags: ["no_tools"] }
-      ]
-    },
-    {
-      id: "engine_temp",
-      text: "What is the engine temperature?",
-      type: "single",
-      conditions: { symptom: ["puddle", "low_level", "warning_light", "smell", "overheat", "smoke", "poor_brakes"] },
-      options: [
-        { id: "normal", label: "🌡️ Normal (needle in middle)", tags: ["normal_temp"] },
-        { id: "hot", label: "🌡️ Hot (needle near red zone)", tags: ["hot_temp", "overheat"] },
-        { id: "overheated", label: "🌡️ Overheated (red zone)", tags: ["overheated", "emergency"] }
+        { id: "gloves", label: "🧤 Gloves", tags: ["gloves"] },
+        { id: "tools_none", label: "❌ None of the above", tags: ["tools_none"] }
       ]
     }
   ],
 
   solutions: [
-    // ===== 1. Identify fluid by color =====
+    // ============================================================
+    // 1. IDENTIFY FLUID BY COLOR
+    // ============================================================
     {
       id: "identify_fluid",
-      title: "🔍 Identify fluid leak by color",
-      description: "Color and consistency will help determine what is leaking.",
-      conditions: { symptom: ["puddle"], fluid_color: ["brown_black", "red_blue", "green_yellow", "clear", "yellow_gold"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "2-5 min",
+      title: "🔍 Identifying a fluid leak by color",
+      description: "Color and consistency help identify what's leaking.",
+      conditions: { symptom: ["puddle"], fluid_color_single: ["brown", "red", "green", "clear", "yellow"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "2–5 minutes",
       yield_estimate: "Diagnosis",
       tags: ["identification", "fluid", "diagnostic"],
       steps: [
-        "Place white paper or cardboard under the leak to see the color",
-        "Determine fluid color (see 'color' question)",
-        "Engine oil (brown/black, oily) — likely engine leak",
-        "Coolant (red/green/blue, sweet smell) — cooling system",
-        "Brake fluid (light yellow, oily, pungent) — brake system",
-        "Fuel (gasoline/diesel, strong smell) — fuel system",
-        "Power steering fluid (red, oily) — power steering system",
-        "Water (clear, odorless) — AC condensation (normal)"
+        "Place white paper or cardboard under the leak.",
+        "Identify the fluid color.",
+        "Motor oil (brown/black, oily) — engine leak.",
+        "Coolant (red/green/blue) — cooling system.",
+        "Brake fluid (light yellow, oily) — brake system.",
+        "Fuel (gasoline/diesel, strong smell) — fuel system.",
+        "Power steering fluid (red, oily) — power steering.",
+        "Water (clear, odorless) — AC condensation (normal)."
       ],
       warnings: [
-        "Don't touch fluids without gloves (many are toxic)",
-        "Brake fluid destroys paint — wash off immediately with water",
-        "If it smells like gasoline — don't smoke or turn on ignition",
-        "If fluid is brown and thick — most likely oil"
+        "Don't touch fluids without gloves — many are toxic.",
+        "Brake fluid damages paint — wash off immediately.",
+        "If it smells like gasoline — don't smoke and don't turn on the ignition."
       ]
     },
-    // ===== 2. Check and top up oil =====
+
+    // ============================================================
+    // 2. ENGINE OIL LEAK
+    // ============================================================
     {
-      id: "oil_check",
-      title: "🛢️ Check and top up engine oil",
-      description: "If oil is leaking or level dropped — check and top up to normal.",
-      conditions: { symptom: ["low_level", "warning_light"], fluid_type: ["oil"], fluid_color: ["brown_black"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "5-10 min",
-      yield_estimate: "Normal oil level",
-      tags: ["oil", "check", "top_up"],
+      id: "engine_oil_leak",
+      title: "🛢️ Engine oil leak — diagnostics",
+      description: "An oil puddle under the car is a sign of a leak. Check the level and find the source.",
+      conditions: { symptom: ["puddle"], fluid_type: ["oil"], fluid_color_single: ["brown"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "10–20 minutes",
+      yield_estimate: "Leak severity assessed",
+      tags: ["oil", "leak", "engine"],
       steps: [
-        "Stop, turn off engine, wait 5-10 minutes (oil will drain to pan)",
-        "Open hood, find dipstick (usually yellow or orange handle)",
-        "Wipe dipstick clean, insert all the way, remove again",
-        "Level should be between MIN and MAX marks",
-        "If below MIN — add oil through filler cap (use funnel)",
-        "Add small amounts and check level after each addition",
-        "Use only recommended oil type (see manual)",
-        "If leak is severe — don't drive, call tow truck"
+        "Check the oil level with the dipstick (engine off, level ground).",
+        "If level below MIN — top up.",
+        "Inspect the engine from below: where exactly is it leaking?",
+        "Common leak points: valve cover gasket, crankshaft seal, oil pan.",
+        "If dripping — can drive to a service center (check level every 100 km).",
+        "If heavy leak — call a tow truck.",
+        "If oil gets on the exhaust manifold — smoke and burning smell."
       ],
       warnings: [
-        "Don't overfill oil — it's as bad as low level",
-        "If oil is black and old — replace at first opportunity",
-        "Don't add oil to hot engine — you can get burned",
-        "If oil is leaking quickly — serious leak, driving is dangerous"
+        "Low oil level is a threat to the engine.",
+        "If oil leaks on hot parts — fire risk.",
+        "Don't mix different types of oil."
       ]
     },
-    // ===== 3. Check coolant level =====
+
+    // ============================================================
+    // 3. COOLANT LEAK
+    // ============================================================
     {
-      id: "coolant_check",
-      title: "🧊 Check coolant level",
-      description: "If engine is overheating or there's a leak — check antifreeze level.",
-      conditions: { symptom: ["overheat", "smoke"], fluid_type: ["coolant"], engine_temp: ["hot", "overheated"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5-10 min",
-      yield_estimate: "Normal coolant level",
+      id: "coolant_leak",
+      title: "🧊 Coolant leak — overheating risk",
+      description: "Antifreeze is leaking — the engine may overheat. Check the level and system.",
+      conditions: { symptom: ["puddle", "overheat"], fluid_type: ["coolant"], fluid_color_single: ["red", "green"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10–20 minutes",
+      yield_estimate: "Leak assessed + topped up",
       tags: ["coolant", "antifreeze", "overheat"],
       steps: [
-        "Let engine cool for at least 30 minutes! (hot antifreeze is pressurized)",
-        "Open hood, find expansion tank (usually transparent, with MIN and MAX marks)",
-        "Check level: between MIN and MAX — normal",
-        "If below MIN — add antifreeze (same color and type)",
-        "If no antifreeze — add distilled water (last resort)",
-        "Tighten tank cap until it clicks",
-        "Start engine, check if new leaks appear",
-        "Watch temperature — if needle goes to red zone, stop"
+        "Wait 30 minutes for the engine to cool before opening the expansion tank.",
+        "Check the coolant level in the expansion tank (between MIN and MAX).",
+        "If below MIN — top up with antifreeze (same color).",
+        "If no antifreeze — top up with distilled water (last resort).",
+        "Inspect hoses and the radiator for leaks.",
+        "If minor leak — can drive to a service center, monitor temperature.",
+        "If severe leak or overheating — call a tow truck.",
+        "Start the engine and check for new leaks."
       ],
       warnings: [
-        "DO NOT open radiator cap on hot engine! Risk of burns",
-        "DO NOT add cold water to hot engine — risk of cracking the block",
-        "Mixing different color antifreeze can cause reaction and damage system",
-        "If leak is severe — don't drive, call tow truck"
+        "DON'T open the radiator cap on a hot engine — burns!",
+        "DON'T add cold water to a hot engine — may crack the block.",
+        "Mixing different colored antifreeze can cause a reaction.",
+        "If severe leak — don't drive."
       ]
     },
-    // ===== 4. Fuel leak =====
-    {
-      id: "fuel_leak",
-      title: "⛽ Fuel leak — DO NOT IGNORE!",
-      description: "Fuel leak is very dangerous! Take immediate action.",
-      conditions: { fluid_type: ["fuel"], symptom: ["smell", "puddle"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5-10 min",
-      yield_estimate: "Safety + help called",
-      tags: ["fuel", "danger", "emergency"],
-      steps: [
-        "DO NOT smoke! DO NOT turn on ignition!",
-        "DO NOT start the engine!",
-        "If leak is under the car — move to safe distance (at least 50 feet)",
-        "If possible — shut off fuel supply (valve if available)",
-        "Call a tow truck (don't try to drive!)",
-        "If large leak — call emergency services",
-        "Inform tow truck driver about fuel leak (special towing needed)"
-      ],
-      warnings: [
-        "Fuel is flammable! One spark — fire",
-        "Don't try to start the car — can damage system and cause fire",
-        "If fuel gets on hot engine parts — can ignite",
-        "If you smell gasoline in cabin — DON'T smoke, ventilate"
-      ]
-    },
-    // ===== 5. Brake fluid leak =====
+
+    // ============================================================
+    // 4. BRAKE FLUID LEAK
+    // ============================================================
     {
       id: "brake_fluid_leak",
       title: "🛑 Brake fluid leak — DO NOT DRIVE!",
       description: "Brake fluid is critical for safety. A leak is dangerous.",
-      conditions: { fluid_type: ["brake_fluid"], symptom: ["poor_brakes", "warning_light"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5-10 min",
-      yield_estimate: "Tow truck + safety",
+      conditions: { symptom: ["poor_brakes", "warning_light"], fluid_type: ["brake_fluid"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Tow truck called + safety",
       tags: ["brake_fluid", "danger", "critical"],
       steps: [
-        "DO NOT drive with brake fluid leak!",
-        "Turn on hazard lights, set warning triangle",
-        "Check brake fluid level (reservoir near driver)",
-        "If level dropped below MIN — critical leak",
-        "Never add brake fluid if there's a leak (useless)",
-        "Call a tow truck",
-        "Inform about brake problem (careful loading needed)"
+        "DO NOT try to drive with a brake fluid leak!",
+        "Turn on hazard lights, place a warning triangle.",
+        "Check the brake fluid level (reservoir near the driver).",
+        "If level is below MIN — critical leak.",
+        "Never top up brake fluid with a leak (pointless).",
+        "Call a tow truck.",
+        "When towing — inform about brake failure."
       ],
       warnings: [
-        "If brake pedal goes to floor — DO NOT DRIVE",
-        "Brake fluid is very corrosive — avoid skin and paint contact",
-        "Only add same class brake fluid (DOT 4 / DOT 5)",
-        "Don't mix DOT 4 and DOT 5 — incompatible"
+        "If the brake pedal goes to the floor — DO NOT DRIVE.",
+        "Brake fluid is very corrosive — avoid skin contact.",
+        "Don't mix DOT 4 and DOT 5 — incompatible."
       ]
     },
-    // ===== 6. Power steering fluid leak =====
+
+    // ============================================================
+    // 5. FUEL LEAK
+    // ============================================================
+    {
+      id: "fuel_leak",
+      title: "⛽ Fuel leak — DO NOT IGNORE!",
+      description: "A fuel leak is very dangerous! Take immediate action.",
+      conditions: { fluid_type: ["fuel"], symptom: ["smell", "puddle"], fluid_smell: ["smell_fuel"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Safety + help called",
+      tags: ["fuel", "danger", "emergency"],
+      steps: [
+        "DON'T smoke! DON'T turn on the ignition!",
+        "DON'T start the engine!",
+        "If leaking under the car — move to a safe distance (minimum 15 meters).",
+        "Call a tow truck (don't try to drive).",
+        "If the leak is large — call emergency services (911).",
+        "Inform the tow truck driver about the fuel leak."
+      ],
+      warnings: [
+        "Fuel is flammable! One spark — fire.",
+        "Don't try to start the car — may cause a fire.",
+        "If fuel gets on hot parts — it may ignite.",
+        "If you smell fuel inside the cabin — ventilate, don't smoke."
+      ]
+    },
+
+    // ============================================================
+    // 6. POWER STEERING FLUID
+    // ============================================================
     {
       id: "power_steering_leak",
       title: "🔄 Power steering fluid leak",
-      description: "If steering became stiff or red fluid is leaking — check power steering.",
-      conditions: { fluid_type: ["steering_fluid"], fluid_color: ["red_blue"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "10-15 min",
-      yield_estimate: "Until leak fixed",
+      description: "If the steering becomes heavy or there's a red fluid leak — check the power steering.",
+      conditions: { fluid_type: ["steering_fluid"], fluid_color_single: ["red"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "10–15 minutes",
+      yield_estimate: "Leak diagnosed",
       tags: ["steering", "power_steering", "fluid"],
       steps: [
-        "Check power steering fluid level in reservoir (under hood, near steering rack)",
-        "If low — top up with recommended fluid (ATF or special)",
-        "If fluid drains quickly — there's a leak in the system",
-        "Inspect hoses and connections for drips",
-        "If steering became stiff — don't drive long distances",
-        "Call tow truck or drive slowly to service (last resort)"
+        "Check the power steering fluid level (under the hood).",
+        "If low — top up with recommended fluid (ATF or specialized).",
+        "If fluid drops quickly — leak in the system.",
+        "Inspect hoses and connections for drips.",
+        "If steering is heavy — don't drive long distances.",
+        "Call a tow truck or drive slowly to a service center."
       ],
       warnings: [
-        "With power steering leak, steering becomes very stiff, especially at low speeds",
-        "Don't drive without PS fluid — it will damage the rack (expensive repair)",
-        "If steering is stiff — don't make sudden maneuvers",
-        "Power steering fluid is often red (don't confuse with antifreeze)"
+        "Power steering leaks make steering very heavy.",
+        "Don't drive without power steering fluid — rack damage.",
+        "Power steering fluid is often red."
       ]
     },
-    // ===== 7. AC condensation =====
+
+    // ============================================================
+    // 7. AC CONDENSATION
+    // ============================================================
     {
       id: "ac_condensation",
       title: "💧 AC condensation — this is normal!",
-      description: "If clear water is under the car — it's condensation from the AC.",
-      conditions: { fluid_type: ["water"], fluid_color: ["clear"], symptom: ["puddle"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1 min",
+      description: "If there's clean, clear water under the car — it's condensation.",
+      conditions: { fluid_type: ["water"], fluid_color_single: ["clear"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1 minute",
       yield_estimate: "Peace of mind",
       tags: ["water", "normal", "ac"],
       steps: [
-        "Check that fluid is clear and odorless (it's water)",
-        "Check that puddle is under front of car (where AC is)",
-        "If water is clear and odorless — it's AC condensation (normal)",
-        "If water has impurities or smell — it may be other fluid",
-        "If unsure — do paper test (see solution 1)",
-        "Safe to continue driving — no problem"
+        "Check that the fluid is clear and odorless (water).",
+        "The puddle should be under the front of the car.",
+        "If clean and odorless — AC condensation (normal).",
+        "If discolored or has a smell — it's another fluid.",
+        "If unsure — do the paper test.",
+        "You can continue driving — no problem."
       ],
       warnings: [
-        "If water is not clear or has smell — it's not condensation, you have a leak",
-        "If AC hasn't been used for a while — no water is normal",
-        "If water under car after long parking — most likely condensation"
+        "If the water is not clean or has a smell — it's not condensation.",
+        "If the AC hasn't been used for a while — there may be no water."
+      ]
+    },
+
+    // ============================================================
+    // 8. SMOKE FROM UNDER THE HOOD
+    // ============================================================
+    {
+      id: "smoke_from_hood",
+      title: "💨 Smoke / steam from under the hood — what to do",
+      description: "Smoke or steam from under the hood is a sign of overheating or fluid on hot parts.",
+      conditions: { symptom: ["smoke_hood"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Safety + diagnostics",
+      tags: ["smoke", "overheat", "emergency"],
+      steps: [
+        "DON'T open the hood immediately! Let it cool for 10–15 minutes.",
+        "If white smoke from under the hood — overheating or coolant leak.",
+        "If black/blue smoke — oil on hot parts.",
+        "If there's a burning smell — possible fire.",
+        "Open the hood carefully using a cloth (hot parts).",
+        "Check the coolant and oil levels.",
+        "If there's a visible leak — call a tow truck.",
+        "If smoke has stopped and levels are normal — can drive carefully."
+      ],
+      warnings: [
+        "DON'T open the hood on a hot engine — burns.",
+        "If smoke comes from under the hood while driving — stop and turn off the engine.",
+        "If there's a burning smell — don't try to drive."
+      ]
+    },
+
+    // ============================================================
+    // 9. FLUID MIXING — PROHIBITED
+    // ============================================================
+    {
+      id: "fluid_mixing_prevention",
+      title: "🚫 Fluid mixing — important rules",
+      description: "Mixing different fluids can damage your car.",
+      conditions: { symptom: ["low_level", "warning_light"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Correct fluid selection",
+      tags: ["fluids", "mixing", "prevention"],
+      steps: [
+        "Don't mix different types of oil (synthetic, semi-synthetic, mineral).",
+        "Don't mix different colored antifreeze (may thicken).",
+        "Don't mix DOT 4 and DOT 5 brake fluid (incompatible).",
+        "Use only manufacturer-recommended fluids.",
+        "If you don't know what's in there — don't top up randomly.",
+        "Go to a service center for professional replacement."
+      ],
+      warnings: [
+        "Mixing incompatible fluids can lead to expensive repairs.",
+        "Don't add water to antifreeze in winter — it will freeze.",
+        "Don't add oil if you don't know its type."
+      ]
+    },
+
+    // ============================================================
+    // 10. TOW TRUCK
+    // ============================================================
+    {
+      id: "tow_truck_leak",
+      title: "🚛 Calling a tow truck for a leak",
+      description: "For severe leaks or critical fluids — call a tow truck.",
+      conditions: { symptom: ["puddle", "low_level", "warning_light", "poor_brakes"], location: ["road", "highway"] },
+      scoring: { priority: "slow", reliability: "high" },
+      time_estimate: "30–120 minutes",
+      yield_estimate: "Car at service center",
+      tags: ["tow_truck", "evacuation", "safe"],
+      steps: [
+        "Turn on hazard lights and place a warning triangle.",
+        "Call your insurance — towing may be included.",
+        "If not — call a tow truck.",
+        "Tell the operator: car model, address, problem (fluid leak).",
+        "If the fluid is dangerous (fuel, brake fluid) — inform them.",
+        "On the highway — move behind the barrier.",
+        "During loading — ask for caution."
+      ],
+      warnings: [
+        "Don't try to drive with a severe leak.",
+        "If fuel is leaking — don't start the car.",
+        "Keep the towing receipt."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.autoLeakDataEn = autoLeakDataEn;
+});

@@ -1,288 +1,389 @@
-// === MODULE: AUTO — BRAKES (ENGLISH) ===
-const autoBrakesDataEn = {
-  category: "brakes",
-  title: "🛑 Brake Problems",
-  description: "Diagnosis and solutions for critical brake system issues",
+// modules/auto/data/en/brakes-en.js
+// === MODULE: AUTO — BRAKES ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "auto",
+    category: "brakes",
+    version: "1.0.0",
+    lang: "en",
+    title: "🛑 Brake Problems",
+    description: "Diagnostics and solutions for critical brake system issues",
+    icon: "🛑",
+    color: "#2563eb"
+  },
 
   questions: [
     {
       id: "symptom",
-      text: "What symptoms did you notice?",
-      type: "multi",
+      type: "single",
+      text: "What is the main symptom?",
       options: [
-        { id: "soft_pedal", label: "🦶 Brake pedal is soft / goes to the floor", tags: ["soft_pedal", "air", "fluid"] },
-        { id: "squeal", label: "🔊 Squeaking or screeching when braking", tags: ["squeal", "pads", "wear"] },
-        { id: "vibration", label: "📳 Vibration in pedal or steering wheel when braking", tags: ["vibration", "discs", "warp"] },
-        { id: "pulls", label: "🚗 Pulls to one side when braking", tags: ["pulls", "caliper", "uneven"] },
-        { id: "burning_smell", label: "👃 Burning smell / plastic smell", tags: ["burning", "overheat", "caliper"] },
-        { id: "warning_light", label: "💡 Brake warning light on dashboard", tags: ["warning", "abs", "fluid"] },
-        { id: "long_stop", label: "📏 Longer stopping distance", tags: ["long_stop", "pads", "fluid"] }
+        { id: "soft_pedal", label: "🦶 Brake pedal is soft / goes to the floor", tags: ["soft_pedal"] },
+        { id: "squeal", label: "🔊 Squealing or screeching when braking", tags: ["squeal"] },
+        { id: "vibration", label: "📳 Vibration in pedal or steering wheel when braking", tags: ["vibration"] },
+        { id: "pulls", label: "🚗 Pulls to one side when braking", tags: ["pulls"] },
+        { id: "burning", label: "👃 Burning / plastic smell", tags: ["burning"] },
+        { id: "warning", label: "💡 Brake warning light on dashboard", tags: ["warning"] },
+        { id: "long_stop", label: "📏 Stopping distance increased", tags: ["long_stop"] }
       ]
     },
     {
       id: "location",
-      text: "Where are you?",
       type: "single",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
+      text: "Where are you?",
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
       options: [
-        { id: "home", label: "🏠 At home / garage", tags: ["safe", "tools", "garage"] },
-        { id: "road", label: "🛣️ On the road (city)", tags: ["road", "traffic", "low_speed"] },
-        { id: "highway", label: "🛣️ Highway (high speed)", tags: ["highway", "speed", "danger"] },
-        { id: "parking", label: "🅿️ Parking lot / near store", tags: ["parking", "help", "possible"] }
+        { id: "home", label: "🏠 At home / garage", tags: ["safe"] },
+        { id: "road", label: "🛣️ On the road (city)", tags: ["road"] },
+        { id: "highway", label: "🛣️ Highway (high speed)", tags: ["highway"] },
+        { id: "parking", label: "🅿️ Parking lot / store", tags: ["parking"] }
       ]
     },
     {
       id: "has_tools",
+      type: "single",
       text: "What do you have with you?",
-      type: "multi",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
       options: [
         { id: "jack", label: "🛠️ Jack", tags: ["jack"] },
-        { id: "tools", label: "🔧 Wrench set / sockets", tags: ["tools"] },
-        { id: "brake_fluid", label: "🧴 Brake fluid", tags: ["fluid"] },
-        { id: "nothing", label: "❌ None of the above", tags: ["no_tools"] }
+        { id: "tools", label: "🔧 Socket set / wrenches", tags: ["tools"] },
+        { id: "fluid", label: "🧴 Brake fluid", tags: ["fluid"] },
+        { id: "no_tools", label: "❌ None of the above", tags: ["no_tools"] }
+      ]
+    },
+    {
+      id: "pad_mileage",
+      type: "single",
+      text: "What is the mileage on the brake pads?",
+      conditions: { symptom: ["squeal", "long_stop"] },
+      options: [
+        { id: "pad_new", label: "📅 Less than 5,000 km (new)", tags: ["pad_new"] },
+        { id: "pad_medium", label: "📅 5,000–20,000 km", tags: ["pad_medium"] },
+        { id: "pad_old", label: "📅 Over 20,000 km (old)", tags: ["pad_old"] },
+        { id: "pad_unknown", label: "❓ Don't know", tags: ["pad_unknown"] }
+      ]
+    },
+    {
+      id: "last_service",
+      type: "single",
+      text: "When were the brakes last serviced?",
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
+      options: [
+        { id: "service_recent", label: "✅ Less than a year ago", tags: ["service_recent"] },
+        { id: "service_old", label: "⚠️ More than a year ago", tags: ["service_old"] },
+        { id: "service_never", label: "❌ Never serviced", tags: ["service_never"] },
+        { id: "service_unknown", label: "❓ Don't know", tags: ["service_unknown"] }
       ]
     },
     {
       id: "car_type",
-      text: "What type of car do you have?",
       type: "single",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
+      text: "What type of car?",
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
       options: [
-        { id: "standard", label: "🚗 Standard passenger car", tags: ["standard"] },
-        { id: "suv", label: "🚙 SUV / off-road", tags: ["suv", "heavy"] },
-        { id: "hybrid", label: "⚡ Hybrid / electric", tags: ["hybrid", "electric"] }
+        { id: "standard", label: "🚗 Standard car", tags: ["standard"] },
+        { id: "suv", label: "🚙 SUV / off-road", tags: ["suv"] },
+        { id: "hybrid", label: "⚡ Hybrid / electric", tags: ["hybrid"] }
       ]
     },
     {
       id: "brake_light",
-      text: "Is the brake system warning light on (red/yellow)?",
       type: "single",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
+      text: "Is the brake warning light on?",
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
       options: [
-        { id: "yes_red", label: "🔴 Yes, red (urgent)", tags: ["red_light", "emergency"] },
-        { id: "yes_yellow", label: "🟡 Yes, yellow (ABS / issue)", tags: ["yellow_light", "abs"] },
-        { id: "no", label: "🚫 No, not on", tags: ["no_light"] }
+        { id: "light_red", label: "🔴 Red (urgent)", tags: ["red_light"] },
+        { id: "light_yellow", label: "🟡 Yellow (ABS / issue)", tags: ["yellow_light"] },
+        { id: "light_off", label: "🚫 Off", tags: ["light_off"] }
       ]
     }
   ],
 
   solutions: [
-    // ========================================
-    // 1. Check and top up brake fluid
-    // ========================================
+    // ============================================================
+    // 1. SOFT PEDAL — CHECK FLUID
+    // ============================================================
     {
       id: "brake_fluid_check",
-      title: "🧴 Check brake fluid",
-      description: "Low fluid level is a common cause of soft pedal and increased stopping distance.",
-      conditions: { symptom: ["soft_pedal", "long_stop", "warning_light"], brake_light: ["red_light", "yellow_light"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5-10 min",
+      title: "🧴 Checking brake fluid",
+      description: "Low fluid level is a common cause of a soft pedal and increased stopping distance.",
+      conditions: { symptom: ["soft_pedal", "long_stop", "warning"], brake_light: ["red_light", "yellow_light"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5–10 minutes",
       yield_estimate: "Brakes restored",
       tags: ["fluid", "check", "top_up"],
       steps: [
-        "Open the hood and find the brake fluid reservoir (usually near the driver, transparent)",
-        "Check level: should be between MIN and MAX marks",
-        "If below MIN — top up with recommended fluid (DOT 4 / DOT 5.1 only)",
-        "Inspect reservoir and hoses for leaks (wet spots, drips)",
-        "Check fluid color: if dark/cloudy — needs replacement (every 2 years)",
-        "Close cap, get in car and press pedal several times — it should become firm",
-        "If pedal remains soft — air in system (needs bleeding)"
+        "Open the hood, find the brake fluid reservoir (transparent, near the driver).",
+        "Check the level: between MIN and MAX.",
+        "If below MIN — top up with fluid (DOT 4 / DOT 5.1 only).",
+        "Inspect the reservoir and hoses for leaks.",
+        "Check fluid color: if dark/cloudy — needs replacement.",
+        "Close the cap, press the pedal several times — it should become firm.",
+        "If still soft — air in the system (needs bleeding)."
       ],
       warnings: [
-        "DO NOT use fluid from an open bottle (absorbs moisture)",
-        "DO NOT mix DOT 4 and DOT 5 (incompatible)",
-        "If level dropped suddenly — there's a leak, don't drive without repair",
-        "After topping up, test brakes at safe speed"
+        "DON'T use fluid from an open bottle (absorbs moisture).",
+        "DON'T mix DOT 4 and DOT 5 (incompatible).",
+        "If the level dropped sharply — leak, don't drive without repair."
       ]
     },
-    // ========================================
-    // 2. Replace brake pads
-    // ========================================
+
+    // ============================================================
+    // 2. RED BRAKE LIGHT — DON'T DRIVE
+    // ============================================================
+    {
+      id: "red_brake_light",
+      title: "🔴 Red brake light — DON'T DRIVE!",
+      description: "Red light — critical failure. Driving is dangerous.",
+      conditions: { symptom: ["warning"], brake_light: ["red_light"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Safety",
+      tags: ["red_light", "danger", "emergency"],
+      steps: [
+        "IMMEDIATELY stop if you're moving.",
+        "Check the brake fluid level — it's probably low.",
+        "Check for leaks: wet spots under the car, drips on hoses.",
+        "If there's a leak — DON'T start the car. Call a tow truck.",
+        "If no leak — possibly worn pads (fluid dropped naturally).",
+        "Top up fluid and check the pedal — if firm, drive slowly to a service center.",
+        "If still soft — call a tow truck."
+      ],
+      warnings: [
+        "Red light = DANGER. DON'T risk your life.",
+        "DON'T drive with the red light on — brakes may fail.",
+        "If there's a leak — DON'T try to top up and drive."
+      ]
+    },
+
+    // ============================================================
+    // 3. YELLOW LIGHT (ABS)
+    // ============================================================
+    {
+      id: "abs_light",
+      title: "🟡 Yellow ABS light — diagnostics",
+      description: "Yellow ABS light — issue with the anti-lock braking system.",
+      conditions: { symptom: ["warning"], brake_light: ["yellow_light"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "10–30 minutes",
+      yield_estimate: "ABS diagnosed",
+      tags: ["abs", "diagnostics", "electronics"],
+      steps: [
+        "Check ABS fuses (diagram on the fuse box cover).",
+        "Inspect wheel speed sensors — dirty or damaged.",
+        "Check wiring to sensors (integrity, corrosion).",
+        "Read error codes with an OBD2 scanner (if available).",
+        "If the error appeared after pad replacement — check the wear sensor.",
+        "Go to a service center for professional diagnostics."
+      ],
+      warnings: [
+        "DON'T ignore the yellow light — ABS works with limitations.",
+        "If ABS fails, the system works as regular brakes.",
+        "On slippery roads, ABS may not work — be careful."
+      ]
+    },
+
+    // ============================================================
+    // 4. SQUEALING PADS — REPLACEMENT
+    // ============================================================
     {
       id: "brake_pads_replace",
-      title: "🔧 Replace brake pads",
-      description: "Squealing/screeching and longer stopping distance are signs of worn pads.",
-      conditions: { symptom: ["squeal", "long_stop"], location: ["home", "parking"], has_tools: ["jack", "tools"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "1-2 hours",
+      title: "🔧 Replacing brake pads",
+      description: "Squealing and longer stopping distance are signs of worn pads.",
+      conditions: { symptom: ["squeal", "long_stop"], pad_mileage: ["pad_old", "pad_medium"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1–2 hours",
       yield_estimate: "New pads, confident braking",
       tags: ["pads", "replace", "brakes"],
       steps: [
-        "Jack up the car and secure with jack stands",
-        "Remove the wheel (17/19 mm wrench)",
-        "Unscrew caliper guide pins (usually 2 bolts)",
-        "Remove old pads (note their position)",
-        "Check brake disc condition — if deep grooves, need resurfacing or replacement",
-        "Install new pads (verify they match in size)",
-        "Lubricate caliper guide pins with special grease (NOT brake fluid!)",
-        "Reassemble caliper, bolt it on",
-        "Pump brakes (press pedal several times until firm)",
-        "Reinstall wheel, lower car, check fluid level",
-        "Bed in pads: 50-100 km without hard braking"
+        "Jack up the car and secure with stands.",
+        "Remove the wheel.",
+        "Remove the caliper guide pins (2 bolts).",
+        "Remove the old pads (note their position).",
+        "Check the disc: if deeply grooved — resurface or replace.",
+        "Install new pads (match size).",
+        "Lubricate caliper guide pins with special grease.",
+        "Reassemble the caliper, tighten.",
+        "Bleed the brakes (press pedal firmly several times).",
+        "Install the wheel, lower the car, check fluid level.",
+        "Bedding-in: 50–100 km without hard braking."
       ],
       warnings: [
-        "DO NOT use dirty or oily hands — oil reduces friction",
-        "DO NOT brake hard for first 50-100 km — pads need to bed in",
-        "If pads are worn unevenly — check caliper (may be sticking)",
-        "Replace pads on both wheels of the same axle"
+        "DON'T use greasy or oily hands — oil reduces friction.",
+        "DON'T brake hard for the first 50–100 km.",
+        "Replace pads on both wheels of the same axle.",
+        "If pads are unevenly worn — check the caliper."
       ]
     },
-    // ========================================
-    // 3. Bleed brakes
-    // ========================================
+
+    // ============================================================
+    // 5. PULLS TO ONE SIDE
+    // ============================================================
+    {
+      id: "brake_pull",
+      title: "🚗 Pulls to one side when braking",
+      description: "Car pulls to one side — caliper issue or uneven wear.",
+      conditions: { symptom: ["pulls"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "30–60 minutes",
+      yield_estimate: "Pull eliminated",
+      tags: ["pulls", "caliper", "uneven"],
+      steps: [
+        "Check tire pressure — different pressure causes pull.",
+        "Inspect pads: if unevenly worn — caliper is sticking.",
+        "Check the caliper: move it by hand — should move freely.",
+        "If sticking — disassemble, lubricate guide pins.",
+        "Check the brake hose: not bulging (internal failure).",
+        "Check the disc: if overheated (blue tint) — replace.",
+        "If the problem persists — go to a service center."
+      ],
+      warnings: [
+        "Pulling to one side is dangerous at speed. Don't ignore.",
+        "A sticking caliper can catch fire from overheating.",
+        "DON'T try to drive if the pull is severe — call a tow truck."
+      ]
+    },
+
+    // ============================================================
+    // 6. BRAKE VIBRATION
+    // ============================================================
+    {
+      id: "brake_vibration",
+      title: "📳 Brake vibration — warped discs",
+      description: "Vibration in pedal or steering wheel — sign of warped brake discs.",
+      conditions: { symptom: ["vibration"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "1–3 hours",
+      yield_estimate: "Vibration eliminated",
+      tags: ["vibration", "discs", "warp"],
+      steps: [
+        "Cause: overheating discs — warping.",
+        "Inspect discs: if blue tint — overheated.",
+        "Option 1: resurface discs on a lathe (if thickness allows).",
+        "Option 2: replace discs (recommended if worn).",
+        "Check wheel bolt torque — uneven torque causes runout.",
+        "After replacement/resurfacing — bed-in 50–100 km.",
+        "If problem persists — check hubs and bearings."
+      ],
+      warnings: [
+        "Vibration reduces grip and stopping distance.",
+        "Disc thickness below minimum — replacement required.",
+        "DON'T delay repair — vibration accelerates wear."
+      ]
+    },
+
+    // ============================================================
+    // 7. BURNING SMELL
+    // ============================================================
+    {
+      id: "burning_smell_brakes",
+      title: "👃 Burning smell — overheating or sticking",
+      description: "Burning plastic smell — sign of overheated brakes or stuck caliper.",
+      conditions: { symptom: ["burning"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Fire prevented",
+      tags: ["burning", "overheat", "caliper"],
+      steps: [
+        "IMMEDIATELY stop if the smell is strong.",
+        "Let the brakes cool for 15–20 minutes (don't use water — disc may crack).",
+        "Check the caliper: not stuck (one disc hotter than the other).",
+        "If stuck — call a tow truck. Don't drive.",
+        "If overheated from a downhill — cool, drive in lower gears.",
+        "After cooling: check pedal firm, discs not blue."
+      ],
+      warnings: [
+        "Burning smell is a danger signal. DON'T ignore.",
+        "A stuck caliper can catch fire.",
+        "DON'T pour water on hot discs — they'll crack."
+      ]
+    },
+
+    // ============================================================
+    // 8. BLEEDING BRAKES
+    // ============================================================
     {
       id: "bleed_brakes",
-      title: "🩸 Bleed brake system",
-      description: "Air in the system causes soft pedal and brake fade. Remove air by bleeding.",
-      conditions: { symptom: ["soft_pedal"], location: ["home", "parking"], has_tools: ["tools"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "30-60 min",
-      yield_estimate: "Firm pedal",
+      title: "🩸 Bleeding the brake system",
+      description: "Air in the system causes a soft pedal and loss of braking.",
+      conditions: { symptom: ["soft_pedal"], has_tools: ["tools"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "30–60 minutes",
+      yield_estimate: "Firm pedal restored",
       tags: ["bleed", "air", "fluid"],
       steps: [
-        "Check brake fluid level (should be at MAX)",
-        "One person sits in driver seat, another works at the wheel",
-        "Start with rear right wheel (farthest from master cylinder)",
-        "Attach hose to bleeder valve, place end in container with fluid",
-        "Driver presses brake pedal 3-4 times and holds down",
-        "Open bleeder valve half turn — fluid with bubbles comes out, pedal drops",
-        "Tighten valve, then driver releases pedal",
-        "Repeat until clean fluid without bubbles comes out",
-        "Repeat for each wheel (order: rear right → rear left → front right → front left)",
-        "Keep topping up fluid in reservoir (don't let drop below MIN)",
-        "After bleeding, check fluid level and tighten all valves"
+        "Check fluid level (should be at MAX).",
+        "One person in the car, another at the wheel.",
+        "Start with the rear right wheel (farthest from master cylinder).",
+        "Attach hose to the bleeder, end in a container with fluid.",
+        "Driver presses the pedal 3–4 times and holds.",
+        "Open the bleeder half a turn — fluid with bubbles comes out.",
+        "Close the bleeder, driver releases the pedal.",
+        "Repeat until clean fluid flows.",
+        "Repeat for each wheel (RR → LR → RF → LF).",
+        "Top up fluid during the process."
       ],
       warnings: [
-        "DO NOT let fluid drop below MIN — new air will enter",
-        "DO NOT bleed if there are leaks — fix them first",
-        "If air entered after repairs — bleeding is mandatory",
-        "DOT 4/5.1 fluid is hygroscopic — don't use old fluid"
+        "DON'T let fluid drop below MIN.",
+        "DON'T bleed if there are leaks — fix them first."
       ]
     },
-    // ========================================
-    // 4. Engine braking (emergency)
-    // ========================================
+
+    // ============================================================
+    // 9. ENGINE BRAKING (EMERGENCY)
+    // ============================================================
     {
       id: "engine_brake",
       title: "⚙️ Engine braking (emergency)",
-      description: "If brakes fail on highway, use engine and handbrake to stop.",
+      description: "If brakes fail on the highway, use the engine and handbrake to stop.",
       conditions: { symptom: ["soft_pedal", "long_stop"], location: ["highway"] },
-      priority: "fast",
-      reliability: "medium",
-      time_estimate: "0 min (immediately)",
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "IMMEDIATE",
       yield_estimate: "Car stopped",
       tags: ["emergency", "engine_brake", "survival"],
       steps: [
-        "DO NOT turn off ignition — brake booster will disengage",
-        "Shift to lower gear (MT: 4→3→2; AT: switch to manual mode and downshift)",
-        "Slowly release clutch (MT) — engine will start braking",
-        "Simultaneously use parking brake (handbrake) — gently, in pulses to avoid locking wheels",
-        "If road allows — steer uphill or into a field (reduces speed)",
-        "Turn on hazard lights, honk (to attract attention)",
-        "When speed drops to 20-30 km/h — you can use main brake (if working)",
-        "When fully stopped — turn off engine, engage parking brake"
+        "DON'T turn off the ignition — brake booster will shut off.",
+        "Downshift (manual: 4→3→2; auto: manual mode).",
+        "Slowly release the clutch — engine braking.",
+        "Simultaneously use the handbrake — gently, in pulses.",
+        "Steer toward an incline or field.",
+        "Turn on hazard lights, honk.",
+        "When speed drops to 20–30 km/h — use the main brake."
       ],
       warnings: [
-        "DO NOT turn off ignition — steering locks, brake booster disengages",
-        "DO NOT use handbrake abruptly — car will skid",
-        "On AT, downshifting only possible in manual mode",
-        "If this doesn't help — use friction against curb, bushes, snow bank"
+        "DON'T turn off the ignition — steering wheel will lock.",
+        "DON'T use the handbrake abruptly — spin-out.",
+        "On automatics, downshift only in manual mode."
       ]
     },
-    // ========================================
-    // 5. ABS diagnostics
-    // ========================================
-    {
-      id: "abs_diagnostics",
-      title: "💡 ABS system diagnostics (yellow light)",
-      description: "Yellow ABS light indicates a problem with the anti-lock braking system.",
-      conditions: { symptom: ["warning_light"], brake_light: ["yellow_light"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "10-30 min",
-      yield_estimate: "Fault identified",
-      tags: ["abs", "diagnostics", "electronics"],
-      steps: [
-        "Check ABS fuses in fuse box (diagram on cover)",
-        "Inspect ABS sensors on wheels — may be dirty or damaged",
-        "Check wiring to sensors (integrity, corrosion)",
-        "If OBD2 scanner available — read fault codes",
-        "If no scanner — take to service for diagnostics",
-        "If fault appeared after pad replacement — pad wear sensor may be faulty",
-        "If ABS triggers too often or not at all — dangerous on slippery roads"
-      ],
-      warnings: [
-        "Don't ignore yellow light — ABS works with limitations",
-        "If ABS fails, system works as regular brakes (without anti-lock)",
-        "ABS sensor replacement is usually inexpensive (from $25)",
-        "If red brake light is on — DO NOT drive, it's dangerous"
-      ]
-    },
-    // ========================================
-    // 6. Visual inspection
-    // ========================================
-    {
-      id: "visual_inspection",
-      title: "🔍 Visual brake inspection",
-      description: "Check discs, calipers, and hoses for damage.",
-      conditions: { symptom: ["vibration", "pulls", "burning_smell"], location: ["home", "parking"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "20-40 min",
-      yield_estimate: "Fault identified",
-      tags: ["inspection", "discs", "calipers"],
-      steps: [
-        "Jack up car and remove wheel",
-        "Inspect brake disc: deep scratches, cracks, bluish tint (overheating)",
-        "Check caliper: not sticking (try moving it by hand)",
-        "Inspect brake hoses: no cracks, bulges, fluid leaks",
-        "Check caliper piston dust boots — if torn, dirt can jam caliper",
-        "Assess pad condition — if worn to metal, replace (see solution 2)",
-        "Note all defects for repair (take photos)"
-      ],
-      warnings: [
-        "Don't touch hot discs (burn risk)",
-        "If disc has deep grooves — needs resurfacing or replacement",
-        "If caliper is stuck — don't try to drive, it may catch fire",
-        "Brake fluid is corrosive — avoid contact with paint"
-      ]
-    },
-    // ========================================
-    // 7. Tow truck
-    // ========================================
+
+    // ============================================================
+    // 10. TOW TRUCK
+    // ============================================================
     {
       id: "tow_truck_brakes",
-      title: "🚛 Call a tow truck (safe option)",
-      description: "With serious brake failure, driving is risky. Towing is the best solution.",
-      conditions: { symptom: ["soft_pedal", "burning_smell", "warning_light"], brake_light: ["red_light"] },
-      priority: "slow",
-      reliability: "high",
-      time_estimate: "30-120 min",
+      title: "🚛 Calling a tow truck (safe option)",
+      description: "With serious brake issues, driving is dangerous. Towing is the best solution.",
+      conditions: { symptom: ["soft_pedal", "burning", "warning"], brake_light: ["red_light"] },
+      scoring: { priority: "slow", reliability: "high" },
+      time_estimate: "30–120 minutes",
       yield_estimate: "Car at service center",
       tags: ["tow_truck", "emergency", "safe"],
       steps: [
-        "Turn on hazard lights and set warning triangle",
-        "Call insurance (OSAGO/CASCO) — often includes towing",
-        "If not — call paid towing service via maps",
-        "Tell operator: location, car make, problem (brake failure)",
-        "Wait for tow truck, prepare car (handbrake, neutral)",
-        "During loading — ask for caution (brakes not working)",
-        "Go to service or home (on tow truck)",
-        "If towing (no tow truck) — only on rigid tow bar, at low speed"
+        "Turn on hazard lights and place a warning triangle.",
+        "Call your insurance — towing is often included.",
+        "If not — call a towing service.",
+        "Tell the operator: location, car model, problem (brake failure).",
+        "Wait for the tow truck, prepare the car.",
+        "During loading — ask for caution (brakes don't work).",
+        "Go to a service center."
       ],
       warnings: [
-        "Don't try to drive with critical brake failure",
-        "Towing with rope with failed brakes is DANGEROUS — use rigid tow bar",
-        "If tow truck is expensive — call friends with tow rope (but be careful!)",
-        "When towing, keep distance, don't brake suddenly"
+        "DON'T try to drive yourself with a critical brake failure.",
+        "Towing with a rope with faulty brakes is DANGEROUS.",
+        "Use only rigid tow bar for towing."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.autoBrakesDataEn = autoBrakesDataEn;
+});

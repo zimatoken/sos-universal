@@ -1,52 +1,63 @@
-// === MODULE: AUTO — WON'T START (ENGLISH) ===
+// modules/auto/data/en/wont_start-en.js
+// === MODULE: AUTO — WON'T START ===
 
-const autoWontStartDataEn = {
-  category: "wont_start",
-  title: "🔌 Won't start",
-  description: "Diagnostics and solutions for engine starting problems",
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "auto",
+    category: "wont_start",
+    version: "1.0.0",
+    lang: "en",
+    title: "🔌 Won't Start",
+    description: "Diagnostics and solutions for engine starting problems — battery, starter, fuel, spark plugs",
+    icon: "🔌",
+    color: "#2563eb"
+  },
 
   questions: [
     {
       id: "symptom",
-      text: "What symptoms do you notice? (select all that apply)",
-      type: "multi",
+      type: "single",
+      text: "What is the main symptom when trying to start?",
       options: [
-        { id: "click", label: "🔊 Clicking sound when turning the key", tags: ["starter", "battery", "click"] },
-        { id: "silence", label: "🔇 Complete silence (nothing happens)", tags: ["battery", "dead", "electrical"] },
-        { id: "slow_crank", label: "🐢 Starter turns slowly", tags: ["battery", "weak", "starter"] },
-        { id: "crank_no_start", label: "⚙️ Cranks normally but won't start", tags: ["fuel", "spark", "engine"] },
-        { id: "lights_dark", label: "💡 Dim headlights / dashboard lights", tags: ["battery", "low_voltage"] },
-        { id: "smell_fuel", label: "👃 Gasoline smell (flooded spark plugs)", tags: ["fuel", "flooded", "spark"] },
-        { id: "starter_noise", label: "🔊 Grinding or whining noise from starter", tags: ["starter", "mechanical", "failure"] }
+        { id: "click", label: "🔊 Clicking when turning the key", tags: ["click"] },
+        { id: "silence", label: "🔇 Complete silence (nothing happens)", tags: ["silence"] },
+        { id: "slow_crank", label: "🐢 Starter turns slowly", tags: ["slow_crank"] },
+        { id: "crank_no_start", label: "⚙️ Cranks normally but won't start", tags: ["crank_no_start"] },
+        { id: "lights_dark", label: "💡 Headlights/dashboard are dim", tags: ["lights_dark"] },
+        { id: "smell_fuel", label: "👃 Gasoline smell (flooded plugs)", tags: ["smell_fuel"] },
+        { id: "starter_noise", label: "🔊 Starter noise (grinding/whining)", tags: ["starter_noise"] }
       ]
     },
     {
       id: "location",
-      text: "Where are you?",
       type: "single",
+      text: "Where are you?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "crank_no_start", "lights_dark", "smell_fuel", "starter_noise"] },
       options: [
-        { id: "home", label: "🏠 Home / garage", tags: ["safe", "tools", "garage"] },
-        { id: "road", label: "🛣️ On the road (highway/city)", tags: ["road", "traffic", "emergency"] },
-        { id: "parking", label: "🅿️ Parking lot / mall", tags: ["public", "help", "possible"] },
-        { id: "remote", label: "🌲 Remote area (forest, field)", tags: ["remote", "no_help"] }
+        { id: "home", label: "🏠 At home / garage", tags: ["safe"] },
+        { id: "road", label: "🛣️ On the road (city)", tags: ["road"] },
+        { id: "parking", label: "🅿️ In a parking lot / mall", tags: ["parking"] },
+        { id: "remote", label: "🌲 Remote area (forest, field)", tags: ["remote"] }
       ]
     },
     {
       id: "has_tools",
+      type: "single",
       text: "What do you have with you?",
-      type: "multi",
+      conditions: { symptom: ["click", "silence", "slow_crank", "crank_no_start", "lights_dark", "smell_fuel", "starter_noise"] },
       options: [
-        { id: "cables", label: "🔌 Jump-start cables", tags: ["jump_cables"] },
-        { id: "voltmeter", label: "📟 Multimeter / tester", tags: ["diagnostics"] },
-        { id: "fuel_can", label: "⛽ Fuel can", tags: ["fuel_can"] },
+        { id: "cables", label: "🔌 Jumper cables", tags: ["cables"] },
+        { id: "voltmeter", label: "📟 Multimeter / tester", tags: ["voltmeter"] },
+        { id: "fuel_can", label: "⛽ Gas can with fuel", tags: ["fuel_can"] },
         { id: "tools", label: "🔧 Tool set", tags: ["tools"] },
-        { id: "nothing", label: "❌ None of the above", tags: ["no_tools"] }
+        { id: "tools_none", label: "❌ None of the above", tags: ["tools_none"] }
       ]
     },
     {
       id: "time_season",
-      text: "What season is it?",
       type: "single",
+      text: "What season is it?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "crank_no_start", "lights_dark", "smell_fuel", "starter_noise"] },
       options: [
         { id: "summer", label: "☀️ Summer / warm", tags: ["warm"] },
         { id: "winter", label: "❄️ Winter / freezing", tags: ["cold"] },
@@ -55,295 +66,309 @@ const autoWontStartDataEn = {
     },
     {
       id: "car_type",
-      text: "What type of car do you have?",
       type: "single",
+      text: "What type of car?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "crank_no_start", "lights_dark", "smell_fuel", "starter_noise"] },
       options: [
         { id: "standard", label: "🚗 Standard car (12V)", tags: ["standard"] },
-        { id: "diesel", label: "🛻 Diesel (harder to start)", tags: ["diesel"] },
+        { id: "diesel", label: "🛻 Diesel (hard starting)", tags: ["diesel"] },
         { id: "hybrid", label: "⚡ Hybrid / electric", tags: ["hybrid"] },
-        { id: "unknown", label: "❓ I don't know / not sure", tags: ["unknown"] }
+        { id: "unknown", label: "❓ Don't know / not sure", tags: ["unknown_car"] }
+      ]
+    },
+    {
+      id: "start_attempts",
+      type: "single",
+      text: "How many times have you tried to start?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "crank_no_start", "lights_dark", "smell_fuel", "starter_noise"] },
+      options: [
+        { id: "once", label: "1️⃣ Once", tags: ["once"] },
+        { id: "few", label: "2️⃣ A few times (2–3)", tags: ["few"] },
+        { id: "many", label: "3️⃣ Many times (over 5)", tags: ["many"] }
+      ]
+    },
+    {
+      id: "dashboard_lights",
+      type: "single",
+      text: "Are the dashboard lights on when you turn on the ignition?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "crank_no_start", "lights_dark", "smell_fuel", "starter_noise"] },
+      options: [
+        { id: "dash_bright", label: "✅ Brightly lit", tags: ["dash_bright"] },
+        { id: "dash_dim", label: "⚠️ Dimly lit", tags: ["dash_dim"] },
+        { id: "dash_off", label: "❌ Not lit", tags: ["dash_off"] }
       ]
     }
   ],
 
   solutions: [
-    // ========================================
-    // 1. Jump-start from another car
-    // ========================================
+    // ============================================================
+    // 1. JUMP START
+    // ============================================================
     {
       id: "jump_start",
-      title: "🔋 Jump-start from another car",
-      description: "The fastest way to start your car if you have another car and cables.",
-      conditions: {
-        symptom: ["click", "silence", "slow_crank", "lights_dark"],
-        has_tools: ["cables"],
-        location: ["home", "road", "parking"]
-      },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5-10 min",
-      yield_estimate: "Engine start",
+      title: "🔋 Jump starting from another car",
+      description: "The fastest way to start your car if you have another vehicle and cables.",
+      conditions: { symptom: ["click", "slow_crank", "lights_dark"], has_tools: ["cables"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Engine started",
       tags: ["battery", "jump", "electrical"],
       steps: [
-        "Find a car with a working battery (12V)",
-        "Position cars close enough for cables to reach (but not touching)",
-        "Turn off both cars (ignition, lights, all consumers)",
-        "Connect cables: red (positive) to positive terminal of your car, then to positive of donor",
-        "Black (negative) — to negative terminal of donor, other end to ground (unpainted metal) of your car",
-        "Start the donor car and let it run for 2-3 minutes at idle",
-        "Try to start your car (no more than 10 seconds)",
-        "After starting, let it run for 10-15 minutes (charges the battery)",
-        "Remove cables in reverse order: negative from ground, negative from donor, positive from donor, positive from car",
-        "Drive for 20-30 minutes for full charge"
+        "Find a car with a working battery (12V).",
+        "Park hood to hood.",
+        "Turn off both vehicles.",
+        "Connect: red to your positive, then to donor positive.",
+        "Black to donor negative, other end to ground on your car.",
+        "Start the donor, let it run for 2–3 minutes.",
+        "Try to start your car (no longer than 10 seconds).",
+        "After starting, let it run for 10–15 minutes.",
+        "Remove cables in reverse order.",
+        "Drive for 20–30 minutes to fully charge."
       ],
       warnings: [
-        "DO NOT touch terminals while engine is running",
-        "Check polarity! Wrong connection can damage electronics",
-        "If battery smokes, smells, or is swollen — DO NOT jump-start",
-        "Diesel cars need thicker cables (at least 16 mm²)"
-      ],
-      tips: [
-        "Always keep jump-start cables in your car",
-        "Check battery terminals once a month",
-        "If battery is over 5 years old — consider replacing it"
+        "DON'T touch terminals while the engine is running.",
+        "Check polarity! Incorrect connection can damage electronics.",
+        "If the battery is smoking, smelling, or swollen — DON'T jump start.",
+        "For diesel cars, use thicker cables (at least 16 mm²)."
       ]
     },
 
-    // ========================================
-    // 2. Check fuel
-    // ========================================
+    // ============================================================
+    // 2. COMPLETE SILENCE
+    // ============================================================
+    {
+      id: "complete_silence",
+      title: "🔇 Complete silence — battery or immobilizer",
+      description: "Nothing happens when turning the key. Causes: dead battery, bad contact, or immobilizer.",
+      conditions: { symptom: ["silence"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5–15 minutes",
+      yield_estimate: "Diagnosis",
+      tags: ["silence", "dead", "battery"],
+      steps: [
+        "Check dashboard lights. If off — battery is dead.",
+        "Check battery terminals: loose or corroded. Tighten, clean.",
+        "If lights are on but starter doesn't turn — possibly immobilizer.",
+        "Try shifting gears (auto — park, manual — neutral).",
+        "If it doesn't help — check fuses.",
+        "If you have a multimeter — check voltage at terminals.",
+        "If voltage is 0V — broken circuit or dead battery."
+      ],
+      warnings: [
+        "If lights are off — battery is completely dead.",
+        "DON'T try to start if there's a burning smell — possible fire."
+      ]
+    },
+
+    // ============================================================
+    // 3. CHECK FUEL
+    // ============================================================
     {
       id: "check_fuel",
       title: "⛽ Check fuel level",
-      description: "The most common reason — you just ran out of gas or diesel.",
-      conditions: {
-        symptom: ["crank_no_start"],
-        location: ["home", "road", "parking", "remote"]
-      },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1-2 min",
+      description: "The most common reason — out of gas.",
+      conditions: { symptom: ["crank_no_start"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1–2 minutes",
       yield_estimate: "Diagnosis",
-      tags: ["fuel", "basic", "check", "fast"],
+      tags: ["fuel", "basic", "check"],
       steps: [
-        "Look at the fuel gauge on the dashboard",
-        "If unclear — check the fuel level sensor (key in ON position)",
-        "Check the reserve fuel tank (if available)",
-        "Rock the car — gauge may show the real level",
-        "If you have a fuel can — add 3-5 liters",
-        "Try to start after 2-3 minutes (fuel should reach the pump)",
-        "If fuel is present but won't start — check fuel delivery (listen for pump whine when ignition is on)"
+        "Check the fuel gauge on the dashboard.",
+        "If not sure — turn the key to ON and check.",
+        "If you have a gas can — add 3–5 liters.",
+        "Try to start after 2–3 minutes.",
+        "If there's fuel but no start — check fuel delivery."
       ],
       warnings: [
-        "Do not run the engine without fuel — it can damage the fuel pump",
-        "Do not smoke near fuel!",
-        "Do not pour fuel into a hot engine"
-      ],
-      tips: [
-        "Fill up early, don't run the tank empty",
-        "Keep a spare fuel can in your trunk for emergencies",
-        "In winter, diesel fuel can freeze — use anti-gel additive"
+        "DON'T try to start without fuel — can damage the fuel pump.",
+        "DON'T smoke near fuel!"
       ]
     },
 
-    // ========================================
-    // 3. Battery voltage check with multimeter
-    // ========================================
+    // ============================================================
+    // 4. BATTERY VOLTAGE CHECK
+    // ============================================================
     {
       id: "battery_voltage_check",
-      title: "📟 Battery voltage check with multimeter",
-      description: "Accurate diagnosis of battery and alternator condition.",
-      conditions: {
-        symptom: ["click", "silence", "slow_crank", "lights_dark"],
-        has_tools: ["voltmeter"]
-      },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "5-10 min",
+      title: "📟 Check battery voltage with a multimeter",
+      description: "Accurate diagnosis of the battery and alternator.",
+      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark"], has_tools: ["voltmeter"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "5–10 minutes",
       yield_estimate: "Accurate diagnosis",
       tags: ["diagnostics", "voltmeter", "testing"],
       steps: [
-        "Set multimeter to DC voltage mode (DCV) up to 20V",
-        "Measure voltage on battery terminals (engine off, lights off)",
-        "Normal: 12.5-12.9V (fully charged), 12.3-12.5V (medium), below 12.0V — discharged",
-        "Start the engine and measure voltage at terminals while running",
-        "Normal: 13.8-14.4V (alternator charging). Below 13.5V — alternator not working",
-        "If voltage drops below 12.0V — battery won't hold charge (needs replacement)",
-        "Measure parasitic draw: remove negative terminal, set multimeter to ammeter mode (10A)",
-        "Normal: less than 50 mA (0.05A). If more — there's a drain"
+        "Set multimeter to DCV up to 20V.",
+        "Measure voltage at battery terminals (engine off).",
+        "Normal: 12.5–12.9V (fully charged), below 12.0V — discharged.",
+        "Start the engine and measure: 13.8–14.4V — normal.",
+        "If below 12.0V — battery won't hold charge.",
+        "Measure current draw: remove negative terminal, set multimeter to ammeter.",
+        "Normal: less than 50 mA."
       ],
       warnings: [
-        "DO NOT measure with ignition on and engine running",
-        "When measuring parasitic draw — wait 10 minutes (alarm goes to sleep)",
-        "If alternator voltage is above 15V — voltage regulator is faulty"
-      ],
-      tips: [
-        "Keep a multimeter in your car for diagnostics",
-        "Check terminals monthly — corrosion causes voltage drop",
-        "Record readings to track trends"
+        "DON'T measure with ignition on and engine running.",
+        "If alternator voltage is above 15V — voltage regulator is faulty."
       ]
     },
 
-    // ========================================
-    // 4. Push start (manual transmission only)
-    // ========================================
+    // ============================================================
+    // 5. IMMOBILIZER
+    // ============================================================
+    {
+      id: "immobilizer_issue",
+      title: "🔑 Immobilizer — key not recognized",
+      description: "If lights are on, starter doesn't turn, and a key icon flashes — immobilizer issue.",
+      conditions: { symptom: ["silence", "click"], dashboard_lights: ["dash_bright"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Engine started",
+      tags: ["immobilizer", "key", "security"],
+      steps: [
+        "Key icon flashing on dashboard — immobilizer not recognizing the key.",
+        "Try turning the key several times (sometimes contact is restored).",
+        "Check the key battery (if applicable).",
+        "If you have a spare key — try it.",
+        "If it doesn't help — call a tow truck for diagnostics.",
+        "In some cars, you can reset by disconnecting the battery for 10 minutes."
+      ],
+      warnings: [
+        "Don't try to bypass the immobilizer yourself.",
+        "If the key is not chipped — the car won't start."
+      ]
+    },
+
+    // ============================================================
+    // 6. FLOODED PLUGS
+    // ============================================================
+    {
+      id: "flooded_plugs",
+      title: "🔥 Flooded spark plugs",
+      description: "If you smell gasoline and the engine won't start — the plugs are flooded.",
+      conditions: { symptom: ["smell_fuel"], start_attempts: ["few", "many"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "20–40 minutes",
+      yield_estimate: "Engine started",
+      tags: ["flooded", "plugs", "fuel"],
+      steps: [
+        "Remove the spark plugs.",
+        "Inspect: if wet and smell like gasoline — flooded.",
+        "Dry the plugs: wipe with a cloth, heat with a gas torch (carefully!).",
+        "If you have spare plugs — install new ones.",
+        "Check the gap (0.8–1.1 mm).",
+        "Install with correct torque (~20–30 Nm).",
+        "Try to start without pressing the gas pedal."
+      ],
+      warnings: [
+        "DON'T remove plugs from a hot engine — can damage the threads.",
+        "DON'T dry plugs over an open flame in the cabin — fire risk."
+      ]
+    },
+
+    // ============================================================
+    // 7. STARTER NOISE
+    // ============================================================
+    {
+      id: "starter_noise",
+      title: "🔊 Starter noise (grinding/whining)",
+      description: "Starter noise is a sign of mechanical failure (worn bendix or flywheel ring gear).",
+      conditions: { symptom: ["starter_noise"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Diagnosis",
+      tags: ["starter", "mechanical", "failure"],
+      steps: [
+        "Starter noise — bendix not engaging the flywheel.",
+        "DON'T try to start again — can damage the flywheel ring gear.",
+        "If you have a tool — tap the starter with a hammer (sometimes helps).",
+        "If not — call a tow truck.",
+        "In the service center: replace the bendix or starter assembly."
+      ],
+      warnings: [
+        "DON'T try to start again — can damage the flywheel.",
+        "Starter replacement is complex — trust a specialist."
+      ]
+    },
+
+    // ============================================================
+    // 8. CHECK FUSES
+    // ============================================================
+    {
+      id: "fuse_check",
+      title: "🔌 Check fuses",
+      description: "A blown fuse can prevent the car from starting.",
+      conditions: { symptom: ["silence", "click", "lights_dark"], dashboard_lights: ["dash_off", "dash_dim"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "10–15 minutes",
+      yield_estimate: "Diagnosis",
+      tags: ["fuse", "electrical", "check"],
+      steps: [
+        "Find the fuse box (under the hood or in the cabin).",
+        "Check fuses: main (100–150A), starter, ECU.",
+        "Visually: if the filament is broken — fuse is blown.",
+        "Check continuity with a multimeter.",
+        "Replace only with the same rating.",
+        "If the fuse blows immediately — there's a short circuit."
+      ],
+      warnings: [
+        "DON'T use higher-rated fuses — may cause a fire.",
+        "If a fuse is blown — find the cause, don't just replace."
+      ]
+    },
+
+    // ============================================================
+    // 9. PUSH START (MANUAL ONLY)
+    // ============================================================
     {
       id: "push_start",
       title: "🚀 Push start (manual transmission only)",
-      description: "If you don't have cables and no one can help — try push starting.",
-      conditions: {
-        symptom: ["click", "silence", "slow_crank"],
-        car_type: ["standard"],
-        has_tools: ["nothing"],
-        location: ["road", "parking"]
-      },
-      priority: "medium",
-      reliability: "low",
-      time_estimate: "10-30 min",
-      yield_estimate: "Engine start",
+      description: "If you have no cables and no help — try push starting.",
+      conditions: { symptom: ["click", "silence", "slow_crank"], car_type: ["standard"] },
+      scoring: { priority: "medium", reliability: "low" },
+      time_estimate: "10–30 minutes",
+      yield_estimate: "Engine started",
       tags: ["emergency", "push_start", "manual"],
       steps: [
-        "Turn ignition on (key to ON position)",
-        "Engage 2nd gear, press the clutch",
-        "Ask 2-3 people to push the car",
-        "When car reaches 10-15 km/h, release the clutch smoothly and press the gas",
-        "After starting — immediately press the clutch and shift to neutral",
-        "Don't turn off the engine for the next 30 minutes",
-        "Go to a service center to check the battery"
+        "Turn the ignition on (key to ON).",
+        "Put it in 2nd gear, press the clutch.",
+        "Get 2–3 people to push the car.",
+        "When speed reaches 10–15 km/h — release the clutch smoothly and press gas.",
+        "After starting — press the clutch and put it in neutral.",
+        "Don't stall for 30 minutes.",
+        "Go to a service center to check the battery."
       ],
       warnings: [
-        "This method DOES NOT WORK on automatic transmissions (AT)!",
-        "If the battery is completely dead (0V) — this method won't help",
-        "After starting, DO NOT turn off the engine at traffic lights",
-        "Be careful not to hit the people pushing"
-      ],
-      tips: [
-        "For towing — use a tow rope and another vehicle",
-        "During towing, keep distance and don't brake suddenly",
-        "If there's a slope — use it for momentum"
+        "DOES NOT WORK on automatic transmissions!",
+        "If the battery is completely dead (0V) — this method won't help."
       ]
     },
 
-    // ========================================
-    // 5. Battery replacement
-    // ========================================
-    {
-      id: "replace_battery",
-      title: "🔄 Battery replacement",
-      description: "If the battery is old, won't hold charge, or is swollen — it needs replacement.",
-      conditions: {
-        symptom: ["click", "silence", "slow_crank", "lights_dark"],
-        time_season: ["cold"],
-        location: ["home", "parking"]
-      },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "20-40 min",
-      yield_estimate: "New battery",
-      tags: ["battery", "replace", "new"],
-      steps: [
-        "Buy a new battery with the same specifications: capacity (Ah), cold cranking amps (CCA), polarity",
-        "Disconnect terminals: first negative (black), then positive (red)",
-        "Unscrew the battery hold-down clamp (usually 1-2 bolts)",
-        "Remove the old battery (careful, it's heavy)",
-        "Clean the car's terminal contacts (sandpaper or brush)",
-        "Install the new battery, secure with the clamp",
-        "Connect terminals: first positive (red), then negative (black)",
-        "Tighten terminals, apply grease (lithium, vaseline) to prevent corrosion",
-        "Start the engine — check that there are no errors on the dashboard",
-        "Dispose of the old battery at a recycling center"
-      ],
-      warnings: [
-        "DO NOT mix up polarity! Wrong connection can cause a short circuit, fire",
-        "DO NOT throw the old battery in the trash — it contains acid and lead",
-        "When buying, check capacity (Ah) and CCA (must be at least original)",
-        "If car has Start-Stop system — you need a special battery (AGM/EFB)"
-      ],
-      tips: [
-        "In winter, choose a battery with higher cold cranking amps",
-        "Check the manufacturing date before buying (not older than 6 months)",
-        "Install the battery on a clean and dry surface"
-      ]
-    },
-
-    // ========================================
-    // 6. Spark plugs check
-    // ========================================
-    {
-      id: "spark_plugs_check",
-      title: "🔥 Spark plugs check",
-      description: "If the engine cranks but won't start — the problem may be in the spark plugs.",
-      conditions: {
-        symptom: ["crank_no_start", "smell_fuel"],
-        has_tools: ["tools"],
-        location: ["home", "parking"]
-      },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "20-40 min",
-      yield_estimate: "Diagnosis",
-      tags: ["spark", "plugs", "ignition"],
-      steps: [
-        "Remove a spark plug (using a 16/21 socket)",
-        "Inspect the plug: black soot — rich mixture, white — lean mixture, oily — oil",
-        "Check for spark: connect the plug to the high-voltage wire and ground it to unpainted metal",
-        "Have someone crank the starter — there should be a bright spark",
-        "If spark is weak or absent — check the ignition coil and wires",
-        "Check the gap between electrodes (should be 0.8-1.1 mm)",
-        "If needed — replace the plugs (apply copper anti-seize to threads)"
-      ],
-      warnings: [
-        "DO NOT check for spark in a dark environment — you can get an electric shock",
-        "DO NOT remove plugs from a hot engine — you can damage the threads",
-        "If plugs are new — check the ignition coil and crankshaft position sensor"
-      ],
-      tips: [
-        "Replace spark plugs every 30,000 km",
-        "Use manufacturer-recommended plug brands",
-        "Record the replacement date for tracking"
-      ]
-    },
-
-    // ========================================
-    // 7. Call a tow truck
-    // ========================================
+    // ============================================================
+    // 10. TOW TRUCK
+    // ============================================================
     {
       id: "tow_truck",
-      title: "🚛 Call a tow truck",
-      description: "If nothing else works — call a tow truck. It's safer than taking risks.",
-      conditions: {
-        location: ["road", "remote"],
-        has_tools: ["nothing"],
-        car_type: ["diesel", "hybrid", "unknown"]
-      },
-      priority: "slow",
-      reliability: "medium",
-      time_estimate: "30-120 min",
+      title: "🚛 Calling a tow truck",
+      description: "If nothing helps — call a tow truck.",
+      conditions: { location: ["road", "remote"], has_tools: ["tools_none"] },
+      scoring: { priority: "slow", reliability: "medium" },
+      time_estimate: "30–120 minutes",
       yield_estimate: "Car at service center",
       tags: ["tow_truck", "emergency", "safe"],
       steps: [
-        "Turn on hazard lights and place warning triangle",
-        "Move to a safe distance (behind the barrier)",
-        "Call your insurance company — towing is often included in the policy",
-        "If no insurance — call a paid towing service",
-        "Tell the operator: your location, car make, problem, phone number",
-        "Wait for the tow truck, prepare the car for loading",
-        "Go to a service center or home"
+        "Turn on hazard lights and place a warning triangle.",
+        "Move to a safe distance.",
+        "Call your insurance — towing is often included.",
+        "If not — call a paid towing service.",
+        "Tell the operator: location, car model, problem.",
+        "Wait for the tow truck, prepare the car.",
+        "Go to a service center or home."
       ],
       warnings: [
-        "DO NOT wait on the road — go behind the barrier",
-        "If the towing price seems high — call other companies",
-        "Night towing costs more (usually +30-50%)",
-        "On the highway — stand with the warning sign in your hands"
-      ],
-      tips: [
-        "Save tow truck numbers in your phone",
-        "Check your battery once a month",
-        "If problems persist — have the alternator and starter checked"
+        "DON'T wait on the road — move behind the barrier.",
+        "Towing prices vary by 2x — call multiple companies.",
+        "Night towing is more expensive (+30–50%)."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.autoWontStartDataEn = autoWontStartDataEn;
+});

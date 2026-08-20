@@ -1,52 +1,85 @@
-// === MODULE: AUTO — BATTERY (ENGLISH) ===
-const autoBatteryDataEn = {
-  category: "battery",
-  title: "🔋 Dead Battery",
-  description: "Battery problems: diagnostics, jump-start, replacement",
+// modules/auto/data/en/battery-en.js
+// === MODULE: AUTO — DEAD BATTERY ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "auto",
+    category: "battery",
+    version: "1.0.0",
+    lang: "en",
+    title: "🔋 Dead Battery",
+    description: "Battery problems: diagnostics, jump start, replacement, maintenance",
+    icon: "🔋",
+    color: "#2563eb"
+  },
 
   questions: [
     {
       id: "symptom",
-      text: "What are the symptoms?",
-      type: "multi",
+      type: "single",
+      text: "What is the main symptom?",
       options: [
-        { id: "click", label: "🔊 Clicking when turning the key", tags: ["starter", "battery", "click"] },
-        { id: "silence", label: "🔇 Complete silence (nothing happens)", tags: ["battery", "dead", "electrical"] },
-        { id: "slow_crank", label: "🐢 Starter turns slowly", tags: ["battery", "weak", "starter"] },
-        { id: "lights_dark", label: "💡 Dim headlights / dim dashboard", tags: ["battery", "low_voltage"] },
-        { id: "smell", label: "👃 Sulfur / rotten egg smell", tags: ["battery", "danger", "replace"] },
-        { id: "swollen", label: "📦 Battery is swollen (deformed)", tags: ["battery", "danger", "replace"] }
+        { id: "click", label: "🔊 Clicking when turning the key (starter not engaging)", tags: ["click"] },
+        { id: "silence", label: "🔇 Complete silence (nothing happens)", tags: ["silence"] },
+        { id: "slow_crank", label: "🐢 Starter turns slowly", tags: ["slow_crank"] },
+        { id: "dim_lights", label: "💡 Dim headlights / dim dashboard", tags: ["dim_lights"] },
+        { id: "sulfur_smell", label: "👃 Sulfur / rotten egg smell", tags: ["sulfur_smell"] },
+        { id: "swollen", label: "📦 Battery swollen (changed shape)", tags: ["swollen"] }
       ]
     },
     {
       id: "location",
-      text: "Where are you?",
       type: "single",
-      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark", "smell", "swollen"] },
+      text: "Where are you?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "dim_lights", "sulfur_smell", "swollen"] },
       options: [
-        { id: "home", label: "🏠 At home / garage", tags: ["safe", "tools", "garage"] },
-        { id: "road", label: "🛣️ On the road (highway)", tags: ["road", "traffic", "emergency"] },
-        { id: "parking", label: "🅿️ Parking lot / mall", tags: ["public", "help", "possible"] },
-        { id: "remote", label: "🌲 Away from city (forest, field)", tags: ["remote", "no_help"] }
+        { id: "home", label: "🏠 At home / garage", tags: ["safe"] },
+        { id: "road", label: "🛣️ On the road (highway)", tags: ["road"] },
+        { id: "parking", label: "🅿️ Parking lot / mall", tags: ["public"] },
+        { id: "remote", label: "🌲 Remote area (forest, field)", tags: ["remote"] }
       ]
     },
     {
       id: "has_tools",
+      type: "single",
       text: "What do you have with you?",
-      type: "multi",
-      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark", "smell", "swollen"] },
+      conditions: { symptom: ["click", "silence", "slow_crank", "dim_lights", "sulfur_smell", "swollen"] },
       options: [
-        { id: "cables", label: "🔌 Jumper cables", tags: ["jump_cables"] },
-        { id: "voltmeter", label: "📟 Multimeter / tester", tags: ["diagnostics"] },
+        { id: "cables", label: "🔌 Jumper cables", tags: ["cables"] },
+        { id: "voltmeter", label: "📟 Multimeter / tester", tags: ["voltmeter"] },
         { id: "charger", label: "🔋 Battery charger (220V)", tags: ["charger"] },
         { id: "nothing", label: "❌ None of the above", tags: ["no_tools"] }
       ]
     },
     {
-      id: "time_season",
-      text: "What season is it?",
+      id: "battery_age",
       type: "single",
-      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark", "smell", "swollen"] },
+      text: "How old is the battery?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "dim_lights", "sulfur_smell", "swollen"] },
+      options: [
+        { id: "age_0_2", label: "📅 0–2 years (new)", tags: ["age_new"] },
+        { id: "age_3_5", label: "📅 3–5 years (medium)", tags: ["age_medium"] },
+        { id: "age_5_plus", label: "📅 More than 5 years (old)", tags: ["age_old"] },
+        { id: "age_unknown", label: "❓ Don't know", tags: ["age_unknown"] }
+      ]
+    },
+    {
+      id: "battery_type",
+      type: "single",
+      text: "What type of battery?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "dim_lights", "sulfur_smell", "swollen"] },
+      options: [
+        { id: "type_wet", label: "💧 Wet (flooded)", tags: ["wet"] },
+        { id: "type_agm", label: "🔋 AGM (Absorbent Glass Mat)", tags: ["agm"] },
+        { id: "type_gel", label: "🧪 Gel", tags: ["gel"] },
+        { id: "type_unknown", label: "❓ Don't know", tags: ["type_unknown"] }
+      ]
+    },
+    {
+      id: "time_season",
+      type: "single",
+      text: "What season is it?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "dim_lights", "sulfur_smell", "swollen"] },
       options: [
         { id: "summer", label: "☀️ Summer / warm", tags: ["warm"] },
         { id: "winter", label: "❄️ Winter / freezing", tags: ["cold"] },
@@ -55,239 +88,304 @@ const autoBatteryDataEn = {
     },
     {
       id: "car_type",
-      text: "What type of car do you have?",
       type: "single",
-      conditions: { symptom: ["click", "silence", "slow_crank", "lights_dark", "smell", "swollen"] },
+      text: "What type of car?",
+      conditions: { symptom: ["click", "silence", "slow_crank", "dim_lights", "sulfur_smell", "swollen"] },
       options: [
-        { id: "standard", label: "🚗 Standard passenger car (12V)", tags: ["standard"] },
-        { id: "diesel", label: "🛻 Diesel (hard start)", tags: ["diesel"] },
+        { id: "standard", label: "🚗 Standard car (12V)", tags: ["standard"] },
+        { id: "diesel", label: "🛻 Diesel (hard starting)", tags: ["diesel"] },
         { id: "hybrid", label: "⚡ Hybrid / electric", tags: ["hybrid"] },
-        { id: "unknown", label: "❓ Don't know / not sure", tags: ["unknown"] }
+        { id: "unknown", label: "❓ Don't know / not sure", tags: ["unknown_car"] }
       ]
     }
   ],
 
   solutions: [
-    // ========================================
-    // 1. Jump-start from another car
-    // ========================================
+    // ============================================================
+    // 1. JUMP START FROM ANOTHER CAR
+    // ============================================================
     {
       id: "jump_start",
-      title: "🔋 Jump-start from another car",
-      description: "The fastest way to start the car if you have another car and cables.",
-      conditions: { symptom: ["click", "silence", "slow_crank"], location: ["home", "road", "parking"], has_tools: ["cables"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "5-10 min",
-      yield_estimate: "Engine starts",
+      title: "🔋 Jump starting from another car",
+      description: "The fastest way to start your car if you have another vehicle and cables.",
+      conditions: { symptom: ["click", "slow_crank", "silence"], has_tools: ["cables"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Engine started",
       tags: ["battery", "jump", "electrical"],
       steps: [
-        "Find a car with a working battery (preferably 12V)",
-        "Position cars close but not touching",
-        "Turn off both cars (ignition, lights, all consumers)",
-        "Connect clamps: red (positive) to your positive terminal, then to donor positive",
-        "Black (negative) — to donor negative, other end to ground (unpainted metal) of your car",
-        "Start the donor car and let it run for 2-3 minutes at idle",
-        "Try to start your car (no longer than 10 seconds)",
-        "After starting, let it run for 10-15 minutes (charges battery)",
-        "Remove clamps in reverse order: negative from ground, negative from donor, positive from donor, positive from car",
-        "Drive 20-30 minutes for full charge (no stops with engine off)"
+        "Find a car with a working battery (12V). Park hood to hood.",
+        "Turn off both vehicles (ignition, headlights, all consumers).",
+        "Connect: red (positive) to your positive, then to donor positive.",
+        "Black (negative) — to donor negative, other end to ground (unpainted metal) on your car.",
+        "Start the donor, let it run for 2–3 minutes at idle.",
+        "Try to start your car (no longer than 10 seconds).",
+        "After starting, let it run for 10–15 minutes.",
+        "Remove cables in reverse order.",
+        "Drive for 20–30 minutes to fully charge."
       ],
       warnings: [
-        "DO NOT touch clamps with engine running (short circuit risk)",
-        "Watch polarity! Wrong connection can damage electronics (ECU)",
-        "If battery smokes, smells, or is swollen — DO NOT jump-start (explosion risk)",
-        "Diesel cars need thicker cables (at least 16 mm²)"
+        "DON'T touch terminals while the engine is running.",
+        "Check polarity! Incorrect connection can damage electronics.",
+        "If the battery is smoking, smelling, or swollen — DON'T jump start.",
+        "For diesel cars, use thicker cables (at least 16 mm²)."
       ]
     },
-    // ========================================
-    // 2. Charging from 220V outlet
-    // ========================================
+
+    // ============================================================
+    // 2. COMPLETE SILENCE — DEAD BATTERY
+    // ============================================================
+    {
+      id: "complete_silence",
+      title: "🔇 Complete silence — battery is dead",
+      description: "Nothing happens when turning the key. The battery is fully discharged or the circuit is broken.",
+      conditions: { symptom: ["silence"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5–15 minutes",
+      yield_estimate: "Diagnostics and start",
+      tags: ["silence", "dead", "battery"],
+      steps: [
+        "Check terminals: are they loose or corroded? Tighten, clean.",
+        "Check voltage with a multimeter. If 0V — broken circuit.",
+        "If voltage below 10V — deeply discharged. Needs charging or replacement.",
+        "Try jump starting (see `jump_start` solution).",
+        "If jump start doesn't work — check fuses (main, starter).",
+        "If all is fine — possibly a faulty starter or ignition switch.",
+        "Go to a service center or call a tow truck."
+      ],
+      warnings: [
+        "If voltage is 0V — check wire integrity and terminals.",
+        "DON'T try to charge a battery below 10V with a regular charger — it may boil.",
+        "Deep discharge shortens battery life. After starting — check charging."
+      ]
+    },
+
+    // ============================================================
+    // 3. DIM LIGHTS — LOW VOLTAGE
+    // ============================================================
+    {
+      id: "dim_lights",
+      title: "💡 Dim lights — low voltage",
+      description: "Headlights and dashboard are dim — battery is discharged or poor contact.",
+      conditions: { symptom: ["dim_lights"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "10–30 minutes",
+      yield_estimate: "Diagnostics and fix",
+      tags: ["dim_lights", "voltage", "diagnostics"],
+      steps: [
+        "Check terminals: corrosion causes voltage drop. Clean with sandpaper.",
+        "Check voltage with a multimeter: should be 12.5–12.9V (engine off).",
+        "If voltage below 12.0V — battery is discharged. Charge it.",
+        "Check alternator belt: if loose, the alternator won't charge.",
+        "Start the engine and check voltage at terminals: 13.8–14.4V is normal.",
+        "If voltage doesn't rise — alternator is faulty.",
+        "If all is normal — possibly wiring or consumer issues."
+      ],
+      warnings: [
+        "Dim headlights can indicate poor ground (corrosion). Check body ground.",
+        "If the alternator isn't charging — don't drive, the battery will die."
+      ]
+    },
+
+    // ============================================================
+    // 4. SULFUR SMELL — DANGER
+    // ============================================================
+    {
+      id: "sulfur_smell",
+      title: "👃 Sulfur smell — danger!",
+      description: "Rotten egg smell — sign of overcharging or internal short circuit. This is dangerous.",
+      conditions: { symptom: ["sulfur_smell"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Safety",
+      tags: ["sulfur", "danger", "explosion"],
+      steps: [
+        "IMMEDIATELY turn off the ignition and open the hood.",
+        "DON'T smoke, DON'T use open flames nearby.",
+        "Ventilate the engine bay.",
+        "Don't try to start or charge the battery — explosion risk.",
+        "Call a tow truck or specialist for battery replacement.",
+        "Dispose of the old battery at a designated collection point."
+      ],
+      warnings: [
+        "Sulfur smell indicates internal short circuit or overcharging. DANGEROUS.",
+        "DON'T try to charge such a battery — it may explode.",
+        "DON'T touch terminals with bare hands — acid burn risk."
+      ]
+    },
+
+    // ============================================================
+    // 5. SWOLLEN BATTERY — DANGER
+    // ============================================================
+    {
+      id: "swollen_battery",
+      title: "📦 Swollen battery — danger!",
+      description: "The battery has changed shape — sign of internal damage. Life-threatening.",
+      conditions: { symptom: ["swollen"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Safety",
+      tags: ["swollen", "danger", "replace"],
+      steps: [
+        "DON'T touch the swollen battery — it may explode.",
+        "DON'T try to charge or jump start — dangerous.",
+        "Open the hood, ventilate.",
+        "Call a tow truck or specialist for replacement.",
+        "Dispose of the old battery at a designated collection point."
+      ],
+      warnings: [
+        "A swollen battery is 100% replacement. Don't save on safety.",
+        "DON'T try to disassemble or compress the battery — explosion.",
+        "When transporting — insulate terminals with tape."
+      ]
+    },
+
+    // ============================================================
+    // 6. CHARGING FROM 220V
+    // ============================================================
     {
       id: "charger_220v",
-      title: "🔌 Charging battery from 220V outlet",
-      description: "If you have a charger and access to an outlet — best way to recover the battery.",
-      conditions: { has_tools: ["charger"], location: ["home", "parking"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "4-8 hours",
+      title: "🔌 Charging the battery from 220V",
+      description: "If you have a charger and access to a socket — the best way to restore the battery.",
+      conditions: { has_tools: ["charger"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "4–8 hours",
       yield_estimate: "Fully charged battery",
       tags: ["battery", "charger", "220v"],
       steps: [
-        "Disconnect battery from car (remove terminals)",
-        "Clean terminals from corrosion (baking soda + water)",
-        "Connect charger to terminals: red to positive, black to negative",
-        "Plug charger into 220V outlet",
-        "Select mode: 10-15% of capacity (e.g., 6-7A for 60Ah)",
-        "Charging time: 4-8 hours depending on discharge level",
-        "Periodically check temperature (should not exceed 45°C)",
-        "After charging, unplug from outlet, then disconnect clamps",
-        "Reinstall battery, tighten terminals",
-        "Check electrolyte level (for serviceable batteries)"
+        "Disconnect the battery from the car (remove terminals: negative first).",
+        "Clean terminals from corrosion.",
+        "Connect the charger: red to positive, black to negative.",
+        "Plug the charger into 220V.",
+        "Select mode: 10–15% of capacity (e.g., 6–7A for 60Ah).",
+        "Charging time: 4–8 hours depending on discharge.",
+        "Check temperature periodically (not above 45°C).",
+        "After charging — unplug, then disconnect terminals.",
+        "Install the battery back, tighten terminals."
       ],
       warnings: [
-        "DO NOT leave charger unattended overnight",
-        "DO NOT try to charge deeply discharged battery with high current (>15%) — it may boil",
-        "If battery doesn't hold charge after full charge — needs replacement",
-        "Gel batteries require special mode (not more than 14.4V)"
+        "DON'T leave the charger unattended overnight.",
+        "DON'T charge a deeply discharged battery with high current (>15%).",
+        "Gel batteries require a special mode (no more than 14.4V).",
+        "If the battery doesn't hold a charge after charging — replacement needed."
       ]
     },
-    // ========================================
-    // 3. Diagnostics with multimeter
-    // ========================================
+
+    // ============================================================
+    // 7. ALTERNATOR CHECK
+    // ============================================================
     {
-      id: "diagnostics_voltmeter",
-      title: "📟 Battery diagnostics with multimeter",
-      description: "If you have a multimeter — you can accurately diagnose battery and alternator condition.",
+      id: "alternator_check",
+      title: "🔧 Checking the alternator with a multimeter",
+      description: "If the alternator doesn't charge, even a new battery will die.",
       conditions: { has_tools: ["voltmeter"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "5-10 min",
-      yield_estimate: "Accurate diagnosis",
-      tags: ["diagnostics", "voltmeter", "testing"],
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "5–10 minutes",
+      yield_estimate: "Alternator diagnosis",
+      tags: ["alternator", "diagnostics", "charging"],
       steps: [
-        "Set multimeter to DC voltage mode (DCV) up to 20V",
-        "Measure voltage at battery terminals (engine off, lights off)",
-        "Normal: 12.5-12.9V (fully charged), 12.3-12.5V (medium), below 12.0V — discharged",
-        "Start engine and measure voltage at terminals while running (alternator)",
-        "Normal: 13.8-14.4V (alternator charging). Below 13.5V — alternator not working",
-        "If voltage drops below 12.0V — battery won't hold charge (needs replacement)",
-        "Measure leakage current: remove negative terminal, set multimeter to ammeter mode (10A)",
-        "Normal: less than 50 mA (0.05A). If higher — there's a leak",
-        "Load test: turn on headlights, heater, radio — voltage should not drop below 12.0V"
+        "Start the engine and let it idle for 2–3 minutes.",
+        "Measure voltage at the battery terminals: should be 13.8–14.4V.",
+        "If below 13.5V — alternator isn't charging.",
+        "If above 15V — voltage regulator is faulty.",
+        "Turn on headlights, heater, radio — voltage should stay above 13.5V.",
+        "If voltage drops — alternator is weak.",
+        "Check the alternator belt: tension, wear.",
+        "If the belt is fine — likely a faulty diode bridge or regulator."
       ],
       warnings: [
-        "DO NOT measure with ignition on and engine running — risk to multimeter",
-        "When measuring leakage current — wait 10 minutes (alarm goes to sleep mode)",
-        "If alternator voltage is above 15V — voltage regulator faulty",
-        "Check terminals: corrosion causes voltage drop (clean with sandpaper)"
+        "DON'T measure with ignition on but engine off — drains battery.",
+        "If the alternator isn't charging — don't drive, battery will die.",
+        "Alternator replacement is complex — trust a specialist."
       ]
     },
-    // ========================================
-    // 4. Emergency start without cables
-    // ========================================
-    {
-      id: "emergency_start_no_tools",
-      title: "🚀 Emergency start without cables (push/tow)",
-      description: "If you have no cables and no one can help — try push-start or tow-start.",
-      conditions: { location: ["road", "parking"], has_tools: ["nothing"], car_type: ["standard"] },
-      priority: "medium",
-      reliability: "low",
-      time_estimate: "10-30 min",
-      yield_estimate: "Engine starts",
-      tags: ["emergency", "push_start", "tow"],
-      steps: [
-        "For manual transmission (MT): engage 2nd gear, press clutch",
-        "Ask 2-3 people to push the car (or tow vehicle with rope)",
-        "When car reaches 10-15 km/h, release clutch and press gas",
-        "For automatic transmission (AT): this method DOES NOT WORK (only tow)",
-        "Tow: attach rope, tow vehicle accelerates to 20-30 km/h, turn ignition and engage gear",
-        "After starting — immediately shift to neutral to avoid collision",
-        "Don't turn off engine for next 30 minutes (charge battery)",
-        "Go to service or to friends for battery check"
-      ],
-      warnings: [
-        "Method DOES NOT WORK on AT (automatic transmission)! Only MT",
-        "Tow is dangerous: car may collide with tow vehicle",
-        "If battery is completely dead (0V) — this won't help (needs replacement)",
-        "After starting DON'T turn off engine at traffic lights"
-      ]
-    },
-    // ========================================
-    // 5. Battery replacement
-    // ========================================
+
+    // ============================================================
+    // 8. BATTERY REPLACEMENT
+    // ============================================================
     {
       id: "replace_battery",
       title: "🔄 Battery replacement",
-      description: "If battery is old, discharges, or swollen — need replacement.",
-      conditions: { symptom: ["smell", "swollen", "lights_dark"], location: ["home", "parking"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "20-40 min",
+      description: "If the battery is old, keeps dying, or swollen — replacement needed.",
+      conditions: { symptom: ["sulfur_smell", "swollen", "dim_lights"], battery_age: ["age_old"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "20–40 minutes",
       yield_estimate: "New battery",
       tags: ["battery", "replace", "new"],
       steps: [
-        "Buy new battery with same specs: capacity (Ah), CCA (A), polarity (right/left)",
-        "Disconnect terminals: first negative (black), then positive (red)",
-        "Unscrew battery hold-down (usually 1-2 bolts)",
-        "Remove old battery (careful — heavy, may contain acid)",
-        "Clean car terminal contacts (sandpaper or brush)",
-        "Install new battery, secure with hold-down",
-        "Connect terminals: first positive (red), then negative (black)",
-        "Tighten terminals, apply grease (lithium, vaseline) to prevent corrosion",
-        "Turn ignition on — check instruments",
-        "Start engine — check for warning lights",
-        "Dispose of old battery at recycling point (hazardous waste)"
+        "Buy a new battery: capacity (Ah), cold cranking amps (CCA), polarity (right/left).",
+        "Disconnect terminals: negative first, then positive.",
+        "Remove the battery clamp.",
+        "Take out the old battery (heavy, acid).",
+        "Clean the terminal contacts on the car.",
+        "Install the new battery, secure with clamp.",
+        "Connect terminals: positive first, then negative.",
+        "Tighten terminals, apply grease to prevent corrosion.",
+        "Turn on ignition — check dash lights.",
+        "Start the engine — check for errors."
       ],
       warnings: [
-        "DO NOT reverse polarity when connecting! Otherwise — short circuit, fire",
-        "DO NOT throw old battery in trash — contains acid and lead",
-        "When buying, verify capacity (Ah) and CCA (should not be less than original)",
-        "If car has Start-Stop system — need special battery (AGM/EFB)"
+        "DON'T reverse polarity! Short circuit, fire.",
+        "DON'T throw the old battery in the trash — contains acid and lead.",
+        "For Start-Stop cars — AGM/EFB battery required."
       ]
     },
-    // ========================================
-    // 6. Maintenance and charging
-    // ========================================
+
+    // ============================================================
+    // 9. EMERGENCY START (PUSH START)
+    // ============================================================
     {
-      id: "battery_maintenance",
-      title: "🧽 Battery maintenance",
-      description: "Extend battery life with simple maintenance: clean terminals, check electrolyte.",
-      conditions: { location: ["home", "parking"], time_season: ["summer", "season_other"] },
-      priority: "slow",
-      reliability: "medium",
-      time_estimate: "30-60 min",
-      yield_estimate: "Extend battery life by 1-2 years",
-      tags: ["battery", "maintenance", "long_term"],
+      id: "emergency_start_no_tools",
+      title: "🚀 Emergency start without cables (push start, tow)",
+      description: "If you have no cables — try push starting or towing.",
+      conditions: { has_tools: ["no_tools"], car_type: ["standard"] },
+      scoring: { priority: "medium", reliability: "low" },
+      time_estimate: "10–30 minutes",
+      yield_estimate: "Engine started",
+      tags: ["emergency", "push_start", "tow"],
       steps: [
-        "Clean terminals from corrosion (sandpaper or special spray)",
-        "Check electrolyte level (if serviceable battery)",
-        "If needed — add distilled water (NOT acid!)",
-        "Charge battery with charger (see solution 2)",
-        "Check alternator belt tension — if loose, voltage drops",
-        "Check for anything blocking battery (wires, corrosion)",
-        "In severe cold — insulate battery (special cover)",
-        "If car sits long — disconnect negative terminal or charge once a month"
+        "For manual transmission: put in 2nd gear, press clutch.",
+        "Get 2–3 people to push (or a tow vehicle).",
+        "When speed reaches 10–15 km/h — release clutch smoothly and press gas.",
+        "For automatic transmission — this DOES NOT WORK.",
+        "Tow: attach rope, tow vehicle accelerates to 20–30 km/h, turn on ignition and gear.",
+        "After starting — immediately put in neutral.",
+        "Don't stall for 30 minutes.",
+        "Immediately go to a service center."
       ],
       warnings: [
-        "DO NOT fill above 'max' mark — battery may boil and leak acid",
-        "DO NOT use tap water — only distilled",
-        "If battery is serviceable and level dropped — normal (evaporates during charging)",
-        "Sealed batteries (AGM, gel) cannot be maintained — only replacement"
+        "DOES NOT WORK on automatic transmission!",
+        "Towing is dangerous — the car may crash into the tow vehicle.",
+        "If the battery is completely dead (0V) — this method won't help."
       ]
     },
-    // ========================================
-    // 7. Tow truck
-    // ========================================
+
+    // ============================================================
+    // 10. TOW TRUCK
+    // ============================================================
     {
       id: "tow_truck",
-      title: "🚛 Call a tow truck",
-      description: "If nothing helps — call a tow truck. Safer than risking on the road.",
-      conditions: { location: ["road", "remote"], has_tools: ["nothing"], car_type: ["diesel", "hybrid", "unknown"] },
-      priority: "slow",
-      reliability: "medium",
-      time_estimate: "30-120 min",
+      title: "🚛 Calling a tow truck",
+      description: "If nothing helps — call a tow truck.",
+      conditions: { location: ["road", "remote"] },
+      scoring: { priority: "slow", reliability: "medium" },
+      time_estimate: "30–120 minutes",
       yield_estimate: "Car at service center",
       tags: ["tow_truck", "emergency", "safe"],
       steps: [
-        "Turn on hazard lights and set warning triangle (on highway)",
-        "Move to safe distance (behind barrier)",
-        "Call insurance company — towing is often included in policy (OSAGO, CASCO)",
-        "If no insurance — call paid towing service (search via Maps)",
-        "Tell operator: location, car make, problem, phone number",
-        "Wait for tow truck, prepare car for loading (handbrake, align front wheels)",
-        "Loading: watch to avoid bumper or suspension damage",
-        "Go to service center or home (depending on situation)"
+        "Turn on hazard lights and place a warning triangle.",
+        "Move to a safe distance (behind the barrier).",
+        "Call your insurance — towing is often included.",
+        "If no insurance — call a paid towing service.",
+        "Tell the operator: location, car model, problem.",
+        "Wait for the tow truck, prepare the car for loading.",
+        "Go to a service center or home."
       ],
       warnings: [
-        "DO NOT wait on the road — move behind barrier (danger of collision)",
-        "If towing price seems high — call other companies (prices vary 2x)",
-        "Night towing costs more (usually +30-50%)",
-        "If on highway — stand with warning triangle in hand"
+        "DON'T wait on the road — move behind the barrier.",
+        "Towing prices vary by 2x — call multiple companies.",
+        "Night towing is more expensive (+30–50%)."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.autoBatteryDataEn = autoBatteryDataEn;
+});
