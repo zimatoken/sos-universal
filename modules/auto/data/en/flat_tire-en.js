@@ -22,7 +22,7 @@ window.SOS_REGISTER_QUIZ({
         { id: "flat", label: "📉 Tire is completely flat", tags: ["flat"] },
         { id: "slow_leak", label: "🐢 Slow leak (needs inflating)", tags: ["slow_leak"] },
         { id: "blowout", label: "💥 Tire blowout while driving", tags: ["blowout"] },
-        { id: "sidewall", label: "🔪 Sidewall damage / cut", tags: ["sidewall"] },
+        { id: "sidewall_damage", label: "🔪 Sidewall damage / cut", tags: ["sidewall"] },
         { id: "bulge", label: "🫧 Bulge / bubble on the tire", tags: ["bulge"] },
         { id: "vibration", label: "📳 Vibration while driving", tags: ["vibration"] }
       ]
@@ -51,7 +51,7 @@ window.SOS_REGISTER_QUIZ({
       ]
     },
     {
-      id: "tools_partial",
+      id: "has_tools",
       type: "single",
       text: "What do you have with you?",
       conditions: { symptom: ["flat", "slow_leak", "blowout", "sidewall", "bulge", "vibration"] },
@@ -80,9 +80,9 @@ window.SOS_REGISTER_QUIZ({
       conditions: { symptom: ["flat", "slow_leak", "blowout", "sidewall", "bulge", "vibration"] },
       options: [
         { id: "alone", label: "👤 I'm alone", tags: ["alone"] },
-        { id: "kids", label: "🧒 With children", tags: ["kids"] },
-        { id: "elderly", label: "👴 With elderly / disabled", tags: ["elderly"] },
-        { id: "others", label: "👥 With other passengers", tags: ["others"] }
+        { id: "with_kids", label: "🧒 With children", tags: ["kids"] },
+        { id: "with_elderly", label: "👴 With elderly / disabled", tags: ["elderly"] },
+        { id: "with_others", label: "👥 With other passengers", tags: ["others"] }
       ]
     },
     {

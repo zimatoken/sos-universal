@@ -107,6 +107,7 @@ window.SOS_REGISTER_QUIZ({
       id: "tire_change",
       title: "🛞 Замена колеса на запасное",
       description: "Самый надёжный способ — установить запасное колесо.",
+      // ✅ Все значения — ID из options
       conditions: { symptom: ["flat", "blowout", "sidewall", "bulge"], tools_partial: ["tools_full"] },
       scoring: { priority: "medium", reliability: "high" },
       time_estimate: "15–30 минут",

@@ -43,7 +43,7 @@ window.SOS_REGISTER_QUIZ({
       id: "injuries_status",
       type: "single",
       text: "В сознании ли пострадавшие?",
-      conditions: { severity: ["major", "pedestrian"], injuries: ["severe", "light"] },
+      conditions: { severity: ["major", "pedestrian"], injuries: ["injuries_severe", "injuries_light"] },
       options: [
         { id: "conscious", label: "✅ Да, в сознании", tags: ["conscious"] },
         { id: "unconscious", label: "❌ Без сознания", tags: ["unconscious"] },
@@ -127,7 +127,7 @@ window.SOS_REGISTER_QUIZ({
       id: "emergency_call",
       title: "📞 Вызов экстренных служб при тяжёлом ДТП",
       description: "При тяжёлом ДТП с пострадавшими НЕМЕДЛЕННО вызывайте скорую и полицию.",
-      conditions: { severity: ["major", "pedestrian"], injuries: ["severe", "light"] },
+      conditions: { severity: ["major", "pedestrian"], injuries: ["injuries_severe", "injuries_light"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1–2 минуты",
       yield_estimate: "Прибытие скорой и полиции",

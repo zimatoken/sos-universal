@@ -43,7 +43,7 @@ window.SOS_REGISTER_QUIZ({
       id: "injuries_status",
       type: "single",
       text: "Are the injured conscious?",
-      conditions: { severity: ["major", "pedestrian"], injuries: ["severe", "light"] },
+      conditions: { severity: ["major", "pedestrian"], injuries: ["injuries_severe", "injuries_light"] },
       options: [
         { id: "conscious", label: "✅ Yes, conscious", tags: ["conscious"] },
         { id: "unconscious", label: "❌ Unconscious", tags: ["unconscious"] },
@@ -127,7 +127,7 @@ window.SOS_REGISTER_QUIZ({
       id: "emergency_call",
       title: "📞 Calling emergency services for a serious accident",
       description: "In a serious accident with injuries, IMMEDIATELY call an ambulance and police.",
-      conditions: { severity: ["major", "pedestrian"], injuries: ["severe", "light"] },
+      conditions: { severity: ["major", "pedestrian"], injuries: ["injuries_severe", "injuries_light"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1–2 minutes",
       yield_estimate: "Ambulance and police arrive",

@@ -49,11 +49,11 @@ window.SOS_REGISTER_QUIZ({
       text: "What color is the fluid?",
       conditions: { symptom: ["puddle"] },
       options: [
-        { id: "color_brown", label: "🟫 Brown / black (oil)", tags: ["brown"] },
-        { id: "color_red", label: "🔴 Red (antifreeze, power steering)", tags: ["red"] },
-        { id: "color_green", label: "🟢 Green / yellow (antifreeze)", tags: ["green"] },
-        { id: "color_clear", label: "💧 Clear (water)", tags: ["clear"] },
-        { id: "color_yellow", label: "🟡 Light yellow (brake fluid)", tags: ["yellow"] },
+        { id: "color_brown", label: "🟫 Brown / black (oil)", tags: ["color_brown"] },
+        { id: "color_red", label: "🔴 Red (antifreeze, power steering)", tags: ["color_red"] },
+        { id: "color_green", label: "🟢 Green / yellow (antifreeze)", tags: ["color_green"] },
+        { id: "color_clear", label: "💧 Clear (water)", tags: ["color_clear"] },
+        { id: "color_yellow", label: "🟡 Light yellow (brake fluid)", tags: ["color_yellow"] },
         { id: "color_unknown", label: "❓ Don't know", tags: ["color_unknown"] }
       ]
     },
@@ -104,7 +104,7 @@ window.SOS_REGISTER_QUIZ({
       options: [
         { id: "fluid", label: "🧴 Fluid (oil, antifreeze, brake fluid)", tags: ["fluid"] },
         { id: "funnel", label: "🔧 Funnel", tags: ["funnel"] },
-        { id: "gloves", label: "🧤 Gloves", tags: ["gloves"] },
+        { id: "tools_partial", label: "🧤 Gloves", tags: ["tools_partial"] },
         { id: "tools_none", label: "❌ None of the above", tags: ["tools_none"] }
       ]
     }
@@ -118,7 +118,7 @@ window.SOS_REGISTER_QUIZ({
       id: "identify_fluid",
       title: "🔍 Identifying a fluid leak by color",
       description: "Color and consistency help identify what's leaking.",
-      conditions: { symptom: ["puddle"], fluid_color_single: ["brown", "red", "green", "clear", "yellow"] },
+      conditions: { symptom: ["puddle"], fluid_color_single: ["color_brown", "color_red", "color_green", "color_clear", "color_yellow"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "2–5 minutes",
       yield_estimate: "Diagnosis",
@@ -147,7 +147,7 @@ window.SOS_REGISTER_QUIZ({
       id: "engine_oil_leak",
       title: "🛢️ Engine oil leak — diagnostics",
       description: "An oil puddle under the car is a sign of a leak. Check the level and find the source.",
-      conditions: { symptom: ["puddle"], fluid_type: ["oil"], fluid_color_single: ["brown"] },
+      conditions: { symptom: ["puddle"], fluid_type: ["oil"], fluid_color_single: ["color_brown"] },
       scoring: { priority: "medium", reliability: "high" },
       time_estimate: "10–20 minutes",
       yield_estimate: "Leak severity assessed",
@@ -175,7 +175,7 @@ window.SOS_REGISTER_QUIZ({
       id: "coolant_leak",
       title: "🧊 Coolant leak — overheating risk",
       description: "Antifreeze is leaking — the engine may overheat. Check the level and system.",
-      conditions: { symptom: ["puddle", "overheat"], fluid_type: ["coolant"], fluid_color_single: ["red", "green"] },
+      conditions: { symptom: ["puddle", "overheat"], fluid_type: ["coolant"], fluid_color_single: ["color_red", "color_green"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "10–20 minutes",
       yield_estimate: "Leak assessed + topped up",
@@ -261,7 +261,7 @@ window.SOS_REGISTER_QUIZ({
       id: "power_steering_leak",
       title: "🔄 Power steering fluid leak",
       description: "If the steering becomes heavy or there's a red fluid leak — check the power steering.",
-      conditions: { fluid_type: ["steering_fluid"], fluid_color_single: ["red"] },
+      conditions: { fluid_type: ["steering_fluid"], fluid_color_single: ["color_red"] },
       scoring: { priority: "medium", reliability: "medium" },
       time_estimate: "10–15 minutes",
       yield_estimate: "Leak diagnosed",
@@ -288,7 +288,7 @@ window.SOS_REGISTER_QUIZ({
       id: "ac_condensation",
       title: "💧 AC condensation — this is normal!",
       description: "If there's clean, clear water under the car — it's condensation.",
-      conditions: { fluid_type: ["water"], fluid_color_single: ["clear"] },
+      conditions: { fluid_type: ["water"], fluid_color_single: ["color_clear"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "1 minute",
       yield_estimate: "Peace of mind",
