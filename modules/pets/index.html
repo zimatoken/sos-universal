@@ -234,14 +234,11 @@
   <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
   <script src="../../core/locales.js"></script>
 
-  <!-- 2. SMART ADAPTER (НОВЫЙ!) -->
-  <script src="../../core/registry-adapter.js"></script>  
-
-  <!-- 3. ТЕМА И ГОЛОС -->
+  <!-- 2. ТЕМА И ГОЛОС -->
   <script src="../../core/theme.js"></script>
   <script src="../../core/voice.js"></script>
 
-  <!-- 4. РУССКИЕ ДАННЫЕ -->
+  <!-- 3. РУССКИЕ ДАННЫЕ -->
   <script src="data/firstaid.js"></script>
   <script src="data/lost.js"></script>
   <script src="data/behavior.js"></script>
@@ -250,7 +247,7 @@
   <script src="data/emergency.js"></script>
   <script src="data/care.js"></script>
 
-  <!-- 5. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
+  <!-- 4. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
   <script src="data/en/firstaid-en.js"></script>
   <script src="data/en/lost-en.js"></script>
   <script src="data/en/behavior-en.js"></script>
@@ -259,20 +256,20 @@
   <script src="data/en/emergency-en.js"></script>
   <script src="data/en/care-en.js"></script>
 
-  <!-- 6. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
+  <!-- 5. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
   <script>
     // Инициализируем текущий язык из localStorage
     window.currentLang = localStorage.getItem('language') || 'ru';
     console.log('🌍 Текущий язык инициализирован:', window.currentLang);
   </script>
 
-  <!-- 7. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
+  <!-- 6. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
   <script src="../../core/engine.js"></script>
 
-  <!-- 8. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
+  <!-- 7. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
   <script src="i18n.js"></script>
 
-  <!-- 9. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
+  <!-- 8. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
   <script src="../../core/app.js"></script>
 
   <script>

@@ -1,6 +1,6 @@
 // core/locales.js
 // ============================================================
-// ЛОКАЛИЗАЦИЯ — Общие фразы для SOS UNIVERSAL
+// ЛОКАЛИЗАЦИЯ — Общие фразы для SOS UNIVERSAL + модули
 // ============================================================
 
 const LOCALES = {
@@ -13,7 +13,7 @@ const LOCALES = {
     sos_button: "SOS — Я в опасности",
     footer_text: "v1.0 · Полностью офлайн",
     
-    // Модули
+    // Модули (главная страница)
     mod_survival: "Выживание",
     mod_auto: "Авто",
     mod_lawyer: "Юрист",
@@ -34,6 +34,95 @@ const LOCALES = {
     cat_travel: "Путешествия",
     cat_drone: "Дроны",
     
+    // ===== SURVIVAL =====
+    survival_title: "ВЫЖИВАНИЕ",
+    survival_subtitle: "Офлайн-ассистент выживания",
+    survival_water: "Вода",
+    survival_fire: "Огонь",
+    survival_shelter: "Укрытие",
+    survival_food: "Еда",
+    survival_medicine: "Медицина",
+    survival_navigation: "Навигация",
+    survival_radio: "Связь",
+    survival_kit: "Чемоданчик",
+    
+    // ===== AUTO =====
+    auto_title: "🚗 Авто",
+    auto_subtitle: "Помощь на дороге и в гараже",
+    auto_battery: "Села батарея",
+    auto_brakes: "Тормоза",
+    auto_dtp: "ДТП",
+    auto_flat_tire: "Прокол шины",
+    auto_leak: "Утечка жидкости",
+    auto_overheating: "Перегрев двигателя",
+    auto_wont_start: "Не заводится",
+    
+    // ===== LAWYER =====
+    lawyer_title: "⚖️ Юрист",
+    lawyer_subtitle: "Защита прав и юридическая помощь",
+    lawyer_consumer: "Защита прав потребителей",
+    lawyer_debts: "Долги и коллекторы",
+    lawyer_divorce: "Развод и алименты",
+    lawyer_dtp: "ДТП",
+    lawyer_housing: "Жилищные вопросы",
+    lawyer_inheritance: "Наследство",
+    lawyer_labor: "Трудовые споры",
+    
+    // ===== HOME =====
+    home_title: "🏠 Дом",
+    home_subtitle: "Безопасность дома и ЖКХ",
+    home_plumbing: "Вода и канализация",
+    home_electricity: "Электричество",
+    home_fire: "Пожар",
+    home_gas: "Газ",
+    home_lock: "Замки и двери",
+    home_heating: "Отопление",
+    home_natural: "Стихия",
+    
+    // ===== CHILDREN =====
+    children_title: "👶 Дети",
+    children_subtitle: "Безопасность, здоровье и помощь детям",
+    children_safety: "Безопасность",
+    children_health: "Здоровье",
+    children_injury: "Травмы и первая помощь",
+    children_lost: "Пропажа ребёнка",
+    children_bullying: "Буллинг",
+    children_internet: "Интернет-безопасность",
+    children_school: "Школа",
+    
+    // ===== PETS =====
+    pets_title: "🐾 Животные",
+    pets_subtitle: "Помощь домашним питомцам",
+    pets_behavior: "Поведение и агрессия",
+    pets_care: "Уход и гигиена",
+    pets_emergency: "Чрезвычайные ситуации",
+    pets_firstaid: "Первая помощь",
+    pets_health: "Здоровье",
+    pets_lost: "Пропажа питомца",
+    pets_poison: "Отравление",
+    
+    // ===== TRAVEL =====
+    travel_title: "🌍 Путешествия",
+    travel_subtitle: "Помощь в поездках",
+    travel_documents: "Документы",
+    travel_flight: "Перелёты",
+    travel_health: "Здоровье",
+    travel_hotel: "Отели",
+    travel_lost: "Потеря вещей",
+    travel_money: "Деньги",
+    travel_theft: "Кража",
+    
+    // ===== DRONE =====
+    drone_title: "🛸 Дроны",
+    drone_subtitle: "Оповещение и безопасность",
+    drone_comms: "Связь и оповещение",
+    drone_detect: "Обнаружение дрона",
+    drone_evac: "Эвакуация",
+    drone_firstaid: "Первая помощь",
+    drone_identify: "Идентификация дрона",
+    drone_prep: "Подготовка",
+    drone_shelter: "Укрытие",
+    
     // Общие
     back: "← Назад",
     next: "Далее",
@@ -49,8 +138,8 @@ const LOCALES = {
     
     // Вопросы
     question_of: "Вопрос {current} из {total}",
-    select_all: "✅ Выберите все, что применимо",  // ← НОВОЕ
-    select_one: "Выберите один вариант",           // ← НОВОЕ
+    select_all: "✅ Выберите все, что применимо",
+    select_one: "Выберите один вариант",
     
     // Результаты
     results_title: "{title} — Результаты",
@@ -150,6 +239,95 @@ const LOCALES = {
     cat_travel: "Travel",
     cat_drone: "Drones",
     
+    // ===== SURVIVAL =====
+    survival_title: "SURVIVE",
+    survival_subtitle: "Offline Survival Assistant",
+    survival_water: "Water",
+    survival_fire: "Fire",
+    survival_shelter: "Shelter",
+    survival_food: "Food",
+    survival_medicine: "Medicine",
+    survival_navigation: "Navigation",
+    survival_radio: "Radio",
+    survival_kit: "Survival Kit",
+    
+    // ===== AUTO =====
+    auto_title: "🚗 Auto",
+    auto_subtitle: "Road and garage assistance",
+    auto_battery: "Dead Battery",
+    auto_brakes: "Brakes",
+    auto_dtp: "Accident",
+    auto_flat_tire: "Flat Tire",
+    auto_leak: "Fluid Leak",
+    auto_overheating: "Overheating",
+    auto_wont_start: "Won't Start",
+    
+    // ===== LAWYER =====
+    lawyer_title: "⚖️ Lawyer",
+    lawyer_subtitle: "Rights protection and legal help",
+    lawyer_consumer: "Consumer Rights",
+    lawyer_debts: "Debts & Collectors",
+    lawyer_divorce: "Divorce & Alimony",
+    lawyer_dtp: "Accident",
+    lawyer_housing: "Housing Issues",
+    lawyer_inheritance: "Inheritance",
+    lawyer_labor: "Labor Disputes",
+    
+    // ===== HOME =====
+    home_title: "🏠 Home",
+    home_subtitle: "Home safety and utilities",
+    home_plumbing: "Plumbing",
+    home_electricity: "Electricity",
+    home_fire: "Fire",
+    home_gas: "Gas",
+    home_lock: "Locks & Doors",
+    home_heating: "Heating",
+    home_natural: "Natural Disasters",
+    
+    // ===== CHILDREN =====
+    children_title: "👶 Children",
+    children_subtitle: "Safety, health and help for children",
+    children_safety: "Safety",
+    children_health: "Health",
+    children_injury: "Injuries & First Aid",
+    children_lost: "Missing Child",
+    children_bullying: "Bullying",
+    children_internet: "Internet Safety",
+    children_school: "School",
+    
+    // ===== PETS =====
+    pets_title: "🐾 Pets",
+    pets_subtitle: "Help for pets",
+    pets_behavior: "Behavior & Aggression",
+    pets_care: "Care & Hygiene",
+    pets_emergency: "Emergencies",
+    pets_firstaid: "First Aid",
+    pets_health: "Health",
+    pets_lost: "Lost Pet",
+    pets_poison: "Poisoning",
+    
+    // ===== TRAVEL =====
+    travel_title: "🌍 Travel",
+    travel_subtitle: "Help during trips",
+    travel_documents: "Documents",
+    travel_flight: "Flights",
+    travel_health: "Health",
+    travel_hotel: "Hotels",
+    travel_lost: "Lost Items",
+    travel_money: "Money",
+    travel_theft: "Theft",
+    
+    // ===== DRONE =====
+    drone_title: "🛸 Drones",
+    drone_subtitle: "Alerting and safety",
+    drone_comms: "Communication & Alerting",
+    drone_detect: "Drone Detection",
+    drone_evac: "Evacuation",
+    drone_firstaid: "First Aid",
+    drone_identify: "Drone Identification",
+    drone_prep: "Preparation",
+    drone_shelter: "Shelter",
+    
     // Common
     back: "← Back",
     next: "Next",
@@ -165,8 +343,8 @@ const LOCALES = {
     
     // Questions
     question_of: "Question {current} of {total}",
-    select_all: "✅ Select all that apply",  // ← НОВОЕ
-    select_one: "Select one option",         // ← НОВОЕ
+    select_all: "✅ Select all that apply",
+    select_one: "Select one option",
     
     // Results
     results_title: "{title} — Results",
@@ -243,38 +421,9 @@ window.LOCALES = LOCALES;
 // Функция перевода
 function t(key) {
   const lang = typeof currentLang !== 'undefined' ? currentLang : 'ru';
-  const coreTexts = LOCALES[lang] || LOCALES.ru;
+  const texts = LOCALES[lang] || LOCALES.ru;
   
-  // Мержим с модульными локалями если есть
-  let moduleTexts = {};
-  if (typeof SURVIVAL_LOCALES !== 'undefined') {
-    moduleTexts = { ...moduleTexts, ...SURVIVAL_LOCALES[lang] };
-  }
-  if (typeof AUTO_LOCALES !== 'undefined') {
-    moduleTexts = { ...moduleTexts, ...AUTO_LOCALES[lang] };
-  }
-  if (typeof LAWYER_LOCALES !== 'undefined') {
-    moduleTexts = { ...moduleTexts, ...LAWYER_LOCALES[lang] };
-  }
-  if (typeof HOME_LOCALES !== 'undefined') {
-    moduleTexts = { ...moduleTexts, ...HOME_LOCALES[lang] };
-  }
-  if (typeof BABY_LOCALES !== 'undefined') {
-    moduleTexts = { ...moduleTexts, ...BABY_LOCALES[lang] };
-  }
-  if (typeof PETS_LOCALES !== 'undefined') {
-    moduleTexts = { ...moduleTexts, ...PETS_LOCALES[lang] };
-  }
-  if (typeof TRAVEL_LOCALES !== 'undefined') {
-    moduleTexts = { ...moduleTexts, ...TRAVEL_LOCALES[lang] };
-  }
-  if (typeof DRONE_LOCALES !== 'undefined') {
-    moduleTexts = { ...moduleTexts, ...DRONE_LOCALES[lang] };
-  }
-  
-  const texts = { ...coreTexts, ...moduleTexts };
-  
-  // Подстановка параметров (для question_of, results_title и т.д.)
+  // Подстановка параметров
   if (arguments.length > 1 && typeof arguments[1] === 'object') {
     let result = texts[key] || key;
     const params = arguments[1];
@@ -289,4 +438,4 @@ function t(key) {
 
 window.t = t;
 
-console.log('✅ Локализации загружены (SOS UNIVERSAL core)');
+console.log('✅ Локализации загружены (SOS UNIVERSAL core + модули)');

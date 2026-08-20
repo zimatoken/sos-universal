@@ -233,14 +233,11 @@
   <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
   <script src="../../core/locales.js"></script>
 
-  <!-- 2. SMART ADAPTER (НОВЫЙ!) -->
-  <script src="../../core/registry-adapter.js"></script>
-
-  <!-- 3. ТЕМА И ГОЛОС -->
+  <!-- 2. ТЕМА И ГОЛОС -->
   <script src="../../core/theme.js"></script>
   <script src="../../core/voice.js"></script>
 
-  <!-- 4. ДАННЫЕ AUTO (РУССКИЕ) -->
+  <!-- 3. ДАННЫЕ AUTO (РУССКИЕ) -->
   <script src="data/wont_start.js"></script>
   <script src="data/overheating.js"></script>
   <script src="data/flat_tire.js"></script>
@@ -249,7 +246,7 @@
   <script src="data/leak.js"></script>
   <script src="data/dtp.js"></script>
 
-  <!-- 5. ДАННЫЕ AUTO (АНГЛИЙСКИЕ) -->
+  <!-- 4. ДАННЫЕ AUTO (АНГЛИЙСКИЕ) -->
   <script src="data/en/wont_start-en.js"></script>
   <script src="data/en/overheating-en.js"></script>
   <script src="data/en/flat_tire-en.js"></script>
@@ -258,20 +255,20 @@
   <script src="data/en/leak-en.js"></script>
   <script src="data/en/dtp-en.js"></script>
 
-  <!-- 6. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
+  <!-- 5. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
   <script>
     // Инициализируем текущий язык из localStorage
     window.currentLang = localStorage.getItem('language') || 'ru';
     console.log('🌍 Текущий язык инициализирован:', window.currentLang);
   </script>
 
-  <!-- 7. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
+  <!-- 6. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
   <script src="../../core/engine.js"></script>
 
-  <!-- 8. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
+  <!-- 7. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
   <script src="i18n.js"></script>
 
-  <!-- 9. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
+  <!-- 8. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
   <script src="../../core/app.js"></script>
 
   <script>
