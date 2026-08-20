@@ -1,250 +1,393 @@
-// === MODULE: CHILDREN — MISSING CHILD ===
-const lostDataEn = {
-  category: "lost",
-  title: "?? Missing Child",
-  description: "Child didn't come home from school, isn't answering calls, went missing — action algorithm",
+// modules/children/data/en/lost-en.js
+// === MODULE: CHILDREN â€” MISSING CHILD ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "children",
+    category: "lost",
+    version: "1.0.0",
+    lang: "en",
+    title: "ðŸ” Missing Child",
+    description: "Child didn't come home from school, isn't answering calls, went missing â€” action plan",
+    icon: "ðŸ”",
+    color: "#db2777"
+  },
 
   questions: [
     {
       id: "lost_type",
-      text: "What is the situation?",
       type: "single",
+      text: "What is the situation?",
       options: [
-        { id: "not_home", label: "?? Didn't come home from school / activity / friends", tags: ["not_home"] },
-        { id: "no_contact", label: "?? Not answering calls / messages (24+ hours)", tags: ["no_contact"] },
-        { id: "runaway", label: "?? Ran away from home after an argument", tags: ["runaway"] },
-        { id: "abduction", label: "?? Suspect abduction / taken by a stranger", tags: ["abduction"] },
-        { id: "online", label: "?? Went missing after online / social media communication", tags: ["online"] }
+        { id: "not_home", label: "ðŸ« Didn't come home from school / activities", tags: ["not_home"] },
+        { id: "no_contact", label: "ðŸ“µ Not answering calls / messages (24h+)", tags: ["no_contact"] },
+        { id: "runaway", label: "ðŸƒ Ran away after a fight", tags: ["runaway"] },
+        { id: "abduction", label: "ðŸš¨ Suspect abduction / taken by stranger", tags: ["abduction"] },
+        { id: "online", label: "ðŸ’» Went missing after online communication", tags: ["online"] },
+        { id: "lost_mall", label: "ðŸ¬ Lost in a mall / in the city", tags: ["lost_mall"] },
+        { id: "lost_forest", label: "ðŸŒ² Lost in the forest / nature", tags: ["lost_forest"] },
+        { id: "lost_transport", label: "ðŸšŒ Lost in transport / at a stop", tags: ["lost_transport"] }
       ]
     },
     {
       id: "time_missing",
-      text: "How much time has passed?",
       type: "single",
-      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online"] },
+      text: "How much time has passed?",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online", "lost_mall", "lost_forest", "lost_transport"] },
       options: [
-        { id: "less_1h", label: "? Less than 1 hour", tags: ["recent"] },
-        { id: "1_3h", label: "?? 1–3 hours", tags: ["short"] },
-        { id: "3_12h", label: "?? 3–12 hours", tags: ["medium"] },
-        { id: "more_12h", label: "?? More than 12 hours", tags: ["long"] }
+        { id: "less_1h", label: "â° Less than 1 hour", tags: ["recent"] },
+        { id: "1_3h", label: "ðŸ“… 1â€“3 hours", tags: ["short"] },
+        { id: "3_12h", label: "ðŸ“† 3â€“12 hours", tags: ["medium"] },
+        { id: "more_12h", label: "ðŸ“ˆ More than 12 hours", tags: ["long"] }
       ]
     },
     {
       id: "age",
-      text: "Child's age?",
       type: "single",
-      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online"] },
+      text: "How old is the child?",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online", "lost_mall", "lost_forest", "lost_transport"] },
       options: [
-        { id: "preschool", label: "?? 3–7 years old", tags: ["preschool"] },
-        { id: "school", label: "?? 7–12 years old", tags: ["school_age"] },
-        { id: "teen", label: "????? Teenager 13–17 years old", tags: ["teen"] }
+        { id: "preschool", label: "ðŸ‘¶ 3â€“7 years old", tags: ["preschool"] },
+        { id: "school_age", label: "ðŸ§‘ 7â€“12 years old", tags: ["school_age"] },
+        { id: "teen", label: "ðŸ§‘â€ðŸŽ“ Teenager 13â€“17 years old", tags: ["teen"] }
+      ]
+    },
+    {
+      id: "has_phone",
+      type: "single",
+      text: "Does the child have a phone?",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online", "lost_mall", "lost_forest", "lost_transport"] },
+      options: [
+        { id: "phone_yes", label: "âœ… Yes, phone with them", tags: ["phone_yes"] },
+        { id: "phone_no", label: "âŒ No, without a phone", tags: ["phone_no"] },
+        { id: "phone_unknown", label: "â“ Don't know", tags: ["phone_unknown"] }
+      ]
+    },
+    {
+      id: "last_location",
+      type: "single",
+      text: "Where did you last see the child?",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online", "lost_mall", "lost_forest", "lost_transport"] },
+      options: [
+        { id: "school", label: "ðŸ« School / daycare / activity", tags: ["school_location"] },
+        { id: "home", label: "ðŸ  Home / entrance / yard", tags: ["home_location"] },
+        { id: "mall", label: "ðŸ¬ Mall / store", tags: ["mall_location"] },
+        { id: "forest", label: "ðŸŒ² Forest / park / nature", tags: ["forest_location"] },
+        { id: "transport", label: "ðŸšŒ Transport / stop", tags: ["transport_location"] },
+        { id: "unknown", label: "â“ Don't know / not sure", tags: ["unknown_location"] }
+      ]
+    },
+    {
+      id: "last_outfit",
+      type: "single",
+      text: "What was the child wearing?",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online", "lost_mall", "lost_forest", "lost_transport"] },
+      options: [
+        { id: "outfit_known", label: "âœ… I remember, can describe", tags: ["outfit_known"] },
+        { id: "outfit_unknown", label: "âŒ I don't remember", tags: ["outfit_unknown"] },
+        { id: "outfit_partial", label: "âš ï¸ Partially remember", tags: ["outfit_partial"] }
+      ]
+    },
+    {
+      id: "special_marks",
+      type: "single",
+      text: "Does the child have any distinguishing marks?",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online", "lost_mall", "lost_forest", "lost_transport"] },
+      options: [
+        { id: "marks_yes", label: "âœ… Yes, there are distinguishing marks", tags: ["marks_yes"] },
+        { id: "marks_no", label: "âŒ No distinguishing marks", tags: ["marks_no"] },
+        { id: "marks_unknown", label: "â“ Don't know", tags: ["marks_unknown"] }
+      ]
+    },
+    {
+      id: "needs_medication",
+      type: "single",
+      text: "Does the child need medication (insulin, inhaler, pills)?",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online", "lost_mall", "lost_forest", "lost_transport"] },
+      options: [
+        { id: "med_yes", label: "âœ… Yes, needs medication", tags: ["med_yes"] },
+        { id: "med_no", label: "âŒ No, doesn't need medication", tags: ["med_no"] },
+        { id: "med_unknown", label: "â“ Don't know", tags: ["med_unknown"] }
       ]
     }
   ],
 
   solutions: [
-    // ==========================================
-    // 1. DIDN'T COME HOME FROM SCHOOL / ACTIVITY
-    // ==========================================
+    // ============================================================
+    // 1. DIDN'T COME HOME FROM SCHOOL
+    // ============================================================
     {
       id: "missing_immediate",
-      title: "?? Child didn't come home — the first 3 hours are critical",
-      description: "Statistics: 76% of missing children are found in the first 3 hours. Every minute counts.",
+      title: "ðŸš¨ Child didn't come home â€” first 3 hours are critical",
+      description: "Statistics: 76% of missing children are found within the first 3 hours. Every minute counts.",
       conditions: { lost_type: ["not_home"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
-      yield_estimate: "Maximum chances of finding",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Maximum chances to find",
       tags: ["missing", "search", "emergency"],
       steps: [
-        "DON'T panic. Activate 'search mode': gather all relatives, friends, neighbors. Divide areas",
-        "Call the child. If phone is off / unavailable — check last location: Find My iPhone, Google Timeline, Life360, Telegram location",
-        "Contact everyone: school, kindergarten, coach, friends' parents, neighbors. Ask: when was the child last seen, what did they say, where were they going, who were they with",
-        "If the child has been missing for more than 3 hours (teen) or 1 hour (young child) — call 911. A missing child — don't wait 3 days like for adults. Police must respond immediately",
-        "File a missing person report at the nearest police station. Get a receipt (case number). If they refuse — demand a written refusal, contact the precinct officer, the prosecutor's office",
-        "Create a post on social media (Facebook, Telegram, Instagram): photo of the child, description, where last seen, contacts. Ask for reposts. Don't share home address — safety",
-        "Share photos in parent chats of the school, neighborhood, yard. Ask to forward. The more people know — the higher the chances",
-        "Check security cameras: entrance, yard, school, stores, bus stops, subway. Save footage. Give to police",
-        "Check the child's bank cards: statements, recent purchases, ATM withdrawals. This will indicate direction",
-        "If a teenager — check social media, messages, diary, phone notes. Don't invade personal space unnecessarily, but life is more important"
+        "STEP 1. DON'T panic. Activate 'search mode': gather all relatives, friends, neighbors.",
+        "STEP 2. Call the child. If phone is off â€” check geolocation.",
+        "STEP 3. Contact everyone: school, coach, friends' parents.",
+        "STEP 4. If child is missing for over 3 hours (teen) or 1 hour (young) â€” call 911.",
+        "STEP 5. File a police report. Get a case number.",
+        "STEP 6. Post on social media: photo, description, contacts.",
+        "STEP 7. Share photos in parent chats.",
+        "STEP 8. Check CCTV footage.",
+        "STEP 9. Check bank cards (last purchases)."
       ],
       warnings: [
-        "DON'T wait 'a little longer' — the first 3 hours are critical. Police must accept a missing child report immediately, without waiting (Article 144 of the Criminal Procedure Code)",
-        "DON'T spread false information on social media — it interferes with the search and scares the child (if they just went for a walk)",
-        "DON'T blame the child after finding them (even if they ran away). This will close trust forever. Talk calmly, find out the reasons",
-        "If the child is found with a stranger — immediately go to the police. Even if 'nothing happened' — it's a crime (Articles 132, 135 of the Criminal Code)"
+        "DON'T wait 'a little longer' â€” the first 3 hours are critical.",
+        "DON'T spread false information on social media.",
+        "DON'T blame the child after they're found."
       ]
     },
+
+    // ============================================================
+    // 2. LOST IN A MALL
+    // ============================================================
     {
-      id: "missing_young_child",
-      title: "?? Young child (3–7 years) missing — emergency search",
-      description: "Young children can't survive on the street for long. Act immediately, even if only 15 minutes have passed.",
-      conditions: { lost_type: ["not_home", "no_contact"], age: ["preschool"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
-      yield_estimate: "Quick discovery",
-      tags: ["preschool", "missing", "emergency"],
+      id: "lost_in_mall",
+      title: "ðŸ¬ Child lost in a mall â€” algorithm",
+      description: "Many people, noise, easy to get lost. Both you and the child should have a plan.",
+      conditions: { lost_type: ["lost_mall"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "5â€“30 minutes",
+      yield_estimate: "Quick reunion",
+      tags: ["mall", "lost", "search"],
       steps: [
-        "A young child can't go far. Check: entrance, yard, playgrounds, basements, attics, elevators, trash containers",
-        "Young children hide in closets, under beds, in the bathroom. Check EVERY room, even if it seems 'they couldn't be there'",
-        "If not found in the house and yard in 15–20 minutes — call 911. Don't wait!",
-        "Go outside, call the child's name. Ask neighbors and passersby to help search",
-        "Check bodies of water (ponds, fountains) — young children can fall in",
-        "Notify the school/kindergarten, even if the child wasn't supposed to be there"
+        "STEP 1. Stop. Don't run in panic. Look around.",
+        "STEP 2. Go to the last place you saw the child.",
+        "STEP 3. Go to the information desk / security. Describe the child.",
+        "STEP 4. Malls have PA systems â€” they'll make an announcement.",
+        "STEP 5. Stand in a visible place so the child can find you.",
+        "STEP 6. If not found in 15 minutes â€” go to police (malls have a post).",
+        "STEP 7. Teach your child: 'If lost â€” go to a store employee or security'."
       ],
       warnings: [
-        "A young child cannot return on their own from another area. DON'T wait — search immediately",
-        "Bodies of water are the main danger for young children. Check them first",
-        "DON'T think 'everything will be fine' — it will only be fine if you find them quickly"
+        "DON'T yell or panic in front of the child.",
+        "DON'T leave the mall without the child."
       ]
     },
-    // ==========================================
-    // 2. NOT ANSWERING CALLS (24+ hours)
-    // ==========================================
+
+    // ============================================================
+    // 3. LOST IN THE FOREST
+    // ============================================================
+    {
+      id: "lost_in_forest",
+      title: "ðŸŒ² Child lost in the forest â€” survival rules",
+      description: "The forest is the most dangerous environment. The child may panic and go further. Act correctly.",
+      conditions: { lost_type: ["lost_forest"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Life saved",
+      tags: ["forest", "lost", "survival"],
+      steps: [
+        "STEP 1. Immediately call 112 â€” forest search requires a quick response.",
+        "STEP 2. Stay in place. Don't run in different directions.",
+        "STEP 3. Shout the child's name loudly. Pause â€” listen for a response.",
+        "STEP 4. If the child has a phone â€” call, send geolocation.",
+        "STEP 5. Check ravines, streams, bushes.",
+        "STEP 6. Leave a bright object as a marker.",
+        "STEP 7. Call search teams (Lisa Alert)."
+      ],
+      warnings: [
+        "DON'T send a child into the forest without an adult.",
+        "DON'T waste time on self-search in the forest â€” call professionals."
+      ]
+    },
+
+    // ============================================================
+    // 4. LOST IN TRANSPORT
+    // ============================================================
+    {
+      id: "lost_in_transport",
+      title: "ðŸšŒ Child lost in transport â€” what to do",
+      description: "In the metro, bus, train â€” it's easy to get lost. Act quickly.",
+      conditions: { lost_type: ["lost_transport"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10â€“30 minutes",
+      yield_estimate: "Reunion",
+      tags: ["transport", "lost", "search"],
+      steps: [
+        "STEP 1. If the child got off without you â€” call them immediately.",
+        "STEP 2. Contact the metro/bus/train dispatcher. Describe the child.",
+        "STEP 3. Metro has PA â€” they'll announce on all stations.",
+        "STEP 4. If the child got off at a station â€” check exits, information desks.",
+        "STEP 5. Teach your child: 'If lost in transport â€” get off at the next stop and wait'.",
+        "STEP 6. If not found in 30 minutes â€” call 911."
+      ],
+      warnings: [
+        "DON'T leave the child alone in the carriage.",
+        "DON'T get off the train without the child."
+      ]
+    },
+
+    // ============================================================
+    // 5. NO CONTACT (24h+)
+    // ============================================================
     {
       id: "no_contact_search",
-      title: "?? Not answering calls for 24 hours — what to do?",
-      description: "24 hours without contact — a worrying signal. Act systematically.",
+      title: "ðŸ“µ Not answering calls for 24h â€” what to do?",
+      description: "24h without contact is a warning sign. Act systematically.",
       conditions: { lost_type: ["no_contact"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
-      yield_estimate: "Determining location",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Location established",
       tags: ["no_contact", "missing", "search"],
       steps: [
-        "Check the phone's last location: Find My iPhone, Google Timeline, Life360, Telegram location",
-        "Contact the mobile provider — they may provide the last cell towers the phone connected to (only upon police request)",
-        "Check bank cards: recent purchases, ATM withdrawals, transit payments — this will indicate the route",
-        "Check social media: were they online, did they message anyone, did they like anything",
-        "Contact all friends, classmates, their parents. Ask: were they seen, what did they write, where were they going",
-        "If the child is a minor — file a police report immediately. Don't wait",
-        "Share photos on social media, parent chats, neighborhood groups"
+        "STEP 1. Check the last phone geolocation.",
+        "STEP 2. Contact the mobile operator (via police request).",
+        "STEP 3. Check bank cards: last purchases, withdrawals.",
+        "STEP 4. Check social media: was online, wrote to anyone.",
+        "STEP 5. Contact all friends, classmates.",
+        "STEP 6. File a police report immediately.",
+        "STEP 7. Share photos on social media, parent chats."
       ],
       warnings: [
-        "24 hours without contact for a minor is already an emergency. Don't wait 3 days",
-        "DON'T think 'they just don't want to talk' — maybe they can't",
-        "If the child is found — don't scold them for not answering. Find out the reason"
+        "24h without contact for a minor is an emergency.",
+        "DON'T think 'they just don't want to talk'."
       ]
     },
-    // ==========================================
-    // 3. ABDUCTION
-    // ==========================================
+
+    // ============================================================
+    // 6. ABDUCTION
+    // ============================================================
     {
       id: "abduction_response",
-      title: "?? Child abduction — rescue algorithm",
-      description: "Abduction is the most dangerous situation. Act clearly and quickly. Every minute could cost a life.",
+      title: "ðŸš¨ Child abduction â€” rescue algorithm",
+      description: "Abduction is the most dangerous situation. Act clearly and quickly. Every minute can cost a life.",
       conditions: { lost_type: ["abduction"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
       yield_estimate: "Maximum chances of rescue",
       tags: ["abduction", "kidnapping", "emergency"],
       steps: [
-        "IMMEDIATELY call 911. Report: where and when last seen, description of the abductor, vehicle make/plate number, direction of travel",
-        "Remember all details: height, clothing, tattoos, scars, speech characteristics, accent of the abductor. Write it down immediately while memory is fresh",
-        "Check security cameras: entrance, yard, stores, bus stops. Save footage. Give to police",
-        "Contact the mobile provider — they may provide data on the phone's last signal",
-        "Share photos on social media, parent chats, neighborhood groups. Ask for reposts",
-        "Contact search and rescue organizations — they work with police",
-        "After the child is freed — immediately see a psychologist. Abduction is severe trauma",
-        "Don't give interviews to media until coordinating with police — it could interfere with the search"
+        "STEP 1. IMMEDIATELY call 911. Report: where and when, description of the abductor, car.",
+        "STEP 2. Remember all details: height, clothing, tattoos, scars, accent.",
+        "STEP 3. Check CCTV footage. Save recordings.",
+        "STEP 4. Contact the mobile operator â€” last phone signal.",
+        "STEP 5. Share photos on social media, parent chats.",
+        "STEP 6. Contact search teams (Lisa Alert).",
+        "STEP 7. After rescue â€” see a psychologist."
       ],
       warnings: [
-        "Abduction is not 'maybe I imagined it'. If you suspect it — act",
-        "DON'T try to search for the abductor yourself — it's dangerous. Give all information to police",
-        "DON'T share information with media that could interfere with the search (where police are going, what evidence)",
-        "Abduction is a criminal offense (Article 126 of the Criminal Code). Police must respond immediately"
+        "DON'T try to find the abductor yourself.",
+        "DON'T share information with media that could hinder the search."
       ]
     },
-    // ==========================================
-    // 4. TEEN RAN AWAY
-    // ==========================================
+
+    // ============================================================
+    // 7. TEENAGER RAN AWAY
+    // ============================================================
     {
       id: "runaway_teen",
-      title: "?? Teenager ran away from home — why and how to find them",
+      title: "ðŸƒ Teenager ran away from home â€” why and how to find",
       description: "A runaway teenager is not a criminal. It's a cry for help. Find them, talk, don't punish.",
       conditions: { lost_type: ["runaway"] },
-      priority: "fast",
-      reliability: "medium",
-      time_estimate: "1–24 hours",
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "1â€“24 hours",
       yield_estimate: "Return and understanding",
       tags: ["runaway", "teen", "psychology"],
       steps: [
-        "Don't panic. Teenagers often go to friends, parks, shopping malls, train stations. Most return on their own within 24 hours",
-        "Call friends, classmates, their parents. Ask: were they seen, what did they say, where were they going. Don't yell at them — they might hide things",
-        "Check social media: Facebook, Telegram, Instagram, TikTok. Teens often post plans, stories. Don't write angry comments — it will push them away",
-        "Check bank cards: where they withdrew money, what they bought. This will indicate the area",
-        "If more than 6 hours have passed — call 911. A missing teenager is still a missing person. Police must search",
-        "If the teenager is in contact (reading messages but not responding) — write calmly: 'We're worried, we love you, come home, let's talk'. No threats, no manipulation",
-        "After they return — DO NOT punish, DO NOT scold. This will close trust forever. Talk: what happened, what's bothering them, what can be changed",
-        "See a family psychologist. Running away is a symptom: bullying, depression, family problems, school pressure. Treat the cause, not the symptom",
-        "If the teenager runs away regularly — consider temporary living with grandparents/relatives, changing schools, working with a psychologist"
+        "STEP 1. Don't panic. Teens often go to friends, parks, malls.",
+        "STEP 2. Call friends, classmates, their parents.",
+        "STEP 3. Check social media: VK, Telegram, Instagram, TikTok.",
+        "STEP 4. Check bank cards: where they spent money.",
+        "STEP 5. If > 6 hours â€” call 911.",
+        "STEP 6. If the teen is in contact â€” write calmly, without threats.",
+        "STEP 7. After return â€” DON'T punish. Talk.",
+        "STEP 8. See a family psychologist."
       ],
       warnings: [
-        "DON'T threaten the teenager with police, psychiatric hospital, taking away their phone — this will only push them away. Talk about love and concern",
-        "DON'T blame friends — they may be the only support. Better to befriend the friends' parents, build a network",
-        "Running away is not 'bad behavior' but an attempt to cope with an unbearable situation. Punishment will worsen the problem",
-        "If the teenager is in contact but refuses to return — don't pressure. Arrange a meeting in a neutral place (cafe, park) with a psychologist or trusted adult"
+        "DON'T threaten with police or psychiatric hospital.",
+        "DON'T blame friends.",
+        "Running away is an attempt to cope with a problem, not 'bad behavior'."
       ]
     },
-    {
-      id: "runaway_teen_older",
-      title: "????? Teenager 16–17 ran away — search specifics",
-      description: "Older teenagers may leave to another city, stay with friends, rent an apartment. The search is different.",
-      conditions: { lost_type: ["runaway"], age: ["teen"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "1–7 days",
-      yield_estimate: "Returning home",
-      tags: ["runaway", "teen", "older"],
-      steps: [
-        "Teenagers 16–17 may go to another city. Check train/bus tickets purchased with their card",
-        "Check listings on local classifieds — they might be renting an apartment",
-        "Check social media: they may have created a new account, talking to someone in another city",
-        "At 16 in many countries they can get a job. Check job listings they viewed",
-        "If more than 12 hours have passed — police. They can check stations, hostels",
-        "Don't cut off paths to return — make it clear that home is always open"
-      ],
-      warnings: [
-        "At 16–17, the teenager is almost an adult. Force and threats don't work — only conversation and trust",
-        "DON'T publicly scold them — it's humiliation and will break the relationship",
-        "If they run away regularly — consider changing schools, cities, psychotherapy"
-      ]
-    },
-    // ==========================================
-    // 5. WENT MISSING AFTER ONLINE CONTACT
-    // ==========================================
+
+    // ============================================================
+    // 8. MISSING AFTER ONLINE COMMUNICATION
+    // ============================================================
     {
       id: "online_predator",
-      title: "?? Went missing after online communication — grooming and danger",
+      title: "ðŸ’» Missing after online communication â€” grooming and danger",
       description: "Online predators use social media, games, messengers. The child may not understand the danger.",
       conditions: { lost_type: ["online"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
       yield_estimate: "Rescue from grooming / abduction",
       tags: ["online", "predator", "grooming"],
       steps: [
-        "Immediately check messages: Facebook, Telegram, WhatsApp, Instagram, Discord, game chats (Roblox, Minecraft). Look for: arranged meetings, addresses, photos, video calls",
-        "Save EVERYTHING: screenshots of messages, photos of the contact, profile links, IP addresses (if you can get them). These are evidence for police",
-        "Check browser history, search queries, deleted messages (Telegram 'recently deleted', trash folder)",
-        "If the child arranged a meeting or has already left — call 911 immediately. Report: online communication, suspect's profile, meeting location",
-        "Block the contact on all of the child's platforms. Change passwords. Enable two-factor authentication",
-        "After finding them — DON'T scold the child. Predators manipulate, deceive, blackmail. The child is a victim, not at fault",
-        "File a police report for indecent acts / abduction (Articles 132, 135 of the Criminal Code). Provide screenshots and messages",
-        "See a child psychologist. Grooming is traumatic: shame, fear, guilt. The child may withdraw, become depressed",
-        "Prevention: talk to children about online dangers. Rule: don't meet online friends without parents. Don't send intimate photos/videos. Don't share address, school"
+        "STEP 1. Immediately check all messages.",
+        "STEP 2. Save EVERYTHING: screenshots, photos, links.",
+        "STEP 3. Check browser history, search queries.",
+        "STEP 4. If the child went to a meeting â€” call 911 IMMEDIATELY.",
+        "STEP 5. Block the person. Change passwords.",
+        "STEP 6. After rescue â€” DON'T blame the child.",
+        "STEP 7. File a police report.",
+        "STEP 8. See a child psychologist."
       ],
       warnings: [
-        "DON'T blame the child for 'stupidity' — predators professionally manipulate, using emotions, fear, loneliness. Any child can become a victim",
-        "DON'T delete messages before going to police — these are key evidence. Take screenshots, save to the cloud",
-        "Predators often pose as peers, use fake photos, build trust over months. The child may be in love — don't yell, explain",
-        "Sexting (sharing intimate photos) is criminally punishable even between minors. But the child is a victim, not a criminal. Consult a lawyer"
+        "DON'T blame the child.",
+        "DON'T delete messages before police.",
+        "Groomers are professional manipulators."
+      ]
+    },
+
+    // ============================================================
+    // 9. SEARCH TEAMS
+    // ============================================================
+    {
+      id: "search_teams",
+      title: "ðŸ”¦ Search teams â€” how and where to contact",
+      description: "Search teams are volunteers who help find missing people. Contact them immediately.",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Professional search",
+      tags: ["search", "volunteers", "teams"],
+      steps: [
+        "STEP 1. Lisa Alert â€” main search team in Russia. Phone: 8-800-700-54-52 (24/7).",
+        "STEP 2. Search for missing children â€” phone: 8-800-700-54-52.",
+        "STEP 3. VK: 'Lisa Alert' groups in your region.",
+        "STEP 4. Telegram: search team channels.",
+        "STEP 5. When contacting: photo, clothing description, special marks, location.",
+        "STEP 6. Search teams work for free. Don't agree to paid services.",
+        "STEP 7. Cooperate with police â€” search teams work together."
+      ],
+      warnings: [
+        "Search teams are free volunteers. Don't pay for search.",
+        "DON'T delay contacting â€” every minute matters."
+      ]
+    },
+
+    // ============================================================
+    // 10. CHILD FOUND â€” WHAT TO DO
+    // ============================================================
+    {
+      id: "found_child",
+      title: "âœ… Child found â€” how to proceed",
+      description: "The child is found â€” that's the main thing. But it's important to handle the situation correctly.",
+      conditions: { lost_type: ["not_home", "no_contact", "runaway", "abduction", "online", "lost_mall", "lost_forest", "lost_transport"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "10â€“30 minutes",
+      yield_estimate: "Search completed + support",
+      tags: ["found", "reunion", "psychology"],
+      steps: [
+        "STEP 1. Hug the child. Say: 'You're safe. I'm so glad you're found'.",
+        "STEP 2. DON'T scold or punish. Support is what matters now.",
+        "STEP 3. Notify everyone who helped: social media, police, search teams.",
+        "STEP 4. Check the child's health: injuries, scratches, frostbite â€” see a doctor.",
+        "STEP 5. If the child is withdrawn, scared â€” don't push. Give time.",
+        "STEP 6. Later, when calm, talk: 'What happened? How did you feel?'",
+        "STEP 7. If the child ran away â€” find the reason. They may need a psychologist."
+      ],
+      warnings: [
+        "DON'T scold the child â€” it destroys trust.",
+        "DON'T ignore their feelings â€” they were as scared as you.",
+        "DON'T pretend 'nothing happened' â€” discuss the situation."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.lostDataEn = lostDataEn;
+});

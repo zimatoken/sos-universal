@@ -1,272 +1,378 @@
-// === MODULE: CHILDREN ó SCHOOL ===
-const schoolDataEn = {
-  category: "school",
-  title: "?? School",
-  description: "Learning problems, conflicts with teachers, bullying, substances, aggression ó how to help your child",
+// modules/children/data/en/school-en.js
+// === MODULE: CHILDREN ‚Äî SCHOOL ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "children",
+    category: "school",
+    version: "1.0.0",
+    lang: "en",
+    title: "üè´ School",
+    description: "Academic problems, teacher conflicts, bullying, drugs, aggression, school refusal ‚Äî how to help your child",
+    icon: "üè´",
+    color: "#db2777"
+  },
 
   questions: [
     {
       id: "problem",
-      text: "What problems have you noticed? (select all that apply)",
-      type: "multi",
+      type: "single",
+      text: "What is the main school problem?",
       options: [
-        { id: "grades", label: "?? Grades / learning difficulties / doesn't understand", tags: ["grades"] },
-        { id: "teacher", label: "????? Conflict with teacher / unfair treatment / insults", tags: ["teacher"] },
-        { id: "refusal", label: "?? Child refuses to go to school / truancy", tags: ["refusal"] },
-        { id: "substances", label: "?? Drugs / smoking / alcohol at school or with friends", tags: ["substances"] },
-        { id: "aggression", label: "?? Aggression / fights / behavioral issues", tags: ["aggression"] },
-        { id: "bullying", label: "?? Bullying / exclusion / harassment at school", tags: ["bullying"] }
+        { id: "refusal", label: "üö´ Child doesn't want to go to school / truancy", tags: ["refusal"] },
+        { id: "grades", label: "üìä Academic problems / poor grades", tags: ["grades"] },
+        { id: "teacher", label: "üë®‚Äçüè´ Conflict with teacher / unfair treatment", tags: ["teacher"] },
+        { id: "bullying", label: "üíî Bullying / exclusion in class", tags: ["bullying"] },
+        { id: "substances", label: "üö¨ Drugs / smoking / alcohol", tags: ["substances"] },
+        { id: "aggression", label: "üò† Aggression / fights / discipline violations", tags: ["aggression"] },
+        { id: "discipline", label: "üìã Discipline problems / behavior issues", tags: ["discipline"] },
+        { id: "exam", label: "üìù Fear of exams / university entrance", tags: ["exam"] },
+        { id: "career", label: "ü§î Doesn't know what career to choose", tags: ["career"] }
       ]
     },
     {
       id: "age_group",
-      text: "What grade / age?",
       type: "single",
-      conditions: { problem: ["grades", "teacher", "refusal", "substances", "aggression", "bullying"] },
+      text: "What grade / age?",
+      conditions: { problem: ["refusal", "grades", "teacher", "bullying", "substances", "aggression", "discipline", "exam", "career"] },
       options: [
-        { id: "primary", label: "?? Grades 1ñ4 (ages 6ñ10)", tags: ["primary"] },
-        { id: "middle", label: "?? Grades 5ñ9 (ages 10ñ15)", tags: ["middle"] },
-        { id: "high", label: "?? Grades 10ñ11 / college (ages 15ñ18)", tags: ["high"] }
+        { id: "primary", label: "üìö Grades 1‚Äì4 (6‚Äì10 years)", tags: ["primary"] },
+        { id: "middle", label: "üìñ Grades 5‚Äì9 (10‚Äì15 years)", tags: ["middle"] },
+        { id: "high", label: "üéì Grades 10‚Äì11 / college (15‚Äì18 years)", tags: ["high"] }
       ]
     },
     {
       id: "urgency",
-      text: "How long has this been going on and how serious is it?",
       type: "single",
-      conditions: { problem: ["grades", "teacher", "refusal", "substances", "aggression", "bullying"] },
+      text: "How long and how serious is it?",
+      conditions: { problem: ["refusal", "grades", "teacher", "bullying", "substances", "aggression", "discipline", "exam", "career"] },
       options: [
-        { id: "acute", label: "? Happened today / yesterday ó acute", tags: ["acute"] },
-        { id: "accumulated", label: "?? Building up for weeks / months", tags: ["accumulated"] },
-        { id: "chronic", label: "?? Chronic problem (6+ months)", tags: ["chronic"] }
+        { id: "acute", label: "‚ö° Happened today / yesterday ‚Äî acute", tags: ["acute"] },
+        { id: "accumulated", label: "üìÖ Been building up for weeks/months", tags: ["accumulated"] },
+        { id: "chronic", label: "üìà Chronic problem (6+ months)", tags: ["chronic"] }
+      ]
+    },
+    {
+      id: "emotional_state",
+      type: "single",
+      text: "What is the child's emotional state?",
+      conditions: { problem: ["refusal", "grades", "teacher", "bullying", "substances", "aggression", "discipline", "exam", "career"] },
+      options: [
+        { id: "sad", label: "üò¢ Sad, depressed", tags: ["sad"] },
+        { id: "angry", label: "üò† Angry, irritable", tags: ["angry"] },
+        { id: "anxious", label: "üò∞ Anxious, scared", tags: ["anxious"] },
+        { id: "withdrawn", label: "üîá Withdrawn, silent", tags: ["withdrawn"] },
+        { id: "normal", label: "üòå Calm, open", tags: ["normal"] }
+      ]
+    },
+    {
+      id: "home_support",
+      type: "single",
+      text: "Does the child have support at home?",
+      conditions: { problem: ["refusal", "grades", "teacher", "bullying", "substances", "aggression", "discipline", "exam", "career"] },
+      options: [
+        { id: "support_yes", label: "‚úÖ Yes, I support them", tags: ["support_yes"] },
+        { id: "support_no", label: "‚ùå No, I don't have the strength", tags: ["support_no"] },
+        { id: "support_partial", label: "‚ö†Ô∏è I try, but it doesn't always work", tags: ["support_partial"] }
+      ]
+    },
+    {
+      id: "school_reaction",
+      type: "single",
+      text: "How is the school reacting to the problem?",
+      conditions: { problem: ["refusal", "grades", "teacher", "bullying", "substances", "aggression", "discipline", "exam", "career"] },
+      options: [
+        { id: "school_help", label: "‚úÖ They're helping, cooperative", tags: ["school_help"] },
+        { id: "school_ignore", label: "üò§ Ignoring / saying 'handle it yourselves'", tags: ["school_ignore"] },
+        { id: "school_not_yet", label: "‚ùì Haven't contacted them yet", tags: ["school_not_yet"] }
       ]
     }
   ],
 
   solutions: [
-    // ==========================================
+    // ============================================================
     // 1. SCHOOL REFUSAL
-    // ==========================================
+    // ============================================================
     {
       id: "school_refusal",
-      title: "?? Child refuses to go to school ó causes and solutions",
-      description: "Crying in the morning, faking illness, running away. This isn't laziness ó it's a cry for help.",
+      title: "üö™ Child doesn't want to go to school ‚Äî causes and solutions",
+      description: "Crying in the morning, pretending to be sick, running away. This is not laziness ‚Äî it's a cry for help.",
       conditions: { problem: ["refusal"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ4 weeks",
-      yield_estimate: "Returning the child to school",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì4 weeks",
+      yield_estimate: "Child returns to school",
       tags: ["refusal", "anxiety", "school"],
       steps: [
-        "Don't yell or punish. Say: 'I see that you're struggling. Let's figure this out together.' Talk calmly, without pressure. Find the cause: bullying, conflict with teacher, poor grades, anxiety, family issues?",
-        "If the child mentions bullying ó see the 'Bullying' module. Act immediately: school, psychologist, possibly transfer",
-        "If the cause is poor grades: hire a tutor, talk to the teacher about extra help. Don't yell about bad grades ó yelling doesn't improve grades, it kills motivation",
-        "If the cause is anxiety or social phobia: see a psychologist. Consider temporary online learning, gradual return (first 1 lesson, then 2). Don't throw them into the 'deep end'",
-        "If there's a conflict with a teacher: talk to the homeroom teacher, head teacher, principal. Describe specific facts, not emotions. Request a written response. If no help ó contact the education department, prosecutor's office",
-        "Create a 'safe path' to school: walk them there, pick them up, arrange for a classmate to walk with them. One 'anchor point' reduces anxiety",
-        "Reward effort, not results. 'You went today even though you were scared ó well done!' Gradually increase time at school. Don't demand 'like everyone else' immediately",
-        "If the child hasn't attended for months ó consider homeschooling, online school, or changing schools. But this is a last resort. The priority is not to leave them without education and socialization"
+        "DON'T yell or punish. Say: 'I see you're struggling. Let's figure this out together'.",
+        "Find the cause: bullying, teacher conflict, poor grades, anxiety.",
+        "If bullying ‚Äî see the 'Bullying' module. Act immediately.",
+        "If poor grades ‚Äî get a tutor, talk to the teacher.",
+        "If anxiety ‚Äî see a psychologist, gradual return to school.",
+        "If teacher conflict ‚Äî talk to the class teacher.",
+        "Create a 'safe route': walk them, meet them, find a friend to walk with.",
+        "Reward effort, not results.",
+        "If they haven't gone for months ‚Äî consider homeschooling or changing schools."
       ],
       warnings: [
-        "DON'T drag the child to school by force, don't yell 'everyone goes to school'. This intensifies trauma, anxiety, and hatred of school. It will take longer to recover",
-        "DON'T pretend there's no problem, hoping it will 'go away on its own'. Truancy and refusal to go to school are symptoms of a deep problem. Ignoring leads to depression and maladjustment",
-        "DON'T compare with other children ('but Vanya goes without any problems'). Every child is unique. Comparison destroys self-esteem and closes trust",
-        "If the child threatens self-harm when you try to send them to school ó immediately see a psychologist or call 911. This is an emergency"
+        "DON'T force the child to school ‚Äî it worsens the trauma.",
+        "DON'T pretend there's no problem ‚Äî truancy is a symptom.",
+        "DON'T compare to other children ‚Äî destroys self-esteem.",
+        "If the child threatens self-harm ‚Äî psychologist, helpline (8-800-2000-122)."
       ]
     },
-    // ==========================================
+
+    // ============================================================
     // 2. TEACHER CONFLICT
-    // ==========================================
+    // ============================================================
     {
       id: "teacher_conflict",
-      title: "????? Conflict with teacher ó how to protect your child",
-      description: "Teacher yells, humiliates, gives unfair grades, ignores. This is not 'strictness' ó it's pedagogical abuse.",
+      title: "üë®‚Äçüè´ Teacher conflict ‚Äî how to protect your child",
+      description: "Teacher yells, humiliates, gives unfair grades. This is not 'strictness' ‚Äî it's pedagogical violence.",
       conditions: { problem: ["teacher"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "1ñ4 weeks",
-      yield_estimate: "Stopping the pressure, restoring fairness",
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1‚Äì4 weeks",
+      yield_estimate: "Pressure stopped, justice restored",
       tags: ["teacher", "conflict", "school"],
       steps: [
-        "Gather evidence: dates, quotes, witnesses, recordings (if legal). Document EVERYTHING. Emotions without facts are weak arguments. Specifics are power",
-        "Talk to the teacher privately (without the child). Calmly, respectfully, but firmly: 'My child says [fact]. This concerns me. Let's sort this out.' Sometimes teachers don't realize their own behavior",
-        "If the conversation doesn't help ó write a formal complaint to the principal, copying the education department. Describe facts, attach evidence, demand a written response and action",
-        "If the teacher humiliates, insults, or threatens ó this is an administrative offense (Article 5.61 of the Administrative Code ó insult), possibly criminal (Article 133 of the Criminal Code ó slander). Contact the police, prosecutor's office",
-        "Talk to other parents. Your child may not be the only victim. A joint complaint carries more weight than an individual one",
-        "Protect your child emotionally: 'This is the teacher's problem, not yours. You are good and smart. We'll sort it out.' Don't let your child absorb humiliation",
-        "If the conflict is unsolvable ó demand transfer to another class or a different teacher. This is the child's right to quality education without trauma. Don't be afraid to 'make things worse' ó trauma is worse than any transfer",
-        "If the administration systematically ignores you ó contact the prosecutor's office, Rospotrebnadzor, public organizations (Alliance of Teachers, Union of Parents). Publicity forces action"
+        "Gather facts: dates, quotes, witnesses. Document EVERYTHING.",
+        "Talk to the teacher privately (without the child). Calmly, respectfully.",
+        "If it doesn't help ‚Äî write to the principal with a copy to the education department.",
+        "If the teacher insults ‚Äî contact the police.",
+        "Talk to other parents ‚Äî you may not be alone.",
+        "Protect your child: 'This is the teacher's problem, not yours'.",
+        "Demand transfer to another class or a different teacher.",
+        "If ignored ‚Äî prosecutor's office, consumer protection."
       ],
       warnings: [
-        "DON'T go to 'sort things out' with the teacher aggressively, with yelling or threats. This discredits you and your child. Calmness and facts are your strength",
-        "DON'T blame your child for a 'deserved' bad grade if you suspect bias. Review the assignment, compare with others. Ask for the grading criteria",
-        "Teachers are not gods. They can make mistakes, be tired, angry, or biased. Don't be afraid to defend your child's rights. Respect for the profession ? submission",
-        "DON'T publicly insult the teacher in the parent chat ó that's slander and you could be held liable. Use facts, documents, official channels"
+        "DON'T confront the teacher aggressively ‚Äî it discredits you.",
+        "DON'T blame your child for a 'deserved' bad grade.",
+        "DON'T publicly insult the teacher in the parent chat."
       ]
     },
-    {
-      id: "teacher_conflict_primary",
-      title: "?? Teacher conflict in elementary school",
-      description: "For younger children, the teacher is an authority figure. Conflict is especially traumatic.",
-      conditions: { problem: ["teacher"], age_group: ["primary"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ2 weeks",
-      yield_estimate: "Restoring trust in school",
-      tags: ["teacher", "primary", "conflict"],
-      steps: [
-        "In elementary school, children perceive teacher criticism as a personal catastrophe. Talk to your child: 'The teacher was upset, but that doesn't mean you're bad'",
-        "Go to the school, ask the teacher to praise your child in front of the class ó this will restore their status",
-        "If the teacher systematically humiliates ó go to the principal immediately. Young children cannot defend themselves",
-        "Explain to your child: 'We talked to the teacher. They'll be more careful. If anything happens ó tell me'"
-      ],
-      warnings: [
-        "Young children can't distinguish criticism of an action from criticism of their person",
-        "DON'T say 'the teacher is always right' ó this breaks your child's trust in you"
-      ]
-    },
-    // ==========================================
-    // 3. POOR GRADES
-    // ==========================================
-    {
-      id: "bad_grades",
-      title: "?? Learning difficulties ó without yelling or pressure",
-      description: "Failing grades, not understanding, 'I don't want to study', skipping class. Causes vary: from attention issues to dyslexia.",
-      conditions: { problem: ["grades"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "1ñ3 months",
-      yield_estimate: "Improved grades and attitude toward learning",
-      tags: ["grades", "learning", "motivation"],
-      steps: [
-        "Don't yell or punish for bad grades. Yelling creates fear, not a desire to learn. The child starts fearing mistakes, not striving for knowledge. Say: 'Let's figure out what you don't understand'",
-        "Talk to the teacher: what's the specific problem? Doesn't know the material? Doesn't do homework? Gets distracted? Doesn't understand explanations? Specifics help find solutions",
-        "Check vision and hearing. Often 'not understanding' is simply not seeing the board or not hearing the teacher. Get examined by an optometrist and ENT",
-        "Get tested for dyslexia, dysgraphia, ADHD. If the child is 'difficult', 'restless', mixes up letters ó this is not laziness, but nervous system characteristics. See a neurologist, psychologist, or speech pathologist",
-        "Hire a tutor. Not just 'to have one', but for specific subjects. 2ñ3 sessions per week, one-on-one. Group sessions are less effective if the child is behind",
-        "Create a routine: fixed homework time, breaks, rewards. Use the Pomodoro technique: 25 minutes of study, 5 minutes of rest. For ADHD ó 15 minutes study, 5 minutes rest",
-        "Reward effort, not grades. 'You tried ó that's what matters.' If your child got a C but learned more than before ó praise the progress. The grade isn't the main thing ó growth is",
-        "Find a 'entry point': if math isn't working ó start with games (Monopoly, chess, Minecraft with redstone). If Russian ó with comics, audiobooks. Engage them, don't force them"
-      ],
-      warnings: [
-        "DON'T compare with classmates, siblings. 'But Vanya already gets A's' ó this is poison for self-esteem. Every child develops at their own pace",
-        "DON'T use grades as the only criterion. A successful person isn't one who got A's, but one who can think, learn, and not give up. Cultivate these qualities",
-        "DON'T overload with extra activities. If the child is already tired from school, 5 clubs + a tutor = burnout. Balance is more important",
-        "If the child says 'I'm stupid' ó this is a red flag. Low self-esteem, learned helplessness. Immediately see a psychologist. It won't 'go away on its own'"
-      ]
-    },
-    {
-      id: "bad_grades_high",
-      title: "?? Academic difficulties in high school ó exam preparation",
-      description: "In grades 10ñ11, failing grades aren't just 'not understanding the topic' ó they threaten college admission. Stress is enormous.",
-      conditions: { problem: ["grades"], age_group: ["high"] },
-      priority: "high",
-      reliability: "high",
-      time_estimate: "2ñ6 months",
-      yield_estimate: "Exam preparation, stress reduction",
-      tags: ["grades", "exam", "stress"],
-      steps: [
-        "High school students face enormous pressure: final exams, college admissions, the future. Failing grades are not a reason to yell, but a signal to revise strategy",
-        "Conduct a diagnostic: which subjects are 'failing'? Is the child spending too much time on irrelevant subjects?",
-        "Hire tutors for core subjects. In grades 10ñ11, skimping on tutors = losing exam points",
-        "Reduce the load: consider dropping extracurriculars unrelated to college goals. Free up time for studying and sleep",
-        "If the child is burned out ó take a 1ñ2 week break, rest. Studying without rest is ineffective",
-        "Check psychological state: anxiety, depression, panic attacks before exams ó reason to see a psychologist"
-      ],
-      warnings: [
-        "In grades 10ñ11, parental pressure often worsens the problem. Be a support, not an additional source of stress",
-        "DON'T threaten 'I won't pay for college' ó this paralyzes will and intensifies fear",
-        "Remember: exam results are not a measure of human worth. Health is more important than scores"
-      ]
-    },
-    // ==========================================
-    // 4. SUBSTANCES
-    // ==========================================
-    {
-      id: "substances_at_school",
-      title: "?? Drugs, smoking, alcohol ó child is involved",
-      description: "Smoking, drinking, trying 'spice', 'salts', vaping. Not 'teenage rebellion' ó this is life-threatening.",
-      conditions: { problem: ["substances"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ6 months",
-      yield_estimate: "Stopping use, helping the child",
-      tags: ["substances", "drugs", "teen"],
-      steps: [
-        "Don't yell, hit, or 'permanently' punish. This closes trust and worsens the problem. Say: 'I found out. I'm scared for you. Let's talk.' Calmness is key",
-        "Determine the scope: what, how much, how often, with whom, where, why started. Don't interrogate like a detective. A conversation, not an interrogation. Reasons: peer pressure, curiosity, stress, bullying, trying to 'fit in'",
-        "If it's experimentation (tried 1ñ2 times, not systematic) ó talk, explain consequences, set boundaries. But don't relax: experimentation easily becomes habit",
-        "If systematic use ó immediately see a narcologist. Anonymous: national helpline (8-800-2000-122). Early help = chance for full recovery",
-        "Check the social circle: who they hang out with, where they spend time. You may need to change schools, activities, neighborhoods. But don't isolate ó loneliness worsens addiction",
-        "Check the family: is there substance use among adults? Children copy. If parents smoke/drink ó demands on the child are meaningless. Start with yourself",
-        "See a psychologist. Addiction is not 'bad character' but a way of coping with pain: anxiety, loneliness, bullying, family problems. Treat the cause",
-        "If the child refuses help, is aggressive, threatens ó forced treatment may be necessary (health laws). A difficult step, but life is more important. Consult a lawyer",
-        "Prevention: talk openly about drugs, without taboos. Explain: 'spice' and 'salts' are poisons, not 'light' drugs. Vaping is not a safe alternative to cigarettes. Show real consequences: photos, stories, documentaries"
-      ],
-      warnings: [
-        "DON'T ignore 'just tried once' ó modern drugs ('salts', 'spice', fentanyl) cause addiction after first use. Fatal cases on first use are not rare",
-        "DON'T try to 'treat' on your own: lock them at home, send to the village, 'discipline'. Addiction is a disease requiring professional treatment. Self-treatment is dangerous",
-        "DON'T shame, DON'T label ('junkie', 'drunkard'). This worsens shame, alienation, use. The child already blames themselves. Support, not judgment",
-        "Teenage vaping = nicotine addiction + lung damage (EVALI). 'Just vapor' is a myth. Nicotine in one pod system = pack of cigarettes. Don't underestimate"
-      ]
-    },
-    // ==========================================
-    // 5. AGGRESSION
-    // ==========================================
-    {
-      id: "school_aggression",
-      title: "?? Aggression, fights, behavioral issues",
-      description: "Child fights, yells at teachers, breaks things, throws things. This isn't 'bad character' ó it's a cry for help.",
-      conditions: { problem: ["aggression"] },
-      priority: "fast",
-      reliability: "medium",
-      time_estimate: "1ñ6 months",
-      yield_estimate: "Reduced aggression, understanding causes",
-      tags: ["aggression", "behavior", "psychology"],
-      steps: [
-        "Don't respond to aggression with aggression. Yelling, hitting, humiliation ó only make the problem worse. Stay calm. Say: 'I see that you're hurting. Let's figure this out'",
-        "Find the cause: bullying, family issues, divorce, death, moving, ADHD, autism, learning problems, substance use. Aggression is a language when words aren't enough",
-        "See a psychologist, psychotherapist, neurologist. Possibly ADHD, ADHD + oppositional defiant disorder, anxiety, depression. Diagnosis is the first step to help",
-        "Talk to the homeroom teacher, school psychologist. Ask for: individual plan, behavior contract, seating change, space to calm down. Don't demand punishment ó demand help",
-        "Set clear boundaries at home: 'Hitting, breaking, yelling ó unacceptable. There will be consequences.' But consequences ó not beatings, but loss of privileges, work with a psychologist, conversation",
-        "Teach alternatives to aggression: 'When I'm angry, I...' (run, punch a pillow, draw, write, breathe deeply). Give tools, not just prohibitions",
-        "If aggression is directed at you ó see a family psychologist. Your child may be reflecting your aggression, or the family system needs to change. Work as a family",
-        "If aggression is severe (weapons, threats to life, systematic violence) ó prepare for juvenile justice, police, possibly forced treatment. But the main thing is not punishment, but help. Your child's life and others' safety matter"
-      ],
-      warnings: [
-        "DON'T hit an aggressive child ó they'll learn that violence is normal. Violence breeds violence. It's a vicious cycle",
-        "DON'T label them 'psychopath', 'incorrigible'. Aggression is a symptom, not a sentence. With proper help, most children change",
-        "DON'T transfer to another school without working on the issue. Without change, the problem will repeat. Changing schools is a last step, not the first",
-        "Aggression often accompanies anxiety, depression, suicidal thoughts. Don't focus only on behavior ó check the emotional state"
-      ]
-    },
-    // ==========================================
-    // 6. BULLYING ó REFERENCE TO MODULE
-    // ==========================================
+
+    // ============================================================
+    // 3. BULLYING (REFER TO MODULE)
+    // ============================================================
     {
       id: "bullying_school",
-      title: "?? Bullying at school ó refer to 'Bullying' module",
-      description: "Bullying, exclusion, harassment at school ó this is a serious problem requiring a comprehensive approach. Use the specialized module.",
+      title: "üíî Bullying at school ‚Äî refer to 'Bullying' module",
+      description: "Bullying, exclusion, harassment in class ‚Äî a serious problem. Use the specialized module.",
       conditions: { problem: ["bullying"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ4 weeks",
-      yield_estimate: "Stopping bullying",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì4 weeks",
+      yield_estimate: "Bullying stopped",
       tags: ["bullying", "school", "harassment"],
       steps: [
-        "Bullying at school is not 'kids being kids' ó it's psychological violence. Refer to the 'Bullying' module for the full action plan",
-        "Key steps: gather evidence, talk to your child, contact the homeroom teacher and principal",
-        "If the school does nothing ó contact the police, prosecutor's office, education department",
-        "Protect your child: work with a psychologist, consider transferring to another school",
-        "Don't leave your child alone with this problem ó bullying destroys mental health, self-esteem, and trust in the world"
+        "Bullying at school is psychological violence. Refer to the 'Bullying' module.",
+        "Main steps: gather evidence, talk to your child, contact the principal.",
+        "If the school is inactive ‚Äî police, prosecutor's office, education department.",
+        "Protect your child: work with a psychologist, possibly transfer to another school.",
+        "Don't leave your child alone with the problem."
       ],
       warnings: [
-        "Bullying doesn't 'go away on its own'. Without intervention, it worsens and leaves lifelong trauma",
-        "DON'T advise your child to 'hit back' ó this can worsen the bullying and lead to legal consequences",
-        "DON'T turn a blind eye ó you are your child's only protection. Act immediately"
+        "Bullying doesn't 'go away on its own'. Without intervention, it leaves lifelong trauma.",
+        "DON'T tell your child to 'fight back' ‚Äî it may worsen the bullying.",
+        "DON'T ignore it ‚Äî you are your child's only protection."
+      ]
+    },
+
+    // ============================================================
+    // 4. POOR GRADES
+    // ============================================================
+    {
+      id: "bad_grades",
+      title: "üìâ Academic problems ‚Äî without yelling and pressure",
+      description: "Poor grades, not understanding, 'I don't want to study'. Causes vary: from inattention to dyslexia.",
+      conditions: { problem: ["grades"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1‚Äì3 months",
+      yield_estimate: "Grades improved, attitude to learning improved",
+      tags: ["grades", "learning", "motivation"],
+      steps: [
+        "DON'T yell or punish for bad grades. Fear doesn't create motivation.",
+        "Talk to the teacher: what exactly is the problem?",
+        "Check vision and hearing. Often 'not understanding' is just not seeing the board.",
+        "Check for dyslexia, dysgraphia, ADHD. See a neurologist.",
+        "Get a tutor for the specific subject.",
+        "Create a routine: fixed homework time, breaks.",
+        "Reward effort, not the grade.",
+        "Find the 'entry point': games, comics, audiobooks."
+      ],
+      warnings: [
+        "DON'T compare to classmates ‚Äî it poisons self-esteem.",
+        "DON'T use grades as the only measure.",
+        "DON'T overload with extracurriculars ‚Äî balance is important.",
+        "If your child says 'I'm stupid' ‚Äî see a psychologist immediately."
+      ]
+    },
+
+    // ============================================================
+    // 5. SUBSTANCES
+    // ============================================================
+    {
+      id: "substances_at_school",
+      title: "üö¨ Drugs, smoking, alcohol ‚Äî child involved",
+      description: "Smoking, drinking, trying 'spice', 'salts', vaping. This is life-threatening.",
+      conditions: { problem: ["substances"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì6 months",
+      yield_estimate: "Use stopped, child helped",
+      tags: ["substances", "drugs", "teen"],
+      steps: [
+        "DON'T yell or hit. Say: 'I'm scared for you. Let's talk'.",
+        "Find out the scope: what, how much, how often, with whom, why.",
+        "If it's an experiment ‚Äî talk, explain consequences, set boundaries.",
+        "If systematic ‚Äî immediately see a narcologist.",
+        "Check the friend group ‚Äî you may need to change schools.",
+        "Check the family ‚Äî children copy adults.",
+        "See a psychologist. Addiction is a way to cope with pain.",
+        "If they refuse help ‚Äî possibly forced treatment.",
+        "Prevention: talk about drugs openly, without taboos."
+      ],
+      warnings: [
+        "DON'T ignore 'just tried' ‚Äî addiction can start from the first try.",
+        "DON'T try to 'treat' yourself ‚Äî addiction is a disease.",
+        "DON'T shame ‚Äî it worsens alienation.",
+        "Vaping = nicotine addiction + lung damage."
+      ]
+    },
+
+    // ============================================================
+    // 6. AGGRESSION
+    // ============================================================
+    {
+      id: "school_aggression",
+      title: "üëä Aggression, fights, discipline violations",
+      description: "Child fights, yells at teachers, breaks things. This is a cry for help.",
+      conditions: { problem: ["aggression"] },
+      scoring: { priority: "fast", reliability: "medium" },
+      time_estimate: "1‚Äì6 months",
+      yield_estimate: "Aggression reduced, causes understood",
+      tags: ["aggression", "behavior", "psychology"],
+      steps: [
+        "DON'T respond with aggression. Stay calm.",
+        "Find the cause: bullying, family problems, ADHD, autism.",
+        "See a psychologist, psychotherapist, neurologist.",
+        "Talk to the class teacher and school psychologist.",
+        "Set clear boundaries at home.",
+        "Teach alternatives to aggression.",
+        "If aggression is directed at you ‚Äî family psychologist.",
+        "If serious ‚Äî juvenile commission, police, possible forced treatment."
+      ],
+      warnings: [
+        "DON'T hit an aggressive child ‚Äî violence breeds violence.",
+        "DON'T label them 'psychopath' ‚Äî aggression is a symptom.",
+        "DON'T transfer to another school without working on the problem."
+      ]
+    },
+
+    // ============================================================
+    // 7. DISCIPLINE PROBLEMS
+    // ============================================================
+    {
+      id: "discipline_problems",
+      title: "üìã Discipline and behavior problems at school",
+      description: "Child breaks rules, doesn't listen, disrupts classes. Could be ADHD, anxiety, or family issues.",
+      conditions: { problem: ["discipline"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "1‚Äì6 months",
+      yield_estimate: "Behavior improved",
+      tags: ["discipline", "behavior", "school"],
+      steps: [
+        "Find the cause: ADHD, anxiety, family problems.",
+        "See a neurologist and psychologist for diagnosis.",
+        "Talk to the teacher: ask for an individual approach.",
+        "Set clear rules at home and school.",
+        "Use a reward system for good behavior.",
+        "If problems are serious ‚Äî work with the school psychologist."
+      ],
+      warnings: [
+        "DON'T punish without explanation.",
+        "DON'T ignore problems ‚Äî they won't go away on their own."
+      ]
+    },
+
+    // ============================================================
+    // 8. EXAM FEAR / UNIVERSITY ENTRANCE
+    // ============================================================
+    {
+      id: "exam_preparation",
+      title: "üìù Fear of exams / university entrance ‚Äî how to help",
+      description: "Exam fear is normal. But if it paralyzes ‚Äî help is needed.",
+      conditions: { problem: ["exam"], age_group: ["high"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "2‚Äì6 months",
+      yield_estimate: "Stress reduced, exam preparation",
+      tags: ["exam", "stress", "high_school"],
+      steps: [
+        "Talk to your child: 'You're scared? That's normal. We'll get through this'.",
+        "Make a preparation plan: schedule, tutors, mock exams.",
+        "Teach breathing and relaxation techniques.",
+        "Ensure 8‚Äì9 hours of sleep, proper nutrition, walks.",
+        "Don't pressure ‚Äî support is more important than control.",
+        "If fear paralyzes ‚Äî see a psychologist.",
+        "Remind: exam results are not a measure of human worth."
+      ],
+      warnings: [
+        "DON'T threaten 'I won't pay for university' ‚Äî it worsens fear.",
+        "DON'T compare to others ‚Äî destroys self-esteem.",
+        "DON'T overload ‚Äî rest is important for effective studying."
+      ]
+    },
+
+    // ============================================================
+    // 9. CAREER CHOICE
+    // ============================================================
+    {
+      id: "career_choice",
+      title: "ü§î Child doesn't know what career to choose ‚Äî how to help",
+      description: "Choosing a career is a difficult decision. Help your child understand themselves and the world of work.",
+      conditions: { problem: ["career"] },
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "1‚Äì6 months",
+      yield_estimate: "Direction for career choice",
+      tags: ["career", "choice", "future"],
+      steps: [
+        "Talk about their interests: what do they like doing? What are they good at?",
+        "Take career tests.",
+        "Visit university and college open days.",
+        "Talk to people in different professions.",
+        "Suggest trying different fields (volunteering, internships).",
+        "Don't pressure ‚Äî the choice should be theirs.",
+        "Explain: it's okay to make mistakes and change careers."
+      ],
+      warnings: [
+        "DON'T impose your profession ‚Äî it's their life.",
+        "DON'T dismiss their choices ‚Äî support them."
+      ]
+    },
+
+    // ============================================================
+    // 10. SCHOOL EMERGENCY
+    // ============================================================
+    {
+      id: "school_emergency",
+      title: "üö® Emergency situation at school ‚Äî what to do",
+      description: "Conflict involving weapons, threats, violence ‚Äî emergency situation.",
+      conditions: { problem: ["aggression", "bullying"], urgency: ["acute"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Child safe",
+      tags: ["emergency", "violence", "school"],
+      steps: [
+        "IMMEDIATELY call 911 ‚Äî police.",
+        "DON'T try to resolve the situation yourself.",
+        "Inform the school principal.",
+        "Pick up your child from school until police arrive.",
+        "Talk to your child: 'You're not to blame. We'll protect you'.",
+        "See a psychologist ‚Äî the situation is traumatic.",
+        "Document everything: photos, video, witness statements."
+      ],
+      warnings: [
+        "DON'T ignore threats ‚Äî they could be real.",
+        "DON'T try to handle it yourself ‚Äî it's dangerous.",
+        "DON'T leave your child without support."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.schoolDataEn = schoolDataEn;
+});

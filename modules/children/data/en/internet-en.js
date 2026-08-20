@@ -1,276 +1,420 @@
-// === MODULE: CHILDREN ó INTERNET SAFETY ===
-const internetDataEn = {
-  category: "internet",
-  title: "?? Internet Safety",
-  description: "Grooming, sexting, addiction, scams, harmful content ó how to protect your child online",
+// modules/children/data/en/internet-en.js
+// === MODULE: CHILDREN ‚Äî INTERNET SAFETY ===
+
+window.SOS_REGISTER_QUIZ({
+  meta: {
+    module: "children",
+    category: "internet",
+    version: "1.0.0",
+    lang: "en",
+    title: "üì± Internet Safety",
+    description: "Grooming, sexting, addiction, scams, harmful content, cyberbullying ‚Äî how to protect your child online",
+    icon: "üì±",
+    color: "#db2777"
+  },
 
   questions: [
     {
       id: "threat",
-      text: "What threats have you noticed? (select all that apply)",
-      type: "multi",
+      type: "single",
+      text: "What is the main online threat for your child?",
       options: [
-        { id: "grooming", label: "?? Communication with a stranger / suspicious messages", tags: ["grooming"] },
-        { id: "sexting", label: "?? Child sent/received intimate photos or videos", tags: ["sexting"] },
-        { id: "addiction", label: "?? Addiction to devices / games / social media", tags: ["addiction"] },
-        { id: "scam", label: "?? Scam / blackmail / phishing", tags: ["scam"] },
-        { id: "content", label: "?? Harmful content (violence, suicide, drugs)", tags: ["content"] },
-        { id: "leak", label: "?? Data leak / hacked account", tags: ["leak"] }
+        { id: "grooming", label: "üë§ Communication with a stranger / suspicious messages", tags: ["grooming"] },
+        { id: "cyberbullying_victim", label: "üò¢ Child is being bullied online", tags: ["cyberbullying_victim"] },
+        { id: "cyberbullying_aggressor", label: "üò† Child is bullying others online", tags: ["cyberbullying_aggressor"] },
+        { id: "sexting", label: "üì∑ Child sent/received intimate photos or videos", tags: ["sexting"] },
+        { id: "addiction", label: "üì± Gadget / game / social media addiction", tags: ["addiction"] },
+        { id: "scam", label: "üí∏ Scam / extortion / phishing", tags: ["scam"] },
+        { id: "content", label: "‚ö†Ô∏è Harmful content (violence, suicide, drugs)", tags: ["content"] },
+        { id: "leak", label: "üîì Data leak / account hacked", tags: ["leak"] },
+        { id: "challenges", label: "‚ö†Ô∏è Dangerous challenges (online tasks)", tags: ["challenges"] },
+        { id: "fake_news", label: "üì∞ Fake news / disinformation", tags: ["fake_news"] }
       ]
     },
     {
       id: "age",
-      text: "Child's age?",
       type: "single",
-      conditions: { threat: ["grooming", "sexting", "addiction", "scam", "content", "leak"] },
+      text: "How old is your child?",
+      conditions: { threat: ["grooming", "cyberbullying_victim", "cyberbullying_aggressor", "sexting", "addiction", "scam", "content", "leak", "challenges", "fake_news"] },
       options: [
-        { id: "preschool", label: "?? 3ñ7 years old", tags: ["preschool"] },
-        { id: "school", label: "?? 7ñ12 years old", tags: ["school_age"] },
-        { id: "teen", label: "????? Teenager 13ñ17 years old", tags: ["teen"] }
+        { id: "preschool", label: "üßí 3‚Äì7 years old", tags: ["preschool"] },
+        { id: "school_age", label: "üßë 7‚Äì12 years old", tags: ["school_age"] },
+        { id: "teen", label: "üßë‚Äçüéì Teenager 13‚Äì17 years old", tags: ["teen"] }
       ]
     },
     {
-      id: "platform",
-      text: "Where did this happen?",
+      id: "screen_time_hours",
       type: "single",
-      conditions: { threat: ["grooming", "sexting", "addiction", "scam", "content", "leak"] },
+      text: "How much time does your child spend online per day?",
+      conditions: { threat: ["grooming", "cyberbullying_victim", "cyberbullying_aggressor", "sexting", "addiction", "scam", "content", "leak", "challenges", "fake_news"] },
       options: [
-        { id: "social", label: "Social media (Facebook, Instagram, TikTok)", tags: ["social"] },
-        { id: "games", label: "Games (Roblox, Minecraft, CS:GO, Brawl Stars)", tags: ["games"] },
-        { id: "messengers", label: "Messengers (Telegram, WhatsApp, Discord)", tags: ["messengers"] },
-        { id: "video", label: "Video (YouTube, Twitch, TikTok)", tags: ["video"] }
+        { id: "screen_1_2", label: "‚è±Ô∏è 1‚Äì2 hours (normal)", tags: ["screen_1_2"] },
+        { id: "screen_3_5", label: "‚è±Ô∏è 3‚Äì5 hours (too much)", tags: ["screen_3_5"] },
+        { id: "screen_6_plus", label: "‚è±Ô∏è More than 6 hours (addiction)", tags: ["screen_6_plus"] }
+      ]
+    },
+    {
+      id: "knows_rules",
+      type: "single",
+      text: "Does your child know online safety rules?",
+      conditions: { threat: ["grooming", "cyberbullying_victim", "cyberbullying_aggressor", "sexting", "scam", "content", "leak", "challenges", "fake_news"] },
+      options: [
+        { id: "rules_yes", label: "‚úÖ Yes, we've discussed the rules", tags: ["rules_yes"] },
+        { id: "rules_no", label: "‚ùå No, we haven't discussed them", tags: ["rules_no"] },
+        { id: "rules_unsure", label: "‚ùì Partially, not sure", tags: ["rules_unsure"] }
+      ]
+    },
+    {
+      id: "child_reaction",
+      type: "single",
+      text: "How is your child reacting to the situation?",
+      conditions: { threat: ["grooming", "cyberbullying_victim", "sexting", "content", "challenges"] },
+      options: [
+        { id: "reaction_scared", label: "üò® Scared, crying, afraid", tags: ["reaction_scared"] },
+        { id: "reaction_angry", label: "üò† Angry, aggressive", tags: ["reaction_angry"] },
+        { id: "reaction_withdrawn", label: "üîá Withdrawn, doesn't want to talk", tags: ["reaction_withdrawn"] },
+        { id: "reaction_calm", label: "üòå Calm, shared details", tags: ["reaction_calm"] }
       ]
     }
   ],
 
   solutions: [
-    // ==========================================
+    // ============================================================
     // 1. GROOMING
-    // ==========================================
+    // ============================================================
     {
       id: "grooming_response",
-      title: "?? Grooming ó manipulation by a stranger online",
-      description: "An adult poses as a peer, gains trust, arranges a meeting. This is a crime.",
+      title: "üé≠ Grooming ‚Äî online manipulation by a stranger",
+      description: "An adult pretends to be a peer, gains trust, arranges a meeting. This is a crime.",
       conditions: { threat: ["grooming"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
-      yield_estimate: "Breaking contact, preserving evidence",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "IMMEDIATE",
+      yield_estimate: "Contact stopped, evidence saved",
       tags: ["grooming", "predator", "crime"],
       steps: [
-        "Immediately check ALL communication: Facebook, Telegram, WhatsApp, Instagram, Discord, game chats. Look for: compliments, secrets, 'you're the only one who understands me', requests for photos, video calls, meetings",
-        "Take screenshots of EVERYTHING: messages, profile, photos, videos, links. Save to the cloud. DO NOT delete messages before going to police ó this is key evidence",
-        "Block the contact on all of the child's platforms. Change passwords. Enable two-factor authentication. Close the profile to strangers",
-        "If a meeting was arranged or the child has already left ó call 911 immediately. Report: online communication, profile, meeting location, description",
-        "After finding them ó DON'T scold the child. Predators professionally manipulate, using emotions, fear, loneliness. The child is a victim, not at fault. Say: 'You were brave to tell us. We'll protect you'",
-        "File a police report: Article 132 (sexual acts), Article 135 (indecent acts), Article 240.1 (grooming). Provide screenshots and messages",
-        "See a child psychologist. Grooming is traumatic: shame, fear, guilt, trust in the world is broken. Early help prevents PTSD and depression",
-        "Prevention: talk to children about grooming. Rule: don't meet online friends without parents. Don't send intimate photos/videos. Don't share address or school. Code word 'mom, I'm scared'"
+        "STEP 1. Check ALL correspondence. Look for: compliments, secrets, 'only you understand me', requests for photos, meetings.",
+        "STEP 2. Take screenshots of EVERYTHING. Save to cloud. DON'T delete messages!",
+        "STEP 3. Block the person on all platforms. Change passwords. Enable two-factor authentication.",
+        "STEP 4. If a meeting was arranged or child left ‚Äî call 911 immediately.",
+        "STEP 5. DON'T blame the child. Say: 'You were brave to tell me. We'll protect you'.",
+        "STEP 6. Contact the police. Provide screenshots.",
+        "STEP 7. See a child psychologist. Grooming is traumatic.",
+        "STEP 8. Prevention: 'Never meet online friends without parents'. Code word: 'Mom, I'm scared'."
       ],
       warnings: [
-        "DON'T blame the child for 'stupidity' ó predators professionally manipulate, using emotions, fear, loneliness. Any child can become a victim",
-        "DON'T delete messages before going to police ó these are key evidence. Take screenshots, save to the cloud, on computer",
-        "Predators often pose as peers, use fake photos, build trust over months. The child may be in love ó don't yell, explain",
-        "Sexting (sharing intimate photos) is criminally punishable even between minors. But the child is a victim, not a criminal. Consult a lawyer"
+        "DON'T blame the child ‚Äî groomers are professional manipulators.",
+        "DON'T delete messages ‚Äî they are the main evidence.",
+        "DON'T try to handle it yourself ‚Äî that's the police's job."
       ]
     },
+
+    // ============================================================
+    // 2. CYBERBULLYING ‚Äî CHILD IS VICTIM
+    // ============================================================
     {
-      id: "grooming_young",
-      title: "?? Grooming of a young child (3ñ7 years)",
-      description: "Young children don't understand danger. Predators use games, gifts, 'secrets'. Parents must be present online.",
-      conditions: { threat: ["grooming"], age: ["preschool"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "Immediately",
-      yield_estimate: "Protecting the child, blocking contact",
-      tags: ["grooming", "preschool", "predator"],
+      id: "cyberbullying_victim",
+      title: "üò¢ Child is being bullied online ‚Äî how to protect",
+      description: "Insults, threats, sharing photos, trolling ‚Äî this is cyberbullying. Just as painful as real life.",
+      conditions: { threat: ["cyberbullying_victim"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì3 days",
+      yield_estimate: "Bullying stopped + child protected",
+      tags: ["cyberbullying", "victim", "harassment"],
       steps: [
-        "At this age, the child CANNOT protect themselves. All internet activity must be with parents or under their full supervision",
-        "Check all devices the child could have used: tablet, phone, gaming console",
-        "Explain to the child in simple words: 'If someone online asks to see your body or promises gifts ó immediately tell mom/dad. You're not at fault'",
-        "Install parental controls on all devices. Limit access to chats and messengers",
-        "If grooming occurred ó immediately go to police. Young children can't give meaningful testimony, but the messages are evidence"
+        "STEP 1. Take screenshots of ALL insults, threats, photos. Save to cloud. This is evidence.",
+        "STEP 2. Block all bullies on all platforms. Make the child's profile private.",
+        "STEP 3. Contact platform support. Demand content removal and blocking of bullies.",
+        "STEP 4. Talk to your child: 'This is not your fault. You're not alone. We'll get through this'.",
+        "STEP 5. If threats to life, extortion ‚Äî call police.",
+        "STEP 6. See a psychologist. Cyberbullying causes depression and anxiety.",
+        "STEP 7. Limit screen time (as a break). Replace with offline activities.",
+        "STEP 8. Helpline: 8-800-2000-122."
       ],
       warnings: [
-        "DON'T leave young children alone on the internet. Predators specifically look for the most vulnerable",
-        "Children 3ñ7 don't recognize danger and can't resist manipulation. All responsibility is on you"
+        "DON'T say 'don't pay attention' ‚Äî for children, social media is reality.",
+        "DON'T take away the phone 'forever' ‚Äî the child loses support.",
+        "DON'T post retaliatory posts ‚Äî it makes things worse."
       ]
     },
-    // ==========================================
-    // 2. SEXTING
-    // ==========================================
+
+    // ============================================================
+    // 3. CYBERBULLYING ‚Äî CHILD IS AGGRESSOR
+    // ============================================================
+    {
+      id: "cyberbullying_aggressor",
+      title: "üò† Child is bullying others online ‚Äî what to do",
+      description: "It's hard to admit, but important. The child may not realize the consequences of their aggression.",
+      conditions: { threat: ["cyberbullying_aggressor"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1‚Äì6 months",
+      yield_estimate: "Aggression stopped + child helped",
+      tags: ["cyberbullying", "aggressor", "psychology"],
+      steps: [
+        "STEP 1. Don't deny or defend the child. Gather facts.",
+        "STEP 2. Talk calmly: 'How do you feel when you write this? Why do you do it?'",
+        "STEP 3. Explain consequences: online insults can lead to legal liability.",
+        "STEP 4. Check: is someone bullying the child in real life? Aggressors are often victims.",
+        "STEP 5. See a psychologist. Aggression is a symptom.",
+        "STEP 6. Help the child apologize (if ready).",
+        "STEP 7. Set rules: 'If I see insults ‚Äî consequences'."
+      ],
+      warnings: [
+        "DON'T yell or hit ‚Äî it worsens aggression.",
+        "DON'T defend with 'my child wouldn't' ‚Äî it hides the problem.",
+        "DON'T cut off internet access ‚Äî without working on it, the aggression won't stop."
+      ]
+    },
+
+    // ============================================================
+    // 4. SEXTING
+    // ============================================================
     {
       id: "sexting_crisis",
-      title: "?? Sexting ó intimate photos/videos online",
+      title: "üîû Sexting ‚Äî intimate photos/videos online",
       description: "Child sent or received intimate content. Panic, shame, blackmail. Act quickly and wisely.",
       conditions: { threat: ["sexting"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ24 hours",
-      yield_estimate: "Removing content, protecting the child",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì24 hours",
+      yield_estimate: "Content removed, child protected",
       tags: ["sexting", "blackmail", "crime"],
       steps: [
-        "Stay calm. The child is already in panic, shame, fear. Your role is to be support, not add judgment. Say: 'Thank you for telling us. We'll figure this out'",
-        "Take screenshots of the conversation, the contact's profile, threats. Save to the cloud. These are evidence for police. DO NOT delete before contacting law enforcement",
-        "If photos/videos are already being shared ó contact platform support (Facebook, Telegram, TikTok, Instagram). Demand removal under community guidelines. State that the child is a minor ó platforms must respond quickly",
-        "If there's blackmail ('send more or I'll post') ó this is extortion. Call 911. Article 163 of the Criminal Code. Provide screenshots, conversation, profile",
-        "Consult a lawyer. Sharing intimate photos of a minor is Article 242.1 of the Criminal Code. But the child who sent the photo themselves is NOT a criminal, but a victim. This is important for their mental health and for police",
-        "See a psychologist. Sexting causes deep shame, anxiety, depression, suicidal thoughts. The child feels they've 'ruined their life'. Explain: it's a mistake, not a life sentence. Life goes on",
-        "Check the child's phone/computer for viruses, trojans, keyloggers. The photos may have been stolen, not sent by the child",
-        "Prevention: explain the 'digital footprint rule' ó everything sent stays forever. Even in 'secret' chats. Even if it's 'only for you'. Never send intimate photos, even to close people"
+        "STEP 1. Stay calm. Say: 'Thank you for telling me. We'll figure it out'.",
+        "STEP 2. Take screenshots of conversations, profiles, threats. DON'T delete until police.",
+        "STEP 3. Contact platform support. Demand removal. State that the child is a minor.",
+        "STEP 4. If blackmail ‚Äî call police.",
+        "STEP 5. Consult a lawyer. The child is a victim, not a criminal.",
+        "STEP 6. See a psychologist. Sexting causes deep shame.",
+        "STEP 7. Prevention: 'Never send intimate photos, even to close people'."
       ],
       warnings: [
-        "DON'T scold, punish, or take away the phone 'forever'. The child is already in shock. Punishment will close trust forever. Better ó support and explanation",
-        "DON'T ignore it hoping 'it will go away'. Photos can spread for years, affecting college admission, work, personal life. You need to act",
-        "DON'T try to negotiate with the blackmailer yourself ó this fuels the extortion. Police, lawyer, platform are the right tools",
-        "Even if the child 'agreed' to send the photo ó this is not consent in a legal sense. Minors cannot consent to the creation/distribution of intimate content"
+        "DON'T yell at the child ‚Äî they're already in shock.",
+        "DON'T try to negotiate with the blackmailer yourself.",
+        "DON'T delete messages ‚Äî they are evidence."
       ]
     },
-    // ==========================================
-    // 3. ADDICTION
-    // ==========================================
+
+    // ============================================================
+    // 5. GADGET ADDICTION
+    // ============================================================
     {
       id: "digital_addiction",
-      title: "?? Device, game, and social media addiction",
-      description: "Child can't tear themselves away from the screen, screams when you try to take the phone, skips meals, sleep, homework. This is addiction, not 'laziness'.",
+      title: "üéÆ Gadget, game, social media addiction",
+      description: "Child can't put down the phone, screams when it's taken away, misses meals, sleep, school. This is addiction.",
       conditions: { threat: ["addiction"] },
-      priority: "medium",
-      reliability: "medium",
-      time_estimate: "1ñ6 months",
-      yield_estimate: "Regaining control over time and life",
+      scoring: { priority: "medium", reliability: "medium" },
+      time_estimate: "1‚Äì6 months",
+      yield_estimate: "Control over time regained",
       tags: ["addiction", "games", "screen_time"],
       steps: [
-        "Don't start with confiscation ó this will cause rebellion, aggression, secret use. Start with a conversation: 'I noticed you spend a lot of time on your phone. Your health matters to me. Let's agree on something'",
-        "Together set rules: time on devices (e.g., 1 hour on weekdays, 2 on weekends), 'phone-free zones' (desk, bedroom, homework). Write them down, post them visibly. Rules for everyone, including parents",
-        "Install parental controls: Google Family Link (Android), Screen Time (iOS), Kaspersky Safe Kids, Qustodio. But DON'T use as spying ó explain why. Control without explanation = mistrust",
-        "Replace, don't prohibit. Game/social media addiction is often an attempt to fill a void: boredom, loneliness, insecurity. Offer alternatives: sports, creative activities, meeting friends, hiking",
-        "If the child screams, throws tantrums, threatens when you try to limit time ó this is severe addiction. See a psychologist, psychotherapist. Possibly treatment at a center",
-        "Check if the child is escaping into the virtual world from real problems: bullying, family issues, depression, anxiety. Treat the cause, not the symptom",
-        "Set an example. If you're constantly on your phone ó demands on the child are meaningless. Family rules only work if everyone follows them",
-        "Reduce time gradually, not abruptly. For example: week 1: 3 hours > 2.5, week 2: 2.5 > 2. Sudden withdrawal causes anxiety and relapse"
+        "STEP 1. Start with a conversation: 'I've noticed you spend a lot of time on your phone. Let's agree on a balance'.",
+        "STEP 2. Together set rules: screen time (1 hour on weekdays, 2 on weekends). Rules for everyone.",
+        "STEP 3. Set up parental controls: Google Family Link, Screen Time.",
+        "STEP 4. Offer alternatives: sports, creative activities, meeting friends.",
+        "STEP 5. If tantrums ‚Äî see a psychologist. This is severe addiction.",
+        "STEP 6. Check if the child is escaping into the virtual world from real problems.",
+        "STEP 7. Be a role model ‚Äî if you're always on your phone, rules are meaningless.",
+        "STEP 8. Reduce time gradually, not suddenly."
       ],
       warnings: [
-        "DON'T take away the phone 'forever' or for a month ó this is an extreme measure that breaks trust. The child will lose connection with friends, their only social life",
-        "DON'T use parental controls as spying (reading all messages, tracking every move). This violates personal space and will lead to secret accounts",
-        "Gaming addiction is recognized by WHO (IGD ó Internet Gaming Disorder). This is not 'laziness' or 'bad parenting'. It's a diagnosis requiring professional help",
-        "DON'T compare with 'in my time we played outside' ó the world has changed. For modern children, online = social life. The goal is balance, not complete refusal"
+        "DON'T take away the phone 'forever' ‚Äî a last resort.",
+        "DON'T use parental control as spying.",
+        "Gaming addiction is a diagnosis (IGD). Requires professional help."
       ]
     },
+
+    // ============================================================
+    // 6. DIGITAL DETOX
+    // ============================================================
     {
-      id: "addiction_teen",
-      title: "????? Teen addiction ó working with a psychologist",
-      description: "Teenagers often escape into the online world from problems. Addiction at this age requires professional help.",
-      conditions: { threat: ["addiction"], age: ["teen"] },
-      priority: "medium",
-      reliability: "high",
-      time_estimate: "1ñ6 months",
-      yield_estimate: "Treating addiction and addressing root causes",
-      tags: ["addiction", "teen", "psychology"],
+      id: "digital_detox",
+      title: "üåø Digital detox ‚Äî how to help your child take a break from screens",
+      description: "Sometimes you need a break from the internet. Help your child switch focus.",
+      conditions: { threat: ["addiction"], screen_time_hours: ["screen_6_plus"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1‚Äì4 weeks",
+      yield_estimate: "Screen time reduced",
+      tags: ["detox", "digital", "health"],
       steps: [
-        "A teenager is no longer a child. Bans and control cause rebellion. Start with a dialogue: 'I see you're struggling. Let's figure this out together'",
-        "See a teen psychologist. Addiction is often a symptom: depression, anxiety, trauma, family problems",
-        "Check social media: the child may be experiencing bullying or grooming. This could be why they escape into games",
-        "Discuss the future with your child: 'What do you want to do in 5 years? Can games help or hinder that?'",
-        "Don't punish relapses ó support. Addiction isn't treated with bans. It's treated with understanding, care, and professionals"
+        "STEP 1. Have a gadget-free day ‚Äî the whole family.",
+        "STEP 2. Offer alternatives: walks, board games, sports.",
+        "STEP 3. Establish 'phone-free zones' ‚Äî dinner table, bedroom, bathroom.",
+        "STEP 4. Rule: no phones 1 hour before bedtime.",
+        "STEP 5. Replace social media time with real meetings with friends.",
+        "STEP 6. Lead by example ‚Äî turn off notifications for a while."
       ],
       warnings: [
-        "DON'T secretly read their messages ó this will destroy trust forever. If you need to, ask them to show you and explain why",
-        "DON'T take away devices as punishment ó the teen will find a way to get access (from friends, at school)",
-        "Teen addiction requires professional help. Don't hesitate to see a psychotherapist"
+        "DON'T make detox a punishment ‚Äî it should be voluntary.",
+        "DON'T cut off internet without warning ‚Äî it's stressful."
       ]
     },
-    // ==========================================
-    // 4. SCAM
-    // ==========================================
+
+    // ============================================================
+    // 7. SCAM
+    // ============================================================
     {
       id: "online_scam",
-      title: "?? Scams, phishing, and online extortion",
-      description: "They promised free skins, V-bucks, Robux, but ended up stealing card details, hacking accounts, extorting money.",
+      title: "üí∞ Online scam, phishing, extortion",
+      description: "Promised free skins, V-bucks, Robux ‚Äî stole card data, hacked accounts.",
       conditions: { threat: ["scam"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ3 days",
-      yield_estimate: "Fund recovery, data protection",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì3 days",
+      yield_estimate: "Money recovered, data protected",
       tags: ["scam", "fraud", "games"],
       steps: [
-        "Immediately change passwords on ALL of the child's accounts: games, social media, email. Enable two-factor authentication. Check if any unknown devices are linked",
-        "If bank card details were stolen ó immediately call the bank, block the card. File a fraud report. The bank must investigate",
-        "Save screenshots: messages, links, scammer's profile, the 'free' offer page. This is evidence for police and the bank",
-        "If they're demanding money ('pay or I'll hack your account / leak photos') ó DON'T pay. It's a bottomless pit. Call 911. Article 163 of the Criminal Code (extortion)",
-        "Scan the device for viruses: Dr.Web, Kaspersky, Avast. A keylogger or trojan may be installed, stealing passwords",
-        "Explain to the child: 'free' skins, Robux, V-bucks are ALWAYS scams. Real developers don't give things away for free. If they ask for a password, card details, or a code ó it's 100% fraud",
-        "If the child paid the scammer ó contact the bank with a dispute claim. Card payments have a higher chance of recovery than cryptocurrency",
-        "Prevention: explain the rules. Don't enter card details without parents. Don't download programs from unofficial sources. Don't click links from chats. Check the website address"
+        "STEP 1. Change passwords on ALL accounts. Enable two-factor authentication.",
+        "STEP 2. If card data stolen ‚Äî call the bank, block the card.",
+        "STEP 3. Save screenshots of conversations, links ‚Äî evidence.",
+        "STEP 4. If extortion ‚Äî DON'T PAY. Call police.",
+        "STEP 5. Scan the device for viruses (Dr.Web, Kaspersky).",
+        "STEP 6. Explain to the child: 'Free skins are always a scam'.",
+        "STEP 7. File a dispute with the bank."
       ],
       warnings: [
-        "DON'T pay extortionists ó it feeds them and doesn't guarantee safety. They'll come again. Police, blocking, account change is the right path",
-        "DON'T scold the child for being 'gullible' ó scammers professionally manipulate, using greed, fear, love of games. Anyone can fall for it",
-        "Cryptocurrency payments (Bitcoin, USDT) are practically impossible to recover. If a scammer demands crypto ó it's 100% fraud. Real companies don't accept crypto from children",
-        "Phishing sites look like real ones (Roblox.com vs RobIox.com with a capital I). Teach your child to check the address bar for HTTPS"
+        "DON'T pay extortionists ‚Äî they'll come back.",
+        "DON'T blame the child ‚Äî scammers are professional manipulators.",
+        "Cryptocurrency is almost impossible to recover ‚Äî warn the child."
       ]
     },
-    // ==========================================
-    // 5. HARMFUL CONTENT
-    // ==========================================
+
+    // ============================================================
+    // 8. HARMFUL CONTENT
+    // ============================================================
     {
       id: "harmful_content",
-      title: "?? Harmful content: violence, suicide, drugs",
-      description: "Child encountered or is searching for harmful content: violence videos, suicide propaganda, drugs, pornography.",
+      title: "‚ò†Ô∏è Harmful content: violence, suicide, drugs",
+      description: "Child encountered or is searching for prohibited content: violence, suicide, drugs.",
       conditions: { threat: ["content"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ7 days",
-      yield_estimate: "Blocking content, helping the child",
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì7 days",
+      yield_estimate: "Content blocked, child helped",
       tags: ["content", "violence", "suicide", "drugs"],
       steps: [
-        "Don't panic or yell. Talk calmly: 'I noticed you were watching [content]. I want to understand how you feel. Let's talk'. Judgment will close trust",
-        "If the child is searching for suicide information ó this is a red flag. Immediately see a psychologist, psychotherapist. Helpline: 988 (or local). Don't leave the child alone",
-        "If the content is drug-related ó the child may have tried them or is being pressured. Talk, see a narcologist. Early help prevents addiction",
-        "Block the content: YouTube Restricted Mode, Google SafeSearch, parental controls on the router. But remember: blocking is not a replacement for conversation",
-        "Report the violation to the platform. Demand removal. If content promotes suicide, violence, drugs ó the platform must remove it",
-        "If the child is threatening self-harm or others under the content's influence ó immediately call 911. This is an emergency",
-        "Explain to the child: the internet shows everything, but not everything is true. 'Challenge' videos are often staged. 'Cool' drug addicts in reality are sick, ruined people. Show real consequences",
-        "Increase time together: walks, games, conversations. Children often seek forbidden content out of boredom, curiosity, loneliness. Fill life with meaning ó the internet will move to the background"
+        "STEP 1. Don't panic. Talk calmly: 'I noticed you were watching this. How do you feel?'",
+        "STEP 2. If the child is searching for suicide information ‚Äî call 8-800-2000-122.",
+        "STEP 3. Block content: YouTube Restricted Mode, Google SafeSearch.",
+        "STEP 4. Report violations to platform support.",
+        "STEP 5. If threatening self-harm ‚Äî ambulance and police.",
+        "STEP 6. Explain: the internet shows everything, but not everything is true.",
+        "STEP 7. Spend more time together ‚Äî fill life with meaning."
       ],
       warnings: [
-        "DON'T ignore searching for harmful content as 'curiosity'. Searching for suicide, drugs, violence information is a red flag. Conversation and professional help are needed",
-        "DON'T block content and turn a blind eye at the same time. Blocking without conversation = the child will find a way around (VPN, friends, secret phone). Conversation without blocking = the child will keep watching",
-        "Suicide propaganda among minors is a criminal offense. If the child is involved in 'death groups' ó immediately contact police",
-        "DON'T shame the child for watching pornography ó it's normal curiosity. But explain: pornography is not real, it's staged. Real relationships are built on trust, respect, consent"
+        "DON'T ignore searches for prohibited content.",
+        "DON'T block content without a conversation.",
+        "Suicide promotion is a criminal offense."
       ]
     },
-    // ==========================================
-    // 6. DATA LEAK / HACKED ACCOUNT
-    // ==========================================
+
+    // ============================================================
+    // 9. DANGEROUS CHALLENGES
+    // ============================================================
     {
-      id: "account_hacked",
-      title: "?? Hacked account or data leak",
-      description: "Child's account was hacked, data stolen, scammers are using their identity online.",
-      conditions: { threat: ["leak"] },
-      priority: "fast",
-      reliability: "high",
-      time_estimate: "1ñ24 hours",
-      yield_estimate: "Regaining control over the account",
-      tags: ["leak", "hacking", "security"],
+      id: "dangerous_challenges",
+      title: "‚ö†Ô∏è Dangerous challenges ‚Äî how to protect your child",
+      description: "Child is participating in or interested in dangerous challenges. This can be life-threatening.",
+      conditions: { threat: ["challenges"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì3 days",
+      yield_estimate: "Participation prevented",
+      tags: ["challenges", "dangerous", "social_media"],
       steps: [
-        "Immediately change the account password (if still accessible). Use a strong password: 12+ characters, letters, numbers, symbols",
-        "Enable two-factor authentication (2FA) on all platforms. This is the best protection against hacking",
-        "Check if unknown phone numbers, emails, or devices are linked to the account. Remove anything foreign",
-        "Check the account login history: where and when they logged in. Save screenshots of suspicious logins ó this is evidence",
-        "If the account is being used for fraud (spam sent in the child's name) ó write to platform support, explain the situation",
-        "If documents (passport, SSN) were stolen ó immediately go to police. This could be used to take out loans",
-        "Scan the device for viruses ó a keylogger may be installed that steals passwords",
-        "Prevention: don't use the same password everywhere. Don't click links from strangers. Don't download programs from untrusted sources"
+        "STEP 1. Talk to your child: 'What is this challenge? Why do you want to do it?'",
+        "STEP 2. Explain: dangerous challenges are not 'cool', they risk your life.",
+        "STEP 3. If already participated ‚Äî check for injuries. If injured ‚Äî see a doctor.",
+        "STEP 4. Report to the school ‚Äî they may have a class discussion.",
+        "STEP 5. If the challenge is life-threatening ‚Äî call police.",
+        "STEP 6. Set up parental controls and monitor interests.",
+        "STEP 7. Offer alternatives: safe challenges (sports, creative)."
       ],
       warnings: [
-        "DON'T use simple passwords ó they're hacked in seconds",
-        "DON'T save passwords openly on your computer ó use password managers",
-        "DON'T click links, even if sent by 'friends' ó their account may also be hacked",
-        "Identity document leaks are a threat of fraud. Check your credit history regularly"
+        "DON'T laugh at the challenge ‚Äî the child will think you support it.",
+        "DON'T ban without explanation ‚Äî the child will do it secretly.",
+        "Dangerous challenges can be fatal. Don't underestimate."
+      ]
+    },
+
+    // ============================================================
+    // 10. DATA LEAK / HACKED ACCOUNT
+    // ============================================================
+    {
+      id: "account_hacked",
+      title: "üîì Hacked account or data leak",
+      description: "Child's account was hacked, data stolen, scammers are using their name.",
+      conditions: { threat: ["leak"] },
+      scoring: { priority: "fast", reliability: "high" },
+      time_estimate: "1‚Äì24 hours",
+      yield_estimate: "Control restored",
+      tags: ["leak", "hacking", "security"],
+      steps: [
+        "STEP 1. Change password. Use 12+ characters.",
+        "STEP 2. Enable two-factor authentication.",
+        "STEP 3. Check linked devices and remove unknown ones.",
+        "STEP 4. Save screenshots of suspicious logins.",
+        "STEP 5. If account is used for fraud ‚Äî contact support.",
+        "STEP 6. Scan the device for viruses.",
+        "STEP 7. Prevention: don't use the same password everywhere."
+      ],
+      warnings: [
+        "DON'T use simple passwords ‚Äî they're hacked in seconds.",
+        "DON'T save passwords in plain text.",
+        "Passport data leak ‚Äî risk of credit fraud."
+      ]
+    },
+
+    // ============================================================
+    // 11. FAKE NEWS / DISINFORMATION
+    // ============================================================
+    {
+      id: "fake_news",
+      title: "üì∞ Fake news and disinformation",
+      description: "Child believes and spreads fake news. It's important to teach them to verify information.",
+      conditions: { threat: ["fake_news"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1‚Äì4 weeks",
+      yield_estimate: "Critical thinking developed",
+      tags: ["fake_news", "media_literacy", "critical_thinking"],
+      steps: [
+        "STEP 1. Talk to your child: 'How do you know this news is true?'",
+        "STEP 2. Teach fact-checking: find the source, check the date, check other channels.",
+        "STEP 3. Together verify several news stories ‚Äî show how to spot fakes.",
+        "STEP 4. Explain: fakes are created to manipulate.",
+        "STEP 5. Use fact-checking sites.",
+        "STEP 6. Teach: 'Don't trust loud headlines ‚Äî verify!'",
+        "STEP 7. If the child spread a fake ‚Äî help them correct it."
+      ],
+      warnings: [
+        "DON'T say 'don't believe anything' ‚Äî it creates cynicism.",
+        "DON'T overwhelm the child ‚Äî teach gradually.",
+        "Fakes can cause panic. Teach them to verify information."
+      ]
+    },
+
+    // ============================================================
+    // 12. SETTING UP A SAFE ACCOUNT
+    // ============================================================
+    {
+      id: "safe_account_setup",
+      title: "üîê How to set up a safe account for your child",
+      description: "Configure your child's account to minimize risks.",
+      conditions: { threat: ["grooming", "cyberbullying_victim", "scam", "leak"] },
+      scoring: { priority: "medium", reliability: "high" },
+      time_estimate: "1‚Äì2 hours",
+      yield_estimate: "Safe account",
+      tags: ["security", "account", "setup"],
+      steps: [
+        "STEP 1. Enable two-factor authentication (2FA) on all platforms.",
+        "STEP 2. Set a strong password (12+ characters, letters, numbers, symbols).",
+        "STEP 3. Set profile to private mode.",
+        "STEP 4. Turn off geolocation in public posts.",
+        "STEP 5. Don't put address, school, phone number in the profile.",
+        "STEP 6. Set up parental controls: time limits, content filters.",
+        "STEP 7. Regularly check settings and activity.",
+        "STEP 8. Explain to the child: 'Never give your password to anyone, even friends'."
+      ],
+      warnings: [
+        "DON'T use the same password for all accounts.",
+        "DON'T save passwords in the browser (if sharing a computer).",
+        "DON'T share personal information publicly."
       ]
     }
   ]
-};
-
-// ===== EXPORT =====
-window.internetDataEn = internetDataEn;
+});
