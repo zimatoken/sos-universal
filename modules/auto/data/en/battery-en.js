@@ -108,6 +108,7 @@ window.SOS_REGISTER_QUIZ({
       id: "jump_start",
       title: "🔋 Jump starting from another car",
       description: "The fastest way to start your car if you have another vehicle and cables.",
+      // ✅ CORRECT: all values are IDs from options
       conditions: { symptom: ["click", "slow_crank", "silence"], has_tools: ["cables"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "5–10 minutes",
@@ -120,7 +121,7 @@ window.SOS_REGISTER_QUIZ({
         "Black (negative) — to donor negative, other end to ground (unpainted metal) on your car.",
         "Start the donor, let it run for 2–3 minutes at idle.",
         "Try to start your car (no longer than 10 seconds).",
-        "After starting, let it run for 10–15 minutes.",
+        "After starting, let it run for 10–15 minutes (charges the battery).",
         "Remove cables in reverse order.",
         "Drive for 20–30 minutes to fully charge."
       ],
@@ -338,7 +339,7 @@ window.SOS_REGISTER_QUIZ({
       id: "emergency_start_no_tools",
       title: "🚀 Emergency start without cables (push start, tow)",
       description: "If you have no cables — try push starting or towing.",
-      conditions: { has_tools: ["no_tools"], car_type: ["standard"] },
+      conditions: { has_tools: ["nothing"], car_type: ["standard"] },
       scoring: { priority: "medium", reliability: "low" },
       time_estimate: "10–30 minutes",
       yield_estimate: "Engine started",

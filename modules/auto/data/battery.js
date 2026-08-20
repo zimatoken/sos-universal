@@ -24,7 +24,7 @@ window.SOS_REGISTER_QUIZ({
         { id: "slow_crank", label: "🐢 Медленно крутит стартер", tags: ["slow_crank"] },
         { id: "dim_lights", label: "💡 Фары тусклые / приборы тусклые", tags: ["dim_lights"] },
         { id: "sulfur_smell", label: "👃 Запах серы / гнилых яиц", tags: ["sulfur_smell"] },
-        { id: "swollen", label: "📦 Аккумулятор вздулся (изменена форма)", tags: ["swollen"] }
+        { id: "swollen", label: "📦 Аккумулятор вздулся (изменена форму)", tags: ["swollen"] }
       ]
     },
     {
@@ -108,6 +108,7 @@ window.SOS_REGISTER_QUIZ({
       id: "jump_start",
       title: "🔋 Прикуривание от другой машины",
       description: "Самый быстрый способ завести машину, если есть другой автомобиль и провода.",
+      // ✅ ПРАВИЛЬНО: все значения — ID из options
       conditions: { symptom: ["click", "slow_crank", "silence"], has_tools: ["cables"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "5–10 минут",
@@ -338,7 +339,7 @@ window.SOS_REGISTER_QUIZ({
       id: "emergency_start_no_tools",
       title: "🚀 Экстренный запуск без проводов (толкач, буксир)",
       description: "Если нет проводов — попробуйте завести с толкача или буксира.",
-      conditions: { has_tools: ["no_tools"], car_type: ["standard"] },
+      conditions: { has_tools: ["nothing"], car_type: ["standard"] },
       scoring: { priority: "medium", reliability: "low" },
       time_estimate: "10–30 минут",
       yield_estimate: "Запуск двигателя",

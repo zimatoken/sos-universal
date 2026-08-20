@@ -23,8 +23,8 @@ window.SOS_REGISTER_QUIZ({
         { id: "squeal", label: "🔊 Squealing or screeching when braking", tags: ["squeal"] },
         { id: "vibration", label: "📳 Vibration in pedal or steering wheel when braking", tags: ["vibration"] },
         { id: "pulls", label: "🚗 Pulls to one side when braking", tags: ["pulls"] },
-        { id: "burning", label: "👃 Burning / plastic smell", tags: ["burning"] },
-        { id: "warning", label: "💡 Brake warning light on dashboard", tags: ["warning"] },
+        { id: "burning_smell", label: "👃 Burning / plastic smell", tags: ["burning_smell"] },
+        { id: "warning_light", label: "💡 Brake warning light on dashboard", tags: ["warning_light"] },
         { id: "long_stop", label: "📏 Stopping distance increased", tags: ["long_stop"] }
       ]
     },
@@ -32,7 +32,7 @@ window.SOS_REGISTER_QUIZ({
       id: "location",
       type: "single",
       text: "Where are you?",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
         { id: "home", label: "🏠 At home / garage", tags: ["safe"] },
         { id: "road", label: "🛣️ On the road (city)", tags: ["road"] },
@@ -44,12 +44,12 @@ window.SOS_REGISTER_QUIZ({
       id: "has_tools",
       type: "single",
       text: "What do you have with you?",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
         { id: "jack", label: "🛠️ Jack", tags: ["jack"] },
         { id: "tools", label: "🔧 Socket set / wrenches", tags: ["tools"] },
-        { id: "fluid", label: "🧴 Brake fluid", tags: ["fluid"] },
-        { id: "no_tools", label: "❌ None of the above", tags: ["no_tools"] }
+        { id: "brake_fluid", label: "🧴 Brake fluid", tags: ["brake_fluid"] },
+        { id: "nothing", label: "❌ None of the above", tags: ["no_tools"] }
       ]
     },
     {
@@ -68,7 +68,7 @@ window.SOS_REGISTER_QUIZ({
       id: "last_service",
       type: "single",
       text: "When were the brakes last serviced?",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
         { id: "service_recent", label: "✅ Less than a year ago", tags: ["service_recent"] },
         { id: "service_old", label: "⚠️ More than a year ago", tags: ["service_old"] },
@@ -80,7 +80,7 @@ window.SOS_REGISTER_QUIZ({
       id: "car_type",
       type: "single",
       text: "What type of car?",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
         { id: "standard", label: "🚗 Standard car", tags: ["standard"] },
         { id: "suv", label: "🚙 SUV / off-road", tags: ["suv"] },
@@ -91,10 +91,10 @@ window.SOS_REGISTER_QUIZ({
       id: "brake_light",
       type: "single",
       text: "Is the brake warning light on?",
-      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning", "warning", "long_stop"] },
+      conditions: { symptom: ["soft_pedal", "squeal", "vibration", "pulls", "burning_smell", "warning_light", "long_stop"] },
       options: [
-        { id: "light_red", label: "🔴 Red (urgent)", tags: ["red_light"] },
-        { id: "light_yellow", label: "🟡 Yellow (ABS / issue)", tags: ["yellow_light"] },
+        { id: "light_red", label: "🔴 Red (urgent)", tags: ["light_red"] },
+        { id: "light_yellow", label: "🟡 Yellow (ABS / issue)", tags: ["light_yellow"] },
         { id: "light_off", label: "🚫 Off", tags: ["light_off"] }
       ]
     }
@@ -108,7 +108,7 @@ window.SOS_REGISTER_QUIZ({
       id: "brake_fluid_check",
       title: "🧴 Checking brake fluid",
       description: "Low fluid level is a common cause of a soft pedal and increased stopping distance.",
-      conditions: { symptom: ["soft_pedal", "long_stop", "warning"], brake_light: ["red_light", "yellow_light"] },
+      conditions: { symptom: ["soft_pedal", "long_stop", "warning_light"], brake_light: ["light_red", "light_yellow"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "5–10 minutes",
       yield_estimate: "Brakes restored",
@@ -136,11 +136,11 @@ window.SOS_REGISTER_QUIZ({
       id: "red_brake_light",
       title: "🔴 Red brake light — DON'T DRIVE!",
       description: "Red light — critical failure. Driving is dangerous.",
-      conditions: { symptom: ["warning"], brake_light: ["red_light"] },
+      conditions: { symptom: ["warning_light"], brake_light: ["light_red"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "IMMEDIATE",
       yield_estimate: "Safety",
-      tags: ["red_light", "danger", "emergency"],
+      tags: ["light_red", "danger", "emergency"],
       steps: [
         "IMMEDIATELY stop if you're moving.",
         "Check the brake fluid level — it's probably low.",
@@ -164,7 +164,7 @@ window.SOS_REGISTER_QUIZ({
       id: "abs_light",
       title: "🟡 Yellow ABS light — diagnostics",
       description: "Yellow ABS light — issue with the anti-lock braking system.",
-      conditions: { symptom: ["warning"], brake_light: ["yellow_light"] },
+      conditions: { symptom: ["warning_light"], brake_light: ["light_yellow"] },
       scoring: { priority: "medium", reliability: "medium" },
       time_estimate: "10–30 minutes",
       yield_estimate: "ABS diagnosed",
@@ -280,7 +280,7 @@ window.SOS_REGISTER_QUIZ({
       id: "burning_smell_brakes",
       title: "👃 Burning smell — overheating or sticking",
       description: "Burning plastic smell — sign of overheated brakes or stuck caliper.",
-      conditions: { symptom: ["burning"] },
+      conditions: { symptom: ["burning_smell"] },
       scoring: { priority: "fast", reliability: "high" },
       time_estimate: "IMMEDIATE",
       yield_estimate: "Fire prevented",
@@ -365,7 +365,7 @@ window.SOS_REGISTER_QUIZ({
       id: "tow_truck_brakes",
       title: "🚛 Calling a tow truck (safe option)",
       description: "With serious brake issues, driving is dangerous. Towing is the best solution.",
-      conditions: { symptom: ["soft_pedal", "burning", "warning"], brake_light: ["red_light"] },
+      conditions: { symptom: ["soft_pedal", "burning_smell", "warning_light"], brake_light: ["light_red"] },
       scoring: { priority: "slow", reliability: "high" },
       time_estimate: "30–120 minutes",
       yield_estimate: "Car at service center",
