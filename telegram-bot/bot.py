@@ -1,97 +1,154 @@
 import logging
 import os
+import sys
+from datetime import datetime
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
-from config import TOKEN, APP_URL
+from config import TOKEN, APP_URL, BOT_VERSION
 
-# Настройка логов
+# ============================================================
+# НАСТРОЙКА ЛОГОВ
+# ============================================================
+
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 logger = logging.getLogger(__name__)
 
-# --- КОМАНДЫ БОТА ---
+# Версия бота
+BOT_VERSION = getattr(sys.modules.get('config'), 'BOT_VERSION', '2.0')
 
-# Команда /start
+# ============================================================
+# ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+# ============================================================
+
+def get_module_info(module_id):
+    """Возвращает информацию о модуле по ID"""
+    modules = {
+        'auto': {
+            'emoji': '🚗',
+            'name': 'Авто',
+            'desc': 'Поломки, ДТП, шины, аккумулятор, тормоза',
+            'categories': 'wont_start, overheating, flat_tire, brakes, battery, leak, dtp'
+        },
+        'home': {
+            'emoji': '🏠',
+            'name': 'Дом',
+            'desc': 'Пожар, газ, электричество, сантехника, замки',
+            'categories': 'plumbing, electricity, fire, gas, lock, heating, natural'
+        },
+        'lawyer': {
+            'emoji': '⚖️',
+            'name': 'Юрист',
+            'desc': 'ДТП, жильё, наследство, развод, долги',
+            'categories': 'dtp, labor, housing, inheritance, debts, divorce, consumer'
+        },
+        'pets': {
+            'emoji': '🐕',
+            'name': 'Животные',
+            'desc': 'Первая помощь, потеря, отравление, здоровье',
+            'categories': 'firstaid, lost, behavior, health, poison, emergency, care'
+        },
+        'travel': {
+            'emoji': '✈️',
+            'name': 'Путешествия',
+            'desc': 'Документы, кража, здоровье, отели, рейсы',
+            'categories': 'documents, money, health, flight, hotel, theft, lost'
+        },
+        'children': {
+            'emoji': '👶',
+            'name': 'Дети',
+            'desc': 'Безопасность, буллинг, здоровье, потеря',
+            'categories': 'safety, health, injury, lost, bullying, internet, school'
+        },
+        'drone': {
+            'emoji': '🪖',
+            'name': 'Дрон',
+            'desc': 'Инструкции, связь, эвакуация, первая помощь',
+            'categories': 'detect, identify, shelter, comms, evac, firstaid, prep'
+        },
+        'survival': {
+            'emoji': '🏕️',
+            'name': 'Выживание',
+            'desc': 'Вода, огонь, еда, укрытие, медицина, навигация',
+            'categories': 'water, fire, shelter, food, medicine, navigation, radio, kit'
+        }
+    }
+    return modules.get(module_id)
+
+# ============================================================
+# КОМАНДЫ БОТА
+# ============================================================
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Команда /start — приветствие и главное меню"""
     keyboard = [
         [InlineKeyboardButton("📱 Открыть приложение", url=APP_URL)],
-        [InlineKeyboardButton("📱 Скачать PWA", url=APP_URL)],
+        [InlineKeyboardButton("📋 Все модули", callback_data='modules')],
         [InlineKeyboardButton("🆘 SOS — инструкция", callback_data='sos')],
-        [InlineKeyboardButton("📖 Модули и помощь", callback_data='help')]
+        [InlineKeyboardButton("❓ Помощь", callback_data='help')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     await update.message.reply_text(
-        "🆘 *SOS UNIVERSAL* — твой универсальный ассистент в любой ситуации!\n\n"
-        "📱 Приложение работает *без интернета*.\n"
-        "🗺️ 8 модулей для разных жизненных ситуаций.\n"
-        "🌍 Русский и английский языки.\n"
-        "📴 Полностью офлайн.\n\n"
-        "🚗 *Авто* — поломки, ДТП\n"
-        "🏠 *Дом* — аварии, безопасность\n"
-        "⚖️ *Юрист* — права, документы\n"
-        "🐕 *Животные* — первая помощь питомцам\n"
-        "✈️ *Путешествия* — документы, утеря\n"
-        "👶 *Дети* — безопасность, здоровье\n"
-        "🪖 *Дрон* — инструкции\n"
-        "🏕️ *Выживание* — вода, огонь, еда\n\n"
-        "👉 *Открой прямо сейчас:*",
+        f"🆘 *SOS UNIVERSAL* — твой универсальный ассистент!\n\n"
+        f"📱 Приложение работает *без интернета*\n"
+        f"🗺️ 8 модулей для разных ситуаций\n"
+        f"🌍 Русский и английский языки\n"
+        f"📴 Полностью офлайн\n\n"
+        f"👉 *Выбери действие:*",
         reply_markup=reply_markup,
         parse_mode='Markdown'
     )
 
-# Команда /help
+
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Команда /help — инструкция по использованию"""
     keyboard = [
         [InlineKeyboardButton("📱 Открыть приложение", url=APP_URL)],
-        [InlineKeyboardButton("🆘 SOS", callback_data='sos')],
         [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     await update.message.reply_text(
-        "🆘 *SOS UNIVERSAL* — 8 модулей помощи:\n\n"
-        "🚗 *Авто* — поломки, ДТП, шины, аккумулятор\n"
-        "🏠 *Дом* — пожар, газ, электричество, сантехника\n"
-        "⚖️ *Юрист* — ДТП, жильё, наследство, развод\n"
-        "🐕 *Животные* — первая помощь, потеря, отравление\n"
-        "✈️ *Путешествия* — документы, кража, здоровье\n"
-        "👶 *Дети* — безопасность, буллинг, потеря\n"
-        "🪖 *Дрон* — инструкции, первая помощь\n"
-        "🏕️ *Выживание* — вода, огонь, еда, укрытие\n\n"
-        "💡 *Как работает:* отвечай на вопросы → получай решения\n\n"
+        "🆘 *Как пользоваться SOS UNIVERSAL:*\n\n"
+        "1️⃣ Открой приложение\n"
+        "2️⃣ Выбери модуль (Авто, Дом, Юрист...)\n"
+        "3️⃣ Ответь на 3-5 вопросов\n"
+        "4️⃣ Получи пошаговые инструкции\n\n"
+        "✅ *Всё просто и быстро!*\n"
+        "📴 *Работает без интернета*\n"
+        "🌍 *На русском и английском*\n\n"
         f"📱 *Открыть:* {APP_URL}",
         reply_markup=reply_markup,
         parse_mode='Markdown'
     )
 
-# Команда /demo — как пользоваться
+
 async def demo_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Команда /demo — демонстрация работы"""
     keyboard = [
-        [InlineKeyboardButton("📱 Открыть приложение", url=APP_URL)]
+        [InlineKeyboardButton("📱 Попробовать сейчас", url=APP_URL)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     await update.message.reply_text(
-        "📱 *Как пользоваться SOS UNIVERSAL:*\n\n"
-        "1️⃣ Открой приложение\n"
-        "2️⃣ Выбери модуль (Авто, Дом, Юрист...)\n"
-        "3️⃣ Ответь на 3-4 вопроса\n"
-        "4️⃣ Получи 2-5 решений с пошаговыми инструкциями\n\n"
-        "✅ *Всё просто и быстро!*\n"
-        "📴 *Работает без интернета*\n"
-        "🌍 *На русском и английском*\n\n"
-        f"📱 *Попробуй сейчас:* {APP_URL}",
+        "🎯 *Демо-режим:*\n\n"
+        "📱 Открой приложение и выбери модуль *Авто*\n"
+        "🔌 Нажми *«Не заводится»*\n"
+        "🔋 Ответь на вопросы о состоянии авто\n"
+        "🛠️ Получи пошаговый план действий\n\n"
+        "🔥 *Попробуй прямо сейчас!*",
         reply_markup=reply_markup,
         parse_mode='Markdown'
     )
 
-# Команда /sos — экстренная помощь
+
 async def sos_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Команда /sos — экстренная помощь"""
     keyboard = [
-        [InlineKeyboardButton("🚨 Открыть SOS в приложении", url=APP_URL)],
+        [InlineKeyboardButton("🚨 Открыть SOS", url=APP_URL)],
         [InlineKeyboardButton("📱 Скачать приложение", url=APP_URL)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -102,19 +159,20 @@ async def sos_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "2️⃣ Нажми *SOS — Я в опасности*\n"
         "3️⃣ Введи телефон близкого человека\n"
         "4️⃣ Нажми *ОТПРАВИТЬ SOS*\n\n"
-        "📱 Приложение отправит *SMS* с вашими координатами и ссылкой на карту.\n\n"
-        "⚠️ *Если связи нет* — используйте сигналы:\n"
-        "• 3 огня в треугольнике (международный сигнал)\n"
-        "• Зеркало для отражения солнца\n"
-        "• Свисток (3 коротких звука)\n"
-        "• Буквы SOS на земле (камни, ветки)\n\n"
-        f"📱 *Открыть приложение:* {APP_URL}",
+        "📱 Приложение отправит *SMS* с координатами\n\n"
+        "⚠️ *Сигналы бедствия:*\n"
+        "• 🔥 3 огня в треугольнике\n"
+        "• 🪞 Зеркало для отражения солнца\n"
+        "• 🔊 Свисток (3 коротких звука)\n"
+        "• 🪨 Буквы SOS на земле\n\n"
+        f"📱 *Открыть:* {APP_URL}",
         reply_markup=reply_markup,
         parse_mode='Markdown'
     )
 
-# Команда /modules — список модулей
+
 async def modules_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Команда /modules — список всех модулей"""
     keyboard = [
         [InlineKeyboardButton("🚗 Авто", callback_data='module_auto')],
         [InlineKeyboardButton("🏠 Дом", callback_data='module_home')],
@@ -130,25 +188,36 @@ async def modules_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await update.message.reply_text(
         "📋 *Модули SOS UNIVERSAL:*\n\n"
-        "Выбери нужный модуль, чтобы узнать подробности:",
+        "Выбери нужный модуль для подробностей:",
         reply_markup=reply_markup,
         parse_mode='Markdown'
     )
 
-# Команда /about — информация о боте
+
 async def about_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Команда /about — информация о боте"""
     await update.message.reply_text(
-        "🤖 *SOS UNIVERSAL Bot*\n\n"
-        "Версия: 2.0\n"
-        "Разработан для помощи в любых ситуациях.\n"
-        "Исходный код: https://github.com/zimatoken/sos-universal\n"
-        f"Приложение: {APP_URL}",
+        f"🤖 *SOS UNIVERSAL Bot*\n\n"
+        f"Версия: {BOT_VERSION}\n"
+        f"Разработан для помощи в любых ситуациях\n"
+        f"📱 Приложение: {APP_URL}\n\n"
+        f"💡 *Команды:*\n"
+        f"/start — Главное меню\n"
+        f"/help — Инструкция\n"
+        f"/demo — Демонстрация\n"
+        f"/sos — Экстренная помощь\n"
+        f"/modules — Все модули\n"
+        f"/about — О боте",
         parse_mode='Markdown'
     )
 
-# --- ОБРАБОТЧИКИ КНОПОК ---
+
+# ============================================================
+# ОБРАБОТЧИКИ КНОПОК
+# ============================================================
 
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обработка нажатий на кнопки"""
     query = update.callback_query
     await query.answer()
     
@@ -181,11 +250,12 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "2️⃣ Нажми *SOS — Я в опасности*\n"
             "3️⃣ Введи телефон близкого человека\n"
             "4️⃣ Нажми *ОТПРАВИТЬ SOS*\n\n"
-            "📱 Приложение отправит *SMS* с координатами.\n\n"
+            "📱 Приложение отправит *SMS* с координатами\n\n"
             "⚠️ *Сигналы бедствия:*\n"
-            "• 3 огня в треугольнике\n"
-            "• Зеркало для отражения солнца\n"
-            "• Свисток (3 коротких звука)\n\n"
+            "• 🔥 3 огня в треугольнике\n"
+            "• 🪞 Зеркало для отражения солнца\n"
+            "• 🔊 Свисток (3 коротких звука)\n"
+            "• 🪨 Буквы SOS на земле\n\n"
             f"📱 *Открыть:* {APP_URL}",
             parse_mode='Markdown',
             reply_markup=InlineKeyboardMarkup([
@@ -210,173 +280,73 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         await query.edit_message_text(
             "📋 *Модули SOS UNIVERSAL:*\n\n"
-            "Выбери нужный модуль, чтобы узнать подробности:",
+            "Выбери нужный модуль для подробностей:",
             reply_markup=reply_markup,
             parse_mode='Markdown'
         )
     
-    # --- ОТДЕЛЬНЫЕ МОДУЛИ ---
-    elif query.data == 'module_auto':
-        await query.edit_message_text(
-            "🚗 *Модуль АВТО*\n\n"
-            "Помощь при:\n"
-            "• ДТП (авария)\n"
-            "• Прокол шины\n"
-            "• Разряженный аккумулятор\n"
-            "• Перегрев двигателя\n"
-            "• Утечка жидкостей\n"
-            "• Отказ тормозов\n"
-            "• Автомобиль не заводится\n\n"
-            f"📱 *Открыть модуль:* {APP_URL}",
-            parse_mode='Markdown',
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📱 Открыть Авто", url=APP_URL)],
-                [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
-            ])
-        )
+    # --- ОТДЕЛЬНЫЕ МОДУЛИ (динамическая обработка) ---
+    elif query.data.startswith('module_'):
+        module_id = query.data.replace('module_', '')
+        module = get_module_info(module_id)
+        
+        if module:
+            await query.edit_message_text(
+                f"{module['emoji']} *Модуль {module['name']}*\n\n"
+                f"Помощь при:\n"
+                f"• {module['desc']}\n\n"
+                f"📂 *Категории:* {module['categories']}\n\n"
+                f"📱 *Открыть модуль:* {APP_URL}",
+                parse_mode='Markdown',
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton(f"📱 Открыть {module['name']}", url=APP_URL)],
+                    [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
+                ])
+            )
+        else:
+            await query.edit_message_text(
+                "❌ Модуль не найден",
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
+                ])
+            )
+
+
+# ============================================================
+# ОБРАБОТКА ОШИБОК
+# ============================================================
+
+async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обработчик ошибок"""
+    logger.error(f"❌ Ошибка: {context.error}")
     
-    elif query.data == 'module_home':
-        await query.edit_message_text(
-            "🏠 *Модуль ДОМ*\n\n"
-            "Помощь при:\n"
-            "• Пожар в квартире/доме\n"
-            "• Утечка газа\n"
-            "• Проблемы с электричеством\n"
-            "• Засор/утечка воды\n"
-            "• Сломанный замок\n"
-            "• Отопление\n"
-            "• Природные ЧС\n\n"
-            f"📱 *Открыть модуль:* {APP_URL}",
-            parse_mode='Markdown',
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📱 Открыть Дом", url=APP_URL)],
-                [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
-            ])
-        )
-    
-    elif query.data == 'module_lawyer':
-        await query.edit_message_text(
-            "⚖️ *Модуль ЮРИСТ*\n\n"
-            "Помощь при:\n"
-            "• ДТП (оформление)\n"
-            "• Жилищные вопросы\n"
-            "• Трудовые споры\n"
-            "• Наследство\n"
-            "• Долги\n"
-            "• Развод\n"
-            "• Защита прав потребителей\n\n"
-            f"📱 *Открыть модуль:* {APP_URL}",
-            parse_mode='Markdown',
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📱 Открыть Юрист", url=APP_URL)],
-                [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
-            ])
-        )
-    
-    elif query.data == 'module_pets':
-        await query.edit_message_text(
-            "🐕 *Модуль ЖИВОТНЫЕ*\n\n"
-            "Помощь при:\n"
-            "• Первая помощь питомцу\n"
-            "• Потеря животного\n"
-            "• Отравление\n"
-            "• Поведенческие проблемы\n"
-            "• Здоровье питомца\n"
-            "• Экстренные ситуации\n"
-            "• Уход за животным\n\n"
-            f"📱 *Открыть модуль:* {APP_URL}",
-            parse_mode='Markdown',
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📱 Открыть Животные", url=APP_URL)],
-                [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
-            ])
-        )
-    
-    elif query.data == 'module_travel':
-        await query.edit_message_text(
-            "✈️ *Модуль ПУТЕШЕСТВИЯ*\n\n"
-            "Помощь при:\n"
-            "• Потеря документов\n"
-            "• Кража денег/вещей\n"
-            "• Проблемы со здоровьем\n"
-            "• Задержка/отмена рейса\n"
-            "• Проблемы с отелем\n"
-            "• Потеря багажа\n\n"
-            f"📱 *Открыть модуль:* {APP_URL}",
-            parse_mode='Markdown',
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📱 Открыть Путешествия", url=APP_URL)],
-                [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
-            ])
-        )
-    
-    elif query.data == 'module_children':
-        await query.edit_message_text(
-            "👶 *Модуль ДЕТИ*\n\n"
-            "Помощь при:\n"
-            "• Безопасность ребёнка\n"
-            "• Буллинг в школе\n"
-            "• Здоровье ребёнка\n"
-            "• Травмы\n"
-            "• Потеря ребёнка\n"
-            "• Интернет-безопасность\n\n"
-            f"📱 *Открыть модуль:* {APP_URL}",
-            parse_mode='Markdown',
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📱 Открыть Дети", url=APP_URL)],
-                [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
-            ])
-        )
-    
-    elif query.data == 'module_drone':
-        await query.edit_message_text(
-            "🪖 *Модуль ДРОН*\n\n"
-            "Помощь при:\n"
-            "• Подготовка к полёту\n"
-            "• Идентификация объектов\n"
-            "• Связь и сигналы\n"
-            "• Эвакуация\n"
-            "• Первая помощь\n"
-            "• Укрытие и маскировка\n"
-            "• Обнаружение\n\n"
-            f"📱 *Открыть модуль:* {APP_URL}",
-            parse_mode='Markdown',
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📱 Открыть Дрон", url=APP_URL)],
-                [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
-            ])
-        )
-    
-    elif query.data == 'module_survival':
-        await query.edit_message_text(
-            "🏕️ *Модуль ВЫЖИВАНИЕ*\n\n"
-            "Помощь при:\n"
-            "• Вода — добыча и очистка\n"
-            "• Огонь — разведение в любых условиях\n"
-            "• Укрытие — защита от непогоды\n"
-            "• Еда — добыча в дикой природе\n"
-            "• Медицина — первая помощь\n"
-            "• Навигация — ориентирование\n"
-            "• Связь — сигналы и связь\n"
-            "• Чемоданчик — чек-листы\n\n"
-            f"📱 *Открыть модуль:* {APP_URL}",
-            parse_mode='Markdown',
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📱 Открыть Выживание", url=APP_URL)],
-                [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
-            ])
+    if update and update.effective_message:
+        await update.effective_message.reply_text(
+            "❌ Произошла ошибка. Пожалуйста, попробуйте позже.\n"
+            "Если ошибка повторяется, сообщите разработчику."
         )
 
-# --- ГЛАВНАЯ ФУНКЦИЯ ---
+
+# ============================================================
+# ГЛАВНАЯ ФУНКЦИЯ
+# ============================================================
 
 def main():
+    """Запуск бота"""
     try:
-        # Пытаемся создать приложение
+        # Проверяем токен
+        if not TOKEN or TOKEN == 'YOUR_TOKEN_HERE':
+            logger.error("❌ Токен не настроен! Укажи TOKEN в config.py")
+            print("❌ Токен не настроен! Укажи TOKEN в config.py")
+            return
+        
+        # Создаём приложение
         app = Application.builder().token(TOKEN).build()
         logger.info("✅ Приложение успешно создано")
+        
     except Exception as e:
         logger.error(f"❌ Ошибка при создании приложения: {e}")
-        logger.error("Проверьте токен в config.py и интернет-соединение.")
+        print(f"❌ Ошибка при создании приложения: {e}")
         return
     
     # Регистрируем команды
@@ -387,18 +357,23 @@ def main():
     app.add_handler(CommandHandler("modules", modules_command))
     app.add_handler(CommandHandler("about", about_command))
     
-    # Регистрируем обработчик кнопок
+    # Регистрируем обработчики
     app.add_handler(CallbackQueryHandler(button_handler))
+    app.add_error_handler(error_handler)
     
     # Запуск
-    logger.info("🤖 Бот SOS UNIVERSAL запущен! Нажми Ctrl+C для остановки.")
-    print("🤖 Бот SOS UNIVERSAL запущен! Нажми Ctrl+C для остановки.")
+    logger.info(f"🤖 Бот SOS UNIVERSAL v{BOT_VERSION} запущен!")
+    print(f"🤖 Бот SOS UNIVERSAL v{BOT_VERSION} запущен! Нажми Ctrl+C для остановки.")
     
     try:
         app.run_polling(allowed_updates=Update.ALL_TYPES)
+    except KeyboardInterrupt:
+        logger.info("🛑 Бот остановлен пользователем")
+        print("🛑 Бот остановлен")
     except Exception as e:
-        logger.error(f"❌ Ошибка при запуске polling: {e}")
+        logger.error(f"❌ Ошибка при запуске: {e}")
         print(f"❌ Ошибка: {e}")
+
 
 if __name__ == '__main__':
     main()
