@@ -1,5 +1,5 @@
 // === SOS UNIVERSAL — ЯДРО ПРИЛОЖЕНИЯ ===
-// Версия 2.0 — модульная архитектура с поддержкой условий
+// Версия 2.0 — модульная архитектура с поддержей условий
 // Полностью рабочий движок для всех разделов
 
 // ============================================================
@@ -7,13 +7,13 @@
 // ============================================================
 
 const App = {
-  flow: null,              // Текущий модуль (данные)
-  allQuestions: [],        // Все вопросы модуля (исходные)
-  visibleQuestions: [],    // Вопросы, прошедшие фильтр условий
-  currentIndex: 0,         // Индекс в visibleQuestions
-  answers: {},             // Ответы пользователя { questionId: [selectedIds] }
-  results: [],             // Последние результаты
-  isComplete: false        // Флаг завершения квиза
+  flow: null,
+  allQuestions: [],
+  visibleQuestions: [],
+  currentIndex: 0,
+  answers: {},
+  results: [],
+  isComplete: false
 };
 
 // ============================================================
@@ -56,37 +56,18 @@ function goHome() {
 // 3. ФИЛЬТРАЦИЯ ВОПРОСОВ ПО УСЛОВИЯМ
 // ============================================================
 
-/**
- * Проверяет, выполняется ли условие для вопроса
- * @param {Object} question - вопрос с полем conditions
- * @param {Object} answers - текущие ответы
- * @returns {boolean}
- */
 function isQuestionVisible(question, answers) {
-  // Нет условий → всегда видим
   if (!question.conditions) return true;
   
-  // Проверяем все условия
   for (const [key, allowedValues] of Object.entries(question.conditions)) {
     const userAnswer = answers[key];
-    
-    // Если ответа нет → условие не выполнено
     if (!userAnswer || userAnswer.length === 0) return false;
-    
-    // Хотя бы одно значение из ответа должно совпадать с разрешёнными
     const hasMatch = userAnswer.some(val => allowedValues.includes(val));
     if (!hasMatch) return false;
   }
-  
   return true;
 }
 
-/**
- * Фильтрует вопросы на основе текущих ответов
- * @param {Array} questions - все вопросы модуля
- * @param {Object} answers - текущие ответы
- * @returns {Array} - видимые вопросы
- */
 function getVisibleQuestions(questions, answers) {
   if (!questions || questions.length === 0) return [];
   return questions.filter(q => isQuestionVisible(q, answers));
@@ -96,25 +77,24 @@ function getVisibleQuestions(questions, answers) {
 // 4. ЗАПУСК КВИЗА
 // ============================================================
 
+function detectModuleFromPath() {
+  const path = window.location.pathname;
+  const m = path.match(/modules\/([^/]+)/);
+  return m ? m[1] : 'unknown';
+}
+
 function startFlow(category) {
-  // Определяем модуль из data-атрибута на body
   const moduleId = document.body.dataset.module || detectModuleFromPath();
   
-  // Пробуем новый реестр (Smart Adapter)
   let flow = null;
   if (typeof SOS_GET_QUIZ === 'function') {
     flow = SOS_GET_QUIZ(moduleId, category);
-    if (flow) {
-      console.log(`✅ Smart Adapter: ${moduleId}/${category}`);
-    }
+    if (flow) console.log(`✅ Smart Adapter: ${moduleId}/${category}`);
   }
   
-  // Fallback на старый getCategoryData
   if (!flow && typeof getCategoryData === 'function') {
     flow = getCategoryData(category);
-    if (flow) {
-      console.log(`✅ Fallback: ${category}`);
-    }
+    if (flow) console.log(`✅ Fallback: ${category}`);
   }
   
   if (!flow) {
@@ -123,14 +103,12 @@ function startFlow(category) {
     return;
   }
   
-  // Инициализируем состояние (ОСТАЛЬНОЙ КОД НЕ МЕНЯЕТСЯ!)
   App.flow = flow;
   App.allQuestions = flow.questions || [];
   App.answers = {};
   App.currentIndex = 0;
   App.isComplete = false;
   
-  // Первичная фильтрация
   App.visibleQuestions = getVisibleQuestions(App.allQuestions, App.answers);
   
   if (App.visibleQuestions.length === 0) {
@@ -143,21 +121,10 @@ function startFlow(category) {
 }
 
 // ============================================================
-// ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ (добавить после startFlow)
-// ============================================================
-
-function detectModuleFromPath() {
-  const path = window.location.pathname;
-  const m = path.match(/modules\/([^/]+)/);
-  return m ? m[1] : 'unknown';
-}
-
-// ============================================================
 // 5. ОТОБРАЖЕНИЕ ВОПРОСА
 // ============================================================
 
 function renderQuestion() {
-  // Проверка наличия вопросов
   if (!App.visibleQuestions || App.visibleQuestions.length === 0) {
     const container = document.getElementById("question-container");
     if (container) {
@@ -166,17 +133,15 @@ function renderQuestion() {
     return;
   }
   
-  // Проверка индекса
   if (App.currentIndex >= App.visibleQuestions.length) {
     showResults();
     return;
   }
   
   const question = App.visibleQuestions[App.currentIndex];
-  const total = App.allQuestions.length; // ← ВСЕ вопросы для нумерации!
+  const total = App.allQuestions.length;
   const current = App.currentIndex + 1;
   
-  // Прогресс-бар (по всем вопросам)
   const progress = (App.currentIndex / Math.max(total, 1)) * 100;
   const progressBar = document.getElementById("progress");
   if (progressBar) progressBar.style.width = progress + "%";
@@ -189,31 +154,23 @@ function renderQuestion() {
   
   let html = '<div class="question-card">';
   
-  // Номер вопроса (сквозная нумерация по ВСЕМ вопросам)
-  const numText = (window.t ? t('question_of') : 'Вопрос {current} из {total}')
-    .replace('{current}', current)
-    .replace('{total}', total);
+  let numText = 'Вопрос {current} из {total}';
+  if (typeof window.t === 'function') {
+    const translated = t('question_of', { current: current, total: total });
+    if (translated && translated.includes('{')) {
+      numText = translated;
+    } else if (translated) {
+      numText = translated;
+    }
+  }
+  numText = numText.replace(/\{current\}/g, current).replace(/\{total\}/g, total);
   
   html += `<div class="question-num">${numText}</div>`;
   html += `<h3>${question.text}</h3>`;
   
-  // Подсказка для multi
   if (isMulti) {
-    html += `<p class="question-hint" style="
-      margin: 0 0 14px 0;
-      padding: 10px 14px;
-      background: rgba(59, 130, 246, 0.15);
-      border-left: 3px solid #3b82f6;
-      border-radius: 0 8px 8px 0;
-      color: #60a5fa;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.4;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    ">
-      <span style="margin-right: 4px;">✅</span>
+    html += `<p class="question-hint">
+      <span>✅</span>
       Можно выбрать <strong>несколько вариантов</strong>
     </p>`;
   }
@@ -234,7 +191,6 @@ function renderQuestion() {
   html += '</div></div>';
   container.innerHTML = html;
   
-  // Кнопка "Далее"
   const nextBtn = document.getElementById("next-btn");
   if (nextBtn) {
     const hasSelected = container.querySelectorAll('.option.selected').length > 0;
@@ -252,7 +208,6 @@ function selectOption(el, questionId, isMulti) {
   if (!el) return;
   
   if (!isMulti) {
-    // Single: снимаем все остальные в этой группе
     const parent = el.parentElement;
     parent.querySelectorAll(".option").forEach(o => {
       o.classList.remove("selected");
@@ -261,14 +216,12 @@ function selectOption(el, questionId, isMulti) {
     });
   }
   
-  // Переключаем текущий
   el.classList.toggle("selected");
   const check = el.querySelector(".check");
   if (check) {
     check.textContent = el.classList.contains("selected") ? "✓" : "";
   }
   
-  // Обновляем кнопку
   const selected = document.querySelectorAll(".option.selected");
   const nextBtn = document.getElementById("next-btn");
   if (nextBtn) nextBtn.disabled = selected.length === 0;
@@ -279,7 +232,6 @@ function selectOption(el, questionId, isMulti) {
 // ============================================================
 
 function nextQuestion() {
-  // Проверка состояния
   if (!App.visibleQuestions || App.visibleQuestions.length === 0) {
     showToast("❌ Ошибка: нет вопросов");
     return;
@@ -290,29 +242,23 @@ function nextQuestion() {
     return;
   }
   
-  // Сохраняем ответ на текущий вопрос
   const question = App.visibleQuestions[App.currentIndex];
   const selected = document.querySelectorAll(".option.selected");
   const values = Array.from(selected).map(el => el.dataset.id);
   App.answers[question.id] = values;
   
-  // Переходим к следующему индексу
   App.currentIndex++;
   
-  // Пересчитываем видимые вопросы на основе новых ответов
   const newVisible = getVisibleQuestions(App.allQuestions, App.answers);
   
-  // Если список видимых вопросов изменился — обновляем
   if (newVisible.length !== App.visibleQuestions.length) {
     App.visibleQuestions = newVisible;
-    // Если текущий индекс вышел за пределы — показываем результаты
     if (App.currentIndex >= App.visibleQuestions.length) {
       showResults();
       return;
     }
   }
   
-  // Проверяем, есть ли ещё вопросы
   if (App.currentIndex < App.visibleQuestions.length) {
     renderQuestion();
   } else {
@@ -321,7 +267,7 @@ function nextQuestion() {
 }
 
 // ============================================================
-// 8. РЕЗУЛЬТАТЫ
+// 8. РЕЗУЛЬТАТЫ (С ПРАВИЛЬНЫМИ КЛАССАМИ БЕЙДЖЕЙ)
 // ============================================================
 
 function showResults() {
@@ -330,18 +276,14 @@ function showResults() {
   const flow = App.flow;
   if (!flow) return;
   
-  const iconMap = {
-    water: "💧", fire: "🔥", shelter: "🏠", 
-    food: "🍖", medicine: "🩹", radio: "📻", navigation: "🧭"
-  };
-  
   const iconEl = document.getElementById("result-icon");
-  if (iconEl) iconEl.textContent = iconMap[flow.category] || "🆘";
+  if (iconEl) iconEl.textContent = flow.meta?.icon || "🆘";
   
   const titleEl = document.getElementById("result-title");
   if (titleEl) {
     const label = window.t ? t('results_title') : 'Результаты: {title}';
-    titleEl.textContent = label.replace('{title}', flow.title || "Результаты");
+    const title = flow.meta?.title || flow.title || "Результаты";
+    titleEl.textContent = label.replace('{title}', title);
   }
   
   const subtitleEl = document.getElementById("result-subtitle");
@@ -349,7 +291,6 @@ function showResults() {
     subtitleEl.textContent = window.t ? t('results_subtitle') : 'Подходящие решения для вашей ситуации';
   }
   
-  // Фильтруем решения
   const matched = typeof filterSolutions === 'function' 
     ? filterSolutions(flow, App.answers) 
     : (flow.solutions || []).slice(0, 5);
@@ -371,14 +312,18 @@ function showResults() {
       const prioMap = { fast: '⚡ Быстро', medium: '⏱️ Средне', slow: '🐢 Долго' };
       const relMap = { high: '✅ Надёжно', medium: '⚠️ Средне', low: '❌ Низко' };
       
-      const prioLabel = prioMap[sol.priority] || sol.priority || '';
-      const relLabel = relMap[sol.reliability] || sol.reliability || '';
+      const prio = sol.scoring?.priority || sol.priority || 'medium';
+      const rel = sol.scoring?.reliability || sol.reliability || 'medium';
+      
+      const prioLabel = prioMap[prio] || prio;
+      const relLabel = relMap[rel] || rel;
       
       const desc = sol.description ? sol.description.substring(0, 120) : "";
       
+      // ✅ ПРАВИЛЬНЫЕ КЛАССЫ: prio-* и rel-*
       html += `<div class="result-card" onclick="showDetail('${sol.id}')">
-        <span class="badge fast">${prioLabel}</span>
-        <span class="badge high">${relLabel}</span>
+        <span class="badge prio-${prio}">${prioLabel}</span>
+        <span class="badge rel-${rel}">${relLabel}</span>
         <h4>${i+1}. ${sol.title}</h4>
         <p>${desc}${desc.length >= 120 ? '...' : ''}</p>
         <div class="meta">
@@ -393,7 +338,7 @@ function showResults() {
 }
 
 // ============================================================
-// 9. ДЕТАЛИ РЕШЕНИЯ
+// 9. ДЕТАЛИ РЕШЕНИЯ (С ПРАВИЛЬНЫМИ КЛАССАМИ БЕЙДЖЕЙ)
 // ============================================================
 
 function showDetail(solutionId) {
@@ -414,8 +359,24 @@ function showDetail(solutionId) {
   const container = document.getElementById("detail-container");
   if (!container) return;
   
+  const prioMap = { fast: '⚡ Быстро', medium: '⏱️ Средне', slow: '🐢 Долго' };
+  const relMap = { high: '✅ Надёжно', medium: '⚠️ Средне', low: '❌ Низко' };
+  
+  const prio = solution.scoring?.priority || solution.priority || 'medium';
+  const rel = solution.scoring?.reliability || solution.reliability || 'medium';
+  
+  const prioLabel = prioMap[prio] || prio;
+  const relLabel = relMap[rel] || rel;
+  
+  // ✅ ПРАВИЛЬНЫЕ КЛАССЫ: prio-* и rel-*
   let html = `<div class="detail-card">
     <h2>${solution.title}</h2>
+    <div class="detail-meta">
+      <span class="badge prio-${prio}">${prioLabel}</span>
+      <span class="badge rel-${rel}">${relLabel}</span>
+      ${solution.time_estimate ? `<span class="badge time">⏱️ ${solution.time_estimate}</span>` : ''}
+      ${solution.yield_estimate ? `<span class="badge yield">🎯 ${solution.yield_estimate}</span>` : ''}
+    </div>
     <div class="detail-desc">${solution.description}</div>`;
   
   if (solution.steps && solution.steps.length) {
@@ -434,10 +395,7 @@ function showDetail(solutionId) {
     html += '</div>';
   }
   
-  html += `<div class="meta" style="margin-top:16px;">
-    ${solution.time_estimate ? `<span>⏱️ ${solution.time_estimate}</span>` : ''}
-    ${solution.yield_estimate ? `<span>📦 ${solution.yield_estimate}</span>` : ''}
-  </div></div>`;
+  html += `</div>`;
   
   container.innerHTML = html;
 }

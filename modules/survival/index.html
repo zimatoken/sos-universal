@@ -232,17 +232,20 @@
   <div class="toast" id="toast"></div>
 
   <!-- ========================================== -->
-  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ      -->
+  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ v4.0 -->
   <!-- ========================================== -->
 
   <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
   <script src="../../core/locales.js"></script>
 
-  <!-- 2. ТЕМА И ГОЛОС -->
+  <!-- 2. РЕЕСТР — ОБЯЗАТЕЛЬНО ПЕРЕД ДАННЫМИ! -->
+  <script src="../../core/registry.js"></script>
+
+  <!-- 3. ТЕМА И ГОЛОС -->
   <script src="../../core/theme.js"></script>
   <script src="../../core/voice.js"></script>
 
-  <!-- 3. РУССКИЕ ДАННЫЕ -->
+<!-- 4. РУССКИЕ ДАННЫЕ (SURVIVAL) -->
   <script src="data/water.js"></script>
   <script src="data/fire.js"></script>
   <script src="data/shelter.js"></script>
@@ -252,7 +255,7 @@
   <script src="data/radio.js"></script>
   <script src="data/kit.js"></script>
 
-  <!-- 4. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
+  <!-- 5. АНГЛИЙСКИЕ ДАННЫЕ (SURVIVAL) -->
   <script src="data/en/water-en.js"></script>
   <script src="data/en/fire-en.js"></script>
   <script src="data/en/shelter-en.js"></script>
@@ -262,18 +265,14 @@
   <script src="data/en/radio-en.js"></script>
   <script src="data/en/kit-en.js"></script>
 
-  <!-- 5. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
+  <!-- 6. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
   <script>
-    // Инициализируем текущий язык из localStorage
     window.currentLang = localStorage.getItem('language') || 'ru';
     console.log('🌍 Текущий язык инициализирован:', window.currentLang);
   </script>
 
-  <!-- 6. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
+  <!-- 7. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
   <script src="../../core/engine.js"></script>
-
-  <!-- 7. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
-  <script src="i18n.js"></script>
 
   <!-- 8. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
   <script src="../../core/app.js"></script>
@@ -319,11 +318,7 @@
 
     // Функция обновления переводов
     function updateTranslations(lang) {
-      const coreTexts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
-      const moduleTexts = typeof SURVIVAL_LOCALES !== 'undefined' ? (SURVIVAL_LOCALES[lang] || SURVIVAL_LOCALES.ru) : {};
-      
-      const texts = { ...coreTexts, ...moduleTexts };
-      
+      const texts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         if (texts[key]) {

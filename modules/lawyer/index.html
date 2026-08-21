@@ -227,17 +227,20 @@
   <div class="toast" id="toast"></div>
 
   <!-- ========================================== -->
-  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ      -->
+  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ v4.0 -->
   <!-- ========================================== -->
 
   <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
   <script src="../../core/locales.js"></script>
 
-  <!-- 2. ТЕМА И ГОЛОС -->
+  <!-- 2. РЕЕСТР — ОБЯЗАТЕЛЬНО ПЕРЕД ДАННЫМИ! -->
+  <script src="../../core/registry.js"></script>
+
+  <!-- 3. ТЕМА И ГОЛОС -->
   <script src="../../core/theme.js"></script>
   <script src="../../core/voice.js"></script>
 
-  <!-- 3. РУССКИЕ ДАННЫЕ -->
+  <!-- 4. РУССКИЕ ДАННЫЕ (LAWYER) -->
   <script src="data/dtp.js"></script>
   <script src="data/labor.js"></script>
   <script src="data/housing.js"></script>
@@ -246,7 +249,7 @@
   <script src="data/divorce.js"></script>
   <script src="data/consumer.js"></script>
 
-  <!-- 4. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
+  <!-- 5. АНГЛИЙСКИЕ ДАННЫЕ (LAWYER) -->
   <script src="data/en/dtp-en.js"></script>
   <script src="data/en/labor-en.js"></script>
   <script src="data/en/housing-en.js"></script>
@@ -255,18 +258,14 @@
   <script src="data/en/divorce-en.js"></script>
   <script src="data/en/consumer-en.js"></script>
 
-  <!-- 5. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
+  <!-- 6. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
   <script>
-    // Инициализируем текущий язык из localStorage
     window.currentLang = localStorage.getItem('language') || 'ru';
     console.log('🌍 Текущий язык инициализирован:', window.currentLang);
   </script>
 
-  <!-- 6. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
+  <!-- 7. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
   <script src="../../core/engine.js"></script>
-
-  <!-- 7. ЛОКАЛИЗАЦИЯ МОДУЛЯ -->
-  <script src="i18n.js"></script>
 
   <!-- 8. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
   <script src="../../core/app.js"></script>
@@ -312,11 +311,7 @@
 
     // Функция обновления переводов
     function updateTranslations(lang) {
-      const coreTexts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
-      const moduleTexts = typeof LAWYER_LOCALES !== 'undefined' ? (LAWYER_LOCALES[lang] || LAWYER_LOCALES.ru) : {};
-      
-      const texts = { ...coreTexts, ...moduleTexts };
-      
+      const texts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         if (texts[key]) {

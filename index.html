@@ -127,23 +127,48 @@
   </div>
 
   <!-- ========================================== -->
-  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ      -->
+  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ v4.0 -->
   <!-- ========================================== -->
 
-  <!-- 1. ЛОКАЛИЗАЦИЯ -->
-  <script src="./core/locales.js"></script>
+  <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
+  <script src="../../core/locales.js"></script>
 
-  <!-- 2. ТЕМА -->
-  <script src="./core/theme.js"></script>
+  <!-- 2. РЕЕСТР — ОБЯЗАТЕЛЬНО ПЕРЕД ДАННЫМИ! -->
+  <script src="../../core/registry.js"></script>
 
-  <!-- 3. ГОЛОС -->
-  <script src="./core/voice.js"></script>
+  <!-- 3. ТЕМА И ГОЛОС -->
+  <script src="../../core/theme.js"></script>
+  <script src="../../core/voice.js"></script>
 
-  <!-- 4. ДВИЖОК -->
-  <script src="./core/engine.js"></script>
+  <!-- 4. РУССКИЕ ДАННЫЕ -->
+  <script src="data/documents.js"></script>
+  <script src="data/money.js"></script>
+  <script src="data/health.js"></script>
+  <script src="data/flight.js"></script>
+  <script src="data/hotel.js"></script>
+  <script src="data/theft.js"></script>
+  <script src="data/lost.js"></script>
 
-  <!-- 5. ПРИЛОЖЕНИЕ -->
-  <script src="./core/app.js"></script>
+  <!-- 5. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
+  <script src="data/en/documents-en.js"></script>
+  <script src="data/en/money-en.js"></script>
+  <script src="data/en/health-en.js"></script>
+  <script src="data/en/flight-en.js"></script>
+  <script src="data/en/hotel-en.js"></script>
+  <script src="data/en/theft-en.js"></script>
+  <script src="data/en/lost-en.js"></script>
+
+  <!-- 6. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
+  <script>
+    window.currentLang = localStorage.getItem('language') || 'ru';
+    console.log('🌍 Текущий язык инициализирован:', window.currentLang);
+  </script>
+
+  <!-- 7. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
+  <script src="../../core/engine.js"></script>
+
+  <!-- 8. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
+  <script src="../../core/app.js"></script>
 
   <script>
     // ==========================================
