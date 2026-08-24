@@ -181,8 +181,8 @@ const LOCALES = {
     badge_low: "❌ Низко",
     
     // Детали
-    detail_steps: "📋 Шаги выполнения",
-    detail_warnings: "⚠️ Важные предупреждения",
+    detail_steps: "Шаги выполнения",
+    detail_warnings: "Важные предупреждения",
     
     // SOS
     sos_title: "Режим SOS",
@@ -411,8 +411,8 @@ const LOCALES = {
     badge_low: "❌ Low",
     
     // Details
-    detail_steps: "📋 Steps",
-    detail_warnings: "⚠️ Warnings",
+    detail_steps: "Steps",
+    detail_warnings: "Warnings",
     
     // SOS
     sos_title: "SOS Mode",
