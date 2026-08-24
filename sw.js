@@ -1,7 +1,15 @@
-const CACHE_NAME = 'sos-universal-v2-OFFLINE';
+// ============================================================
+// sw.js — Service Worker для SOS UNIVERSAL v4.1
+// ============================================================
+// Стратегия: Cache First с обновлением в фоне (Stale-While-Revalidate)
+// Версия: v4.1-OFFLINE
+
+const CACHE_NAME = 'sos-universal-v4.1-OFFLINE';
 const BASE_PATH = '/sos-universal/';
 
-// Критичные файлы — index.html, манифест, CSS, иконки
+// ============================================================
+// КРИТИЧНЫЕ ФАЙЛЫ — index.html, манифест, CSS, иконки
+// ============================================================
 const CORE_FILES = [
   BASE_PATH + 'index.html',
   BASE_PATH + 'manifest.json',
@@ -15,19 +23,22 @@ const CORE_FILES = [
   BASE_PATH + 'css/modules/pets.css',
   BASE_PATH + 'css/modules/travel.css',
   BASE_PATH + 'css/modules/drone.css',
+  BASE_PATH + 'css/modules/energy.css',
   BASE_PATH + 'assets/icons/icon-192.png',
   BASE_PATH + 'assets/icons/icon-512.png'
 ];
 
-// Все JS файлы — критично для офлайн работы
+// ============================================================
+// ВСЕ JS ФАЙЛЫ — критично для офлайн работы
+// ============================================================
 const JS_FILES = [
-  // CORE
+  // ===== CORE =====
   BASE_PATH + 'core/locales.js',
+  BASE_PATH + 'core/registry.js',
   BASE_PATH + 'core/theme.js',
   BASE_PATH + 'core/voice.js',
   BASE_PATH + 'core/engine.js',
   BASE_PATH + 'core/app.js',
-  BASE_PATH + 'core/sos-mode.js',
 
   // ===== SURVIVAL (русские) =====
   BASE_PATH + 'modules/survival/data/water.js',
@@ -38,7 +49,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/survival/data/navigation.js',
   BASE_PATH + 'modules/survival/data/radio.js',
   BASE_PATH + 'modules/survival/data/kit.js',
-  BASE_PATH + 'modules/survival/i18n.js',
 
   // ===== SURVIVAL (английские) =====
   BASE_PATH + 'modules/survival/data/en/water-en.js',
@@ -58,7 +68,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/auto/data/battery.js',
   BASE_PATH + 'modules/auto/data/leak.js',
   BASE_PATH + 'modules/auto/data/dtp.js',
-  BASE_PATH + 'modules/auto/i18n.js',
 
   // ===== AUTO (английские) =====
   BASE_PATH + 'modules/auto/data/en/wont_start-en.js',
@@ -77,7 +86,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/lawyer/data/debts.js',
   BASE_PATH + 'modules/lawyer/data/divorce.js',
   BASE_PATH + 'modules/lawyer/data/consumer.js',
-  BASE_PATH + 'modules/lawyer/i18n.js',
 
   // ===== LAWYER (английские) =====
   BASE_PATH + 'modules/lawyer/data/en/dtp-en.js',
@@ -96,7 +104,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/home/data/lock.js',
   BASE_PATH + 'modules/home/data/heating.js',
   BASE_PATH + 'modules/home/data/natural.js',
-  BASE_PATH + 'modules/home/i18n.js',
 
   // ===== HOME (английские) =====
   BASE_PATH + 'modules/home/data/en/plumbing-en.js',
@@ -115,7 +122,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/children/data/bullying.js',
   BASE_PATH + 'modules/children/data/internet.js',
   BASE_PATH + 'modules/children/data/school.js',
-  BASE_PATH + 'modules/children/i18n.js',
 
   // ===== CHILDREN (английские) =====
   BASE_PATH + 'modules/children/data/en/safety-en.js',
@@ -134,7 +140,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/pets/data/poison.js',
   BASE_PATH + 'modules/pets/data/emergency.js',
   BASE_PATH + 'modules/pets/data/care.js',
-  BASE_PATH + 'modules/pets/i18n.js',
 
   // ===== PETS (английские) =====
   BASE_PATH + 'modules/pets/data/en/firstaid-en.js',
@@ -153,7 +158,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/travel/data/hotel.js',
   BASE_PATH + 'modules/travel/data/theft.js',
   BASE_PATH + 'modules/travel/data/lost.js',
-  BASE_PATH + 'modules/travel/i18n.js',
 
   // ===== TRAVEL (английские) =====
   BASE_PATH + 'modules/travel/data/en/documents-en.js',
@@ -165,25 +169,46 @@ const JS_FILES = [
   BASE_PATH + 'modules/travel/data/en/lost-en.js',
 
   // ===== DRONE (русские) =====
-  BASE_PATH + 'modules/drone/data/prep.js',
-  BASE_PATH + 'modules/drone/data/shelter.js',
-  BASE_PATH + 'modules/drone/data/identify.js',
-  BASE_PATH + 'modules/drone/data/firstaid.js',
-  BASE_PATH + 'modules/drone/data/evac.js',
   BASE_PATH + 'modules/drone/data/detect.js',
+  BASE_PATH + 'modules/drone/data/identify.js',
+  BASE_PATH + 'modules/drone/data/shelter.js',
   BASE_PATH + 'modules/drone/data/comms.js',
-  BASE_PATH + 'modules/drone/i18n.js',
+  BASE_PATH + 'modules/drone/data/evac.js',
+  BASE_PATH + 'modules/drone/data/firstaid.js',
+  BASE_PATH + 'modules/drone/data/prep.js',
 
   // ===== DRONE (английские) =====
-  BASE_PATH + 'modules/drone/data/en/prep-en.js',
-  BASE_PATH + 'modules/drone/data/en/shelter-en.js',
-  BASE_PATH + 'modules/drone/data/en/identify-en.js',
-  BASE_PATH + 'modules/drone/data/en/firstaid-en.js',
-  BASE_PATH + 'modules/drone/data/en/evac-en.js',
   BASE_PATH + 'modules/drone/data/en/detect-en.js',
+  BASE_PATH + 'modules/drone/data/en/identify-en.js',
+  BASE_PATH + 'modules/drone/data/en/shelter-en.js',
   BASE_PATH + 'modules/drone/data/en/comms-en.js',
+  BASE_PATH + 'modules/drone/data/en/evac-en.js',
+  BASE_PATH + 'modules/drone/data/en/firstaid-en.js',
+  BASE_PATH + 'modules/drone/data/en/prep-en.js',
 
-  // ===== МОДУЛИ HTML (главные страницы) =====
+  // ===== ENERGY (русские) =====
+  BASE_PATH + 'modules/energy/data/phone_charge.js',
+  BASE_PATH + 'modules/energy/data/battery_diy.js',
+  BASE_PATH + 'modules/energy/data/solar.js',
+  BASE_PATH + 'modules/energy/data/hand_crank.js',
+  BASE_PATH + 'modules/energy/data/cable_pinout.js',
+  BASE_PATH + 'modules/energy/data/power_bank.js',
+  BASE_PATH + 'modules/energy/data/emergency_light.js',
+
+  // ===== ENERGY (английские) =====
+  BASE_PATH + 'modules/energy/data/en/phone_charge-en.js',
+  BASE_PATH + 'modules/energy/data/en/battery_diy-en.js',
+  BASE_PATH + 'modules/energy/data/en/solar-en.js',
+  BASE_PATH + 'modules/energy/data/en/hand_crank-en.js',
+  BASE_PATH + 'modules/energy/data/en/cable_pinout-en.js',
+  BASE_PATH + 'modules/energy/data/en/power_bank-en.js',
+  BASE_PATH + 'modules/energy/data/en/emergency_light-en.js'
+];
+
+// ============================================================
+// МОДУЛИ HTML (главные страницы)
+// ============================================================
+const MODULE_HTML = [
   BASE_PATH + 'modules/survival/index.html',
   BASE_PATH + 'modules/auto/index.html',
   BASE_PATH + 'modules/lawyer/index.html',
@@ -191,71 +216,98 @@ const JS_FILES = [
   BASE_PATH + 'modules/children/index.html',
   BASE_PATH + 'modules/pets/index.html',
   BASE_PATH + 'modules/travel/index.html',
-  BASE_PATH + 'modules/drone/index.html'
+  BASE_PATH + 'modules/drone/index.html',
+  BASE_PATH + 'modules/energy/index.html'
 ];
 
-// Установка — кэшируем ВСЕ файлы
+// ============================================================
+// УСТАНОВКА — кэшируем ВСЕ файлы
+// ============================================================
 self.addEventListener('install', event => {
-  console.log('[SW v2] Установка...');
+  console.log('[SW v4.1] Установка...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('[SW v2] Кэшируем ядро...');
+        console.log('[SW v4.1] Кэшируем ядро...');
         return cache.addAll(CORE_FILES);
       })
       .then(() => {
-        console.log('[SW v2] Ядро закэшировано, кэшируем JS файлы...');
+        console.log('[SW v4.1] Ядро закэшировано, кэшируем JS файлы...');
         return caches.open(CACHE_NAME).then(cache => {
           return Promise.all(
             JS_FILES.map(url => 
               cache.add(url).catch(err => {
-                console.warn('[SW v2] Не удалось кэшировать:', url, err);
+                console.warn('[SW v4.1] Не удалось кэшировать:', url, err);
               })
             )
           );
         });
       })
       .then(() => {
-        console.log('[SW v2] Установка завершена');
+        console.log('[SW v4.1] Кэшируем HTML модулей...');
+        return caches.open(CACHE_NAME).then(cache => {
+          return Promise.all(
+            MODULE_HTML.map(url => 
+              cache.add(url).catch(err => {
+                console.warn('[SW v4.1] Не удалось кэшировать:', url, err);
+              })
+            )
+          );
+        });
+      })
+      .then(() => {
+        console.log('[SW v4.1] Установка завершена');
         return self.skipWaiting();
       })
   );
 });
 
-// Активация — удаляем старые кэши
+// ============================================================
+// АКТИВАЦИЯ — удаляем старые кэши
+// ============================================================
 self.addEventListener('activate', event => {
-  console.log('[SW v2] Активация...');
+  console.log('[SW v4.1] Активация...');
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheName !== CACHE_NAME) {
-            console.log('[SW v2] Удаляем старый кэш:', cacheName);
+            console.log('[SW v4.1] Удаляем старый кэш:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
-      console.log('[SW v2] Активирован');
+      console.log('[SW v4.1] Активирован');
       return self.clients.claim();
     })
   );
 });
 
-// Fetch — Cache First для офлайн работы
+// ============================================================
+// FETCH — Stale-While-Revalidate (кэш + обновление в фоне)
+// ============================================================
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   
-  // Навигация (открытие страницы) — Cache First для офлайн работы
+  // ===== НАВИГАЦИЯ (открытие страницы) =====
   if (event.request.mode === 'navigate') {
     event.respondWith(
       caches.match(BASE_PATH + 'index.html')
         .then(response => {
           if (response) {
-            console.log('[SW v2] Берём index.html из кэша');
+            console.log('[SW v4.1] Навигация: из кэша');
+            // Обновляем в фоне
+            fetch(event.request).then(networkResponse => {
+              if (networkResponse.ok) {
+                caches.open(CACHE_NAME).then(cache => {
+                  cache.put(BASE_PATH + 'index.html', networkResponse);
+                });
+              }
+            }).catch(() => {});
             return response;
           }
-          console.log('[SW v2] Кэш пуст, загружаем из сети');
+          console.log('[SW v4.1] Навигация: из сети');
           return fetch(event.request).then(response => {
             if (response.ok) {
               const clone = response.clone();
@@ -267,37 +319,87 @@ self.addEventListener('fetch', event => {
           });
         })
         .catch(() => {
-          console.error('[SW v2] Ошибка загрузки index.html');
+          console.error('[SW v4.1] Ошибка навигации, показываем 404');
           return caches.match(BASE_PATH + '404.html');
         })
     );
     return;
   }
   
-  // Для остальных запросов — Cache First
+  // ===== STATIC FILES (CSS, JS, изображения) =====
+  // Проверяем, нужно ли кэшировать
+  const isStatic = 
+    url.pathname.endsWith('.css') ||
+    url.pathname.endsWith('.js') ||
+    url.pathname.endsWith('.png') ||
+    url.pathname.endsWith('.jpg') ||
+    url.pathname.endsWith('.svg') ||
+    url.pathname.endsWith('.ico') ||
+    url.pathname.endsWith('.webmanifest');
+
+  if (isStatic) {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          // Обновляем в фоне
+          fetch(event.request).then(networkResponse => {
+            if (networkResponse.ok) {
+              caches.open(CACHE_NAME).then(cache => {
+                cache.put(event.request, networkResponse);
+              });
+            }
+          }).catch(() => {});
+          return cachedResponse;
+        }
+        return fetch(event.request).then(response => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, clone);
+            });
+          }
+          return response;
+        });
+      })
+    );
+    return;
+  }
+  
+  // ===== ВСЁ ОСТАЛЬНОЕ — сначала сеть, потом кэш =====
   event.respondWith(
-    caches.match(event.request).then(response => {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request).then(response => {
-        // Кэшируем новые ответы
-        if (response.ok) {
+    fetch(event.request)
+      .then(response => {
+        if (response.ok && response.type !== 'opaque') {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => {
             cache.put(event.request, clone);
           });
         }
         return response;
-      }).catch(err => {
-        console.warn('[SW v2] Ошибка загрузки:', event.request.url);
-        // Для изображений возвращаем пустой ответ
-        if (event.request.destination === 'image') {
-          return new Response('', { status: 404 });
-        }
-      });
-    })
+      })
+      .catch(() => {
+        return caches.match(event.request).then(cached => {
+          if (cached) return cached;
+          if (event.request.destination === 'image') {
+            return new Response('', { status: 404 });
+          }
+          return new Response('Страница недоступна в офлайн-режиме', { status: 503 });
+        });
+      })
   );
 });
 
-console.log('[SW v2] Service Worker загружен - Cache First стратегия');
+// ============================================================
+// ОБРАБОТКА ОШИБОК
+// ============================================================
+self.addEventListener('error', event => {
+  console.error('[SW v4.1] Ошибка:', event.message);
+});
+
+// ============================================================
+// ЗАВЕРШЕНИЕ
+// ============================================================
+console.log('[SW v4.1] Service Worker загружен — Stale-While-Revalidate');
+console.log(`📦 Кэш: ${CACHE_NAME}`);
+console.log(`📄 HTML модулей: ${MODULE_HTML.length}`);
+console.log(`📄 JS файлов: ${JS_FILES.length}`);

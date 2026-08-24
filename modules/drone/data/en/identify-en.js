@@ -105,7 +105,7 @@ window.SOS_REGISTER_QUIZ({
       conditions: { type: ["small", "medium", "large", "unknown_size"] },
       options: [
         { id: "friendly", label: "✅ Friendly markings (star, flag, text)", tags: ["friendly"] },
-        { id: "enemy", label: "❌ Enemy markings (Z, V, other)", tags: ["enemy"] },
+        { id: "enemy", label: "❌ Enemy markings", tags: ["enemy"] },
         { id: "none", label: "❓ No markings / can't see", tags: ["none"] }
       ]
     },

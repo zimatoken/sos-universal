@@ -47,7 +47,7 @@
         <span data-i18n="sos_button">SOS — Я в опасности</span>
       </button>
 
-      <!-- Сетка 2×4 — 8 модулей -->
+      <!-- Сетка 3×3 — 9 модулей -->
       <div class="grid">
         <button class="mod-btn survival" onclick="window.location.href='./modules/survival/index.html'">
           <span class="icon">🆘</span>
@@ -81,11 +81,15 @@
           <span class="icon">🚁</span>
           <span class="label" data-i18n="mod_drone">Дроны</span>
         </button>
+        <button class="mod-btn energy" onclick="window.location.href='./modules/energy/index.html'">
+          <span class="icon">⚡</span>
+          <span class="label" data-i18n="mod_energy">Энергия</span>
+        </button>
       </div>
 
       <!-- ФУТЕР -->
       <div class="footer">
-        <span data-i18n="footer_text">v1.0 · Полностью офлайн</span>
+        <span data-i18n="footer_text">v2.0 · Полностью офлайн</span>
         <span style="display:block; margin-top:4px; font-size:12px; color:var(--text3);">
           📧 <a href="mailto:sos.universal@yandex.ru" style="color:var(--text3); text-decoration:none;" data-i18n="footer_email">sos.universal@yandex.ru</a>
         </span>
@@ -131,44 +135,19 @@
   <!-- ========================================== -->
 
   <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
-  <script src="../../core/locales.js"></script>
+  <script src="./core/locales.js"></script>
 
-  <!-- 2. РЕЕСТР — ОБЯЗАТЕЛЬНО ПЕРЕД ДАННЫМИ! -->
-  <script src="../../core/registry.js"></script>
+  <!-- 2. ТЕМА -->
+  <script src="./core/theme.js"></script>
 
-  <!-- 3. ТЕМА И ГОЛОС -->
-  <script src="../../core/theme.js"></script>
-  <script src="../../core/voice.js"></script>
-
-  <!-- 4. РУССКИЕ ДАННЫЕ -->
-  <script src="data/documents.js"></script>
-  <script src="data/money.js"></script>
-  <script src="data/health.js"></script>
-  <script src="data/flight.js"></script>
-  <script src="data/hotel.js"></script>
-  <script src="data/theft.js"></script>
-  <script src="data/lost.js"></script>
-
-  <!-- 5. АНГЛИЙСКИЕ ДАННЫЕ (ПОСЛЕ РУССКИХ!) -->
-  <script src="data/en/documents-en.js"></script>
-  <script src="data/en/money-en.js"></script>
-  <script src="data/en/health-en.js"></script>
-  <script src="data/en/flight-en.js"></script>
-  <script src="data/en/hotel-en.js"></script>
-  <script src="data/en/theft-en.js"></script>
-  <script src="data/en/lost-en.js"></script>
-
-  <!-- 6. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА (ПЕРЕД ДВИЖКОМ!) -->
+  <!-- 3. ИНИЦИАЛИЗАЦИЯ ЯЗЫКА -->
   <script>
     window.currentLang = localStorage.getItem('language') || 'ru';
     console.log('🌍 Текущий язык инициализирован:', window.currentLang);
   </script>
 
-  <!-- 7. ДВИЖОК (ПОСЛЕ ВСЕХ ДАННЫХ!) -->
-  <script src="../../core/engine.js"></script>
-
-  <!-- 8. ПРИЛОЖЕНИЕ (ПОСЛЕДНИМ!) -->
-  <script src="../../core/app.js"></script>
+  <!-- 4. ПРИЛОЖЕНИЕ (ДЛЯ SOS И Т.Д.) -->
+  <script src="./core/app.js"></script>
 
   <script>
     // ==========================================

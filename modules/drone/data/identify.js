@@ -105,7 +105,7 @@ window.SOS_REGISTER_QUIZ({
       conditions: { type: ["small", "medium", "large", "unknown_size"] },
       options: [
         { id: "friendly", label: "✅ Свои знаки (звезда, флаг, надпись)", tags: ["friendly"] },
-        { id: "enemy", label: "❌ Вражеская маркировка (Z, V, другая)", tags: ["enemy"] },
+        { id: "enemy", label: "❌ Вражеская маркировка", tags: ["enemy"] },
         { id: "none", label: "❓ Нет знаков / не видно", tags: ["none"] }
       ]
     },
