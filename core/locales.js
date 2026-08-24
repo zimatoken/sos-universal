@@ -9,6 +9,18 @@ const LOCALES = {
     // Главный экран
     app_title: "УНИВЕРСАЛ",
     app_subtitle: "Универсальный спасатель",
+    
+    // Заголовки модулей (RU)
+    app_title_survival: "ВЫЖИВАНИЕ",
+    app_title_auto: "АВТО",
+    app_title_lawyer: "ЮРИСТ",
+    app_title_home: "ДОМ",
+    app_title_children: "ДЕТИ",
+    app_title_pets: "ЖИВОТНЫЕ",
+    app_title_travel: "ПУТЕШЕСТВИЯ",
+    app_title_drone: "ДРОНЫ",
+    app_title_energy: "ЭНЕРГИЯ",
+    
     status_online: "Режим офлайн — база загружена",
     sos_button: "SOS — Я в опасности",
     footer_text: "v2.0 · Полностью офлайн",
@@ -227,6 +239,18 @@ const LOCALES = {
     // Main screen
     app_title: "UNIVERSAL",
     app_subtitle: "Universal Rescuer",
+    
+    // Module titles (EN)
+    app_title_survival: "SURVIVE",
+    app_title_auto: "AUTO",
+    app_title_lawyer: "LAWYER",
+    app_title_home: "HOME",
+    app_title_children: "CHILDREN",
+    app_title_pets: "PETS",
+    app_title_travel: "TRAVEL",
+    app_title_drone: "DRONE",
+    app_title_energy: "ENERGY",
+    
     status_online: "Offline mode — database loaded",
     sos_button: "SOS — I'm in danger",
     footer_text: "v2.0 · Fully offline",
