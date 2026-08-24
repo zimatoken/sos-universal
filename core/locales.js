@@ -7,7 +7,7 @@ const LOCALES = {
   // ===== РУССКИЙ =====
   ru: {
     // Главный экран
-    app_title: "UNIVERSAL",
+    app_title: "УНИВЕРСАЛ",
     app_subtitle: "Универсальный спасатель",
     status_online: "Режим офлайн — база загружена",
     sos_button: "SOS — Я в опасности",

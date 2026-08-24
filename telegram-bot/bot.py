@@ -73,6 +73,12 @@ def get_module_info(module_id):
             'name': 'Выживание',
             'desc': 'Вода, огонь, еда, укрытие, медицина, навигация',
             'categories': 'water, fire, shelter, food, medicine, navigation, radio, kit'
+        },
+        'energy': {
+            'emoji': '⚡',
+            'name': 'Энергия',
+            'desc': 'Зарядка телефона, батарейки, солнечная энергия, динамо, кабели',
+            'categories': 'phone_charge, battery_diy, solar, hand_crank, cable_pinout, power_bank, emergency_light'
         }
     }
     return modules.get(module_id)
@@ -94,7 +100,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         f"🆘 *SOS UNIVERSAL* — твой универсальный ассистент!\n\n"
         f"📱 Приложение работает *без интернета*\n"
-        f"🗺️ 8 модулей для разных ситуаций\n"
+        f"🗺️ 9 модулей для разных ситуаций\n"
         f"🌍 Русский и английский языки\n"
         f"📴 Полностью офлайн\n\n"
         f"👉 *Выбери действие:*",
@@ -114,7 +120,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "🆘 *Как пользоваться SOS UNIVERSAL:*\n\n"
         "1️⃣ Открой приложение\n"
-        "2️⃣ Выбери модуль (Авто, Дом, Юрист...)\n"
+        "2️⃣ Выбери модуль (Авто, Дом, Энергия...)\n"
         "3️⃣ Ответь на 3-5 вопросов\n"
         "4️⃣ Получи пошаговые инструкции\n\n"
         "✅ *Всё просто и быстро!*\n"
@@ -135,10 +141,10 @@ async def demo_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await update.message.reply_text(
         "🎯 *Демо-режим:*\n\n"
-        "📱 Открой приложение и выбери модуль *Авто*\n"
-        "🔌 Нажми *«Не заводится»*\n"
-        "🔋 Ответь на вопросы о состоянии авто\n"
-        "🛠️ Получи пошаговый план действий\n\n"
+        "📱 Открой приложение и выбери модуль *Энергия*\n"
+        "📱 Нажми *«Зарядка телефона»*\n"
+        "🔋 Ответь на вопросы о доступных материалах\n"
+        "⚡ Получи пошаговый план действий\n\n"
         "🔥 *Попробуй прямо сейчас!*",
         reply_markup=reply_markup,
         parse_mode='Markdown'
@@ -182,6 +188,7 @@ async def modules_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("👶 Дети", callback_data='module_children')],
         [InlineKeyboardButton("🪖 Дрон", callback_data='module_drone')],
         [InlineKeyboardButton("🏕️ Выживание", callback_data='module_survival')],
+        [InlineKeyboardButton("⚡ Энергия", callback_data='module_energy')],
         [InlineKeyboardButton("📱 Открыть приложение", url=APP_URL)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -224,7 +231,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # --- ПОМОЩЬ ---
     if query.data == 'help':
         await query.edit_message_text(
-            "🆘 *SOS UNIVERSAL* — 8 модулей помощи:\n\n"
+            "🆘 *SOS UNIVERSAL* — 9 модулей помощи:\n\n"
             "🚗 *Авто* — поломки, ДТП, шины, аккумулятор\n"
             "🏠 *Дом* — пожар, газ, электричество, сантехника\n"
             "⚖️ *Юрист* — ДТП, жильё, наследство, развод\n"
@@ -232,7 +239,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "✈️ *Путешествия* — документы, кража, здоровье\n"
             "👶 *Дети* — безопасность, буллинг, потеря\n"
             "🪖 *Дрон* — инструкции, первая помощь\n"
-            "🏕️ *Выживание* — вода, огонь, еда, укрытие\n\n"
+            "🏕️ *Выживание* — вода, огонь, еда, укрытие\n"
+            "⚡ *Энергия* — зарядка, батарейки, солнечная энергия\n\n"
             "💡 *Как работает:* отвечай на вопросы → получай решения\n\n"
             f"📱 *Открыть:* {APP_URL}",
             parse_mode='Markdown',
@@ -274,6 +282,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("👶 Дети", callback_data='module_children')],
             [InlineKeyboardButton("🪖 Дрон", callback_data='module_drone')],
             [InlineKeyboardButton("🏕️ Выживание", callback_data='module_survival')],
+            [InlineKeyboardButton("⚡ Энергия", callback_data='module_energy')],
             [InlineKeyboardButton("📱 Открыть приложение", url=APP_URL)]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
