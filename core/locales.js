@@ -8,10 +8,10 @@ const LOCALES = {
   ru: {
     // Главный экран
     app_title: "UNIVERSAL",
-    app_subtitle: "Супер-приложение для любых ситуаций",
+    app_subtitle: "Универсальный спасатель",
     status_online: "Режим офлайн — база загружена",
     sos_button: "SOS — Я в опасности",
-    footer_text: "v1.0 · Полностью офлайн",
+    footer_text: "v2.0 · Полностью офлайн",
     
     // Модули (главная страница)
     mod_survival: "Выживание",
@@ -214,7 +214,7 @@ const LOCALES = {
     support_desc: "Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!",
     support_telegram: "📱 Написать в Telegram",
     support_donate: "💳 Поддержать проект",
-    support_trust: "💎 Все средства идут на развитие проекта и помощь людям в экстренных ситуациях. Спасибо за доверие!",
+    support_trust: "💎 Есть идеи или предложения? Пишите нам на почту sos.universal.help@gmail.com. Спасибо, что вы с нами!",
     support_footer: "Спасибо, что вы с нами! 🙌",
     
     // Язык
@@ -226,10 +226,10 @@ const LOCALES = {
   en: {
     // Main screen
     app_title: "UNIVERSAL",
-    app_subtitle: "Super-app for any situation",
+    app_subtitle: "Universal Rescuer",
     status_online: "Offline mode — database loaded",
     sos_button: "SOS — I'm in danger",
-    footer_text: "v1.0 · Fully offline",
+    footer_text: "v2.0 · Fully offline",
     
     // Modules
     mod_survival: "Survival",
@@ -432,7 +432,7 @@ const LOCALES = {
     support_desc: "If the app helped — say thanks, it inspires us to make it better!",
     support_telegram: "📱 Write on Telegram",
     support_donate: "💳 Support the project",
-    support_trust: "💎 All funds go to project development and helping people in emergencies. Thank you for your trust!",
+    support_trust: "💎 Have ideas or suggestions? Write to us at sos.universal.help@gmail.com. Thank you for being with us!",
     support_footer: "Thank you for being with us! 🙌",
     
     // Language
