@@ -368,7 +368,6 @@ function showDetail(solutionId) {
   const prioLabel = prioMap[prio] || prio;
   const relLabel = relMap[rel] || rel;
   
-  // ✅ ПРАВИЛЬНЫЕ КЛАССЫ: prio-* и rel-*
   let html = `<div class="detail-card">
     <h2>${solution.title}</h2>
     <div class="detail-meta">
@@ -379,20 +378,24 @@ function showDetail(solutionId) {
     </div>
     <div class="detail-desc">${solution.description}</div>`;
   
-if (solution.steps && solution.steps.length) {
-  html += `<div class="steps-block"><h4><span style="font-size:22px;display:inline-block;margin-right:6px;">📋</span> ${window.t ? t('detail_steps') : 'Шаги'}</h4>`;
-  solution.steps.forEach((step, i) => {
-    html += `<div class="step-item"><div class="step-num">${i+1}</div><span>${step}</span></div>`;
-  });
-  html += '</div>';
-}
+  if (solution.steps && solution.steps.length) {
+    html += `<div class="steps-block"><h4><span style="font-size:22px;display:inline-block;margin-right:6px;">📋</span> ${window.t ? t('detail_steps') : 'Шаги'}</h4>`;
+    solution.steps.forEach((step, i) => {
+      html += `<div class="step-item"><div class="step-num">${i+1}</div><span>${step}</span></div>`;
+    });
+    html += '</div>';
+  }
   
-if (solution.warnings && solution.warnings.length) {
-  html += `<div class="warnings-block"><h4><span style="font-size:22px;display:inline-block;margin-right:6px;">⚠️</span> ${window.t ? t('detail_warnings') : 'Предупреждения'}</h4>`;
-  solution.warnings.forEach(warn => {
-    html += `<div class="warning-item"><div class="warn-icon">!</div><span>${warn}</span></div>`;
-  });
-  html += '</div>';
+  if (solution.warnings && solution.warnings.length) {
+    html += `<div class="warnings-block"><h4><span style="font-size:22px;display:inline-block;margin-right:6px;">⚠️</span> ${window.t ? t('detail_warnings') : 'Предупреждения'}</h4>`;
+    solution.warnings.forEach(warn => {
+      html += `<div class="warning-item"><div class="warn-icon">!</div><span>${warn}</span></div>`;
+    });
+    html += '</div>';
+  }
+  
+  html += `</div>`;
+  container.innerHTML = html;
 }
 
 // ============================================================
