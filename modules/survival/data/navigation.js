@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "navigation",
     version: "1.0.0",
     lang: "ru",
-    title: "🧭 Навигация",
+    title: "Навигация",
     description: "Как ориентироваться и подавать сигналы бедствия в любой местности",
     icon: "🧭",
     color: "#16a34a"

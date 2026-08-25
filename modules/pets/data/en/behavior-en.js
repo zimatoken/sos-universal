@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "behavior",
     version: "1.0.0",
     lang: "en",
-    title: "🐾 Behavior and Aggression",
+    title: "Behavior and Aggression",
     description: "Biting, barking, scratching, anxiety, destructive behavior — how to understand and help",
     icon: "🐾",
     color: "#9333ea"

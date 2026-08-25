@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "hotel",
     version: "1.0.0",
     lang: "en",
-    title: "🏨 Hotel",
+    title: "Hotel",
     description: "Hotel problems, rental issues, eviction — your rights",
     icon: "🏨",
     color: "#0d9488"

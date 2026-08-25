@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "emergency",
     version: "1.0.0",
     lang: "en",
-    title: "🚨 Emergency Situations",
+    title: "Emergency Situations",
     description: "Birth, heatstroke, car accident, drowning, electric shock, snake bite — emergency first aid",
     icon: "🚨",
     color: "#9333ea"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "hotel",
     version: "1.0.0",
     lang: "ru",
-    title: "🏨 Жильё",
+    title: "Жильё",
     description: "Проблемы с отелем, арендой, выселением — ваши права",
     icon: "🏨",
     color: "#0d9488"

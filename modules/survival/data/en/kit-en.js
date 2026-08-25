@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "kit",
     version: "1.0.0",
     lang: "en",
-    title: "🎒 Kit",
+    title: "Kit",
     description: "What to pack for hiking, travel, or emergency situations",
     icon: "🎒",
     color: "#16a34a"

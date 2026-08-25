@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "fire",
     version: "1.0.0",
     lang: "ru",
-    title: "🔥 Огонь",
+    title: "Огонь",
     description: "Как добыть и сохранить огонь в любых условиях — от леса до пустыни",
     icon: "🔥",
     color: "#16a34a"

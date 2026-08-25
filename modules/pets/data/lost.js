@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "lost",
     version: "1.0.0",
     lang: "ru",
-    title: "🔍 Пропажа питомца",
+    title: "Пропажа питомца",
     description: "Собака убежала, кошка не вернулась, попугай вылетел — алгоритм поиска",
     icon: "🔍",
     color: "#9333ea"

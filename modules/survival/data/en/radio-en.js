@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "radio",
     version: "1.0.0",
     lang: "en",
-    title: "📻 Communication",
+    title: "Communication",
     description: "How to signal for help and contact rescuers",
     icon: "📻",
     color: "#16a34a"

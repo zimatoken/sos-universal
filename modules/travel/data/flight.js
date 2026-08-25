@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "flight",
     version: "1.0.0",
     lang: "ru",
-    title: "✈️ Проблемы с рейсом",
+    title: "Проблемы с рейсом",
     description: "Задержка, отмена, овербукинг, потеря багажа — ваши права",
     icon: "✈️",
     color: "#0d9488"

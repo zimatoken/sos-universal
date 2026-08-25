@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "water",
     version: "1.0.0",
     lang: "ru",
-    title: "💧 Вода",
+    title: "Вода",
     description: "Как найти, добыть и очистить воду в любых условиях — от леса до пустыни",
     icon: "💧",
     color: "#16a34a"

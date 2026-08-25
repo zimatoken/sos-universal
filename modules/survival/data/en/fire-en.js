@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "fire",
     version: "1.0.0",
     lang: "en",
-    title: "🔥 Fire",
+    title: "Fire",
     description: "How to make and maintain fire in any conditions — from forest to desert",
     icon: "🔥",
     color: "#16a34a"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "lost",
     version: "1.0.0",
     lang: "en",
-    title: "🗺️ Lost / No Connection",
+    title: "Lost / No Connection",
     description: "What to do if you get lost in an unfamiliar city or country",
     icon: "🗺️",
     color: "#0d9488"

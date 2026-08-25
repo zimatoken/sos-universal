@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "theft",
     version: "1.0.0",
     lang: "ru",
-    title: "🦹 Кража и мошенничество",
+    title: "Кража и мошенничество",
     description: "Карманная кража, ограбление, мошенничество, взлом авто — как действовать",
     icon: "🦹",
     color: "#0d9488"

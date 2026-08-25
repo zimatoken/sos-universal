@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "navigation",
     version: "1.0.0",
     lang: "en",
-    title: "🧭 Navigation",
+    title: "Navigation",
     description: "How to navigate and signal for rescue in any terrain",
     icon: "🧭",
     color: "#16a34a"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "documents",
     version: "1.0.0",
     lang: "ru",
-    title: "📄 Документы",
+    title: "Документы",
     description: "Утеря или кража документов за границей",
     icon: "📄",
     color: "#0d9488"

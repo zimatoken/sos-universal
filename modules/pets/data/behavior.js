@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "behavior",
     version: "1.0.0",
     lang: "ru",
-    title: "🐾 Поведение и агрессия",
+    title: "Поведение и агрессия",
     description: "Кусается, лает, царапается, тревожность, деструктивное поведение — как понять и помочь",
     icon: "🐾",
     color: "#9333ea"

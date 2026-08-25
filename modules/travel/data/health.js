@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "health",
     version: "1.0.0",
     lang: "ru",
-    title: "🏥 Здоровье за границей",
+    title: "Здоровье за границей",
     description: "Травма, болезнь, аллергия, паническая атака — как получить помощь",
     icon: "🏥",
     color: "#0d9488"

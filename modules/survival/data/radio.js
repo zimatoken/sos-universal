@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "radio",
     version: "1.0.0",
     lang: "ru",
-    title: "📻 Связь",
+    title: "Связь",
     description: "Как подать сигнал бедствия и связаться со спасателями",
     icon: "📻",
     color: "#16a34a"
