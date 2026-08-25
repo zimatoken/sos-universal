@@ -3,7 +3,7 @@ import os
 import sys
 from datetime import datetime
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
 from config import TOKEN, APP_URL, BOT_VERSION
 
 # ============================================================
@@ -87,7 +87,7 @@ def get_module_info(module_id):
 # КОМАНДЫ БОТА
 # ============================================================
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def start(update: Update, context: CallbackContext):
     """Команда /start — приветствие и главное меню"""
     keyboard = [
         [InlineKeyboardButton("📱 Открыть приложение", url=APP_URL)],
@@ -97,7 +97,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    await update.message.reply_text(
+    update.message.reply_text(
         f"🆘 *SOS UNIVERSAL* — твой универсальный ассистент!\n\n"
         f"📱 Приложение работает *без интернета*\n"
         f"🗺️ 9 модулей для разных ситуаций\n"
@@ -109,7 +109,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def help_command(update: Update, context: CallbackContext):
     """Команда /help — инструкция по использованию"""
     keyboard = [
         [InlineKeyboardButton("📱 Открыть приложение", url=APP_URL)],
@@ -117,7 +117,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    await update.message.reply_text(
+    update.message.reply_text(
         "🆘 *Как пользоваться SOS UNIVERSAL:*\n\n"
         "1️⃣ Открой приложение\n"
         "2️⃣ Выбери модуль (Авто, Дом, Энергия...)\n"
@@ -132,14 +132,14 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-async def demo_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def demo_command(update: Update, context: CallbackContext):
     """Команда /demo — демонстрация работы"""
     keyboard = [
         [InlineKeyboardButton("📱 Попробовать сейчас", url=APP_URL)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    await update.message.reply_text(
+    update.message.reply_text(
         "🎯 *Демо-режим:*\n\n"
         "📱 Открой приложение и выбери модуль *Энергия*\n"
         "📱 Нажми *«Зарядка телефона»*\n"
@@ -151,7 +151,7 @@ async def demo_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-async def sos_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def sos_command(update: Update, context: CallbackContext):
     """Команда /sos — экстренная помощь"""
     keyboard = [
         [InlineKeyboardButton("🚨 Открыть SOS", url=APP_URL)],
@@ -159,7 +159,7 @@ async def sos_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    await update.message.reply_text(
+    update.message.reply_text(
         "🚨 *Если вы в опасности:*\n\n"
         "1️⃣ Открой *SOS UNIVERSAL*\n"
         "2️⃣ Нажми *SOS — Я в опасности*\n"
@@ -177,7 +177,7 @@ async def sos_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-async def modules_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def modules_command(update: Update, context: CallbackContext):
     """Команда /modules — список всех модулей"""
     keyboard = [
         [InlineKeyboardButton("🚗 Авто", callback_data='module_auto')],
@@ -193,7 +193,7 @@ async def modules_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    await update.message.reply_text(
+    update.message.reply_text(
         "📋 *Модули SOS UNIVERSAL:*\n\n"
         "Выбери нужный модуль для подробностей:",
         reply_markup=reply_markup,
@@ -201,9 +201,9 @@ async def modules_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-async def about_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def about_command(update: Update, context: CallbackContext):
     """Команда /about — информация о боте"""
-    await update.message.reply_text(
+    update.message.reply_text(
         f"🤖 *SOS UNIVERSAL Bot*\n\n"
         f"Версия: {BOT_VERSION}\n"
         f"Разработан для помощи в любых ситуациях\n"
@@ -223,14 +223,14 @@ async def about_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ОБРАБОТЧИКИ КНОПОК
 # ============================================================
 
-async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def button_handler(update: Update, context: CallbackContext):
     """Обработка нажатий на кнопки"""
     query = update.callback_query
-    await query.answer()
+    query.answer()
     
     # --- ПОМОЩЬ ---
     if query.data == 'help':
-        await query.edit_message_text(
+        query.edit_message_text(
             "🆘 *SOS UNIVERSAL* — 9 модулей помощи:\n\n"
             "🚗 *Авто* — поломки, ДТП, шины, аккумулятор\n"
             "🏠 *Дом* — пожар, газ, электричество, сантехника\n"
@@ -252,7 +252,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     # --- SOS ---
     elif query.data == 'sos':
-        await query.edit_message_text(
+        query.edit_message_text(
             "🚨 *Если вы в опасности:*\n\n"
             "1️⃣ Открой *SOS UNIVERSAL*\n"
             "2️⃣ Нажми *SOS — Я в опасности*\n"
@@ -287,7 +287,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
-        await query.edit_message_text(
+        query.edit_message_text(
             "📋 *Модули SOS UNIVERSAL:*\n\n"
             "Выбери нужный модуль для подробностей:",
             reply_markup=reply_markup,
@@ -300,7 +300,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         module = get_module_info(module_id)
         
         if module:
-            await query.edit_message_text(
+            query.edit_message_text(
                 f"{module['emoji']} *Модуль {module['name']}*\n\n"
                 f"Помощь при:\n"
                 f"• {module['desc']}\n\n"
@@ -313,7 +313,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 ])
             )
         else:
-            await query.edit_message_text(
+            query.edit_message_text(
                 "❌ Модуль не найден",
                 reply_markup=InlineKeyboardMarkup([
                     [InlineKeyboardButton("📋 Все модули", callback_data='modules')]
@@ -325,12 +325,12 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ОБРАБОТКА ОШИБОК
 # ============================================================
 
-async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def error_handler(update: Update, context: CallbackContext):
     """Обработчик ошибок"""
     logger.error(f"❌ Ошибка: {context.error}")
     
     if update and update.effective_message:
-        await update.effective_message.reply_text(
+        update.effective_message.reply_text(
             "❌ Произошла ошибка. Пожалуйста, попробуйте позже.\n"
             "Если ошибка повторяется, сообщите разработчику."
         )
@@ -350,32 +350,28 @@ def main():
             return
         
         # Создаём приложение
-        app = Application.builder().token(TOKEN).build()
-        logger.info("✅ Приложение успешно создано")
+        updater = Updater(TOKEN, use_context=True)
+        dp = updater.dispatcher
         
-    except Exception as e:
-        logger.error(f"❌ Ошибка при создании приложения: {e}")
-        print(f"❌ Ошибка при создании приложения: {e}")
-        return
-    
-    # Регистрируем команды
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(CommandHandler("demo", demo_command))
-    app.add_handler(CommandHandler("sos", sos_command))
-    app.add_handler(CommandHandler("modules", modules_command))
-    app.add_handler(CommandHandler("about", about_command))
-    
-    # Регистрируем обработчики
-    app.add_handler(CallbackQueryHandler(button_handler))
-    app.add_error_handler(error_handler)
-    
-    # Запуск
-    logger.info(f"🤖 Бот SOS UNIVERSAL v{BOT_VERSION} запущен!")
-    print(f"🤖 Бот SOS UNIVERSAL v{BOT_VERSION} запущен! Нажми Ctrl+C для остановки.")
-    
-    try:
-        app.run_polling(allowed_updates=Update.ALL_TYPES)
+        # Регистрируем команды
+        dp.add_handler(CommandHandler("start", start))
+        dp.add_handler(CommandHandler("help", help_command))
+        dp.add_handler(CommandHandler("demo", demo_command))
+        dp.add_handler(CommandHandler("sos", sos_command))
+        dp.add_handler(CommandHandler("modules", modules_command))
+        dp.add_handler(CommandHandler("about", about_command))
+        
+        # Регистрируем обработчики
+        dp.add_handler(CallbackQueryHandler(button_handler))
+        dp.add_error_handler(error_handler)
+        
+        # Запуск
+        logger.info(f"🤖 Бот SOS UNIVERSAL v{BOT_VERSION} запущен!")
+        print(f"🤖 Бот SOS UNIVERSAL v{BOT_VERSION} запущен! Нажми Ctrl+C для остановки.")
+        
+        updater.start_polling()
+        updater.idle()
+        
     except KeyboardInterrupt:
         logger.info("🛑 Бот остановлен пользователем")
         print("🛑 Бот остановлен")
