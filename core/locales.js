@@ -9,7 +9,7 @@ const LOCALES = {
     // Главный экран
     app_title: "УНИВЕРСАЛ",
     app_subtitle: "Универсальный спасатель",
-    
+
     // Заголовки модулей (RU)
     app_title_survival: "🆘 ВЫЖИВАНИЕ",
     app_title_auto: "🚗 АВТО",
@@ -20,11 +20,22 @@ const LOCALES = {
     app_title_travel: "✈️ ПУТЕШЕСТВИЯ",
     app_title_drone: "🚁 ДРОНЫ",
     app_title_energy: "⚡ ЭНЕРГИЯ",
-    
+
+    // Подзаголовки модулей (RU)
+    app_subtitle_survival: "Экстренные ситуации и выживание",
+    app_subtitle_auto: "Помощь при поломке автомобиля",
+    app_subtitle_lawyer: "Юридическая помощь онлайн",
+    app_subtitle_home: "Проблемы в квартире и доме",
+    app_subtitle_children: "Безопасность и здоровье детей",
+    app_subtitle_pets: "Помощь животным",
+    app_subtitle_travel: "Экстренные ситуации за границей и в поездках",
+    app_subtitle_drone: "Безопасность при беспилотных летательных аппаратах",
+    app_subtitle_energy: "Энергия и питание устройств",
+
     status_online: "Режим офлайн — база загружена",
     sos_button: "SOS — Я в опасности",
     footer_text: "v2.0 · Полностью офлайн",
-    
+
     // Модули (главная страница)
     mod_survival: "Выживание",
     mod_auto: "Авто",
@@ -36,7 +47,7 @@ const LOCALES = {
     mod_drone: "Дроны",
     mod_energy: "Энергия",
     mod_soon: "Скоро",
-    
+
     // Модули (для data-i18n на главной)
     cat_survival: "Выживание",
     cat_auto: "Авто",
@@ -47,7 +58,7 @@ const LOCALES = {
     cat_travel: "Путешествия",
     cat_drone: "Дроны",
     cat_energy: "Энергия",
-    
+
     // ===== SURVIVAL =====
     survival_title: "ВЫЖИВАНИЕ",
     survival_subtitle: "Офлайн-ассистент выживания",
@@ -59,7 +70,7 @@ const LOCALES = {
     cat_navigation: "Навигация",
     cat_radio: "Связь",
     cat_kit: "Чемоданчик",
-    
+
     // ===== AUTO =====
     auto_title: "🚗 Авто",
     auto_subtitle: "Помощь на дороге и в гараже",
@@ -70,7 +81,7 @@ const LOCALES = {
     cat_battery: "Села батарея",
     cat_leak: "Утечка жидкости",
     cat_dtp: "ДТП",
-    
+
     // ===== LAWYER =====
     lawyer_title: "⚖️ Юрист",
     lawyer_subtitle: "Защита прав и юридическая помощь",
@@ -81,7 +92,7 @@ const LOCALES = {
     cat_debts: "Долги и коллекторы",
     cat_divorce: "Развод и алименты",
     cat_consumer: "Защита прав потребителей",
-    
+
     // ===== HOME =====
     home_title: "🏠 Дом",
     home_subtitle: "Безопасность дома и ЖКХ",
@@ -92,7 +103,7 @@ const LOCALES = {
     cat_lock: "Замки и двери",
     cat_heating: "Отопление",
     cat_natural: "Стихия",
-    
+
     // ===== CHILDREN =====
     children_title: "👶 Дети",
     children_subtitle: "Безопасность, здоровье и помощь детям",
@@ -103,7 +114,7 @@ const LOCALES = {
     cat_bullying: "Буллинг",
     cat_internet: "Интернет-безопасность",
     cat_school: "Школа",
-    
+
     // ===== PETS =====
     pets_title: "🐾 Животные",
     pets_subtitle: "Помощь домашним питомцам",
@@ -114,7 +125,7 @@ const LOCALES = {
     cat_pet_health: "Здоровье",
     cat_lost: "Пропажа питомца",
     cat_poison: "Отравление",
-    
+
     // ===== TRAVEL =====
     travel_title: "🌍 Путешествия",
     travel_subtitle: "Помощь в поездках",
@@ -125,7 +136,7 @@ const LOCALES = {
     cat_travel_lost: "Потеря вещей",
     cat_money: "Деньги",
     cat_theft: "Кража",
-    
+
     // ===== DRONE =====
     drone_title: "🛸 Дроны",
     drone_subtitle: "Оповещение и безопасность",
@@ -136,7 +147,7 @@ const LOCALES = {
     cat_identify: "Идентификация дрона",
     cat_prep: "Подготовка",
     cat_drone_shelter: "Укрытие",
-    
+
     // ===== ENERGY =====
     energy_title: "⚡ Энергия",
     energy_subtitle: "Энергия и зарядка без розетки",
@@ -147,7 +158,7 @@ const LOCALES = {
     cat_cable_pinout: "Распиновка USB",
     cat_power_bank: "Power Bank",
     cat_emergency_light: "Аварийный свет",
-    
+
     // Общие
     back: "← Назад",
     next: "Далее",
@@ -160,18 +171,18 @@ const LOCALES = {
     theme: "Тема",
     voice: "Голос",
     download_pdf: "Скачать PDF",
-    
+
     // Вопросы
     question_of: "Вопрос {current} из {total}",
     select_all: "✅ Выберите все, что применимо",
     select_one: "Выберите один вариант",
-    
+
     // Результаты
     results_title: "{title} — Результаты",
     results_subtitle: "Под вашу ситуацию",
     no_results: "⚠️ Нет точных решений",
     no_results_desc: "Попробуйте изменить параметры или выберите другой раздел.",
-    
+
     // Бейджи
     badge_fast: "⚡ Быстро",
     badge_medium: "⏱️ Средне",
@@ -179,11 +190,11 @@ const LOCALES = {
     badge_high: "✅ Надёжно",
     badge_medium_rel: "⚠️ Средне",
     badge_low: "❌ Низко",
-    
+
     // Детали
     detail_steps: "Шаги выполнения",
     detail_warnings: "Важные предупреждения",
-    
+
     // SOS
     sos_title: "Режим SOS",
     sos_desc: "Ваши координаты сохранены. При появлении сигнала будет отправлено сообщение экстренным контактам.",
@@ -205,22 +216,22 @@ const LOCALES = {
     sos_flashlight: "🔦 Фонарик (SOS-мигание)",
     sos_flashlight_on: "🔦 Фонарик ВКЛ (SOS-мигание)",
     sos_coords_saved: "Координаты сохранены в кэш",
-    
+
     // Toast
     toast_develop: "Раздел в разработке",
     toast_no_results: "Нет результатов для экспорта",
     toast_voice_unsupported: "Голосовой ввод не поддерживается",
-    
+
     // Карта
     map_link: "🗺️ Открыть карту (требуется интернет)",
     map_hint: "Или скачай Organic Maps — работает офлайн",
-    
+
     // Психология
     psychology_breath: "Дыши: 4 сек вдох, 4 пауза, 4 выдох",
     psychology_plan: "Планируй: разбей день на отрезки",
     psychology_talk: "Говори с собой вслух — это успокаивает",
     psychology_goals: "Ставь маленькие цели: 'собрать дрова на 2 часа'",
-    
+
     // Поддержка
     support_title: "❤️ Спасибо, что выбрали SOS!",
     support_desc: "Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!",
@@ -228,20 +239,20 @@ const LOCALES = {
     support_donate: "💳 Поддержать проект",
     support_trust: "💎 Есть идеи или предложения? Пишите нам на почту sos.universal.help@gmail.com. Спасибо, что вы с нами!",
     support_footer: "Спасибо, что вы с нами! 🙌",
-    
+
     // Язык
     lang_ru: "🇷🇺 Русский",
     lang_en: "🇬🇧 English"
   },
-  
+
   // ===== АНГЛИЙСКИЙ =====
   en: {
     // Main screen
     app_title: "UNIVERSAL",
     app_subtitle: "Universal Rescuer",
-    
+
     // Module titles (EN)
-    app_title_survival: "🆘 SURVIVE",
+    app_title_survival: "🆘 SURVIVAL",
     app_title_auto: "🚗 AUTO",
     app_title_lawyer: "⚖️ LAWYER",
     app_title_home: "🏠 HOME",
@@ -250,11 +261,22 @@ const LOCALES = {
     app_title_travel: "✈️ TRAVEL",
     app_title_drone: "🚁 DRONE",
     app_title_energy: "⚡ ENERGY",
-    
+
+    // Module subtitles (EN)
+    app_subtitle_survival: "Emergency situations and survival",
+    app_subtitle_auto: "Car breakdown assistance",
+    app_subtitle_lawyer: "Online legal assistance",
+    app_subtitle_home: "Apartment and home issues",
+    app_subtitle_children: "Children safety and health",
+    app_subtitle_pets: "Animal assistance",
+    app_subtitle_travel: "Emergency situations abroad and during trips",
+    app_subtitle_drone: "Unmanned aerial vehicle safety",
+    app_subtitle_energy: "Energy and device charging",
+
     status_online: "Offline mode — database loaded",
     sos_button: "SOS — I'm in danger",
     footer_text: "v2.0 · Fully offline",
-    
+
     // Modules
     mod_survival: "Survival",
     mod_auto: "Auto",
@@ -266,7 +288,7 @@ const LOCALES = {
     mod_drone: "Drones",
     mod_energy: "Energy",
     mod_soon: "Coming soon",
-    
+
     // Modules (for data-i18n on main page)
     cat_survival: "Survival",
     cat_auto: "Auto",
@@ -277,7 +299,7 @@ const LOCALES = {
     cat_travel: "Travel",
     cat_drone: "Drones",
     cat_energy: "Energy",
-    
+
     // ===== SURVIVAL =====
     survival_title: "SURVIVE",
     survival_subtitle: "Offline Survival Assistant",
@@ -289,7 +311,7 @@ const LOCALES = {
     cat_navigation: "Navigation",
     cat_radio: "Radio",
     cat_kit: "Survival Kit",
-    
+
     // ===== AUTO =====
     auto_title: "🚗 Auto",
     auto_subtitle: "Road and garage assistance",
@@ -300,7 +322,7 @@ const LOCALES = {
     cat_battery: "Dead Battery",
     cat_leak: "Fluid Leak",
     cat_dtp: "Accident",
-    
+
     // ===== LAWYER =====
     lawyer_title: "⚖️ Lawyer",
     lawyer_subtitle: "Rights protection and legal help",
@@ -311,7 +333,7 @@ const LOCALES = {
     cat_debts: "Debts & Collectors",
     cat_divorce: "Divorce & Alimony",
     cat_consumer: "Consumer Rights",
-    
+
     // ===== HOME =====
     home_title: "🏠 Home",
     home_subtitle: "Home safety and utilities",
@@ -322,7 +344,7 @@ const LOCALES = {
     cat_lock: "Locks & Doors",
     cat_heating: "Heating",
     cat_natural: "Natural Disasters",
-    
+
     // ===== CHILDREN =====
     children_title: "👶 Children",
     children_subtitle: "Safety, health and help for children",
@@ -333,7 +355,7 @@ const LOCALES = {
     cat_bullying: "Bullying",
     cat_internet: "Internet Safety",
     cat_school: "School",
-    
+
     // ===== PETS =====
     pets_title: "🐾 Pets",
     pets_subtitle: "Help for pets",
@@ -344,7 +366,7 @@ const LOCALES = {
     cat_pet_health: "Health",
     cat_lost: "Lost Pet",
     cat_poison: "Poisoning",
-    
+
     // ===== TRAVEL =====
     travel_title: "🌍 Travel",
     travel_subtitle: "Help during trips",
@@ -355,7 +377,7 @@ const LOCALES = {
     cat_travel_lost: "Lost Items",
     cat_money: "Money",
     cat_theft: "Theft",
-    
+
     // ===== DRONE =====
     drone_title: "🛸 Drones",
     drone_subtitle: "Alerting and safety",
@@ -366,7 +388,7 @@ const LOCALES = {
     cat_identify: "Drone Identification",
     cat_prep: "Preparation",
     cat_drone_shelter: "Shelter",
-    
+
     // ===== ENERGY =====
     energy_title: "⚡ Energy",
     energy_subtitle: "Energy and charging without outlet",
@@ -377,7 +399,7 @@ const LOCALES = {
     cat_cable_pinout: "USB Pinout",
     cat_power_bank: "Power Bank",
     cat_emergency_light: "Emergency Light",
-    
+
     // Common
     back: "← Back",
     next: "Next",
@@ -390,18 +412,18 @@ const LOCALES = {
     theme: "Theme",
     voice: "Voice",
     download_pdf: "Download PDF",
-    
+
     // Questions
     question_of: "Question {current} of {total}",
     select_all: "✅ Select all that apply",
     select_one: "Select one option",
-    
+
     // Results
     results_title: "{title} — Results",
     results_subtitle: "For your situation",
     no_results: "⚠️ No exact solutions",
     no_results_desc: "Try changing parameters or choose another section.",
-    
+
     // Badges
     badge_fast: "⚡ Fast",
     badge_medium: "⏱️ Medium",
@@ -409,11 +431,11 @@ const LOCALES = {
     badge_high: "✅ Reliable",
     badge_medium_rel: "⚠️ Medium",
     badge_low: "❌ Low",
-    
+
     // Details
     detail_steps: "Steps",
     detail_warnings: "Warnings",
-    
+
     // SOS
     sos_title: "SOS Mode",
     sos_desc: "Your coordinates are saved. When signal appears, emergency message will be sent.",
@@ -435,22 +457,22 @@ const LOCALES = {
     sos_flashlight: "🔦 Flashlight (SOS blinking)",
     sos_flashlight_on: "🔦 Flashlight ON (SOS blinking)",
     sos_coords_saved: "Coordinates saved to cache",
-    
+
     // Toast
     toast_develop: "Section in development",
     toast_no_results: "No results to export",
     toast_voice_unsupported: "Voice input not supported",
-    
+
     // Map
     map_link: "🗺️ Open map (requires internet)",
     map_hint: "Or download Organic Maps — works offline",
-    
+
     // Psychology
     psychology_breath: "Breathe: 4 sec inhale, 4 pause, 4 exhale",
     psychology_plan: "Plan: break the day into segments",
     psychology_talk: "Talk to yourself out loud — it calms",
     psychology_goals: "Set small goals: 'collect wood for 2 hours'",
-    
+
     // Support
     support_title: "❤️ Thank you for choosing SOS!",
     support_desc: "If the app helped — say thanks, it inspires us to make it better!",
@@ -458,7 +480,7 @@ const LOCALES = {
     support_donate: "💳 Support the project",
     support_trust: "💎 Have ideas or suggestions? Write to us at sos.universal.help@gmail.com. Thank you for being with us!",
     support_footer: "Thank you for being with us! 🙌",
-    
+
     // Language
     lang_ru: "🇷🇺 Русский",
     lang_en: "🇬🇧 English"
@@ -472,7 +494,7 @@ window.LOCALES = LOCALES;
 function t(key) {
   const lang = typeof currentLang !== 'undefined' ? currentLang : 'ru';
   const texts = LOCALES[lang] || LOCALES.ru;
-  
+
   // Подстановка параметров
   if (arguments.length > 1 && typeof arguments[1] === 'object') {
     let result = texts[key] || key;
@@ -482,7 +504,7 @@ function t(key) {
     }
     return result;
   }
-  
+
   return texts[key] || key;
 }
 
