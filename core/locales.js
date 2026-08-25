@@ -180,10 +180,9 @@ const LOCALES = {
     // Результаты
     results_title: "{title} — Результаты",
     results_subtitle: "Под вашу ситуацию",
+    click_to_expand: "👆 Нажмите на решение, чтобы увидеть пошаговую инструкцию",
     no_results: "⚠️ Нет точных решений",
     no_results_desc: "Попробуйте изменить параметры или выберите другой раздел.",
-    // 👇 ДОБАВЛЕНА ПОДСКАЗКА
-    click_to_expand: "👆 Нажмите на решение, чтобы увидеть пошаговую инструкцию",
 
     // Бейджи
     badge_fast: "⚡ Быстро",
@@ -423,10 +422,9 @@ const LOCALES = {
     // Results
     results_title: "{title} — Results",
     results_subtitle: "For your situation",
+    click_to_expand: "👆 Click on a solution to see step-by-step instructions",
     no_results: "⚠️ No exact solutions",
     no_results_desc: "Try changing parameters or choose another section.",
-    // 👇 ДОБАВЛЕНА ПОДСКАЗКА
-    click_to_expand: "👆 Tap on a solution to see step-by-step instructions",
 
     // Badges
     badge_fast: "⚡ Fast",
