@@ -321,7 +321,7 @@ function showResults() {
     </div>`;
   } else {
     // 👇 Подсказка: иконка живёт только в переводе (locales.js)
-    html += `<p class="result-hint">${window.t ? t('click_to_expand') : 'Нажмите на решение, чтобы увидеть пошаговую инструкцию'}</p>`;
+    html += `<p class="result-hint">${window.t ? t('click_to_expand') : '👆 Нажмите на решение, чтобы увидеть пошаговую инструкцию'}</p>`;
 
     matched.forEach((sol, i) => {
       const prioMap = { fast: '⚡ Быстро', medium: '⏱️ Средне', slow: '🐢 Долго' };
