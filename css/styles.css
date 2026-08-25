@@ -1078,6 +1078,25 @@ html, body {
   text-align: center;
 }
 
+/* ===== ПОДСКАЗКА НА ЭКРАНЕ РЕЗУЛЬТАТОВ ===== */
+.result-hint {
+  text-align: center;
+  font-size: 20px;        /* увеличенный шрифт */
+  font-weight: 700;       /* жирный */
+  color: var(--accent2);
+  margin: 0 0 20px 0;
+  padding: 14px 20px;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 14px;
+  border: 2px solid var(--accent2);
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
   .app { padding: 12px; }
