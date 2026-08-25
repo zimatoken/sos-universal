@@ -85,21 +85,32 @@ function detectModuleFromPath() {
 
 function startFlow(category) {
   const moduleId = document.body.dataset.module || detectModuleFromPath();
+  const lang = window.currentLang || 'ru';
   
   let flow = null;
+  
+  // Попытка 1: Smart Adapter с ЯЗЫКОМ
   if (typeof SOS_GET_QUIZ === 'function') {
-    flow = SOS_GET_QUIZ(moduleId, category);
-    if (flow) console.log(`✅ Smart Adapter: ${moduleId}/${category}`);
+    flow = SOS_GET_QUIZ(moduleId, category, lang);
+    if (flow) console.log(`✅ Smart Adapter: ${moduleId}/${category} [${lang}]`);
   }
   
+  // Попытка 2: Fallback на русский, если текущий язык не найден
+  if (!flow && lang !== 'ru' && typeof SOS_GET_QUIZ === 'function') {
+    flow = SOS_GET_QUIZ(moduleId, category, 'ru');
+    if (flow) console.log(`✅ Fallback RU: ${moduleId}/${category}`);
+  }
+  
+  // Попытка 3: Старый fallback getCategoryData
   if (!flow && typeof getCategoryData === 'function') {
     flow = getCategoryData(category);
-    if (flow) console.log(`✅ Fallback: ${category}`);
+    if (flow) console.log(`✅ Legacy: ${category}`);
   }
   
   if (!flow) {
     showToastKey("toast_develop");
-    console.error(`❌ Нет данных: module=${moduleId}, category=${category}`);
+    console.error(`❌ Нет данных: module=${moduleId}, category=${category}, lang=${lang}`);
+    console.error(`   Проверь: 1) data-module на <body>, 2) имя файла .js, 3) meta.category в данных`);
     return;
   }
   
@@ -112,7 +123,8 @@ function startFlow(category) {
   App.visibleQuestions = getVisibleQuestions(App.allQuestions, App.answers);
   
   if (App.visibleQuestions.length === 0) {
-    showToast("❌ Нет доступных вопросов");
+    showToast("❌ Вопросы отсутствуют в данных");
+    console.error(`❌ flow.questions пустой! module=${moduleId}, category=${category}`);
     return;
   }
   
