@@ -123,7 +123,7 @@ const LOCALES = {
     cat_emergency: "Чрезвычайные ситуации",
     cat_firstaid: "Первая помощь",
     cat_pet_health: "Здоровье",
-    cat_lost: "Пропажа питомца",
+    cat_lost: "Пропажа ребенка",
     cat_poison: "Отравление",
 
     // ===== TRAVEL =====
