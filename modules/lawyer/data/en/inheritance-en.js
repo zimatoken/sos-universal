@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "inheritance",
     version: "1.0.0",
     lang: "en",
-    title: "📜 Inheritance",
+    title: "Inheritance",
     description: "Inheritance, will contest, missed deadlines, debts, mandatory share — full legal guidance",
     icon: "📜",
     color: "#7c3aed"

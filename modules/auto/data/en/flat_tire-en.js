@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "flat_tire",
     version: "1.0.0",
     lang: "en",
-    title: "🛞 Flat Tire",
+    title: "Flat Tire",
     description: "Diagnostics and solutions for tire problems — puncture, blowout, bulge, vibration",
     icon: "🛞",
     color: "#2563eb"

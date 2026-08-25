@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "labor",
     version: "1.0.0",
     lang: "ru",
-    title: "💼 Трудовые споры",
+    title: "Трудовые споры",
     description: "Увольнение, зарплата, дискриминация, травля, сокращение, несчастные случаи — защита прав работника",
     icon: "💼",
     color: "#7c3aed"

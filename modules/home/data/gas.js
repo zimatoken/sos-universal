@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "gas",
     version: "1.0.0",
     lang: "ru",
-    title: "⛽ Газ",
+    title: "Газ",
     description: "Утечка газа, запах, отключение, сигнализация CO, взрыв — действия при обнаружении",
     icon: "⛽",
     color: "#0891b2"

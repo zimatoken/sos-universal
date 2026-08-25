@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "internet",
     version: "1.0.0",
     lang: "en",
-    title: "📱 Internet Safety",
+    title: "Internet Safety",
     description: "Grooming, sexting, addiction, scams, harmful content, cyberbullying — how to protect your child online",
     icon: "📱",
     color: "#db2777"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "plumbing",
     version: "1.0.0",
     lang: "en",
-    title: "🚿 Water and Sewerage",
+    title: "Water and Sewerage",
     description: "Leaks, clogs, flooding, water shutoff, low pressure — what to do right now",
     icon: "🚿",
     color: "#0891b2"

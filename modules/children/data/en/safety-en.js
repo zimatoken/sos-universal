@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "safety",
     version: "1.0.0",
     lang: "en",
-    title: "🛡️ Safety",
+    title: "Safety",
     description: "Lost child, stranger danger, home alone, dangerous items, water, elevator, gas — what to do",
     icon: "🛡️",
     color: "#db2777"

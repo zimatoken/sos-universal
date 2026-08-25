@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "debts",
     version: "1.0.0",
     lang: "en",
-    title: "💸 Debts and Collectors",
+    title: "Debts and Collectors",
     description: "Loans, debt collectors, bailiffs, bankruptcy — debtor's rights protection",
     icon: "💸",
     color: "#7c3aed"

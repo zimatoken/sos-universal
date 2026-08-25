@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "hand_crank",
     version: "1.0.0",
     lang: "en",
-    title: "🔧 Hand Crank Generator",
+    title: "Hand Crank Generator",
     description: "Generators from motors, bicycle hubs, drills. Spin — get electricity. Unlimited power source made by yourself.",
     icon: "🔧",
     color: "#3b82f6"

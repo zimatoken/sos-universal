@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "lost",
     version: "1.0.0",
     lang: "en",
-    title: "🔍 Missing Child",
+    title: "Missing Child",
     description: "Child didn't come home from school, isn't answering calls, went missing — action plan",
     icon: "🔍",
     color: "#db2777"

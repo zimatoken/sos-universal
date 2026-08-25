@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "comms",
     version: "2.0.0",
     lang: "en",
-    title: "📡 Communication & Alerting",
+    title: "Communication & Alerting",
     description: "Drone detection, threat response, communication loss, evacuation — survival algorithms",
     icon: "📡",
     color: "#ea580c"

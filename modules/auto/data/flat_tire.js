@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "flat_tire",
     version: "1.0.0",
     lang: "ru",
-    title: "🛞 Прокол шины",
+    title: "Прокол шины",
     description: "Диагностика и решение проблем с колёсами — прокол, взрыв, грыжа, вибрация",
     icon: "🛞",
     color: "#2563eb"

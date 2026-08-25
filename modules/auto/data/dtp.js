@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "dtp",
     version: "1.0.0",
     lang: "ru",
-    title: "🚨 ДТП / Авария",
+    title: "ДТП / Авария",
     description: "Действия при дорожно-транспортном происшествии — вызов помощи, оформление, страховая",
     icon: "🚨",
     color: "#2563eb"

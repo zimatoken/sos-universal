@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "heating",
     version: "1.0.0",
     lang: "ru",
-    title: "🌡️ Отопление",
+    title: "Отопление",
     description: "Холодно в квартире, течёт батарея, котёл не работает, замерзли трубы, перерасчёт",
     icon: "🌡️",
     color: "#0891b2"

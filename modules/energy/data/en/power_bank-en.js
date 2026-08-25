@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "power_bank",
     version: "1.0.0",
     lang: "en",
-    title: "🔋 Power Bank DIY and Repair",
+    title: "Power Bank DIY and Repair",
     description: "How to repair a power bank, build from 18650, check real capacity, use laptop battery. Complete portable power guide.",
     icon: "🔋",
     color: "#10b981"

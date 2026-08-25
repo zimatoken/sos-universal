@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "consumer",
     version: "1.0.0",
     lang: "en",
-    title: "🛡️ Consumer Protection",
+    title: "Consumer Protection",
     description: "Defective goods, poor services, refunds, complaints — legal protection algorithms",
     icon: "🛡️",
     color: "#7c3aed"

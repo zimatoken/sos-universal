@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "divorce",
     version: "1.0.0",
     lang: "ru",
-    title: "💔 Развод и алименты",
+    title: "Развод и алименты",
     description: "Развод, алименты на детей и супругу, раздел имущества, определение места жительства ребёнка",
     icon: "💔",
     color: "#7c3aed"

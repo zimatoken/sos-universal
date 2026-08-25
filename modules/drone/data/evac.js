@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "evac",
     version: "2.0.0",
     lang: "ru",
-    title: "🏃 Эвакуация",
+    title: "Эвакуация",
     description: "Как безопасно покинуть опасную зону при угрозе с воздуха — с детьми, ранеными, ночью",
     icon: "🏃",
     color: "#ea580c"

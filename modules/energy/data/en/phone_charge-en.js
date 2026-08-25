@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "phone_charge",
     version: "1.0.0",
     lang: "en",
-    title: "📱 Phone Charging Without Outlet",
+    title: "Phone Charging Without Outlet",
     description: "How to charge your phone when there's no electricity: batteries, fruits, sun, dynamo, car — complete survival guide",
     icon: "📱",
     color: "#fbbf24"

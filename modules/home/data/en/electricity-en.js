@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "electricity",
     version: "1.0.0",
     lang: "en",
-    title: "⚡ Electricity",
+    title: "Electricity",
     description: "Blackout, short circuit, electric shock, sparking, burning smell — safe actions",
     icon: "⚡",
     color: "#0891b2"

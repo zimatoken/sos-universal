@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "natural",
     version: "1.0.0",
     lang: "en",
-    title: "🌪️ Natural Disasters",
+    title: "Natural Disasters",
     description: "Earthquake, hurricane, flood, tsunami, tornado, heatwave — protecting your home and family",
     icon: "🌪️",
     color: "#0891b2"

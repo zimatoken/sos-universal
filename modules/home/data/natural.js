@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "natural",
     version: "1.0.0",
     lang: "ru",
-    title: "🌪️ Стихия",
+    title: "Стихия",
     description: "Землетрясение, ураган, наводнение, цунами, торнадо, жара — защита дома и семьи",
     icon: "🌪️",
     color: "#0891b2"

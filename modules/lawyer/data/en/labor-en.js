@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "labor",
     version: "1.0.0",
     lang: "en",
-    title: "💼 Labor Disputes",
+    title: "Labor Disputes",
     description: "Unfair dismissal, salary disputes, discrimination, harassment, layoffs, workplace injuries — full employee protection",
     icon: "💼",
     color: "#7c3aed"

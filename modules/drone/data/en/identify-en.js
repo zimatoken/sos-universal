@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "identify",
     version: "2.0.0",
     lang: "en",
-    title: "🔊 Drone Identification",
+    title: "Drone Identification",
     description: "How to identify the type, affiliation, weapons, and threat level of a UAV",
     icon: "🔊",
     color: "#ea580c"

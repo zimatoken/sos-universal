@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "housing",
     version: "1.0.0",
     lang: "ru",
-    title: "🏠 Жилищные вопросы",
+    title: "Жилищные вопросы",
     description: "Соседи, ЖКХ, аренда, затопление, приватизация, перепланировка — защита ваших прав",
     icon: "🏠",
     color: "#7c3aed"

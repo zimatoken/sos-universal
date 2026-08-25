@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "leak",
     version: "1.0.0",
     lang: "ru",
-    title: "💧 Утечка жидкости",
+    title: "Утечка жидкости",
     description: "Диагностика и решение проблем с утечками технических жидкостей — масло, антифриз, тормозная, топливо",
     icon: "💧",
     color: "#2563eb"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "electricity",
     version: "1.0.0",
     lang: "ru",
-    title: "⚡ Электричество",
+    title: "Электричество",
     description: "Отключение, короткое замыкание, удар током, искрение, запах гари — безопасные действия",
     icon: "⚡",
     color: "#0891b2"

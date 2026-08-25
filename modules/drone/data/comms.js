@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "comms",
     version: "2.0.0",
     lang: "ru",
-    title: "📡 Связь и оповещение",
+    title: "Связь и оповещение",
     description: "Обнаружение дрона, угроза, потеря связи, эвакуация — алгоритмы выживания",
     icon: "📡",
     color: "#ea580c"

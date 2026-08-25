@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "gas",
     version: "1.0.0",
     lang: "en",
-    title: "⛽ Gas",
+    title: "Gas",
     description: "Gas leak, smell, shutoff, CO alarm, explosion — actions when detected",
     icon: "⛽",
     color: "#0891b2"

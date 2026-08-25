@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "housing",
     version: "1.0.0",
     lang: "en",
-    title: "🏠 Housing Issues",
+    title: "Housing Issues",
     description: "Neighbors, utilities, rent, flooding, privatization, renovation — protecting your rights",
     icon: "🏠",
     color: "#7c3aed"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "injury",
     version: "1.0.0",
     lang: "ru",
-    title: "🩹 Травмы и первая помощь",
+    title: "Травмы и первая помощь",
     description: "Порез, ожог, ушиб, перелом, попадание в глаз, удушье — что делать до приезда скорой",
     icon: "🩹",
     color: "#db2777"

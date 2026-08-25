@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "brakes",
     version: "1.0.0",
     lang: "en",
-    title: "🛑 Brake Problems",
+    title: "Brake Problems",
     description: "Diagnostics and solutions for critical brake system issues",
     icon: "🛑",
     color: "#2563eb"

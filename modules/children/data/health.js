@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "health",
     version: "1.0.0",
     lang: "ru",
-    title: "🤒 Здоровье",
+    title: "Здоровье",
     description: "Температура, рвота, аллергия, судороги, дыхание, боль — когда звонить врачу и что делать",
     icon: "🤒",
     color: "#db2777"

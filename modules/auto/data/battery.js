@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "battery",
     version: "1.0.0",
     lang: "ru",
-    title: "🔋 Села батарея",
+    title: "Села батарея",
     description: "Проблемы с аккумулятором: диагностика, запуск, замена, обслуживание",
     icon: "🔋",
     color: "#2563eb"
