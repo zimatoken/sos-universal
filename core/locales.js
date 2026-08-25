@@ -182,6 +182,8 @@ const LOCALES = {
     results_subtitle: "Под вашу ситуацию",
     no_results: "⚠️ Нет точных решений",
     no_results_desc: "Попробуйте изменить параметры или выберите другой раздел.",
+    // 👇 ДОБАВЛЕНА ПОДСКАЗКА
+    click_to_expand: "👆 Нажмите на решение, чтобы увидеть пошаговую инструкцию",
 
     // Бейджи
     badge_fast: "⚡ Быстро",
@@ -423,6 +425,8 @@ const LOCALES = {
     results_subtitle: "For your situation",
     no_results: "⚠️ No exact solutions",
     no_results_desc: "Try changing parameters or choose another section.",
+    // 👇 ДОБАВЛЕНА ПОДСКАЗКА
+    click_to_expand: "👆 Tap on a solution to see step-by-step instructions",
 
     // Badges
     badge_fast: "⚡ Fast",
