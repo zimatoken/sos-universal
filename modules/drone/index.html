@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#f59e0b">
+  <meta name="theme-color" content="#ea580c">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>SOS DRONE — Безопасность при БПЛА</title>
@@ -62,9 +62,9 @@
           <span class="icon">🔊</span>
           <span class="label" data-i18n="cat_identify">Идентификация</span>
         </button>
-        <button class="cat-btn shelter" onclick="startFlow('shelter')">
+        <button class="cat-btn drone_shelter" onclick="startFlow('drone_shelter')">
           <span class="icon">🛡️</span>
-          <span class="label" data-i18n="cat_shelter">Укрытие</span>
+          <span class="label" data-i18n="cat_drone_shelter">Укрытие</span>
         </button>
         <button class="cat-btn comms" onclick="startFlow('comms')">
           <span class="icon">📡</span>
@@ -74,9 +74,9 @@
           <span class="icon">🏃</span>
           <span class="label" data-i18n="cat_evac">Эвакуация</span>
         </button>
-        <button class="cat-btn firstaid" onclick="startFlow('firstaid')">
+        <button class="cat-btn drone_firstaid" onclick="startFlow('drone_firstaid')">
           <span class="icon">🩹</span>
-          <span class="label" data-i18n="cat_firstaid">Первая помощь</span>
+          <span class="label" data-i18n="cat_drone_firstaid">Первая помощь</span>
         </button>
         <button class="cat-btn prep" onclick="startFlow('prep')">
           <span class="icon">📋</span>
@@ -99,11 +99,11 @@
         <span class="map-hint" data-i18n="map_hint">Или скачай Organic Maps — работает офлайн</span>
       </div>
 
-      <!-- БЛОК ПОДДЕРЖКИ v2.2 — 6 способов -->
+      <!-- БЛОК ПОДДЕРЖКИ v2.2 — 6 способов (ИСПРАВЛЕНО!) -->
       <div class="support-block" id="supportBlock">
         <div class="support-header">
           <span class="support-heart">❤️</span>
-          <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS AUTO!</span>
+          <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS DRONE!</span>
         </div>
 
         <p class="support-desc" data-i18n="support_desc">
@@ -113,7 +113,7 @@
         <div class="support-methods">
 
           <!-- СБП -->
-          <button class="support-btn sbp" onclick="copySBP()" title="Скопировать реквизиты СБП">
+          <button class="support-btn sbp" onclick="window.copySBP ? copySBP() : copyToClipboard('+79639424331', '📋 Номер скопирован')" title="Скопировать реквизиты СБП">
             <span class="btn-icon">🏦</span>
             <span class="btn-text">
               <span class="btn-label" data-i18n="support_sbp">Перевод по СБП</span>
@@ -126,7 +126,7 @@
              target="_blank" 
              rel="noopener noreferrer nofollow"
              class="support-btn tinkoff"
-             onclick="trackSupport('tinkoff')"
+             onclick="window.trackSupport ? trackSupport('tinkoff') : console.log('[Support] tinkoff')"
              title="Открыть в Т-Банке">
             <span class="btn-icon">💳</span>
             <span class="btn-text">
@@ -136,16 +136,16 @@
           </a>
 
           <!-- EVM -->
-          <button class="support-btn evm" onclick="copyEVM()" title="Скопировать EVM-адрес">
+          <button class="support-btn evm" onclick="window.copyCrypto ? copyCrypto('evm') : copyToClipboard('0x428B1872339a628213d8560C1C2aB26146499dcA', '📋 EVM-адрес скопирован')" title="Скопировать EVM-адрес">
             <span class="btn-icon">⬡</span>
             <span class="btn-text">
               <span class="btn-label" data-i18n="support_evm">USDT / ETH (EVM)</span>
-              <span class="btn-hint" data-i18n="support_evm_hint">Ethereum, Base, Polygon, BNB...</span>
+              <span class="btn-hint" data-i18n="support_evm_hint">Ethereum, Base, Polygon, BNB, Arbitrum, OP</span>
             </span>
           </button>
 
           <!-- Tron -->
-          <button class="support-btn tron" onclick="copyTron()" title="Скопировать Tron-адрес">
+          <button class="support-btn tron" onclick="window.copyCrypto ? copyCrypto('tron') : copyToClipboard('TYBCg6Ev5uPjAopKxhritoqSuDwVHV5LbT', '📋 Tron-адрес скопирован')" title="Скопировать Tron-адрес">
             <span class="btn-icon">🔴</span>
             <span class="btn-text">
               <span class="btn-label" data-i18n="support_tron">USDT TRC-20 (Tron)</span>
@@ -153,21 +153,21 @@
             </span>
           </button>
 
-          <!-- Bitcoin -->
-          <button class="support-btn btc" onclick="copyBTC()" title="Скопировать Bitcoin-адрес">
+          <!-- Bitcoin — ИСПРАВЛЕНО! -->
+          <button class="support-btn bitcoin" onclick="window.copyCrypto ? copyCrypto('bitcoin') : copyToClipboard('bc1qw0lfv4hwvzk9qhax2xp0n4jm94lce4mkn8pwjl', '📋 Bitcoin-адрес скопирован')" title="Скопировать Bitcoin-адрес">
             <span class="btn-icon">₿</span>
             <span class="btn-text">
-              <span class="btn-label" data-i18n="support_btc">Bitcoin (BTC)</span>
-              <span class="btn-hint" data-i18n="support_btc_hint">Сеть Bitcoin — надёжно</span>
+              <span class="btn-label" data-i18n="support_bitcoin">Bitcoin (BTC)</span>
+              <span class="btn-hint" data-i18n="support_bitcoin_hint">Сеть Bitcoin — надёжно</span>
             </span>
           </button>
 
-          <!-- Solana -->
-          <button class="support-btn sol" onclick="copySOL()" title="Скопировать Solana-адрес">
+          <!-- Solana — ИСПРАВЛЕНО! -->
+          <button class="support-btn solana" onclick="window.copyCrypto ? copyCrypto('solana') : copyToClipboard('4rPx8Vtk5dcBe8CpCb9ZgaGf9HwW9cf5FesuspijLfCj', '📋 Solana-адрес скопирован')" title="Скопировать Solana-адрес">
             <span class="btn-icon">◎</span>
             <span class="btn-text">
-              <span class="btn-label" data-i18n="support_sol">Solana (SOL / USDC)</span>
-              <span class="btn-hint" data-i18n="support_sol_hint">Сеть Solana — мгновенно</span>
+              <span class="btn-label" data-i18n="support_solana">Solana (SOL / USDC)</span>
+              <span class="btn-hint" data-i18n="support_solana_hint">Сеть Solana — мгновенно</span>
             </span>
           </button>
 
@@ -336,29 +336,39 @@
   <script>
     // ==========================================
     // ГЛОБАЛЬНЫЕ ФУНКЦИИ ДЛЯ SOS UNIVERSAL
+    // (ТОЛЬКО ТЕ, ЧТО НЕ В APP.JS)
     // ==========================================
 
-    // Функция возврата на главный экран    
+    // Функция возврата на главный экран (главная страница)
     function goBack() {
       window.location.href = '../../index.html';
     }
 
+    // Функция переключения языка
     function setLanguage(lang) {
       const savedLang = localStorage.getItem('language') || 'ru';
+      
+      // Если язык изменился - перезагружаем страницу для корректной загрузки данных
       if (savedLang !== lang) {
         localStorage.setItem('language', lang);
         location.reload();
         return;
       }
+      
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
+      
+      // Обновляем текущий язык в движке
       if (typeof window.currentLang !== 'undefined') {
         window.currentLang = lang;
       }
+      
+      // Обновляем переводы
       updateTranslations(lang);
     }
 
+    // Функция обновления переводов
     function updateTranslations(lang) {
       const texts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -369,85 +379,24 @@
       });
     }
 
+    // Функция голосового ввода (заглушка)
     function startVoiceInput() {
-      alert('🎤 Голосовой ввод будет добавлен позже');
+      showToast('🎤 Голосовой ввод будет добавлен позже');
     }
 
-    // ==========================================
-    // ФУНКЦИИ ПОДДЕРЖКИ (защита от банов + UX)
-    // ==========================================
-
-    // СБП: копируем номер телефона в буфер
-    function copySBP() {
-      const phone = '+79639424331';
+    // ✅ FALLBACK-ФУНКЦИЯ КОПИРОВАНИЯ (ЕСЛИ APP.JS НЕ ЗАГРУЗИЛСЯ)
+    function copyToClipboard(text, msg) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(phone).then(() => {
-          showToast('📋 Номер скопирован. Откройте банк → СБП → Перевод по номеру телефона');
+        navigator.clipboard.writeText(text).then(() => {
+          showToast ? showToast(msg) : alert(msg);
         }).catch(() => {
-          fallbackCopy(phone, 'Номер скопирован. Откройте банк → СБП');
+          fallbackCopy(text, msg);
         });
       } else {
-        fallbackCopy(phone, 'Номер скопирован. Откройте банк → СБП');
+        fallbackCopy(text, msg);
       }
     }
 
-    // EVM: копируем адрес (Ethereum, Base, Polygon, BNB, Arbitrum, OP, Linea)
-    function copyEVM() {
-      const address = '0x428B1872339a628213d8560C1C2aB26146499dcA';
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(address).then(() => {
-          showToast('📋 EVM-адрес скопирован. Сети: ETH, Base, Polygon, BNB, Arbitrum, OP');
-        }).catch(() => {
-          fallbackCopy(address, 'EVM-адрес скопирован');
-        });
-      } else {
-        fallbackCopy(address, 'EVM-адрес скопирован');
-      }
-    }
-
-    // Tron: копируем TRC-20 адрес
-    function copyTron() {
-      const address = 'TYBCg6Ev5uPjAopKxhritoqSuDwVHV5LbT';
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(address).then(() => {
-          showToast('📋 Tron-адрес скопирован. Сеть: TRC-20 (Tron)');
-        }).catch(() => {
-          fallbackCopy(address, 'Tron-адрес скопирован');
-        });
-      } else {
-        fallbackCopy(address, 'Tron-адрес скопирован');
-      }
-    }
-
-    // Bitcoin: копируем BTC-адрес
-    function copyBTC() {
-      const address = 'bc1qw0lfv4hwvzk9qhax2xp0n4jm94lce4mkn8pwjl';
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(address).then(() => {
-          showToast('📋 Bitcoin-адрес скопирован. Сеть: Bitcoin (BTC)');
-        }).catch(() => {
-          fallbackCopy(address, 'Bitcoin-адрес скопирован');
-        });
-      } else {
-        fallbackCopy(address, 'Bitcoin-адрес скопирован');
-      }
-    }
-
-    // Solana: копируем SOL-адрес
-    function copySOL() {
-      const address = '4rPx8Vtk5dcBe8CpCb9ZgaGf9HwW9cf5FesuspijLfCj';
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(address).then(() => {
-          showToast('📋 Solana-адрес скопирован. Сеть: Solana (SOL / USDC)');
-        }).catch(() => {
-          fallbackCopy(address, 'Solana-адрес скопирован');
-        });
-      } else {
-        fallbackCopy(address, 'Solana-адрес скопирован');
-      }
-    }
-
-    // Fallback копирование для старых браузеров
     function fallbackCopy(text, msg) {
       const ta = document.createElement('textarea');
       ta.value = text;
@@ -457,16 +406,11 @@
       ta.select();
       try {
         document.execCommand('copy');
-        showToast(msg);
+        showToast ? showToast(msg) : alert(msg);
       } catch (e) {
-        showToast('Реквизиты: ' + text);
+        showToast ? showToast('Реквизиты: ' + text) : alert('Реквизиты: ' + text);
       }
       document.body.removeChild(ta);
-    }
-
-    // Трекинг (опционально)
-    function trackSupport(method) {
-      console.log('[Support] Клик:', method);
     }
 
     // ✅ ВСЕ ЗАГРУЗКИ В ОДНОМ МЕСТЕ (язык, тема, SW, авто-SOS)

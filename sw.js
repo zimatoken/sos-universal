@@ -255,9 +255,9 @@ self.addEventListener('fetch', event => {
           return networkResponse;
         }).catch(() => null);
 
+        // Есть в кэше — отдаём сразу, обновляем в фоне
         if (cached) {
-          // Есть в кэше — отдаём сразу, обновляем в фоне
-          networkUpdate; // выполнится в фоне
+          networkUpdate.catch(() => {});  // подавляем необработанные rejection
           return cached;
         }
 

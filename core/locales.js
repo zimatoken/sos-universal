@@ -124,7 +124,7 @@ const LOCALES = {
     cat_emergency: "Чрезвычайные ситуации",
     cat_firstaid: "Первая помощь",
     cat_pet_health: "Здоровье",
-    cat_lost: "Пропажа ребенка",
+    cat_lost: "Пропажа питомца",
     cat_poison: "Отравление",
 
     // ===== TRAVEL =====
@@ -234,7 +234,7 @@ const LOCALES = {
     psychology_talk: "Говори с собой вслух — это успокаивает",
     psychology_goals: "Ставь маленькие цели: 'собрать дрова на 2 часа'",
 
-    // Поддержка
+    // Поддержка — ИСПРАВЛЕНО! (support_btc → support_bitcoin, support_sol → support_solana)
     support_title: "Спасибо, что выбрали SOS!",
     support_desc: "Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!",
     support_sbp: "Перевод по СБП",
@@ -245,10 +245,10 @@ const LOCALES = {
     support_evm_hint: "Ethereum, Base, Polygon, BNB, Arbitrum, OP",
     support_tron: "USDT TRC-20 (Tron)",
     support_tron_hint: "Сеть Tron — низкая комиссия",
-    support_btc: "Bitcoin (BTC)",
-    support_btc_hint: "Сеть Bitcoin — надёжно",
-    support_sol: "Solana (SOL / USDC)",
-    support_sol_hint: "Сеть Solana — мгновенно",
+    support_bitcoin: "Bitcoin (BTC)",
+    support_bitcoin_hint: "Сеть Bitcoin — надёжно",
+    support_solana: "Solana (SOL / USDC)",
+    support_solana_hint: "Сеть Solana — мгновенно",
     support_legal: "💎 Добровольное пожертвование на развитие проекта. Услуги не оказываются, товар не поставляется. По вопросам: sos.universal.help@gmail.com",
     support_trust: "Есть идеи или предложения? Пишите нам на почту sos.universal.help@gmail.com. Спасибо, что вы с нами!",
     support_footer: "Спасибо, что вы с нами! 🙌",
@@ -488,7 +488,7 @@ const LOCALES = {
     psychology_talk: "Talk to yourself out loud — it calms",
     psychology_goals: "Set small goals: 'collect wood for 2 hours'",
 
-    // Support
+    // Support — ИСПРАВЛЕНО! (support_btc → support_bitcoin, support_sol → support_solana)
     support_title: "Thank you for choosing SOS!",
     support_desc: "If the app helped — say thanks, it inspires us to make it better!",
     support_sbp: "SBP Transfer",
@@ -499,10 +499,10 @@ const LOCALES = {
     support_evm_hint: "Ethereum, Base, Polygon, BNB, Arbitrum, OP",
     support_tron: "USDT TRC-20 (Tron)",
     support_tron_hint: "Tron network — low fees",
-    support_btc: "Bitcoin (BTC)",
-    support_btc_hint: "Bitcoin network — reliable",
-    support_sol: "Solana (SOL / USDC)",
-    support_sol_hint: "Solana network — instant",
+    support_bitcoin: "Bitcoin (BTC)",
+    support_bitcoin_hint: "Bitcoin network — reliable",
+    support_solana: "Solana (SOL / USDC)",
+    support_solana_hint: "Solana network — instant",
     support_legal: "💎 Voluntary donation for project development. No services provided. Contact: sos.universal.help@gmail.com",
     support_trust: "Have ideas or suggestions? Write to us at sos.universal.help@gmail.com. Thank you for being with us!",
     support_footer: "Thank you for being with us! 🙌",
