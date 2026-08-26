@@ -532,54 +532,109 @@ function toggleSignal(el) {
 }
 
 // ============================================================
-// 12. FLASHLIGHT
+// 12. FLASHLIGHT — реальный torch + screen fallback + вибрация
 // ============================================================
 
 let flashlightOn = false;
 let flashInterval = null;
+let torchTrack = null;
+let torchStream = null;
+
+async function tryRealTorch(on) {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return false;
+  try {
+    if (on) {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" }
+      });
+      const track = stream.getVideoTracks()[0];
+      const caps = track.getCapabilities();
+      if (caps.torch) {
+        await track.applyConstraints({ advanced: [{ torch: true }] });
+        torchTrack = track;
+        torchStream = stream;
+        return true;
+      }
+      track.stop();
+      return false;
+    } else {
+      if (torchTrack) {
+        try { await torchTrack.applyConstraints({ advanced: [{ torch: false }] }); } catch(e) {}
+        torchTrack.stop();
+        torchTrack = null;
+      }
+      if (torchStream) {
+        torchStream.getTracks().forEach(t => t.stop());
+        torchStream = null;
+      }
+      return true;
+    }
+  } catch (e) {
+    console.log('[Flashlight] Real torch unavailable:', e.message);
+    return false;
+  }
+}
 
 function toggleFlashlight() {
   const btn = document.querySelector(".flashlight-btn");
   if (!btn) return;
-  
+
   flashlightOn = !flashlightOn;
-  btn.classList.toggle("on", flashlightOn);
 
   if (flashlightOn) {
+    btn.classList.add("on");
     btn.textContent = "🔦 Фонарик ВКЛ (SOS-мигание)";
+    
+    // Пробуем настоящий фонарик
+    tryRealTorch(true).then(ok => {
+      if (ok) console.log('[Flashlight] Real torch ON');
+      else console.log('[Flashlight] Using screen fallback');
+    });
+    
     startSOSFlash();
   } else {
+    btn.classList.remove("on");
     btn.textContent = "🔦 Фонарик (SOS-мигание)";
+    
+    tryRealTorch(false);
     stopSOSFlash();
   }
 }
 
 function startSOSFlash() {
-  if (flashInterval) {
-    clearInterval(flashInterval);
-    flashInterval = null;
-  }
-  
-  const pattern = [200, 200, 200, 200, 200, 200, 600, 200, 600, 200, 600, 200, 200, 200, 200, 200, 200, 200, 1000];
+  if (flashInterval) clearInterval(flashInterval);
+
+  // SOS паттерн: ... --- ... (короткие 200мс, длинные 600мс, паузы 200мс)
+  const pattern = [200,200,200, 200,200,600, 200,600,200, 600,200,200, 200,200,200, 1000];
   let i = 0;
 
-  function flash() {
+  flashInterval = setInterval(() => {
     if (!flashlightOn) {
       clearInterval(flashInterval);
       flashInterval = null;
+      document.body.classList.remove('screen-flash');
       return;
     }
-    const duration = pattern[i % pattern.length];
-    const isOn = i % 2 === 0 && duration < 500;
 
-    if (navigator.vibrate) {
-      if (isOn) navigator.vibrate(duration);
+    const duration = pattern[i % pattern.length];
+    const isShort = duration < 500; // короткая вспышка
+
+    // 1. Вибрация (всегда работает)
+    if (navigator.vibrate && isShort) {
+      navigator.vibrate(duration);
+    } else if (navigator.vibrate && !isShort) {
+      navigator.vibrate([duration, 200]);
     }
+
+    // 2. Screen flashlight fallback (мигание экрана белым)
+    // Работает на ВСЕХ телефонах, даже если нет доступа к камере
+    if (isShort) {
+      document.body.classList.add('screen-flash');
+      setTimeout(() => document.body.classList.remove('screen-flash'), duration);
+    }
+
     i++;
-  }
-  
-  flashInterval = setInterval(flash, 200);
-  flash();
+  }, 250);
 }
 
 function stopSOSFlash() {
@@ -588,6 +643,8 @@ function stopSOSFlash() {
     flashInterval = null;
   }
   if (navigator.vibrate) navigator.vibrate(0);
+  document.body.classList.remove('screen-flash');
+  tryRealTorch(false);
 }
 
 // ============================================================

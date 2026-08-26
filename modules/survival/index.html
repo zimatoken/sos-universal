@@ -488,17 +488,26 @@
       console.log('[Support] Клик:', method);
     }
 
-    // Загрузка сохранённого языка и темы + регистрация Service Worker
+    // ✅ ВСЕ ЗАГРУЗКИ В ОДНОМ МЕСТЕ (язык, тема, SW, авто-SOS)
     document.addEventListener('DOMContentLoaded', function() {
+      // 1. Авто-открытие SOS при переходе с главной
+      if (localStorage.getItem('sos_auto_open') === '1') {
+        localStorage.removeItem('sos_auto_open');
+        setTimeout(() => {
+          if (typeof showSOS === 'function') showSOS();
+        }, 400);
+      }
+
+      // 2. Язык
       const savedLang = localStorage.getItem('language') || 'ru';
       setLanguage(savedLang);
       
-      // Загрузка темы
+      // 3. Тема
       if (typeof loadTheme === 'function') {
         loadTheme();
       }
       
-      // ✅ Регистрация Service Worker (офлайн-кэширование)
+      // 4. Service Worker (офлайн-кэширование)
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('../../sw.js')
           .then(reg => console.log('✅ SW registered:', reg.scope))

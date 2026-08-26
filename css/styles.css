@@ -1078,6 +1078,15 @@ html, body {
   text-align: center;
 }
 
+/* ===== SCREEN FLASHLIGHT FALLBACK ===== */
+body.screen-flash {
+  background: #ffffff !important;
+  transition: none !important;
+}
+body.screen-flash .app {
+  opacity: 0.1;
+}
+
 /* ===== ПОДСКАЗКА НА ЭКРАНЕ РЕЗУЛЬТАТОВ ===== */
 .result-hint {
   text-align: center;

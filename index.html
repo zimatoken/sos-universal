@@ -41,8 +41,8 @@
         <button class="theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
       </div>
 
-      <!-- КНОПКА SOS -->
-      <button class="sos-btn" onclick="window.location.href='./modules/survival/index.html?mode=sos'">
+      <!-- КНОПКА SOS — ИСПРАВЛЕНО! -->
+      <button class="sos-btn" onclick="openSOSFromHome()">
         <div class="pulse"></div>
         <span data-i18n="sos_button">SOS — Я в опасности</span>
       </button>
@@ -240,12 +240,10 @@
       });
     }
 
-    function openSOS() {
-      if (typeof showSOS === 'function') {
-        showSOS();
-      } else {
-        window.location.href = './modules/survival/index.html?mode=sos';
-      }
+    // ✅ НОВАЯ ФУНКЦИЯ ДЛЯ SOS С ГЛАВНОЙ
+    function openSOSFromHome() {
+      localStorage.setItem('sos_auto_open', '1');
+      window.location.href = './modules/survival/index.html';
     }
 
     // ==========================================
