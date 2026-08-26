@@ -35,6 +35,7 @@ const LOCALES = {
     status_online: "Режим офлайн — база загружена",
     sos_button: "SOS — Я в опасности",
     footer_text: "v2.0 · Полностью офлайн",
+    footer_email: "sos.universal.help@gmail.com",
 
     // Модули (главная страница)
     mod_survival: "Выживание",
@@ -277,6 +278,7 @@ const LOCALES = {
     status_online: "Offline mode — database loaded",
     sos_button: "SOS — I'm in danger",
     footer_text: "v2.0 · Fully offline",
+    footer_email: "sos.universal.help@gmail.com",
 
     // Modules
     mod_survival: "Survival",
