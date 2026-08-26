@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "lock",
     version: "1.0.0",
     lang: "ru",
-    title: "🔐 Замки и двери",
+    title: "Замки и двери",
     description: "Заклинило замок, потерял ключи, взлом, защита от проникновения, замена замка",
     icon: "🔐",
     color: "#0891b2"

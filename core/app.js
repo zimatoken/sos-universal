@@ -320,6 +320,9 @@ function showResults() {
       <p style="color:var(--text2);">${window.t ? t('no_results_desc') : 'Попробуйте изменить ответы или обратитесь к специалисту'}</p>
     </div>`;
   } else {
+    // 👇 Подсказка: иконка живёт только в переводе (locales.js)
+    html += `<p class="result-hint">${window.t ? t('click_to_expand') : '👆 Нажмите на решение, чтобы увидеть пошаговую инструкцию'}</p>`;
+
     matched.forEach((sol, i) => {
       const prioMap = { fast: '⚡ Быстро', medium: '⏱️ Средне', slow: '🐢 Долго' };
       const relMap = { high: '✅ Надёжно', medium: '⚠️ Средне', low: '❌ Низко' };

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "dtp",
     version: "1.0.0",
     lang: "ru",
-    title: "🚨 ДТП / Авария",
+    title: "ДТП / Авария",
     description: "Юридическая помощь при дорожно-транспортном происшествии — ОСАГО, выплаты, суд, виновник",
     icon: "🚨",
     color: "#7c3aed"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "divorce",
     version: "1.0.0",
     lang: "en",
-    title: "💔 Divorce and Alimony",
+    title: "Divorce and Alimony",
     description: "Divorce, child support, alimony for spouse, property division, child residence determination",
     icon: "💔",
     color: "#7c3aed"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "debts",
     version: "1.0.0",
     lang: "ru",
-    title: "💸 Долги и коллекторы",
+    title: "Долги и коллекторы",
     description: "Кредиты, коллекторы, приставы, банкротство — защита прав должника",
     icon: "💸",
     color: "#7c3aed"

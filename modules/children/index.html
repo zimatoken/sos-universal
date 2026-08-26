@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="../../css/modules/children.css">
 </head>
-<body>
+<body data-module="children">
 
   <div class="app">
     <!-- ЭКРАН 1: Главная (категории) -->
@@ -28,7 +28,8 @@
           <span data-i18n="app_title_children">👶 CHILDREN</span>
         </h1>
         <p data-i18n="app_subtitle_children">Безопасность и здоровье детей</p>
-
+      </div> 
+      
       <div class="status-bar">
         <div class="dot"></div>
         <span data-i18n="status_online">Режим офлайн — база загружена</span>
@@ -308,11 +309,6 @@
       
       // Обновляем переводы
       updateTranslations(lang);
-      
-      // Перезагружаем данные
-      if (typeof refreshDataRegistry === 'function') {
-        refreshDataRegistry();
-      }
     }
 
     // Функция обновления переводов
@@ -339,6 +335,13 @@
       // Загрузка темы
       if (typeof loadTheme === 'function') {
         loadTheme();
+      }
+      
+      // ✅ Регистрация Service Worker (офлайн-кэширование)
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('../../sw.js')
+          .then(reg => console.log('✅ SW registered:', reg.scope))
+          .catch(err => console.error('❌ SW registration failed:', err));
       }
     });
   </script>

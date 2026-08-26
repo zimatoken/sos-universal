@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "water",
     version: "1.0.0",
     lang: "en",
-    title: "💧 Water",
+    title: "Water",
     description: "How to find, collect, and purify water in any conditions — from forest to desert",
     icon: "💧",
     color: "#16a34a"

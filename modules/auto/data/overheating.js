@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "overheating",
     version: "1.0.0",
     lang: "ru",
-    title: "🌡️ Перегрев двигателя",
+    title: "Перегрев двигателя",
     description: "Диагностика и решение проблем с системой охлаждения — перегрев, утечки, вентилятор, термостат",
     icon: "🌡️",
     color: "#2563eb"

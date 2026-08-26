@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "evac",
     version: "2.0.0",
     lang: "en",
-    title: "🏃 Evacuation",
+    title: "Evacuation",
     description: "How to safely leave a danger zone during an air threat — with children, injured, at night",
     icon: "🏃",
     color: "#ea580c"

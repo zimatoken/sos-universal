@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "emergency_light",
     version: "1.0.0",
     lang: "en",
-    title: "💡 Emergency Lighting",
+    title: "Emergency Lighting",
     description: "Light without electricity: candles, oil lamps, flashlights, extending phone flashlight life. Complete guide to lighting in the dark.",
     icon: "💡",
     color: "#ec4899"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "health",
     version: "1.0.0",
     lang: "en",
-    title: "🤒 Health",
+    title: "Health",
     description: "Fever, vomiting, diarrhea, coughing, refusing food — when to call the vet",
     icon: "🤒",
     color: "#9333ea"

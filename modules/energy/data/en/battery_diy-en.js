@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "battery_diy",
     version: "1.0.0",
     lang: "en",
-    title: "🥔 DIY Batteries from Everyday Items",
+    title: "DIY Batteries from Everyday Items",
     description: "Galvanic cells from lemon, potato, salt, vinegar and metals. Emergency power for flashlight, radio or phone.",
     icon: "🥔",
     color: "#84cc16"

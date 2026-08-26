@@ -123,7 +123,7 @@ const LOCALES = {
     cat_emergency: "Чрезвычайные ситуации",
     cat_firstaid: "Первая помощь",
     cat_pet_health: "Здоровье",
-    cat_lost: "Пропажа питомца",
+    cat_lost: "Пропажа ребенка",
     cat_poison: "Отравление",
 
     // ===== TRAVEL =====
@@ -180,6 +180,7 @@ const LOCALES = {
     // Результаты
     results_title: "{title} — Результаты",
     results_subtitle: "Под вашу ситуацию",
+    click_to_expand: "👆 Нажмите на решение, чтобы увидеть пошаговую инструкцию",
     no_results: "⚠️ Нет точных решений",
     no_results_desc: "Попробуйте изменить параметры или выберите другой раздел.",
 
@@ -233,11 +234,11 @@ const LOCALES = {
     psychology_goals: "Ставь маленькие цели: 'собрать дрова на 2 часа'",
 
     // Поддержка
-    support_title: "❤️ Спасибо, что выбрали SOS!",
+    support_title: "Спасибо, что выбрали SOS!",
     support_desc: "Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!",
-    support_telegram: "📱 Написать в Telegram",
-    support_donate: "💳 Поддержать проект",
-    support_trust: "💎 Есть идеи или предложения? Пишите нам на почту sos.universal.help@gmail.com. Спасибо, что вы с нами!",
+    support_telegram: "Написать в Telegram",
+    support_donate: "Поддержать проект",
+    support_trust: "Есть идеи или предложения? Пишите нам на почту sos.universal.help@gmail.com. Спасибо, что вы с нами!",
     support_footer: "Спасибо, что вы с нами! 🙌",
 
     // Язык
@@ -421,6 +422,7 @@ const LOCALES = {
     // Results
     results_title: "{title} — Results",
     results_subtitle: "For your situation",
+    click_to_expand: "👆 Click on a solution to see step-by-step instructions",
     no_results: "⚠️ No exact solutions",
     no_results_desc: "Try changing parameters or choose another section.",
 
@@ -474,11 +476,11 @@ const LOCALES = {
     psychology_goals: "Set small goals: 'collect wood for 2 hours'",
 
     // Support
-    support_title: "❤️ Thank you for choosing SOS!",
+    support_title: "Thank you for choosing SOS!",
     support_desc: "If the app helped — say thanks, it inspires us to make it better!",
-    support_telegram: "📱 Write on Telegram",
-    support_donate: "💳 Support the project",
-    support_trust: "💎 Have ideas or suggestions? Write to us at sos.universal.help@gmail.com. Thank you for being with us!",
+    support_telegram: "Write on Telegram",
+    support_donate: "Support the project",
+    support_trust: "Have ideas or suggestions? Write to us at sos.universal.help@gmail.com. Thank you for being with us!",
     support_footer: "Thank you for being with us! 🙌",
 
     // Language

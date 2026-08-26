@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "shelter",
     version: "2.0.0",
     lang: "en",
-    title: "🛡️ Drone Shelter",
+    title: "Drone Shelter",
     description: "How and where to take shelter from a drone — in buildings, basements, outdoors, in cars",
     icon: "🛡️",
     color: "#ea580c"

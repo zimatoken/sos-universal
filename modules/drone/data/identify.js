@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "identify",
     version: "2.0.0",
     lang: "ru",
-    title: "🔊 Идентификация дрона",
+    title: "Идентификация дрона",
     description: "Как определить тип, принадлежность, вооружение и степень опасности беспилотника",
     icon: "🔊",
     color: "#ea580c"

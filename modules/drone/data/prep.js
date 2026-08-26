@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "prep",
     version: "2.0.0",
     lang: "ru",
-    title: "📋 Подготовка",
+    title: "Подготовка",
     description: "Как подготовиться к угрозе с воздуха: документы, укрытие, связь, план действий, психологическая готовность",
     icon: "📋",
     color: "#ea580c"

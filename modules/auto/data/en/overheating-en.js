@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "overheating",
     version: "1.0.0",
     lang: "en",
-    title: "🌡️ Engine Overheating",
+    title: "Engine Overheating",
     description: "Diagnostics and solutions for cooling system problems — overheating, leaks, fan, thermostat",
     icon: "🌡️",
     color: "#2563eb"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "wont_start",
     version: "1.0.0",
     lang: "ru",
-    title: "🔌 Не заводится",
+    title: "Не заводится",
     description: "Диагностика и решение проблем с запуском двигателя — аккумулятор, стартер, топливо, свечи",
     icon: "🔌",
     color: "#2563eb"

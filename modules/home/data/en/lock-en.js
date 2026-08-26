@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "lock",
     version: "1.0.0",
     lang: "en",
-    title: "🔐 Locks and Doors",
+    title: "Locks and Doors",
     description: "Lock jammed, lost keys, break-in, security, lock replacement",
     icon: "🔐",
     color: "#0891b2"

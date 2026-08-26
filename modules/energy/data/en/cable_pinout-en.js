@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "cable_pinout",
     version: "1.0.0",
     lang: "en",
-    title: "🔌 Cable Pinout and Repair",
+    title: "Cable Pinout and Repair",
     description: "How to find +5V and GND, fix a break, make a cable from wire. USB, Lightning, Type-C wire colors. Complete cable guide.",
     icon: "🔌",
     color: "#a855f7"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "lost",
     version: "1.0.0",
     lang: "ru",
-    title: "🗺️ Потерялся / нет связи",
+    title: "Потерялся / нет связи",
     description: "Что делать, если вы потерялись в незнакомом городе или стране",
     icon: "🗺️",
     color: "#0d9488"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "school",
     version: "1.0.0",
     lang: "en",
-    title: "🏫 School",
+    title: "School",
     description: "Academic problems, teacher conflicts, bullying, drugs, aggression, school refusal — how to help your child",
     icon: "🏫",
     color: "#db2777"

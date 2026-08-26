@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "food",
     version: "1.0.0",
     lang: "en",
-    title: "🍖 Food",
+    title: "Food",
     description: "How to find food in the wild — insects, fish, hunting, plants",
     icon: "🍖",
     color: "#16a34a"

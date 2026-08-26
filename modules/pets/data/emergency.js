@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "emergency",
     version: "1.0.0",
     lang: "ru",
-    title: "🚨 Чрезвычайные ситуации",
+    title: "Чрезвычайные ситуации",
     description: "Роды, тепловой удар, ДТП, утопление, электроудар, укус змеи — экстренная помощь",
     icon: "🚨",
     color: "#9333ea"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "shelter",
     version: "2.0.0",
     lang: "ru",
-    title: "🛡️ Укрытие от дрона",
+    title: "Укрытие от дрона",
     description: "Как и где укрыться от беспилотника, чтобы сохранить жизнь — в здании, подвале, на улице, в машине",
     icon: "🛡️",
     color: "#ea580c"

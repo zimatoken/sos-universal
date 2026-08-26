@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "firstaid",
     version: "2.0.0",
     lang: "en",
-    title: "🩹 First Aid",
+    title: "First Aid",
     description: "How to help victims of explosions, wounds, concussion, bleeding, cardiac arrest",
     icon: "🩹",
     color: "#ea580c"

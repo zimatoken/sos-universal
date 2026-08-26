@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "bullying",
     version: "1.0.0",
     lang: "en",
-    title: "💔 Bullying",
+    title: "Bullying",
     description: "Physical violence, verbal abuse, cyberbullying, harassment — how to protect your child",
     icon: "💔",
     color: "#db2777"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "battery",
     version: "1.0.0",
     lang: "ru",
-    title: "🔋 Села батарея",
+    title: "Села батарея",
     description: "Проблемы с аккумулятором: диагностика, запуск, замена, обслуживание",
     icon: "🔋",
     color: "#2563eb"
@@ -24,7 +24,7 @@ window.SOS_REGISTER_QUIZ({
         { id: "slow_crank", label: "🐢 Медленно крутит стартер", tags: ["slow_crank"] },
         { id: "dim_lights", label: "💡 Фары тусклые / приборы тусклые", tags: ["dim_lights"] },
         { id: "sulfur_smell", label: "👃 Запах серы / гнилых яиц", tags: ["sulfur_smell"] },
-        { id: "swollen", label: "📦 Аккумулятор вздулся (изменена форму)", tags: ["swollen"] }
+        { id: "swollen", label: "📦 Аккумулятор вздулся (изменила форму)", tags: ["swollen"] }
       ]
     },
     {

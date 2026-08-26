@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "consumer",
     version: "1.0.0",
     lang: "ru",
-    title: "🛡️ Защита прав потребителей",
+    title: "Защита прав потребителей",
     description: "Бракованный товар, некачественная услуга, возврат денег, жалобы — алгоритмы защиты прав",
     icon: "🛡️",
     color: "#7c3aed"

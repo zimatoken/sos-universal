@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "detect",
     version: "2.0.0",
     lang: "ru",
-    title: "🛸 Обнаружение дрона",
+    title: "Обнаружение дрона",
     description: "Что делать, если вы заметили беспилотный летательный аппарат (БПЛА)",
     icon: "🛸",
     color: "#ea580c"

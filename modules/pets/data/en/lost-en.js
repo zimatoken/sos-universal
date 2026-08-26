@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "lost",
     version: "1.0.0",
     lang: "en",
-    title: "🔍 Lost Pet",
+    title: "Lost Pet",
     description: "Dog ran away, cat didn't return, parrot flew out — search algorithm",
     icon: "🔍",
     color: "#9333ea"

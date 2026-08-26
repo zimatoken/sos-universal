@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "food",
     version: "1.0.0",
     lang: "ru",
-    title: "🍖 Еда",
+    title: "Еда",
     description: "Как добыть пищу в дикой природе — насекомые, рыба, охота, растения",
     icon: "🍖",
     color: "#16a34a"

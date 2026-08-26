@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "shelter",
     version: "1.0.0",
     lang: "ru",
-    title: "🏠 Укрытие",
+    title: "Укрытие",
     description: "Как построить укрытие от непогоды и холода в любых условиях",
     icon: "🏠",
     color: "#16a34a"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "dtp",
     version: "1.0.0",
     lang: "en",
-    title: "🚨 Car Accident / DTP",
+    title: "Car Accident / DTP",
     description: "Legal assistance for road traffic accidents — OSAGO, insurance claims, court, at-fault driver",
     icon: "🚨",
     color: "#7c3aed"

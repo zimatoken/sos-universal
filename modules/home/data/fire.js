@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "fire",
     version: "1.0.0",
     lang: "ru",
-    title: "🔥 Пожар",
+    title: "Пожар",
     description: "Пожар в квартире, доме, подъезде — эвакуация, тушение, спасение людей и животных",
     icon: "🔥",
     color: "#0891b2"

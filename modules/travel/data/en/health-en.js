@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "health",
     version: "1.0.0",
     lang: "en",
-    title: "🏥 Health Abroad",
+    title: "Health Abroad",
     description: "Injury, illness, allergy, panic attack — how to get help",
     icon: "🏥",
     color: "#0d9488"

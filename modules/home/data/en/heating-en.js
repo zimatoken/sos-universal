@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "heating",
     version: "1.0.0",
     lang: "en",
-    title: "🌡️ Heating",
+    title: "Heating",
     description: "Cold apartment, radiator leak, boiler not working, frozen pipes, recalculation",
     icon: "🌡️",
     color: "#0891b2"

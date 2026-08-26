@@ -28,7 +28,8 @@
           <span data-i18n="app_title_pets">🐕 PETS</span>
         </h1>
         <p data-i18n="app_subtitle_pets">Помощь животным</p>
-
+      </div> 
+      
       <div class="status-bar">
         <div class="dot"></div>
         <span data-i18n="status_online">Режим офлайн — база загружена</span>
@@ -61,7 +62,7 @@
         </button>
         <button class="cat-btn lost" onclick="startFlow('lost')">
           <span class="icon">🔍</span>
-          <span class="label" data-i18n="cat_lost">Пропажа питомца</span>
+          <span class="label" data-i18n="cat_lost">Пропажа ребенка</span>
         </button>
         <button class="cat-btn behavior" onclick="startFlow('behavior')">
           <span class="icon">🐾</span>
@@ -308,11 +309,6 @@
       
       // Обновляем переводы
       updateTranslations(lang);
-      
-      // Перезагружаем данные
-      if (typeof refreshDataRegistry === 'function') {
-        refreshDataRegistry();
-      }
     }
 
     // Функция обновления переводов
@@ -339,6 +335,13 @@
       // Загрузка темы
       if (typeof loadTheme === 'function') {
         loadTheme();
+      }
+      
+      // ✅ Регистрация Service Worker (офлайн-кэширование)
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('../../sw.js')
+          .then(reg => console.log('✅ SW registered:', reg.scope))
+          .catch(err => console.error('❌ SW registration failed:', err));
       }
     });
   </script>

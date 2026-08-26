@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "care",
     version: "1.0.0",
     lang: "ru",
-    title: "🛁 Уход и гигиена",
+    title: "Уход и гигиена",
     description: "Блохи, клещи, глисты, груминг, когти, уши, зубы — профилактика и лечение",
     icon: "🛁",
     color: "#9333ea"

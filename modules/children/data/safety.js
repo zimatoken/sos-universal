@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "safety",
     version: "1.0.0",
     lang: "ru",
-    title: "🛡️ Безопасность",
+    title: "Безопасность",
     description: "Потерялась, ушла незнакомцу, осталась одна, опасные предметы, вода, лифт, газ — что делать",
     icon: "🛡️",
     color: "#db2777"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "firstaid",
     version: "1.0.0",
     lang: "en",
-    title: "🩹 First Aid",
+    title: "First Aid",
     description: "Wounds, bleeding, burns, fractures, choking — what to do before seeing a vet",
     icon: "🩹",
     color: "#9333ea"

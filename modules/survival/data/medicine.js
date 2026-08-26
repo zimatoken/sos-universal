@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "medicine",
     version: "1.0.0",
     lang: "ru",
-    title: "🩹 Медицина",
+    title: "Медицина",
     description: "Первая помощь и лечение в полевых условиях — кровотечение, переломы, ожоги, отравления",
     icon: "🩹",
     color: "#16a34a"

@@ -8,4 +8,5 @@ APP_URL = "https://zimatoken.github.io/sos-universal/"
 # Настройки для разных окружений
 ENV = "production"  # или "development"
 
-BOT_VERSION = "2.0"
+# Версия бота
+BOT_VERSION = "2.1"

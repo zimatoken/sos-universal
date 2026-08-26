@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "money",
     version: "1.0.0",
     lang: "en",
-    title: "💳 Money and Cards",
+    title: "Money and Cards",
     description: "Theft, loss, card blocking, fraud — what to do",
     icon: "💳",
     color: "#0d9488"

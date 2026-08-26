@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "health",
     version: "1.0.0",
     lang: "ru",
-    title: "🤒 Здоровье",
+    title: "Здоровье",
     description: "Температура, рвота, понос, кашель, отказ от еды — когда звонить ветеринару",
     icon: "🤒",
     color: "#9333ea"

@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "flight",
     version: "1.0.0",
     lang: "en",
-    title: "✈️ Flight Problems",
+    title: "Flight Problems",
     description: "Delays, cancellations, overbooking, lost baggage — your rights",
     icon: "✈️",
     color: "#0d9488"

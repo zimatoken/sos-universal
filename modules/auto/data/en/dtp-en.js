@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "dtp",
     version: "1.0.0",
     lang: "en",
-    title: "🚨 Accident / DTP",
+    title: "Accident / DTP",
     description: "Actions in a road traffic accident — calling for help, documentation, insurance",
     icon: "🚨",
     color: "#2563eb"

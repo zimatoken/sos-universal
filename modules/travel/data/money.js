@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "money",
     version: "1.0.0",
     lang: "ru",
-    title: "💳 Деньги и карты",
+    title: "Деньги и карты",
     description: "Кража, потеря, блокировка карты, мошенничество — что делать",
     icon: "💳",
     color: "#0d9488"

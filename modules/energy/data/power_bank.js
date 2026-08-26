@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "power_bank",
     version: "1.0.0",
     lang: "ru",
-    title: "🔋 Power Bank DIY и ремонт",
+    title: "Power Bank DIY и ремонт",
     description: "Как починить power bank, собрать из 18650, проверить реальную ёмкость, использовать батарею ноутбука. Полный гид по портативному питанию.",
     icon: "🔋",
     color: "#10b981"

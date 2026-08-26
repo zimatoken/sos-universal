@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "battery",
     version: "1.0.0",
     lang: "en",
-    title: "🔋 Dead Battery",
+    title: "Dead Battery",
     description: "Battery problems: diagnostics, jump start, replacement, maintenance",
     icon: "🔋",
     color: "#2563eb"

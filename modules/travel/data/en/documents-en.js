@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "documents",
     version: "1.0.0",
     lang: "en",
-    title: "📄 Documents",
+    title: "Documents",
     description: "Lost or stolen documents abroad",
     icon: "📄",
     color: "#0d9488"

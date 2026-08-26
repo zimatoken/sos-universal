@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "solar",
     version: "1.0.0",
     lang: "en",
-    title: "☀️ Solar Energy",
+    title: "Solar Energy",
     description: "How to harvest electricity from sunlight using everyday items: calculators, garden lights, photodiodes, concentrators.",
     icon: "☀️",
     color: "#f59e0b"

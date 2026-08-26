@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "shelter",
     version: "1.0.0",
     lang: "en",
-    title: "🏠 Shelter",
+    title: "Shelter",
     description: "How to build shelter from weather and cold in any conditions",
     icon: "🏠",
     color: "#16a34a"

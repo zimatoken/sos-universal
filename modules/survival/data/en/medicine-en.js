@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "medicine",
     version: "1.0.0",
     lang: "en",
-    title: "🩹 Medicine",
+    title: "Medicine",
     description: "First aid and treatment in the field — bleeding, fractures, burns, poisoning",
     icon: "🩹",
     color: "#16a34a"

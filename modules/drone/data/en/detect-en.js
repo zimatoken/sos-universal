@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "detect",
     version: "2.0.0",
     lang: "en",
-    title: "🛸 Drone Detection",
+    title: "Drone Detection",
     description: "What to do if you notice an unmanned aerial vehicle (UAV)",
     icon: "🛸",
     color: "#ea580c"

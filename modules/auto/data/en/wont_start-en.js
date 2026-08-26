@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "wont_start",
     version: "1.0.0",
     lang: "en",
-    title: "🔌 Won't Start",
+    title: "Won't Start",
     description: "Diagnostics and solutions for engine starting problems — battery, starter, fuel, spark plugs",
     icon: "🔌",
     color: "#2563eb"

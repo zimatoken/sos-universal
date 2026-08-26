@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "care",
     version: "1.0.0",
     lang: "en",
-    title: "🛁 Care and Hygiene",
+    title: "Care and Hygiene",
     description: "Fleas, ticks, worms, grooming, claws, ears, teeth — prevention and treatment",
     icon: "🛁",
     color: "#9333ea"

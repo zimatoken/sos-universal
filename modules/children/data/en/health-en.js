@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "health",
     version: "1.0.0",
     lang: "en",
-    title: "🤒 Health",
+    title: "Health",
     description: "Fever, vomiting, allergy, seizures, breathing, pain — when to call the doctor",
     icon: "🤒",
     color: "#db2777"

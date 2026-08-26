@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "poison",
     version: "1.0.0",
     lang: "en",
-    title: "☠️ Poisoning",
+    title: "Poisoning",
     description: "Chemicals, poisons, bad food, medications, plants — what to do if your pet is poisoned",
     icon: "☠️",
     color: "#9333ea"

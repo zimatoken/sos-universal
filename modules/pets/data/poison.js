@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "poison",
     version: "1.0.0",
     lang: "ru",
-    title: "☠️ Отравление",
+    title: "Отравление",
     description: "Химикаты, яды, плохая еда, лекарства, растения — что делать при отравлении питомца",
     icon: "☠️",
     color: "#9333ea"

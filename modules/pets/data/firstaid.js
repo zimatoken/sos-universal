@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "firstaid",
     version: "1.0.0",
     lang: "ru",
-    title: "🩹 Первая помощь",
+    title: "Первая помощь",
     description: "Раны, кровотечение, ожоги, переломы, удушье — что делать до ветеринара",
     icon: "🩹",
     color: "#9333ea"

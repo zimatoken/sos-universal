@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "theft",
     version: "1.0.0",
     lang: "en",
-    title: "🦹 Theft and Fraud",
+    title: "Theft and Fraud",
     description: "Pickpocketing, robbery, scams, car break-ins — what to do",
     icon: "🦹",
     color: "#0d9488"

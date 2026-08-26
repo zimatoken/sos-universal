@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "cable_pinout",
     version: "1.0.0",
     lang: "ru",
-    title: "🔌 Распиновка и ремонт кабелей",
+    title: "Распиновка и ремонт кабелей",
     description: "Как найти +5V и GND, починить обрыв, сделать кабель из проволоки. Цвета проводов USB, Lightning, Type-C. Полный гид по кабелям.",
     icon: "🔌",
     color: "#a855f7"

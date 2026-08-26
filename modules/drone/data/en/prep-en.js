@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "prep",
     version: "2.0.0",
     lang: "en",
-    title: "📋 Preparation",
+    title: "Preparation",
     description: "How to prepare for an air threat: documents, shelter, communication, action plan, mental readiness",
     icon: "📋",
     color: "#ea580c"

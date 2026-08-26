@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "injury",
     version: "1.0.0",
     lang: "en",
-    title: "🩹 Injuries and First Aid",
+    title: "Injuries and First Aid",
     description: "Cuts, burns, bruises, fractures, eye injuries, choking — what to do before the ambulance arrives",
     icon: "🩹",
     color: "#db2777"

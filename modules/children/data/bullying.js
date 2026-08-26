@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "bullying",
     version: "1.0.0",
     lang: "ru",
-    title: "💔 Буллинг",
+    title: "Буллинг",
     description: "Физическое насилие, оскорбления, кибербуллинг, травля — как защитить ребёнка, куда звонить, что делать",
     icon: "💔",
     color: "#db2777"

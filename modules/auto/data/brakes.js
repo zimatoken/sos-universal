@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "brakes",
     version: "1.0.0",
     lang: "ru",
-    title: "🛑 Проблемы с тормозами",
+    title: "Проблемы с тормозами",
     description: "Диагностика и решение критических проблем с тормозной системой",
     icon: "🛑",
     color: "#2563eb"

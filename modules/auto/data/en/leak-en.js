@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "leak",
     version: "1.0.0",
     lang: "en",
-    title: "💧 Fluid Leak",
+    title: "Fluid Leak",
     description: "Diagnostics and solutions for fluid leaks — oil, coolant, brake fluid, fuel",
     icon: "💧",
     color: "#2563eb"

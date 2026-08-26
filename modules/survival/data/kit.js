@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "kit",
     version: "1.0.0",
     lang: "ru",
-    title: "🎒 Чемоданчик",
+    title: "Чемоданчик",
     description: "Что взять с собой в поход, путешествие или экстренную ситуацию",
     icon: "🎒",
     color: "#16a34a"

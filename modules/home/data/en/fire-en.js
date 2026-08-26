@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "fire",
     version: "1.0.0",
     lang: "en",
-    title: "🔥 Fire",
+    title: "Fire",
     description: "Fire in apartment, house, hallway — evacuation, extinguishing, rescue of people and pets",
     icon: "🔥",
     color: "#0891b2"

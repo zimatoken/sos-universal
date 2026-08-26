@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "inheritance",
     version: "1.0.0",
     lang: "ru",
-    title: "📜 Наследство",
+    title: "Наследство",
     description: "Вступление в наследство, завещание, пропуск сроков, долги, обязательная доля — полный алгоритм",
     icon: "📜",
     color: "#7c3aed"

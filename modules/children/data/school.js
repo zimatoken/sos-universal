@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "school",
     version: "1.0.0",
     lang: "ru",
-    title: "🏫 Школа",
+    title: "Школа",
     description: "Проблемы с учёбой, конфликты с учителями, травля, наркотики, агрессия, отказ от школы — как помочь ребёнку",
     icon: "🏫",
     color: "#db2777"

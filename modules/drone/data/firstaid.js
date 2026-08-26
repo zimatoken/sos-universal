@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "firstaid",
     version: "2.0.0",
     lang: "ru",
-    title: "🩹 Первая помощь",
+    title: "Первая помощь",
     description: "Как помочь пострадавшим при взрыве, ранениях, контузии, кровотечении, остановке дыхания",
     icon: "🩹",
     color: "#ea580c"

@@ -1,14 +1,14 @@
 // ============================================================
-// sw.js — Service Worker для SOS UNIVERSAL v4.1
+// sw.js — Service Worker для SOS UNIVERSAL v4.2
 // ============================================================
 // Стратегия: Cache First с обновлением в фоне (Stale-While-Revalidate)
-// Версия: v4.1-OFFLINE
+// Исправления: navigate fallback, addAll → individual cache, clone fix
 
-const CACHE_NAME = 'sos-universal-v4.1-OFFLINE';
+const CACHE_NAME = 'sos-universal-v4.2-OFFLINE';
 const BASE_PATH = '/sos-universal/';
 
 // ============================================================
-// КРИТИЧНЫЕ ФАЙЛЫ — index.html, манифест, CSS, иконки
+// КРИТИЧЕСКИЕ ФАЙЛЫ
 // ============================================================
 const CORE_FILES = [
   BASE_PATH + 'index.html',
@@ -29,10 +29,9 @@ const CORE_FILES = [
 ];
 
 // ============================================================
-// ВСЕ JS ФАЙЛЫ — критично для офлайн работы
+// ВСЕ JS ФАЙЛЫ
 // ============================================================
 const JS_FILES = [
-  // ===== CORE =====
   BASE_PATH + 'core/locales.js',
   BASE_PATH + 'core/registry.js',
   BASE_PATH + 'core/theme.js',
@@ -40,7 +39,6 @@ const JS_FILES = [
   BASE_PATH + 'core/engine.js',
   BASE_PATH + 'core/app.js',
 
-  // ===== SURVIVAL (русские) =====
   BASE_PATH + 'modules/survival/data/water.js',
   BASE_PATH + 'modules/survival/data/fire.js',
   BASE_PATH + 'modules/survival/data/shelter.js',
@@ -49,8 +47,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/survival/data/navigation.js',
   BASE_PATH + 'modules/survival/data/radio.js',
   BASE_PATH + 'modules/survival/data/kit.js',
-
-  // ===== SURVIVAL (английские) =====
   BASE_PATH + 'modules/survival/data/en/water-en.js',
   BASE_PATH + 'modules/survival/data/en/fire-en.js',
   BASE_PATH + 'modules/survival/data/en/shelter-en.js',
@@ -60,7 +56,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/survival/data/en/radio-en.js',
   BASE_PATH + 'modules/survival/data/en/kit-en.js',
 
-  // ===== AUTO (русские) =====
   BASE_PATH + 'modules/auto/data/wont_start.js',
   BASE_PATH + 'modules/auto/data/overheating.js',
   BASE_PATH + 'modules/auto/data/flat_tire.js',
@@ -68,8 +63,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/auto/data/battery.js',
   BASE_PATH + 'modules/auto/data/leak.js',
   BASE_PATH + 'modules/auto/data/dtp.js',
-
-  // ===== AUTO (английские) =====
   BASE_PATH + 'modules/auto/data/en/wont_start-en.js',
   BASE_PATH + 'modules/auto/data/en/overheating-en.js',
   BASE_PATH + 'modules/auto/data/en/flat_tire-en.js',
@@ -78,7 +71,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/auto/data/en/leak-en.js',
   BASE_PATH + 'modules/auto/data/en/dtp-en.js',
 
-  // ===== LAWYER (русские) =====
   BASE_PATH + 'modules/lawyer/data/dtp.js',
   BASE_PATH + 'modules/lawyer/data/labor.js',
   BASE_PATH + 'modules/lawyer/data/housing.js',
@@ -86,8 +78,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/lawyer/data/debts.js',
   BASE_PATH + 'modules/lawyer/data/divorce.js',
   BASE_PATH + 'modules/lawyer/data/consumer.js',
-
-  // ===== LAWYER (английские) =====
   BASE_PATH + 'modules/lawyer/data/en/dtp-en.js',
   BASE_PATH + 'modules/lawyer/data/en/labor-en.js',
   BASE_PATH + 'modules/lawyer/data/en/housing-en.js',
@@ -96,7 +86,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/lawyer/data/en/divorce-en.js',
   BASE_PATH + 'modules/lawyer/data/en/consumer-en.js',
 
-  // ===== HOME (русские) =====
   BASE_PATH + 'modules/home/data/plumbing.js',
   BASE_PATH + 'modules/home/data/electricity.js',
   BASE_PATH + 'modules/home/data/fire.js',
@@ -104,8 +93,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/home/data/lock.js',
   BASE_PATH + 'modules/home/data/heating.js',
   BASE_PATH + 'modules/home/data/natural.js',
-
-  // ===== HOME (английские) =====
   BASE_PATH + 'modules/home/data/en/plumbing-en.js',
   BASE_PATH + 'modules/home/data/en/electricity-en.js',
   BASE_PATH + 'modules/home/data/en/fire-en.js',
@@ -114,7 +101,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/home/data/en/heating-en.js',
   BASE_PATH + 'modules/home/data/en/natural-en.js',
 
-  // ===== CHILDREN (русские) =====
   BASE_PATH + 'modules/children/data/safety.js',
   BASE_PATH + 'modules/children/data/health.js',
   BASE_PATH + 'modules/children/data/injury.js',
@@ -122,8 +108,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/children/data/bullying.js',
   BASE_PATH + 'modules/children/data/internet.js',
   BASE_PATH + 'modules/children/data/school.js',
-
-  // ===== CHILDREN (английские) =====
   BASE_PATH + 'modules/children/data/en/safety-en.js',
   BASE_PATH + 'modules/children/data/en/health-en.js',
   BASE_PATH + 'modules/children/data/en/injury-en.js',
@@ -132,7 +116,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/children/data/en/internet-en.js',
   BASE_PATH + 'modules/children/data/en/school-en.js',
 
-  // ===== PETS (русские) =====
   BASE_PATH + 'modules/pets/data/firstaid.js',
   BASE_PATH + 'modules/pets/data/lost.js',
   BASE_PATH + 'modules/pets/data/behavior.js',
@@ -140,8 +123,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/pets/data/poison.js',
   BASE_PATH + 'modules/pets/data/emergency.js',
   BASE_PATH + 'modules/pets/data/care.js',
-
-  // ===== PETS (английские) =====
   BASE_PATH + 'modules/pets/data/en/firstaid-en.js',
   BASE_PATH + 'modules/pets/data/en/lost-en.js',
   BASE_PATH + 'modules/pets/data/en/behavior-en.js',
@@ -150,7 +131,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/pets/data/en/emergency-en.js',
   BASE_PATH + 'modules/pets/data/en/care-en.js',
 
-  // ===== TRAVEL (русские) =====
   BASE_PATH + 'modules/travel/data/documents.js',
   BASE_PATH + 'modules/travel/data/money.js',
   BASE_PATH + 'modules/travel/data/health.js',
@@ -158,8 +138,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/travel/data/hotel.js',
   BASE_PATH + 'modules/travel/data/theft.js',
   BASE_PATH + 'modules/travel/data/lost.js',
-
-  // ===== TRAVEL (английские) =====
   BASE_PATH + 'modules/travel/data/en/documents-en.js',
   BASE_PATH + 'modules/travel/data/en/money-en.js',
   BASE_PATH + 'modules/travel/data/en/health-en.js',
@@ -168,7 +146,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/travel/data/en/theft-en.js',
   BASE_PATH + 'modules/travel/data/en/lost-en.js',
 
-  // ===== DRONE (русские) =====
   BASE_PATH + 'modules/drone/data/detect.js',
   BASE_PATH + 'modules/drone/data/identify.js',
   BASE_PATH + 'modules/drone/data/shelter.js',
@@ -176,8 +153,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/drone/data/evac.js',
   BASE_PATH + 'modules/drone/data/firstaid.js',
   BASE_PATH + 'modules/drone/data/prep.js',
-
-  // ===== DRONE (английские) =====
   BASE_PATH + 'modules/drone/data/en/detect-en.js',
   BASE_PATH + 'modules/drone/data/en/identify-en.js',
   BASE_PATH + 'modules/drone/data/en/shelter-en.js',
@@ -186,7 +161,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/drone/data/en/firstaid-en.js',
   BASE_PATH + 'modules/drone/data/en/prep-en.js',
 
-  // ===== ENERGY (русские) =====
   BASE_PATH + 'modules/energy/data/phone_charge.js',
   BASE_PATH + 'modules/energy/data/battery_diy.js',
   BASE_PATH + 'modules/energy/data/solar.js',
@@ -194,8 +168,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/energy/data/cable_pinout.js',
   BASE_PATH + 'modules/energy/data/power_bank.js',
   BASE_PATH + 'modules/energy/data/emergency_light.js',
-
-  // ===== ENERGY (английские) =====
   BASE_PATH + 'modules/energy/data/en/phone_charge-en.js',
   BASE_PATH + 'modules/energy/data/en/battery_diy-en.js',
   BASE_PATH + 'modules/energy/data/en/solar-en.js',
@@ -205,9 +177,6 @@ const JS_FILES = [
   BASE_PATH + 'modules/energy/data/en/emergency_light-en.js'
 ];
 
-// ============================================================
-// МОДУЛИ HTML (главные страницы)
-// ============================================================
 const MODULE_HTML = [
   BASE_PATH + 'modules/survival/index.html',
   BASE_PATH + 'modules/auto/index.html',
@@ -220,45 +189,26 @@ const MODULE_HTML = [
   BASE_PATH + 'modules/energy/index.html'
 ];
 
+const ALL_FILES = [...CORE_FILES, ...JS_FILES, ...MODULE_HTML];
+
 // ============================================================
-// УСТАНОВКА — кэшируем ВСЕ файлы
+// УСТАНОВКА — индивидуальное кэширование (не addAll!)
 // ============================================================
 self.addEventListener('install', event => {
-  console.log('[SW v4.1] Установка...');
+  console.log('[SW v4.2] Установка...');
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('[SW v4.1] Кэшируем ядро...');
-        return cache.addAll(CORE_FILES);
-      })
-      .then(() => {
-        console.log('[SW v4.1] Ядро закэшировано, кэшируем JS файлы...');
-        return caches.open(CACHE_NAME).then(cache => {
-          return Promise.all(
-            JS_FILES.map(url => 
-              cache.add(url).catch(err => {
-                console.warn('[SW v4.1] Не удалось кэшировать:', url, err);
-              })
-            )
-          );
-        });
-      })
-      .then(() => {
-        console.log('[SW v4.1] Кэшируем HTML модулей...');
-        return caches.open(CACHE_NAME).then(cache => {
-          return Promise.all(
-            MODULE_HTML.map(url => 
-              cache.add(url).catch(err => {
-                console.warn('[SW v4.1] Не удалось кэшировать:', url, err);
-              })
-            )
-          );
-        });
-      })
-      .then(() => {
-        console.log('[SW v4.1] Установка завершена');
-        return self.skipWaiting();
-      })
+    caches.open(CACHE_NAME).then(cache => {
+      return Promise.all(
+        ALL_FILES.map(url =>
+          cache.add(url).catch(err => {
+            console.warn('[SW v4.2] Пропущен:', url, err.message);
+          })
+        )
+      );
+    }).then(() => {
+      console.log('[SW v4.2] Установка завершена. Всего файлов:', ALL_FILES.length);
+      return self.skipWaiting();
+    })
   );
 });
 
@@ -266,140 +216,120 @@ self.addEventListener('install', event => {
 // АКТИВАЦИЯ — удаляем старые кэши
 // ============================================================
 self.addEventListener('activate', event => {
-  console.log('[SW v4.1] Активация...');
+  console.log('[SW v4.2] Активация...');
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('[SW v4.1] Удаляем старый кэш:', cacheName);
-            return caches.delete(cacheName);
+        cacheNames.map(name => {
+          if (name !== CACHE_NAME) {
+            console.log('[SW v4.2] Удаляем старый кэш:', name);
+            return caches.delete(name);
           }
         })
       );
     }).then(() => {
-      console.log('[SW v4.1] Активирован');
+      console.log('[SW v4.2] Активирован');
       return self.clients.claim();
     })
   );
 });
 
 // ============================================================
-// FETCH — Stale-While-Revalidate (кэш + обновление в фоне)
+// FETCH — Stale-While-Revalidate
 // ============================================================
 self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
-  
+  const { request } = event;
+  const url = new URL(request.url);
+
   // ===== НАВИГАЦИЯ (открытие страницы) =====
-  if (event.request.mode === 'navigate') {
+  if (request.mode === 'navigate') {
     event.respondWith(
-      caches.match(BASE_PATH + 'index.html')
-        .then(response => {
-          if (response) {
-            console.log('[SW v4.1] Навигация: из кэша');
-            // Обновляем в фоне
-            fetch(event.request).then(networkResponse => {
-              if (networkResponse.ok) {
-                caches.open(CACHE_NAME).then(cache => {
-                  cache.put(BASE_PATH + 'index.html', networkResponse);
-                });
-              }
-            }).catch(() => {});
-            return response;
+      caches.match(request).then(cached => {
+        // Фоновое обновление
+        const networkUpdate = fetch(request).then(networkResponse => {
+          if (networkResponse.ok) {
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(request, networkResponse.clone());
+            });
           }
-          console.log('[SW v4.1] Навигация: из сети');
-          return fetch(event.request).then(response => {
-            if (response.ok) {
-              const clone = response.clone();
-              caches.open(CACHE_NAME).then(cache => {
-                cache.put(BASE_PATH + 'index.html', clone);
-              });
-            }
-            return response;
+          return networkResponse;
+        }).catch(() => null);
+
+        if (cached) {
+          // Есть в кэше — отдаём сразу, обновляем в фоне
+          networkUpdate; // выполнится в фоне
+          return cached;
+        }
+
+        // Нет в кэше — ждём сеть
+        return networkUpdate.then(networkResponse => {
+          if (networkResponse) return networkResponse;
+          // Ни кэша, ни сети — fallback на корень
+          return caches.match(BASE_PATH + 'index.html').then(root => {
+            if (root) return root;
+            return caches.match(BASE_PATH + '404.html');
           });
-        })
-        .catch(() => {
-          console.error('[SW v4.1] Ошибка навигации, показываем 404');
-          return caches.match(BASE_PATH + '404.html');
-        })
+        });
+      })
     );
     return;
   }
-  
-  // ===== STATIC FILES (CSS, JS, изображения) =====
-  // Проверяем, нужно ли кэшировать
-  const isStatic = 
-    url.pathname.endsWith('.css') ||
-    url.pathname.endsWith('.js') ||
-    url.pathname.endsWith('.png') ||
-    url.pathname.endsWith('.jpg') ||
-    url.pathname.endsWith('.svg') ||
-    url.pathname.endsWith('.ico') ||
-    url.pathname.endsWith('.webmanifest');
+
+  // ===== STATIC (CSS, JS, PNG, иконки) =====
+  const isStatic = /\.(css|js|png|jpg|jpeg|svg|ico|webmanifest|json)$/.test(url.pathname);
 
   if (isStatic) {
     event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
-        if (cachedResponse) {
-          // Обновляем в фоне
-          fetch(event.request).then(networkResponse => {
-            if (networkResponse.ok) {
-              caches.open(CACHE_NAME).then(cache => {
-                cache.put(event.request, networkResponse);
-              });
-            }
-          }).catch(() => {});
-          return cachedResponse;
-        }
-        return fetch(event.request).then(response => {
-          if (response.ok) {
-            const clone = response.clone();
+      caches.match(request).then(cached => {
+        const networkFetch = fetch(request).then(networkResponse => {
+          if (networkResponse.ok) {
             caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, clone);
+              cache.put(request, networkResponse.clone());
             });
           }
-          return response;
+          return networkResponse;
+        }).catch(() => null);
+
+        return cached || networkFetch.then(nr => {
+          if (nr) return nr;
+          return new Response('Файл недоступен в офлайн-режиме', {
+            status: 503,
+            headers: { 'Content-Type': 'text/plain' }
+          });
         });
       })
     );
     return;
   }
-  
-  // ===== ВСЁ ОСТАЛЬНОЕ — сначала сеть, потом кэш =====
+
+  // ===== ОСТАЛЬНОЕ (API, внешние ссылки) =====
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        if (response.ok && response.type !== 'opaque') {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, clone);
-          });
-        }
-        return response;
-      })
-      .catch(() => {
-        return caches.match(event.request).then(cached => {
-          if (cached) return cached;
-          if (event.request.destination === 'image') {
-            return new Response('', { status: 404 });
-          }
-          return new Response('Страница недоступна в офлайн-режиме', { status: 503 });
+    fetch(request).then(response => {
+      if (response.ok && response.type !== 'opaque') {
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(request, response.clone());
         });
-      })
+      }
+      return response;
+    }).catch(() => {
+      return caches.match(request).then(cached => {
+        if (cached) return cached;
+        return new Response('Страница недоступна в офлайн-режиме', {
+          status: 503,
+          headers: { 'Content-Type': 'text/plain' }
+        });
+      });
+    })
   );
 });
 
 // ============================================================
-// ОБРАБОТКА ОШИБОК
+// ОШИБКИ
 // ============================================================
 self.addEventListener('error', event => {
-  console.error('[SW v4.1] Ошибка:', event.message);
+  console.error('[SW v4.2] Ошибка:', event.message);
 });
 
-// ============================================================
-// ЗАВЕРШЕНИЕ
-// ============================================================
-console.log('[SW v4.1] Service Worker загружен — Stale-While-Revalidate');
+console.log('[SW v4.2] Service Worker загружен');
 console.log(`📦 Кэш: ${CACHE_NAME}`);
-console.log(`📄 HTML модулей: ${MODULE_HTML.length}`);
-console.log(`📄 JS файлов: ${JS_FILES.length}`);
+console.log(`📄 Всего файлов: ${ALL_FILES.length}`);

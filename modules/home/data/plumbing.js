@@ -7,7 +7,7 @@ window.SOS_REGISTER_QUIZ({
     category: "plumbing",
     version: "1.0.0",
     lang: "ru",
-    title: "🚿 Вода и канализация",
+    title: "Вода и канализация",
     description: "Протечки, засоры, затопление, отключение воды, низкое давление — что делать прямо сейчас",
     icon: "🚿",
     color: "#0891b2"
