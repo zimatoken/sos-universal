@@ -22,7 +22,7 @@
       <div class="header">
         <img src="./assets/icons/icon-192.png" alt="SOS UNIVERSAL" class="app-logo">
         <h1><span class="sos-badge">SOS</span> <span style="font-size:32px; letter-spacing:2px;" data-i18n="app_title">УНИВЕРСАЛ</span></h1>
-        <p style="font-size: 20px; font-weight: 700; color: var(--accent2); margin: 4px 0 0;" data-i18n="app_subtitle">Универсальный спасатель</p>
+        <p style="font-size:20px; font-weight:700; color:var(--accent2); margin:4px 0 0;" data-i18n="app_subtitle">Универсальный спасатель</p>
       </div>
 
       <div class="status-bar">
@@ -95,7 +95,7 @@
         </span>
       </div>
 
-      <!-- Карта и поддержка -->
+      <!-- Карта -->
       <div class="map-link-block">
         <a href="https://www.openstreetmap.org/" target="_blank" class="map-link" data-i18n="map_link">
           🗺️ Открыть карту (требуется интернет)
@@ -103,26 +103,85 @@
         <span class="map-hint" data-i18n="map_hint">Или скачай Organic Maps — работает офлайн</span>
       </div>
 
-      <!-- БЛОК БЛАГОДАРНОСТИ -->
-      <div class="support-block">
+      <!-- БЛОК ПОДДЕРЖКИ v2.2 — 6 способов -->
+      <div class="support-block" id="supportBlock">
         <div class="support-header">
           <span class="support-heart">❤️</span>
           <span class="support-title" data-i18n="support_title">Спасибо, что выбрали SOS UNIVERSAL!</span>
         </div>
+
         <p class="support-desc" data-i18n="support_desc">
-          Если приложение помогло — скажите спасибо, это вдохновляет нас делать его лучше!
+          Если приложение помогло — скажите спасибо. Это вдохновляет нас делать его лучше.
         </p>
-        <div class="support-buttons">
-          <a href="https://t.me/sos_universal_bot" target="_blank" class="support-btn telegram" data-i18n="support_telegram">
-            📱 Написать в Telegram
+
+        <div class="support-methods">
+
+          <!-- СБП -->
+          <button class="support-btn sbp" onclick="copySBP()" title="Скопировать реквизиты СБП">
+            <span class="btn-icon">🏦</span>
+            <span class="btn-text">
+              <span class="btn-label" data-i18n="support_sbp">Перевод по СБП</span>
+              <span class="btn-hint" data-i18n="support_sbp_hint">Работает в любом банке РФ</span>
+            </span>
+          </button>
+
+          <!-- Т-Банк -->
+          <a href="https://www.tinkoff.ru/rm/zima.token1/5z4YV31214" 
+             target="_blank" 
+             rel="noopener noreferrer nofollow"
+             class="support-btn tinkoff"
+             onclick="trackSupport('tinkoff')"
+             title="Открыть в Т-Банке">
+            <span class="btn-icon">💳</span>
+            <span class="btn-text">
+              <span class="btn-label" data-i18n="support_tinkoff">Т-Банк (Тинькофф)</span>
+              <span class="btn-hint" data-i18n="support_tinkoff_hint">Для клиентов Т-Банка</span>
+            </span>
           </a>
-          <a href="https://www.tinkoff.ru/rm/zima.token1/5z4YV31214" target="_blank" rel="noopener noreferrer" class="support-btn donate" data-i18n="support_donate">
-            💳 Поддержать проект
-          </a>
+
+          <!-- EVM -->
+          <button class="support-btn evm" onclick="copyEVM()" title="Скопировать EVM-адрес">
+            <span class="btn-icon">⬡</span>
+            <span class="btn-text">
+              <span class="btn-label" data-i18n="support_evm">USDT / ETH (EVM)</span>
+              <span class="btn-hint" data-i18n="support_evm_hint">Ethereum, Base, Polygon, BNB...</span>
+            </span>
+          </button>
+
+          <!-- Tron -->
+          <button class="support-btn tron" onclick="copyTron()" title="Скопировать Tron-адрес">
+            <span class="btn-icon">🔴</span>
+            <span class="btn-text">
+              <span class="btn-label" data-i18n="support_tron">USDT TRC-20 (Tron)</span>
+              <span class="btn-hint" data-i18n="support_tron_hint">Сеть Tron — низкая комиссия</span>
+            </span>
+          </button>
+
+          <!-- Bitcoin -->
+          <button class="support-btn btc" onclick="copyBTC()" title="Скопировать Bitcoin-адрес">
+            <span class="btn-icon">₿</span>
+            <span class="btn-text">
+              <span class="btn-label" data-i18n="support_btc">Bitcoin (BTC)</span>
+              <span class="btn-hint" data-i18n="support_btc_hint">Сеть Bitcoin — надёжно</span>
+            </span>
+          </button>
+
+          <!-- Solana -->
+          <button class="support-btn sol" onclick="copySOL()" title="Скопировать Solana-адрес">
+            <span class="btn-icon">◎</span>
+            <span class="btn-text">
+              <span class="btn-label" data-i18n="support_sol">Solana (SOL / USDC)</span>
+              <span class="btn-hint" data-i18n="support_sol_hint">Сеть Solana — мгновенно</span>
+            </span>
+          </button>
+
         </div>
-        <div class="support-trust" data-i18n="support_trust">
-          💎 Есть идеи или предложения? Пишите нам на почту sos.universal.help@gmail.com. Спасибо, что вы с нами!
+
+        <div class="support-legal" data-i18n="support_legal">
+          💎 Добровольное пожертвование на развитие проекта. Услуги не оказываются, товар не поставляется. 
+          По вопросам: <a href="mailto:sos.universal.help@gmail.com">sos.universal.help@gmail.com</a>
         </div>
+
         <div class="support-footer">
           <span data-i18n="support_footer">Спасибо, что вы с нами! 🙌</span>
         </div>
@@ -187,6 +246,102 @@
       } else {
         window.location.href = './modules/survival/index.html?mode=sos';
       }
+    }
+
+    // ==========================================
+    // ФУНКЦИИ ПОДДЕРЖКИ (защита от банов + UX)
+    // ==========================================
+
+    // СБП: копируем номер телефона в буфер
+    function copySBP() {
+      const phone = '+79639424331';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(phone).then(() => {
+          showToast('📋 Номер скопирован. Откройте банк → СБП → Перевод по номеру телефона');
+        }).catch(() => {
+          fallbackCopy(phone, 'Номер скопирован. Откройте банк → СБП');
+        });
+      } else {
+        fallbackCopy(phone, 'Номер скопирован. Откройте банк → СБП');
+      }
+    }
+
+    // EVM: копируем адрес (Ethereum, Base, Polygon, BNB, Arbitrum, OP, Linea)
+    function copyEVM() {
+      const address = '0x428B1872339a628213d8560C1C2aB26146499dcA';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(address).then(() => {
+          showToast('📋 EVM-адрес скопирован. Сети: ETH, Base, Polygon, BNB, Arbitrum, OP');
+        }).catch(() => {
+          fallbackCopy(address, 'EVM-адрес скопирован');
+        });
+      } else {
+        fallbackCopy(address, 'EVM-адрес скопирован');
+      }
+    }
+
+    // Tron: копируем TRC-20 адрес
+    function copyTron() {
+      const address = 'TYBCg6Ev5uPjAopKxhritoqSuDwVHV5LbT';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(address).then(() => {
+          showToast('📋 Tron-адрес скопирован. Сеть: TRC-20 (Tron)');
+        }).catch(() => {
+          fallbackCopy(address, 'Tron-адрес скопирован');
+        });
+      } else {
+        fallbackCopy(address, 'Tron-адрес скопирован');
+      }
+    }
+
+    // Bitcoin: копируем BTC-адрес
+    function copyBTC() {
+      const address = 'bc1qw0lfv4hwvzk9qhax2xp0n4jm94lce4mkn8pwjl';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(address).then(() => {
+          showToast('📋 Bitcoin-адрес скопирован. Сеть: Bitcoin (BTC)');
+        }).catch(() => {
+          fallbackCopy(address, 'Bitcoin-адрес скопирован');
+        });
+      } else {
+        fallbackCopy(address, 'Bitcoin-адрес скопирован');
+      }
+    }
+
+    // Solana: копируем SOL-адрес
+    function copySOL() {
+      const address = '4rPx8Vtk5dcBe8CpCb9ZgaGf9HwW9cf5FesuspijLfCj';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(address).then(() => {
+          showToast('📋 Solana-адрес скопирован. Сеть: Solana (SOL / USDC)');
+        }).catch(() => {
+          fallbackCopy(address, 'Solana-адрес скопирован');
+        });
+      } else {
+        fallbackCopy(address, 'Solana-адрес скопирован');
+      }
+    }
+
+    // Fallback копирование для старых браузеров
+    function fallbackCopy(text, msg) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast(msg);
+      } catch (e) {
+        showToast('Реквизиты: ' + text);
+      }
+      document.body.removeChild(ta);
+    }
+
+    // Трекинг (опционально)
+    function trackSupport(method) {
+      console.log('[Support] Клик:', method);
     }
 
     document.addEventListener('DOMContentLoaded', function() {
