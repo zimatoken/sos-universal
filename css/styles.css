@@ -1225,6 +1225,83 @@ body.screen-flash .app {
   text-decoration: none;
 }
 
+/* ============================================
+   FEEDBACK BLOCK — обратная связь
+   ============================================ */
+
+.feedback-block {
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.feedback-title {
+  color: var(--text2);
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.feedback-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.feedback-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.feedback-btn:active {
+  transform: translateY(0);
+}
+
+.feedback-telegram {
+  background: linear-gradient(135deg, #0088cc, #005f8a);
+  box-shadow: 0 4px 12px rgba(0,136,204,0.3);
+}
+
+.feedback-whatsapp {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+}
+
+.feedback-email {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+}
+
+/* Темная/светлая тема для feedback-block */
+[data-theme="light"] .feedback-block {
+  background: var(--card);
+  border-color: var(--border);
+}
+
+[data-theme="light"] .feedback-title {
+  color: var(--text2);
+}
+
 @keyframes hintPulse {
   0%, 100% { opacity: 0.8; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.02); }

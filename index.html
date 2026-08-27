@@ -2,17 +2,19 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0f172a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>SOS UNIVERSAL — Супер-приложение для любых ситуаций</title>
-  
+
   <meta name="apple-mobile-web-app-title" content="SOS UNIVERSAL">
-  
+
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
   <link rel="stylesheet" href="./css/styles.css">
+
+<base target="_blank">
 </head>
 <body>
 
@@ -20,7 +22,7 @@
     <!-- ЭКРАН 1: Главная (выбор модуля) -->
     <div class="screen active" id="screen-home">
       <div class="header">
-        <img src="./assets/icons/icon-192.png" alt="SOS UNIVERSAL" class="app-logo">
+        <img src="./assets/icons/icon-192.png" alt="SOS UNIVERSAL" class="app-logo" onerror="this.style.display='none'">
         <h1><span class="sos-badge">SOS</span> <span style="font-size:32px; letter-spacing:2px;" data-i18n="app_title">УНИВЕРСАЛ</span></h1>
         <p style="font-size:20px; font-weight:700; color:var(--accent2); margin:4px 0 0;" data-i18n="app_subtitle">Универсальный спасатель</p>
       </div>
@@ -38,7 +40,7 @@
         <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
           🇬🇧 English
         </button>
-        <button class="theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeToggle" aria-label="Переключить тему">🌙</button>
       </div>
 
       <!-- КНОПКА SOS -->
@@ -47,44 +49,44 @@
         <span data-i18n="sos_button">SOS — Я в опасности</span>
       </button>
 
-      <!-- Сетка 3×3 — 9 модулей -->
+      <!-- Сетка 3×3 — 9 модулей (ссылки, не кнопки) -->
       <div class="grid">
-        <button class="mod-btn survival" onclick="window.location.href='./modules/survival/index.html'">
+        <a href="./modules/survival/index.html" class="mod-btn survival">
           <span class="icon">🆘</span>
           <span class="label" data-i18n="mod_survival">Выживание</span>
-        </button>
-        <button class="mod-btn auto" onclick="window.location.href='./modules/auto/index.html'">
+        </a>
+        <a href="./modules/auto/index.html" class="mod-btn auto">
           <span class="icon">🚗</span>
           <span class="label" data-i18n="mod_auto">Авто</span>
-        </button>
-        <button class="mod-btn lawyer" onclick="window.location.href='./modules/lawyer/index.html'">
+        </a>
+        <a href="./modules/lawyer/index.html" class="mod-btn lawyer">
           <span class="icon">⚖️</span>
           <span class="label" data-i18n="mod_lawyer">Юрист</span>
-        </button>
-        <button class="mod-btn home" onclick="window.location.href='./modules/home/index.html'">
+        </a>
+        <a href="./modules/home/index.html" class="mod-btn home">
           <span class="icon">🏠</span>
           <span class="label" data-i18n="mod_home">Дом</span>
-        </button>
-        <button class="mod-btn kids" onclick="window.location.href='./modules/children/index.html'">
+        </a>
+        <a href="./modules/children/index.html" class="mod-btn kids">
           <span class="icon">👶</span>
           <span class="label" data-i18n="mod_kids">Дети</span>
-        </button>
-        <button class="mod-btn animals" onclick="window.location.href='./modules/pets/index.html'">
+        </a>
+        <a href="./modules/pets/index.html" class="mod-btn animals">
           <span class="icon">🐕</span>
           <span class="label" data-i18n="mod_animals">Животные</span>
-        </button>
-        <button class="mod-btn travel" onclick="window.location.href='./modules/travel/index.html'">
+        </a>
+        <a href="./modules/travel/index.html" class="mod-btn travel">
           <span class="icon">✈️</span>
           <span class="label" data-i18n="mod_travel">Путешествия</span>
-        </button>
-        <button class="mod-btn drone" onclick="window.location.href='./modules/drone/index.html'">
+        </a>
+        <a href="./modules/drone/index.html" class="mod-btn drone">
           <span class="icon">🚁</span>
           <span class="label" data-i18n="mod_drone">Дроны</span>
-        </button>
-        <button class="mod-btn energy" onclick="window.location.href='./modules/energy/index.html'">
+        </a>
+        <a href="./modules/energy/index.html" class="mod-btn energy">
           <span class="icon">⚡</span>
           <span class="label" data-i18n="mod_energy">Энергия</span>
-        </button>
+        </a>
       </div>
 
       <!-- ФУТЕР -->
@@ -103,6 +105,31 @@
         <span class="map-hint" data-i18n="map_hint">Или скачай Organic Maps — работает офлайн</span>
       </div>
 
+      <!-- ========================================== -->
+      <!-- БЛОК ОБРАТНОЙ СВЯЗИ — НОВЫЙ! -->
+      <!-- ========================================== -->
+      <div class="feedback-block">
+        <p class="feedback-title">💬 Есть вопросы или предложения?</p>
+        <div class="feedback-buttons">
+          <a href="https://t.me/sos_universal_help" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="feedback-btn feedback-telegram">
+            💬 Telegram
+          </a>
+          <a href="https://wa.me/79639424331" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="feedback-btn feedback-whatsapp">
+            💬 WhatsApp
+          </a>
+          <a href="mailto:sos.universal.help@gmail.com" 
+             class="feedback-btn feedback-email">
+            📧 Email
+          </a>
+        </div>
+      </div>
+
       <!-- БЛОК ПОДДЕРЖКИ v2.2 — 6 способов -->
       <div class="support-block" id="supportBlock">
         <div class="support-header">
@@ -117,7 +144,7 @@
         <div class="support-methods">
 
           <!-- СБП -->
-          <button class="support-btn sbp" onclick="window.copySBP ? copySBP() : copyToClipboard('+79639424331', '📋 Номер скопирован')" title="Скопировать реквизиты СБП">
+          <button class="support-btn sbp" onclick="window.copySBP ? copySBP() : copyToClipboard('+79639424331', 'Номер скопирован')" title="Скопировать реквизиты СБП">
             <span class="btn-icon">🏦</span>
             <span class="btn-text">
               <span class="btn-label" data-i18n="support_sbp">Перевод по СБП</span>
@@ -140,7 +167,7 @@
           </a>
 
           <!-- EVM -->
-          <button class="support-btn evm" onclick="window.copyCrypto ? copyCrypto('evm') : copyToClipboard('0x428B1872339a628213d8560C1C2aB26146499dcA', '📋 EVM-адрес скопирован')" title="Скопировать EVM-адрес">
+          <button class="support-btn evm" onclick="window.copyCrypto ? copyCrypto('evm') : copyToClipboard('0x428B1872339a628213d8560C1C2aB26146499dcA', 'EVM-адрес скопирован')" title="Скопировать EVM-адрес">
             <span class="btn-icon">⬡</span>
             <span class="btn-text">
               <span class="btn-label" data-i18n="support_evm">USDT / ETH (EVM)</span>
@@ -149,7 +176,7 @@
           </button>
 
           <!-- Tron -->
-          <button class="support-btn tron" onclick="window.copyCrypto ? copyCrypto('tron') : copyToClipboard('TYBCg6Ev5uPjAopKxhritoqSuDwVHV5LbT', '📋 Tron-адрес скопирован')" title="Скопировать Tron-адрес">
+          <button class="support-btn tron" onclick="window.copyCrypto ? copyCrypto('tron') : copyToClipboard('TYBCg6Ev5uPjAopKxhritoqSuDwVHV5LbT', 'Tron-адрес скопирован')" title="Скопировать Tron-адрес">
             <span class="btn-icon">🔴</span>
             <span class="btn-text">
               <span class="btn-label" data-i18n="support_tron">USDT TRC-20 (Tron)</span>
@@ -158,7 +185,7 @@
           </button>
 
           <!-- Bitcoin -->
-          <button class="support-btn bitcoin" onclick="window.copyCrypto ? copyCrypto('bitcoin') : copyToClipboard('bc1qw0lfv4hwvzk9qhax2xp0n4jm94lce4mkn8pwjl', '📋 Bitcoin-адрес скопирован')" title="Скопировать Bitcoin-адрес">
+          <button class="support-btn bitcoin" onclick="window.copyCrypto ? copyCrypto('bitcoin') : copyToClipboard('bc1qw0lfv4hwvzk9qhax2xp0n4jm94lce4mkn8pwjl', 'Bitcoin-адрес скопирован')" title="Скопировать Bitcoin-адрес">
             <span class="btn-icon">₿</span>
             <span class="btn-text">
               <span class="btn-label" data-i18n="support_bitcoin">Bitcoin (BTC)</span>
@@ -167,7 +194,7 @@
           </button>
 
           <!-- Solana -->
-          <button class="support-btn solana" onclick="window.copyCrypto ? copyCrypto('solana') : copyToClipboard('4rPx8Vtk5dcBe8CpCb9ZgaGf9HwW9cf5FesuspijLfCj', '📋 Solana-адрес скопирован')" title="Скопировать Solana-адрес">
+          <button class="support-btn solana" onclick="window.copyCrypto ? copyCrypto('solana') : copyToClipboard('4rPx8Vtk5dcBe8CpCb9ZgaGf9HwW9cf5FesuspijLfCj', 'Solana-адрес скопирован')" title="Скопировать Solana-адрес">
             <span class="btn-icon">◎</span>
             <span class="btn-text">
               <span class="btn-label" data-i18n="support_solana">Solana (SOL / USDC)</span>
@@ -177,9 +204,9 @@
 
         </div>
 
+        <!-- support-legal: plain text, без вложенных тегов — textContent безопасен -->
         <div class="support-legal" data-i18n="support_legal">
-          💎 Добровольное пожертвование на развитие проекта. Услуги не оказываются, товар не поставляется. 
-          По вопросам: <a href="mailto:sos.universal.help@gmail.com">sos.universal.help@gmail.com</a>
+          💎 Добровольное пожертвование на развитие проекта. Услуги не оказываются, товар не поставляется. По вопросам: sos.universal.help@gmail.com
         </div>
 
         <div class="support-footer">
@@ -192,7 +219,7 @@
   <div class="toast" id="toast"></div>
 
   <!-- ========================================== -->
-  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ v4.0 -->
+  <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ v5.0 -->
   <!-- ========================================== -->
 
   <!-- 1. ЛОКАЛИЗАЦИЯ (СНАЧАЛА!) -->
@@ -220,18 +247,22 @@
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
       localStorage.setItem('language', lang);
-      
+
       if (typeof window.currentLang !== 'undefined') {
         window.currentLang = lang;
       }
-      
+
       updateTranslations(lang);
-      
-      if (typeof refreshDataRegistry === 'function') {
-        refreshDataRegistry();
-      }
+      // ❌ УДАЛЕНО: refreshDataRegistry() — нет в v5.0
     }
 
+    /**
+     * Обновляет текст элементов с data-i18n.
+     * Использует textContent — безопасно, т.к. в locales.js нет HTML-тегов,
+     * а в HTML элементы с data-i18n не содержат вложенных тегов (кроме footer_email,
+     * где <a data-i18n="footer_email"> — textContent заменит текст внутри ссылки,
+     * сама ссылка сохранится).
+     */
     function updateTranslations(lang) {
       const texts = typeof LOCALES !== 'undefined' ? (LOCALES[lang] || LOCALES.ru) : {};
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -252,7 +283,8 @@
     function copyToClipboard(text, msg) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(() => {
-          showToast ? showToast(msg) : alert(msg);
+          if (typeof showToast === 'function') showToast(msg);
+          else alert(msg);
         }).catch(() => {
           fallbackCopy(text, msg);
         });
@@ -270,9 +302,11 @@
       ta.select();
       try {
         document.execCommand('copy');
-        showToast ? showToast(msg) : alert(msg);
+        if (typeof showToast === 'function') showToast(msg);
+        else alert(msg);
       } catch (e) {
-        showToast ? showToast('Реквизиты: ' + text) : alert('Реквизиты: ' + text);
+        if (typeof showToast === 'function') showToast('Реквизиты: ' + text);
+        else alert('Реквизиты: ' + text);
       }
       document.body.removeChild(ta);
     }
@@ -287,7 +321,7 @@
       navigator.serviceWorker.register('./sw.js')
         .then(reg => {
           console.log('✅ SW registered:', reg.scope);
-          
+
           // Проверка обновлений каждые 60 минут
           setInterval(() => {
             reg.update().then(() => {
@@ -296,25 +330,29 @@
               console.warn('⚠️ SW update check failed:', err);
             });
           }, 60 * 60 * 1000);
-          
+
           reg.addEventListener('updatefound', () => {
             const newSW = reg.installing;
             console.log('🔄 New SW found, installing...');
-            
+
             newSW.addEventListener('statechange', () => {
               if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
                 swUpdateAvailable = true;
-                showToast('🔄 Доступна новая версия! Перезагрузите страницу.');
+                if (typeof showToast === 'function') {
+                  showToast('🔄 Доступна новая версия! Перезагрузите страницу.');
+                }
                 console.log('🔄 Update available! Please refresh.');
               }
             });
           });
         })
         .catch(err => console.error('❌ SW registration failed:', err));
-      
+
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         console.log('🔄 Service Worker обновлён!');
-        showToast('✅ Приложение обновлено! Перезагрузите страницу.');
+        if (typeof showToast === 'function') {
+          showToast('✅ Приложение обновлено! Перезагрузите страницу.');
+        }
       });
     }
 
@@ -331,15 +369,15 @@
         }, 400);
       }
 
-      // 2. Язык
-      const savedLang = localStorage.getItem('language') || 'ru';
-      setLanguage(savedLang);
-      
-      // 3. Тема
+      // 2. Тема (до языка — меньше перерисовок)
       if (typeof loadTheme === 'function') {
         loadTheme();
       }
-      
+
+      // 3. Язык
+      const savedLang = localStorage.getItem('language') || 'ru';
+      setLanguage(savedLang);
+
       // 4. Проверка обновлений SW при загрузке
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.ready.then(registration => {
