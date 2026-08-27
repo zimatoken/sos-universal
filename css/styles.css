@@ -259,47 +259,6 @@ html, body {
   font-weight: 600;
 }
 
-/* Цвета категорий модулей на главной */
-.mod-btn.survival::after {
-  background: var(--water);
-}
-
-.mod-btn.auto::after {
-  background: var(--fire);
-}
-
-.mod-btn.lawyer::after {
-  background: var(--shelter);
-}
-
-.mod-btn.home::after {
-  background: var(--food);
-}
-
-.mod-btn.kids::after {
-  background: var(--med);
-}
-
-.mod-btn.animals::after {
-  background: var(--nav);
-}
-
-.mod-btn.travel::after {
-  background: var(--accent2);
-}
-
-.mod-btn.drone::after {
-  background: #ea580c;
-}
-
-.mod-btn.energy::after {
-  background: var(--energy);
-}
-
-.mod-btn.soon::after {
-  background: var(--text3);
-}
-
 /* Полоска появляется ТОЛЬКО при наведении */
 .mod-btn:hover::after {
   opacity: 1;
