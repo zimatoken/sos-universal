@@ -1226,6 +1226,63 @@ body.screen-flash .app {
 }
 
 /* ============================================
+   QR-BLOCK — быстрая установка
+   ============================================ */
+
+.qr-block {
+  margin-top: 16px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.qr-title {
+  color: var(--text2);
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.qr-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 16px;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.qr-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.qr-link {
+  color: var(--text3);
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.qr-link a {
+  color: var(--water);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.qr-link a:hover {
+  text-decoration: underline;
+}
+
+[data-theme="light"] .qr-wrap {
+  background: #f8fafc;
+}
+
+/* ============================================
    FEEDBACK BLOCK — обратная связь
    ============================================ */
 
