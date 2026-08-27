@@ -236,34 +236,125 @@ html, body {
   border-color: var(--border-hover);
   box-shadow: var(--shadow);
 }
-.mod-btn:active { transform: translateY(-1px) scale(0.98); }
 
-.mod-btn .icon { font-size: 36px; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-.mod-btn .label { font-size: 15px; font-weight: 600; }
+.mod-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ✅ ФИКС: скрываем полоску после клика (focus) */
+.mod-btn:focus::after,
+.mod-btn:focus-visible::after,
+.mod-btn:active::after {
+  opacity: 0 !important;
+}
+
+.mod-btn .icon {
+  font-size: 36px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.mod-btn .label {
+  font-size: 15px;
+  font-weight: 600;
+}
 
 /* Цвета категорий модулей на главной */
-.mod-btn.survival::after { background: var(--water); }
-.mod-btn.auto::after { background: var(--fire); }
-.mod-btn.lawyer::after { background: var(--shelter); }
-.mod-btn.home::after { background: var(--food); }
-.mod-btn.kids::after { background: var(--med); }
-.mod-btn.animals::after { background: var(--nav); }
-.mod-btn.travel::after { background: var(--accent2); }
-.mod-btn.drone::after { background: #ea580c; }
-.mod-btn.energy::after { background: var(--energy); }
-.mod-btn.soon::after { background: var(--text3); }
-.mod-btn:hover::after { opacity: 1; }
+.mod-btn.survival::after {
+  background: var(--water);
+}
 
-.mod-btn.survival:hover { border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.06); }
-.mod-btn.auto:hover { border-color: rgba(249,115,22,0.4); background: rgba(249,115,22,0.06); }
-.mod-btn.lawyer:hover { border-color: rgba(16,185,129,0.4); background: rgba(16,185,129,0.06); }
-.mod-btn.home:hover { border-color: rgba(132,204,22,0.4); background: rgba(132,204,22,0.06); }
-.mod-btn.kids:hover { border-color: rgba(236,72,153,0.4); background: rgba(236,72,153,0.06); }
-.mod-btn.animals:hover { border-color: rgba(168,85,247,0.4); background: rgba(168,85,247,0.06); }
-.mod-btn.travel:hover { border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.06); }
-.mod-btn.drone:hover { border-color: rgba(234,88,12,0.4); background: rgba(234,88,12,0.06); }
-.mod-btn.energy:hover { border-color: rgba(251,191,36,0.4); background: rgba(251,191,36,0.06); }
-.mod-btn.soon:hover { border-color: rgba(100,116,139,0.4); background: rgba(100,116,139,0.06); }
+.mod-btn.auto::after {
+  background: var(--fire);
+}
+
+.mod-btn.lawyer::after {
+  background: var(--shelter);
+}
+
+.mod-btn.home::after {
+  background: var(--food);
+}
+
+.mod-btn.kids::after {
+  background: var(--med);
+}
+
+.mod-btn.animals::after {
+  background: var(--nav);
+}
+
+.mod-btn.travel::after {
+  background: var(--accent2);
+}
+
+.mod-btn.drone::after {
+  background: #ea580c;
+}
+
+.mod-btn.energy::after {
+  background: var(--energy);
+}
+
+.mod-btn.soon::after {
+  background: var(--text3);
+}
+
+/* Полоска появляется ТОЛЬКО при наведении */
+.mod-btn:hover::after {
+  opacity: 1;
+}
+
+/* Hover-эффекты для каждого модуля */
+.mod-btn.survival:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.06);
+}
+
+.mod-btn.auto:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  background: rgba(249, 115, 22, 0.06);
+}
+
+.mod-btn.lawyer:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.mod-btn.home:hover {
+  border-color: rgba(132, 204, 22, 0.4);
+  background: rgba(132, 204, 22, 0.06);
+}
+
+.mod-btn.kids:hover {
+  border-color: rgba(236, 72, 153, 0.4);
+  background: rgba(236, 72, 153, 0.06);
+}
+
+.mod-btn.animals:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.06);
+}
+
+.mod-btn.travel:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.06);
+}
+
+.mod-btn.drone:hover {
+  border-color: rgba(234, 88, 12, 0.4);
+  background: rgba(234, 88, 12, 0.06);
+}
+
+.mod-btn.energy:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(251, 191, 36, 0.06);
+}
+
+.mod-btn.soon:hover {
+  border-color: rgba(100, 116, 139, 0.4);
+  background: rgba(100, 116, 139, 0.06);
+}
 
 /* ===== КНОПКИ КАТЕГОРИЙ В МОДУЛЯХ ===== */
 .cat-btn {
