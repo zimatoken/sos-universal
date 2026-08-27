@@ -1101,7 +1101,7 @@ body.screen-flash .app {
   animation: hintPulse 2s ease-in-out infinite;
 }
 
-/* ===== SUPPORT METHODS v2.0 ===== */
+/* ===== SUPPORT METHODS v2.2 ===== */
 .support-methods {
   display: flex;
   flex-direction: column;
@@ -1158,7 +1158,7 @@ body.screen-flash .app {
   box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
 }
 
-/* Т-Банк — чёрный/жёлтый */
+/* Т-Банк — чёрный */
 .support-btn.tinkoff {
   background: linear-gradient(135deg, #333333, #1a1a1a);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -1168,44 +1168,44 @@ body.screen-flash .app {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* EVM — фиолетовый/синий */
+/* EVM — синий */
 .support-btn.evm {
-  background: linear-gradient(135deg, #627eea, #3c5fc9);
-  box-shadow: 0 4px 12px rgba(98, 126, 234, 0.3);
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 .support-btn.evm:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(98, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
 
 /* Tron — красный */
 .support-btn.tron {
-  background: linear-gradient(135deg, #ff060a, #c70003);
-  box-shadow: 0 4px 12px rgba(255, 6, 10, 0.3);
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 .support-btn.tron:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 6, 10, 0.4);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
 }
 
 /* Bitcoin — оранжевый */
-.support-btn.btc {
-  background: linear-gradient(135deg, #f7931a, #e67e00);
-  box-shadow: 0 4px 12px rgba(247, 147, 26, 0.3);
+.support-btn.bitcoin {
+  background: linear-gradient(135deg, #f97316, #c2410c);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
 }
-.support-btn.btc:hover {
+.support-btn.bitcoin:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(247, 147, 26, 0.4);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
 }
 
 /* Solana — фиолетово-зелёный */
-.support-btn.sol {
-  background: linear-gradient(135deg, #9945ff, #14f195);
-  box-shadow: 0 4px 12px rgba(153, 69, 255, 0.3);
+.support-btn.solana {
+  background: linear-gradient(135deg, #8b5cf6, #14b8a6);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }
-.support-btn.sol:hover {
+.support-btn.solana:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(153, 69, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
 }
 
 /* Юридический блок */
