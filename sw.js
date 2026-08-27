@@ -4,7 +4,7 @@
 // Стратегия: Cache First с обновлением в фоне (Stale-While-Revalidate)
 // Исправления: navigate fallback, addAll → individual cache, clone fix
 
-const CACHE_NAME = 'sos-universal-v4.2-OFFLINE';
+const CACHE_NAME = 'sos-universal-v5.0-FINAL';
 const BASE_PATH = '/sos-universal/';
 
 // ============================================================

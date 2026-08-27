@@ -413,6 +413,47 @@
       document.body.removeChild(ta);
     }
 
+    // ==========================================
+    // 🔄 АВТОМАТИЧЕСКОЕ ОБНОВЛЕНИЕ PWA
+    // ==========================================
+
+    let swUpdateAvailable = false;
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../sw.js')
+        .then(reg => {
+          console.log('✅ SW registered:', reg.scope);
+          
+          // Проверка обновлений каждые 60 минут
+          setInterval(() => {
+            reg.update().then(() => {
+              console.log('🔄 SW check for updates');
+            }).catch(err => {
+              console.warn('⚠️ SW update check failed:', err);
+            });
+          }, 60 * 60 * 1000);
+          
+          reg.addEventListener('updatefound', () => {
+            const newSW = reg.installing;
+            console.log('🔄 New SW found, installing...');
+            
+            newSW.addEventListener('statechange', () => {
+              if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                swUpdateAvailable = true;
+                showToast('🔄 Доступна новая версия! Перезагрузите страницу.');
+                console.log('🔄 Update available! Please refresh.');
+              }
+            });
+          });
+        })
+        .catch(err => console.error('❌ SW registration failed:', err));
+      
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('🔄 Service Worker обновлён!');
+        showToast('✅ Приложение обновлено! Перезагрузите страницу.');
+      });
+    }
+
     // ✅ ВСЕ ЗАГРУЗКИ В ОДНОМ МЕСТЕ (язык, тема, SW, авто-SOS)
     document.addEventListener('DOMContentLoaded', function() {
       // 1. Авто-открытие SOS при переходе с главной
@@ -432,11 +473,15 @@
         loadTheme();
       }
       
-      // 4. Service Worker (офлайн-кэширование)
+      // 4. Проверка обновлений SW при загрузке
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('../../sw.js')
-          .then(reg => console.log('✅ SW registered:', reg.scope))
-          .catch(err => console.error('❌ SW registration failed:', err));
+        navigator.serviceWorker.ready.then(registration => {
+          registration.update().then(() => {
+            console.log('🔄 SW update check on page load');
+          }).catch(err => {
+            console.warn('⚠️ SW update check failed:', err);
+          });
+        });
       }
     });
   </script>

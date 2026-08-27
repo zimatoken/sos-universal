@@ -103,7 +103,7 @@
         <span class="map-hint" data-i18n="map_hint">Или скачай Organic Maps — работает офлайн</span>
       </div>
 
-      <!-- БЛОК ПОДДЕРЖКИ v2.2 — 6 способов (ИСПРАВЛЕНО!) -->
+      <!-- БЛОК ПОДДЕРЖКИ v2.2 — 6 способов -->
       <div class="support-block" id="supportBlock">
         <div class="support-header">
           <span class="support-heart">❤️</span>
@@ -157,7 +157,7 @@
             </span>
           </button>
 
-          <!-- Bitcoin — ИСПРАВЛЕНО! -->
+          <!-- Bitcoin -->
           <button class="support-btn bitcoin" onclick="window.copyCrypto ? copyCrypto('bitcoin') : copyToClipboard('bc1qw0lfv4hwvzk9qhax2xp0n4jm94lce4mkn8pwjl', '📋 Bitcoin-адрес скопирован')" title="Скопировать Bitcoin-адрес">
             <span class="btn-icon">₿</span>
             <span class="btn-text">
@@ -166,7 +166,7 @@
             </span>
           </button>
 
-          <!-- Solana — ИСПРАВЛЕНО! -->
+          <!-- Solana -->
           <button class="support-btn solana" onclick="window.copyCrypto ? copyCrypto('solana') : copyToClipboard('4rPx8Vtk5dcBe8CpCb9ZgaGf9HwW9cf5FesuspijLfCj', '📋 Solana-адрес скопирован')" title="Скопировать Solana-адрес">
             <span class="btn-icon">◎</span>
             <span class="btn-text">
@@ -188,6 +188,8 @@
       </div>
     </div>
   </div>
+
+  <div class="toast" id="toast"></div>
 
   <!-- ========================================== -->
   <!-- ПРАВИЛЬНЫЙ ПОРЯДОК ЗАГРУЗКИ СКРИПТОВ v4.0 -->
@@ -275,13 +277,78 @@
       document.body.removeChild(ta);
     }
 
+    // ==========================================
+    // 🔄 АВТОМАТИЧЕСКОЕ ОБНОВЛЕНИЕ PWA
+    // ==========================================
+
+    let swUpdateAvailable = false;
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => {
+          console.log('✅ SW registered:', reg.scope);
+          
+          // Проверка обновлений каждые 60 минут
+          setInterval(() => {
+            reg.update().then(() => {
+              console.log('🔄 SW check for updates');
+            }).catch(err => {
+              console.warn('⚠️ SW update check failed:', err);
+            });
+          }, 60 * 60 * 1000);
+          
+          reg.addEventListener('updatefound', () => {
+            const newSW = reg.installing;
+            console.log('🔄 New SW found, installing...');
+            
+            newSW.addEventListener('statechange', () => {
+              if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                swUpdateAvailable = true;
+                showToast('🔄 Доступна новая версия! Перезагрузите страницу.');
+                console.log('🔄 Update available! Please refresh.');
+              }
+            });
+          });
+        })
+        .catch(err => console.error('❌ SW registration failed:', err));
+      
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('🔄 Service Worker обновлён!');
+        showToast('✅ Приложение обновлено! Перезагрузите страницу.');
+      });
+    }
+
+    // ==========================================
     // ИНИЦИАЛИЗАЦИЯ
+    // ==========================================
+
     document.addEventListener('DOMContentLoaded', function() {
+      // 1. Авто-открытие SOS при переходе с главной
+      if (localStorage.getItem('sos_auto_open') === '1') {
+        localStorage.removeItem('sos_auto_open');
+        setTimeout(() => {
+          if (typeof showSOS === 'function') showSOS();
+        }, 400);
+      }
+
+      // 2. Язык
       const savedLang = localStorage.getItem('language') || 'ru';
       setLanguage(savedLang);
       
+      // 3. Тема
       if (typeof loadTheme === 'function') {
         loadTheme();
+      }
+      
+      // 4. Проверка обновлений SW при загрузке
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(registration => {
+          registration.update().then(() => {
+            console.log('🔄 SW update check on page load');
+          }).catch(err => {
+            console.warn('⚠️ SW update check failed:', err);
+          });
+        });
       }
     });
   </script>
