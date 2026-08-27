@@ -1409,6 +1409,37 @@ body.screen-flash .app {
   color: var(--text2);
 }
 
+/* ===== ФИКС: УБИРАЕМ ПОДЧЁРКИВАНИЕ И ПОЛОСКИ ===== */
+
+/* Убираем подчёркивание у всех модулей */
+.mod-btn {
+  text-decoration: none !important;
+}
+
+.mod-btn .label {
+  text-decoration: none !important;
+}
+
+/* Полоска ТОЛЬКО при наведении, и НИКОГДА больше */
+.mod-btn::after {
+  opacity: 0 !important;
+}
+
+.mod-btn:hover::after {
+  opacity: 1 !important;
+}
+
+.mod-btn:focus::after,
+.mod-btn:focus-visible::after,
+.mod-btn:active::after {
+  opacity: 0 !important;
+}
+
+/* Страховка для всех ссылок в grid */
+.grid a {
+  text-decoration: none !important;
+}
+
 @keyframes hintPulse {
   0%, 100% { opacity: 0.8; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.02); }
